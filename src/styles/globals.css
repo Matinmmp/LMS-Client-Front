@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+
+input {
+    outline: none;
+    border: none;
+}
+
+.neon-text-3d {
+    font-weight: 700;
+
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2), -1px -1px 2px rgba(0, 0, 0, 0.2), 2px 2px 5px rgba(0, 0, 0, 0.5);
+    position: relative;
+    animation: soft-flicker 3s infinite alternate;
+}
+
+/* انیمیشن چشمک زدن ملایم */
+@keyframes soft-flicker {
+
+    0%,
+    100% {
+        opacity: 1;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2), -1px -1px 2px rgba(0, 0, 0, 0.2), 2px 2px 5px rgba(0, 0, 0, 0.5), 0 0 8px #1ac0ff;
+    }
+
+    50% {
+        opacity: 0.9;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2), -1px -1px 2px rgba(0, 0, 0, 0.2), 2px 2px 5px rgba(0, 0, 0, 0.5), 0 0 4px #1ac0ff;
+    }
+}
+
+.background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.background span:nth-child(1) {
+    border-radius: 50vmin;
+    position: absolute;
+    background: #006fee64;
+    top: 2%;
+    left: -3%;
+    width: 120vmin;
+    height: 50vmin;
+    filter: blur(75px);
+    transform: rotateZ(15deg);
+    -webkit-filter: blur(75px);
+    -moz-filter: blur(75px); 
+    -o-filter: blur(75px); 
+}
+
+.background span:nth-child(2) {
+    border-radius: 50vmin;
+    position: absolute;
+    background: #a600ff6c;
+    top: 10%;
+    right: -5%;
+    width: 80vmin;
+    height: 40vmin;
+    filter: blur(75px);
+    transform: rotateZ(30deg);
+    -webkit-filter: blur(75px);
+    -moz-filter: blur(75px); 
+    -o-filter: blur(75px); 
+}
+
