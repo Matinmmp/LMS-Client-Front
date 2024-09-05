@@ -30,7 +30,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children, }: { children: React.ReactNode; }) {
     return (
-        <html   lang="fa" >
+        <html   lang="fa" dir="rtl">
             <head />
 
             <body className={clsx("min-h-screen bg-background font-sans antialiased", Baloo.variable, Inter.variable)} >
@@ -42,7 +42,7 @@ export default function RootLayout({ children, }: { children: React.ReactNode; }
                         {/* <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
                             {children}
                         </main> */}
-                        <main className="container mx-auto max-w-7xl flex-grow" id="home-scroll">
+                        <main className="/container mx-auto/ max-w-7xl/ flex-grow">
                             <div className="background">
                                 <span></span>
                                 <span></span>

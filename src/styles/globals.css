@@ -46,11 +46,11 @@ input {
 .background span:nth-child(1) {
     border-radius: 50vmin;
     position: absolute;
-    background: #006fee64;
+    background: #006fee50;
     top: 2%;
-    left: -3%;
-    width: 120vmin;
-    height: 50vmin;
+    left: -8%;
+    width: 90%;
+    height: 50%;
     filter: blur(75px);
     transform: rotateZ(15deg);
     -webkit-filter: blur(75px);
@@ -61,13 +61,13 @@ input {
 .background span:nth-child(2) {
     border-radius: 50vmin;
     position: absolute;
-    background: #a600ff6c;
-    top: 10%;
-    right: -5%;
-    width: 80vmin;
-    height: 40vmin;
+    background: #a600ff57;
+    top: 0%;
+    right: -15%;
+    width: 80%;
+    height: 45%;
     filter: blur(75px);
-    transform: rotateZ(30deg);
+    transform: rotateZ(40deg);
     -webkit-filter: blur(75px);
     -moz-filter: blur(75px); 
     -o-filter: blur(75px); 

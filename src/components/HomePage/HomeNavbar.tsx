@@ -38,7 +38,7 @@ const HomeNavbar = (props: Props) => {
                 <Navbar />
             </div>
 
-            <div className='flex justify-center px-4 sticky top-[4.6rem]  z-50'>
+            <div className='flex justify-center px-4 sticky top-[4.6rem] z-50'>
 
                 <div className=' w-full max-w-3xl flex justify-center transition-all '>
 
@@ -49,7 +49,7 @@ const HomeNavbar = (props: Props) => {
                         <div className={`h-11 ${open ? 'w-full ps-4 dark:border-primary-400' : 'w-11 dark:border-white'} 
                              t p-[2px] border-[3px] rounded-[5rem] transition-all  relative border-primary-400 dark:border-white`}>
 
-                            <input className={`${open ? 'w-11/12' : 'w-0'} h-8 mt-[1px] bg-transparent absolute right-3`} />
+                            <input className={`${open ? 'w-11/12' : 'w-0'} h-8 mt-[1px] absolute right-3`} />
 
                             <div className={`min-w-9 min-h-9 flex items-center justify-center
                                 ${open ? ' left-[2px] dark:border-primary-400' : 'dark:border-white'} border-[3px] rounded-full

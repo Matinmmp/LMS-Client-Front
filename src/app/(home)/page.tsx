@@ -9,9 +9,9 @@ import { GithubIcon } from "@/src/components/icons";
 
 export default function Home() {
     return (
-        <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10 py-0" id="home-scroll">
+        <section className="flex flex-col items-center justify-center gap-4 md:py-10 py-0" id="home-scroll">
             <div className="flex  max-w-xl text-center justify-center">
-                <h1 className={title({ color: "blue" })}>Make&nbsp;</h1>
+                {/* <h1 className={title({ color: "blue" })}>Make&nbsp;</h1>
                 <h1 className={title({ color: "blue" })}>beautiful&nbsp;</h1>
                 <br />
                 <h1 className={title()}>
@@ -19,16 +19,8 @@ export default function Home() {
                 </h1>
                 <h2 className={subtitle({ class: "mt-4" })}>
                     Beautiful, fast and modern React UI library.
-                </h2>
-                <h1 className={title({ color: "blue" })}>Make&nbsp;</h1>
-                <h1 className={title({ color: "blue" })}>beautiful&nbsp;</h1>
-                <br />
-                <h1 className={title()}>
-                    websites regardless of your design experience.
-                </h1>
-                <h2 className={subtitle({ class: "mt-4" })}>
-                    Beautiful, fast and modern React UI library.
-                </h2>
+                </h2> */}
+             
             </div>
 
             <div className="flex gap-3">
