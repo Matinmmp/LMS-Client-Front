@@ -4,8 +4,6 @@
 
 
 
-
-
 input {
     outline: none;
     border: none;
@@ -46,7 +44,7 @@ input {
 .background span:nth-child(1) {
     border-radius: 50vmin;
     position: absolute;
-    background: #006fee50;
+    background: #087bff42;
     top: 2%;
     left: -8%;
     width: 90%;
@@ -61,7 +59,7 @@ input {
 .background span:nth-child(2) {
     border-radius: 50vmin;
     position: absolute;
-    background: #a600ff57;
+    background: #a908ff49;
     top: 0%;
     right: -15%;
     width: 80%;
@@ -73,3 +71,50 @@ input {
     -o-filter: blur(75px); 
 }
 
+
+::-webkit-scrollbar {
+    /* width: 10px; */
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-button {
+    width: 0px;
+    height: 0px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #00b3ff;
+    border: 0px none #ffffff00;
+    border-radius: 100px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00b3ff;
+  }
+  ::-webkit-scrollbar-thumb:active {
+    background: #00b3ff;
+  }
+  ::-webkit-scrollbar-track {
+    background: #ffffff00;;
+    border: 0px none #ffffff00;;
+    border-radius: 16px;
+  }
+  ::-webkit-scrollbar-track:hover {
+    background: #ffffff00;;
+  }
+  ::-webkit-scrollbar-track:active {
+    background: #ffffff00;;
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+  
+  
+  #body[data-scroll-locked] {
+      margin:0 !important;
+  }
+  
+  
+  
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+      display: none;
+  }
