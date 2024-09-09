@@ -32,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html dir="rtl" lang="fa">
+    <html dir="rtl" lang="fa" id="html">
       <head />
 
       <body

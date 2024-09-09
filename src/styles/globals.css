@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 
+header{
+    padding:0!important;
+}
 
 input {
     outline: none;

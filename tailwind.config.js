@@ -45,7 +45,7 @@ module.exports = {
                     900: "#045400",
                     DEFAULT: "#2F9E22",
                 },
-                info: {
+                secondary: {
                     100: "#CCF9FE",
                     200: "#9AEDFD",
                     300: "#68D8F9",
@@ -85,5 +85,6 @@ module.exports = {
         },
     },
     darkMode: "class",
-    plugins: [nextui()],
+    plugins: [nextui({}),
+    ],
 }
