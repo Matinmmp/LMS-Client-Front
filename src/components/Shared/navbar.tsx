@@ -1,9 +1,9 @@
 "use client";
-import { Navbar as NextUINavbar, NavbarContent, NavbarItem, } from "@nextui-org/navbar";
+import { Navbar as NextUINavbar, NavbarContent, NavbarItem } from "@nextui-org/navbar";
 import { link as linkStyles } from "@nextui-org/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
-import { useEffect, useState ,forwardRef} from "react";
+import { useEffect, useState, forwardRef } from "react";
 import Image from "next/image";
 import { Button } from "@nextui-org/button";
 import { ThemeSwitch } from "@/src/components/theme-switch";
@@ -11,128 +11,69 @@ import Drawer from "./Drawer";
 import { Edu } from "@/src/config/fonts";
 import { MdKeyboardArrowDown, MdKeyboardArrowLeft, MdOutlinePersonAddAlt } from "react-icons/md";
 import { CiSquareMinus, CiSquarePlus } from "react-icons/ci";
-import { FaRightToBracket, FaCaretLeft, FaChevronLeft } from "react-icons/fa6";
+import { FaRightToBracket, FaCaretLeft, FaChevronLeft, FaQuoteRight } from "react-icons/fa6";
 import { GoDotFill } from "react-icons/go";
 import { CgClose } from "react-icons/cg";
 import { GrMenu } from "react-icons/gr";
-import { motion } from 'framer-motion';
-import {Avatar} from "@nextui-org/avatar";
+import { Avatar } from "@nextui-org/avatar";
+import { navObject } from "@/src/config/site";
+import { buildCategoryTree } from "@/src/utils/categorySorter";
+import { useTheme } from "next-themes";
+import { toPersianNumber } from "@/src/utils/functions";
+import { FcAbout } from "react-icons/fc";
+import { FaTelegramPlane } from "react-icons/fa";
+import { GrInstagram } from "react-icons/gr";
+import { MdContactPhone } from "react-icons/md";
+import dynamic from "next/dynamic";
+import CustomeModal from "./CustomeModal";
+import { useSelector } from "react-redux";
+import Login from "../Auth/Login";
 
-const categories = [
-    {
-        _id: 1,
-        title: "برنامه نویسی",
-        subCategories: [
-            {
-                _id: 1,
-                title: "برنامه نویسی",
-            },
-            {
-                _id: 1,
-                title: "برنامه نویسی",
-            },
-        ],
-    },
-    {
-        _id: 1,
-        title: "برنامه نویسی",
-    },
-    {
-        _id: 1,
-        title: "برنامه نویسی",
-    },
-    {
-        _id: 1,
-        title: "برنامه نویسی",
-        subCategories: [
-            {
-                _id: 1,
-                title: "برنامه نویسی",
-                subCategories: [
-                    {
-                        _id: 1,
-                        title: "برنامه نویسی",
-                    },
-                    {
-                        _id: 1,
-                        title: "برنامه نویسی",
-                    },
-                ],
-            },
-            {
-                _id: 1,
-                title: "برنامه نویسی",
-                subCategories: [
-                    {
-                        _id: 1,
-                        title: "برنامه نویسی",
-                    },
-                    {
-                        _id: 1,
-                        title: "برنامه نویسی",
-                    },
-                ],
-            },
-        ],
-    },
-    {
-        _id: 1,
-        title: "برنامه نویسی",
-    },
-    {
-        _id: 1,
-        title: "برنامه نویسی",
-    },
-    {
-        _id: 1,
-        title: "برنامه نویسی",
-    },
-    {
-        _id: 1,
-        title: "برنامه نویسی",
-        subCategories: [
-            {
-                _id: 1,
-                title: "برنامه نویسی",
-            },
-            {
-                _id: 1,
-                title: "برنامه نویسی",
-            },
-        ],
-    },
-    {
-        _id: 1,
-        title: "برنامه نویسی",
-    },
-];
-
-const academies = [
-    {
-        _id: 1,
-        title: "برنامه نویسی",
-    },
-    {
-        _id: 1,
-        title: "برنامه نویسی",
-    },
-    {
-        _id: 1,
-        title: "برنامه نویسی",
-    },
-    {
-        _id: 1,
-        title: "برنامه نویسی",
-    },
-];
+const MotionComponent = dynamic(() =>
+    import("framer-motion").then((mod) => mod.motion.div)
+);
 
 const links = [
-    
+    {
+        icon: <FaTelegramPlane size={20} color="#079CED" />,
+        title: 'کانال تلگرام',
+        link: '/',
+    },
+    {
+        icon: <GrInstagram size={18} color="#ed071e" />,
+        title: 'پیج اینستاگرام',
+        link: '/',
+    },
+    {
+        icon: <MdContactPhone size={18} color="#07edd2" />,
+        title: 'ارتباط با ما',
+        link: '/',
+    },
+    {
+        icon: <FcAbout size={20} />,
+        title: 'درباره‌ی ما',
+        link: '/',
+    },
+    {
+        icon: <FaQuoteRight size={20} />,
+        title: 'سوالات متداول',
+        link: '/',
+    },
 ]
+
+const categories = buildCategoryTree(navObject.categoryObject.categoryList, null);
+const academiesObject = navObject.academyObject
+const teacherObject = navObject.teacherObject
+
 
 export const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const [open, setOpen] = useState(true);
+    const [route, setRoute] = useState('Login')
+    const [active, setActive] = useState(false);
+    const { user } = useSelector((state: any) => state.auth)
 
 
     useEffect(() => {
@@ -147,10 +88,11 @@ export const Navbar = () => {
         return () => window.removeEventListener("scroll", handleScroll);
 
     }, []);
+ 
 
     return (
         <div className={`sticky top-10 w-full transition-all ${scrolled ? " max-w-[100%] px-0 left-0 right-0" : " max-w-7xl px-4"}`}>
-            <NextUINavbar className="w-full h-[4.5rem]" maxWidth="full">
+            <NextUINavbar className={`w-full h-[4.5rem] ${scrolled ? 'rounded-none' : 'md:rounded-lg'} `} maxWidth="full">
                 <NavbarContent className='items-center px-4 relative' justify="start">
 
 
@@ -166,55 +108,70 @@ export const Navbar = () => {
                             <DropDown link={"/b"} position="bottom-middle"
                                 title={
                                     <div className="w-full flex items-center justify-between">
-                                        <span>دوره‌های برنامه نویسی</span>
+                                        <span>دوره‌های آموزشی</span>
                                         <MdKeyboardArrowDown size={24} />
                                     </div>
                                 }>
 
-                                <div className="w-44 max-h-[25rem] p-3">
-                                    {categories.map((item, index) => {
+                                <div className="w-52 max-h-[25rem] p-3">
+                                    {categories[0].subCategories.map((item, index) => {
                                         if (item?.subCategories)
                                             return (
-                                                <NavbarItem key={index}>
+                                                <div key={index}>
                                                     <DropDown link="/" position="left"
                                                         title={
-                                                            <div className="w-full flex items-center justify-end gap-1 py-1 hover:text-primary-300">
-                                                                {item.subCategories && (<MdKeyboardArrowLeft className="me-auto" size={16} />)}
-                                                                {item.title}
+                                                            <div className="w-full flex items-center justify-end gap-1 py-2 hover:text-primary-300">
+                                                                {item?.subCategories.length ? (<MdKeyboardArrowLeft className="me-auto" size={16} />) : ''}
+                                                                {item.name}
                                                                 <GoDotFill className="text-primary-300" size={10} />
                                                             </div>}>
 
-                                                        <div className="w-44 max-h-[25rem] p-3">
+                                                        {item?.subCategories.length ? <div className="w-44 max-h-[25rem] p-3 flex flex-col ">
                                                             {item.subCategories.map((sub, index) => (
-                                                                <NavbarItem key={index}>
-                                                                    <NextLink
-                                                                        className={clsx(linkStyles({ color: "foreground" }),
-                                                                            "w-full flex items-center justify-end gap-1 py-1 hover:text-primary-300 ",
-                                                                        )}
-                                                                        color="foreground" href={"/"} >
-                                                                        {sub.title}
-                                                                        <GoDotFill className="text-primary-300" size={10} />
-                                                                    </NextLink>
-                                                                </NavbarItem>
+                                                                <NextLink color="foreground" href={"/"} key={index}
+                                                                    className={clsx(linkStyles({ color: "foreground" }), "w-full flex items-center justify-end gap-1 py-1 hover:text-primary-300 ",)}>
+                                                                    {sub.name}
+                                                                    <GoDotFill className="text-primary-300" size={10} />
+                                                                </NextLink>
                                                             ))}
-                                                        </div>
+                                                        </div> : ''}
                                                     </DropDown>
-                                                </NavbarItem>
+                                                </div>
                                             );
 
                                         return (
-                                            <NavbarItem key={index}>
-                                                <NextLink
-                                                    className={clsx(linkStyles({ color: "foreground" }),
-                                                        "w-full flex items-center justify-end gap-1 py-1 hover:text-primary-300 ",
-                                                    )}
-                                                    color="foreground" href={"/"}>
-                                                    {item.title}
-                                                    <GoDotFill className="text-primary-300  " size={10} />
-                                                </NextLink>
-                                            </NavbarItem>
+                                            <NextLink color="foreground" href={"/"} key={index}
+                                                className={clsx(linkStyles({ color: "foreground" }), "w-full flex items-center justify-end gap-1 py-1 hover:text-primary-300 ",)}>
+                                                {item.name}
+                                                <GoDotFill className="text-primary-300  " size={10} />
+                                            </NextLink>
                                         );
                                     })}
+                                </div>
+                            </DropDown>
+                        </NavbarItem>
+
+                        <NavbarItem>
+                            <DropDown link={"/b"} position="bottom-left"
+                                title={
+                                    <div className="w-full flex items-center justify-between">
+                                        <span>مدرس‌ها</span>
+                                        <MdKeyboardArrowDown size={24} />
+                                    </div>
+                                }>
+
+                                <div className="w-[30rem] max-h-[50rem] p-4 grid gap-6 grid-cols-4 justify-beetwen " dir='rtl'>
+                                    {teacherObject.teacherList.map((item, index) => (
+                                        <NextLink href={'/'} key={index} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
+                                            <Avatar radius={'full'} isBordered size={'lg'} color={'primary'} name={item.engName} showFallback src={item.imageUrl} />
+                                            <span className='text-center whitespace-break-spaces'>{item.engName}</span>
+                                        </NextLink>
+                                    ))}
+                                    <NextLink href={'/'} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
+                                        <Avatar name={toPersianNumber(teacherObject.total - teacherObject.teacherList.length) + '+'}
+                                            radius={'full'} isBordered size={'lg'} color={'primary'} className='text-xl cursor-pointer' />
+                                        <span className='text-center'>مشاهده همه</span>
+                                    </NextLink>
                                 </div>
                             </DropDown>
                         </NavbarItem>
@@ -228,53 +185,18 @@ export const Navbar = () => {
                                     </div>
                                 }>
 
-                                <div className="w-[35rem] max-h-[50rem] p-3">
-                                    {academies.map((item, index) => (
-                                        <NavbarItem key={index}>
-                                            <NextLink
-                                                className={clsx(
-                                                    linkStyles({ color: "foreground" }),
-                                                    "w-full flex items-center justify-end gap-1 py-1 hover:text-primary-300 ",
-                                                )}
-                                                color="foreground"
-                                                href={"/"}
-                                            >
-                                                {item.title}
-                                                <GoDotFill className="text-primary-300  " size={10} />
-                                            </NextLink>
-                                        </NavbarItem>
+                                <div className="w-[25rem] max-h-[50rem] p-4 grid gap-6 grid-cols-3 justify-beetwen " dir='rtl'>
+                                    {academiesObject.academyList.map((item, index) => (
+                                        <NextLink href={'/'} key={index} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
+                                            <Avatar radius={'sm'} isBordered size={'lg'} color={'secondary'} name={item.engName} showFallback src={item.imageUrl} />
+                                            <span className='text-center whitespace-break-spaces'>{item.engName}</span>
+                                        </NextLink>
                                     ))}
-                                </div>
-                            </DropDown>
-                        </NavbarItem>
-
-                        <NavbarItem>
-                            <DropDown
-                                link={"/b"}
-                                position="bottom-left"
-                                title={
-                                    <div className="w-full flex items-center justify-between">
-                                        <span>آکادمی‌ها</span>
-                                        <MdKeyboardArrowDown size={24} />
-                                    </div>
-                                }
-                            >
-                                <div className="w-[35rem] max-h-[50rem] p-3">
-                                    {academies.map((item, index) => (
-                                        <NavbarItem key={index}>
-                                            <NextLink
-                                                className={clsx(
-                                                    linkStyles({ color: "foreground" }),
-                                                    "w-full flex items-center justify-end gap-1 py-1 hover:text-primary-300 ",
-                                                )}
-                                                color="foreground"
-                                                href={"/"}
-                                            >
-                                                {item.title}
-                                                <GoDotFill className="text-primary-300  " size={10} />
-                                            </NextLink>
-                                        </NavbarItem>
-                                    ))}
+                                    <NextLink href={'/'} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
+                                        <Avatar name={toPersianNumber(academiesObject.total - academiesObject.academyList.length) + '+'}
+                                            radius={'sm'} isBordered size={'lg'} color={'secondary'} className='text-xl cursor-pointer' />
+                                        <span className='text-center'>مشاهده همه</span>
+                                    </NextLink>
                                 </div>
                             </DropDown>
                         </NavbarItem>
@@ -285,43 +207,73 @@ export const Navbar = () => {
                                 بلاگ
                             </NextLink>
                         </NavbarItem>
+
+                        <NavbarItem>
+                            <DropDown link={"/b"} position="bottom-left"
+                                title={
+                                    <div className="w-full flex items-center justify-between">
+                                        <span>لینک های مفید</span>
+                                        <MdKeyboardArrowDown size={24} />
+                                    </div>
+                                }>
+
+                                <div className="w-[10rem] max-h-[50rem] p-3 flex flex-col gap-2">
+                                    {links.map((item, index) => (
+
+                                        <NextLink key={index} color="foreground" href={item.link}
+                                            className={clsx(linkStyles({ color: "foreground" }), "w-full flex items-center justify-end gap-2 py-1 hover:text-primary-300 ")}>
+                                            {item.title}
+                                            {item.icon}
+                                        </NextLink>
+
+                                    ))}
+                                </div>
+                            </DropDown>
+                        </NavbarItem>
                     </ul>
 
                     <ul className="ms-auto flex items-center">
+
                         <NavbarItem className="hidden sm:flex gap-2">
                             <ThemeSwitch />
                         </NavbarItem>
 
                         <NavbarItem className="hidden sm:flex gap-2">
-                            <div className="flex items-center">
-                                <Button radius="sm" variant="shadow" color="secondary" className=" w-[5.5rem] -me-4 gap-0.5 ps-2   text-white"
+
+                            <div className="flex items-center" >
+                                <Button onClick={() => setOpen(true)} radius="sm" variant="shadow" color="secondary" className="w-[5.5rem] -me-4 gap-0.5 ps-2 text-white"
                                     endContent={<FaRightToBracket className="ms-1 text-base font-medium" size={20} />} >
                                     ورود
                                 </Button>
 
-                                <Button className="px-2 w-24" color="primary" radius="sm" variant="shadow">
+                                <Button onClick={() => setOpen(true)} className="px-2 w-24" color="primary" radius="sm" variant="shadow">
                                     <span className="text-base font-medium ">عضویت</span>
                                     <MdOutlinePersonAddAlt size={24} />
                                 </Button>
                             </div>
+
                         </NavbarItem>
 
                         <NavbarItem className="flex sm:hidden gap-2">
-                            <Button radius="sm" variant="shadow" color="secondary" className="!min-w-8   text-white"
+                            <Button radius="sm" variant="shadow" color="secondary" className="!min-w-8 text-white"
                                 endContent={<FaRightToBracket className="text-base font-medium" size={20} />} >
                             </Button>
                         </NavbarItem>
 
                     </ul>
+
                 </NavbarContent>
             </NextUINavbar>
 
 
             <Drawer isOpen={isMenuOpen} setIsOpen={setIsMenuOpen}>
-                <DrawerContent setIsOpen={setIsMenuOpen} categoryList={categories} />
-
+                <DrawerContent setIsOpen={setIsMenuOpen} categoryList={categories[0].subCategories} />
             </Drawer>
 
+            {
+                route === 'Login' &&
+                <CustomeModal open={open} setOpen={setOpen} setRoute={setRoute} component={<Login/>}/>
+            }
         </div>
     );
 };
@@ -341,7 +293,7 @@ const DropDown = ({ children, position, title, link }: DropDownProps) => {
     const handleMouseLeave = () => setOpen(false)
 
     if (position === "bottom-middle") positionStyle = "left-1/2 transform -translate-x-1/2";
-    if (position === "left") positionStyle = "left-[-125%] -top-3 pe-10";
+    if (position === "left") positionStyle = "left-[-105%] -top-3 pe-10";
     if (position === "bottom-left") positionStyle = "rigth-1 transform ";
 
     return (
@@ -351,7 +303,7 @@ const DropDown = ({ children, position, title, link }: DropDownProps) => {
             </NextLink>
 
             {open && (
-                <div className={clsx("absolute pt-7 transition-opacity duration-200 opacity-0", open ? "opacity-100" : "opacity-0")}>
+                <div className={clsx(positionStyle, "absolute pt-7 transition-opacity duration-200 opacity-0", open ? "opacity-100" : "opacity-0")}>
                     <div className=" overflow-x-autos rounded-md backdrop-blur-lg backdrop-saturate-200 bg-background/90" dir="ltr">
                         {children}
                     </div>
@@ -365,7 +317,10 @@ type DrawerContentProps = {
     setIsOpen: (isOpen: boolean) => void;
     categoryList: any[];
 };
-const DrawerContent = ({ setIsOpen, categoryList }: DrawerContentProps) => {
+
+const DrawerContent = ({ setIsOpen }: DrawerContentProps) => {
+    const { theme } = useTheme();
+
     return (
         <div className="h-full w-full overflow-y-auto" dir='ltr'>
             <div className='p-2 py-4 flex flex-col items-center' dir='rtl'>
@@ -373,7 +328,7 @@ const DrawerContent = ({ setIsOpen, categoryList }: DrawerContentProps) => {
                     <CgClose size={30} className='cursor-pointer' onClick={() => setIsOpen(false)} />
                 </div>
                 <div className='mt-5'>
-                    <p className={`${Edu.className} text-center font-bold text-[2.75rem]   text-primary-400 neon-text-3d`}>
+                    <p className={`${Edu.className} text-center font-bold text-[2.75rem] text-primary-400 ${theme == 'light' ? 'neon-text-3d-light' : ' neon-text-3d'}`}>
                         Virtual Learn
                     </p>
                 </div>
@@ -381,16 +336,17 @@ const DrawerContent = ({ setIsOpen, categoryList }: DrawerContentProps) => {
                 <div className="my-4 w-11/12 h-[0.05rem] bg-primary-400"></div>
 
                 <div className='w-full px-2 mt-2'>
-                    <ThemeSwitch showText={true}/>
+                    <ThemeSwitch showText={true} />
                 </div>
 
                 <div className="mt-8 w-11/12 h-[0.05rem] bg-primary-400"></div>
 
-                
+
                 <div className="w-full mt-6 px-2 flex flex-col gap-4">
-                    <DrawerDropDown categoryList={categoryList} />
-                    <DrawerDropDown2 list={categoryList} title={'مدرسین'} radius="full"/>
-                    <DrawerDropDown2 list={categoryList} title={'آکادمی ها'} radius="sm"/>
+                    <DrawerDropDown categoryList={categories[0].subCategories} />
+                    <DrawerDropDown2 color={'primary'} total={teacherObject.total} list={teacherObject.teacherList} title={'مدرس‌ها'} radius="full" />
+                    <DrawerDropDown2 color={'secondary'} total={teacherObject.total} list={academiesObject.academyList} title={'آکادمی ها'} radius="sm" />
+                    <DrawerDropDown3 list={links} title="لینک‌های مفید" />
                 </div>
             </div>
 
@@ -431,7 +387,7 @@ const DrawerDropDown = ({ categoryList }: DrawerDropDownProps) => {
                 </NextLink>
             </div>
 
-            <motion.div className="overflow-hidden" initial={false} animate={open ? "open" : "closed"} variants={containerVariants}>
+            <MotionComponent className="overflow-hidden" initial={false} animate={open ? "open" : "closed"} variants={containerVariants}>
                 <div className='ps-4'>
                     {
                         categoryList.map((item, index) => {
@@ -442,7 +398,7 @@ const DrawerDropDown = ({ categoryList }: DrawerDropDownProps) => {
                                         className="w-full mt-3 text-sm hover:text-primary-400 transition cursor-pointer relative flex items-center justify-between" >
                                         <div className='flex items-center gap-1'>
                                             <FaChevronLeft size={8} className="text-primary-400" />
-                                            <span>{item.title}</span>
+                                            <span>{item.name}</span>
                                         </div>
                                         {item.subCategories && (openSub ?
                                             <CiSquareMinus size={24} className="text-primary-400" onClick={() => setOpenSub(false)} />
@@ -451,43 +407,39 @@ const DrawerDropDown = ({ categoryList }: DrawerDropDownProps) => {
                                     </NextLink>
 
                                     {item.subCategories && (
-                                        <motion.div
-                                            className="ps-8 overflow-hidden"
-                                            initial={false}
-                                            animate={openSub ? "open" : "closed"}
-                                            variants={subCategoryVariants}
-                                        >
+                                        <MotionComponent className="ps-5 overflow-hidden" initial={false} animate={openSub ? "open" : "closed"} variants={subCategoryVariants}>
                                             {item.subCategories.map((itemSub: any, index2: number) => (
                                                 <div className="flex flex-col" key={index2}>
                                                     <NextLink color="foreground" href={'/'}
                                                         className="w-full mt-3 text-sm hover:text-primary-400 transition cursor-pointer relative flex items-center justify-between" >
                                                         <div className='flex items-center gap-1'>
                                                             <GoDotFill size={10} className="text-primary-400" />
-                                                            <span>{itemSub.title}</span>
+                                                            <span>{itemSub.name}</span>
                                                         </div>
                                                     </NextLink>
                                                 </div>
                                             ))}
-                                        </motion.div>
+                                        </MotionComponent>
                                     )}
                                 </div>
                             )
                         })
                     }
                 </div>
-            </motion.div>
+            </MotionComponent>
         </div>
     );
 }
 
 
-
 type DrawerDropDown2Props = {
     list: any[];
     title: string;
-    radius: 'full' | 'sm'
+    radius: 'full' | 'sm',
+    total: number,
+    color: 'primary' | 'secondary'
 };
-const DrawerDropDown2 = ({ list, title,radius }: DrawerDropDown2Props) => {
+const DrawerDropDown2 = ({ list, title, radius, total, color }: DrawerDropDown2Props) => {
     const [open, setOpen] = useState(false);
 
     const containerVariants = {
@@ -511,47 +463,72 @@ const DrawerDropDown2 = ({ list, title,radius }: DrawerDropDown2Props) => {
                 </NextLink>
             </div>
 
-            <motion.div className="overflow-hidden" initial={false} animate={open ? "open" : "closed"} variants={containerVariants}>
-               
-                    <div className='w-full p-2 pt-8 grid gap-6 grid-cols-3 justify-beetwen'>
+            <MotionComponent className="overflow-hidden" initial={false} animate={open ? "open" : "closed"} variants={containerVariants}>
 
-                        <NextLink href={'/'} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
-                            <Avatar radius={radius} isBordered size={'lg'} color={'primary'} name='harchi' showFallback src='https://i.pravatar.cc/150?u=a04258114e29026708c' />
-                            <span className='text-center'>jhonas eshmitman</span>
-                        </NextLink>    
-                        <NextLink href={'/'} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
-                            <Avatar radius={radius} isBordered size={'lg'} color={'primary'} name='harchi' showFallback src='https://i.pravatar.cc/150?u=a04258114e29026708c' />
-                            <span className='text-center'>jhonas</span>
-                        </NextLink>     
-                        <NextLink href={'/'} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
-                            <Avatar radius={radius} isBordered size={'lg'} color={'primary'} name='harchi' showFallback src='https://i.pravatar.cc/150?u=a04258114e29026708c' />
-                            <span className='text-center'>jhonas</span>
-                        </NextLink>                      
-                        <NextLink href={'/'} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
-                            <Avatar radius={radius} isBordered size={'lg'} color={'primary'} name='harchi' showFallback src='https://i.pravatar.cc/150?u=a04258114e29026708c' />
-                            <span className='text-center'>jhonas</span>
-                        </NextLink>   
-                        <NextLink href={'/'} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
-                            <Avatar radius={radius} isBordered size={'lg'} color={'primary'} name='harchi' showFallback src='https://i.pravatar.cc/150?u=a04258114e29026708c' />
-                            <span className='text-center'>jhonas</span>
-                        </NextLink>   
-                        <NextLink href={'/'} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
-                            <Avatar radius={radius} isBordered size={'lg'} color={'primary'} name='harchi' showFallback src='https://i.pravatar.cc/150?u=a04258114e29026708c' />
-                            <span className='text-center'>jhonas</span>
-                        </NextLink>   
-                        <NextLink href={'/'} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
-                            <Avatar radius={radius} isBordered size={'lg'} color={'primary'} name='harchi' showFallback src='https://i.pravatar.cc/150?u=a04258114e29026708c' />
-                            <span className='text-center'>jhonas</span>
-                        </NextLink>   
-                        <NextLink href={'/'} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
-                            <Avatar radius={radius} isBordered size={'lg'} color={'primary'} name='harchi' showFallback src='https://i.pravatar.cc/150?u=a04258114e29026708c' />
-                            <span className='text-center'>jhonas</span>
-                        </NextLink>   
-                        <Avatar name='10+' radius={radius}  isBordered size={'lg'} color={'primary'} className='text-xl cursor-pointer' />
-                    </div>
-               
-            </motion.div>
+                <div className='w-full p-2 pt-8 grid gap-6 grid-cols-3 justify-beetwen'>
+
+                    {list.map((item, index) => (
+                        <NextLink href={'/'} key={index} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
+                            <Avatar radius={radius} isBordered size={'lg'} color={color} name={item.engName} showFallback src={item.imageUrl} />
+                            <span className='text-center whitespace-break-spaces'>{item.engName}</span>
+                        </NextLink>
+                    ))}
+                    <NextLink href={'/'} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
+                        <Avatar name={toPersianNumber(total - list.length) + '+'}
+                            radius={radius} isBordered size={'lg'} color={color} className='text-xl cursor-pointer' />
+                        <span className='text-center'>مشاهده همه</span>
+                    </NextLink>
+
+                </div>
+
+            </MotionComponent>
         </div>
     );
 }
- 
+
+type DrawerDropDown3Props = {
+    list: any[];
+    title: string;
+};
+const DrawerDropDown3 = ({ list, title }: DrawerDropDown3Props) => {
+    const [open, setOpen] = useState(false);
+
+    const containerVariants = {
+        open: { maxHeight: "40rem", opacity: 1, transition: { duration: 0.3 } },
+        closed: { maxHeight: 0, transition: { duration: 0.3 } },
+    };
+
+    return (
+        <div className="w-full flex flex-col">
+            <div className="w-full ">
+                <NextLink color="foreground" href={'/'}
+                    className="w-full text-base hover:text-primary-400 transition cursor-pointer relative flex items-center justify-between" >
+                    <div className='flex items-center gap-1'>
+                        <FaCaretLeft size={12} className="text-primary-400" />
+                        <span>{title}</span>
+                    </div>
+                    {open ?
+                        <CiSquareMinus size={24} className="text-primary-400" onClick={() => setOpen(false)} />
+                        :
+                        <CiSquarePlus size={24} className="text-primary-400" onClick={() => setOpen(true)} />}
+                </NextLink>
+            </div>
+
+            <MotionComponent className="overflow-hidden" initial={false} animate={open ? "open" : "closed"} variants={containerVariants}>
+
+                <div className="p-3 ps-6 pt-5 flex flex-col gap-2" dir='ltr'>
+                    {links.map((item, index) => (
+
+                        <NextLink key={index} color="foreground" href={item.link}
+                            className={clsx(linkStyles({ color: "foreground" }), "w-full flex items-center justify-end gap-2 py-1 text-sm hover:text-primary-300 ")}>
+                            {item.title}
+                            {item.icon}
+                        </NextLink>
+
+                    ))}
+                </div>
+
+            </MotionComponent>
+        </div>
+    );
+}
