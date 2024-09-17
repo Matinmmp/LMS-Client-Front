@@ -28,6 +28,9 @@ import dynamic from "next/dynamic";
 import CustomeModal from "./CustomeModal";
 import { useSelector } from "react-redux";
 import Login from "../Auth/Login";
+import { useQuery } from "@tanstack/react-query";
+import { getUserInfo } from "@/src/lib/authApis";
+
 
 const MotionComponent = dynamic(() =>
     import("framer-motion").then((mod) => mod.motion.div)
@@ -72,8 +75,15 @@ export const Navbar = () => {
 
     const [open, setOpen] = useState(true);
     const [route, setRoute] = useState('Login')
-    const [active, setActive] = useState(false);
     const { user } = useSelector((state: any) => state.auth)
+
+    const academyQuery = useQuery({ queryKey: ['academies'], queryFn: getUserInfo });
+
+    console.log(user);
+
+    // const cookieString = typeof document !== 'undefined' ? document.cookie : '';
+    // const accessToken = cookieString.split('; ').find(row => row.startsWith('access_token='))?.split('=')[1];
+    // console.log(accessToken);
 
 
     useEffect(() => {
@@ -88,7 +98,7 @@ export const Navbar = () => {
         return () => window.removeEventListener("scroll", handleScroll);
 
     }, []);
- 
+
 
     return (
         <div className={`sticky top-10 w-full transition-all ${scrolled ? " max-w-[100%] px-0 left-0 right-0" : " max-w-7xl px-4"}`}>
@@ -254,7 +264,7 @@ export const Navbar = () => {
 
                         </NavbarItem>
 
-                        <NavbarItem className="flex sm:hidden gap-2">
+                        <NavbarItem className="flex sm:hidden gap-2" onClick={() => setOpen(true)}>
                             <Button radius="sm" variant="shadow" color="secondary" className="!min-w-8 text-white"
                                 endContent={<FaRightToBracket className="text-base font-medium" size={20} />} >
                             </Button>
@@ -272,7 +282,7 @@ export const Navbar = () => {
 
             {
                 route === 'Login' &&
-                <CustomeModal open={open} setOpen={setOpen} setRoute={setRoute} component={<Login/>}/>
+                <CustomeModal open={open} setOpen={setOpen} setRoute={setRoute} component={Login} />
             }
         </div>
     );

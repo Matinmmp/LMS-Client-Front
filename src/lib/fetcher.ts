@@ -1,3 +1,5 @@
+import { BASE_URL } from "../config/urls";
+
 interface FetchOptions extends RequestInit {
     authRequired?: boolean;
 }
@@ -13,23 +15,24 @@ export async function customFetch<T>(url: string, options: FetchOptions = {}): P
     options.headers = { ...options.headers };
 
 
-    let response = await fetch(url, options);
+    let response = await fetch(BASE_URL + url, options);
 
     // اگر توکن منقضی شده باشد
     if (response.status === 401) {
         const newAccessToken = await refreshAccessToken();
 
         if (newAccessToken)
-            response = await fetch(url, options);
+            response = await fetch(BASE_URL + url, options);
     }
+
+    const data: T = await response.json();
 
     // بررسی و هندل کردن ارور‌ها
     if (!response.ok) {
         throw new Error('Request failed with status ' + response.status);
     }
+   
 
-    // تبدیل به JSON
-    const data: T = await response.json();
     return data;
 }
 
@@ -41,7 +44,7 @@ function getAccessTokenFromCookies(): string | null {
 
 async function refreshAccessToken(): Promise<string | null> {
     try {
-        const response = await fetch(`${process.env.NEXT_PRIVTE_BASE_URL}/refresh-token`, {
+        const response = await fetch(`${BASE_URL}/refresh-token`, {
             method: 'GET',
             credentials: 'include', // برای ارسال کوکی‌ها
         });

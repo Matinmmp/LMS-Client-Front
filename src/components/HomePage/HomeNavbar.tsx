@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import { FaRegEye } from "react-icons/fa6";
- 
+
 import { Edu } from "@/src/config/fonts";
 import { useTheme } from "next-themes";
 import { Navbar } from "../Shared/navbar";

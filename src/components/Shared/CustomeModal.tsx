@@ -1,6 +1,5 @@
 import React, { FC, useEffect } from "react";
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from "@nextui-org/modal";
-import { Button } from "@nextui-org/button";
+import { Modal, ModalContent} from "@nextui-org/modal";
 
 
 type Props = {
@@ -25,16 +24,15 @@ const CustomeModal: FC<Props> = ({ open, setOpen, component: Component, setRoute
     return (
         <>
             <Modal backdrop={'blur'} radius="md" isOpen={open} onClose={() => setOpen(false)} style={{ overflow: 'initial' }}
+                placement="center"
                 classNames={{
                     body: "py-6",
                     backdrop: "bg-[#292f46]/30 backdrop-opacity-40",
-                    base: "bg-[#ffffff] dark:bg-[#19191e]  backdrop-blur ",
-
+                    base: "bg-[#ffffff] dark:bg-[#19191e]  backdrop-blur w-full max-w-[90%] md:max-w-[25rem]",
                     closeButton: "hidden",
                 }}>
                 <ModalContent>
-                    {Component}
-
+                    <Component setOpen={setOpen} setRoute={setRoute} />
                 </ModalContent>
             </Modal>
         </>
