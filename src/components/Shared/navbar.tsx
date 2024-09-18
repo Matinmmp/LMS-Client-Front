@@ -3,7 +3,7 @@ import { Navbar as NextUINavbar, NavbarContent, NavbarItem } from "@nextui-org/n
 import { link as linkStyles } from "@nextui-org/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
-import { useEffect, useState, forwardRef } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Button } from "@nextui-org/button";
 import { ThemeSwitch } from "@/src/components/theme-switch";
@@ -26,10 +26,13 @@ import { GrInstagram } from "react-icons/gr";
 import { MdContactPhone } from "react-icons/md";
 import dynamic from "next/dynamic";
 import CustomeModal from "./CustomeModal";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Login from "../Auth/Login";
-import { useQuery } from "@tanstack/react-query";
-import { getUserInfo } from "@/src/lib/authApis";
+import { useMutation, useQuery } from "@tanstack/react-query";
+
+import SignUp from "../Auth/SignUp";
+import { getUserInfo } from "@/src/lib/userApis";
+import { userLoggedIn } from "@/src/redux/auth/authSlice";
 
 
 const MotionComponent = dynamic(() =>
@@ -70,21 +73,16 @@ const teacherObject = navObject.teacherObject
 
 
 export const Navbar = () => {
+
     const [scrolled, setScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const [route, setRoute] = useState('Login')
-    const { user } = useSelector((state: any) => state.auth)
+    const { user, loading } = useSelector((state: any) => state.auth)
+    const a = useSelector((state: any) => state.auth)
 
-    const academyQuery = useQuery({ queryKey: ['academies'], queryFn: getUserInfo });
-
-    console.log(user);
-
-    // const cookieString = typeof document !== 'undefined' ? document.cookie : '';
-    // const accessToken = cookieString.split('; ').find(row => row.startsWith('access_token='))?.split('=')[1];
-    // console.log(accessToken);
-
+    console.log(a)
 
     useEffect(() => {
         const handleScroll = () => {
@@ -242,32 +240,44 @@ export const Navbar = () => {
                         </NavbarItem>
                     </ul>
 
-                    <ul className="ms-auto flex items-center">
+                    <ul className={`ms-auto flex items-center ${!loading && user ? 'gap-2':'gap-1'}`}>
 
                         <NavbarItem className="hidden sm:flex gap-2">
                             <ThemeSwitch />
                         </NavbarItem>
 
-                        <NavbarItem className="hidden sm:flex gap-2">
+                        <NavbarItem className="hidden sm:flex">
+                            {
+                                !loading ?
+                                    user ?
+                                        <Avatar className="cursor-pointer" isBordered color="primary" src={user.imageUrl} />
+                                        :
+                                        <div className="flex items-center" >
+                                            <Button onClick={() => { setOpen(true); setRoute('Login'); }} radius="sm" variant="shadow" color="secondary" className="w-[5.5rem] -me-4 gap-0.5 ps-2 text-white"
+                                                endContent={<FaRightToBracket className="ms-1 text-base font-medium" size={20} />} >
+                                                ورود
+                                            </Button>
 
-                            <div className="flex items-center" >
-                                <Button onClick={() => setOpen(true)} radius="sm" variant="shadow" color="secondary" className="w-[5.5rem] -me-4 gap-0.5 ps-2 text-white"
-                                    endContent={<FaRightToBracket className="ms-1 text-base font-medium" size={20} />} >
-                                    ورود
-                                </Button>
-
-                                <Button onClick={() => setOpen(true)} className="px-2 w-24" color="primary" radius="sm" variant="shadow">
-                                    <span className="text-base font-medium ">عضویت</span>
-                                    <MdOutlinePersonAddAlt size={24} />
-                                </Button>
-                            </div>
+                                            <Button onClick={() => { setOpen(true); setRoute('Sign-Up'); }} className="px-2 w-24" color="primary" radius="sm" variant="shadow">
+                                                <span className="text-base font-medium ">عضویت</span>
+                                                <MdOutlinePersonAddAlt size={24} />
+                                            </Button>
+                                        </div>
+                                    : ''}
 
                         </NavbarItem>
 
-                        <NavbarItem className="flex sm:hidden gap-2" onClick={() => setOpen(true)}>
-                            <Button radius="sm" variant="shadow" color="secondary" className="!min-w-8 text-white"
-                                endContent={<FaRightToBracket className="text-base font-medium" size={20} />} >
-                            </Button>
+                        <NavbarItem className="sm:hidden" onClick={() => setOpen(true)}>
+                            {
+                                !loading ?
+                                    user ?
+                                        <Avatar className="cursor-pointer" isBordered color="primary" src={user.imageUrl} />
+                                        :
+                                        <Button radius="sm" variant="shadow" color="secondary" className="!min-w-8 text-white"
+                                            endContent={<FaRightToBracket className="text-base font-medium" size={20} />} >
+                                        </Button>
+                                    : ''
+                            }
                         </NavbarItem>
 
                     </ul>
@@ -283,6 +293,10 @@ export const Navbar = () => {
             {
                 route === 'Login' &&
                 <CustomeModal open={open} setOpen={setOpen} setRoute={setRoute} component={Login} />
+            }
+            {
+                route === 'Sign-Up' &&
+                <CustomeModal open={open} setOpen={setOpen} setRoute={setRoute} component={SignUp} />
             }
         </div>
     );

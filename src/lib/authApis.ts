@@ -11,8 +11,13 @@ export const login = async ({ email, password }: { email: string, password: stri
     return await data;
 }
 
-
-export const getUserInfo = async () => {
-    const data = await customFetch('user', { method: 'GET', credentials: 'include' });
+export const signUp = async ({ name,email, password }: { name:string,email: string, password: string }) => {
+    const data = await customFetch('registration',
+        {
+            method: 'POST',
+            credentials: 'include' as const,
+            body: JSON.stringify({ name,email, password }),
+            headers: { 'Content-Type': 'application/json' },
+        });
     return await data;
 }

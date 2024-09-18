@@ -25,20 +25,26 @@ export async function customFetch<T>(url: string, options: FetchOptions = {}): P
             response = await fetch(BASE_URL + url, options);
     }
 
-    const data: T = await response.json();
+    const data: T |any = await response.json();
 
     // بررسی و هندل کردن ارور‌ها
     if (!response.ok) {
-        throw new Error('Request failed with status ' + response.status);
+        throw new Error(data.message);
     }
    
 
     return data;
 }
 
-function getAccessTokenFromCookies(): string | null {
+export function getAccessTokenFromCookies(): string | null {
     const cookieString = typeof document !== 'undefined' ? document.cookie : '';
     const accessToken = cookieString.split('; ').find(row => row.startsWith('accessToken='))?.split('=')[1];
+    return accessToken || null;
+}
+
+export function getRefreshTokenFromCookies(): string | null {
+    const cookieString = typeof document !== 'undefined' ? document.cookie : '';
+    const accessToken = cookieString.split('; ').find(row => row.startsWith('refresh_token='))?.split('=')[1];
     return accessToken || null;
 }
 

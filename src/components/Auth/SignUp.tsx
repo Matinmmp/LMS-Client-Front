@@ -1,8 +1,9 @@
-import { login } from "@/src/lib/authApis"
-import { userLoggedIn } from "@/src/redux/auth/authSlice"
+import { login, signUp } from "@/src/lib/authApis"
+
+import { userLoggedIn, userRegistration } from "@/src/redux/auth/authSlice"
 import { showToast } from "@/src/utils/toast"
 import { Button } from "@nextui-org/button"
-import { Checkbox } from "@nextui-org/checkbox"
+
 import { Input } from "@nextui-org/input"
 import { ModalBody, ModalHeader } from "@nextui-org/modal"
 import { Spinner } from "@nextui-org/spinner"
@@ -20,64 +21,52 @@ type Props = {
 }
 
 const schema = Yup.object().shape({
+    name: Yup.string().required('لطفا نام خود را وارد کنید'),
+    // phone: Yup.string()
+    //     .matches(/^09\d{9}$/, 'شماره موبایل باید با 09 شروع شود و ۱۱ رقم باشد')
+    //     .required('لطفا شماره موبایل را وارد کنید'),
     email: Yup.string().email('ایمیل نامعتبر').required('لطفا ایمیل را وارد کنید'),
     password: Yup.string().required('لطفا پسور را وارد کنید').min(6, 'پسورد باید حداقل ۶ کاراکتر باشد')
 })
 
-interface LoginInfo {
-    email: string;
-    password: string;
-}
-
-const Login: FC<Props> = ({ setRoute, setOpen }) => {
+const SignUp: FC<Props> = ({ setRoute, setOpen }) => {
     const dispatch = useDispatch();
     const [isVisible, setIsVisible] = useState(false);
-    const [rememberMe, setRememberMe] = useState(!!localStorage.getItem('loginInfo'));
     const toggleVisibility = () => setIsVisible(!isVisible);
 
-    let loginInfoString = localStorage.getItem('loginInfo');
-    let loginInfo: LoginInfo | null = null;
 
-    if (loginInfoString) {
-        loginInfo = JSON.parse(loginInfoString);
-    }
-
-    console.log( rememberMe)
-
-    const loginMutation = useMutation({
-        mutationFn: (data: { email: string, password: string }) => login(data),
-        onSuccess: (e) => {
-            dispatch(userLoggedIn(e))
+    const signUpMutation = useMutation({
+        mutationFn: (data: { name: string, email: string, password: string }) => signUp(data),
+        onSuccess: (e:any) => {
+            console.log('e',e)
+            dispatch(userRegistration({token:e.activationToken}))
             setOpen(false);
-            showToast({ type: 'success', message: 'با موفقیت وارد شدید' });
+            showToast({ type: 'success', message: e.message});
+
         },
-        onError: () => {
-            showToast({ type: 'error', message: 'ایمیل یا رمز عبور اشتباه است' });
+        onError: (e) => {
+            showToast({ type: 'error', message: e.message });
         }
     })
+
 
 
     const formik = useFormik({
-        initialValues: { email: loginInfo?.email || "", password: loginInfo?.password || "" },
+        initialValues: { name: "", email: "", password: "" },
         validationSchema: schema,
-        onSubmit: async ({ email, password }) => {
-            if (rememberMe)
-                localStorage.setItem('loginInfo', JSON.stringify({ password, email }))
-            else
-                localStorage.removeItem('loginInfo');
-            await loginMutation.mutate({ email, password })
+        onSubmit: async ({ name, email, password }) => {
+            await signUpMutation.mutate({ name, email, password })
         }
     })
 
-    const { errors, touched, handleChange, handleSubmit ,values} = formik;
-
+    const { errors, touched, handleChange, handleSubmit, values } = formik;
 
 
     return (
-        <div className="h-max max-h-[30rem] flex flex-col ">
+        <div className="h-max max-h-[40rem] flex flex-col ">
             <ModalHeader className="flex flex-col relative">
                 <p className={`p-2 mt-4 text-center font-semibold text-3xl text-primary-400`}>
-                    ورود به سایت
+                    ثبت نام
                 </p>
 
             </ModalHeader>
@@ -85,12 +74,15 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
             <ModalBody>
                 <form onSubmit={handleSubmit}>
                     <div className="flex flex-col gap-5">
-
+                        <Input onChange={handleChange} placeholder="رضا رضایی" id="name" name="name" labelPlacement="outside" type="text" label="نام" size="lg" radius="sm"
+                            variant="bordered" color="primary" classNames={{ label: 'font-semibold text-base dark:text-white top-7 -ms-2' }}
+                            isInvalid={!!errors.name && !!touched.name}
+                            errorMessage={errors.name} value={values.name} />
 
                         <Input onChange={handleChange} placeholder="you@example.com" dir='ltr' id='email' name="email" labelPlacement="outside" type="email" label="ایمیل" size="lg" radius="sm"
                             variant="bordered" color="primary" classNames={{ label: 'font-semibold text-base dark:text-white top-7 -ms-2' }}
                             isInvalid={!!errors.email && !!touched.email}
-                            errorMessage={errors.email} value={values.email}/>
+                            errorMessage={errors.email} value={values.email} />
 
                         <Input onChange={handleChange} placeholder="password" dir='ltr' name="password" id="password" labelPlacement="outside" type={isVisible ? "text" : "password"}
                             startContent={
@@ -105,22 +97,16 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
                             label="پسور" size="lg" radius="sm" variant="bordered" color="primary"
                             classNames={{ label: 'font-semibold text-base dark:text-white top-7 -ms-2' }}
                             isInvalid={!!errors.password && !!touched.password}
-                            errorMessage={errors.password} value={values.password}/>
+                            errorMessage={errors.password} value={values.password} />
 
-                        <div className="flex px-1 justify-between">
-                            <Checkbox classNames={{ label: "text-small" }} isSelected={rememberMe}  onValueChange={setRememberMe}>
-                                منو یادت باشه
-                            </Checkbox>
-                            <p className="text-small text-secondary cursor-pointer" onClick={() => setRoute('FotgetPassword')}>رمزتو فراموش کردی ؟</p>
 
-                        </div>
                     </div>
 
 
                     <div className="mt-5">
                         <button className="w-full">
-                            <Button disabled={loginMutation.isPending} color="primary" variant="shadow" elementType={'button'} radius="md" className="w-full max-w-full text-lg" size="lg">
-                                {loginMutation.isPending ? <Spinner color="primary" /> : 'ورود'}
+                            <Button disabled={signUpMutation.isPending} color="primary" variant="shadow" elementType={'button'} radius="md" className="w-full max-w-full text-lg" size="lg">
+                                {signUpMutation.isPending ? <Spinner color="secondary" /> : 'ثبت نام'}
                             </Button>
                         </button>
                     </div>
@@ -129,8 +115,8 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
 
                 <div className="mt-2">
                     <div className="mt-2 flex items-center justify-center gap-1 font-semibold">
-                        <p>عضو نیستی ؟</p>
-                        <span className="text-secondary cursor-pointer" onClick={() => setRoute('Sign-Up')}>عضویت</span>
+
+                        <span className="text-secondary cursor-pointer" onClick={() => setRoute('Login')}>ورود</span>
                     </div>
                 </div>
             </ModalBody>
@@ -138,4 +124,4 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
     )
 }
 
-export default Login
+export default SignUp
