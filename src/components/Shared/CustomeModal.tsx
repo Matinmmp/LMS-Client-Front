@@ -1,5 +1,6 @@
 import React, { FC, useEffect } from "react";
-import { Modal, ModalContent} from "@nextui-org/modal";
+import { Modal, ModalContent } from "@nextui-org/modal";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 
 
 type Props = {
@@ -23,7 +24,7 @@ const CustomeModal: FC<Props> = ({ open, setOpen, component: Component, setRoute
 
     return (
         <>
-            <Modal backdrop={'blur'} radius="md" isOpen={open} onClose={() => setOpen(false)} style={{ overflow: 'initial' }}
+            <Modal backdrop={'blur'} radius="md" isOpen={open} isDismissable={false} onClose={() => setOpen(false)} style={{ overflow: 'initial' }}
                 placement="center"
                 classNames={{
                     body: "py-6",
@@ -31,7 +32,11 @@ const CustomeModal: FC<Props> = ({ open, setOpen, component: Component, setRoute
                     base: "bg-[#ffffff] dark:bg-[#19191e]  backdrop-blur w-full max-w-[90%] md:max-w-[25rem]",
                     closeButton: "hidden",
                 }}>
-                <ModalContent>
+
+                <ModalContent className="relative">
+                    <span className="absolute top-2 right-2 z-50">
+                        <IoIosCloseCircleOutline size={35} className="text-primary cursor-pointer" onClick={() => setOpen(false)} />
+                    </span>
                     <Component setOpen={setOpen} setRoute={setRoute} />
                 </ModalContent>
             </Modal>

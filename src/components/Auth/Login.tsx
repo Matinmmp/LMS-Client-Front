@@ -1,4 +1,5 @@
-import { login } from "@/src/lib/authApis"
+
+import { login } from "@/src/lib/apis/authApis"
 import { userLoggedIn } from "@/src/redux/auth/authSlice"
 import { showToast } from "@/src/utils/toast"
 import { Button } from "@nextui-org/button"

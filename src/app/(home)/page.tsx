@@ -1,121 +1,25 @@
-import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code";
-import { button as buttonStyles } from "@nextui-org/theme";
-import { siteConfig } from "@/src/config/site";
-import { title, subtitle } from "@/src/components/primitives";
-import { GithubIcon } from "@/src/components/icons";
+import Hero from "@/src/components/HomePage/Hero";
+import LastCourses from "@/src/components/HomePage/LastCourses";
 
 export default async function Home() {
 
-
-
     return (
-        <section className="flex flex-col items-center justify-center gap-4 md:py-10 py-0" id="home-scroll">
-            <div className="flex  max-w-xl text-center justify-center">
+        <section className=" flex flex-col items-center justify-center  " >
+
+            <div className="w-full max-w-7xl px-4 md:px-8 2xl:px-2 flex flex-col items-center justify-center ">
+
+
+                <div className="mt-20">
+                    <Hero />
+                </div>
+
+                <div className="w-full mt-20">
+                    <LastCourses />
+                </div>
+
 
             </div>
 
-            <div className="flex gap-3">
-                <Link isExternal className={buttonStyles({color: "primary",radius: "full",variant: "shadow",})}href={siteConfig.links.docs}>
-                    Documentation
-                </Link>
-                <Link isExternal className={buttonStyles({ variant: "bordered", radius: "full" })}href={siteConfig.links.github}>
-                    <GithubIcon size={20} />
-                    GitHub
-                </Link>
-            </div>
-
-            <div className="mt-8">
-                <Snippet hideCopyButton hideSymbol variant="bordered">
-                    <span>
-                        Get started by editing <Code color="primary">app/page.tsx</Code>
-                    </span>
-                </Snippet>
-            </div>
-
-            <div className="inline-block max-w-xl text-center justify-center">
-                <h1 className={title({ color: "blue" })}>Make&nbsp;</h1>
-                <h1 className={title({ color: "blue" })}>beautiful&nbsp;</h1>
-                <br />
-                <h1 className={title()}>
-                    websites regardless of your design experience.
-                </h1>
-                <h2 className={subtitle({ class: "mt-4" })}>
-                    Beautiful, fast and modern React UI library.
-                </h2>
-            </div>
-
-            <div className="flex gap-3">
-                <Link
-                    isExternal
-                    className={buttonStyles({
-                        color: "primary",
-                        radius: "full",
-                        variant: "shadow",
-                    })}
-                    href={siteConfig.links.docs}
-                >
-                    Documentation
-                </Link>
-                <Link
-                    isExternal
-                    className={buttonStyles({ variant: "bordered", radius: "full" })}
-                    href={siteConfig.links.github}
-                >
-                    <GithubIcon size={20} />
-                    GitHub
-                </Link>
-            </div>
-
-            <div className="mt-8">
-                <Snippet hideCopyButton hideSymbol variant="bordered">
-                    <span>
-                        Get started by editing <Code color="primary">app/page.tsx</Code>
-                    </span>
-                </Snippet>
-            </div>
-            <div className="inline-block max-w-xl text-center justify-center">
-                <h1 className={title({ color: "blue" })}>Make&nbsp;</h1>
-                <h1 className={title({ color: "blue" })}>beautiful&nbsp;</h1>
-                <br />
-                <h1 className={title()}>
-                    websites regardless of your design experience.
-                </h1>
-                <h2 className={subtitle({ class: "mt-4" })}>
-                    Beautiful, fast and modern React UI library.
-                </h2>
-            </div>
-
-            <div className="flex gap-3">
-                <Link
-                    isExternal
-                    className={buttonStyles({
-                        color: "primary",
-                        radius: "full",
-                        variant: "shadow",
-                    })}
-                    href={siteConfig.links.docs}
-                >
-                    Documentation
-                </Link>
-                <Link
-                    isExternal
-                    className={buttonStyles({ variant: "bordered", radius: "full" })}
-                    href={siteConfig.links.github}
-                >
-                    <GithubIcon size={20} />
-                    GitHub
-                </Link>
-            </div>
-
-            <div className="mt-8">
-                <Snippet hideCopyButton hideSymbol variant="bordered">
-                    <span>
-                        Get started by editing <Code color="primary">app/page.tsx</Code>
-                    </span>
-                </Snippet>
-            </div>
         </section>
     );
 }

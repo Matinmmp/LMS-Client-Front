@@ -1,5 +1,4 @@
-import { login, signUp } from "@/src/lib/authApis"
-
+import { registration } from "@/src/lib/apis/authApis"
 import { userLoggedIn, userRegistration } from "@/src/redux/auth/authSlice"
 import { showToast } from "@/src/utils/toast"
 import { Button } from "@nextui-org/button"
@@ -35,27 +34,23 @@ const SignUp: FC<Props> = ({ setRoute, setOpen }) => {
     const toggleVisibility = () => setIsVisible(!isVisible);
 
 
-    const signUpMutation = useMutation({
-        mutationFn: (data: { name: string, email: string, password: string }) => signUp(data),
-        onSuccess: (e:any) => {
-            console.log('e',e)
-            dispatch(userRegistration({token:e.activationToken}))
-            setOpen(false);
-            showToast({ type: 'success', message: e.message});
-
+    const registrationMutation = useMutation({
+        mutationFn: (data: { name: string, email: string, password: string }) => registration(data),
+        onSuccess: (e: any) => {
+            setRoute('Verification')
+            dispatch(userRegistration({ token: e.activationToken }))
+            showToast({ type: 'success', message: e.message });
         },
         onError: (e) => {
             showToast({ type: 'error', message: e.message });
         }
     })
 
-
-
     const formik = useFormik({
         initialValues: { name: "", email: "", password: "" },
         validationSchema: schema,
         onSubmit: async ({ name, email, password }) => {
-            await signUpMutation.mutate({ name, email, password })
+            await registrationMutation.mutate({ name, email, password })
         }
     })
 
@@ -105,8 +100,8 @@ const SignUp: FC<Props> = ({ setRoute, setOpen }) => {
 
                     <div className="mt-5">
                         <button className="w-full">
-                            <Button disabled={signUpMutation.isPending} color="primary" variant="shadow" elementType={'button'} radius="md" className="w-full max-w-full text-lg" size="lg">
-                                {signUpMutation.isPending ? <Spinner color="secondary" /> : 'ثبت نام'}
+                            <Button disabled={registrationMutation.isPending} color="primary" variant="shadow" elementType={'button'} radius="md" className="w-full max-w-full text-lg" size="lg">
+                                {registrationMutation.isPending ? <Spinner color="secondary" /> : 'ثبت نام'}
                             </Button>
                         </button>
                     </div>

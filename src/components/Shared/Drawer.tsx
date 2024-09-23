@@ -42,7 +42,7 @@ const Drawer = ({ children, isOpen, setIsOpen }: Props) => {
             <AnimatePresence>
                 {isOpen && (
                     <MotionComponent
-                        className="flex flex-col z-[53] h-full bg-content1q w-[19rem] shadow-small overflow-y-hidden fixed right-0 top-0 bottom-0
+                        className="flex flex-col z-[60] h-full bg-content1q w-[19rem] shadow-small overflow-y-hidden fixed right-0 top-0 bottom-0
                         backdrop-blur-lg data-[menu-open=true]:backdrop-blur-xl backdrop-saturate-150 bg-background/90"
                         initial={{ x: "100%" }}  // Starts off-screen on the right
                         animate={{ x: "0%" }}     // Animates into view

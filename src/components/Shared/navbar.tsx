@@ -28,11 +28,11 @@ import dynamic from "next/dynamic";
 import CustomeModal from "./CustomeModal";
 import { useDispatch, useSelector } from "react-redux";
 import Login from "../Auth/Login";
-import { useMutation, useQuery } from "@tanstack/react-query";
+ 
 
 import SignUp from "../Auth/SignUp";
-import { getUserInfo } from "@/src/lib/userApis";
-import { userLoggedIn } from "@/src/redux/auth/authSlice";
+ 
+import Verification from "../Auth/Verfication";
 
 
 const MotionComponent = dynamic(() =>
@@ -297,6 +297,11 @@ export const Navbar = () => {
             {
                 route === 'Sign-Up' &&
                 <CustomeModal open={open} setOpen={setOpen} setRoute={setRoute} component={SignUp} />
+            }
+
+            {
+                route === 'Verification' && 
+                <CustomeModal open={open} setOpen={setOpen} setRoute={setRoute} component={Verification} />
             }
         </div>
     );

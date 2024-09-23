@@ -2,11 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-
-header {
-    padding: 0 !important;
-
-}
+ 
 
 input {
     outline: none;
@@ -66,9 +62,10 @@ input {
     top: 0;
     left: 0;
     overflow: hidden;
+    
 }
 
-.background span:nth-child(1) {
+/* .background span:nth-child(1) {
     border-radius: 50vmin;
     position: absolute;
     background: #087bff42;
@@ -87,6 +84,37 @@ input {
     border-radius: 50vmin;
     position: absolute;
     background: #a908ff49;
+    top: 0%;
+    right: -15%;
+    width: 80%;
+    height: 45%;
+    filter: blur(75px);
+    transform: rotateZ(40deg);
+    -webkit-filter: blur(75px);
+    -moz-filter: blur(75px);
+    -o-filter: blur(75px);
+} */
+
+
+.background span:nth-child(1) {
+    border-radius: 50vmin;
+    position: absolute;
+    background: #1582ff37;
+    top: -2%;
+    left: -10%;
+    width: 50%;
+    height: 60%;
+    filter: blur(75px);
+    transform: rotateZ(15deg);
+    -webkit-filter: blur(75px);
+    -moz-filter: blur(75px);
+    -o-filter: blur(75px);
+}
+
+.background span:nth-child(2) {
+    border-radius: 50vmin;
+    position: absolute;
+    background: #a600ff2c;
     top: 0%;
     right: -15%;
     width: 80%;

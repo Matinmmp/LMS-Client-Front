@@ -10,7 +10,7 @@ import { store } from "../redux/store";
 import { QueryClient, QueryClientProvider, useMutation } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { getUserInfo } from "../lib/userApis";
+import { getUserInfo } from "../lib/apis/userApis";
 import { userLoggedIn } from "../redux/auth/authSlice";
 import { getRefreshTokenFromCookies } from "../lib/fetcher";
 
