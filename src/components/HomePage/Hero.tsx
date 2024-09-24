@@ -36,7 +36,7 @@ const Hero = (props: Props) => {
                 </div>
 
                 <div className="w-full md2:w-1/2 order-1 md2:order-2">
-                    <Image className="-mt-20 "
+                    <Image className="-mt-20 " priority={true}
                         width={1000} height={1000} alt="virtual learn hero" src={"https://buckettest.storage.c2.liara.space/images/hero4.svg"} />
                 </div>
 

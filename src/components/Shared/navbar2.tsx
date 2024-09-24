@@ -9,18 +9,18 @@ import { useEffect, useRef, useState } from "react";
 import { navObject } from "@/src/config/site";
 import { Button } from "@nextui-org/button";
 import { Avatar } from "@nextui-org/avatar";
-import CustomeModal from "./CustomeModal";
+import CustomeModal from "@/src/components/Shared/CustomeModal";
 import { Edu } from "@/src/config/fonts";
 import { useTheme } from "next-themes";
 import NextLink from "next/link";
 import Image from "next/image";
-import Drawer from "./Drawer";
 import clsx from "clsx";
 
 
-import Login from "../Auth/Login";
-import SignUp from "../Auth/SignUp";
-import Verification from "../Auth/Verfication";
+import Drawer from '@/src/components/Shared/Drawer'
+import Login from "@/src/components/Auth/Login";
+import SignUp from "@/src/components/Auth/SignUp";
+import Verification from "@/src/components/Auth/Verfication";
 
 import { FaRightToBracket, FaCaretLeft, FaChevronLeft, FaQuoteRight, FaRegEye } from "react-icons/fa6";
 import { MdKeyboardArrowDown, MdKeyboardArrowLeft, MdOutlinePersonAddAlt } from "react-icons/md";

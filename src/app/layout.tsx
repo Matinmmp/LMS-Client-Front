@@ -35,9 +35,7 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
             <body className={clsx("min-h-screen bg-background  font-sans antialiased", Baloo.variable, Inter.variable)} >
                 <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
                     <div className="relative flex flex-col h-screen ">
-                        {/* <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
-                            {children}
-                        </main> */}
+            
                         <main className="flex-grow relative z-10 bg-[#fbfbfb]  dark:bg-[#181818]">
                             <div className="background z-[1]">
                                 <span />
