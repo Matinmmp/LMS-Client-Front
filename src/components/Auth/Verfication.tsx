@@ -5,8 +5,6 @@ import { ModalBody, ModalHeader } from '@nextui-org/modal'
 import { Spinner } from '@nextui-org/spinner'
 import { useMutation } from '@tanstack/react-query';
 import React, { FC, useRef, useState } from 'react'
-import { MdOutlineVpnKey } from "react-icons/md";
-import { VscWorkspaceUntrusted } from 'react-icons/vsc'
 import { useSelector } from 'react-redux'
 
 type Props = {

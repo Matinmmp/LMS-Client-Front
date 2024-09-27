@@ -367,7 +367,7 @@ const DropDown = ({ children, position, title, link }: DropDownProps) => {
 
             {open && (
                 <div className={clsx(positionStyle, "absolute pt-10 transition-opacity duration-200 opacity-0", open ? "opacity-100" : "opacity-0")}>
-                    <div className=" overflow-x-autos rounded-md backdrop-blur-lg backdrop-saturate-200 bg-background/90" dir="ltr">
+                    <div className=" overflow-x-autos rounded-md backdrop-blur-lg backdrop-saturate-200 bg-background/90/ bg-primary-50" dir="ltr">
                         {children}
                     </div>
                 </div>

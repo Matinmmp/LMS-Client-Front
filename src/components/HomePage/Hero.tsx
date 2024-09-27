@@ -1,18 +1,10 @@
-"use client";
-import React from "react";
-
-
-import { Edu } from "@/src/config/fonts";
-import Link from "next/link";
 import Image from "next/image";
-import { subtitle, title } from "../primitives";
+import { title } from "../primitives";
 import { clsx } from "clsx";
 
 
 type Props = {
 };
-
-
 
 
 const Hero = (props: Props) => {
@@ -29,7 +21,7 @@ const Hero = (props: Props) => {
                             با دسترسی به بهترین دوره‌های برنامه‌نویسی جهان به زبان فارسی، مهارت‌های خود را ارتقا دهید .
                         </h2>
                         <h2 className="text-right text-base md:text-lg font-medium leading-8 md:leading-10">
-                             <span className={clsx(title({ color: 'blue' }),'text-base md:text-xl !font-bold')}>Virtual Learn</span> ویدیوهای آموزشی برترین آکادمی‌های بین‌المللی را ترجمه کرده و به زبان فارسی در اختیار شما قرار می‌دهد تا بدون نیاز به دانش زبان انگلیسی، از منابع آموزشی برتر بهره‌مند شوید.
+                            <span className={clsx(title({ color: 'blue' }), 'text-base md:text-xl !font-bold')}>Virtual Learn</span> ویدیوهای آموزشی برترین آکادمی‌های بین‌المللی را ترجمه کرده و به زبان فارسی در اختیار شما قرار می‌دهد تا بدون نیاز به دانش زبان انگلیسی، از منابع آموزشی برتر بهره‌مند شوید.
                         </h2>
 
                     </div>
@@ -41,6 +33,22 @@ const Hero = (props: Props) => {
                 </div>
 
             </div>
+            {/* <div className="mt-4">
+                <div className="flex flex-wrap justify-evenly lg:justify-center items-center gap-8">
+                    <div className="w-72 h-36 rounded-xl transition-all bg-white dark:bg-[#212123]/50 shadow-[0_0_9px_0_#c1c2c4] dark:shadow-[0_0_9px_0_#2b2b2b] hover:shadow-primary-400 dark:hover:shadow-primary-400">
+                        <SiSololearn size={44} className="text-primary-400" />
+                    </div>
+                    <div className="w-72 h-36 rounded-xl transition-all bg-white dark:bg-[#212123]/50 shadow-[0_0_9px_0_#c1c2c4] dark:shadow-[0_0_9px_0_#2b2b2b] hover:shadow-danger-400 dark:hover:shadow-danger-400">
+                        <PiStudentBold size={44} className="text-danger-400" />
+                    </div>
+                    <div className="w-72 h-36 rounded-xl transition-all bg-white dark:bg-[#212123]/50 shadow-[0_0_9px_0_#c1c2c4] dark:shadow-[0_0_9px_0_#2b2b2b] hover:shadow-success-400 dark:hover:shadow-success-400">
+                        <FaChalkboardTeacher size={44} className="text-success-400" />
+                    </div>
+                    <div className="w-72 h-36 rounded-xl transition-all bg-white dark:bg-[#212123]/50 shadow-[0_0_9px_0_#c1c2c4] dark:shadow-[0_0_9px_0_#2b2b2b] hover:shadow-warning-500 dark:hover:shadow-warning-500">
+                        <SiHtmlacademy size={44} className="text-warning-500" />
+                    </div>
+                </div>
+            </div> */}
         </div >
     );
 };

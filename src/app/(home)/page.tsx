@@ -1,5 +1,9 @@
+import VirtualPlus from "@/src/components/HomePage/VirtualPlus";
+import FavoriteCourses from "@/src/components/HomePage/FavoriteCourses";
 import Hero from "@/src/components/HomePage/Hero";
 import LastCourses from "@/src/components/HomePage/LastCourses";
+import FavoritAcademies from "@/src/components/HomePage/FavoritAcademies";
+import FavoritTeachers from "@/src/components/HomePage/FavoritTeachers";
 
 export default async function Home() {
 
@@ -13,11 +17,25 @@ export default async function Home() {
                     <Hero />
                 </div>
 
+                {/* <div className="w-full mt-10">
+                    <VirtualPlus />
+                </div> */}
+
                 <div className="w-full mt-20">
                     <LastCourses />
                 </div>
 
+                <div className="w-full mt-20 ">
+                    <FavoriteCourses />
+                </div>
 
+                <div className="w-full mt-20 ">
+                    <FavoritAcademies />
+                </div>
+                <div className="w-full mt-20 ">
+                    <FavoritTeachers />
+                </div>
+                
             </div>
 
         </section>
