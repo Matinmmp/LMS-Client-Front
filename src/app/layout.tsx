@@ -37,8 +37,8 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
                     <div className="relative flex flex-col h-screen ">
             
                         <main className="flex-grow relative z-10 bg-[#fbfbfb]  dark:bg-[#181818]">
-                            <div className="background z-[1]">
-                                <span />
+                            <div className="background z-[1] ">
+                                <span className="bg-none dark:bg-[#1582ff37]"/>
                                 {/* <span/> */}
                             </div>
                             <div className="relative z-20 ">

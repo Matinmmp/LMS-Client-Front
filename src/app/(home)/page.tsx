@@ -4,6 +4,7 @@ import Hero from "@/src/components/HomePage/Hero";
 import LastCourses from "@/src/components/HomePage/LastCourses";
 import FavoritAcademies from "@/src/components/HomePage/FavoritAcademies";
 import FavoritTeachers from "@/src/components/HomePage/FavoritTeachers";
+import Comments from "@/src/components/HomePage/Comments";
 
 export default async function Home() {
 
@@ -13,7 +14,11 @@ export default async function Home() {
             <div className="w-full max-w-7xl px-4 md:px-8 2xl:px-2 flex flex-col items-center justify-center ">
 
 
-                <div className="mt-20">
+                <div className="mt-20 ">
+                    <div className="background z-[1] !absolute">
+                        <span className="bg-[#1582ff37] dark:bg-none " />
+                        {/* <span/> */}
+                    </div>
                     <Hero />
                 </div>
 
@@ -21,21 +26,24 @@ export default async function Home() {
                     <VirtualPlus />
                 </div> */}
 
-                <div className="w-full mt-20">
+                <div className="w-full mt-24">
                     <LastCourses />
                 </div>
 
-                <div className="w-full mt-20 ">
+                <div className="w-full mt-24 ">
                     <FavoriteCourses />
                 </div>
 
-                <div className="w-full mt-20 ">
+                <div className="w-full mt-24 ">
                     <FavoritAcademies />
                 </div>
-                <div className="w-full mt-20 ">
+                <div className="w-full mt-24 ">
                     <FavoritTeachers />
                 </div>
-                
+                <div className="w-full mt-28 md:mt-52 ">
+                    <Comments />
+                </div>
+
             </div>
 
         </section>

@@ -14,8 +14,11 @@ type CardProps = {
 
 export const TeacherCard = ({ }: CardProps) => {
     return (
-        <div className="w-full max-w-[25rem] h-[22rem] rounded-2xl border-2 transition-all shadow-[0_0_9px_0_#FF3F7F] 
-            dark:shadow-none bg-white/80 hover:bg-white dark:bg-transparent border-danger-50 dark:border-danger-500 dark:hover:bg-primary-50 backdrop-blur-md backdrop-saturate-150 cursor-pointer">
+        <div className="w-full max-w-[25rem] h-[22rem] rounded-2xl transition-all
+        shadow-[0px_0px_10px_0px_#ff4a86d1,_0px_2px_20px_0px_#ff4a86d1,_inset_0px_0px_1px_0px_#ff4a86d1]
+        dark:shadow-[0px_0px_8px_0px_#FF3F7F,_0px_2px_3px_0px_#FF3F7F,_inset_0px_0px_1px_0px_#FF3F7F]
+        
+             bg-white/80 hover:bg-white dark:bg-transparent  dark:hover:bg-primary-50 backdrop-blur-md backdrop-saturate-150 cursor-pointer">
 
             <div className="h-full w-full flex flex-col items-center">
 
@@ -38,15 +41,15 @@ export const TeacherCard = ({ }: CardProps) => {
                 </div>
 
                 <div className="w-full mt-4 px-6 pb-4 flex flex-col items-start">
-                    <h3 className={clsx(title({ color: 'pink' }), 'text-2xl lg:text-3xl font-bold')}>یودمی</h3>
-                    <h6 className="mt-2 dark:text-[#d0e0ef] text-gray-800">
+                    <h4 className={clsx(title({ color: 'pink' }), 'text-2xl lg:text-3xl font-bold')}>یودمی</h4>
+                    <h5 className="mt-2 dark:text-[#d0e0ef] text-gray-800">
                         <span className="font-bold text-danger-400 inline">یودمی</span>
                         <p className="inline font-medium"> لاراول پر استفاده‌ترین فریمورک زبان برنامه نویسی PHP بوده و در سال‌های اخیر توسط شرکت‌ها و استارتاپ‌های بسیار زیادی مورد...</p>
-                    </h6>
+                    </h5>
                 </div>
 
                 <div className="w-full mt-auto">
-                    <div className="w-full px-12 py-4 flex items-center justify-center gap-2 border-t-1 border-danger-50 dark:border-danger-300">
+                    <div className="w-full px-12 py-4 flex items-center justify-center gap-2 border-t-2 border-danger-50 dark:border-danger-300">
                          <p className="ms-auto font-medium">مشاهده دوره‌های یودمی</p>
                          <TbArrowBigLeftLinesFilled size={20} className="text-danger-300 " />
                     </div>

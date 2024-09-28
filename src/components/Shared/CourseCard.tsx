@@ -3,7 +3,7 @@ import { FaStar } from "react-icons/fa6"
 import { GiTeacher } from "react-icons/gi"
 import { GoDotFill } from "react-icons/go"
 import { IoIosFilm } from "react-icons/io"
-import { LuArrowBigLeft } from "react-icons/lu"
+ 
 import { SiHtmlacademy } from "react-icons/si"
 import { TbArrowBigLeftLinesFilled } from "react-icons/tb"
 import { WiTime3 } from "react-icons/wi"
@@ -14,9 +14,11 @@ type CardProps = {
 
 export const CourseCard = ({ }: CardProps) => {
     return (
-        <div className="w-full max-w-[25rem] h-[28rem] transition-all shadow-[0_0_9px_0_#c1c2c4] dark:shadow-[0_0_9px_0_#2b2b2b]
-          hover:shadow-[0_0_6px_0_#42C0F4] dark:hover:shadow-[0_0_6px_0px_#42C0F4]
-         dark:border-0 bg-white dark:bg-[#212123]/50 dark:backdrop-blur-md dark:backdrop-saturate-150 rounded-md cursor-pointer overflow-hidden  ">
+        <div className="w-full max-w-[25rem] h-[28rem] transition-all dark:transition-all
+        shadow-medium 
+        hover:shadow-[0px_0px_15px_0px_#42bff46a,_0px_2px_30px_0px_#42bff46a,_0px_0px_1px_0px_#42bff46a]
+        dark:hover:shadow-[0px_0px_8px_0px_#2a5a6ec5,_0px_2px_20px_0px_#2a5a6ec5,_0px_0px_1px_0px_#2a5a6ec5]
+        dark:border-0 bg-white dark:bg-[#212123]/70 dark:backdrop-blur-md dark:backdrop-saturate-150 rounded-md cursor-pointer overflow-hidden  ">
             <div className="w-full h-full flex flex-col">
 
                 <div className="w-full h-2/5 p-2 overflow-hidden">
@@ -94,7 +96,7 @@ export const CourseCard = ({ }: CardProps) => {
                             <div className="flex items-center gap-1 text-secondary-400 hover:text-black dark:hover:text-white transition-all">
                                 <p className="font-semibold">مشاهده اطلاعات دوره</p>
                                 <TbArrowBigLeftLinesFilled size={22} />
-           
+
                             </div>
                         </div>
 

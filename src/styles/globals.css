@@ -99,7 +99,7 @@ input {
 .background span:nth-child(1) {
     border-radius: 50vmin;
     position: absolute;
-    background: #1582ff37;
+ 
     top: -2%;
     left: -10%;
     width: 50%;
