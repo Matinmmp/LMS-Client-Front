@@ -19,7 +19,7 @@ const FavoriteCourses = (props: Props) => {
             <div className="w-full flex justify-between">
                 <div className="flex items-center gap-2">
                     <BsBookmarkHeartFill  className="text-primary-400 text-[1.5rem] md:text-[2rem] lg:text-[2.5rem]" />
-                    <h3 className={clsx(title({ color: 'secondary' }), "text-lg lg:text-2xl xl:text-3xl")}>محبوب‌ترین دوره‌ها</h3>
+                    <h3 className={clsx(title({ color: 'secondary' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین دوره‌ها</h3>
                 </div>
 
                 <Link href={'/'} className={`flex items-center gap-1 text-sm md:text-base  hover:text-primary-400 transition-all`}>

@@ -1,12 +1,14 @@
 'use client'
-import Image from "next/image";
 import { title } from "../primitives";
 import { clsx } from "clsx";
-import 'keen-slider/keen-slider.min.css'
 import { useKeenSlider } from "keen-slider/react"
 import { Rating, RoundedStar } from '@smastrom/react-rating'
+import 'keen-slider/keen-slider.min.css'
 import '@smastrom/react-rating/style.css'
 import { Avatar, AvatarIcon } from "@nextui-org/avatar";
+import dynamic from "next/dynamic";
+
+
 
 type Props = {
 };
@@ -67,7 +69,7 @@ const Comments = (props: Props) => {
         activeFillColor: '#ffb700',
         inactiveFillColor: '#fbf1a9'
       }
-      
+
     const [sliderRef] = useKeenSlider<HTMLDivElement>({
         loop: false,
         mode: "snap",
@@ -78,7 +80,7 @@ const Comments = (props: Props) => {
     return (
         <div className="w-full  relative">
 
-            <div className="pb-40 flex flex-col">
+            <div className="pb-10 flex flex-col">
                 <div className="w-full ">
                     <div className="w-full mt-4 text-center ">
                         <h3 className={clsx(title({ color: 'blue' }), 'inline w-full text-center text-[1.5rem] md:text-[2.5rem] !font-extrabold md:leading-[3.2rem]')}>

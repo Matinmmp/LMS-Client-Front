@@ -22,7 +22,7 @@ const FavoritTeachers = (props: Props) => {
                 
                 <div className="flex items-center gap-2">
                     <GiTeacher  className="text-danger-400 text-[1.5rem] md:text-[2rem] lg:text-[3rem]"/>
-                    <h3 className={clsx(title({ color: 'pink' }), "text-lg lg:text-2xl xl:text-3xl")}>محبوب‌ترین مدرس‌ها</h3>
+                    <h3 className={clsx(title({ color: 'pink' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین مدرس‌ها</h3>
                 </div>
                 <Link href={'/'} className={`flex items-center gap-1 text-sm md:text-base  hover:text-danger-400 transition-all`}>
                     <p>مشاهده همه مدرس‌‌ها</p>

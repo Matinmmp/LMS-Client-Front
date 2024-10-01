@@ -9,7 +9,6 @@ import { useEffect, useRef, useState } from "react";
 import { navObject } from "@/src/config/site";
 import { Button } from "@nextui-org/button";
 import { Avatar } from "@nextui-org/avatar";
-import CustomeModal from "@/src/components/Shared/CustomeModal";
 import { Edu } from "@/src/config/fonts";
 import { useTheme } from "next-themes";
 import NextLink from "next/link";
@@ -21,6 +20,7 @@ import Drawer from '@/src/components/Shared/Drawer'
 import Login from "@/src/components/Auth/Login";
 import SignUp from "@/src/components/Auth/SignUp";
 import Verification from "@/src/components/Auth/Verfication";
+import CustomeModal from "@/src/components/Shared/CustomeModal";
 
 import { FaRightToBracket, FaCaretLeft, FaChevronLeft, FaQuoteRight, FaRegEye } from "react-icons/fa6";
 import { MdKeyboardArrowDown, MdKeyboardArrowLeft, MdOutlinePersonAddAlt } from "react-icons/md";
@@ -124,7 +124,7 @@ export const Navbar = () => {
 
                         <ul className="ms-10 md:ms-6 hidden md:flex gap-4 justify-start ml-2">
                             <li>
-                                <DropDown link={"/b"} position="bottom-middle"
+                                <DropDown link={"/"} position="bottom-middle"
                                     title={
                                         <div className="w-full flex items-center justify-between">
                                             <span>دوره‌های آموزشی</span>
@@ -171,7 +171,7 @@ export const Navbar = () => {
                             </li>
 
                             <li>
-                                <DropDown link={"/b"} position="bottom-left"
+                                <DropDown link={"/"} position="bottom-left"
                                     title={
                                         <div className="w-full flex items-center justify-between">
                                             <span>مدرس‌ها</span>
@@ -196,7 +196,7 @@ export const Navbar = () => {
                             </li>
 
                             <li>
-                                <DropDown link={"/b"} position="bottom-left"
+                                <DropDown link={"/"} position="bottom-left"
                                     title={
                                         <div className="w-full flex items-center justify-between">
                                             <span>آکادمی‌ها</span>
@@ -228,7 +228,7 @@ export const Navbar = () => {
                             </li>
 
                             <li>
-                                <DropDown link={"/b"} position="bottom-left"
+                                <DropDown link={"/"} position="bottom-left"
                                     title={
                                         <div className="w-full flex items-center justify-between">
                                             <span>لینک های مفید</span>
@@ -360,8 +360,10 @@ const DropDown = ({ children, position, title, link }: DropDownProps) => {
     if (position === "bottom-left") positionStyle = "rigth-1 transform ";
 
     return (
-        <div className="w-full relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
-            <NextLink className={clsx(linkStyles({ color: "foreground" }), "w-full font-semibold cursor-pointer relative")} color="foreground" href={link}>
+        <div className="w-full relative"
+         onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} 
+         >
+            <NextLink className={clsx(linkStyles({ color: "foreground" }), "w-full font-semibold cursor-pointer relative")}  href={link}>
                 {title}
             </NextLink>
 

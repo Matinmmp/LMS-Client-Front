@@ -18,7 +18,7 @@ const LastCourses = (props: Props) => {
             <div className="w-full flex justify-between">
                 <div className="flex items-center gap-1 md:gap-2">
                     <PiBooksFill className="text-primary-400 text-[1.5rem] md:text-[2.5rem] lg:text-[3rem]"/>
-                    <h3 className={clsx(title({ color: 'secondary' }), "pt-1 text-lg lg:text-2xl xl:text-3xl")}>آخرین دوره‌ها</h3>
+                    <h3 className={clsx(title({ color: 'secondary' }), "pt-1 text-lg md:text-xl lg:text-2xl xl:text-3xl")}>آخرین دوره‌ها</h3>
                 </div>
                 <Link href={'/'} className={`flex items-center gap-1 hover:text-primary-400 text-sm md:text-base transition-all`}>
                     <p>مشاهده همه دوره‌ها</p>
