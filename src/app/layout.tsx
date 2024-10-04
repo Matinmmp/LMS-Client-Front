@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { Baloo, Inter } from "../config/fonts";
 import { Providers } from "./providers";
 import { Navbar } from "../components/Shared/navbar2";
+import Footer from "../components/Shared/Footer";
 
 
 
@@ -36,14 +37,17 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
                 <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
                     <div className="relative flex flex-col h-screen ">
             
-                        <main className="flex-grow relative z-10 bg-[#fbfbfb]  dark:bg-[#181818]">
+                        <main className="flex-grow relative z-10 bg-[#fbfbfb]  dark:bg-[#181818] ">
                             <div className="background z-[1] ">
-                                <span className="bg-none dark:bg-[#1582ff37]"/>
+                                {/* <span className="bg-none dark:bg-[#1582ff37]"/> */}
                                 {/* <span/> */}
                             </div>
                             <div className="relative z-20 ">
                                 <Navbar />
                                 {children}
+                                <div className="mt-64">
+                                <Footer/>
+                                </div>
                             </div>
                         </main>
                        

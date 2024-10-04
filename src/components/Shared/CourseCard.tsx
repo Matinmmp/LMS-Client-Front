@@ -14,11 +14,11 @@ type CardProps = {
 
 export const CourseCard = ({ }: CardProps) => {
     return (
-        <div className="w-full max-w-[25rem] h-[28rem] transition-all dark:transition-all
-        shadow-medium 
+        <div className="w-full max-w-[25rem] h-[28rem] transition-all  shadow-medium dark:shadow-none
         hover:shadow-[0px_0px_15px_0px_#42bff46a,_0px_2px_30px_0px_#42bff46a,_0px_0px_1px_0px_#42bff46a]
         dark:hover:shadow-[0px_0px_8px_0px_#2a5a6ec5,_0px_2px_20px_0px_#2a5a6ec5,_0px_0px_1px_0px_#2a5a6ec5]
         dark:border-0 bg-white dark:bg-[#212123]/70 dark:backdrop-blur-md dark:backdrop-saturate-150 rounded-md cursor-pointer overflow-hidden  ">
+            
             <div className="w-full h-full flex flex-col">
 
                 <div className="w-full h-2/5 p-2 overflow-hidden">

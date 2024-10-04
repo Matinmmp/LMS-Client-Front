@@ -6,7 +6,7 @@ import { Rating, RoundedStar } from '@smastrom/react-rating'
 import 'keen-slider/keen-slider.min.css'
 import '@smastrom/react-rating/style.css'
 import { Avatar, AvatarIcon } from "@nextui-org/avatar";
-import dynamic from "next/dynamic";
+ 
 
 
 

@@ -2,13 +2,13 @@
 import React from "react";
 import { TbArrowBigLeftLinesFilled } from "react-icons/tb";
 import Link from "next/link";
-import { title } from "../primitives";
-import { clsx } from "clsx";
 import { CourseCard } from "../Shared/CourseCard";
 import { BsBookmarkHeartFill } from "react-icons/bs";
 
 type Props = {
+    children:React.ReactNode
 };
+
 
 const FavoriteCourses = (props: Props) => {
 
@@ -19,7 +19,9 @@ const FavoriteCourses = (props: Props) => {
             <div className="w-full flex justify-between">
                 <div className="flex items-center gap-2">
                     <BsBookmarkHeartFill  className="text-primary-400 text-[1.5rem] md:text-[2rem] lg:text-[2.5rem]" />
-                    <h3 className={clsx(title({ color: 'secondary' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین دوره‌ها</h3>
+                    {
+                        props.children
+                    }
                 </div>
 
                 <Link href={'/'} className={`flex items-center gap-1 text-sm md:text-base  hover:text-primary-400 transition-all`}>

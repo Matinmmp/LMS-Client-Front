@@ -104,6 +104,8 @@ export const Navbar = () => {
 
     }, []);
 
+ 
+
       
     return (
         <div className="w-full flex flex-col justify-center items-center md:sticky md:top-0 z-50 ">
@@ -220,9 +222,8 @@ export const Navbar = () => {
                                 </DropDown>
                             </li>
 
-                            <li key={"/"}>
-                                <NextLink color="foreground" href={"/"}
-                                    className={clsx(linkStyles({ color: "foreground" }), "font-semibold")} >
+                            <li >
+                                <NextLink color="foreground" href={"/"}className={clsx(linkStyles({ color: "foreground" }), "font-semibold")} >
                                     بلاگ
                                 </NextLink>
                             </li>
@@ -297,7 +298,7 @@ export const Navbar = () => {
 
                 </nav>
 
-                <div className="flex justify-center   relative z-[50] ">
+                <div className="flex justify-center relative z-[50] ">
                     <div className=" w-full max-w-3xl flex justify-center transition-all ">
                         <div ref={searchRef} onClick={() => setOpen2(true)}
                             className={`h-14 md:border-[#58585880] ${open2 ? "w-full px-4" : "w-14 rounded-b-full"} ${scrolled ? ' md:border-[1px] md:border-t-0' : 'border-0'} rounded-b-[2rem] flex items-center justify-center
@@ -307,7 +308,7 @@ export const Navbar = () => {
                               p-[2px] border-[3px] rounded-[5rem] transition-all  relative border-primary-400 `}>
 
                                 <input placeholder="جستوجو بین دوره ‌ها، مدرس‌ها و آکادمی‌ها"
-                                    className={`${open2 ? "w-11/12" : "w-0"} h-8 mt-[1px] absolute right-3 bg-transparent`} />
+                                    className={`${open2 ? "w-11/12" : "w-0"} h-8 mt-[1px] absolute right-3 bg-transparent placeholder:text-sm md:text-lg`} />
 
                                 <div className={`min-w-9 min-h-9 flex items-center justify-center
                                 ${open2 ? " left-[2px] dark:border-primary-400" : "dark:border-white"} border-[3px] rounded-full

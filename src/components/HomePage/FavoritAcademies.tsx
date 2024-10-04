@@ -1,13 +1,11 @@
 import React from "react";
 import { TbArrowBigLeftLinesFilled } from "react-icons/tb";
 import Link from "next/link";
-import { title } from "../primitives";
-import { clsx } from "clsx";
- 
 import { AcadmyCard } from "../Shared/AcadmyCard";
 import { SiHtmlacademy } from "react-icons/si";
 
 type Props = {
+    children:React.ReactNode
 };
 
 const FavoritAcademies = (props: Props) => {
@@ -20,7 +18,9 @@ const FavoritAcademies = (props: Props) => {
                 
                 <div className="flex items-center gap-2">
                     <SiHtmlacademy  className="text-success-400 text-[1.5rem] md:text-[2rem] lg:text-[3rem]"/>
-                    <h3 className={clsx(title({ color: 'green' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین آکادمی‌ها</h3>
+                    {
+                        props.children
+                    }
                 </div>
                 <Link href={'/'} className={`flex items-center gap-1 text-sm md:text-base  hover:text-success-400 transition-all`}>
                     <p>مشاهده همه آکادمی‌ها</p>

@@ -15,7 +15,7 @@ type CardProps = {
 export const TeacherCard = ({ }: CardProps) => {
     return (
         <div className="w-full max-w-[25rem] h-[22rem] rounded-2xl transition-all
-        shadow-[0px_0px_10px_0px_#ff4a86d1,_0px_2px_20px_0px_#ff4a86d1,_inset_0px_0px_1px_0px_#ff4a86d1]
+        shadow-[0px_0px_10px_0px_#ff4f8a90,_0px_2px_20px_0px_#ff4f8a90,_inset_0px_0px_1px_0px_#ff4f8a90]
         dark:shadow-[0px_0px_8px_0px_#FF3F7F,_0px_2px_3px_0px_#FF3F7F,_inset_0px_0px_1px_0px_#FF3F7F]
         
              bg-white/80 hover:bg-white dark:bg-transparent  dark:hover:bg-primary-50 backdrop-blur-md backdrop-saturate-150 cursor-pointer">

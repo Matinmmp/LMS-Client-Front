@@ -6,10 +6,10 @@ import FavoritAcademies from "@/src/components/HomePage/FavoritAcademies";
 import FavoritTeachers from "@/src/components/HomePage/FavoritTeachers";
 import Comments from "@/src/components/HomePage/Comments";
 import FAQ from "@/src/components/HomePage/FAQ";
-// import dynamic from "next/dynamic";
-// const Comments = dynamic(() => import("@/src/components/HomePage/Comments"), {
-//     ssr: false, // اگر نیاز دارید که این کامپوننت فقط در سمت کلاینت رندر شود
-//   });
+import clsx from "clsx";
+import { title } from "@/src/components/primitives";
+import { Suspense } from "react";
+
 
 export default async function Home() {
 
@@ -20,30 +20,40 @@ export default async function Home() {
 
 
                 <div className="mt-20 ">
-                    <div className="background z-[1] !absolute">
-                        <span className="bg-[#1582ff37] dark:bg-none " />
-                        {/* <span/> */}
+                    <div className="background z-[-1] !absolute">
+                        <span className="bg-[#1582ff37] /dark:bg-none " />
+
                     </div>
                     <Hero />
                 </div>
 
-                {/* <div className="w-full mt-10">
-                    <VirtualPlus />
-                </div> */}
 
                 <div className="w-full mt-24">
-                    <LastCourses />
+
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <LastCourses>
+                            <h3 className={clsx(title({ color: 'secondary' }), "pt-1 text-lg md:text-xl lg:text-2xl xl:text-3xl")}>آخرین دوره‌ها</h3>
+                        </LastCourses>
+                    </Suspense>
+
                 </div>
 
                 <div className="w-full mt-24 ">
-                    <FavoriteCourses />
+                    <FavoriteCourses >
+                        <h3 className={clsx(title({ color: 'secondary' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین دوره‌ها</h3>
+                    </FavoriteCourses>
+
                 </div>
 
                 <div className="w-full mt-24 ">
-                    <FavoritAcademies />
+                    <FavoritAcademies >
+                        <h3 className={clsx(title({ color: 'green' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین آکادمی‌ها</h3>
+                    </FavoritAcademies>
                 </div>
                 <div className="w-full mt-24 ">
-                    <FavoritTeachers />
+                    <FavoritTeachers >
+                        <h3 className={clsx(title({ color: 'pink' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین مدرس‌ها</h3>
+                    </FavoritTeachers>
                 </div>
                 <div className="w-full mt-28 md:mt-52 ">
                     <Comments />
@@ -52,7 +62,7 @@ export default async function Home() {
                 <div className="w-full mt-20 md:mt-32 ">
                     <FAQ />
                 </div>
-                
+
             </div>
 
         </section>

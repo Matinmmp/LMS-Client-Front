@@ -56,7 +56,10 @@ function RequestProviders() {
         mutationFn: () => getUserInfo(),
         onMutate: () => dispatch(userLoggedIn({ loading: true })),
         onSuccess: (e) => dispatch(userLoggedIn(e)),
-        onError: (e) => { },
+        onError: (e: any) => {
+            e.loading = false;
+            dispatch(userLoggedIn(e));
+        },
         onSettled: (e: any) => {
             e.loading = false;
             dispatch(userLoggedIn(e));

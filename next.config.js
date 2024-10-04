@@ -5,6 +5,11 @@ const nextConfig = {
         optimizeCss: true,
         swcMinify: true,
     },
+
+    compilerOptions: {
+        target: "es2015"
+    },
+      
     compress: true,
     optimizeFonts: true,
     images: {
@@ -14,12 +19,12 @@ const nextConfig = {
                 hostname: 'buckettest.storage.c2.liara.space',
             },
             {
-                protocol:'https',
-                hostname:'lottie.host'
+                protocol: 'https',
+                hostname: 'lottie.host'
             },
             {
-                protocol:'https',
-                hostname:'"www.google.com'
+                protocol: 'https',
+                hostname: '"www.google.com'
             }
         ]
     }

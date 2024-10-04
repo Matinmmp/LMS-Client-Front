@@ -1,7 +1,7 @@
 import Script from "next/script";
 
 
-
+// کامل نیست پرش کن
 const schema = {
     "@context": "https://schema.org",
     "@type": "WebSite",

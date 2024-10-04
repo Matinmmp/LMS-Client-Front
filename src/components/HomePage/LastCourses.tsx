@@ -1,24 +1,28 @@
-import React from "react";
+ import React from "react";
 import { TbArrowBigLeftLinesFilled } from "react-icons/tb";
 import Link from "next/link";
-import { title } from "../primitives";
-import { clsx } from "clsx";
 import { CourseCard } from "../Shared/CourseCard";
 import { PiBooksFill } from "react-icons/pi";
+import { getHomeLastCourses } from "@/src/lib/apis/homeApis";
 
 type Props = {
+    children: React.ReactNode
 };
 
-const LastCourses = (props: Props) => {
+const LastCourses =async (props: Props) => {
+    const data:any =await getHomeLastCourses();
 
+    if(data && data.success)
 
     return (
         <section className="w-full pb-10 flex flex-col relative">
 
             <div className="w-full flex justify-between">
                 <div className="flex items-center gap-1 md:gap-2">
-                    <PiBooksFill className="text-primary-400 text-[1.5rem] md:text-[2.5rem] lg:text-[3rem]"/>
-                    <h3 className={clsx(title({ color: 'secondary' }), "pt-1 text-lg md:text-xl lg:text-2xl xl:text-3xl")}>آخرین دوره‌ها</h3>
+                    <PiBooksFill className="text-primary-400 text-[1.5rem] md:text-[2.5rem] lg:text-[3rem]" />
+                    {
+                        props.children
+                    }
                 </div>
                 <Link href={'/'} className={`flex items-center gap-1 hover:text-primary-400 text-sm md:text-base transition-all`}>
                     <p>مشاهده همه دوره‌ها</p>
@@ -33,7 +37,7 @@ const LastCourses = (props: Props) => {
                     <CourseCard />
                     <CourseCard />
                     <CourseCard />
-                    
+
                 </div>
 
             </div>

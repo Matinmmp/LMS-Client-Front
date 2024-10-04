@@ -3,16 +3,16 @@ import { useState } from 'react';
 import { IoIosArrowBack } from "react-icons/io";
 
 const Accordion = ({ title = '', description = '' }) => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
     return (
         <div className="w-full px-4   shadow-medium rounded-medium bg-white dark:bg-[#18181B]/ dark:bg-primary-50">
             <div className='w-full rounded-[0.625rem] '>
                 <label onClick={() => setIsOpen(!isOpen)}
-                    className={`transition-all py-4 flex min-h-[3.5625rem] w-full h-full items-center gap-[0.6rem] rounded-[0.625rem] cursor-pointer`}>
+                    className={`transition-all py-4 flex min-h-[3.5625rem] w-full h-full items-center gap-[0.6rem]  rounded-[0.625rem] cursor-pointer`}>
 
                     <IoIosArrowBack size={20} className={`${isOpen ? '-rotate-90' : 'rotate-0'} transition-transform`}/>
 
-                    <h5 className='text-xl font-medium'>{title}</h5>
+                    <h5 className='text-lg md:text-xl font-semibold text-center'>{title}</h5>
                 </label>
 
                 <motion.div
@@ -22,7 +22,7 @@ const Accordion = ({ title = '', description = '' }) => {
                     exit={{ height: 0 }}
                     style={{ overflow: 'hidden' }} >
 
-                    <p className='p-4 pb-7 txt-lg font-medium text-start'>{description}</p>
+                    <p className='p-2 pb-7 txt-lg font-medium text-start leading-7 tracking-[0.03rem]'>{description}</p>
                 </motion.div>
 
             </div>

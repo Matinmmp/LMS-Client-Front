@@ -15,7 +15,7 @@ type CardProps = {
 export const AcadmyCard = ({ }: CardProps) => {
     return (
         <div className="w-full max-w-[25rem] h-[22rem] rounded-lg border-2/ transition-all border-primary-50/ 
-        shadow-[0px_0px_10px_0px_#73ffa2,_0px_2px_20px_0px_#87ffaf,_inset_0px_0px_1px_0px_#73ffa2]
+        shadow-[0px_0px_10px_0px_#60ff95a0,_0px_2px_20px_0px_#60ff95a0,_inset_0px_0px_1px_0px_#60ff95a0]
         dark:shadow-[0px_0px_8px_0px_#73ffa2,_0px_2px_3px_0px_#87ffaf,_inset_0px_0px_1px_0px_#73ffa2]
         bg-white/90 dark:bg-transparent dark:border-success-300/ dark:hover:bg-primary-50 backdrop-blur-md backdrop-saturate-150 cursor-pointer">
 

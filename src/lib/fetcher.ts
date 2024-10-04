@@ -25,13 +25,17 @@ export async function customFetch<T>(url: string, options: FetchOptions = {}): P
             response = await fetch(BASE_URL + url, options);
     }
 
-    const data: T |any = await response.json();
-
-    // بررسی و هندل کردن ارور‌ها
-    if (!response.ok) {
-        throw new Error(data.message);
+    const data: T | any = await response.json();
+    console.log('fetch',data)
+    // // بررسی و هندل کردن ارور‌ها
+    if (!response.ok){
+        throw {
+            status: false,
+            message: data.message,
+       
+        };
+       
     }
-   
 
     return data;
 }
