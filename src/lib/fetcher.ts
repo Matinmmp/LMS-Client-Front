@@ -26,7 +26,7 @@ export async function customFetch<T>(url: string, options: FetchOptions = {}): P
     }
 
     const data: T | any = await response.json();
-    console.log('fetch',data)
+ 
     // // بررسی و هندل کردن ارور‌ها
     if (!response.ok){
         throw {
