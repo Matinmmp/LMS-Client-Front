@@ -5,7 +5,7 @@ import { customFetch } from "../fetcher"
 const getHomeLastCourses = async () => {
     try {
         const data = await customFetch('get-home-last-courses', {
-            method: 'GET', credentials: 'include',
+            method: 'GET',
             //  next: { revalidate: 3600 }
             cache:'no-store'
         }
@@ -21,7 +21,7 @@ const getHomeLastCourses = async () => {
 const getHomeFavoritCourses = async () => {
     try {
         const data = await customFetch('/get-home-favorite-courses', {
-            method: 'GET', credentials: 'include',
+            method: 'GET',
             //  next: { revalidate: 3600 }
             cache:'no-store'
         }
@@ -33,10 +33,27 @@ const getHomeFavoritCourses = async () => {
     
 }
 
+// revalidate 3600
 const getHomeFavoritAcademies = async () => {
     try {
         const data = await customFetch('/get-home-favorite-academy', {
-            method: 'GET', credentials: 'include',
+            method: 'GET',
+            //  next: { revalidate: 3600 }
+            cache:'no-store'
+        }
+        );
+        return await data;
+    } catch (error) {
+        return error
+    }
+    
+}
+
+// revalidate 3600
+const getHomeFavoritTeachers = async () => {
+    try {
+        const data = await customFetch('/get-home-favorite-teachers', {
+            method: 'GET',
             //  next: { revalidate: 3600 }
             cache:'no-store'
         }
@@ -51,5 +68,6 @@ const getHomeFavoritAcademies = async () => {
 export {
     getHomeLastCourses,
     getHomeFavoritCourses,
-    getHomeFavoritAcademies
+    getHomeFavoritAcademies,
+    getHomeFavoritTeachers
 }

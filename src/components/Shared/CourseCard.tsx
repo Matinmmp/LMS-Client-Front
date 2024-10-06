@@ -62,8 +62,8 @@ export const CourseCard = ({ data }: CardProps) => {
 
                         <div className="px-3 pt-1 flex items-center justify-between gap-0.5">
                             <div className="flex items-center">
-                                <GoDotFill size={10} className="text-secondary-400" />
-                                <span className="text-xs font-semibold text-secondary-400">{status}</span>
+                                <GoDotFill size={10} className="text-primary-400" />
+                                <span className="text-xs font-semibold text-primary-400">{status}</span>
                             </div>
                             <div className="flex items-center gap-1">
                                 <span className="pt-1 text-md font-semibold text-warning-400">{data.ratings}</span>
@@ -120,8 +120,8 @@ export const CourseCard = ({ data }: CardProps) => {
                             </div>
                         </div>
 
-                        <div className="w-full h-1/5 self-end flex items-center justify-center border-t-[1px] border-secondary-400">
-                            <div className="flex items-center gap-1 text-secondary-400 hover:text-black dark:hover:text-white transition-all">
+                        <div className="w-full h-1/5 self-end flex items-center justify-center border-t-[1px] border-primary-400">
+                            <div className="flex items-center gap-1 text-primary-400 hover:text-black dark:hover:text-white transition-all">
                                 <p className="font-semibold">مشاهده اطلاعات دوره</p>
                                 <TbArrowBigLeftLinesFilled size={22} />
 
@@ -155,7 +155,7 @@ export const CourseCardLoading = () => {
                         <div className="px-3 pt-1 flex items-center justify-between gap-0.5">
 
                             <div className="flex items-center">
-                                <GoDotFill size={10} className="text-secondary-400" />
+                                <GoDotFill size={10} className="text-primary-400" />
                                 <Skeleton className="w-12 rounded-sm">
                                     <div className="h-3 w-12 rounded-sm bg-default-200"></div>
                                 </Skeleton>
@@ -233,8 +233,8 @@ export const CourseCardLoading = () => {
                             </div>
                         </div>
 
-                        <div className="w-full h-1/5 self-end flex items-center justify-center border-t-[1px] border-secondary-400">
-                            <div className="flex items-center gap-1 text-secondary-400 hover:text-black dark:hover:text-white transition-all">
+                        <div className="w-full h-1/5 self-end flex items-center justify-center border-t-[1px] border-primary-400">
+                            <div className="flex items-center gap-1 text-primary-400 hover:text-black dark:hover:text-white transition-all">
                                 <Skeleton className="w-36 h-5 rounded-sm">
                                     <div className="w-36 h-5 rounded-sm bg-default-200"></div>
                                 </Skeleton>

@@ -32,7 +32,6 @@ const FavoritAcademies = async (props: Props) => {
                 <div className="mt-10">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg2:grid-cols-3   justify-items-center gap-y-8 gap-x-8 ">
                         {data.academies.length && data.academies.map((item: any, index: number) => <AcadmyCard key={index} data={item} />)}
-
                     </div>
 
                 </div>

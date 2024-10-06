@@ -93,9 +93,9 @@ const AcadmyCardLoading = () => {
             <div className="h-full w-full flex flex-col items-center">
                 <div className="w-full p-6 flex items-center justify-between">
 
-                    <Skeleton className="w-20 h-20 p-2 rounded-xl">
-                        <div className="w-20 h-20 rounded-md "></div>
-                    </Skeleton>
+                    <Skeleton className="w-20 h-20 p-2 rounded-xl"/>
+                   
+                
 
                     <div className="flex flex-col gap-1">
                         <Skeleton className="w-24 h-5 rounded-md" />
@@ -106,7 +106,6 @@ const AcadmyCardLoading = () => {
                 </div>
 
                 <div className="w-full px-6 pb-4 flex flex-col items-start">
-
                     <div className="w-full flex items-center gap-1">
                         <div className="w-full flex items-center justify-between">
                             <Skeleton className="w-24 h-7 rounded-md" />
@@ -115,8 +114,8 @@ const AcadmyCardLoading = () => {
                                 <FaStar size={20} className="text-warning-400" />
                             </div>
                         </div>
-
                     </div>
+
                     <Skeleton className="w-72 h-4 mt-8 rounded-sm" />
                     <Skeleton className="w-64 h-4 mt-2 rounded-sm" />
                     <Skeleton className="w-56 h-4 mt-2 rounded-sm" />
@@ -124,7 +123,7 @@ const AcadmyCardLoading = () => {
 
                 <div className="w-full mt-auto">
                     <div className="w-full px-12 py-4 flex items-center justify-center gap-2 border-t-2 border-success-50 dark:border-success-300">
-
+ 
                         <Skeleton className="w-48 h-5 mt-2 ms-auto rounded-md" />
                         <TbArrowBigLeftLinesFilled size={20} className="text-success-300 mt-1" />
                     </div>
