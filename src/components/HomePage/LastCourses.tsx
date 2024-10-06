@@ -45,7 +45,7 @@ const LastCourses = async (props: Props) => {
         );
 };
 
-export const LastCoursesLoading = async (props: Props) => {
+export const LastCoursesLoading = (props: Props) => {
 
     return (
         <section className="w-full pb-10 flex flex-col relative">
@@ -66,11 +66,7 @@ export const LastCoursesLoading = async (props: Props) => {
 
             <div className="mt-10">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md2:grid-cols-3 xl:grid-cols-4 justify-items-center gap-y-8 gap-x-8 ">
-                    {
-                        Array(3).fill(null).map((index: number) =>
-                            <CourseCardLoading key={index} />
-                        )
-                    }
+                    {Array(3).fill(null).map((index: number) => <CourseCardLoading key={index} />)}
                 </div>
 
             </div>

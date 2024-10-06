@@ -43,7 +43,7 @@ const FavoritTeachers = async (props: Props) => {
         );
 };
 
-export const FavoritTeachersLoading = async (props: Props) => {
+export const FavoritTeachersLoading =  (props: Props) => {
 
 
     return (

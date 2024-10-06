@@ -49,7 +49,7 @@ const FavoriteCourses =async (props: Props) => {
     );
 };
 
-export const FavoriteCoursesLoading = async (props: Props) => {
+export const FavoriteCoursesLoading =  (props: Props) => {
 
     return (
         <section className="w-full pb-10 flex flex-col relative">
