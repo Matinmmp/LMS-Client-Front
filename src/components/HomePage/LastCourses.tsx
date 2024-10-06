@@ -4,7 +4,6 @@ import Link from "next/link";
 import { CourseCard, CourseCardLoading } from "../Shared/CourseCard";
 import { PiBooksFill } from "react-icons/pi";
 import { getHomeLastCourses } from "@/src/lib/apis/homeApis";
-import { BsBookmarkHeartFill } from "react-icons/bs";
 
 type Props = {
     children: React.ReactNode
@@ -12,7 +11,7 @@ type Props = {
 
 
 
-const LastCourses = async (props: Props) => {
+const LastCourses = async (props: Props)  => {
     const data: any = await getHomeLastCourses();
 
     if (data && data.success)
