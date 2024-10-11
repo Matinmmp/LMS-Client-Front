@@ -18,10 +18,6 @@ import FavoritAcademies from "@/src/components/HomePage/FavoritAcademies";
 import FavoritTeachers from "@/src/components/HomePage/FavoritTeachers";
 import FavoriteCourses from "@/src/components/HomePage/FavoriteCourses";
 
-// const LastCourses = React.lazy(() => import('../../components/HomePage/LastCourses'));
-// const FavoriteCourses = React.lazy(() => import('../../components/HomePage/FavoriteCourses'));
-// const FavoritAcademies = React.lazy(() => import('../../components/HomePage/FavoritAcademies'));
-// const FavoritTeachers = React.lazy(() => import('../../components/HomePage/LastCourses'));
 
 export default async function Home() {
 

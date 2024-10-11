@@ -61,13 +61,22 @@ const getHomeFavoritTeachers = async () => {
         return await data;
     } catch (error) {
         return error
-    }
-    
+    } 
+}
+
+const homeSearch = async (search:string) => {
+    try {
+        const data = await customFetch(`/home-search?query=${search}`, {method: 'GET',});
+        return await data;
+    } catch (error) {
+        return error
+    } 
 }
 
 export {
     getHomeLastCourses,
     getHomeFavoritCourses,
     getHomeFavoritAcademies,
-    getHomeFavoritTeachers
+    getHomeFavoritTeachers,
+    homeSearch
 }

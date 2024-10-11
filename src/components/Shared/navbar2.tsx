@@ -32,7 +32,9 @@ import { useSelector } from "react-redux";
 import { FcAbout } from "react-icons/fc";
 import { CgClose } from "react-icons/cg";
 import { GrMenu } from "react-icons/gr";
-import {motion} from 'framer-motion'
+import { motion } from 'framer-motion'
+import { useMutation } from "@tanstack/react-query";
+import { homeSearch } from "@/src/lib/apis/homeApis";
 
 const links = [
     {
@@ -71,11 +73,13 @@ export const Navbar = () => {
 
     const [scrolled, setScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [search, setSearch] = useState('');
+    const [timeout, setTimeout2] = useState<ReturnType<typeof setTimeout> | null>(null);
 
     const [open, setOpen] = useState(false);
     const [route, setRoute] = useState('Login')
     const { user, loading } = useSelector((state: any) => state.auth)
-    const a = useSelector((state: any) => state.auth)
+
 
     const [open2, setOpen2] = useState(false);
     const searchRef = useRef<any>();
@@ -104,9 +108,28 @@ export const Navbar = () => {
 
     }, []);
 
- 
 
-      
+    const searchMutation = useMutation({ mutationFn: (search: string) => homeSearch(search) })
+
+
+
+    const handleSearch = (e: any) => {
+        const data = e.target.value
+        setSearch(data);
+
+        if (timeout) clearTimeout(timeout);
+        if (data === '') return;
+
+        const time = setTimeout(() => {
+            searchMutation.mutate(data);
+        }, 1500);
+
+        setTimeout2(time)
+    };
+
+    console.log(searchMutation.data)
+
+
     return (
         <div className="w-full flex flex-col justify-center items-center md:sticky md:top-0 z-50 ">
             <div className={`sticky top-10 w-full transition-all ${!scrolled ? "max-w-full md:px-0 left-0 right-0" : "md:max-w-[90rem] md:px-4 md:mt-4 "}`}>
@@ -223,7 +246,7 @@ export const Navbar = () => {
                             </li>
 
                             <li >
-                                <NextLink color="foreground" href={"/"}className={clsx(linkStyles({ color: "foreground" }), "font-semibold")} >
+                                <NextLink color="foreground" href={"/"} className={clsx(linkStyles({ color: "foreground" }), "font-semibold")} >
                                     بلاگ
                                 </NextLink>
                             </li>
@@ -307,8 +330,8 @@ export const Navbar = () => {
                             <div className={`h-11 ${open2 ? "w-full ps-4 border-primary-400" : "w-11 dark:border-white "} 
                               p-[2px] border-[3px] rounded-[5rem] transition-all  relative border-primary-400 `}>
 
-                                <input placeholder="جستوجو بین دوره ‌ها، مدرس‌ها و آکادمی‌ها"
-                                    className={`${open2 ? "w-11/12" : "w-0"} h-8 mt-[1px] absolute right-3 bg-transparent placeholder:text-sm md:text-lg`} />
+                                <input placeholder="جستوجو بین دوره‌ها" value={search} onChange={handleSearch}
+                                    className={`${open2 ? "w-11/12" : "w-0"} h-8 mt-[2px] absolute right-3 bg-transparent placeholder:text-sm md:text-lg placeholder:pb-1 ps-1`} />
 
                                 <div className={`min-w-9 min-h-9 flex items-center justify-center
                                 ${open2 ? " left-[2px] dark:border-primary-400" : "dark:border-white"} border-[3px] rounded-full
@@ -362,9 +385,9 @@ const DropDown = ({ children, position, title, link }: DropDownProps) => {
 
     return (
         <div className="w-full relative"
-         onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} 
-         >
-            <NextLink className={clsx(linkStyles({ color: "foreground" }), "w-full font-semibold cursor-pointer relative")}  href={link}>
+            onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
+        >
+            <NextLink className={clsx(linkStyles({ color: "foreground" }), "w-full font-semibold cursor-pointer relative")} href={link}>
                 {title}
             </NextLink>
 
