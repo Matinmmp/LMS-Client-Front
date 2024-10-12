@@ -54,7 +54,7 @@ export function getRefreshTokenFromCookies(): string | null {
 
 async function refreshAccessToken(): Promise<string | null> {
     try {
-        const response = await fetch(`${BASE_URL}/refresh-token`, {
+        const response = await fetch(`${BASE_URL}refresh-token`, {
             method: 'GET',
             credentials: 'include', // برای ارسال کوکی‌ها
         });

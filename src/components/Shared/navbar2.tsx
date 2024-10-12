@@ -22,7 +22,7 @@ import SignUp from "@/src/components/Auth/SignUp";
 import Verification from "@/src/components/Auth/Verfication";
 import CustomeModal from "@/src/components/Shared/CustomeModal";
 
-import { FaRightToBracket, FaCaretLeft, FaChevronLeft, FaQuoteRight, FaRegEye } from "react-icons/fa6";
+import { FaRightToBracket, FaCaretLeft, FaChevronLeft, FaQuoteRight, FaRegEye, FaStar } from "react-icons/fa6";
 import { MdKeyboardArrowDown, MdKeyboardArrowLeft, MdOutlinePersonAddAlt } from "react-icons/md";
 import { FaTelegramPlane } from "react-icons/fa";
 import { MdContactPhone } from "react-icons/md";
@@ -32,7 +32,7 @@ import { useSelector } from "react-redux";
 import { FcAbout } from "react-icons/fc";
 import { CgClose } from "react-icons/cg";
 import { GrMenu } from "react-icons/gr";
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { useMutation } from "@tanstack/react-query";
 import { homeSearch } from "@/src/lib/apis/homeApis";
 
@@ -75,6 +75,7 @@ export const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [search, setSearch] = useState('');
     const [timeout, setTimeout2] = useState<ReturnType<typeof setTimeout> | null>(null);
+    const [list, setList] = useState([]);
 
     const [open, setOpen] = useState(false);
     const [route, setRoute] = useState('Login')
@@ -86,8 +87,10 @@ export const Navbar = () => {
 
     useEffect(() => {
         const handleOutsideClick = (event: any) => {
-            if (searchRef.current && !searchRef.current.contains(event.target))
-                setOpen2(false);
+            if (searchRef.current && !searchRef.current.contains(event.target)) {
+                // setSearch('')
+                // setOpen2(false);
+            }
         };
 
         document.addEventListener("mousedown", handleOutsideClick);
@@ -109,33 +112,39 @@ export const Navbar = () => {
     }, []);
 
 
-    const searchMutation = useMutation({ mutationFn: (search: string) => homeSearch(search) })
-
-
+    const searchMutation: any = useMutation(
+        {
+            mutationFn: (search: string) => homeSearch(search),
+            onSuccess: (e: any) => {
+                if (e?.courses?.length)
+                    setList(e?.courses)
+            }
+        }
+    )
 
     const handleSearch = (e: any) => {
         const data = e.target.value
         setSearch(data);
 
         if (timeout) clearTimeout(timeout);
-        if (data === '') return;
+        // if (data === '') return;
 
         const time = setTimeout(() => {
             searchMutation.mutate(data);
-        }, 1500);
+        }, 500);
 
         setTimeout2(time)
     };
 
-    console.log(searchMutation.data)
 
 
     return (
-        <div className="w-full flex flex-col justify-center items-center md:sticky md:top-0 z-50 ">
+        <div className="w-full flex flex-col justify-center items-center sticky md:top-0 z-50 ">
+
             <div className={`sticky top-10 w-full transition-all ${!scrolled ? "max-w-full md:px-0 left-0 right-0" : "md:max-w-[90rem] md:px-4 md:mt-4 "}`}>
 
-                <nav className={` backdrop-filter-none md:backdrop-blur-[10px] bg-[#ffffff44]  dark:bg-[#2020204d]
-                    w-full relative z-[57] ${!scrolled ? 'h-[5.5rem] rounded-none ' : 'h-24 md:rounded-2xl md:border-[1px] md:border-[#58585880]'} `}>
+                <nav className={`w-full backdrop-blur-[10px] bg-[#ffffff44] dark:bg-[#2020204d]
+                     relative z-[57] ${!scrolled ? 'h-[5.5rem] rounded-none ' : 'h-24 md:rounded-2xl md:border-[1px] md:border-[#58585880]'} `}>
 
                     <header className='h-full px-4 flex items-center gap-4 relative'  >
 
@@ -321,13 +330,14 @@ export const Navbar = () => {
 
                 </nav>
 
-                <div className="flex justify-center relative z-[50] ">
+                <div className="w-full flex justify-center absolute z-[50] left-1/2 -translate-x-1/2">
+
                     <div className=" w-full max-w-3xl flex justify-center transition-all ">
                         <div ref={searchRef} onClick={() => setOpen2(true)}
-                            className={`h-14 md:border-[#58585880] ${open2 ? "w-full px-4" : "w-14 rounded-b-full"} ${scrolled ? ' md:border-[1px] md:border-t-0' : 'border-0'} rounded-b-[2rem] flex items-center justify-center
-                         cursor-pointer transition-all backdrop-filter-none md:backdrop-blur-[10px] bg-[#ffffff44]  dark:bg-[#2020204d] `}>
+                            className={`min-h-14 flex flex-col items-center md:border-[#58585880] ${open2 ? "w-full px-4" : "w-14 rounded-b-full"} ${scrolled ? ' md:border-[1px] md:border-t-0' : 'border-0'} rounded-b-[2rem]
+                            cursor-pointer transition-all backdrop-blur-xl bg-[#ffffff44]  dark:bg-[#2020204d] `}>
 
-                            <div className={`h-11 ${open2 ? "w-full ps-4 border-primary-400" : "w-11 dark:border-white "} 
+                            <div className={`h-11 mt-1.5 ${open2 ? "w-full ps-4 border-primary-400" : "w-11 dark:border-white "} 
                               p-[2px] border-[3px] rounded-[5rem] transition-all  relative border-primary-400 `}>
 
                                 <input placeholder="جستوجو بین دوره‌ها" value={search} onChange={handleSearch}
@@ -339,8 +349,52 @@ export const Navbar = () => {
                                     <FaRegEye className={open2 ? "text-primary-400" : "text-primary-400 dark:text-white"} size={16} />
                                 </div>
                             </div>
+
+                            <AnimatePresence>
+                                {open2 && search && list?.length &&
+                                    <motion.div
+                                        transition={{ type: 'spring', damping: 30, stiffness: 300, duration: .3 }}
+                                        initial={{ height: 0 }}
+                                        animate={{ height: open2 && search && list?.length ? 'auto' : 0 }}
+                                        exit={{ height: 0 }}
+
+                                        className="max-h-[60vh] overflow-scroll w-full p-2 ps-6 pb-3 pt-6 flex flex-col gap-3 scroll-10 ">
+                                        {
+                                            list?.map((item: any, index: number) =>
+
+                                                <NextLink href={'/'} key={index} className="w-full h-full flex gap-4">
+                                                    <div>
+                                                        <div className="w-16 h-12 p-[1px]   rounded-sm border-1 border-primary-400 overflow-hidden shadow-medium">
+                                                            <Image className="w-full h-full rounded-sm" width={500} height={500} src={item.thumbnail.imageUrl} alt={item.name} />
+                                                        </div>
+                                                    </div>
+                                                    <div className="w-full flex flex-col">
+                                                        <div className="w-full flex items-start justify-between">
+                                                            <p className={clsx(linkStyles({ color: "foreground" }), "w-full text-lg font-semibold cursor-pointer hover:text-primary-400 transition-all")} >
+                                                                {item.name}
+                                                            </p>
+
+                                                            <div className="flex items-center gap-1">
+                                                                <span className="pt-1 text-md font-semibold text-warning-400">{toPersianNumber(item.ratings)}</span>
+                                                                <FaStar size={16} className="text-warning-400" />
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <p className="w-full !text-sm !font-normal ">
+                                                                {`مدرس : ${item?.teacherId?.faName}`}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+                                                </NextLink>
+                                            )
+                                        }
+                                    </motion.div>}
+                            </AnimatePresence>
+
                         </div>
                     </div>
+
                 </div>
 
                 <Drawer isOpen={isMenuOpen} setIsOpen={setIsMenuOpen}>
@@ -361,6 +415,7 @@ export const Navbar = () => {
                     <CustomeModal open={open} setOpen={setOpen} setRoute={setRoute} component={Verification} />
                 }
             </div>
+
         </div>
     );
 };
