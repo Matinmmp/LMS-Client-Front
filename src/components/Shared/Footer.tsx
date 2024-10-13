@@ -19,8 +19,9 @@ const Footer = ({ }: CardProps) => {
     const categories = buildCategoryTree(navObject.categoryObject.categoryList, null);
     const academiesObject = navObject.academyObject
     const teacherObject = navObject.teacherObject
+
     return (
-        <footer className="w-full  flex justify-center relative">
+        <footer className="w-full flex justify-center relative backdrop-blur-xl z-40">
 
 
             <div className="size-full p-4 py-10 max-w-[1350px] px-4 md:px-8 2xl:px-2 flex flex-col items-center">
