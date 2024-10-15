@@ -1,43 +1,75 @@
-import React from "react";
+'use client'
+import React, { useState } from "react";
 import { TeacherCard } from "../Shared/TeacherCard";
-import { getHomeFavoritTeachers } from "@/src/lib/apis/homeApis";
+
 import { TiPencil } from "react-icons/ti";
+import { Input } from "@nextui-org/input";
+import Fuse from 'fuse.js';
 
 type Props = {
-
+    list: [any]
 };
 
-const TeachersList = async (props: Props) => {
+const TeachersList = ({ list }: Props) => {
+    const [searchText, setSearchText] = useState('');
+    const [filteredTeachers, setFilteredTeachers] = useState(list);
+    const [inputDirection, setInputDirection] = useState('ltr');
 
-    const data: any = await getHomeFavoritTeachers();
+    const fuse = new Fuse(list, {
+        keys: ['faName', 'engName'], // فیلدهای مورد نظر برای جستجو
+        threshold: 0.3, // مقدار مشابهت (کمتر یعنی سختگیرانه‌تر)
+    });
 
-    if (data && data.success)
-        return (
-            <section className="w-full pb-10 flex flex-col ">
+    const handleSearchChange = (text: string) => {
+        setSearchText(text);
 
+        // بررسی اینکه آیا متن فارسی است یا انگلیسی
+        if (/[\u0600-\u06FF]/.test(text)) {
+            setInputDirection('rtl'); // راست‌چین برای فارسی
+        } else {
+            setInputDirection('ltr'); // چپ‌چین برای انگلیسی
+        }
 
-                <div className="mt-10 relative">
+        // فیلتر کردن داده‌ها با fuse.js
+        const result = fuse.search(text).map(result => result.item);
+        setFilteredTeachers(result as any);
+        if (!result.length && !text)
+            setFilteredTeachers(list);
 
-                    <div className="sticky top-[30vh] mt-20 -ms-10 lg:-ms-24  z-10 w-0 h-0">
-                        <TiPencil className=" text-[15rem] md:text-[20rem]  xl:text-[25rem] text-secondary-400 dark:text-secondary-700" />
-                    </div>
+    };
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg2:grid-cols-3    justify-items-center gap-y-8 gap-x-8 relative z-20">
+    return (
+        <section className="w-full pb-10 flex flex-col ">
 
-                        {data.teachers.length && data.teachers.map((item: any, index: number) => <TeacherCard key={index} data={item} />)}
-                        {data.teachers.length && data.teachers.map((item: any, index: number) => <TeacherCard key={index} data={item} />)}
-                        {data.teachers.length && data.teachers.map((item: any, index: number) => <TeacherCard key={index} data={item} />)}
-                        {data.teachers.length && data.teachers.map((item: any, index: number) => <TeacherCard key={index} data={item} />)}
-                        {data.teachers.length && data.teachers.map((item: any, index: number) => <TeacherCard key={index} data={item} />)}
-                        {data.teachers.length && data.teachers.map((item: any, index: number) => <TeacherCard key={index} data={item} />)}
-                        {data.teachers.length && data.teachers.map((item: any, index: number) => <TeacherCard key={index} data={item} />)}
+            <div>
+                <Input
+                    onChange={(e) => handleSearchChange(e.target.value)}
+                    value={searchText}
+                    dir={inputDirection} // دایرکشن بر اساس زبان
+                    placeholder="Jonas Schmedtmann"
+                    size="lg"
+                    radius="sm"
+                    variant="bordered"
+                    color="secondary"
+                />
+            </div>
+            <div className="mt-2 relative">
 
-                    </div>
+                <div className="sticky top-[30vh] mt-20 -ms-10 lg:-ms-24  z-10 w-0 h-0">
+                    <TiPencil className=" text-[15rem] md:text-[20rem]  xl:text-[25rem] text-secondary-400 dark:text-secondary-700" />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg2:grid-cols-3    justify-items-center gap-y-8 gap-x-8 relative z-20">
+
+                    {filteredTeachers.length ? filteredTeachers.map((item: any, index: number) => <TeacherCard key={index} data={item} />) : ''}
+
 
                 </div>
 
-            </section>
-        );
+            </div>
+
+        </section>
+    );
 };
 
 export default TeachersList
