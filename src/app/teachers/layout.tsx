@@ -1,6 +1,7 @@
 import Script from "next/script";
 import { TiPencil } from "react-icons/ti";
 
+// TODO درست نیست اصلا
 // کامل نیست پرش کن
 const schema = {
     "@context": "https://schema.org",
@@ -32,6 +33,7 @@ const schema = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <div className="relative">
+            {/* // TODO درست نیست اصلا */}
             {/* بعدا درستشون کن */}
             <meta name="robots" content="index, follow" />
             <meta property="og:title" content="آموزش برنامه‌نویسی به زبان فارسی | Virtual Learn" />

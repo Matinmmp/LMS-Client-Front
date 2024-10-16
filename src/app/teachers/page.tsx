@@ -9,7 +9,7 @@ export default async function Home() {
 
     const data: any = await getTeachers();
 
-    console.log(data)
+ 
 
     if (data && data.success)
 

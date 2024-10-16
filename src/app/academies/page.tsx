@@ -1,19 +1,20 @@
-import Hero from "@/src/components/Teachers/Hero";
-import TeachersList from "@/src/components/Teachers/TeachersList";
-import { getTeachers } from "@/src/lib/apis/teacherApis";
+
+import AcademiesList from "@/src/components/Academies/AcademiesList";
+import Hero from "@/src/components/Academies/Hero";
+
+import { getAcademies } from "@/src/lib/apis/academyApis";
 
 
 
 
 export default async function Home() {
 
-    const data: any = await getTeachers();
+    const data: any = await getAcademies();
 
     console.log(data)
 
+
     if (data && data.success)
-
-
         return (
             <section className=" flex flex-col items-center justify-center  " >
 
@@ -22,12 +23,12 @@ export default async function Home() {
 
                     <div className="mt-20 lg:mt-32 ">
                         {/* <div className="background z-[-1] !absolute">
-                            <span className=" dark:bg-[#1582ff37] " />
+                            <span className=" dark: bg-success-500 opacity-50" />
                         </div> */}
                         <Hero />
                     </div>
                     <div className="w-full mt-16 lg:mt-24">
-                        <TeachersList list={data.teachers}/>
+                        <AcademiesList list={data.academies} />
                     </div>
                 </div>
             </section>

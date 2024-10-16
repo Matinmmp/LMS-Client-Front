@@ -1,6 +1,6 @@
 import Script from "next/script";
 
-
+// TODO درست نیست اصلا
 // کامل نیست پرش کن
 const schema = {
     "@context": "https://schema.org",
@@ -32,6 +32,7 @@ const schema = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <div>
+            {/* // TODO درست نیست اصلا */}
             {/* بعدا درستشون کن */}
             <meta name="robots" content="index, follow" />
             <meta property="og:title" content="مدرسان برتر برنامه‌نویسی جهان | Virtual Learn" />
