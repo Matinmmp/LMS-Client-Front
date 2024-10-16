@@ -6,9 +6,9 @@ const nextConfig = {
         swcMinify: true,
     },
 
-    compilerOptions: {
-        target: "es2015"
-    },
+    // compilerOptions: {
+    //     target: "es2015"
+    // },
       
     compress: true,
     optimizeFonts: true,
