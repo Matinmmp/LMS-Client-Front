@@ -1,20 +1,20 @@
 'use client'
 import React, { useEffect, useState } from "react";
- 
+
 
 import { SiHtmlacademy } from "react-icons/si";
 import { Input } from "@nextui-org/input";
 import Fuse from 'fuse.js';
 import { Select, SelectItem } from "@nextui-org/select";
 import { AcadmyCard } from "../Shared/AcadmyCard";
- 
+
 
 type Props = {
     list: [any]
 };
 
 const AcademiesList = ({ list }: Props) => {
- 
+
     const [searchText, setSearchText] = useState('');
     const [filteredAcademies, setFilteredAcademies] = useState(list);
     const [inputDirection, setInputDirection] = useState('rtl');
@@ -83,7 +83,8 @@ const AcademiesList = ({ list }: Props) => {
         <section className="w-full pb-10 flex flex-col ">
 
             <div >
-                <div className="flex items-center flex-wrap md:flex-nowrap gap-4 py-6 px-4 bg-transparent shadow-medium rounded-lg">
+                <div className="flex items-center flex-wrap md:flex-nowrap gap-4 py-6 px-4 shadow-medium rounded-lg 
+                bg-[#ffffffbf] backdrop-blur-[10px] dark:bg-[#2020204d] ">
                     <Input
                         onChange={(e) => handleSearchChange(e.target.value)}
                         value={searchText} dir={inputDirection}

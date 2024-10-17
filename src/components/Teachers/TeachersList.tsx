@@ -81,7 +81,8 @@ const TeachersList = ({ list }: Props) => {
         <section className="w-full pb-10 flex flex-col ">
 
             <div >
-                <div className="flex items-center flex-wrap md:flex-nowrap gap-4 py-6 px-4 bg-transparent shadow-medium rounded-lg">
+                <div className="flex items-center flex-wrap md:flex-nowrap gap-4 py-6 px-4 shadow-medium rounded-lg 
+                bg-[#ffffffbf] backdrop-blur-[10px] dark:bg-[#2020204d] ">
                     <Input
                         onChange={(e) => handleSearchChange(e.target.value)}
                         value={searchText} dir={inputDirection}
