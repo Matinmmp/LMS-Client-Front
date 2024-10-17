@@ -9,7 +9,7 @@ export default async function Home() {
 
     const data: any = await getTeachers();
 
- 
+
 
     if (data && data.success)
 
@@ -17,17 +17,19 @@ export default async function Home() {
         return (
             <section className=" flex flex-col items-center justify-center  " >
 
-                <div className="w-full max-w-7xl px-4 md:px-8 2xl:px-2 flex flex-col items-center justify-center ">
+                <div className="-mt-32 pt-36 lg:pt-48 pb-12 lg:pb-20 w-full flex items-center justify-center 
+                    dark:bg-gradient-to-b  dark:from-primary-50 dark:to-transparent backdrop-blur-md">
 
-
-                    <div className="mt-20 lg:mt-32 ">
-                        {/* <div className="background z-[-1] !absolute">
-                            <span className=" dark:bg-[#1582ff37] " />
-                        </div> */}
+                    <div className="w-full max-w-7xl px-4 md:px-8 2xl:px-2 mt-16  flex items-center justify-center ">
                         <Hero />
                     </div>
-                    <div className="w-full mt-16 lg:mt-24">
-                        <TeachersList list={data.teachers}/>
+
+                </div>
+
+                <div className="w-full max-w-7xl px-4 md:px-8 2xl:px-2 flex flex-col items-center justify-center ">
+
+                    <div className="w-full mt-6">
+                        <TeachersList list={data.teachers} />
                     </div>
                 </div>
             </section>

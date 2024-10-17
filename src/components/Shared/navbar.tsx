@@ -82,7 +82,7 @@ export const Navbar = () => {
     const { user, loading } = useSelector((state: any) => state.auth)
     const a = useSelector((state: any) => state.auth)
 
-    console.log(a)
+ 
 
     useEffect(() => {
         const handleScroll = () => {

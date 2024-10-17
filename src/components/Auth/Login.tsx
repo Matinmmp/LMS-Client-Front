@@ -43,7 +43,7 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
         loginInfo = JSON.parse(loginInfoString);
     }
 
-    console.log( rememberMe)
+ 
 
     const loginMutation = useMutation({
         mutationFn: (data: { email: string, password: string }) => login(data),

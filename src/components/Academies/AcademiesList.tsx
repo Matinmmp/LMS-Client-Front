@@ -14,7 +14,7 @@ type Props = {
 };
 
 const AcademiesList = ({ list }: Props) => {
-    console.log(list)
+ 
     const [searchText, setSearchText] = useState('');
     const [filteredAcademies, setFilteredAcademies] = useState(list);
     const [inputDirection, setInputDirection] = useState('rtl');

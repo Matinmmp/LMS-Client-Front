@@ -29,7 +29,7 @@ export default async function Home() {
 
                 <div className="mt-36 ">
                     <div className="background z-[-1] !absolute">
-                        <span className="bg-[#1582ff37] /dark:bg-none " />
+                        <span className=" dark:bg-[#1582ff37] " />
 
                     </div>
                     <Hero />

@@ -9,12 +9,12 @@ type Props = {
 
 const Hero = (props: Props) => {
     return (
-        <div className="w-full  relative">
+        <div className="w-full  relative  ">
 
             <div className="pb-10 flex flex-col md2:flex-row justify-between relative z-10">
                 <div className="w-full">
                     <div className="w-full mt-4 text-center ">
-                        <h1 className={clsx(title({ color: 'green' }), 'inline w-full text-center text-[2rem] md:text-[2.5rem] lg:text-5xl !font-bold md:leading-[3.2rem]')}>
+                        <h1 className={clsx(title({ color: 'green' }), 'inline w-full text-center text-[2rem] md:text-[2.5rem] lg:text-5xl xl:text-6xl !font-bold md:leading-[3.2rem]')}>
                             بهترین آکادمی برنامه‌نویسی از سراسر جهان
                         </h1>
 

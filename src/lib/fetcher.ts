@@ -66,7 +66,7 @@ async function refreshAccessToken(): Promise<string | null> {
         return data.accessToken;
 
     } catch (error) {
-        console.error('Token refresh failed', error);
+ 
         return null;
     }
 }

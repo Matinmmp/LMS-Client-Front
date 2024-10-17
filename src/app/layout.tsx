@@ -37,7 +37,11 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
                 <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
                     <div className="relative flex flex-col h-screen ">
             
-                        <main className="flex-grow relative z-10 bg-[#fbfbfb]  dark:bg-[#181818] ">
+                        <main className="flex-grow relative z-10 bg-[#fbfbfb]/ 
+                        bg-gradient-to-b from-[#f3f4f6de] to-[#fbfbfb]
+                        dark:bg-gradient-to-b dark:from-[#020617] dark:to-[#181818]
+                        dark:bg-none/ 
+                        dark:bg-[#181818]/ dark:bg-[#020617] ">
                             <div className="background z-[1] ">
                                 <span className="bg-none dark:bg-[#1582ff37]"/>
                                 {/* <span/> */}
