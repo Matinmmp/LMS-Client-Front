@@ -143,7 +143,7 @@ export const Navbar = () => {
 
             <div className={`sticky top-10 w-full transition-all ${!scrolled ? "max-w-full md:px-0 left-0 right-0" : "md:max-w-[90rem] md:px-4 md:mt-4 "}`}>
 
-                <nav className={`w-full backdrop-blur-[10px] bg-[#ffffff44] dark:bg-[#2020204d]
+                <nav className={`w-full backdrop-blur-[10px] bg-[#ffffffb7] dark:bg-[#2020204d]
                      relative z-[57] ${!scrolled ? 'h-[5.5rem] rounded-none ' : 'h-24 md:rounded-2xl md:border-[1px] md:border-[#58585880]'} `}>
 
                     <header className='h-full px-4 flex items-center gap-4 relative'  >
@@ -335,7 +335,7 @@ export const Navbar = () => {
                     <div className=" w-full max-w-3xl flex justify-center transition-all ">
                         <div ref={searchRef} onClick={() => setOpen2(true)}
                             className={`min-h-14 flex flex-col items-center md:border-[#58585880] ${open2 ? "w-full px-4" : "w-14 rounded-b-full"} ${scrolled ? ' md:border-[1px] md:border-t-0' : 'border-0'} rounded-b-[2rem]
-                            cursor-pointer transition-all backdrop-blur-xl bg-[#ffffff44]  dark:bg-[#2020204d] `}>
+                            cursor-pointer transition-all backdrop-blur-xl bg-[#ffffffb7] dark:bg-[#2020204d]`}>
 
                             <div className={`h-11 mt-1.5 ${open2 ? "w-full ps-4 border-primary-400" : "w-11 dark:border-white "} 
                               p-[2px] border-[3px] rounded-[5rem] transition-all  relative border-primary-400 `}>

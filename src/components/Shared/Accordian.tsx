@@ -4,6 +4,7 @@ import { IoIosArrowBack } from "react-icons/io";
 
 const Accordion = ({ title = '', description = '' }) => {
     const [isOpen, setIsOpen] = useState(true);
+
     return (
         <div className="w-full px-4   shadow-medium rounded-medium bg-white dark:bg-[#18181B]/ dark:bg-primary-50">
             <div className='w-full rounded-[0.625rem] '>
@@ -12,7 +13,7 @@ const Accordion = ({ title = '', description = '' }) => {
 
                     <IoIosArrowBack size={20} className={`${isOpen ? '-rotate-90' : 'rotate-0'} transition-transform`}/>
 
-                    <h5 className='text-lg md:text-xl font-semibold text-center'>{title}</h5>
+                    <h5 className='text-lg md:text-xl font-semibold text-right'>{title}</h5>
                 </label>
 
                 <motion.div

@@ -85,6 +85,11 @@ const TeacherCard = ({ data }: CardProps) => {
     )
 }
 
+// .illustrations .illustration_card:hover {
+//     box-shadow: 0 12px 25px rgba(0, 0, 0, .2);
+//     border: transparent;
+// }
+
 const TeacherCardLoading = () => {
     return (
         <div className="w-full max-w-[25rem] h-[22rem] rounded-2xl transition-all

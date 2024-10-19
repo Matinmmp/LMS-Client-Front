@@ -18,7 +18,7 @@ const Hero = (props: Props) => {
                         </h1>
                         <br />
 
-                        <h2 className="mt-7 text-right text-base md:text-lg font-medium leading-8 md:leading-10">
+                        <h2 className=" mt-7 text-right text-base md:text-lg font-medium leading-8 md:leading-10">
                             با دسترسی به بهترین دوره‌های برنامه‌نویسی جهان به زبان فارسی، مهارت‌های خود را ارتقا دهید .
                         </h2>
                         <h2 className="text-right text-base md:text-lg font-medium leading-8 md:leading-10">

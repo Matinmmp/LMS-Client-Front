@@ -17,11 +17,9 @@ export default function AboutLayout({
             <meta name="author" content="Virtual Learn" />
             <meta charSet="UTF-8" />
         
-        <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-            <div className="inline-block max-w-lg text-center justify-center">
+            <div className="relative z-20">
                 {children}
             </div>
-        </section>
         </>
 
     );

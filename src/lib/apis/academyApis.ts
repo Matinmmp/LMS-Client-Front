@@ -17,7 +17,24 @@ const getAcademies= async () => {
     } 
 }
 
+const getAcademyByName= async (name:string) => {
+    try {
+        const data = await customFetch(`/getAcademyByName/${name}`, {
+            method: 'GET',
+            //  next: { revalidate: 3600 }
+            cache:'no-store'
+        }
+        );
+        return await data;
+    } catch (error) {
+        return error
+    } 
+}
+
 
 export {
-    getAcademies
+    getAcademies,
+    getAcademyByName
 }
+
+
