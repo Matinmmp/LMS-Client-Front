@@ -1,5 +1,4 @@
 
-import { PiBooksFill } from "react-icons/pi";
 import clsx from "clsx";
 import { title } from "../primitives";
 import Link from "next/link";
@@ -19,6 +18,8 @@ const Footer = ({ }: CardProps) => {
     const categories = buildCategoryTree(navObject.categoryObject.categoryList, null);
     const academiesObject = navObject.academyObject
     const teacherObject = navObject.teacherObject
+
+    console.log(academiesObject,teacherObject)
 
     return (
         <footer className="w-full flex justify-center relative backdrop-blur-xl z-40">
@@ -82,7 +83,7 @@ const Footer = ({ }: CardProps) => {
                             <h5 className={clsx(title({ color: 'blue' }), 'text-xl lg:text-2xl font-bold')}>مدرس‌ها</h5>
                             <ul className="mt-6 className= flex flex-col gap-3">
                                 {
-                                    teacherObject.teacherList.splice(0, 10).map((item, index) =>
+                                    teacherObject.teacherList.slice(0, 10).map((item, index) =>
                                         <li key={index}>
                                             <Link color="foreground" href={"/"} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
                                                 {item.faName}
@@ -105,7 +106,7 @@ const Footer = ({ }: CardProps) => {
                             <h5 className={clsx(title({ color: 'blue' }), 'text-xl lg:text-2xl font-bold')}>آکادمی‌ها</h5>
                             <ul className="mt-6 className= flex flex-col gap-3">
                                 {
-                                    academiesObject.academyList.splice(0, 10).map((item, index) =>
+                                    academiesObject.academyList.slice(0, 10).map((item, index) =>
                                         <li key={index}>
                                             <Link color="foreground" href={"/"} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
                                                 {item.faName}

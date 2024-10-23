@@ -69,7 +69,7 @@ export const FavoriteCoursesLoading =  (props: Props) => {
             <div className="mt-10">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md2:grid-cols-3 xl:grid-cols-4 justify-items-center gap-y-8 gap-x-8 ">
                     {
-                        Array(3).fill(null).map((index: number) =>
+                        Array(4).fill(null).map((index: number) =>
                             <CourseCardLoading key={index} />
                         )
                     }
