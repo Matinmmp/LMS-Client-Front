@@ -118,7 +118,7 @@ input {
     right: -15%;
     width: 60%;
     height: 55%;
-    
+
     filter: blur(75px);
     transform: rotateZ(40deg);
     -webkit-filter: blur(75px);
@@ -135,7 +135,7 @@ input {
 
 .scroll-10::-webkit-scrollbar {
     width: 8px;
-    
+
 }
 
 ::-webkit-scrollbar-button {
@@ -207,7 +207,7 @@ input::-webkit-inner-spin-button {
 
 
 .random-hash {
-  
+
     /* رنگ خیلی کم‌رنگ */
     position: absolute;
     animation: moveHash 30s infinite alternate ease-in-out;
@@ -252,3 +252,4 @@ input::-webkit-inner-spin-button {
         transform: translate(-50%, -20%);
     }
 }
+ 

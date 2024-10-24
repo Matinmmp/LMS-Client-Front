@@ -27,6 +27,11 @@ type CardProps = {
 };
 
 const AcadmyCard = ({ data }: CardProps) => {
+    let description = data.description;
+
+    if (description.length > 180) {
+        description = description.substring(0, 180) + ' ... ';
+    }
     return (
         <Link href={`/academies/${data.engName}`} className="w-full">
             <div className="w-full max-w-[25rem] h-[22rem] rounded-lg transition-all
@@ -69,15 +74,15 @@ const AcadmyCard = ({ data }: CardProps) => {
                             <h4 className={clsx(title({ color: 'green' }), 'text-2xl lg:text-3xl font-extrabold')}>{data.engName}</h4>
                         </div>
 
-                        <h5 className="mt-4 dark:text-[#d0e0ef] text-gray-800">
+                        <h5 className="mt-4 dark:text-[#d0e0ef] text-gray-800 max-h-24">
                             <span className="font-bold text-success-400 inline"> {data.faName} </span>
-                            <p className="inline font-medium"> {data.description} </p>
+                            <p className="inline font-medium"> {description} </p>
                         </h5>
                     </div>
 
                     <div className="w-full mt-auto">
                         <div className="w-full px-12 py-4 flex items-center justify-center gap-2 border-t-2 border-success-50 dark:border-success-300">
-                            <p className="ms-auto font-medium">مشاهده دوره‌های {data.faName}</p>
+                            <p className="ms-auto font-medium">مشاهده اطلاعات {data.faName}</p>
                             <TbArrowBigLeftLinesFilled size={20} className="text-success-300 " />
                         </div>
                     </div>

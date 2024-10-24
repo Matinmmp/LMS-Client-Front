@@ -1,4 +1,3 @@
-'use client'
 import Image from "next/image";
 import { title } from "../primitives";
 import { clsx } from "clsx";
@@ -8,10 +7,10 @@ import { PiStudentBold } from "react-icons/pi";
 import { toPersianNumber } from "@/src/utils/functions";
 import { MdOutlineCastForEducation } from "react-icons/md";
 import { FaStar } from "react-icons/fa6";
-import FavoritAcademies, { FavoritAcademiesLoading } from "../HomePage/FavoritAcademies";
 import { Suspense } from 'react';
-import FavoriteCourses, { FavoriteCoursesLoading } from "../HomePage/FavoriteCourses";
- 
+import FavoriteCoursesForAcademy, { FavoriteCoursesForAcademyLoading } from "./FavoriteCourses";
+import { PiMaskSad } from "react-icons/pi";
+import FavoritTeachersForAcademy, { FavoritTeachersForAcademyLoading } from "./FavoriteTeacher";
 
 
 type Props = {
@@ -19,6 +18,7 @@ type Props = {
         faName: string,
         engName: string,
         description: string,
+        longDescription:string,
         avatar: {
             imageUrl: string,
         }
@@ -30,9 +30,50 @@ type Props = {
     }
 };
 
+function generateAcademyDescription(academyName: string, studentsCount: number, rating: number, coursesCount: number, teachersCount: number) {
+    let description = `آکادمی ${academyName} در پلتفرم «Virtual Learn» با ارائه‌ی دوره‌های متنوع و گسترده، به یکی از انتخاب‌های پرطرفدار میان دانشجویان فارسی‌زبان تبدیل شده است. `;
+
+    // توضیحات مربوط به تعداد دانشجویان
+    if (studentsCount > 1000) {
+        description += `این آکادمی با بیش از ${studentsCount} دانشجو، از محبوب‌ترین مراکز آموزشی ما است و توجه کاربران را به خود جلب کرده است. `;
+    } else if (studentsCount > 500) {
+        description += `با ${studentsCount} دانشجو، این آکادمی توانسته است جایگاه ویژه‌ای در میان کاربران ما پیدا کند. `;
+    } else if (studentsCount > 100) {
+        description += `آکادمی ${academyName} با ${studentsCount} دانشجو به عنوان یکی از گزینه‌های معتبر برای یادگیری در پلتفرم ما شناخته می‌شود. `;
+    } else {
+        description += `این آکادمی با ${studentsCount} دانشجو، در حال جذب علاقه‌مندان به دوره‌های آموزشی است. `;
+    }
+
+    // توضیحات مربوط به امتیاز آکادمی
+    if (rating >= 4.8) {
+        description += `با امتیاز بالای ${rating} از ۵، آکادمی ${academyName} توانسته است رضایت فوق‌العاده‌ای از کاربران جلب کند و دوره‌های آن از کیفیت بالایی برخوردار است. `;
+    } else if (rating >= 4.5) {
+        description += `امتیاز ${rating} از ۵ نشان‌دهنده کیفیت خوب دوره‌ها و رضایت گسترده کاربران از محتوای آموزشی آکادمی ${academyName} است. `;
+    } else if (rating >= 4) {
+        description += `با امتیاز ${rating} از ۵، آکادمی ${academyName} سطح قابل قبولی از کیفیت آموزشی را برای کاربران فراهم کرده است. `;
+    } else {
+        description += `با امتیاز ${rating} از ۵، آکادمی ${academyName} در تلاش است تا کیفیت دوره‌های خود را بهبود بخشد. `;
+    }
+
+    // توضیحات مربوط به تعداد دوره‌ها و مدرسین
+    description += `آکادمی ${academyName} با ${coursesCount} دوره‌ی آموزشی و ${teachersCount} مدرس در پلتفرم «Virtual Learn» حضور دارد و دوره‌های به‌روز و کاربردی را به علاقه‌مندان ارائه می‌کند. `;
+    description += `اطلاعات ارائه‌شده، مختص به فعالیت این آکادمی در پلتفرم ما است و نشان‌دهنده‌ی میزان فعالیت آن در سایت «Virtual Learn» می‌باشد.`;
+
+    return description;
+}
+
+
+
+
+
+
+
+
 
 const AcademyInfo = ({ data }: Props) => {
-    console.log(data)
+
+
+    console.log('data3333333333333333',data)
     return (
         <div className="w-full flex flex-col">
 
@@ -62,36 +103,21 @@ const AcademyInfo = ({ data }: Props) => {
 
                 <div className="w-full mt-10 lg:mt-14">
                     <p className={`w-full text-lg text-right font-light lg:font-normal leading-8 md:leading-10`}>
-                        یودمی (Udemy) یکی از بزرگ‌ترین و شناخته‌شده‌ترین پلتفرم‌های آموزش آنلاین در جهان است که در سال ۲۰۱۰ توسط ارین بالوگلو و تیمی از کارآفرینان تأسیس شد. این پلتفرم با هدف فراهم کردن دسترسی به آموزش برای همه افراد از هر کجای دنیا و در هر زمینه‌ای راه‌اندازی شد. یودمی با ارائه دوره‌های متنوع در حوزه‌های مختلف، از تکنولوژی و برنامه‌نویسی گرفته تا هنر، موسیقی و تجارت، توانسته به سرعت به یکی از محبوب‌ترین منابع آموزشی آنلاین در سطح جهانی تبدیل شود.
+                        {data.longDescription}
                     </p>
 
-                    <p className={`mt-4 w-full text-lg text-right font-light lg:font-normal leading-8 md:leading-10`}>
-                        یکی از ویژگی‌های منحصر به فرد یودمی، گستردگی موضوعات و دوره‌های آموزشی است. کاربران این پلتفرم می‌توانند از بیش از ۲۰۰ هزار دوره آموزشی استفاده کنند که توسط اساتید متخصص و با تجربه از سراسر جهان تهیه شده است. این دوره‌ها شامل ویدئوهای آموزشی، آزمون‌ها، تمرینات عملی و گواهینامه‌های پایان دوره هستند که باعث می‌شود کاربران بتوانند به‌صورت کاملاً حرفه‌ای مهارت‌های جدید را یاد بگیرند و پیشرفت کنند.
-                    </p>
-
-                    <p className={`mt-4 w-full text-lg text-right font-light lg:font-normal leading-8 md:leading-10`}>
-                        یودمی همواره بر بهبود کیفیت آموزش‌ها تأکید داشته و به‌روز‌رسانی مداوم دوره‌ها یکی از اولویت‌های اصلی این پلتفرم است. با استفاده از بازخوردهای کاربران و تجزیه و تحلیل نیازهای بازار، دوره‌های جدید به طور منظم به پلتفرم اضافه می‌شوند. این امر باعث شده است که یودمی به عنوان یک منبع آموزشی معتبر و پویا شناخته شود که با روندهای جدید تکنولوژی و مهارت‌های بازار کار همگام است.
-                    </p>
-
-                    <p className={`mt-4 w-full text-lg text-right font-light lg:font-normal leading-8 md:leading-10`}>
-                        یکی دیگر از جنبه‌های مهم یودمی، دسترسی آسان به آموزش برای افراد در سراسر جهان است. این پلتفرم به افراد امکان می‌دهد تا بدون نیاز به حضور در کلاس‌های فیزیکی و با هزینه‌های مناسب، به دوره‌های آموزشی پیشرفته دسترسی داشته باشند. یودمی با تنوع زبانی بالا و ارائه دوره‌های متعدد به زبان‌های مختلف، از جمله انگلیسی، اسپانیایی، فرانسوی و حتی فارسی، توانسته جامعه بزرگی از یادگیرندگان را در سراسر دنیا جذب کند.
-                    </p>
-
-                    <p className={`mt-4 w-full text-lg text-right font-light lg:font-normal leading-8 md:leading-10`}>
-                        در نهایت، یودمی به عنوان یک پلتفرم آموزش آنلاین، به افرادی که به دنبال یادگیری مهارت‌های جدید، ارتقاء دانش حرفه‌ای یا حتی تغییر مسیر شغلی خود هستند، کمک می‌کند. این پلتفرم با ارائه ابزارهای مختلف آموزشی و دوره‌های آنلاین متناسب با نیازهای مختلف افراد، نقشی حیاتی در بهبود دسترسی به آموزش و گسترش دانش در جهان ایفا کرده است.
-                    </p>
                 </div>
 
             </div>
 
-            <div className="w-full lg:h-[20rem] mt-8 flex flex-col lg:flex-row items-start gap-4">
+            <div className="w-full lg:h-[20rem] mt-6 lg:mt-8 flex flex-col lg:flex-row items-start gap-6 lg:gap-4">
 
                 <div className="h-auto lg:min-h-[20rem] lg:w-full flex-grow order-2 lg:order-1 bg-white dark:bg-slate-900 dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl ">
-                    <div className="p-4 lg:pt-6">
-                        <h2 className={clsx(title({ color: 'green' }), 'inline w-full text-left text-2xl lg:text-3xl font-bold')}>آکادمی یودمی در ویرچوال لرن</h2>
+                    <div className="p-4 pt-6 text-center">
+                        <h2 className={clsx(title({ color: 'green' }), 'inline w-full lg:text-left text-2xl lg:text-4xl font-bold')}>آکادمی یودمی در ویرچوال لرن</h2>
 
-                        <p className="mt-4 text-lg font-semibold leading-8 text-[#475466 dark:text-[#9aaed1]">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque esse unde voluptatem beatae aperiam alias totam reiciendis enim exercitationem ullam molestiae quo facilis at nisi maxime placeat sint natus praesentium illum maiores quam cumque, dignissimos cum. Architecto earum ea animi a rem. Voluptates explicabo dolor aperiam possimus officia cum iste atque suscipit doloremque tempora quasi hic alias delectus odio veniam laudantium similique repudiandae ratione ea culpa, recusandae repellat tenetur! Et ipsam alias laborum molestiae cum a non sequi nisi aliquid, cupiditate delectus eos! Magni corporis natus qui, temporibus voluptatem necessitatibus sed officiis amet nulla quisquam vero. Velit, itaque? Quasi, quo.
+                        <p className="mt-4 text-right text-lg font-semibold leading-8 text-[#475466 dark:text-[#9aaed1]">
+                            {generateAcademyDescription(data.engName, data.totalStudents, data.rates, data.totalCourses, data.totalTeachers)}
                         </p>
 
                     </div>
@@ -103,7 +129,7 @@ const AcademyInfo = ({ data }: Props) => {
                         <div className="w-full h-full flex flex-col items-center justify-center">
                             <GiTeacher className="text-4xl text-success-400" />
                             <span className="mt-3 text-sm">تعداد مدرسین:</span>
-                            <span className="mt-0.5 font-bold">{toPersianNumber(17)}</span>
+                            <span className="mt-0.5 font-bold">{toPersianNumber(data.totalTeachers)}</span>
                         </div>
                     </div>
 
@@ -111,7 +137,7 @@ const AcademyInfo = ({ data }: Props) => {
                         <div className="w-full h-full flex flex-col items-center justify-center">
                             <PiStudentBold className="text-4xl text-success-400" />
                             <span className="mt-3 text-sm">تعداد دانشجوها:</span>
-                            <span className="mt-0.5 font-bold">{toPersianNumber(157)}</span>
+                            <span className="mt-0.5 font-bold">{toPersianNumber(data.totalStudents)}</span>
                         </div>
                     </div>
 
@@ -119,7 +145,7 @@ const AcademyInfo = ({ data }: Props) => {
                         <div className="w-full h-full flex flex-col items-center justify-center">
                             <MdOutlineCastForEducation className="text-4xl text-success-400" />
                             <span className="mt-3 text-sm">تعداد دوره‌ها:</span>
-                            <span className="mt-0.5 font-bold">{toPersianNumber(157)}</span>
+                            <span className="mt-0.5 font-bold">{toPersianNumber(data.totalCourses)}</span>
                         </div>
                     </div>
 
@@ -127,7 +153,7 @@ const AcademyInfo = ({ data }: Props) => {
                         <div className="w-full h-full flex flex-col items-center justify-center">
                             <FaStar className="text-4xl text-success-400" />
                             <span className="mt-3 text-sm">امتیاز</span>
-                            <span className="mt-0.5 font-bold">{toPersianNumber(4.7)}</span>
+                            <span className="mt-0.5 font-bold">{toPersianNumber(data.rates)}</span>
                         </div>
                     </div>
 
@@ -135,21 +161,46 @@ const AcademyInfo = ({ data }: Props) => {
 
             </div>
 
+            <div className="mt-6 lg:mt-8">
+                <div className="p-4 pb-2 lg:pb-8 lg:p-8 bg-white dark:bg-slate-900 dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl ">
+                    {data.totalTeachers ?
+                        <Suspense fallback={
+                            <FavoritTeachersForAcademyLoading totalTeachers={data.totalTeachers}>
+                                <h3 className={clsx(title({ color: 'secondary' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین مدرس‌ها {data.engName}</h3>
+                            </FavoritTeachersForAcademyLoading>}>
 
-            <div className="mt-8">
-                <div className="p-4 lg:p-8 bg-white dark:bg-slate-900 dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl ">
-                    <Suspense fallback={
-                        <FavoriteCoursesLoading>
-                            <h3 className={clsx(title({ color: 'green' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین دوره‌های {data.engName}</h3>
-                        </FavoriteCoursesLoading>}>
-                        <FavoriteCourses >
-                        <h3 className={clsx(title({ color: 'green' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین دوره‌های {data.engName}</h3>
-                        </FavoriteCourses>
-                    </Suspense>
+                            <FavoritTeachersForAcademy name={data.engName} totalTeachers={data.totalTeachers}>
+                                <h3 className={clsx(title({ color: 'secondary' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین مدرس‌ها {data.engName}</h3>
+                            </FavoritTeachersForAcademy>
+                        </Suspense> :
+                        <div className="py-10 text-center flex flex-col items-center gap-6">
+                            <PiMaskSad className="text-success text-6xl md:text-7xl" />
+                            <p className="text-lg font-semibold">در‌حال حاضر دوره‌ای برای آکادمیه ({data.engName}) اضافه نشده است.</p>
+                        </div>
+                    }
                 </div>
             </div>
 
 
+            <div className="mt-6 lg:mt-8">
+                <div className="p-4 pb-2 lg:pb-8 lg:p-8 bg-white dark:bg-slate-900 dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl ">
+                    {data.totalCourses ?
+                        <Suspense fallback={
+                            <FavoriteCoursesForAcademyLoading totalCourses={data.totalCourses}>
+                                <h3 className={clsx(title({ color: 'blue' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین دوره‌های {data.engName}</h3>
+                            </FavoriteCoursesForAcademyLoading>}>
+
+                            <FavoriteCoursesForAcademy name={data.engName} totalCourses={data.totalCourses}>
+                                <h3 className={clsx(title({ color: 'blue' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین دوره‌های {data.engName}</h3>
+                            </FavoriteCoursesForAcademy>
+                        </Suspense> :
+                        <div className="py-10 text-center flex flex-col items-center gap-6">
+                            <PiMaskSad className="text-success text-6xl md:text-7xl" />
+                            <p className="text-lg font-semibold">در‌حال حاضر دوره‌ای برای آکادمیه ({data.engName}) اضافه نشده است.</p>
+                        </div>
+                    }
+                </div>
+            </div>
 
         </div>
     );

@@ -45,7 +45,7 @@ export const CourseCard = ({ data }: CardProps) => {
     let status = data.status === 0 ? 'درحال ترجمه' : data.status === 1 ? 'پایان یافته' : 'متوقف شده'
 
     return (
-        <div className="w-full max-w-[25rem] h-[30rem] md:h-[25rem] transition-all  shadow-medium dark:shadow-xl  
+        <div className="w-full max-w-[25rem] h-[30rem] md:h-[25rem] transition-all shadow-medium dark:shadow-xl  
         hover:shadow-medium
         hover:shadow-[0px_0px_15px_0px_#42bff46a,_0px_2px_30px_0px_#42bff46a,_0px_0px_1px_0px_#42bff46a]/
         dark:hover:shadow-[0px_0px_8px_0px_#2a5a6ec5,_0px_2px_20px_0px_#2a5a6ec5,_0px_0px_1px_0px_#2a5a6ec5]
@@ -53,7 +53,7 @@ export const CourseCard = ({ data }: CardProps) => {
 
             <div className="w-full h-full flex flex-col">
 
-                <div className="p-2 overflow-hidden h-[18rem] md:h-auto md:aspect-video">
+                <div className="p-2 overflow-hidden h-[18rem] md:h-[14rem] md:aspect-video">
                     <Image className="w-full h-full object-center hover:scale-110 transition-transform rounded-md "
                         width={450} height={300} alt="" src={data.thumbnail.imageUrl} />
                 </div>
@@ -67,7 +67,7 @@ export const CourseCard = ({ data }: CardProps) => {
                                 <span className="text-xs font-semibold text-primary-400">{status}</span>
                             </div>
                             <div className="flex items-center gap-1">
-                                <span className="pt-1 text-md font-semibold text-warning-400">{data.ratings}</span>
+                                <span className="pt-1 text-md font-semibold text-warning-400">{toPersianNumber(data.ratings)}</span>
                                 <FaStar size={20} className="text-warning-400" />
                             </div>
                         </div>
@@ -143,7 +143,7 @@ export const CourseCardLoading = () => {
 
             <div className="w-full h-full flex flex-col">
 
-                <div className="p-2 overflow-hidden h-[18rem] md:aspect-video ">
+                <div className="p-2 overflow-hidden h-[18rem] md:h-[14rem] md:aspect-video">
                     <Skeleton className=" w-full h-full p-2 overflow-hidden rounded-md">
                         <div className="w-full h-full  rounded-md "></div>
                     </Skeleton>

@@ -31,10 +31,41 @@ const getAcademyByName= async (name:string) => {
     } 
 }
 
+const getAcademyCoursesByEngName= async (name:string) => {
+    try {
+        const data = await customFetch(`/getAcademyCoursesByEngName/${name}`, {
+            method: 'GET',
+            //  next: { revalidate: 3600 }
+            cache:'no-store'
+        }
+        );
+        return await data;
+    } catch (error) {
+        return error
+    } 
+}
+
+const getAcademyTeachersByEngName= async (name:string) => {
+    try {
+        const data = await customFetch(`/getAcademyTeachersByEngName/${name}`, {
+            method: 'GET',
+            //  next: { revalidate: 3600 }
+            cache:'no-store'
+        }
+        );
+        return await data;
+    } catch (error) {
+        return error
+    } 
+}
+
+
 
 export {
     getAcademies,
-    getAcademyByName
+    getAcademyByName,
+    getAcademyCoursesByEngName,
+    getAcademyTeachersByEngName
 }
 
 

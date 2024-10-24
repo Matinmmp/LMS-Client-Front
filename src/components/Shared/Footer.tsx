@@ -19,8 +19,6 @@ const Footer = ({ }: CardProps) => {
     const academiesObject = navObject.academyObject
     const teacherObject = navObject.teacherObject
 
-    console.log(academiesObject,teacherObject)
-
     return (
         <footer className="w-full flex justify-center relative backdrop-blur-xl z-40">
 

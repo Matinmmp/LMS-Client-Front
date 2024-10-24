@@ -28,12 +28,10 @@ type CardProps = {
 
 const TeacherCard = ({ data }: CardProps) => {
     return (
-        <div className="w-full max-w-[25rem] h-[22rem] rounded-2xl transition-all
-        shadow-medium
+        <div className="w-full max-w-[25rem] h-[22rem] rounded-2xl transition-all shadow-medium
             shadow-[0px_0px_10px_0px_#42bff49b,_0px_2px_20px_0px_#42bff49b,_inset_0px_0px_1px_0px_#42bff49b]/
             dark:shadow-[0px_0px_8px_0px_#42bff4c5,_0px_2px_3px_0px_#42bff4c5,_inset_0px_0px_1px_0px_#42bff4c5]
-        
-             bg-white/80 hover:bg-white dark:bg-transparent  dark:hover:bg-primary-50 backdrop-blur-md backdrop-saturate-150 cursor-pointer">
+          bg-white/80 hover:bg-white dark:bg-transparent  dark:hover:bg-primary-50 backdrop-blur-md backdrop-saturate-150 cursor-pointer">
 
             <div className="h-full w-full flex flex-col items-center">
 
@@ -72,7 +70,7 @@ const TeacherCard = ({ data }: CardProps) => {
 
                 <div className="w-full mt-auto">
                     <div className="w-full px-12 py-4 flex items-center justify-center gap-2 border-t-2 border-secondary-50 dark:border-secondary-300">
-                        <p className="ms-auto font-medium">مشاهده دوره‌های {data.engName}</p>
+                        <p className="ms-auto font-medium">مشاهده اطلاعات {data.engName}</p>
                         <TbArrowBigLeftLinesFilled size={20} className="text-secondary-300 " />
                     </div>
                 </div>
