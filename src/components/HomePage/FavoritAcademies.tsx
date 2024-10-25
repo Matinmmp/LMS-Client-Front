@@ -23,7 +23,7 @@ const FavoritAcademies = async (props: Props) => {
                         <SiHtmlacademy className="text-success-400 text-[1.5rem] md:text-[2rem] lg:text-[3rem]" />
                         {props.children}
                     </div>
-                    <Link href={'/'} className={`flex items-center gap-1 text-sm md:text-base  hover:text-success-400 transition-all`}>
+                    <Link href={'/academies'} className={`flex items-center gap-1 text-sm md:text-base  hover:text-success-400 transition-all`}>
                         <p>مشاهده همه آکادمی‌ها</p>
                         <TbArrowBigLeftLinesFilled size={20} className="text-success-400 " />
                     </Link>
@@ -53,7 +53,7 @@ export const FavoritAcademiesLoading =  (props: Props) => {
                     {props.children}
                 </div>
 
-                <Link href={'/'} className={`flex items-center gap-1 text-sm md:text-base  hover:text-success-400 transition-all`}>
+                <Link href={'/academies'} className={`flex items-center gap-1 text-sm md:text-base  hover:text-success-400 transition-all`}>
                     <p>مشاهده همه آکادمی‌ها</p>
                     <TbArrowBigLeftLinesFilled size={20} className="text-success-400 " />
                 </Link>

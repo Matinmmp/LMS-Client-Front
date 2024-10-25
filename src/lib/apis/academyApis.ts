@@ -59,13 +59,27 @@ const getAcademyTeachersByEngName= async (name:string) => {
     } 
 }
 
+const getAllAcademyNames= async () => {
+    try {
+        const data = await customFetch(`/getAllAcademyNames`, {
+            method: 'GET',
+            //  next: { revalidate: 3600 }
+            cache:'no-store'
+        }
+        );
+        return await data;
+    } catch (error) {
+        return error
+    } 
+}
 
 
 export {
     getAcademies,
     getAcademyByName,
     getAcademyCoursesByEngName,
-    getAcademyTeachersByEngName
+    getAcademyTeachersByEngName,
+    getAllAcademyNames
 }
 
 

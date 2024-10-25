@@ -17,7 +17,67 @@ const getTeachers = async () => {
     } 
 }
 
+const getTeacherByName= async (name:string) => {
+    try {
+        const data = await customFetch(`/getTeacherByEngName/${name}`, {
+            method: 'GET',
+            //  next: { revalidate: 3600 }
+            cache:'no-store'
+        }
+        );
+        return await data;
+    } catch (error) {
+        return error
+    } 
+}
+
+const getTeacherCoursesByEngName= async (name:string) => {
+    try {
+        const data = await customFetch(`/getTeacherCoursesByEngName/${name}`, {
+            method: 'GET',
+            //  next: { revalidate: 3600 }
+            cache:'no-store'
+        }
+        );
+        return await data;
+    } catch (error) {
+        return error
+    } 
+}
+
+const getTeachersAcademiesByEngName= async (name:string) => {
+    try {
+        const data = await customFetch(`/getTeachersAcademiesByEngName/${name}`, {
+            method: 'GET',
+            //  next: { revalidate: 3600 }
+            cache:'no-store'
+        }
+        );
+        return await data;
+    } catch (error) {
+        return error
+    } 
+}
+
+const getAllTeachersNames= async () => {
+    try {
+        const data = await customFetch(`/getAllTeachersNames`, {
+            method: 'GET',
+            //  next: { revalidate: 3600 }
+            cache:'no-store'
+        }
+        );
+        return await data;
+    } catch (error) {
+        return error
+    } 
+}
+
 
 export {
-    getTeachers
+    getTeachers,
+    getTeacherByName,
+    getTeacherCoursesByEngName,
+    getTeachersAcademiesByEngName,
+    getAllTeachersNames
 }

@@ -15,7 +15,7 @@ const Hero = (props: Props) => {
                 <div className="w-full">
                     <div className="w-full mt-4 text-center ">
                         <h1 className={clsx(title({ color: 'green' }), 'inline w-full text-center text-[2rem] md:text-[2.5rem] lg:text-5xl xl:text-6xl !font-bold md:leading-[3.2rem]')}>
-                            بهترین آکادمی برنامه‌نویسی از سراسر جهان
+                            بهترین آکادمی‌های برنامه‌نویسی از سراسر جهان
                         </h1>
 
                         <div className="w-full flex flex-col items-center">

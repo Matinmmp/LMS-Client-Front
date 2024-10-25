@@ -28,7 +28,7 @@ const FavoritTeachersForAcademy = async (props: Props) => {
                             props.children
                         }
                     </div>
-                    <Link href={'/'} className={`flex items-center gap-1 text-sm md:text-base  hover:text-secondary-400 transition-all`}>
+                    <Link href={`/teachers?academy=${props.name}`} className={`flex items-center gap-1 text-sm md:text-base  hover:text-secondary-400 transition-all`}>
                         <p>مشاهده همه مدرس‌‌ها ({toPersianNumber(props.totalTeachers)})</p>
                         <TbArrowBigLeftLinesFilled size={20} className="text-secondary-400 " />
                     </Link>
@@ -41,7 +41,7 @@ const FavoritTeachersForAcademy = async (props: Props) => {
                     </div>
 
                     <div className="mt-10 sm:hidden flex justify-center">
-                        <Link href={'/'} className={`flex items-center gap-1 text-base  hover:text-primary-400 transition-all`}>
+                        <Link href={`/teachers?academy=${props.name}`} className={`flex items-center gap-1 text-base  hover:text-primary-400 transition-all`}>
                             <p>مشاهده همه مدرس‌‌ها ({toPersianNumber(props.totalTeachers)})</p>
                             <TbArrowBigLeftLinesFilled size={20} className="text-primary-400 " />
                         </Link>
@@ -53,13 +53,8 @@ const FavoritTeachersForAcademy = async (props: Props) => {
         );
 };
 
-type Props2 = {
-    children: React.ReactNode,
-    totalTeachers: number
 
-};
-
-export const FavoritTeachersForAcademyLoading = (props: Props2) => {
+export const FavoritTeachersForAcademyLoading = (props: Props) => {
 
 
     return (
@@ -73,7 +68,7 @@ export const FavoritTeachersForAcademyLoading = (props: Props2) => {
                         props.children
                     }
                 </div>
-                <Link href={'/'} className={`flex items-center gap-1 text-sm md:text-base  hover:text-secondary-400 transition-all`}>
+                <Link href={`/teachers?academy=${props.name}`} className={`flex items-center gap-1 text-sm md:text-base  hover:text-secondary-400 transition-all`}>
                     <p>مشاهده همه مدرس‌‌ها ({toPersianNumber(props.totalTeachers)})</p>
                     <TbArrowBigLeftLinesFilled size={20} className="text-secondary-400 " />
                 </Link>
@@ -87,7 +82,7 @@ export const FavoritTeachersForAcademyLoading = (props: Props2) => {
                 </div>
 
                 <div className="mt-10 sm:hidden flex justify-center">
-                    <Link href={'/'} className={`flex items-center gap-1 text-base  hover:text-primary-400 transition-all`}>
+                    <Link href={`/teachers?academy=${props.name}`} className={`flex items-center gap-1 text-base  hover:text-primary-400 transition-all`}>
                         <p>مشاهده همه مدرس‌‌ها ({toPersianNumber(props.totalTeachers)})</p>
                         <TbArrowBigLeftLinesFilled size={20} className="text-primary-400 " />
                     </Link>

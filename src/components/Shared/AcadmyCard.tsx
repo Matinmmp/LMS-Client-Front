@@ -44,7 +44,6 @@ const AcadmyCard = ({ data }: CardProps) => {
 
                     <div className="w-full p-6 flex items-center justify-between">
 
-
                         <div className="flex flex-col gap-1">
                             <div className='py-[2px] px-3 flex items-center gap-2 rounded-md border-1 border-success-50 dark:border-success-300'>
                                 <PiStudentBold size={13} className="text-success-400" />
@@ -62,13 +61,14 @@ const AcadmyCard = ({ data }: CardProps) => {
                             </div>
                         </div>
                         <Avatar className="h-[4.5rem] w-[4.5rem] shadow-[0_0_15px_0_#44de77]" size="lg" radius="sm" isBordered color="success" src={data.avatar.imageUrl} />
+                   
                     </div>
 
                     <div className="w-full px-6 pb-4 flex flex-col items-start">
 
                         <div className="w-full flex items-center justify-between">
                             <div className="flex items-center gap-1">
-                                <span className="pt-1 text-md font-semibold text-warning-400">{data.rates}</span>
+                                <span className="pt-1 text-md font-semibold text-warning-400">{toPersianNumber(data.rates)}</span>
                                 <FaStar size={20} className="text-warning-400" />
                             </div>
                             <h4 className={clsx(title({ color: 'green' }), 'text-2xl lg:text-3xl font-extrabold')}>{data.engName}</h4>
@@ -96,7 +96,7 @@ const AcadmyCard = ({ data }: CardProps) => {
 
 const AcadmyCardLoading = () => {
     return (
-        <div className="w-full max-w-[25rem] h-[22rem] rounded-lg transition-al
+        <div className="w-full max-w-[25rem] h-[22rem] rounded-lg transition-all
         shadow-[0px_0px_10px_0px_#60ff95a0,_0px_2px_20px_0px_#60ff95a0,_inset_0px_0px_1px_0px_#60ff95a0]/
         shadow-medium
         dark:shadow-[0px_0px_8px_0px_#73ffa2,_0px_2px_3px_0px_#87ffaf,_inset_0px_0px_1px_0px_#73ffa2]

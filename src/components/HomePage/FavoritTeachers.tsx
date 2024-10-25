@@ -25,7 +25,7 @@ const FavoritTeachers = async (props: Props) => {
                             props.children
                         }
                     </div>
-                    <Link href={'/'} className={`flex items-center gap-1 text-sm md:text-base  hover:text-secondary-400 transition-all`}>
+                    <Link href={'/teachers'} className={`flex items-center gap-1 text-sm md:text-base  hover:text-secondary-400 transition-all`}>
                         <p>مشاهده همه مدرس‌‌ها</p>
                         <TbArrowBigLeftLinesFilled size={20} className="text-secondary-400 " />
                     </Link>
@@ -57,7 +57,7 @@ export const FavoritTeachersLoading =  (props: Props) => {
                         props.children
                     }
                 </div>
-                <Link href={'/'} className={`flex items-center gap-1 text-sm md:text-base  hover:text-secondary-400 transition-all`}>
+                <Link href={'/teachers'} className={`flex items-center gap-1 text-sm md:text-base  hover:text-secondary-400 transition-all`}>
                     <p>مشاهده همه مدرس‌‌ها</p>
                     <TbArrowBigLeftLinesFilled size={20} className="text-secondary-400 " />
                 </Link>

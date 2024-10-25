@@ -1,22 +1,28 @@
-
 import AcademyInfo from "@/src/components/Academies/AcademyInfo";
-import Hero from "@/src/components/Academies/Hero";
-
-import { getAcademyByName } from "@/src/lib/apis/academyApis";
+import { getAcademyByName, getAllAcademyNames } from "@/src/lib/apis/academyApis";
 
 
 type Props = {
     params: { engName: string }
 };
 
+export async function generateStaticParams() {
+    // فرض بر این است که تابع `getAllAcademyNames` لیستی از نام‌های آکادمی‌ها را برمی‌گرداند.
+    const academyNames:any = await getAllAcademyNames();
+    
+
+    // بررسی صحت داده‌ها و ایجاد پارامترهای استاتیک
+    return academyNames?.academiesName?.map((academy: { engName: string }) => ({
+        engName: encodeURIComponent(academy.engName),
+    })) || [];
+}
+
 
 
 export default async function Academy({ params: { engName } }: Props) {
     const name = await decodeURIComponent(engName);
-
     const data: any = await getAcademyByName(name);
 
-    console.log(data)
 
     if (data && data.success)
         return (

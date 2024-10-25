@@ -7,6 +7,7 @@ import { title } from "../primitives";
 import { TbArrowBigLeftLinesFilled } from "react-icons/tb";
 import { Skeleton } from "@nextui-org/skeleton";
 import { FaStar } from "react-icons/fa6";
+import Link from "next/link";
 
 
 
@@ -28,57 +29,60 @@ type CardProps = {
 
 const TeacherCard = ({ data }: CardProps) => {
     return (
-        <div className="w-full max-w-[25rem] h-[22rem] rounded-2xl transition-all shadow-medium
-            shadow-[0px_0px_10px_0px_#42bff49b,_0px_2px_20px_0px_#42bff49b,_inset_0px_0px_1px_0px_#42bff49b]/
-            dark:shadow-[0px_0px_8px_0px_#42bff4c5,_0px_2px_3px_0px_#42bff4c5,_inset_0px_0px_1px_0px_#42bff4c5]
-          bg-white/80 hover:bg-white dark:bg-transparent  dark:hover:bg-primary-50 backdrop-blur-md backdrop-saturate-150 cursor-pointer">
+        <Link href={`/teachers/${data.engName}`} className="w-full">
 
-            <div className="h-full w-full flex flex-col items-center">
+            <div className="w-full max-w-[25rem] h-[22rem] rounded-2xl transition-all shadow-medium
+                shadow-[0px_0px_10px_0px_#42bff49b,_0px_2px_20px_0px_#42bff49b,_inset_0px_0px_1px_0px_#42bff49b]/
+                dark:shadow-[0px_0px_8px_0px_#42bff4c5,_0px_2px_3px_0px_#42bff4c5,_inset_0px_0px_1px_0px_#42bff4c5]
+              bg-white/80 hover:bg-white dark:bg-transparent  dark:hover:bg-primary-50 backdrop-blur-md backdrop-saturate-150 cursor-pointer">
 
-                <div className="w-full pt-6 px-6 flex items-center justify-between">
+                <div className="h-full w-full flex flex-col items-center">
 
-                    <Avatar className="h-[5.5rem] w-[5.5rem] shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="full" isBordered color="secondary" src={data.avatar.imageUrl} fallback/>
+                    <div className="w-full pt-6 px-6 flex items-center justify-between">
 
-                    <div className="flex flex-col gap-1">
-                        <div className='py-1 px-2 flex items-center gap-2 rounded-md border-1 border-secondary-50 dark:border-secondary-300'>
-                            <PiStudentBold size={16} className="text-secondary-400" />
-                            <span className="text-xs font-semibold">{toPersianNumber(`${data.totalStudents}`)} دانشجو</span>
+                        <Avatar className="h-[5.5rem] w-[5.5rem] shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="full" isBordered color="secondary" src={data.avatar.imageUrl} fallback />
+
+                        <div className="flex flex-col gap-1">
+                            <div className='py-1 px-2 flex items-center gap-2 rounded-md border-1 border-secondary-50 dark:border-secondary-300'>
+                                <PiStudentBold size={16} className="text-secondary-400" />
+                                <span className="text-xs font-semibold">{toPersianNumber(`${data.totalStudents}`)} دانشجو</span>
+                            </div>
+
+                            <div className='py-1 px-2 flex items-center gap-2 rounded-md border-1 border-secondary-50 dark:border-secondary-300'>
+                                <MdOutlineCastForEducation size={16} className="text-secondary-400" />
+                                <span className="text-xs font-semibold">{toPersianNumber(`${data.totalCourses}`)} دوره</span>
+                            </div>
                         </div>
 
-                        <div className='py-1 px-2 flex items-center gap-2 rounded-md border-1 border-secondary-50 dark:border-secondary-300'>
-                            <MdOutlineCastForEducation size={16} className="text-secondary-400" />
-                            <span className="text-xs font-semibold">{toPersianNumber(`${data.totalCourses}`)} دوره</span>
+                    </div>
+
+                    <div className="w-full mt-6 px-6 pb-4 flex flex-col items-start">
+                        <div className="w-full flex items-center justify-between">
+                            <div className="flex items-center gap-1">
+                                <span className="pt-1 text-md font-semibold text-warning-400">{toPersianNumber(data.rates)}</span>
+
+                                <FaStar size={20} className="text-warning-400" />
+                            </div>
+                            <h4 className={clsx(title({ color: 'secondary' }), 'text-2xl lg:text-3xl font-bold')}>{data.engName}</h4>
+                        </div>
+                        <h5 className="mt-4 dark:text-[#d0e0ef] text-gray-800">
+                            <span className="font-bold text-secondary-400 inline"> {data.engName} </span>
+                            <p className="inline font-medium"> {data.description} </p>
+                        </h5>
+                    </div>
+
+                    <div className="w-full mt-auto">
+                        <div className="w-full px-12 py-4 flex items-center justify-center gap-2 border-t-2 border-secondary-50 dark:border-secondary-300">
+                            <p className="ms-auto font-medium">مشاهده اطلاعات {data.engName}</p>
+                            <TbArrowBigLeftLinesFilled size={20} className="text-secondary-300 " />
                         </div>
                     </div>
 
-                </div>
-
-                <div className="w-full mt-6 px-6 pb-4 flex flex-col items-start">
-                    <div className="w-full flex items-center justify-between">
-                        <h4 className={clsx(title({ color: 'secondary' }), 'text-2xl lg:text-3xl font-bold')}>{data.engName}</h4>
-                        <div className="flex items-center gap-1">
-                            <span className="pt-1 text-md font-semibold text-warning-400">{data.rates}</span>
-
-                            <FaStar size={20} className="text-warning-400" />
-                        </div>
-                    </div>
-                    <h5 className="mt-4 dark:text-[#d0e0ef] text-gray-800">
-                        <span className="font-bold text-secondary-400 inline"> {data.engName} </span>
-                        <p className="inline font-medium"> {data.description} </p>
-                    </h5>
-                </div>
-
-                <div className="w-full mt-auto">
-                    <div className="w-full px-12 py-4 flex items-center justify-center gap-2 border-t-2 border-secondary-50 dark:border-secondary-300">
-                        <p className="ms-auto font-medium">مشاهده اطلاعات {data.engName}</p>
-                        <TbArrowBigLeftLinesFilled size={20} className="text-secondary-300 " />
-                    </div>
                 </div>
 
             </div>
 
-        </div>
-
+        </Link>
 
     )
 }
@@ -90,10 +94,10 @@ const TeacherCard = ({ data }: CardProps) => {
 
 const TeacherCardLoading = () => {
     return (
-        <div className="w-full max-w-[25rem] h-[22rem] rounded-2xl transition-all
-        shadow-medium
-        shadow-[0px_0px_10px_0px_#42bff49b,_0px_2px_20px_0px_#42bff49b,_inset_0px_0px_1px_0px_#42bff49b]/
-        dark:shadow-[0px_0px_8px_0px_#42bff4c5,_0px_2px_3px_0px_#42bff4c5,_inset_0px_0px_1px_0px_#42bff4c5]
+
+        <div className="w-full max-w-[25rem] h-[22rem] rounded-2xl transition-all shadow-medium
+            shadow-[0px_0px_10px_0px_#42bff49b,_0px_2px_20px_0px_#42bff49b,_inset_0px_0px_1px_0px_#42bff49b]/
+            dark:shadow-[0px_0px_8px_0px_#42bff4c5,_0px_2px_3px_0px_#42bff4c5,_inset_0px_0px_1px_0px_#42bff4c5]
         
              bg-white/80 hover:bg-white dark:bg-transparent  dark:hover:bg-primary-50 backdrop-blur-md backdrop-saturate-150 cursor-pointer">
 
@@ -114,11 +118,11 @@ const TeacherCardLoading = () => {
 
                     <div className="w-full pt-5 flex items-center gap-1">
                         <div className="w-full flex items-center justify-between">
-                            <Skeleton className="w-24 h-7 rounded-md" />
                             <div className="flex items-center gap-1">
                                 <Skeleton className="w-8 h-4 rounded-sm" />
                                 <FaStar size={20} className="text-warning-400" />
                             </div>
+                            <Skeleton className="w-24 h-7 rounded-md" />
                         </div>
 
                     </div>
