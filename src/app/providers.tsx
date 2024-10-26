@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { getUserInfo } from "../lib/apis/userApis";
 import { userLoggedIn } from "../redux/auth/authSlice";
 import { getRefreshTokenFromCookies } from "../lib/fetcher";
-
+ 
 export interface ProvidersProps {
     children: React.ReactNode;
     themeProps?: ThemeProviderProps;
@@ -26,6 +26,7 @@ export function Providers({ children, themeProps }: ProvidersProps) {
 
     return (
         <QueryClientProvider client={queryClient}>
+             
             <NextUIProvider navigate={router.push}>
                 <Provider store={store}>
                     <RequestProviders></RequestProviders>

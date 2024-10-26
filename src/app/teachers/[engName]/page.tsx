@@ -1,4 +1,4 @@
-import { getTeacherByName } from "@/src/lib/apis/teacherApis";
+import { getAllTeachersName, getTeacherByName } from "@/src/lib/apis/teacherApis";
 import TeacherInfo from '../../../components/Teachers/TeacherInfo';
  
 
@@ -7,16 +7,14 @@ type Props = {
     params: { engName: string }
 };
 
-// export async function generateStaticParams() {
-//     // فرض بر این است که تابع `getAllAcademyNames` لیستی از نام‌های آکادمی‌ها را برمی‌گرداند.
-//     const academyNames:any = await getAllAcademyNames();
+export async function generateStaticParams() {
     
+    const teacherNames:any = await getAllTeachersName();
 
-//     // بررسی صحت داده‌ها و ایجاد پارامترهای استاتیک
-//     return academyNames?.academiesName?.map((academy: { engName: string }) => ({
-//         engName: encodeURIComponent(academy.engName),
-//     })) || [];
-// }
+    return teacherNames?.teachersName?.map((teacher: { engName: string }) => ({
+        engName: encodeURIComponent(teacher.engName),
+    })) || [];
+}
 
 
 

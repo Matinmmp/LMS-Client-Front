@@ -5,7 +5,7 @@ import { Baloo, Inter } from "../config/fonts";
 import { Providers } from "./providers";
 import { Navbar } from "../components/Shared/navbar2";
 import Footer from "../components/Shared/Footer";
-
+import NextTopLoader from 'nextjs-toploader';
 
 
 
@@ -18,8 +18,8 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children, }: { children: React.ReactNode }) {
     return (
-        <html dir="rtl" lang="fa" id="html">
 
+        <html dir="rtl" lang="fa" id="html">
             {/* بعدا درستشون کن  */}
             <title>Virtual Learn | آموزش برنامه‌نویسی به زبان فارسی</title>
             <meta name="revisit-after" content="5 days"></meta>
@@ -34,17 +34,19 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
             <meta charSet="UTF-8" />
 
             <body className={clsx("min-h-screen bg-background  font-sans antialiased", Baloo.variable, Inter.variable)} >
+                <NextTopLoader />
+
                 <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
                     <div className="relative flex flex-col h-screen ">
-            
+
                         <main className="flex-grow relative z-10 bg-[#fbfbfb]/ 
                         bg-gradient-to-b from-[#eef3f994] to-[#f3f4f6c8]
                         dark:bg-gradient-to-b dark:from-[#020617] dark:to-[#181818]
                         dark:bg-none/ 
                         dark:bg-[#181818]/ dark:bg-[#020617] ">
                             <div className="background z-[1] ">
-                                <span className="bg-none dark:bg-[#1582ff37]"/>
-                                <span className="bg-none dark:bg-[#1582ff37] max-w-80 max-h-80 2xl:max-w-[40%] lg:max-h-[50%]"/>
+                                <span className="bg-none dark:bg-[#1582ff37]" />
+                                <span className="bg-none dark:bg-[#1582ff37] max-w-80 max-h-80 2xl:max-w-[40%] lg:max-h-[50%]" />
 
                                 {/* <span/> */}
                             </div>
@@ -52,15 +54,16 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
                                 <Navbar />
                                 {children}
                                 <div className="mt-64">
-                                <Footer/>
+                                    <Footer />
                                 </div>
                             </div>
                         </main>
-                       
+
                     </div>
                 </Providers>
             </body>
 
         </html>
+
     );
 }

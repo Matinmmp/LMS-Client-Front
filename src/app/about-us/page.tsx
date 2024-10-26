@@ -4,9 +4,6 @@ import FAQ from "@/src/components/HomePage/FAQ";
  
 
 
-
-
-
 export default function AboutPage() {
     return (
         <section className=" flex flex-col items-center justify-center  " >

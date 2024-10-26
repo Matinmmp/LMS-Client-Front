@@ -7,11 +7,12 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-    // فرض بر این است که تابع `getAllAcademyNames` لیستی از نام‌های آکادمی‌ها را برمی‌گرداند.
+ 
     const academyNames:any = await getAllAcademyNames();
     
+    console.log('academyNames1',academyNames)
 
-    // بررسی صحت داده‌ها و ایجاد پارامترهای استاتیک
+ 
     return academyNames?.academiesName?.map((academy: { engName: string }) => ({
         engName: encodeURIComponent(academy.engName),
     })) || [];

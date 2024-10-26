@@ -17,7 +17,7 @@ type Props = {
 const FavoriteCoursesForTeacher = async (props: Props) => {
     const data: any = await getTeacherCoursesByEngName(props.name);
 
-    console.log('data333333333333',data)
+ 
 
     if (data && data.success)
         return (

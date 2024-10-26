@@ -59,9 +59,9 @@ const getTeachersAcademiesByEngName= async (name:string) => {
     } 
 }
 
-const getAllTeachersNames= async () => {
+const getAllTeachersName= async () => {
     try {
-        const data = await customFetch(`/getAllTeachersNames`, {
+        const data = await customFetch(`/getAllTeachersName`, {
             method: 'GET',
             //  next: { revalidate: 3600 }
             cache:'no-store'
@@ -79,5 +79,5 @@ export {
     getTeacherByName,
     getTeacherCoursesByEngName,
     getTeachersAcademiesByEngName,
-    getAllTeachersNames
+    getAllTeachersName
 }
