@@ -21,9 +21,9 @@ const Hero = (props: Props) => {
                         <div className="w-full flex flex-col items-center">
                             <h2 className="w-full lg:w-10/12 mt-4 md:mt-10 text-base md:text-xl font-medium leading-8 md:leading-8">
                                 در این بخش می‌توانید مدرس‌های بین‌المللی را پیدا کنید و دوره‌های ترجمه‌شده آنها را به زبان فارسی مشاهده کنید.
-                                <span className={clsx(title({ color: 'secondary' }), 'text-base md:text-2xl !font-bold px-1 whitespace-nowrap')}>
+                                <strong className={clsx(title({ color: 'secondary' }), 'text-base md:text-2xl !font-bold px-1 whitespace-nowrap')}>
                                     Virtual Learn
-                                </span>
+                                </strong>
                                 دسترسی به برترین مدرس‌های برنامه‌نویسی در هر زمان و از هر مکان برای شما فراهم است.
                             </h2>
 
