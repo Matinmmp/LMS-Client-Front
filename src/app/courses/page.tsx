@@ -1,16 +1,20 @@
 import CoursesList from "@/src/components/Courses/CoursesList";
 import Hero from "@/src/components/Courses/Hero";
-import { getAcademies } from "@/src/lib/apis/academyApis";
- 
+import { getAcademies, getAllAcademyNames } from "@/src/lib/apis/academyApis";
+import { getAllTeachersName } from '@/src/lib/apis/teacherApis';
+
 
 export default async function CourseSearch() {
 
     const data: any = await getAcademies();
+    const academyNames: any = await getAllAcademyNames();
+    const teacherNames:any = await getAllTeachersName();
 
 
 
-    if (data && data.success)
 
+
+    if (data && data.success && academyNames && academyNames.success && teacherNames && teacherNames.success)
 
         return (
             <section className=" flex flex-col items-center justify-center  " >
@@ -22,8 +26,7 @@ export default async function CourseSearch() {
                 </div>
 
                 <div className="w-full max-w-7xl px-4 md:px-8 2xl:px-2 flex flex-col items-center justify-center ">
-                    <CoursesList list={data.academies}/>
-
+                    <CoursesList list={data.academies} academiesList={academyNames?.academiesName} teacherNames={teacherNames.teachersName}/>
                 </div>
             </section>
         );

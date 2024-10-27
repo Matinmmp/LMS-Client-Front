@@ -10,7 +10,7 @@ import { getAcademies } from "@/src/lib/apis/academyApis";
 export default async function Home() {
 
     const data: any = await getAcademies();
-
+ 
  
 
     if (data && data.success)
