@@ -11,23 +11,32 @@ import { buildCategoryTree } from "@/src/utils/categorySorter";
 import { Checkbox } from "@nextui-org/checkbox";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
+
 type Props = {
     list: [any]
     academiesList: [string],
-    teacherNames: [string]
+    teachersList: [string]
 };
 
 const categories = buildCategoryTree(navObject.categoryObject.categoryList, null);
 const academiesObject = navObject.academyObject;
 const teacherObject = navObject.teacherObject;
 
-const CoursesList = ({ list, academiesList, teacherNames }: Props) => {
+const CoursesList = ({ list, academiesList, teachersList }: Props) => {
+
     const searchParams = useSearchParams();
     const path = usePathname();
     const router = useRouter();
 
+    const queryParams = new URLSearchParams(Array.from(searchParams.entries()))
 
-    const [selectedAcadmies, setSelectedAcadmies] = useState<string[]>( searchParams.getAll('academy')|| []);
+    let priceT = searchParams.get('priceType') || '1';
+    if (!["1", "2", "3", "4"].includes(priceT)) priceT = "1";
+
+    const [selectedPrice, setSelectedPrice] = useState<string>(priceT);
+    const [selectedAcadmies, setSelectedAcadmies] = useState<string[]>(searchParams.getAll('academy') || []);
+    const [selectedTeachers, setSelectedTeachers] = useState<string[]>(searchParams.getAll('teacher') || []);
+    const [selectedCategories, setSelectedCategories] = useState<string[]>(searchParams.getAll('category') || []);
 
 
 
@@ -35,7 +44,7 @@ const CoursesList = ({ list, academiesList, teacherNames }: Props) => {
 
     const [open1, setOpen1] = useState(true);
     const [open2, setOpen2] = useState(true);
-    const [open3, setOpen3] = useState(false);
+    const [open3, setOpen3] = useState(true);
     const [open4, setOpen4] = useState(true);
 
 
@@ -61,17 +70,63 @@ const CoursesList = ({ list, academiesList, teacherNames }: Props) => {
         else
             setSelectedAcadmies((selectedAcadmies) => selectedAcadmies.filter((item: any) => item !== academyName));
 
+    }
+
+    const handleTeacherSelect = (teacherName: string) => {
+        const teacher: any = teachersList.find((item: any) => item.engName === teacherName);
+
+        if (!selectedTeachers.includes(teacher.engName))
+            setSelectedTeachers((selectedTeachers) => [...selectedTeachers, teacherName])
+        else
+            setSelectedTeachers((selectedTeachers) => selectedTeachers.filter((item: any) => item !== teacherName));
 
     }
 
+    const handlePriceSelect = (priceType: string) => {
+        setSelectedPrice(priceType)
+    }
+
+    const handleCategorySelect = (categoryName: string) => {
+        const category: any = navObject.categoryObject.categoryList.find((item: any) => item.name === categoryName);
+
+        if (!selectedCategories.includes(category.name))
+            setSelectedCategories((selectedCategories) => [...selectedCategories, categoryName])
+        
+        else
+            setSelectedCategories((selectedCategories) => selectedCategories.filter((item: any) => item !== categoryName));
+    }
+
     useEffect(() => {
-        const queryParams = new URLSearchParams(Array.from(searchParams.entries()))
         queryParams.delete('academy')
+        queryParams.delete('page');
         selectedAcadmies.map((name) => queryParams.append('academy', name))
+        queryParams.append('page', "1");
         router.push(`${path}?${queryParams.toString()}`);
     }, [selectedAcadmies])
 
- 
+    useEffect(() => {
+        queryParams.delete('teacher')
+        queryParams.delete('page');
+        selectedTeachers.map((name) => queryParams.append('teacher', name))
+        queryParams.append('page', "1");
+        router.push(`${path}?${queryParams.toString()}`);
+    }, [selectedTeachers])
+
+    useEffect(() => {
+        queryParams.delete('priceType')
+        queryParams.delete('page');
+        queryParams.append('priceType', selectedPrice)
+        queryParams.append('page', "1");
+        router.push(`${path}?${queryParams.toString()}`);
+    }, [selectedPrice])
+
+    useEffect(() => {
+        queryParams.delete('category')
+        queryParams.delete('page');
+        selectedCategories.map((name) => queryParams.append('category', name))
+        queryParams.append('page', "1");
+        router.push(`${path}?${queryParams.toString()}`);
+    }, [selectedCategories])
 
     return (
         <section className="w-full pb-10 flex flex-col ">
@@ -105,12 +160,17 @@ const CoursesList = ({ list, academiesList, teacherNames }: Props) => {
                         <Acordian open={open1} title="فیلتر قیمت" setOpen={setOpen1} initialHeight={'auto'}>
 
                             <div className="w-full flex items-center">
-                                <Button className="w-full rounded-md " variant="solid" color="secondary">همه</Button>
-                                <Button className="w-full rounded-md " variant="solid" color="info">فقط نقدی</Button>
+                                <Button className="w-full rounded-md " onClick={() => handlePriceSelect("1")}
+                                    variant="solid" color={selectedPrice === "1" ? 'secondary' : 'info'}>همه</Button>
+                                <Button className="w-full rounded-md " onClick={() => handlePriceSelect("3")}
+                                    variant="solid" color={selectedPrice === "3" ? 'secondary' : 'info'}>فقط نقدی</Button>
                             </div>
                             <div className="w-full flex items-center">
-                                <Button className="w-full rounded-md " variant="solid" color="info">رایگان</Button>
-                                <Button className="w-full rounded-md " variant="solid" color="info">تخفیف‌دار</Button>
+                                <Button className="w-full rounded-md " onClick={() => handlePriceSelect("2")}
+                                    variant="solid" color={selectedPrice === "2" ? 'secondary' : 'info'}>رایگان</Button>
+
+                                <Button className="w-full rounded-md " onClick={() => handlePriceSelect("4")}
+                                    variant="solid" color={selectedPrice === "4" ? 'secondary' : 'info'}>تخفیف‌دار</Button>
                             </div>
 
                         </Acordian>
@@ -132,9 +192,13 @@ const CoursesList = ({ list, academiesList, teacherNames }: Props) => {
                     </div>
 
                     <div className="w-full bg-[#ffffffbf] backdrop-blur-[10px] dark:bg-[#2020204d] shadow-medium rounded-lg">
-                        <Acordian open={open3} title="فیلتر مدرس" setOpen={setOpen3} initialHeight={0}>
+                        <Acordian open={open3} title="فیلتر مدرس" setOpen={setOpen3} initialHeight={'auto'}>
                             <div className="w-full flex flex-col gap-3">
-                                {teacherNames.map((item: any, index) => <Checkbox key={index} defaultSelected radius="sm" size="lg">{item.engName}</Checkbox>)}
+                                {teachersList.map((item: any, index) =>
+                                    <Checkbox isSelected={selectedTeachers.includes(item.engName)} onClick={() => handleTeacherSelect(item.engName)}
+                                        key={index} defaultSelected radius="sm" size="lg">
+                                        {item.engName}
+                                    </Checkbox>)}
                             </div>
                         </Acordian>
                     </div>
@@ -142,7 +206,9 @@ const CoursesList = ({ list, academiesList, teacherNames }: Props) => {
                     <div className="w-full bg-[#ffffffbf] backdrop-blur-[10px] dark:bg-[#2020204d] shadow-medium rounded-lg">
                         <Acordian open={open4} title="فیلتر دسته بندی" setOpen={setOpen4} initialHeight={'auto'}>
                             <div className="w-full flex flex-col gap-3">
-                                {renderCategories(categories[0].subCategories,)}
+                                {renderCategories(
+                                    { categories: categories[0].subCategories, selectedCategories: selectedCategories, level: 0, handleCategorySelect: handleCategorySelect }
+                                )}
                             </div>
                         </Acordian>
                     </div>
@@ -212,13 +278,23 @@ const Acordian = ({ open, children, title, initialHeight, setOpen }: Props1) => 
     )
 }
 
-const renderCategories = (categories: any, level = 0) => {
+type Props2 = {
+    categories: any,
+    selectedCategories: string[],
+    handleCategorySelect: (category: string) => void,
+    level: number
+};
+
+const renderCategories = ({ categories, selectedCategories, handleCategorySelect, level }: Props2) => {
+
     return categories.map((category: any) => (
+
         <div key={category._id} style={{ paddingRight: `${level * 20}px` }}>
-            <Checkbox defaultSelected radius="sm" size="lg">
+            <Checkbox isSelected={selectedCategories.includes(category.name)} onClick={() => handleCategorySelect(category.name)}
+                defaultSelected radius="sm" size="lg" >
                 {category.name}
             </Checkbox>
-            {category.subCategories.length > 0 && renderCategories(category.subCategories, level + 1)}
+            {category.subCategories.length > 0 && renderCategories({ categories:category.subCategories, selectedCategories, handleCategorySelect, level:level+1 })}
         </div>
     ));
 };

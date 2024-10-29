@@ -4,14 +4,14 @@ import { getAcademies, getAllAcademyNames } from "@/src/lib/apis/academyApis";
 import { getAllTeachersName } from '@/src/lib/apis/teacherApis';
 
 
-export default async function CourseSearch() {
+export default async function CourseSearch(p:any) {
 
     const data: any = await getAcademies();
     const academyNames: any = await getAllAcademyNames();
     const teacherNames:any = await getAllTeachersName();
 
 
-
+    console.log(p)
 
 
     if (data && data.success && academyNames && academyNames.success && teacherNames && teacherNames.success)
@@ -26,7 +26,7 @@ export default async function CourseSearch() {
                 </div>
 
                 <div className="w-full max-w-7xl px-4 md:px-8 2xl:px-2 flex flex-col items-center justify-center ">
-                    <CoursesList list={data.academies} academiesList={academyNames?.academiesName} teacherNames={teacherNames.teachersName}/>
+                    <CoursesList list={data.academies} academiesList={academyNames?.academiesName} teachersList={teacherNames.teachersName}/>
                 </div>
             </section>
         );
