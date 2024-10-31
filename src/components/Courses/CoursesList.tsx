@@ -10,7 +10,7 @@ import { navObject } from "@/src/config/site";
 import { buildCategoryTree } from "@/src/utils/categorySorter";
 import { Checkbox } from "@nextui-org/checkbox";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-
+import { IoSearch } from "react-icons/io5";
 
 type Props = {
     list: [any]
@@ -30,14 +30,17 @@ const CoursesList = ({ list, academiesList, teachersList }: Props) => {
 
     const queryParams = new URLSearchParams(Array.from(searchParams.entries()))
 
-    let priceT = searchParams.get('priceType') || '1';
+    let priceT = searchParams.get('price') || '1';
     if (!["1", "2", "3", "4"].includes(priceT)) priceT = "1";
+
+    let order = searchParams.get('order') || '1'
+    if (!["1", "2", "3", "4", "5", "6"].includes(order)) order = "1";
+
 
     const [selectedPrice, setSelectedPrice] = useState<string>(priceT);
     const [selectedAcadmies, setSelectedAcadmies] = useState<string[]>(searchParams.getAll('academy') || []);
     const [selectedTeachers, setSelectedTeachers] = useState<string[]>(searchParams.getAll('teacher') || []);
     const [selectedCategories, setSelectedCategories] = useState<string[]>(searchParams.getAll('category') || []);
-
 
 
 
@@ -48,10 +51,8 @@ const CoursesList = ({ list, academiesList, teachersList }: Props) => {
     const [open4, setOpen4] = useState(true);
 
 
-
-    const [searchText, setSearchText] = useState('');
-    const [inputDirection, setInputDirection] = useState('rtl');
-    const [selectedOption, setSelectedOption] = useState('1');
+    const [searchText, setSearchText] = useState(searchParams.get('searchText') || '');
+    const [selectedOption, setSelectedOption] = useState(order);
 
     const selectOptions = [
         { key: '1', label: 'جدید‌ترین' },
@@ -84,6 +85,10 @@ const CoursesList = ({ list, academiesList, teachersList }: Props) => {
 
     const handlePriceSelect = (priceType: string) => {
         setSelectedPrice(priceType)
+        queryParams.delete('price')
+        queryParams.delete('page');
+        queryParams.append('price', priceType)
+        router.push(`${path}?${queryParams.toString()}`);
     }
 
     const handleCategorySelect = (categoryName: string) => {
@@ -91,16 +96,36 @@ const CoursesList = ({ list, academiesList, teachersList }: Props) => {
 
         if (!selectedCategories.includes(category.name))
             setSelectedCategories((selectedCategories) => [...selectedCategories, categoryName])
-        
+
         else
             setSelectedCategories((selectedCategories) => selectedCategories.filter((item: any) => item !== categoryName));
+    }
+
+    const handleOptionSelect = (optionKey: string) => {
+        setSelectedOption(optionKey)
+        queryParams.set('order', optionKey)
+        queryParams.delete('page');
+        router.push(`${path}?${queryParams.toString()}`);
+    }
+
+    const handleSearch = () => {
+        if (searchText.trim() === '') {
+            queryParams.delete('searchText')
+            queryParams.delete('page');
+            router.push(`${path}?${queryParams.toString()}`);
+
+            return
+        }
+        queryParams.delete('searchText')
+        queryParams.delete('page');
+        queryParams.append('searchText', searchText)
+        router.push(`${path}?${queryParams.toString()}`);
     }
 
     useEffect(() => {
         queryParams.delete('academy')
         queryParams.delete('page');
         selectedAcadmies.map((name) => queryParams.append('academy', name))
-        queryParams.append('page', "1");
         router.push(`${path}?${queryParams.toString()}`);
     }, [selectedAcadmies])
 
@@ -108,23 +133,13 @@ const CoursesList = ({ list, academiesList, teachersList }: Props) => {
         queryParams.delete('teacher')
         queryParams.delete('page');
         selectedTeachers.map((name) => queryParams.append('teacher', name))
-        queryParams.append('page', "1");
         router.push(`${path}?${queryParams.toString()}`);
     }, [selectedTeachers])
-
-    useEffect(() => {
-        queryParams.delete('priceType')
-        queryParams.delete('page');
-        queryParams.append('priceType', selectedPrice)
-        queryParams.append('page', "1");
-        router.push(`${path}?${queryParams.toString()}`);
-    }, [selectedPrice])
 
     useEffect(() => {
         queryParams.delete('category')
         queryParams.delete('page');
         selectedCategories.map((name) => queryParams.append('category', name))
-        queryParams.append('page', "1");
         router.push(`${path}?${queryParams.toString()}`);
     }, [selectedCategories])
 
@@ -133,14 +148,16 @@ const CoursesList = ({ list, academiesList, teachersList }: Props) => {
 
             <div className="flex items-center flex-wrap md:flex-nowrap gap-4 py-6 px-4 shadow-medium rounded-lg 
                 bg-[#ffffffbf] backdrop-blur-[10px] dark:bg-[#2020204d] ">
-                <Input
-                    // onChange={(e) => handleSearchChange(e.target.value)}
-                    value={searchText} dir={inputDirection}
-                    placeholder="نام دوره را وارد کنید" size="lg" radius="sm" variant="bordered" color="primary"
+
+                <Input placeholder="نام دوره را وارد کنید" size="lg" radius="sm" variant="bordered" color="primary" className="px-4"
+                    endContent={<IoSearch size={24} className="cursor-pointer" onClick={handleSearch} />}
+                    onChange={(e) => setSearchText(e.target.value)} value={searchText} dir={'rtl'}
                 />
+
                 <div className="w-full md:w-6/12 lg:w-4/12 xl:w-3/12">
+
                     <Select size="lg" radius="sm" color="primary" variant="bordered" selectedKeys={selectedOption}
-                        disableSelectorIconRotation className="text-base" onChange={(e) => setSelectedOption(e.target.value)} >
+                        disableSelectorIconRotation className="text-base" onChange={(e) => handleOptionSelect(e.target.value)} >
                         {selectOptions.map((option) => (
                             <SelectItem key={option.key} variant="bordered" color="primary">
                                 {option.label}
@@ -294,7 +311,7 @@ const renderCategories = ({ categories, selectedCategories, handleCategorySelect
                 defaultSelected radius="sm" size="lg" >
                 {category.name}
             </Checkbox>
-            {category.subCategories.length > 0 && renderCategories({ categories:category.subCategories, selectedCategories, handleCategorySelect, level:level+1 })}
+            {category.subCategories.length > 0 && renderCategories({ categories: category.subCategories, selectedCategories, handleCategorySelect, level: level + 1 })}
         </div>
     ));
 };
