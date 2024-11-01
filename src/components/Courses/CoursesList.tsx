@@ -11,18 +11,22 @@ import { buildCategoryTree } from "@/src/utils/categorySorter";
 import { Checkbox } from "@nextui-org/checkbox";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { IoSearch } from "react-icons/io5";
+import { CourseCard } from "../Shared/CourseCard";
+import { Pagination } from "@nextui-org/pagination";
 
 type Props = {
     list: [any]
     academiesList: [string],
-    teachersList: [string]
+    teachersList: [string],
+    currentPage: number,
+    totalPage: number
 };
 
 const categories = buildCategoryTree(navObject.categoryObject.categoryList, null);
 const academiesObject = navObject.academyObject;
 const teacherObject = navObject.teacherObject;
 
-const CoursesList = ({ list, academiesList, teachersList }: Props) => {
+const CoursesList = ({ list, academiesList, teachersList, totalPage, currentPage }: Props) => {
 
     const searchParams = useSearchParams();
     const path = usePathname();
@@ -36,7 +40,7 @@ const CoursesList = ({ list, academiesList, teachersList }: Props) => {
     let order = searchParams.get('order') || '1'
     if (!["1", "2", "3", "4", "5", "6"].includes(order)) order = "1";
 
-
+    // const [page, setPage] = useState<number>(currentPage);
     const [selectedPrice, setSelectedPrice] = useState<string>(priceT);
     const [selectedAcadmies, setSelectedAcadmies] = useState<string[]>(searchParams.getAll('academy') || []);
     const [selectedTeachers, setSelectedTeachers] = useState<string[]>(searchParams.getAll('teacher') || []);
@@ -46,8 +50,8 @@ const CoursesList = ({ list, academiesList, teachersList }: Props) => {
 
 
     const [open1, setOpen1] = useState(true);
-    const [open2, setOpen2] = useState(true);
-    const [open3, setOpen3] = useState(true);
+    const [open2, setOpen2] = useState(false);
+    const [open3, setOpen3] = useState(false);
     const [open4, setOpen4] = useState(true);
 
 
@@ -122,6 +126,12 @@ const CoursesList = ({ list, academiesList, teachersList }: Props) => {
         router.push(`${path}?${queryParams.toString()}`);
     }
 
+    const handlePageChange = (page: number) => {
+        queryParams.delete('page');
+        queryParams.append('page', page.toString())
+        router.push(`${path}?${queryParams.toString()}`);
+    }
+
     useEffect(() => {
         queryParams.delete('academy')
         queryParams.delete('page');
@@ -142,6 +152,8 @@ const CoursesList = ({ list, academiesList, teachersList }: Props) => {
         selectedCategories.map((name) => queryParams.append('category', name))
         router.push(`${path}?${queryParams.toString()}`);
     }, [selectedCategories])
+
+
 
     return (
         <section className="w-full pb-10 flex flex-col ">
@@ -168,7 +180,7 @@ const CoursesList = ({ list, academiesList, teachersList }: Props) => {
                 </div>
             </div>
 
-            <div className="mt-8 flex flex-col lg:flex-row">
+            <div className="mt-8 flex flex-col lg:flex-row gap-4">
 
                 <div className="w-full flex flex-col gap-5 lg:w-4/12 xl:w-3/12">
 
@@ -196,7 +208,7 @@ const CoursesList = ({ list, academiesList, teachersList }: Props) => {
 
                     <div className="w-full bg-[#ffffffbf] backdrop-blur-[10px] dark:bg-[#2020204d] shadow-medium rounded-lg">
 
-                        <Acordian open={open2} title="فیلتر آکادمی" setOpen={setOpen2} initialHeight={'auto'}>
+                        <Acordian open={open2} title="فیلتر آکادمی" setOpen={setOpen2} initialHeight={0}>
                             <div className="w-full flex flex-col gap-3">
                                 {academiesList.map((item: any, index) =>
                                     <Checkbox isSelected={selectedAcadmies.includes(item.engName)} onClick={() => handleAcademySelect(item.engName)}
@@ -209,7 +221,7 @@ const CoursesList = ({ list, academiesList, teachersList }: Props) => {
                     </div>
 
                     <div className="w-full bg-[#ffffffbf] backdrop-blur-[10px] dark:bg-[#2020204d] shadow-medium rounded-lg">
-                        <Acordian open={open3} title="فیلتر مدرس" setOpen={setOpen3} initialHeight={'auto'}>
+                        <Acordian open={open3} title="فیلتر مدرس" setOpen={setOpen3} initialHeight={0}>
                             <div className="w-full flex flex-col gap-3">
                                 {teachersList.map((item: any, index) =>
                                     <Checkbox isSelected={selectedTeachers.includes(item.engName)} onClick={() => handleTeacherSelect(item.engName)}
@@ -231,22 +243,31 @@ const CoursesList = ({ list, academiesList, teachersList }: Props) => {
                     </div>
                 </div>
 
-                <div className="w-full lg:w-8/12 xl:w-9/12 mt-2 relative">
+                <div className="w-full lg:w-8/12 xl:w-9/12 relative">
 
-                    {list.length ? <div className="sticky top-[20vh] right-[70%] pt-16 -ms-10 lg:-ms-24 z-10 w-0 h-0">
+                    {list.length ? <div className="sticky top-[20vh] right-[70%] -ms-10 lg:-ms-24 z-10 w-0 h-0">
                         <ImBooks className=" text-[12rem] md:text-[16rem] xl:text-[20rem] text-primary-400 dark:text-primary-400" />
                     </div> : ''}
 
                     {list.length ?
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg2:grid-cols-3 justify-items-center gap-y-8 gap-x-8 relative z-20">
-
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg2:grid-cols-3 justify-items-center gap-4 relative z-20">
+                            {list.map((course, index) => <CourseCard key={index} data={course} />)}
                         </div>
                         :
-
                         <div className='w-full mt-20'>
                             <p className="text-2xl font-semibold text-center">دوره‌ای پیدا نشد</p>
                         </div>
+                    }
 
+                    {
+                        totalPage > 1 ?
+                            <div className="mt-20 flex justify-center relative z-50">
+                                <Pagination variant="bordered" color="primary" dotsJump={10}
+                                    //  classNames={{chevronNext:'text-2xl transform -rotate-270',prev:'text-2xl transform rotate-180'}}
+                                    classNames={{ chevronNext: 'text-2xl', prev: 'text-2xl' }}
+                                    onChange={handlePageChange}
+                                    showControls total={totalPage} initialPage={1} page={currentPage} size="lg" dir="ltr" />
+                            </div> : ''
                     }
 
                 </div>
