@@ -7,9 +7,6 @@ import { getAllTeachersName } from '@/src/lib/apis/teacherApis';
 
 export default async function CourseSearch(p: any) {
 
-
-    const academyNames: any = await getAllAcademyNames();
-    const teacherNames: any = await getAllTeachersName();
     const params = p.searchParams;
 
 
@@ -42,7 +39,7 @@ export default async function CourseSearch(p: any) {
     const data: any = await searchCourse(object);
 
 
-    if (data && data.success && academyNames && academyNames.success && teacherNames && teacherNames.success)
+    if (data && data.success )
 
         return (
             <section className=" flex flex-col items-center justify-center  " >
@@ -55,7 +52,7 @@ export default async function CourseSearch(p: any) {
 
                 <div className="w-full max-w-7xl px-4 md:px-8 2xl:px-2 flex flex-col items-center justify-center ">
                     <CoursesList currentPage={data.currentPage} totalPage={data.totalPage}
-                        list={data.courses} academiesList={academyNames?.academiesName} teachersList={teacherNames.teachersName} />
+                        list={data.courses}  />
                 </div>
             </section>
         );

@@ -16,8 +16,6 @@ import { Pagination } from "@nextui-org/pagination";
 
 type Props = {
     list: [any]
-    academiesList: [string],
-    teachersList: [string],
     currentPage: number,
     totalPage: number
 };
@@ -26,7 +24,11 @@ const categories = buildCategoryTree(navObject.categoryObject.categoryList, null
 const academiesObject = navObject.academyObject;
 const teacherObject = navObject.teacherObject;
 
-const CoursesList = ({ list, academiesList, teachersList, totalPage, currentPage }: Props) => {
+const CoursesList = ({ list, totalPage, currentPage }: Props) => {
+    const teachersList = teacherObject.teacherList.map(item=> {return{engName:item.engName}} );
+    const academiesList = academiesObject.academyList.map(item=> {return{engName:item.engName}} );
+    
+    console.log(academiesList);
 
     const searchParams = useSearchParams();
     const path = usePathname();
