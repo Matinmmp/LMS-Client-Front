@@ -45,10 +45,10 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
                         dark:bg-none/ 
                         dark:bg-[#181818]/ dark:bg-[#020617] ">
                             <div className="background z-[1] ">
-                                <span className="bg-none dark:bg-[#1582ff37]" />
-                                <span className="bg-none dark:bg-[#1582ff37] max-w-80 max-h-80 2xl:max-w-[40%] lg:max-h-[50%]" />
+                                <span className="bg-none dark:bg-[#1582ff25]" />
+                                <span className="bg-none dark:bg-[#1582ff25] max-w-80 max-h-80 2xl:max-w-[40%] lg:max-h-[50%]" />
 
-                                {/* <span/> */}
+                        
                             </div>
                             <div className="relative z-20 ">
                                 <Navbar />

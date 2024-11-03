@@ -43,24 +43,24 @@ const AcadmyCard = ({ data }: CardProps) => {
                 <div className="h-full w-full flex flex-col items-center">
 
                     <div className="w-full p-6 flex items-center justify-between">
+                    <Avatar className="h-[4.5rem] w-[4.5rem] shadow-[0_0_15px_0_#44de77]" size="lg" radius="sm" isBordered color="success" src={data.avatar.imageUrl} />
 
                         <div className="flex flex-col gap-1">
-                            <div className='py-[2px] px-3 flex items-center gap-2 rounded-md border-1 border-success-50 dark:border-success-300'>
+                            <div className='py-[2px] px-3 flex items-center gap-2 rounded-md border-1 border-success-50 dark:border-success-300 shadow-sm'>
                                 <PiStudentBold size={13} className="text-success-400" />
                                 <span className="text-[0.7rem] font-semibold">{toPersianNumber(data.totalStudents)} دانشجو</span>
                             </div>
 
-                            <div className='py-[2px] px-3 flex items-center gap-2 rounded-md border-1 border-success-50 dark:border-success-300'>
+                            <div className='py-[2px] px-3 flex items-center gap-2 rounded-md border-1 border-success-50 dark:border-success-300 shadow-sm'>
                                 <MdOutlineCastForEducation size={13} className="text-success-400" />
                                 <span className="text-[0.7rem] font-semibold">{toPersianNumber(data.totalCourses)} دوره</span>
                             </div>
 
-                            <div className='py-[2px] px-3 flex items-center gap-2 rounded-md border-1 border-success-50 dark:border-success-300'>
+                            <div className='py-[2px] px-3 flex items-center gap-2 rounded-md border-1 border-success-50 dark:border-success-300 shadow-sm'>
                                 <GiTeacher size={13} className="text-success-400" />
                                 <span className="text-[0.7rem] font-semibold">{toPersianNumber(data.totalTeachers)} مدرس</span>
                             </div>
                         </div>
-                        <Avatar className="h-[4.5rem] w-[4.5rem] shadow-[0_0_15px_0_#44de77]" size="lg" radius="sm" isBordered color="success" src={data.avatar.imageUrl} />
                    
                     </div>
 

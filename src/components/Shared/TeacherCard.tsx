@@ -43,12 +43,12 @@ const TeacherCard = ({ data }: CardProps) => {
                         <Avatar className="h-[5.5rem] w-[5.5rem] shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="full" isBordered color="secondary" src={data.avatar.imageUrl} fallback />
 
                         <div className="flex flex-col gap-1">
-                            <div className='py-1 px-2 flex items-center gap-2 rounded-md border-1 border-secondary-50 dark:border-secondary-300'>
+                            <div className='py-1 px-2 flex items-center gap-2 rounded-md border-1 border-secondary-50 dark:border-secondary-300 shadow-sm'>
                                 <PiStudentBold size={16} className="text-secondary-400" />
                                 <span className="text-xs font-semibold">{toPersianNumber(`${data.totalStudents}`)} دانشجو</span>
                             </div>
 
-                            <div className='py-1 px-2 flex items-center gap-2 rounded-md border-1 border-secondary-50 dark:border-secondary-300'>
+                            <div className='py-1 px-2 flex items-center gap-2 rounded-md border-1 border-secondary-50 dark:border-secondary-300 shadow-sm'>
                                 <MdOutlineCastForEducation size={16} className="text-secondary-400" />
                                 <span className="text-xs font-semibold">{toPersianNumber(`${data.totalCourses}`)} دوره</span>
                             </div>

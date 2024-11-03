@@ -55,7 +55,7 @@ const links = [
     {
         icon: <FcAbout size={20} />,
         title: 'درباره‌ی ما',
-        link: '/',
+        link: '/about-us',
     },
     {
         icon: <FaQuoteRight size={20} />,
@@ -88,8 +88,8 @@ export const Navbar = () => {
     useEffect(() => {
         const handleOutsideClick = (event: any) => {
             if (searchRef.current && !searchRef.current.contains(event.target)) {
-                // setSearch('')
-                // setOpen2(false);
+                setSearch('')
+                setOpen2(false);
             }
         };
 
@@ -148,7 +148,6 @@ export const Navbar = () => {
 
                     <header className='h-full px-4 flex items-center gap-4 relative'  >
 
-
                         <GrMenu size={25} className="cursor-pointer md:hidden" onClick={() => setIsMenuOpen(true)} />
 
                         <NextLink className=" md:-me-8 lg:m-0 absolute left-1/2  transform -translate-x-1/2 md:relative md:right-0 md:transform-none" href="/">
@@ -158,7 +157,7 @@ export const Navbar = () => {
 
                         <ul className="ms-10 md:ms-6 hidden md:flex gap-4 justify-start ml-2">
                             <li>
-                                <DropDown link={"/"} position="bottom-middle"
+                                <DropDown link={"/courses"} position="bottom-middle"
                                     title={
                                         <div className="w-full flex items-center justify-between">
                                             <span>دوره‌های آموزشی</span>
@@ -171,7 +170,7 @@ export const Navbar = () => {
                                             if (item?.subCategories)
                                                 return (
                                                     <div key={index}>
-                                                        <DropDown link="/" position="left"
+                                                        <DropDown link={`/courses?category=${item.name}`} position="left"
                                                             title={
                                                                 <div className="w-full flex items-center justify-end gap-1 py-2 hover:text-primary-300">
                                                                     {item?.subCategories.length ? (<MdKeyboardArrowLeft className="me-auto" size={16} />) : ''}
@@ -181,7 +180,7 @@ export const Navbar = () => {
 
                                                             {item?.subCategories.length ? <div className="w-44 max-h-[25rem] p-3 flex flex-col ">
                                                                 {item.subCategories.map((sub, index) => (
-                                                                    <NextLink color="foreground" href={"/"} key={index}
+                                                                    <NextLink color="foreground" href={`/courses?category=${sub.name}`} key={index}
                                                                         className={clsx(linkStyles({ color: "foreground" }), " w-full flex items-center justify-end gap-1 py-1 hover:text-primary-300 ",)}>
                                                                         {sub.name}
                                                                         <GoDotFill className="text-primary-300" size={10} />
@@ -205,7 +204,7 @@ export const Navbar = () => {
                             </li>
 
                             <li>
-                                <DropDown link={"/"} position="bottom-left"
+                                <DropDown link={"/teachers"} position="bottom-left"
                                     title={
                                         <div className="w-full flex items-center justify-between">
                                             <span>مدرس‌ها</span>
@@ -214,14 +213,14 @@ export const Navbar = () => {
                                     }>
 
                                     <div className="w-[30rem] max-h-[50rem] p-4 grid gap-6 grid-cols-4 justify-beetwen " dir='rtl'>
-                                        {teacherObject.teacherList.map((item, index) => (
-                                            <NextLink href={'/'} key={index} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
+                                        {teacherObject.teacherList.slice(0,7).map((item, index) => (
+                                            <NextLink href={`/teachers/${item.engName}`} key={index} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
                                                 <Avatar radius={'full'} isBordered size={'lg'} color={'primary'} name={item.engName} showFallback src={item.imageUrl} />
                                                 <span className='text-center whitespace-break-spaces'>{item.engName}</span>
                                             </NextLink>
                                         ))}
-                                        <NextLink href={'/'} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
-                                            <Avatar name={toPersianNumber(teacherObject.total - teacherObject.teacherList.length) + '+'}
+                                        <NextLink href={"/teachers"} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
+                                            <Avatar name={toPersianNumber(teacherObject.total - teacherObject.teacherList.slice(0,7).length) + '+'}
                                                 radius={'full'} isBordered size={'lg'} color={'primary'} className='text-xl cursor-pointer' />
                                             <span className='text-center'>مشاهده همه</span>
                                         </NextLink>
@@ -230,7 +229,7 @@ export const Navbar = () => {
                             </li>
 
                             <li>
-                                <DropDown link={"/"} position="bottom-left"
+                                <DropDown link={"/academies"} position="bottom-left"
                                     title={
                                         <div className="w-full flex items-center justify-between">
                                             <span>آکادمی‌ها</span>
@@ -239,14 +238,14 @@ export const Navbar = () => {
                                     }>
 
                                     <div className="w-[25rem] max-h-[50rem] p-4 grid gap-6 grid-cols-3 justify-beetwen " dir='rtl'>
-                                        {academiesObject.academyList.map((item, index) => (
-                                            <NextLink href={'/'} key={index} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
+                                        {academiesObject.academyList.slice(0,5).map((item, index) => (
+                                            <NextLink href={`/academies/${item.engName}`} key={index} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
                                                 <Avatar radius={'sm'} isBordered size={'lg'} color={'secondary'} name={item.engName} showFallback src={item.imageUrl} />
                                                 <span className='text-center whitespace-break-spaces'>{item.engName}</span>
                                             </NextLink>
                                         ))}
-                                        <NextLink href={'/'} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
-                                            <Avatar name={toPersianNumber(academiesObject.total - academiesObject.academyList.length) + '+'}
+                                        <NextLink href={"/academies"} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
+                                            <Avatar name={toPersianNumber(academiesObject.total - academiesObject.academyList.slice(0,4).length) + '+'}
                                                 radius={'sm'} isBordered size={'lg'} color={'secondary'} className='text-xl cursor-pointer' />
                                             <span className='text-center'>مشاهده همه</span>
                                         </NextLink>

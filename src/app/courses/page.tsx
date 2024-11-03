@@ -1,8 +1,7 @@
-import CoursesList from "@/src/components/Courses/CoursesList";
 import Hero from "@/src/components/Courses/Hero";
-import { getAcademies, getAllAcademyNames } from "@/src/lib/apis/academyApis";
-import { searchCourse } from "@/src/lib/apis/courseSearchApis";
-import { getAllTeachersName } from '@/src/lib/apis/teacherApis';
+import { Suspense } from "react";
+import CoursesList from "../../components/Courses/CoursesList";
+import Courses from "@/src/components/Courses/Courses";
 
 
 export default async function CourseSearch(p: any) {
@@ -36,24 +35,27 @@ export default async function CourseSearch(p: any) {
         else object.academies = [params.academy]
     }
 
-    const data: any = await searchCourse(object);
 
 
-    if (data && data.success )
 
-        return (
-            <section className=" flex flex-col items-center justify-center  " >
+    return (
+        <section className=" flex flex-col items-center justify-center  " >
 
-                <div className="-mt-32 pt-36 lg:pt-48 pb-12 lg:pb-20 w-full flex items-center justify-center 
+            <div className="-mt-32 pt-36 lg:pt-48 pb-12 lg:pb-20 w-full flex items-center justify-center 
                     dark:bg-gradient-to-b  dark:from-primary-50 dark:to-transparent backdrop-blur-md">
 
-                    <Hero />
-                </div>
+                <Hero />
+            </div>
 
-                <div className="w-full max-w-7xl px-4 md:px-8 2xl:px-2 flex flex-col items-center justify-center ">
-                    <CoursesList currentPage={data.currentPage} totalPage={data.totalPage}
-                        list={data.courses}  />
-                </div>
-            </section>
-        );
+            <div className="w-full max-w-7xl px-4 md:px-8 2xl:px-2 flex flex-col items-center justify-center ">
+                <Courses>
+                    <Suspense fallback={<div>loading</div>}>
+
+                        <CoursesList object={object}/>
+
+                    </Suspense>
+                </Courses>
+            </div>
+        </section>
+    );
 }

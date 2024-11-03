@@ -8,7 +8,9 @@ import { ModalBody, ModalHeader } from "@nextui-org/modal"
 import { Spinner } from "@nextui-org/spinner"
 import { useMutation } from "@tanstack/react-query"
 import { useFormik } from "formik"
+import { signIn } from "next-auth/react"
 import { FC, useState } from "react"
+import { FcGoogle } from "react-icons/fc"
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useDispatch } from "react-redux"
 import * as Yup from 'yup'
@@ -93,6 +95,11 @@ const SignUp: FC<Props> = ({ setRoute, setOpen }) => {
                             classNames={{ label: 'font-semibold text-base dark:text-white top-7 -ms-2' }}
                             isInvalid={!!errors.password && !!touched.password}
                             errorMessage={errors.password} value={values.password} />
+                       
+                        <div className="w-full flex gap-2 items-center justify-center cursor-pointer" onClick={()=>signIn('google')}>
+                            <p className="text-sm font-semibold mt-1">ورود با گوگل</p>
+                            <FcGoogle size={24} />
+                        </div>
 
 
                     </div>

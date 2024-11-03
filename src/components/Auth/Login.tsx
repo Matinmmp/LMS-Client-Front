@@ -13,7 +13,8 @@ import { FC, useState } from "react"
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useDispatch } from "react-redux"
 import * as Yup from 'yup'
-
+import { FcGoogle } from "react-icons/fc";
+import { signIn } from "next-auth/react"
 
 type Props = {
     setRoute: (route: string) => void
@@ -43,7 +44,7 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
         loginInfo = JSON.parse(loginInfoString);
     }
 
- 
+
 
     const loginMutation = useMutation({
         mutationFn: (data: { email: string, password: string }) => login(data),
@@ -70,12 +71,12 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
         }
     })
 
-    const { errors, touched, handleChange, handleSubmit ,values} = formik;
+    const { errors, touched, handleChange, handleSubmit, values } = formik;
 
 
 
     return (
-        <div className="h-max max-h-[30rem] flex flex-col ">
+        <div className="h-max max-h-[35rem] flex flex-col ">
             <ModalHeader className="flex flex-col relative">
                 <p className={`p-2 mt-4 text-center font-semibold text-3xl text-primary-400`}>
                     ورود به سایت
@@ -83,15 +84,15 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
 
             </ModalHeader>
 
-            <ModalBody>
+            <ModalBody className="pt-2">
                 <form onSubmit={handleSubmit}>
-                    <div className="flex flex-col gap-5">
 
+                    <div className="flex flex-col gap-5">
 
                         <Input onChange={handleChange} placeholder="you@example.com" dir='ltr' id='email' name="email" labelPlacement="outside" type="email" label="ایمیل" size="lg" radius="sm"
                             variant="bordered" color="primary" classNames={{ label: 'font-semibold text-base dark:text-white top-7 -ms-2' }}
                             isInvalid={!!errors.email && !!touched.email}
-                            errorMessage={errors.email} value={values.email}/>
+                            errorMessage={errors.email} value={values.email} />
 
                         <Input onChange={handleChange} placeholder="password" dir='ltr' name="password" id="password" labelPlacement="outside" type={isVisible ? "text" : "password"}
                             startContent={
@@ -106,19 +107,22 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
                             label="پسور" size="lg" radius="sm" variant="bordered" color="primary"
                             classNames={{ label: 'font-semibold text-base dark:text-white top-7 -ms-2' }}
                             isInvalid={!!errors.password && !!touched.password}
-                            errorMessage={errors.password} value={values.password}/>
+                            errorMessage={errors.password} value={values.password} />
 
                         <div className="flex px-1 justify-between">
-                            <Checkbox classNames={{ label: "text-small" }} isSelected={rememberMe}  onValueChange={setRememberMe}>
+                            <Checkbox classNames={{ label: "text-small" }} isSelected={rememberMe} onValueChange={setRememberMe}>
                                 منو یادت باشه
                             </Checkbox>
                             <p className="text-small text-secondary cursor-pointer" onClick={() => setRoute('FotgetPassword')}>رمزتو فراموش کردی ؟</p>
+                        </div>
 
+                        <div className="w-full flex gap-2 items-center justify-center cursor-pointer" onClick={()=>signIn('google')}>
+                            <p className="text-sm font-semibold mt-1">ورود با گوگل</p>
+                            <FcGoogle size={24} />
                         </div>
                     </div>
 
-
-                    <div className="mt-5">
+                    <div className="mt-7">
                         <button className="w-full">
                             <Button disabled={loginMutation.isPending} color="primary" variant="shadow" elementType={'button'} radius="md" className="w-full max-w-full text-lg" size="lg">
                                 {loginMutation.isPending ? <Spinner color="primary" /> : 'ورود'}
@@ -128,12 +132,13 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
 
                 </form>
 
-                <div className="mt-2">
+                <div className="">
                     <div className="mt-2 flex items-center justify-center gap-1 font-semibold">
                         <p>عضو نیستی ؟</p>
                         <span className="text-secondary cursor-pointer" onClick={() => setRoute('Sign-Up')}>عضویت</span>
                     </div>
                 </div>
+
             </ModalBody>
         </div>
     )

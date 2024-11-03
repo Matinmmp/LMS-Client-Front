@@ -12,7 +12,7 @@ const Hero = (props: Props) => {
 
         <div className="w-full  relative">
 
-            <div className="gap-2 flex flex-col md2:flex-row justify-between relative z-10 text-[rgb(58,147,232)]/">
+            <div className="gap-2 flex flex-col md2:flex-row justify-between relative z-10">
                 <div className="w-full md2:w-1/2 order-2 md2:order-1">
                     <div className="w-full mt-6 lg:mt-20 text-center md2:text-right">
                         <h1 className={clsx(title({ color: 'blue' }), 'text-[#475466] dark:text-white inline w-full text-center text-4xl md:text-5xl lg:text-6xl !font-extrabold md:leading-[3.2rem]')}>

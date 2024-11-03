@@ -56,7 +56,7 @@ const Footer = ({ }: CardProps) => {
                                 </Link>
                             </li>
                             <li className="mt-1">
-                                <Link className="flex items-center gap-2 text-lg font-medium " href="/">
+                                <Link className="flex items-center gap-2 text-lg font-medium " href="/about-us">
                                     <HiOutlineInformationCircle size={24} className="text-black dark:text-white" />
                                     <span >درباره‌ی ما</span>
                                 </Link>
@@ -69,7 +69,7 @@ const Footer = ({ }: CardProps) => {
                                 {
                                     categories[0].subCategories.map((item, index) =>
                                         <li key={index}>
-                                            <Link color="foreground" href={"/"} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
+                                            <Link color="foreground" href={`/category/${item.name}`} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
                                                 {item.name}
                                             </Link>
                                         </li>)
@@ -83,8 +83,8 @@ const Footer = ({ }: CardProps) => {
                                 {
                                     teacherObject.teacherList.slice(0, 10).map((item, index) =>
                                         <li key={index}>
-                                            <Link color="foreground" href={"/"} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
-                                                {item.faName}
+                                            <Link color="foreground" href={`/teachers/${item.engName}`} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
+                                                {item.engName}
                                             </Link>
                                         </li>)
                                 }
@@ -92,7 +92,7 @@ const Footer = ({ }: CardProps) => {
                                     teacherObject.teacherList.length > 10
                                         ?
                                         <li >
-                                            <Link color="foreground" href={"/"} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
+                                            <Link color="foreground" href={"/teachers"} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
                                                 مشاهده‌ی همه
                                             </Link>
                                         </li> : ''
@@ -106,8 +106,8 @@ const Footer = ({ }: CardProps) => {
                                 {
                                     academiesObject.academyList.slice(0, 10).map((item, index) =>
                                         <li key={index}>
-                                            <Link color="foreground" href={"/"} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
-                                                {item.faName}
+                                            <Link color="foreground" href={`/academies/${item.engName}`} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
+                                                {item.engName}
                                             </Link>
                                         </li>)
                                 }
@@ -115,7 +115,7 @@ const Footer = ({ }: CardProps) => {
                                     academiesObject.academyList.length > 10
                                         ?
                                         <li >
-                                            <Link color="foreground" href={"/"} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
+                                            <Link color="foreground" href={"/academies"} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
                                                 مشاهده‌ی همه
                                             </Link>
                                         </li> : ''
@@ -133,19 +133,19 @@ const Footer = ({ }: CardProps) => {
                                 </li>
 
                                 <li>
-                                    <Link color="foreground" href={"/"} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
+                                    <Link color="foreground" href={"/teachers"} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
                                         همه‌ی مدرس‌ها
                                     </Link>
                                 </li>
 
                                 <li>
-                                    <Link color="foreground" href={"/"} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
+                                    <Link color="foreground" href={"/teachers"} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
                                         همه‌ی آکادمی‌ها
                                     </Link>
                                 </li>
 
                                 <li>
-                                    <Link color="foreground" href={"/"} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
+                                    <Link color="foreground" href={"/courses"} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
                                         همه‌ی دوره‌ها
                                     </Link>
                                 </li>
@@ -184,10 +184,7 @@ const Footer = ({ }: CardProps) => {
                     </div>
                 </div>
 
-                {/* <div className="flex items-center gap-1 md:gap-2">
-                    <PiBooksFill className="text-primary-400 text-[1.5rem] md:text-[2.5rem] lg:text-[3rem]" />
-                    <h3 className={clsx(title({ color: 'secondary' }), "pt-1 text-lg md:text-xl lg:text-2xl xl:text-3xl")}>آخرین دوره‌ها</h3>
-                </div> */}
+                
             </div>
 
         </footer >

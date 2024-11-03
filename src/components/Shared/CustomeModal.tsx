@@ -35,7 +35,7 @@ const CustomeModal: FC<Props> = ({ open, setOpen, component: Component, setRoute
 
                 <ModalContent className="relative">
                     <span className="absolute top-2 right-2 z-50">
-                        <IoIosCloseCircleOutline size={35} className="text-primary cursor-pointer" onClick={() => setOpen(false)} />
+                        <IoIosCloseCircleOutline size={35} className="text-primary-400 cursor-pointer" onClick={() => setOpen(false)} />
                     </span>
                     <Component setOpen={setOpen} setRoute={setRoute} />
                 </ModalContent>
