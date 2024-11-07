@@ -30,19 +30,19 @@ const Courses = ({ children }: Props) => {
     const path = usePathname();
     const router = useRouter();
 
-    const queryParams = new URLSearchParams(Array.from(searchParams.entries()))
+    const queryParams = new URLSearchParams(Array.from(searchParams!.entries()))
 
-    let priceT = searchParams.get('price') || '1';
+    let priceT = searchParams!.get('price') || '1';
     if (!["1", "2", "3", "4"].includes(priceT)) priceT = "1";
 
-    let order = searchParams.get('order') || '1'
+    let order = searchParams!.get('order') || '1'
     if (!["1", "2", "3", "4", "5", "6"].includes(order)) order = "1";
 
     // const [page, setPage] = useState<number>(currentPage);
     const [selectedPrice, setSelectedPrice] = useState<string>(priceT);
-    const [selectedAcadmies, setSelectedAcadmies] = useState<string[]>(searchParams.getAll('academy') || []);
-    const [selectedTeachers, setSelectedTeachers] = useState<string[]>(searchParams.getAll('teacher') || []);
-    const [selectedCategories, setSelectedCategories] = useState<string[]>(searchParams.getAll('category') || []);
+    const [selectedAcadmies, setSelectedAcadmies] = useState<string[]>(searchParams!.getAll('academy') || []);
+    const [selectedTeachers, setSelectedTeachers] = useState<string[]>(searchParams!.getAll('teacher') || []);
+    const [selectedCategories, setSelectedCategories] = useState<string[]>(searchParams!.getAll('category') || []);
 
 
 
@@ -53,7 +53,7 @@ const Courses = ({ children }: Props) => {
     const [open4, setOpen4] = useState(true);
 
 
-    const [searchText, setSearchText] = useState(searchParams.get('searchText') || '');
+    const [searchText, setSearchText] = useState(searchParams!.get('searchText') || '');
     const [selectedOption, setSelectedOption] = useState(order);
 
     const selectOptions = [
@@ -330,7 +330,7 @@ export const CoursePagination = ({ totalPage, currentPage }: { totalPage: number
     const path = usePathname();
     const router = useRouter();
 
-    const queryParams = new URLSearchParams(Array.from(searchParams.entries()))
+    const queryParams = new URLSearchParams(Array.from(searchParams!.entries()))
 
     const handlePageChange = (page: number) => {
         queryParams.delete('page');
