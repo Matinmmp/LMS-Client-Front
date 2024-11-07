@@ -8,7 +8,7 @@ import { ModalBody, ModalHeader } from "@nextui-org/modal"
 import { Spinner } from "@nextui-org/spinner"
 import { useMutation } from "@tanstack/react-query"
 import { useFormik } from "formik"
-import { signIn } from "next-auth/react"
+import { signIn, useSession } from "next-auth/react"
 import { FC, useState } from "react"
 import { FcGoogle } from "react-icons/fc"
 import { FiEye, FiEyeOff } from "react-icons/fi";
@@ -34,7 +34,8 @@ const SignUp: FC<Props> = ({ setRoute, setOpen }) => {
     const dispatch = useDispatch();
     const [isVisible, setIsVisible] = useState(false);
     const toggleVisibility = () => setIsVisible(!isVisible);
-
+    const {data} = useSession();
+    console.log(data)
 
     const registrationMutation = useMutation({
         mutationFn: (data: { name: string, email: string, password: string }) => registration(data),

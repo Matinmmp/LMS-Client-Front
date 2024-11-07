@@ -14,7 +14,7 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useDispatch } from "react-redux"
 import * as Yup from 'yup'
 import { FcGoogle } from "react-icons/fc";
-import { signIn } from "next-auth/react"
+import { signIn, useSession } from "next-auth/react"
 
 type Props = {
     setRoute: (route: string) => void
@@ -36,6 +36,10 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
     const [isVisible, setIsVisible] = useState(false);
     const [rememberMe, setRememberMe] = useState(!!localStorage.getItem('loginInfo'));
     const toggleVisibility = () => setIsVisible(!isVisible);
+    const {data} = useSession();
+
+    console.log(data)
+    
 
     let loginInfoString = localStorage.getItem('loginInfo');
     let loginInfo: LoginInfo | null = null;
