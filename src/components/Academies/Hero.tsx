@@ -10,7 +10,6 @@ type Props = {
 const Hero = (props: Props) => {
     return (
         <div className="w-full  relative  ">
-
             <div className="pb-10 flex flex-col md2:flex-row justify-between relative z-10">
                 <div className="w-full">
                     <div className="w-full mt-4 text-center ">

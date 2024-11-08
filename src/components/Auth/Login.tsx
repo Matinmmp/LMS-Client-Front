@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux"
 import * as Yup from 'yup'
 import { FcGoogle } from "react-icons/fc";
 import { signIn, useSession } from "next-auth/react"
+import { useSearchParams } from "next/navigation"
 
 type Props = {
     setRoute: (route: string) => void
@@ -38,8 +39,7 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
     const toggleVisibility = () => setIsVisible(!isVisible);
     const {data} = useSession();
 
-    console.log(data)
-    
+
 
     let loginInfoString = localStorage.getItem('loginInfo');
     let loginInfo: LoginInfo | null = null;

@@ -9,8 +9,7 @@ type Props = {
 
 const Hero = (props: Props) => {
     return (
-        <div className="w-full  relative">
-
+        <div className="w-full mt-16 relative">
             <div className="pb-10 flex flex-col md2:flex-row justify-between relative z-10">
                 <div className="w-full px-4">
                     <div className="w-full mt-4 text-center ">

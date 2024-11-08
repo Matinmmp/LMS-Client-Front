@@ -9,6 +9,7 @@ import { MdMoneyOff } from "react-icons/md";
 import { MdFavoriteBorder } from "react-icons/md";
 import { MdLogout } from "react-icons/md";
 import { usePathname } from "next/navigation";
+import { CiBookmarkCheck } from "react-icons/ci";
 
 const list = [
     {
@@ -42,7 +43,7 @@ const list = [
         link: '/profile/myFreeCourse',
     },
     {
-        icons: <MdFavoriteBorder size={21} />,
+        icons: <CiBookmarkCheck size={21} strokeWidth={0.7}/>,
         title: 'دوره‌های موردعلاقه من',
         link: '/profile/myFavoritCourses',
     },
@@ -73,7 +74,6 @@ export default function Navbar() {
                             <span className="text-base font-medium">{item.title}</span>
                         </Link>
                     )}
-
 
                 </ul>
             </div>

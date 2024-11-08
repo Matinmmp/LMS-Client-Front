@@ -24,7 +24,7 @@ const nextConfig = {
             },
             {
                 protocol: 'https',
-                hostname: '"www.google.com'
+                hostname: 'www.google.com'
             }
         ]
     }
