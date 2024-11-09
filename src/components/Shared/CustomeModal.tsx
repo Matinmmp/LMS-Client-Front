@@ -13,9 +13,9 @@ type Props = {
 
 
 const CustomeModal: FC<Props> = ({ open, setOpen, component: Component, setRoute }) => {
-    const searchParams = useSearchParams();
-
+    const searchParams = useSearchParams(); 
     const router = useRouter();
+    
     useEffect(() => {
         const html = document.getElementById('html');
 

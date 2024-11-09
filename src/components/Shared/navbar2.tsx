@@ -112,7 +112,7 @@ export const Navbar = () => {
     useEffect(() => {
         if (searchParams?.get('openLogin') === 'true')
             showToast({ type: 'warning', message: 'لطفا وارد حساب خود شوید' });
-        
+
         const handleScroll = () => {
             const offset = window.scrollY;
             if (offset > 100) setScrolled(true);
@@ -310,11 +310,11 @@ export const Navbar = () => {
                                             <div className="flex items-center gap-4">
                                                 <Dropdown placement="bottom-end" >
                                                     <DropdownTrigger>
-                                                        <Avatar isBordered as="button" className="transition-transform"
-                                                            color="secondary" src={user.imageUrl} />
+                                                        <Avatar isBordered as="button" className="transition-transform shadow-[0_0_15px_0_#42C0F4]" color="secondary" src={user.imageUrl} />
                                                     </DropdownTrigger>
 
                                                     <DropdownMenu aria-label="Profile Actions" variant="flat" className="min-w-80">
+
                                                         <DropdownItem color="default">
                                                             <div className="py-4 ps-1">
                                                                 <User

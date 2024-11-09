@@ -15,7 +15,8 @@ import { useDispatch } from "react-redux"
 import * as Yup from 'yup'
 import { FcGoogle } from "react-icons/fc";
 import { signIn, useSession } from "next-auth/react"
-import { useSearchParams } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
+import { getUserInfo } from "@/src/lib/apis/userApis"
 
 type Props = {
     setRoute: (route: string) => void
@@ -33,11 +34,14 @@ interface LoginInfo {
 }
 
 const Login: FC<Props> = ({ setRoute, setOpen }) => {
+    const searchParams = useSearchParams();
+    const router = useRouter();
+
     const dispatch = useDispatch();
     const [isVisible, setIsVisible] = useState(false);
     const [rememberMe, setRememberMe] = useState(!!localStorage.getItem('loginInfo'));
     const toggleVisibility = () => setIsVisible(!isVisible);
-    const {data} = useSession();
+    const { data } = useSession();
 
 
 
@@ -48,17 +52,38 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
         loginInfo = JSON.parse(loginInfoString);
     }
 
+    const getUserMutation = useMutation({
+        mutationFn: () => getUserInfo(),
+        onMutate: () => dispatch(userLoggedIn({ loading: true })),
+        onSuccess: (e) => dispatch(userLoggedIn(e)),
+        onError: (e: any) => {
+            e.loading = false;
+            dispatch(userLoggedIn(e));
+        },
+        onSettled: (e: any) => {
+            e.loading = false;
+            dispatch(userLoggedIn(e));
+        }
+    })
+
 
 
     const loginMutation = useMutation({
         mutationFn: (data: { email: string, password: string }) => login(data),
         onSuccess: (e) => {
             dispatch(userLoggedIn(e))
+            getUserMutation.mutate();
             setOpen(false);
             showToast({ type: 'success', message: 'با موفقیت وارد شدید' });
         },
         onError: () => {
             showToast({ type: 'error', message: 'ایمیل یا رمز عبور اشتباه است' });
+        },
+
+        onSettled: () => {
+            if (searchParams?.get('openLogin')) {
+                router.replace('/');
+            }
         }
     })
 
@@ -120,7 +145,7 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
                             <p className="text-small text-secondary cursor-pointer" onClick={() => setRoute('FotgetPassword')}>رمزتو فراموش کردی ؟</p>
                         </div>
 
-                        <div className="w-full flex gap-2 items-center justify-center cursor-pointer" onClick={()=>signIn('google')}>
+                        <div className="w-full flex gap-2 items-center justify-center cursor-pointer" onClick={() => signIn('google')}>
                             <p className="text-sm font-semibold mt-1">ورود با گوگل</p>
                             <FcGoogle size={24} />
                         </div>
