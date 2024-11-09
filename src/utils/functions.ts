@@ -38,9 +38,28 @@ const fixNumbers = (str: string) => {
 };
 
 
+const formatDate = (date: string) => {
+    try {
+        // تبدیل رشته تاریخ به یک شیء تاریخ معتبر
+        const validDate = new Date(date);
+
+        const persianDate = new Intl.DateTimeFormat('fa-IR-u-ca-persian', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+        }).format(validDate);
+
+        return persianDate;
+    } catch (error: any) {
+        console.log(error);
+        return '';
+    }
+}
+
 export {
     toPersianNumber,
     secondsToTimeString,
     numberSeparator,
-    fixNumbers
+    fixNumbers,
+    formatDate
 }
