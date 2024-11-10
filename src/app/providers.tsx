@@ -55,13 +55,16 @@ export function Providers({ children, themeProps }: ProvidersProps) {
 function RequestProviders() {
     const dispatch = useDispatch();
 
-
     const getUserMutation = useMutation({
         mutationFn: () => getUserInfo(),
-        onMutate: () => dispatch(userLoggedIn({ loading: true })),
-        onSuccess: (e) => dispatch(userLoggedIn(e)),
+        onMutate: () => dispatch(userLoggedIn({ loading: true,error:false })),
+        onSuccess: (e:any) => {
+            e.error = false;
+            dispatch(userLoggedIn(e));
+        },
         onError: (e: any) => {
             e.loading = false;
+            e.error = true;
             dispatch(userLoggedIn(e));
         },
         onSettled: (e: any) => {
@@ -69,6 +72,7 @@ function RequestProviders() {
             dispatch(userLoggedIn(e));
         }
     })
+
     React.useEffect(() => {
         const haveRefrshToken = getRefreshTokenFromCookies()
         if (haveRefrshToken)
