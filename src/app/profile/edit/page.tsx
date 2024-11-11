@@ -7,7 +7,8 @@ import { Skeleton } from "@nextui-org/skeleton";
 import { Button } from "@nextui-org/button";
 import * as Yup from 'yup'
 import { GoDotFill } from "react-icons/go";
-
+import { useEffect, useRef, useState } from "react";
+import { IoAddCircle } from "react-icons/io5";
 
 
 const schema = Yup.object().shape({
@@ -18,12 +19,37 @@ const schema = Yup.object().shape({
 })
 
 export default function ProfilePage() {
-    const { user, loading, error } = useSelector((state: any) => state.auth)
+    const { user:u, loading, error } = useSelector((state: any) => state.auth)
+    const [user,setUser] = useState<any>({...u});
+
+    useEffect(()=>{
+        if(!loading && !error)setUser(u)
+    },[loading,u,error])
+
+    const imageRef = useRef<any>();
+
     let date = '';
 
+    const imageHandler = async (e: any) => {
+        const fileReader = new FileReader();
+        fileReader.onload = () => {
+            // if (fileReader.readyState === 2)
+                // updateAvater(fileReader.result)
+        }
+        fileReader.readAsDataURL(e.target.files[0])
+        setUser({...user,image:e.target.files[0]})
+    }
+
+    let imageUrl = '';
+    if(user?.avatar?.imageUrl)
+        imageUrl = user?.avatar?.imageUrl
+    if(user?.image)
+        imageUrl =URL.createObjectURL(user?.image)
 
     if (user?.registrationDate)
         date = formatDate(user?.registrationDate)
+
+    console.log(user,u)
 
     return (
         <div className="h-full w-full flex flex-col">
@@ -36,12 +62,19 @@ export default function ProfilePage() {
 
                     :
                     <>
-                        <div className="h-28 w-28 md:h-32 md:w-32 xl:w-40 xl:h-40 absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 cursor-pointer ">
+                        <div className="h-28 w-28 md:h-32 md:w-32 xl:w-40 xl:h-40 absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
                             {loading ?
                                 <Skeleton className="h-full w-full rounded-full" />
                                 :
-                                <Avatar className="h-full w-full shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="full"
-                                    isBordered color="secondary" src={user?.avatar?.imageUrl} showFallback />}
+                                <>
+                                    <Avatar className="h-full w-full shadow-[0_0_15px_0_#42C0F4] object-cover object-center cursor-pointer" size="lg" radius="full"
+                                        isBordered color="secondary" src={imageUrl} showFallback onClick={()=>imageRef.current.click()}/>
+                                        <span className="flex items-center justify-center absolute bottom-0 left-0 lg:left-4 bg-primary-500 rounded-full">
+                                            <IoAddCircle size={30} className="text-white  "/>
+                                        </span>
+                                    <input className="hidden" ref={imageRef} type='file' name='' id='avatar' onChange={imageHandler} accept='image/png,image/jpg,image/jpeg,image/webp' />
+                                </>
+                            }
                         </div>
 
                         {!loading && <div className="w-full mt-16 lg:mt-28">
