@@ -7,7 +7,7 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ThemeProviderProps } from "next-themes/dist/types";
 import { Provider, useDispatch } from "react-redux";
 import { store } from "../redux/store";
-import { QueryClient, QueryClientProvider, useMutation } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider, useMutation, useQuery } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { getUserInfo } from "../lib/apis/userApis";
@@ -55,29 +55,35 @@ export function Providers({ children, themeProps }: ProvidersProps) {
 function RequestProviders() {
     const dispatch = useDispatch();
 
-    const getUserMutation = useMutation({
-        mutationFn: () => getUserInfo(),
-        onMutate: () => dispatch(userLoggedIn({ loading: true,error:false })),
-        onSuccess: (e:any) => {
-            e.error = false;
-            dispatch(userLoggedIn(e));
-        },
-        onError: (e: any) => {
-            e.loading = false;
-            e.error = true;
-            dispatch(userLoggedIn(e));
-        },
-        onSettled: (e: any) => {
-            e.loading = false;
-            dispatch(userLoggedIn(e));
-        }
-    })
+    const getUserQuery = useQuery({ queryKey: ['getUserQuery'], queryFn: () => getUserInfo(), enabled: !!getRefreshTokenFromCookies() });
 
     React.useEffect(() => {
-        const haveRefrshToken = getRefreshTokenFromCookies()
-        if (haveRefrshToken)
-            getUserMutation.mutate();
-    }, [])
+        let data: any = {};
+        if (!getUserQuery.isLoading && !getUserQuery.isError && getUserQuery.data)
+            data = getUserQuery.data;
+
+        if (!getUserQuery.isLoading && getUserQuery.isSuccess) {
+            data.error = false;
+            dispatch(userLoggedIn(data));
+        }
+
+        if (!getUserQuery.isLoading && getUserQuery.isError) {
+            data.loading = false;
+            data.error = true;
+            dispatch(userLoggedIn(data));
+        }
+
+        if (getUserQuery.isLoading) {
+            data.loading = true;
+            data.error = false;
+            dispatch(userLoggedIn(data));
+        }
+
+        if (!getUserQuery.isLoading && getUserQuery.isFetched) {
+            data.loading = false;
+            dispatch(userLoggedIn(data));
+        }
+    }, [getUserQuery])
 
     return (<></>)
 }

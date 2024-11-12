@@ -57,7 +57,7 @@ const list = [
 
 export default function Navbar() {
     const path = usePathname();
-    console.log(path)
+   
     return (
         <div className="h-full hidden lg:block lg:w-1/4 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl overflow-hidden">
             <div className="w-full pb-8">

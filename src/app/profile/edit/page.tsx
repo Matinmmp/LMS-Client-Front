@@ -9,6 +9,9 @@ import * as Yup from 'yup'
 import { GoDotFill } from "react-icons/go";
 import { useEffect, useRef, useState } from "react";
 import { IoAddCircle } from "react-icons/io5";
+import { QueryClient, useMutation, useQueryClient } from "@tanstack/react-query";
+import { uploadAvatar } from "@/src/lib/apis/authApis";
+import { showToast } from "@/src/utils/toast";
 
 
 const schema = Yup.object().shape({
@@ -19,37 +22,48 @@ const schema = Yup.object().shape({
 })
 
 export default function ProfilePage() {
-    const { user:u, loading, error } = useSelector((state: any) => state.auth)
-    const [user,setUser] = useState<any>({...u});
-
-    useEffect(()=>{
-        if(!loading && !error)setUser(u)
-    },[loading,u,error])
-
+    const queryClient = useQueryClient();
+    const { user: u, loading, error } = useSelector((state: any) => state.auth)
+    const [user, setUser] = useState<any>({ ...u });
     const imageRef = useRef<any>();
 
-    let date = '';
+    useEffect(() => { if (!loading && !error) setUser(u) }, [loading, u, error])
+
+
+    const uploadAvatarMutataion = useMutation({
+        mutationFn: (avatar: string | ArrayBuffer | null) => uploadAvatar(avatar),
+        onSuccess: () => {
+            showToast({ type: 'success', message: 'عکس با موفقیت بارگزاری شد.' })
+            setTimeout(()=>{
+                queryClient.invalidateQueries({queryKey:['getUserQuery']});
+            },300)
+        },
+        onError: () => showToast({ type: 'error', message: 'عملیات ناموفق' })
+    })
 
     const imageHandler = async (e: any) => {
+        const file = e.target.files[0];
         const fileReader = new FileReader();
         fileReader.onload = () => {
-            // if (fileReader.readyState === 2)
-                // updateAvater(fileReader.result)
+            setUser({ ...user, image: e.target.files[0] })
+            if (fileReader.readyState === 2)
+                uploadAvatarMutataion.mutate(fileReader.result)
         }
+        if(file)
         fileReader.readAsDataURL(e.target.files[0])
-        setUser({...user,image:e.target.files[0]})
     }
 
     let imageUrl = '';
-    if(user?.avatar?.imageUrl)
-        imageUrl = user?.avatar?.imageUrl
-    if(user?.image)
-        imageUrl =URL.createObjectURL(user?.image)
+    if (user?.imageUrl)
+        imageUrl = user?.imageUrl
+    if (user?.image)
+        imageUrl = URL.createObjectURL(user?.image)
 
+    let date = '';
     if (user?.registrationDate)
         date = formatDate(user?.registrationDate)
 
-    console.log(user,u)
+
 
     return (
         <div className="h-full w-full flex flex-col">
@@ -68,10 +82,10 @@ export default function ProfilePage() {
                                 :
                                 <>
                                     <Avatar className="h-full w-full shadow-[0_0_15px_0_#42C0F4] object-cover object-center cursor-pointer" size="lg" radius="full"
-                                        isBordered color="secondary" src={imageUrl} showFallback onClick={()=>imageRef.current.click()}/>
-                                        <span className="flex items-center justify-center absolute bottom-0 left-0 lg:left-4 bg-primary-500 rounded-full">
-                                            <IoAddCircle size={30} className="text-white  "/>
-                                        </span>
+                                        isBordered color="secondary" src={imageUrl} showFallback onClick={() => imageRef.current.click()} />
+                                    <span className="flex items-center justify-center absolute bottom-0 left-0 lg:left-4 bg-primary-500 rounded-full">
+                                        <IoAddCircle size={30} className="text-white  " />
+                                    </span>
                                     <input className="hidden" ref={imageRef} type='file' name='' id='avatar' onChange={imageHandler} accept='image/png,image/jpg,image/jpeg,image/webp' />
                                 </>
                             }

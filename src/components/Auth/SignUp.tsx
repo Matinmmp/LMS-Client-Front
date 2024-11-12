@@ -35,7 +35,7 @@ const SignUp: FC<Props> = ({ setRoute, setOpen }) => {
     const [isVisible, setIsVisible] = useState(false);
     const toggleVisibility = () => setIsVisible(!isVisible);
     const {data} = useSession();
-    console.log(data)
+ 
 
     const registrationMutation = useMutation({
         mutationFn: (data: { name: string, email: string, password: string }) => registration(data),

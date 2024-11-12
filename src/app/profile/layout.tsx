@@ -1,5 +1,5 @@
 
-import Navbar from "@/src/components/ProfilePages/Nabar";
+import Navbar from "@/src/components/ProfilePages/Navbar";
 
 export default function ProfileLayout({ children, }: { children: React.ReactNode }) {
 
