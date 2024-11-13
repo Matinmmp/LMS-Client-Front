@@ -33,14 +33,3 @@ export const activation = async ({ activation_code, activation_token }: { activa
     return await data;
 }
 
-export const uploadAvatar = async (avatar: string | ArrayBuffer | null) => {
-
-    const data = await customFetch('update-user-avatar',
-        {
-            method: 'PUT',
-            credentials: 'include' as const,
-            body: JSON.stringify({ avatar }),
-            headers: {'Content-Type': 'application/json'},
-        });
-    return await data;
-}

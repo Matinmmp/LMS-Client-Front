@@ -5,7 +5,7 @@ import { NextUIProvider } from "@nextui-org/system";
 import { useRouter } from "next/navigation";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ThemeProviderProps } from "next-themes/dist/types";
-import { Provider, useDispatch } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import { store } from "../redux/store";
 import { QueryClient, QueryClientProvider, useMutation, useQuery } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
@@ -54,11 +54,13 @@ export function Providers({ children, themeProps }: ProvidersProps) {
 
 function RequestProviders() {
     const dispatch = useDispatch();
-
+    const { user, loading, error } = useSelector((state: any) => state.auth)
     const getUserQuery = useQuery({ queryKey: ['getUserQuery'], queryFn: () => getUserInfo(), enabled: !!getRefreshTokenFromCookies() });
 
     React.useEffect(() => {
         let data: any = {};
+        if (user)
+            data.user = user;
         if (!getUserQuery.isLoading && !getUserQuery.isError && getUserQuery.data)
             data = getUserQuery.data;
 

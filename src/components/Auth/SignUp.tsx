@@ -34,8 +34,8 @@ const SignUp: FC<Props> = ({ setRoute, setOpen }) => {
     const dispatch = useDispatch();
     const [isVisible, setIsVisible] = useState(false);
     const toggleVisibility = () => setIsVisible(!isVisible);
-    const {data} = useSession();
- 
+    const { data } = useSession();
+
 
     const registrationMutation = useMutation({
         mutationFn: (data: { name: string, email: string, password: string }) => registration(data),
@@ -96,8 +96,8 @@ const SignUp: FC<Props> = ({ setRoute, setOpen }) => {
                             classNames={{ label: 'font-semibold text-base dark:text-white top-7 -ms-2' }}
                             isInvalid={!!errors.password && !!touched.password}
                             errorMessage={errors.password} value={values.password} />
-                       
-                        <div className="w-full flex gap-2 items-center justify-center cursor-pointer" onClick={()=>signIn('google')}>
+
+                        <div className="w-full flex gap-2 items-center justify-center cursor-pointer" onClick={() => signIn('google')}>
                             <p className="text-sm font-semibold mt-1">ورود با گوگل</p>
                             <FcGoogle size={24} />
                         </div>
@@ -107,11 +107,11 @@ const SignUp: FC<Props> = ({ setRoute, setOpen }) => {
 
 
                     <div className="mt-5">
-                        <button className="w-full">
-                            <Button disabled={registrationMutation.isPending} color="primary" variant="shadow" elementType={'button'} radius="md" className="w-full max-w-full text-lg" size="lg">
-                                {registrationMutation.isPending ? <Spinner color="secondary" /> : 'ثبت نام'}
-                            </Button>
-                        </button>
+
+                        <Button type="submit" disabled={registrationMutation.isPending} color="primary" variant="shadow" elementType={'button'} radius="md" className="w-full max-w-full text-lg" size="lg">
+                            {registrationMutation.isPending ? <Spinner color="secondary" /> : 'ثبت نام'}
+                        </Button>
+
                     </div>
 
                 </form>

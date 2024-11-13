@@ -10,8 +10,10 @@ import { GoDotFill } from "react-icons/go";
 import { useEffect, useRef, useState } from "react";
 import { IoAddCircle } from "react-icons/io5";
 import { QueryClient, useMutation, useQueryClient } from "@tanstack/react-query";
-import { uploadAvatar } from "@/src/lib/apis/authApis";
+import { editUserInfo, uploadAvatar } from "@/src/lib/apis/userApis";
 import { showToast } from "@/src/utils/toast";
+import { Spinner } from "@nextui-org/spinner";
+import { useFormik } from "formik";
 
 
 const schema = Yup.object().shape({
@@ -24,19 +26,23 @@ const schema = Yup.object().shape({
 export default function ProfilePage() {
     const queryClient = useQueryClient();
     const { user: u, loading, error } = useSelector((state: any) => state.auth)
-    const [user, setUser] = useState<any>({ ...u });
+    const [user, setUser] = useState<any>();
     const imageRef = useRef<any>();
-
-    useEffect(() => { if (!loading && !error) setUser(u) }, [loading, u, error])
-
 
     const uploadAvatarMutataion = useMutation({
         mutationFn: (avatar: string | ArrayBuffer | null) => uploadAvatar(avatar),
         onSuccess: () => {
             showToast({ type: 'success', message: 'عکس با موفقیت بارگزاری شد.' })
-            setTimeout(()=>{
-                queryClient.invalidateQueries({queryKey:['getUserQuery']});
-            },300)
+            queryClient.invalidateQueries({ queryKey: ['getUserQuery'] });
+        },
+        onError: () => showToast({ type: 'error', message: 'عملیات ناموفق' })
+    })
+
+    const editUserInfoMutation = useMutation({
+        mutationFn: ({ name, phone }: { name: string, phone: string }) => editUserInfo({ name, phone }),
+        onSuccess: () => {
+            showToast({ type: 'success', message: 'اطلاعات با موفقیت ویرایش شد.' })
+            queryClient.invalidateQueries({ queryKey: ['getUserQuery'] });
         },
         onError: () => showToast({ type: 'error', message: 'عملیات ناموفق' })
     })
@@ -49,19 +55,30 @@ export default function ProfilePage() {
             if (fileReader.readyState === 2)
                 uploadAvatarMutataion.mutate(fileReader.result)
         }
-        if(file)
-        fileReader.readAsDataURL(e.target.files[0])
+        if (file)
+            fileReader.readAsDataURL(e.target.files[0])
     }
 
+    const formik = useFormik({
+        initialValues: { name: u?.name || "", phone: u?.phone || "" },
+        validationSchema: schema,
+        onSubmit: async ({ name, phone }) => {
+            editUserInfoMutation.mutate({ name, phone });
+        }
+    })
+    const { errors, touched, handleChange, handleSubmit, values, setValues } = formik;
+    useEffect(() => { if (!loading && !error) setValues({ name: u?.name, phone: u.phone }) }, [loading])
+
+
     let imageUrl = '';
-    if (user?.imageUrl)
-        imageUrl = user?.imageUrl
-    if (user?.image)
-        imageUrl = URL.createObjectURL(user?.image)
+    if (u?.imageUrl)
+        imageUrl = u?.imageUrl
+    if (u?.image)
+        imageUrl = URL.createObjectURL(u?.image)
 
     let date = '';
-    if (user?.registrationDate)
-        date = formatDate(user?.registrationDate)
+    if (u?.registrationDate)
+        date = formatDate(u?.registrationDate)
 
 
 
@@ -81,9 +98,13 @@ export default function ProfilePage() {
                                 <Skeleton className="h-full w-full rounded-full" />
                                 :
                                 <>
-                                    <Avatar className="h-full w-full shadow-[0_0_15px_0_#42C0F4] object-cover object-center cursor-pointer" size="lg" radius="full"
+                                    {uploadAvatarMutataion.isPending &&
+                                        <div className="h-full w-full rounded-full bg-white/50 absolute z-30 flex items-center justify-center">
+                                            <Spinner color="secondary" size="lg" />
+                                        </div>}
+                                    <Avatar className="h-full w-full shadow-[0_0_15px_0_#42C0F4] object-cover object-center cursor-pointer z-10" size="lg" radius="full"
                                         isBordered color="secondary" src={imageUrl} showFallback onClick={() => imageRef.current.click()} />
-                                    <span className="flex items-center justify-center absolute bottom-0 left-0 lg:left-4 bg-primary-500 rounded-full">
+                                    <span className="flex items-center justify-center absolute bottom-0 left-0 lg:left-4 bg-primary-500 rounded-full z-20">
                                         <IoAddCircle size={30} className="text-white  " />
                                     </span>
                                     <input className="hidden" ref={imageRef} type='file' name='' id='avatar' onChange={imageHandler} accept='image/png,image/jpg,image/jpeg,image/webp' />
@@ -100,14 +121,15 @@ export default function ProfilePage() {
 
                                 <div className="flex items-center gap-0.5">
                                     <GoDotFill size={10} className="text-warning-800" />
-                                    <p className="font-medium">فقط شماره و نام قابل تغییر هست.</p>
+                                    <p className="font-medium">ایمیل غیرقابل تغییر هست.</p>
                                 </div>
 
                             </div>
                         </div>}
 
-                        {
-                            loading ?
+
+                        <form className="h-full w-full flex flex-col" onSubmit={handleSubmit}>
+                            {loading ?
                                 <div className="w-full mt-16 lg:mt-28">
                                     <div className="items-center grid lg:grid-cols-2 gap-x-4 gap-y-8 lg:gap-6">
                                         <InputSkeleton />
@@ -121,23 +143,33 @@ export default function ProfilePage() {
                                 <div className="w-full mt-6">
                                     <div className="items-center grid lg:grid-cols-2 gap-x-4 gap-y-8 lg:gap-6">
 
-                                        <Input size="lg" color="secondary" variant="bordered" type="text" label="نام" labelPlacement={'outside'} value={user?.name} radius="sm"
+                                        <Input onChange={handleChange} name="name" size="lg" color="secondary" variant="bordered" type="text" label="نام" labelPlacement={'outside'} radius="sm"
+                                            classNames={{ label: 'text-base font-semibold text-secondary-400' }}
+                                            isInvalid={!!errors.name && !!touched.name}
+                                            errorMessage={typeof errors.name === 'string' ? errors.name : undefined}
+                                            value={values?.name} />
+
+                                        <Input onChange={handleChange} size="lg" color="secondary" variant="bordered" type="email" label="ایمیل" labelPlacement={'outside'} value={u?.email} radius="sm"
                                             classNames={{ label: 'text-base font-semibold text-secondary-400' }} />
 
-                                        <Input size="lg" color="secondary" variant="bordered" type="text" label="ایمیل" labelPlacement={'outside'} value={user?.email} radius="sm"
-                                            classNames={{ label: 'text-base font-semibold text-secondary-400' }} />
-
-                                        <Input size="lg" color={user?.phone ? 'secondary' : 'warning'} variant="bordered" type='tel' label="َشماره تلفن" labelPlacement={'outside'} placeholder={!user?.phone && !loading ? 'وارد نشده' : ''} value={user?.phone} radius="sm" dir="rtl"
-                                            classNames={{ label: 'text-base font-semibold ' }} />
+                                        <Input onChange={handleChange} name="phone" size="lg" color={user?.phone ? 'secondary' : 'warning'} variant="bordered" type='tel' label="َشماره تلفن" labelPlacement={'outside'} placeholder={!user?.phone && !loading ? 'وارد نشده' : ''} radius="sm" dir="rtl"
+                                            classNames={{ label: 'text-base font-semibold ' }}
+                                            isInvalid={!!errors.phone && !!touched.phone}
+                                            errorMessage={typeof errors.phone === 'string' ? errors.phone : undefined}
+                                            value={values?.phone}
+                                        />
 
                                     </div>
-                                </div>
-                        }
+                                </div>}
 
-                        {!loading && !error &&
-                            <div className="w-full mt-auto flex justify-end">
-                                <Button color="secondary" radius="sm" variant="shadow" className="w-full mt-8 lg:w-max text-base text-white font-medium">ویرایش</Button>
-                            </div>}
+
+                            {!loading && !error &&
+                                <div className="w-full mt-auto flex justify-end" onClick={() => handleSubmit()}>
+                                    <Button disabled={editUserInfoMutation.isPending} type="submit" color="secondary" radius="sm" variant="shadow" className="w-full mt-8 lg:w-max text-base text-white font-medium">
+                                        {editUserInfoMutation.isPending ? <Spinner className="text-white" /> : 'ویرایش'}
+                                    </Button>
+                                </div>}
+                        </form>
                     </>}
 
         </div>
