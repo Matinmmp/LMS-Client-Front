@@ -25,7 +25,7 @@ type Props = {
 
 const schema = Yup.object().shape({
     email: Yup.string().email('ایمیل نامعتبر').required('لطفا ایمیل را وارد کنید'),
-    password: Yup.string().required('لطفا پسور را وارد کنید').min(6, 'پسورد باید حداقل ۶ کاراکتر باشد')
+    password: Yup.string().required('لطفا رمز عبور را وارد کنید').min(6, 'رمز عبور باید حداقل ۶ کاراکتر باشد')
 })
 
 interface LoginInfo {
@@ -133,7 +133,7 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
                                     )}
                                 </button>
                             }
-                            label="پسور" size="lg" radius="sm" variant="bordered" color="primary"
+                            label="رمز عبور" size="lg" radius="sm" variant="bordered" color="primary"
                             classNames={{ label: 'font-semibold text-base dark:text-white top-7 -ms-2' }}
                             isInvalid={!!errors.password && !!touched.password}
                             errorMessage={errors.password} value={values.password} />
@@ -152,11 +152,11 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
                     </div>
 
                     <div className="mt-7">
-                
-                            <Button type="submit" disabled={loginMutation.isPending} color="primary" variant="shadow" elementType={'button'} radius="md" className="w-full max-w-full text-lg" size="lg">
-                                {loginMutation.isPending ? <Spinner color="primary" /> : 'ورود'}
-                            </Button>
-                       
+
+                        <Button type="submit" disabled={loginMutation.isPending} color="primary" variant="shadow" elementType={'button'} radius="md" className="w-full max-w-full text-lg" size="lg">
+                            {loginMutation.isPending ? <Spinner color="primary" /> : 'ورود'}
+                        </Button>
+
                     </div>
 
                 </form>

@@ -27,7 +27,7 @@ const schema = Yup.object().shape({
     //     .matches(/^09\d{9}$/, 'شماره موبایل باید با 09 شروع شود و ۱۱ رقم باشد')
     //     .required('لطفا شماره موبایل را وارد کنید'),
     email: Yup.string().email('ایمیل نامعتبر').required('لطفا ایمیل را وارد کنید'),
-    password: Yup.string().required('لطفا پسور را وارد کنید').min(6, 'پسورد باید حداقل ۶ کاراکتر باشد')
+    password: Yup.string().required('لطفا رمز عبور را وارد کنید').min(6, 'رمز عبور باید حداقل ۶ کاراکتر باشد')
 })
 
 const SignUp: FC<Props> = ({ setRoute, setOpen }) => {
@@ -92,7 +92,7 @@ const SignUp: FC<Props> = ({ setRoute, setOpen }) => {
                                     )}
                                 </button>
                             }
-                            label="پسور" size="lg" radius="sm" variant="bordered" color="primary"
+                            label="رمز عبور" size="lg" radius="sm" variant="bordered" color="primary"
                             classNames={{ label: 'font-semibold text-base dark:text-white top-7 -ms-2' }}
                             isInvalid={!!errors.password && !!touched.password}
                             errorMessage={errors.password} value={values.password} />

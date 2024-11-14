@@ -28,3 +28,27 @@ export const editUserInfo = async ({ name, phone }: { name: string, phone: strin
         });
     return await data;
 }
+
+export const updateUserPassword = async ({ oldPassword, newPassword }: { oldPassword: string, newPassword: string }) => {
+
+    const data = await customFetch('update-user-password',
+        {
+            method: 'PUT',
+            credentials: 'include' as const,
+            body: JSON.stringify({ oldPassword, newPassword }),
+            headers: { 'Content-Type': 'application/json' },
+        });
+    return await data;
+}
+
+export const setUserPassword = async (password: string) => {
+    const data = await customFetch('set-user-password',
+        {
+            method: 'PUT',
+            credentials: 'include' as const,
+            body: JSON.stringify({ password }),
+            headers: { 'Content-Type': 'application/json' },
+        });
+    return await data;
+}
+

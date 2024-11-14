@@ -6,6 +6,7 @@ import { Providers } from "./providers";
 import { Navbar } from "../components/Shared/navbar2";
 import Footer from "../components/Shared/Footer";
 import NextTopLoader from 'nextjs-toploader';
+import { Suspense } from "react";
 
 
 
@@ -48,10 +49,12 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
                                 <span className="bg-none dark:bg-[#1582ff25]" />
                                 <span className="bg-none dark:bg-[#1582ff25] max-w-80 max-h-80 2xl:max-w-[40%] lg:max-h-[50%]" />
 
-                        
+
                             </div>
                             <div className="relative z-20 ">
-                                <Navbar />
+                                {/* <Suspense> */}
+                                    <Navbar />
+                                {/* </Suspense> */}
                                 {children}
                                 <div className="mt-64">
                                     <Footer />

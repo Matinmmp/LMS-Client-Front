@@ -336,10 +336,10 @@ export const Navbar = () => {
                                                         </DropdownItem>
 
                                                         <DropdownItem color="secondary">
-                                                            <div className="flex items-center gap-2">
+                                                            <Link href={'/profile/password'} className="flex items-center gap-2">
                                                                 <IoKeyOutline size={22} strokeWidth={1} />
                                                                 <span className="text-base font-medium">تغییر رمز عبور</span>
-                                                            </div>
+                                                            </Link>
                                                         </DropdownItem>
 
                                                         <DropdownItem color="secondary">

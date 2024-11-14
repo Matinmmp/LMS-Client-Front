@@ -91,7 +91,7 @@ const TeachersList = ({ list }: Props) => {
 
         if (!academy) return;
         if (value === '1') {
-            router.push(path)
+            router.push(path!)
             return;
         }
 
@@ -107,7 +107,7 @@ const TeachersList = ({ list }: Props) => {
     }, [list]);
 
     useEffect(() => {
-        const academyName = searchParams.get('academy');
+        const academyName = searchParams!.get('academy');
         const academy = academyOptions.find(item => item.label === academyName)
 
         if (!academy || academy.key === "1") {

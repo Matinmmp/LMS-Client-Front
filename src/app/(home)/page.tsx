@@ -26,7 +26,6 @@ export default async function Home() {
 
             <div className="w-full max-w-7xl px-4 md:px-8 2xl:px-2 flex flex-col items-center justify-center ">
 
-
                 <div className="mt-36 ">
                     <div className="background z-[-1] !absolute">
                         <span className=" dark:bg-[#1582ff37] " />
@@ -34,7 +33,6 @@ export default async function Home() {
                     </div>
                     <Hero />
                 </div>
-
 
                 <div className="w-full mt-24">
 
@@ -65,7 +63,6 @@ export default async function Home() {
 
                 </div>
 
-
                 <div className="w-full mt-24 ">
                     <Suspense fallback={
                         <FavoritAcademiesLoading>
@@ -77,7 +74,6 @@ export default async function Home() {
                     </Suspense>
 
                 </div>
-
 
                 <div className="w-full mt-24 ">
                     <Suspense fallback={
