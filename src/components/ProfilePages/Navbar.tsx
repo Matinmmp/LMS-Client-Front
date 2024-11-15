@@ -10,6 +10,7 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { MdLogout } from "react-icons/md";
 import { usePathname } from "next/navigation";
 import { CiBookmarkCheck } from "react-icons/ci";
+import Image from "next/image";
 
 const list = [
     {
@@ -43,7 +44,7 @@ const list = [
         link: '/profile/myFreeCourse',
     },
     {
-        icons: <CiBookmarkCheck size={21} strokeWidth={0.7}/>,
+        icons: <CiBookmarkCheck size={21} strokeWidth={0.7} />,
         title: 'دوره‌های موردعلاقه من',
         link: '/profile/myFavoritCourses',
     },
@@ -57,12 +58,15 @@ const list = [
 
 export default function Navbar() {
     const path = usePathname();
-   
+
     return (
         <div className="h-full hidden lg:block lg:w-1/4 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl overflow-hidden">
             <div className="w-full pb-8">
-                <div className="w-full aspect-[16/10] bg-blue-500">
-
+                <div className="w-full flex items-center justify-center aspect-[16/10] ">
+                    <Link className="" href="/">
+                        <Image priority alt="logo" className="w-24 h-24" height={100} width={100}
+                            src={process.env.NEXT_PUBLIC_IMAGE_BASE_URL + "logo-main.png"} />
+                    </Link>
                 </div>
 
                 <ul className="mt-6 p-2 flex flex-col gap-6 ">

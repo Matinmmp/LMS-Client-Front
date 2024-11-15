@@ -9,8 +9,6 @@ type Props = {
 export async function generateStaticParams() {
  
     const academyNames:any = await getAllAcademyNames();
-    
-    console.log('academyNames1',academyNames)
 
  
     return academyNames?.academiesName?.map((academy: { engName: string }) => ({

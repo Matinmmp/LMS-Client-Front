@@ -337,7 +337,6 @@ export const CoursePagination = ({ totalPage, currentPage }: { totalPage: number
         queryParams.append('page', page.toString())
         router.push(`${path}?${queryParams.toString()}`);
     }
-    console.log(totalPage, currentPage)
     return (
         <>
             {

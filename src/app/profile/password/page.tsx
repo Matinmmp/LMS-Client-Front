@@ -61,7 +61,6 @@ export default function ProfilePage() {
         },
         onError: (e: any) => {
             showToast({ type: 'error', message: e?.message })
-            console.log(e)
         }
     })
 
@@ -73,7 +72,6 @@ export default function ProfilePage() {
         },
         onError: (e: any) => {
             showToast({ type: 'error', message: e?.message })
-            console.log(e)
         }
     })
 
@@ -132,8 +130,8 @@ export default function ProfilePage() {
                                 </div>
                                 :
                                 <>
-                                    {user && user?.password ?
-                                        <form className="h-full w-full flex flex-col" onSubmit={handleSubmit}>
+                                    {user ? user?.password ?
+                                        <form className="h-full w-full mt-6 flex flex-col" onSubmit={handleSubmit}>
 
                                             <div className="w-full mt-6">
                                                 <div className="w-full">
@@ -197,7 +195,7 @@ export default function ProfilePage() {
                                                 </div>}
                                         </form>
                                         :
-                                        <form className="h-full w-full flex flex-col" onSubmit={handleSubmit2}>
+                                        <form className="h-full w-full mt-6 flex flex-col" onSubmit={handleSubmit2}>
 
                                             <div className="w-full mt-6">
                                                 <div className="w-full">
@@ -244,7 +242,7 @@ export default function ProfilePage() {
                                                         {setUserPasswordMutation.isPending ? <Spinner className="text-white" /> : 'تنظیم رمز عبور'}
                                                     </Button>
                                                 </div>}
-                                        </form>
+                                        </form> : ''
                                     }
                                 </>
                         }

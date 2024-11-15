@@ -51,7 +51,6 @@ const formatDate = (date: string) => {
 
         return persianDate;
     } catch (error: any) {
-        console.log(error);
         return '';
     }
 }

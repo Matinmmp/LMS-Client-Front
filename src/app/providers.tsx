@@ -54,8 +54,13 @@ export function Providers({ children, themeProps }: ProvidersProps) {
 
 function RequestProviders() {
     const dispatch = useDispatch();
-    const { user, loading, error } = useSelector((state: any) => state.auth)
+    const { user  } = useSelector((state: any) => state.auth)
     const getUserQuery = useQuery({ queryKey: ['getUserQuery'], queryFn: () => getUserInfo(), enabled: !!getRefreshTokenFromCookies() });
+
+    React.useEffect(()=>{
+        dispatch(userLoggedIn({loading:true}));
+
+    },[])
 
     React.useEffect(() => {
         let data: any = {};

@@ -82,8 +82,6 @@ export const Navbar = () => {
     const { user, loading } = useSelector((state: any) => state.auth)
     const a = useSelector((state: any) => state.auth)
 
-    console.log('navbar',user)
-
     useEffect(() => {
         const handleScroll = () => {
             const offset = window.scrollY;

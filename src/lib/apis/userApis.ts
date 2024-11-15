@@ -52,3 +52,12 @@ export const setUserPassword = async (password: string) => {
     return await data;
 }
 
+export const getFactor = async () => {
+    const data = await customFetch('get-invoice',
+        {
+            method: 'GET',
+            credentials: 'include' as const,
+            headers: { 'Content-Type': 'application/json' },
+        });
+    return await data;
+}

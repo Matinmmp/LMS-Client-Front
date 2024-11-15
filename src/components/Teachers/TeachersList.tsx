@@ -120,7 +120,7 @@ const TeachersList = ({ list }: Props) => {
 
 
     }, [searchParams])
-    // console.log(filteredTeachers)
+
     return (
         <section className="w-full pb-10 flex flex-col ">
             <div>
