@@ -7,6 +7,7 @@ import { getFactor } from "@/src/lib/apis/userApis";
 import { motion } from 'framer-motion';
 import { useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
+import { formatDate, formatDate2, toPersianNumber } from "@/src/utils/functions";
 
 export default function ProfilePage() {
     const { user, loading, error } = useSelector((state: any) => state.auth)
@@ -31,12 +32,14 @@ export default function ProfilePage() {
                             !getFactorQuery.isLoading && getFactorQuery?.data && Array.isArray(getFactorQuery?.data?.invoices) &&
 
 
-                            <div className="w-full mt-16 lg:mt-28">
+                            <div className="w-full mt-16 lg:mt-20">
 
-                                <div className="w-full shadow-small rounded-lg">
-                                <div className="py-2 px-2 border-b-1 border-b-primary-50"><p>dd</p> </div>
+                                <div className="w-full shadow-medium rounded-lg">
+                                    <div className="p-3 border-b-1 border-b-primary-50">
+                                        <p className="font-medium text-base">فاکتور : {toPersianNumber(getFactorQuery?.data?.invoices.length)}</p>
+                                    </div>
 
-                                    <AccordionList accordions={[...getFactorQuery?.data?.invoices,...getFactorQuery?.data?.invoices,...getFactorQuery?.data?.invoices,...getFactorQuery?.data?.invoices]} />
+                                    <AccordionList accordions={[...getFactorQuery?.data?.invoices, ...getFactorQuery?.data?.invoices, ...getFactorQuery?.data?.invoices, ...getFactorQuery?.data?.invoices]} />
                                 </div>
                             </div>
                         }
@@ -47,19 +50,17 @@ export default function ProfilePage() {
 }
 
 
-const Accordion = () => {
+const Accordion = ({ item }: { item: any }) => {
     const [isOpen, setIsOpen] = useState(false);
- 
+
     return (
-        <div className="w-full px-4">
+        <div className="w-full">
             <div className='w-full rounded-[0.625rem] '>
                 <label onClick={() => setIsOpen(!isOpen)}
-                    className={`transition-all py-4 flex min-h-[3.5625rem] w-full h-full items-center gap-[0.6rem]  rounded-[0.625rem] cursor-pointer`}>
+                    className={`w-full h-full min-h-[3.5625rem] p-4 flex items-center justify-between rounded-[0.625rem] transition-all cursor-pointer`}>
 
+                    <h5 className='text-base lg:text-lg font-semibold text-right'>{formatDate2(item.createdAt)}</h5>
                     <IoIosArrowBack size={20} className={`${isOpen ? '-rotate-90' : 'rotate-0'} transition-transform`} />
-
-                    <h5 className='text-lg md:text-xl font-semibold text-right'>lhiluil</h5>
-
                 </label>
 
                 <motion.div
@@ -69,7 +70,27 @@ const Accordion = () => {
                     exit={{ height: 0 }}
                     style={{ overflow: 'hidden' }} >
 
-                    <p className='p-2 pb-7 txt-lg font-medium text-start leading-7 tracking-[0.03rem]'>asdfadf</p>
+                    <div className='pt-4 pb-7 px-4  bg-primary-50'>
+                        <h6 className="font-semibold text-lg hover:text-secondary-400 transition-all cursor-pointer">{item.courseName}</h6>
+                        <div className="mt-4 flex flex-col gap-1">
+                            <div className="flex items-center gap-2">
+                                <span>مبلغ اصلی : </span>
+                                <span>{toPersianNumber(item.originalPrice)} تومان</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <span>تخفیف : </span>
+                                <span>{toPersianNumber(item.discountAmount)} تومان</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <span>قابل پرداخت : </span>
+                                <span>{toPersianNumber(item.finalPrice)} تومان</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <span>آیدی تراکنش: </span>
+                                <span>{item._id}</span>
+                            </div>
+                        </div>
+                    </div>
                 </motion.div>
 
             </div>
@@ -82,7 +103,7 @@ const AccordionList = ({ accordions }: { accordions: any[] }) => {
     return (
 
         <div className='flex flex-col gap-2 mt-6'>
-            {accordions.map((item, index) => <Accordion key={index} />)}
+            {accordions.map((item, index) => <Accordion key={index} item={item} />)}
         </div>
 
     )

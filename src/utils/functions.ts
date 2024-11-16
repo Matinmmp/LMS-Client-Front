@@ -37,7 +37,7 @@ const fixNumbers = (str: string) => {
     return str;
 };
 
-
+//۱۴۰۳/۰۸/۲۵
 const formatDate = (date: string) => {
     try {
         // تبدیل رشته تاریخ به یک شیء تاریخ معتبر
@@ -55,10 +55,35 @@ const formatDate = (date: string) => {
     }
 }
 
+
+const formatDate2 = (date: string) => {
+    try {
+        // تبدیل رشته تاریخ به یک شیء تاریخ معتبر
+        const validDate = new Date(date);
+
+        // استخراج نام روز هفته
+        const dayOfWeek = new Intl.DateTimeFormat('fa-IR', {
+            weekday: 'long',
+        }).format(validDate);
+
+        // استخراج تاریخ به صورت شمسی
+        const persianDate = new Intl.DateTimeFormat('fa-IR-u-ca-persian', {
+            year: 'numeric',
+            month: 'long',
+            day: '2-digit',
+        }).format(validDate);
+
+        return `${dayOfWeek} ${persianDate}`;
+    } catch (error: any) {
+        return '';
+    }
+};
+
 export {
     toPersianNumber,
     secondsToTimeString,
     numberSeparator,
     fixNumbers,
-    formatDate
+    formatDate,
+    formatDate2
 }
