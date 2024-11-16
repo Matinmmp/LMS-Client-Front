@@ -166,7 +166,7 @@ export default function ProfilePage() {
                             {!loading && !error &&
                                 <div className="w-full mt-auto flex justify-end" onClick={() => handleSubmit()}>
                                     <Button disabled={editUserInfoMutation.isPending} type="submit" color="secondary" radius="sm" variant="shadow" className="w-full mt-8 lg:w-max text-base text-white font-medium">
-                                        {editUserInfoMutation.isPending ? <Spinner className="text-white" /> : 'ویرایش'}
+                                        {editUserInfoMutation.isPending ? <Spinner color="secondary" /> : 'ویرایش'}
                                     </Button>
                                 </div>}
                         </form>

@@ -61,3 +61,35 @@ export const getFactor = async () => {
         });
     return await data;
 }
+
+export const getFacgetUserPaidCourses= async () => {
+    const data = await customFetch('get-user-paid-courses',
+        {
+            method: 'GET',
+            credentials: 'include' as const,
+            headers: { 'Content-Type': 'application/json' },
+        });
+    return await data;
+}
+
+export const getUserFreeCourses = async () => {
+    const data = await customFetch('get-user-free-courses',
+        {
+            method: 'GET',
+            credentials: 'include' as const,
+            headers: { 'Content-Type': 'application/json' },
+        });
+    return await data;
+}
+
+export const logoutUser = async () => {
+    const data = await customFetch('logout',
+        {
+            method: 'GET',
+            credentials: 'include' as const,
+            headers: { 'Content-Type': 'application/json' },
+        });
+    return await data;
+}
+
+ 

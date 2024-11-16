@@ -8,9 +8,14 @@ import { MdAttachMoney } from "react-icons/md";
 import { MdMoneyOff } from "react-icons/md";
 import { MdFavoriteBorder } from "react-icons/md";
 import { MdLogout } from "react-icons/md";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { CiBookmarkCheck } from "react-icons/ci";
 import Image from "next/image";
+import { useMutation } from "@tanstack/react-query";
+import { logoutUser } from "@/src/lib/apis/userApis";
+import { userLoggedOut } from "@/src/redux/auth/authSlice";
+import { showToast } from "@/src/utils/toast";
+import { useDispatch } from "react-redux";
 
 const list = [
     {
@@ -41,27 +46,31 @@ const list = [
     {
         icons: <MdMoneyOff size={21} />,
         title: 'دوره‌های رایگان من',
-        link: '/profile/myFreeCourse',
+        link: '/profile/myFreeCourses',
     },
     {
         icons: <CiBookmarkCheck size={21} strokeWidth={0.7} />,
         title: 'دوره‌های موردعلاقه من',
         link: '/profile/myFavoritCourses',
     },
-    {
-        icons: <MdLogout size={21} />,
-        title: 'خروج',
-        link: '/profile/exit',
-    },
-
 ]
 
 export default function Navbar() {
     const path = usePathname();
+    const router = useRouter();
+  
+    
+
+    const logoutMutation = useMutation({
+        mutationFn: logoutUser,
+        onSuccess: () =>  location?.reload(),
+        onError: () => showToast({ type: 'error', message: 'خطایی پیش آمده است.' })
+    })
+
 
     return (
         <div className="h-full hidden lg:block lg:w-1/4 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl overflow-hidden">
-            <div className="w-full pb-8">
+            <div className="w-full pb-4">
                 <div className="w-full flex items-center justify-center aspect-[16/10] ">
                     <Link className="" href="/">
                         <Image priority alt="logo" className="w-24 h-24" height={100} width={100}
@@ -78,6 +87,11 @@ export default function Navbar() {
                             <span className="text-base font-medium">{item.title}</span>
                         </Link>
                     )}
+
+                    <div onClick={() => logoutMutation.mutate()} className={`mt-4 flex items-center gap-2 hover:text-danger-500 dark:hover:text-danger-500 transition-all cursor-pointer`}>
+                        <MdLogout size={21} />
+                        <span className="text-base font-medium">خروج</span>
+                    </div>
 
                 </ul>
             </div>

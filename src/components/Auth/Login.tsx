@@ -154,7 +154,7 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
                     <div className="mt-7">
 
                         <Button type="submit" disabled={loginMutation.isPending} color="primary" variant="shadow" elementType={'button'} radius="md" className="w-full max-w-full text-lg" size="lg">
-                            {loginMutation.isPending ? <Spinner color="primary" /> : 'ورود'}
+                            {loginMutation.isPending ? <Spinner color="secondary" /> : 'ورود'}
                         </Button>
 
                     </div>

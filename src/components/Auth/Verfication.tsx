@@ -114,7 +114,7 @@ const Verification: FC<Props> = ({ setRoute,setOpen }) => {
                     <Button onClick={verificationHandler}
                         disabled={activationMutation.isPending}
                         color="primary" variant="shadow" elementType={'button'} radius="md" className="w-full max-w-full text-lg" size="lg">
-                        {activationMutation.isPending ? <Spinner color="primary" /> : 'تایید رمز'}
+                        {activationMutation.isPending ? <Spinner color="secondary"/> : 'تایید رمز'}
                         
                     </Button>
 

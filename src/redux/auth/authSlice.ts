@@ -23,9 +23,9 @@ const authSlice = createSlice({
             state.error = action.payload.error
         },
 
-        userLoggedOut: (state) => {
+        userLoggedOut: (state,action) => {
             state.token = "",
-            state.user = ""
+            state.user = action.payload.user
         },
     }
 })

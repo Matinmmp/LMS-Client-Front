@@ -190,7 +190,7 @@ export default function ProfilePage() {
                                             {!loading && !error &&
                                                 <div className="w-full mt-auto flex justify-end" onClick={() => handleSubmit()}>
                                                     <Button disabled={updateUserPasswordMutation.isPending} type="submit" color="secondary" radius="sm" variant="shadow" className="w-full mt-8 lg:w-max text-base text-white font-medium">
-                                                        {updateUserPasswordMutation.isPending ? <Spinner className="text-white" /> : 'تغییر رمز عبور'}
+                                                        {updateUserPasswordMutation.isPending ? <Spinner color="secondary" /> : 'تغییر رمز عبور'}
                                                     </Button>
                                                 </div>}
                                         </form>
@@ -239,7 +239,7 @@ export default function ProfilePage() {
                                             {!loading && !error &&
                                                 <div className="w-full mt-auto flex justify-end">
                                                     <Button disabled={setUserPasswordMutation.isPending} type="submit" color="secondary" radius="sm" variant="shadow" className="w-full mt-8 lg:w-max text-base text-white font-medium">
-                                                        {setUserPasswordMutation.isPending ? <Spinner className="text-white" /> : 'تنظیم رمز عبور'}
+                                                        {setUserPasswordMutation.isPending ? <Spinner color="secondary" /> : 'تنظیم رمز عبور'}
                                                     </Button>
                                                 </div>}
                                         </form> : ''

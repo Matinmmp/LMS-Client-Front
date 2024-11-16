@@ -57,10 +57,7 @@ function RequestProviders() {
     const { user  } = useSelector((state: any) => state.auth)
     const getUserQuery = useQuery({ queryKey: ['getUserQuery'], queryFn: () => getUserInfo(), enabled: !!getRefreshTokenFromCookies() });
 
-    React.useEffect(()=>{
-        dispatch(userLoggedIn({loading:true}));
-
-    },[])
+   
 
     React.useEffect(() => {
         let data: any = {};

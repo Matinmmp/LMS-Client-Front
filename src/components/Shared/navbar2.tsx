@@ -28,7 +28,7 @@ import { FaTelegramPlane } from "react-icons/fa";
 import { MdContactPhone } from "react-icons/md";
 import { GrInstagram } from "react-icons/gr";
 import { GoDotFill } from "react-icons/go";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FcAbout } from "react-icons/fc";
 import { CgClose } from "react-icons/cg";
 import { GrMenu } from "react-icons/gr";
@@ -43,6 +43,9 @@ import { IoKeyOutline, IoReceiptOutline } from "react-icons/io5";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { showToast } from "@/src/utils/toast";
+import { logoutUser } from "@/src/lib/apis/userApis";
+import { userLoggedIn, userLoggedOut } from "@/src/redux/auth/authSlice";
+import { useRouter } from "next/navigation";
 
 
 const links = [
@@ -79,22 +82,30 @@ const teacherObject = navObject.teacherObject
 
 
 export const Navbar = () => {
+    const dispatch = useDispatch();
     const searchParams = useSearchParams();
     const [scrolled, setScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [search, setSearch] = useState('');
     const [timeout, setTimeout2] = useState<ReturnType<typeof setTimeout> | null>(null);
     const [list, setList] = useState([]);
-
-
+    const router = useRouter();
 
     const [open, setOpen] = useState(!!searchParams?.get('openLogin') || false);
     const [route, setRoute] = useState('Login')
     const { user, loading } = useSelector((state: any) => state.auth)
 
-
     const [open2, setOpen2] = useState(false);
     const searchRef = useRef<any>();
+
+
+    const logoutMutation = useMutation({
+        mutationFn: logoutUser,
+        onSuccess: () =>  location?.reload(),
+        onError: () => showToast({ type: 'error', message: 'خطایی پیش آمده است.' })
+    })
+
+ 
 
     useEffect(() => {
         const handleOutsideClick = (event: any) => {
@@ -151,6 +162,7 @@ export const Navbar = () => {
     };
 
 
+    // console.log(user, loading)
 
     return (
         <div className="w-full flex flex-col justify-center items-center sticky md:top-0 z-50 ">
@@ -343,25 +355,26 @@ export const Navbar = () => {
                                                         </DropdownItem>
 
                                                         <DropdownItem color="secondary">
-                                                            <div className="flex items-center gap-2">
+                                                            <Link href={'/profile/reciepts'} className="flex items-center gap-2">
                                                                 <IoReceiptOutline size={21} strokeWidth={0.7} />
                                                                 <span className="text-base font-medium">فاکتور‌ها</span>
-                                                            </div>
+                                                            </Link>
                                                         </DropdownItem>
 
                                                         <DropdownItem color="secondary">
-                                                            <div className="flex items-center gap-2">
+                                                            <Link href={'/profile/myFreeCourses'} className="flex items-center gap-2">
                                                                 <MdAttachMoney size={21} />
                                                                 <span className="text-base font-medium">دوره‌های من</span>
-                                                            </div>
+                                                            </Link>
                                                         </DropdownItem>
 
-                                                        <DropdownItem color="danger">
+                                                        <DropdownItem className="mt-4" color="danger" onClick={() => logoutMutation.mutate()}>
                                                             <div className="flex items-center gap-2">
                                                                 <MdLogout size={21} />
                                                                 <span className="text-base font-medium">خروج</span>
                                                             </div>
                                                         </DropdownItem>
+
                                                     </DropdownMenu>
                                                 </Dropdown>
 
@@ -386,7 +399,9 @@ export const Navbar = () => {
                                 {
                                     !loading ?
                                         user ?
-                                            <NextLink href={'/profile'}><Avatar className="cursor-pointer" isBordered color="secondary" src={user.imageUrl} /></NextLink>
+                                            <NextLink href={'/profile'}>
+                                                <Avatar className="cursor-pointer" isBordered color="secondary" src={user.imageUrl} />
+                                            </NextLink>
                                             :
                                             <Button radius="sm" variant="shadow" color="secondary" className="!min-w-8 text-white"
                                                 endContent={<FaRightToBracket className="text-base font-medium" size={20} />} onClick={() => setOpen(true)}>
