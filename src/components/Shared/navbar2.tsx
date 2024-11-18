@@ -41,7 +41,7 @@ import { User } from "@nextui-org/user";
 import { LiaUser } from "react-icons/lia";
 import { IoKeyOutline, IoReceiptOutline } from "react-icons/io5";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { showToast } from "@/src/utils/toast";
 import { logoutUser } from "@/src/lib/apis/userApis";
 import { userLoggedIn, userLoggedOut } from "@/src/redux/auth/authSlice";
@@ -83,6 +83,7 @@ const teacherObject = navObject.teacherObject
 
 export const Navbar = () => {
     const dispatch = useDispatch();
+    const path = usePathname();
     const searchParams = useSearchParams();
     const [scrolled, setScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -101,17 +102,18 @@ export const Navbar = () => {
 
     const logoutMutation = useMutation({
         mutationFn: logoutUser,
-        onSuccess: () =>  location?.reload(),
+        onSuccess: () => location?.reload(),
         onError: () => showToast({ type: 'error', message: 'خطایی پیش آمده است.' })
     })
 
- 
+
 
     useEffect(() => {
         const handleOutsideClick = (event: any) => {
             if (searchRef.current && !searchRef.current.contains(event.target)) {
                 setSearch('')
-                setOpen2(false);
+                if (search) setTimeout(() => setOpen2(false), 1000)
+                else setOpen2(false)
             }
         };
 
@@ -162,7 +164,20 @@ export const Navbar = () => {
     };
 
 
-    // console.log(user, loading)
+    useEffect(() => {
+        setSearch('')
+        setTimeout(() => setOpen2(false), 1000)
+    }, [path])
+
+    const handleSearchClick = () => {
+        if (!search) return;
+        if (path?.includes('courses'))
+            setTimeout(() => {
+                setSearch('')
+                setTimeout(() => setOpen2(false), 1000)
+            }, 500)
+        router.push(`/courses?searchText=${search}`);
+    }
 
     return (
         <div className="w-full flex flex-col justify-center items-center sticky md:top-0 z-50 ">
@@ -429,9 +444,9 @@ export const Navbar = () => {
                                 <input placeholder="جستوجو بین دوره‌ها" value={search} onChange={handleSearch}
                                     className={`${open2 ? "w-11/12" : "w-0"} h-8 mt-[2px] absolute right-3 bg-transparent placeholder:text-sm md:text-lg placeholder:pb-1 ps-1`} />
 
-                                <div className={`min-w-9 min-h-9 flex items-center justify-center
-                                ${open2 ? " left-[2px] dark:border-primary-400" : "dark:border-white"} border-[3px] rounded-full
-                                absolute left-[0.1rem] bottom-[0.08rem] border-primary-400 `}>
+                                <div onClick={handleSearchClick}
+                                    className={`min-w-9 min-h-9 flex items-center justify-center ${open2 ? " left-[2px] dark:border-primary-400" : "dark:border-white"}
+                                    absolute left-[0.1rem] bottom-[0.08rem] border-primary-400 border-[3px] rounded-full`}>
                                     <FaRegEye className={open2 ? "text-primary-400" : "text-primary-400 dark:text-white"} size={16} />
                                 </div>
                             </div>
@@ -448,7 +463,7 @@ export const Navbar = () => {
                                         {
                                             list?.map((item: any, index: number) =>
 
-                                                <NextLink href={'/'} key={index} className="w-full h-full flex gap-4">
+                                                <NextLink href={`/courses/${item.name}`} key={index} className="w-full h-full flex gap-4">
                                                     <div>
                                                         <div className="w-16 h-12 p-[1px]   rounded-sm border-1 border-primary-400 overflow-hidden shadow-medium">
                                                             <Image className="w-full h-full rounded-sm" width={500} height={500} src={item.thumbnail.imageUrl} alt={item.name} />

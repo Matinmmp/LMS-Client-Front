@@ -38,12 +38,12 @@ export default async function Home() {
 
                     <Suspense fallback={
                         <LastCoursesLoading>
-                            <h3 className={clsx(title({ color: 'blue' }), "pt-1 text-lg md:text-xl lg:text-2xl xl:text-3xl")}>آخرین دوره‌ها</h3>
+                            <h3 className={clsx(title({ color: 'blue' }), "pt-1 text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>آخرین دوره‌ها</h3>
                         </LastCoursesLoading>}
                     >
                        
                         <LastCourses>
-                            <h3 className={clsx(title({ color: 'blue' }), "pt-1 text-lg md:text-xl lg:text-2xl xl:text-3xl")}>آخرین دوره‌ها</h3>
+                            <h3 className={clsx(title({ color: 'blue' }), "pt-1 text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>آخرین دوره‌ها</h3>
                         </LastCourses>
                     </Suspense>
 
@@ -53,11 +53,11 @@ export default async function Home() {
 
                     <Suspense fallback={
                         <FavoriteCoursesLoading>
-                            <h3 className={clsx(title({ color: 'blue' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین دوره‌ها</h3>
+                            <h3 className={clsx(title({ color: 'blue' }), "text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>محبوب‌ترین دوره‌ها</h3>
                         </FavoriteCoursesLoading>}
                     >
                         <FavoriteCourses>
-                            <h3 className={clsx(title({ color: 'blue' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین دوره‌ها</h3>
+                            <h3 className={clsx(title({ color: 'blue' }), "text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>محبوب‌ترین دوره‌ها</h3>
                         </FavoriteCourses>
                     </Suspense>
 
@@ -66,10 +66,10 @@ export default async function Home() {
                 <div className="w-full mt-24 ">
                     <Suspense fallback={
                         <FavoritAcademiesLoading>
-                            <h3 className={clsx(title({ color: 'green' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین آکادمی‌ها</h3>
+                            <h3 className={clsx(title({ color: 'green' }), "text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>محبوب‌ترین آکادمی‌ها</h3>
                         </FavoritAcademiesLoading>}>
                         <FavoritAcademies >
-                            <h3 className={clsx(title({ color: 'green' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین آکادمی‌ها</h3>
+                            <h3 className={clsx(title({ color: 'green' }), "text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>محبوب‌ترین آکادمی‌ها</h3>
                         </FavoritAcademies>
                     </Suspense>
 
@@ -78,10 +78,10 @@ export default async function Home() {
                 <div className="w-full mt-24 ">
                     <Suspense fallback={
                         <FavoritTeachersLoading>
-                            <h3 className={clsx(title({ color: 'secondary' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین مدرس‌ها</h3>
+                            <h3 className={clsx(title({ color: 'secondary' }), "text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>محبوب‌ترین مدرس‌ها</h3>
                         </FavoritTeachersLoading>}>
                         <FavoritTeachers >
-                            <h3 className={clsx(title({ color: 'secondary' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین مدرس‌ها</h3>
+                            <h3 className={clsx(title({ color: 'secondary' }), "text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>محبوب‌ترین مدرس‌ها</h3>
                         </FavoritTeachers>
                     </Suspense>
 
