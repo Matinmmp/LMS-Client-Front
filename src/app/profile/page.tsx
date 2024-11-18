@@ -14,11 +14,11 @@ export default function ProfilePage() {
         date = formatDate(user?.registrationDate)
 
     return (
-        <div className="w-full">
+        <div className="h-full w-full flex-1">
 
-            <div className="h-28 w-28 md:h-32 md:w-32 xl:w-40 xl:h-40 absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
+            <div className="h-28 w-28 md:h-32 md:w-32 xl:w-40 xl:h-40  absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
                 <Avatar className="h-full w-full shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="full"
-                    isBordered color="secondary" src={user?.avatar?.imageUrl} showFallback />
+                    isBordered color="secondary" src={user?.imageUrl} showFallback />
             </div>
 
             <div className="mt-16 lg:mt-28">
@@ -29,18 +29,13 @@ export default function ProfilePage() {
                     <Input size="lg" color="secondary" variant="bordered" type="text" label="ایمیل" labelPlacement={'outside'} value={user?.email} radius="sm"
                         disabled classNames={{ label: 'text-base font-semibold text-secondary-400' }} />
 
-                    <Input size="lg" color={user?.phone ? 'secondary' :'warning'} variant="bordered" type='tel' label="َشماره تلفن" labelPlacement={'outside'} placeholder={!user?.phone && !loading ? 'وارد نشده' : ''} value={user?.phone} radius="sm" dir="rtl"
-                        disabled classNames={{ label: 'text-base font-semibold ' }} />
+                    <Input size="lg" color={user?.phone ? 'secondary' : 'warning'} variant="bordered" type='tel' label="َشماره تلفن" labelPlacement={'outside'} placeholder={!user?.phone && !loading ? 'وارد نشده' : ''} value={user?.phone} radius="sm" dir="rtl"
+                        disabled classNames={{ label: `text-base font-semibold ${user?.phone ? "text-secondary-400":'text-warning-400'} ` }} />
 
                     <Input size="lg" color="secondary" variant="bordered" type='text' label="تاریخ عضویت" labelPlacement={'outside'} value={date} radius="sm" dir="ltr"
                         disabled classNames={{ label: 'text-base font-semibold text-secondary-400' }} />
                 </div>
             </div>
-
-            <div className="mt-20">
-
-            </div>
-
 
         </div>
     );

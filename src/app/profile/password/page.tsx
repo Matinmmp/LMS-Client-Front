@@ -96,7 +96,7 @@ export default function ProfilePage() {
 
 
     return (
-        <div className="h-full w-full flex flex-col">
+        <div className="h-full w-full flex flex-col flex-1">
             {
                 error ?
                     <div className="h-full w-full flex items-center justify-center">
@@ -131,7 +131,7 @@ export default function ProfilePage() {
                                 :
                                 <>
                                     {user ? user?.password ?
-                                        <form className="h-full w-full mt-6 flex flex-col" onSubmit={handleSubmit}>
+                                        <form className="h-full w-full mt-6 flex flex-col flex-1" onSubmit={handleSubmit}>
 
                                             <div className="w-full mt-6">
                                                 <div className="w-full">
@@ -195,7 +195,7 @@ export default function ProfilePage() {
                                                 </div>}
                                         </form>
                                         :
-                                        <form className="h-full w-full mt-6 flex flex-col" onSubmit={handleSubmit2}>
+                                        <form className="h-full w-full mt-6 flex flex-col flex-1" onSubmit={handleSubmit2}>
 
                                             <div className="w-full mt-6">
                                                 <div className="w-full">

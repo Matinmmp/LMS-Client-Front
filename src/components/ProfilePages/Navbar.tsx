@@ -57,7 +57,7 @@ const list = [
 
 export default function Navbar() {
     const path = usePathname();
-    const router = useRouter();
+   
   
     
 
@@ -67,11 +67,12 @@ export default function Navbar() {
         onError: () => showToast({ type: 'error', message: 'خطایی پیش آمده است.' })
     })
 
+    console.log(path === '/profile' || path === '/profile/edit' ? 'mb-20':'mb-0')
 
     return (
-        <div className="h-full hidden lg:block lg:w-1/4 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl overflow-hidden">
+        <div className={`h-full lg:block w-full lg:w-1/4 ${path === '/profile' || path === '/profile/edit' ? 'mb-20':'mb-0'}  bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl overflow-hidden`}>
             <div className="w-full pb-4">
-                <div className="w-full flex items-center justify-center aspect-[16/10] ">
+                <div className="hidden lg:flex w-full items-center justify-center aspect-[16/10] ">
                     <Link className="" href="/">
                         <Image priority alt="logo" className="w-24 h-24" height={100} width={100}
                             src={process.env.NEXT_PUBLIC_IMAGE_BASE_URL + "logo-main.png"} />

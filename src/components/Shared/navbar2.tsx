@@ -525,16 +525,14 @@ const DropDown = ({ children, position, title, link }: DropDownProps) => {
     if (position === "bottom-left") positionStyle = "rigth-1 transform ";
 
     return (
-        <div className="w-full relative"
-            onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
-        >
+        <div className="w-full relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
             <NextLink className={clsx(linkStyles({ color: "foreground" }), "w-full font-semibold cursor-pointer relative")} href={link}>
                 {title}
             </NextLink>
 
             {open && (
                 <div className={clsx(positionStyle, "absolute pt-10 transition-opacity duration-200 opacity-0", open ? "opacity-100" : "opacity-0")}>
-                    <div className=" overflow-x-autos rounded-md backdrop-blur-lg backdrop-saturate-200 bg-background/90/ bg-primary-50" dir="ltr">
+                    <div className=" overflow-x-auto rounded-md backdrop-blur-lg backdrop-saturate-200 bg-[#18181B]" dir="ltr">
                         {children}
                     </div>
                 </div>

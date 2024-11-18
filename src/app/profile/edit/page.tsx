@@ -83,7 +83,7 @@ export default function ProfilePage() {
 
 
     return (
-        <div className="h-full w-full flex flex-col">
+        <div className="h-full w-full mt-20 lg:mt-0 flex flex-col flex-1">
 
             {
                 error ?
@@ -128,7 +128,7 @@ export default function ProfilePage() {
                         </div>}
 
 
-                        <form className="h-full w-full flex flex-col" onSubmit={handleSubmit}>
+                        <form className="h-full w-full flex flex-col flex-1" onSubmit={handleSubmit}>
                             {loading ?
                                 <div className="w-full mt-16 lg:mt-28">
                                     <div className="items-center grid lg:grid-cols-2 gap-x-4 gap-y-8 lg:gap-6">
@@ -140,7 +140,7 @@ export default function ProfilePage() {
                                 </div>
                                 :
 
-                                <div className="w-full mt-6">
+                                <div className="w-full mt-6 ">
                                     <div className="items-center grid lg:grid-cols-2 gap-x-4 gap-y-8 lg:gap-6">
 
                                         <Input onChange={handleChange} name="name" size="lg" color="secondary" variant="bordered" type="text" label="نام" labelPlacement={'outside'} radius="sm"
