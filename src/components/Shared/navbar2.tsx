@@ -112,8 +112,8 @@ export const Navbar = () => {
         const handleOutsideClick = (event: any) => {
             if (searchRef.current && !searchRef.current.contains(event.target)) {
                 setSearch('')
-                if (search) setTimeout(() => setOpen2(false), 1000)
-                else setOpen2(false)
+                 setTimeout(() => setOpen2(false), 500)
+                
             }
         };
 
@@ -166,7 +166,7 @@ export const Navbar = () => {
 
     useEffect(() => {
         setSearch('')
-        setTimeout(() => setOpen2(false), 1000)
+        setTimeout(() => setOpen2(false), 500)
     }, [path])
 
     const handleSearchClick = () => {
@@ -174,9 +174,18 @@ export const Navbar = () => {
         if (path?.includes('courses'))
             setTimeout(() => {
                 setSearch('')
-                setTimeout(() => setOpen2(false), 1000)
+                setTimeout(() => setOpen2(false), 500)
             }, 500)
         router.push(`/courses?searchText=${search}`);
+    }
+
+    const handleSearchIteemClick = () => {
+        if (!search) return;
+        
+            setTimeout(() => {
+                setSearch('')
+                setTimeout(() => setOpen2(false), 500)
+            }, 500)
     }
 
     return (
@@ -463,7 +472,7 @@ export const Navbar = () => {
                                         {
                                             list?.map((item: any, index: number) =>
 
-                                                <NextLink href={`/courses/${item.name}`} key={index} className="w-full h-full flex gap-4">
+                                                <NextLink href={`/courses/${item.name}`} key={index} className="w-full h-full flex gap-4" onClick={handleSearchIteemClick}>
                                                     <div>
                                                         <div className="w-16 h-12 p-[1px]   rounded-sm border-1 border-primary-400 overflow-hidden shadow-medium">
                                                             <Image className="w-full h-full rounded-sm" width={500} height={500} src={item.thumbnail.imageUrl} alt={item.name} />
