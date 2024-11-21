@@ -29,9 +29,9 @@ type CardProps = {
 
 const TeacherCard = ({ data }: CardProps) => {
     return (
-        <Link href={`/teachers/${data.engName}`} className="w-full">
+        <Link href={`/teachers/${data.engName}`} className="w-full max-w-[25rem] h-[22rem]">
 
-            <div className="w-full max-w-[25rem] h-[22rem] rounded-2xl transition-all shadow-medium
+            <div className="w-full h-full rounded-2xl transition-all shadow-medium
                 shadow-[0px_0px_10px_0px_#42bff49b,_0px_2px_20px_0px_#42bff49b,_inset_0px_0px_1px_0px_#42bff49b]/
                 dark:shadow-[0px_0px_8px_0px_#42bff4c5,_0px_2px_3px_0px_#42bff4c5,_inset_0px_0px_1px_0px_#42bff4c5]
               bg-white/80 hover:bg-white dark:bg-transparent  dark:hover:bg-primary-50 backdrop-blur-md backdrop-saturate-150 cursor-pointer">
@@ -67,7 +67,7 @@ const TeacherCard = ({ data }: CardProps) => {
                         </div>
                         <h5 className="mt-4 dark:text-[#d0e0ef] text-gray-800">
                             <span className="font-bold text-secondary-400 inline"> {data.engName} </span>
-                            <p className="inline font-medium"> {data.description} </p>
+                            <p className="inline font-medium line-clamp-4"> {data.description} </p>
                         </h5>
                     </div>
 

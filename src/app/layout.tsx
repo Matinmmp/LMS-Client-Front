@@ -41,10 +41,14 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
                     <div className="relative flex flex-col h-screen ">
 
                         <main className="flex-grow relative z-10 bg-[#fbfbfb]/ 
-                        bg-gradient-to-b from-[#eef3f994] to-[#f3f4f6c8]
-                        dark:bg-gradient-to-b dark:from-[#020617] dark:to-[#181818]
-                        dark:bg-none/ 
-                        dark:bg-[#181818]/ dark:bg-[#020617] ">
+                        bg-gradient-to-b/ from-[#eef3f994]/ to-[#f3f4f6c8]/
+                        bg-[#F3F4F6]
+
+                        dark:bg-gradient-to-b/ dark:from-[#020617]/ dark:to-[#181818]/
+                        dark:bg-gradient-to-b dark:from-[#111827] dark:to-[#181818]
+
+                        dark:bg-[#181818]/ dark:bg-[#020617] dark:bg-[#111827]/ ">
+
                             <div className="background z-[1] ">
                                 <span className="bg-none dark:bg-[#1582ff25]" />
                                 <span className="bg-none dark:bg-[#1582ff25] max-w-80 max-h-80 2xl:max-w-[40%] lg:max-h-[50%]" />

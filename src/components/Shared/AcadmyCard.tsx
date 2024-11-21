@@ -33,8 +33,8 @@ const AcadmyCard = ({ data }: CardProps) => {
         description = description.substring(0, 180) + ' ... ';
     }
     return (
-        <Link href={`/academies/${data.engName}`} className="w-full">
-            <div className="w-full max-w-[25rem] h-[22rem] rounded-lg transition-all
+        <Link href={`/academies/${data.engName}`} className="w-full max-w-[25rem] h-[22rem] ">
+            <div className="w-full h-full rounded-lg transition-all
                 shadow-medium
                 shadow-[0px_0px_10px_0px_#60ff95a0,_0px_2px_20px_0px_#60ff95a0,_inset_0px_0px_1px_0px_#60ff95a0]/
                 dark:shadow-[0px_0px_8px_0px_#73ffa2,_0px_2px_3px_0px_#87ffaf,_inset_0px_0px_1px_0px_#73ffa2]
@@ -76,7 +76,7 @@ const AcadmyCard = ({ data }: CardProps) => {
 
                         <h5 className="mt-4 dark:text-[#d0e0ef] text-gray-800 max-h-24">
                             <span className="font-bold text-success-400 inline"> {data.faName} </span>
-                            <p className="inline font-medium"> {description} </p>
+                            <p className="inline font-medium line-clamp-4"> {description} </p>
                         </h5>
                     </div>
 
