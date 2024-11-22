@@ -10,6 +10,7 @@ import { TbArrowBigLeftLinesFilled } from "react-icons/tb"
 import { WiTime3 } from "react-icons/wi"
 
 import { Skeleton } from "@nextui-org/skeleton";
+import Link from "next/link"
 
 type CardProps = {
     data: {
@@ -72,7 +73,9 @@ export const CourseCard = ({ data }: CardProps) => {
                             </div>
                         </div>
 
-                        <h4 className="mt-2 px-3 text-lg font-semibold hover:text-primary-400 transition-all">{data.name}</h4>
+                        <Link href={`courses/${data.name}`}>
+                            <h4 className="mt-2 px-3 text-[1.05rem] font-semibold hover:text-primary-400 transition-all">{data.name}</h4>
+                        </Link>
 
                         <div className=" px-3 mt-3 flex items-center gap-4">
 
