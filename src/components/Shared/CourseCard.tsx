@@ -41,9 +41,16 @@ type CardProps = {
     }
 };
 
+const encodeTitle = (title:string) => {
+    return title
+        .replace(/\s/g, '_')       // جایگزینی فاصله‌ها با _
+        .replace(/\u200C/g, '-'); // جایگزینی نیم‌فاصله با -
+}
+
 export const CourseCard = ({ data }: CardProps) => {
 
     let status = data.status === 0 ? 'درحال ترجمه' : data.status === 1 ? 'پایان یافته' : 'متوقف شده'
+    let link = encodeTitle(data?.name);
 
     return (
         <div className="w-full max-w-[25rem] h-[30rem] md:h-[25rem] transition-all shadow-medium dark:shadow-xl  
@@ -54,10 +61,10 @@ export const CourseCard = ({ data }: CardProps) => {
 
             <div className="w-full h-full flex flex-col">
 
-                <div className="p-2 overflow-hidden h-[18rem] md:h-[14rem] md:aspect-video">
+                <Link href={`courses/${link}`} className="p-2 overflow-hidden h-[18rem] md:h-[14rem] md:aspect-video">
                     <Image className="w-full h-full object-center hover:scale-110 transition-transform rounded-md "
                         width={450} height={300} alt="" src={data.thumbnail.imageUrl} />
-                </div>
+                </Link>
 
                 <div className="w-full h-3/5">
                     <div className="h-full flex flex-col">
@@ -73,7 +80,7 @@ export const CourseCard = ({ data }: CardProps) => {
                             </div>
                         </div>
 
-                        <Link href={`courses/${data.name}`}>
+                        <Link href={`courses/${link}`}>
                             <h4 className="mt-2 px-3 text-[1.05rem] font-semibold hover:text-primary-400 transition-all">{data.name}</h4>
                         </Link>
 

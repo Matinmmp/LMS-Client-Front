@@ -1,7 +1,7 @@
 import "@/src/styles/globals.css";
 import { Viewport } from "next";
 import clsx from "clsx";
-import { Baloo, Inter } from "../config/fonts";
+import { Baloo, Inter, Vazir } from "../config/fonts";
 import { Providers } from "./providers";
 import { Navbar } from "../components/Shared/navbar2";
 import Footer from "../components/Shared/Footer";
@@ -34,7 +34,7 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
             <meta name="author" content="Virtual Learn" />
             <meta charSet="UTF-8" />
 
-            <body className={clsx("min-h-screen bg-background  font-sans antialiased", Baloo.variable, Inter.variable)} >
+            <body className={clsx("min-h-screen bg-background  font-sans antialiased", Vazir.variable, Inter.variable)} >
                 <NextTopLoader />
 
                 <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
@@ -58,7 +58,7 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
                             </div>
                             <div className="relative z-20 ">
                                 {/* <Suspense> */}
-                                    <Navbar />
+                                <Navbar />
                                 {/* </Suspense> */}
                                 {children}
                                 <div className="mt-64">

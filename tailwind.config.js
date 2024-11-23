@@ -10,8 +10,9 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ["var(--font-baloo)"],
+                // sans: ["var(--font-baloo)"],
                 mono: ["var(--font-inter)"],
+                sans: ["var(--font-vazir)"],
             },
             screens: {
                 'sm': '576px',

@@ -77,28 +77,28 @@ const DiscountCounter = ({ percent, usageCount, expireTime }: DiscountProps) => 
     if (!isValid) return null;
 
     return (
-        <div className='w-full mt-4 flex flex-col gap-4 lg2:flex-row items-center justify-between  bg-white dark:bg-primary-50 p-4 rounded-xl shadow-small'>
-            <p className='text-2xl font-semibold text-danger-500'> ٪<span>{toPersianNumber(percent)}</span> تخفیف ویژه</p>
+        <div className='w-full md:mt-5 flex flex-col gap-4 sm:flex-row lg:flex-col xl:flex-row items-center justify-between  bg-white dark:bg-primary-50 p-4 rounded-xl shadow-small'>
+            <p className='text-2xl font-semibold text-danger-400'> ٪<span>{toPersianNumber(percent)}</span> تخفیف ویژه</p>
 
-            <div className="flex gap-2 text-lg">
-                <div className='px-2 border-l-1 border-l-gray-800 dark:border-l-gray-100'>
-                    <span className='me-1 text-2xl font-semibold'>{toPersianNumber(days)}</span>
-                    <span>روز</span>
+            <div className="flex gap-2 text-lg text-white">
+                <div className='px-2 border-l-1 flex flex-col items-center md:flex-row border-l-gray-800 dark:border-l-gray-100'>
+                    <span className='me-1 text-lg lg:text-2xl font-medium'>{toPersianNumber(days)}</span>
+                    <span className='font-light'>روز</span>
                 </div>
 
-                <div className='px-2 border-l-1 border-l-gray-800 dark:border-l-gray-100'>
-                    <span className='me-1 text-2xl font-semibold'>{toPersianNumber(hours)}</span>
-                    <span>ساعت</span>
+                <div className='px-2 border-l-1 flex flex-col items-center md:flex-row border-l-gray-800 dark:border-l-gray-100'>
+                    <span className='me-1 text-lg lg:text-2xl font-medium'>{toPersianNumber(hours)}</span>
+                    <span className='font-light'>ساعت</span>
                 </div>
 
-                <div className='px-2 border-l-1 border-l-gray-800 dark:border-l-gray-100'>
-                    <span className='me-1 text-2xl font-semibold'>{toPersianNumber(minutes)}</span>
-                    <span>دقیقه</span>
+                <div className='px-2 border-l-1 flex flex-col items-center md:flex-row border-l-gray-800 dark:border-l-gray-100'>
+                    <span className='me-1 text-lg lg:text-2xl font-medium'>{toPersianNumber(minutes)}</span>
+                    <span className='font-light'>دقیقه</span>
                 </div>
 
-                <div className='px-2 w-[4.5rem]'>
-                    <span className='text-2xl font-semibold'>{toPersianNumber(seconds)}</span>
-                    <span className='ps-1'>ثانیه</span>
+                <div className='px-2 w-12 md:w-[4.3rem] flex flex-col items-center md:flex-row'>
+                    <span className='text-lg lg:text-2xl font-medium'>{toPersianNumber(seconds)}</span>
+                    <span className='ps-1 font-light '>ثانیه</span>
                 </div>
             </div>
         </div>
