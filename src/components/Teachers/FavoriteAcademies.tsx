@@ -28,7 +28,7 @@ const FavoritAcademyForTeacher = async (props: Props) => {
 
                         {props.children}
                     </div>
-                    <Link href={`/academies`} className={`flex items-center gap-1 text-sm md:text-base  hover:text-success-400 transition-all`}>
+                    <Link href={`/academies`} className={`hidden sm:flex items-center gap-1 text-sm md:text-base  hover:text-success-400 transition-all`}>
                         <p>مشاهده همه({toPersianNumber(props.totalTeachers)})</p>
                         <TbArrowBigLeftLinesFilled size={20} className="text-success-400 " />
                     </Link>

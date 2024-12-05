@@ -68,7 +68,7 @@ export const FavoritTeachersForAcademyLoading = (props: Props) => {
                         props.children
                     }
                 </div>
-                <Link href={`/teachers?academy=${props.name}`} className={`flex items-center gap-1 text-sm md:text-base  hover:text-secondary-400 transition-all`}>
+                <Link href={`/teachers?academy=${props.name}`} className={`hidden sm:flex items-center gap-1 text-sm md:text-base  hover:text-secondary-400 transition-all`}>
                     <p>مشاهده همه مدرس‌‌ها ({toPersianNumber(props.totalTeachers)})</p>
                     <TbArrowBigLeftLinesFilled size={20} className="text-secondary-400 " />
                 </Link>

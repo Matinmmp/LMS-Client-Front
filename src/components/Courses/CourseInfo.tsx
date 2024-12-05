@@ -1,10 +1,13 @@
 'use client'
-import Image from "next/image";
 import { Button } from "@nextui-org/button";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 import { numberSeparator, toPersianNumber } from "@/src/utils/functions";
 import React from "react";
 import DiscountCounter from "./Discount";
+import '@vidstack/react/player/styles/base.css';
+import { MediaPlayer, MediaProvider } from '@vidstack/react';
+import { BsInfoCircle } from "react-icons/bs";
+import Image from "next/image";
 
 type Props = {
     data: any
@@ -94,37 +97,86 @@ export default function CourseInfo({ data }: Props) {
     if (status === 2) {
 
     }
-
-
-
+ 
     return (
-        <div className='w-full flex flex-col'>
+        <div className='w-full mt-28 flex flex-col'>
 
-            <div className="w-full p-4 lg:p-0 flex flex-col lg:flex-row items-center gap-6 dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium lg:shadow-none rounded-2xl lg:bg-transparent lg:dark:bg-transparent ">
+            <div className="w-full p-4 lg:p-8 dark:bg-primary-50/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium lg:shadow-none/ rounded-2xl lg:bg-transparent/ lg:dark:bg-transparent/ ">
 
-                <div className="w-full lg:w-1/2 order-2 lg:order-1">
+                <div className="w-full h-48 md:h-64 lg:h-[27rem] relative rounded-2xl shadow-medium">
+                    <Image className="w-full h-full -mt-24 md:-mt-32 lg:-mt-40 rounded-2xl object-cover object-center shadow-medium
+                    filter brightness-90 dark:brightness-100" priority={true}
+                        width={1000} height={1000} alt="virtual learn hero" src={"https://buckettest.storage.c2.liara.space/images/course3.png"} />
+                </div>
 
-                    <div className="h-full flex flex-col ">
+                <div className="mt-8 flex flex-col lg:flex-row items-center gap-6">
 
-                        <h1 className='text-primary-400 font-bold text-2xl md:text-3xl md:leading-10'>
-                            {toPersianNumber(course?.name)}
-                        </h1>
+                    <div className="w-full lg:w-1/2 order-2 lg:order-1">
 
-                        <p className="mt-6 lg:text-[1.2rem] font-light dark:text-[#ddeefd] text-gray-900 overflow-hidden text-ellipsis leading-7 line-clamp-4 lg:line-clamp-3 lg:tracking-wider">
-                            {course?.description}
-                        </p>
+                        <div className="h-full flex flex-col ">
 
-                        <div className="mt-10 lg:mt-auto flex flex-col gap-4">
-                            {AddToCartComponent}
+                            <h1 className='text-primary-400 font-bold text-2xl md:text-3xl md:leading-10'>
+                                {toPersianNumber(course?.name)}
+                            </h1>
+
+                            <p className="mt-6 lg:text-[1.2rem] font-light dark:text-[#ddeefd] text-gray-900 overflow-hidden text-ellipsis leading-7 line-clamp-4 lg:line-clamp-3 lg:tracking-wider">
+                                {course?.description}
+                            </p>
+
+                            <div className="mt-10 lg:mt-auto flex flex-col gap-4">
+                                {AddToCartComponent}
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div className="w-full lg:w-1/2 order-1 lg:order-2">
+
+                        {/* <ThumbnailPlayer/> */}
+                        <MediaPlayer title="Sprite Fight" src="https://buckettest.storage.c2.liara.space/video/next1.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=6b96162b-d379-44a7-ae3f-e3cd178bbf19%2F20241128%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241128T074516Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=415f408d7b0ac30d8c96ead29a7ca3dc698461487a7a48406c4d94a850fe2314">
+                            <MediaProvider />
+                        </MediaPlayer>
+                        {/* <Image src={course?.thumbnail?.imageUrl} alt={course?.name} priority={true} width={1000} height={1000} className="aspect-video" /> */}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div className="w-full mt-10 flex flex-col lg:flex-row gap-6">
+                <div className="w-full lg:w-[70%] dark:opacity-85 dark:backdrop-blur-md shadow-medium/ rounded-2xl">
+                    <div className="h-full w-full  grid grid-cols-3 grid-rows-2 gap-5">
+
+                        <div className="h-20 bg-white dark:bg-primary-50/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-lg">
+                            <div className="h-full w-full items-center flex px-4 gap-4">
+                                <BsInfoCircle size={34} className="text-primary-400 drop-shadow-xl" />
+                                <div className="flex flex-col gap-1">
+                                    <span className="text-black dark:!text-white font-bold ">وضعیت دوره</span>
+                                    <span className="text-gray-700 dark:text-gray-400 text-sm ">اتمام</span>
+                                </div>
+                            </div>
                         </div>
 
+                        <div className="h-20 bg-white dark:bg-primary-50/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-lg">
+                            f
+                        </div>
+                        <div className="h-20 bg-white dark:bg-primary-50/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-lg">
+                            f
+                        </div>
+                        <div className="h-20 bg-white dark:bg-primary-50/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-lg">
+                            f
+                        </div>
+                        <div className="h-20 bg-white dark:bg-primary-50/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-lg">
+                            f
+                        </div>
+                        <div className="h-20 bg-white dark:bg-primary-50/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-lg">
+                            f
+                        </div>
                     </div>
                 </div>
-
-                <div className="w-full lg:w-1/2 order-1 lg:order-2">
-                    <Image src={course?.thumbnail?.imageUrl} alt={course?.name} priority={true} width={1000} height={1000} className="aspect-video" />
+                <div className="w-full min-w-72 lg:w-[30%] bg-white dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
+                    fff
                 </div>
-
             </div>
 
             <div className="w-full mt-56 flex flex-col lg:flex-row gap-4 ">

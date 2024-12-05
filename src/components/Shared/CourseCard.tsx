@@ -53,7 +53,7 @@ export const CourseCard = ({ data }: CardProps) => {
     let link = encodeTitle(data?.name);
 
     return (
-        <div className="w-full max-w-[25rem] h-[30rem] md:h-[25rem] transition-all shadow-medium dark:shadow-xl  
+        <div className="w-full max-w-[25rem] h-[30rem] md:h-[29rem] transition-all shadow-medium dark:shadow-xl  
         hover:shadow-medium
         hover:shadow-[0px_0px_15px_0px_#42bff46a,_0px_2px_30px_0px_#42bff46a,_0px_0px_1px_0px_#42bff46a]/
         dark:hover:shadow-[0px_0px_8px_0px_#2a5a6ec5,_0px_2px_20px_0px_#2a5a6ec5,_0px_0px_1px_0px_#2a5a6ec5]
@@ -80,7 +80,7 @@ export const CourseCard = ({ data }: CardProps) => {
                             </div>
                         </div>
 
-                        <Link href={`courses/${link}`}>
+                        <Link href={`courses/${link}`} className="h-16">
                             <h4 className="mt-2 px-3 text-[1.05rem] font-semibold hover:text-primary-400 transition-all">{data.name}</h4>
                         </Link>
 

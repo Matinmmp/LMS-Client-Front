@@ -80,7 +80,7 @@ const DiscountCounter = ({ percent, usageCount, expireTime }: DiscountProps) => 
         <div className='w-full md:mt-5 flex flex-col gap-4 sm:flex-row lg:flex-col xl:flex-row items-center justify-between  bg-white dark:bg-primary-50 p-4 rounded-xl shadow-small'>
             <p className='text-2xl font-semibold text-danger-400'> ٪<span>{toPersianNumber(percent)}</span> تخفیف ویژه</p>
 
-            <div className="flex gap-2 text-lg text-white">
+            <div className="flex gap-2 text-lg dark:text-white ">
                 <div className='px-2 border-l-1 flex flex-col items-center md:flex-row border-l-gray-800 dark:border-l-gray-100'>
                     <span className='me-1 text-lg lg:text-2xl font-medium'>{toPersianNumber(days)}</span>
                     <span className='font-light'>روز</span>

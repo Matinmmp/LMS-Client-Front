@@ -64,7 +64,7 @@ function generateAcademyDescription(academyName: string, studentsCount: number, 
 
 
 const AcademyInfo = ({ data }: Props) => {
-
+ 
     return (
         <div className="w-full flex flex-col">
 
