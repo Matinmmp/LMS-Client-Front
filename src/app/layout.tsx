@@ -58,7 +58,9 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
                                 <span className="bg-none dark:bg-[#1582ff25] max-w-80 max-h-80 2xl:max-w-[40%] lg:max-h-[50%]" /> */}
 
                                 <span className="bg-none dark:bg-[rgba(10,130,255,0.09)]" />
-                                <span className="bg-none dark:bg-[rgba(10,130,255,0.09)]] max-w-80 max-h-80 2xl:max-w-[40%] lg:max-h-[50%]" />
+            
+
+                                <span className="bg-none dark:bg-[rgba(10,130,255,0.09)] w-full h-full max-w-80 max-h-80 2xl:max-w-[40%] lg:max-h-[50%]" />
 
 
                             </div>

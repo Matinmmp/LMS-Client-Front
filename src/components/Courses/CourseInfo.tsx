@@ -50,7 +50,7 @@ export default function CourseInfo({ data }: Props) {
                         {/* <span className="w-full h-[1px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-600 dark:bg-gray-400 rotate-[15deg] "></span> */}
                     </span>
                     {priceAfterDiscont === 0 ?
-                        <span className="text-2xl md:text-3xl font-semibold">رایگان</span>
+                        <span className="text-2xl md:text-3xl font-semibold text-white">رایگان</span>
                         :
                         <span className="text-2xl md:text-3xl font-semibold text-white">{toPersianNumber(numberSeparator(`${priceAfterDiscont}`))}</span>
                     }
@@ -83,7 +83,7 @@ export default function CourseInfo({ data }: Props) {
             <>
                 <DiscountCounter expireTime={course?.discount?.expireTime} percent={course?.discount?.percent} usageCount={course?.discount?.usageCount} />
 
-                <div className="w-full md:mt-6 flex flex-col sm:flex-row items-center justify-between gap-2">
+                <div className={`w-full ${!isValide(course?.discount?.expireTime, course?.discount?.percent) ? 'md:mt-14' : 'md:mt-6'} flex flex-col sm:flex-row items-center justify-between gap-2`}>
                     <Button startContent={<MdOutlineAddShoppingCart size={22} />} variant="shadow" color="primary" size="lg" className="w-full sm:w-max font-medium order-2 sm:order-1">افزودن به سبد خرید</Button>
 
                     <div className="px-3 py-1 pb-2 mt-auto flex justify-end order-1 sm:order-2">
@@ -97,7 +97,7 @@ export default function CourseInfo({ data }: Props) {
     if (status === 2) {
 
     }
- 
+    console.log(data)
     return (
         <div className='w-full mt-28 flex flex-col'>
 
@@ -105,17 +105,20 @@ export default function CourseInfo({ data }: Props) {
 
                 <div className="w-full h-48 md:h-64 lg:h-[27rem] relative rounded-2xl shadow-medium">
                     <Image className="w-full h-full -mt-24 md:-mt-32 lg:-mt-40 rounded-2xl object-cover object-center shadow-medium
-                    filter brightness-90 dark:brightness-100" priority={true}
-                        width={1000} height={1000} alt="virtual learn hero" src={"https://buckettest.storage.c2.liara.space/images/course3.png"} />
+                    filter brightness-90 dark:brightness-100 blur-sm/" priority={true}
+                        width={1000} height={1000} alt="virtual learn hero"
+                        src={course?.thumbnail?.imageUrl}
+                    />
+
                 </div>
 
-                <div className="mt-8 flex flex-col lg:flex-row items-center gap-6">
+                <div className="mt-8 lg:mt-12 flex flex-col lg:flex-row items-center gap-6">
 
                     <div className="w-full lg:w-1/2 order-2 lg:order-1">
 
                         <div className="h-full flex flex-col ">
 
-                            <h1 className='text-primary-400 font-bold text-2xl md:text-3xl md:leading-10'>
+                            <h1 className='text-primary-400 font-bold text-2xl md:text-3xl 2xl:text-[2rem] md:leading-10'>
                                 {toPersianNumber(course?.name)}
                             </h1>
 
@@ -123,7 +126,7 @@ export default function CourseInfo({ data }: Props) {
                                 {course?.description}
                             </p>
 
-                            <div className="mt-10 lg:mt-auto flex flex-col gap-4">
+                            <div className="mt-8 lg:mt-auto flex flex-col gap-4">
                                 {AddToCartComponent}
                             </div>
 
@@ -132,11 +135,7 @@ export default function CourseInfo({ data }: Props) {
 
                     <div className="w-full lg:w-1/2 order-1 lg:order-2">
 
-                        {/* <ThumbnailPlayer/> */}
-                        <MediaPlayer title="Sprite Fight" src="https://buckettest.storage.c2.liara.space/video/next1.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=6b96162b-d379-44a7-ae3f-e3cd178bbf19%2F20241128%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241128T074516Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=415f408d7b0ac30d8c96ead29a7ca3dc698461487a7a48406c4d94a850fe2314">
-                            <MediaProvider />
-                        </MediaPlayer>
-                        {/* <Image src={course?.thumbnail?.imageUrl} alt={course?.name} priority={true} width={1000} height={1000} className="aspect-video" /> */}
+                        <Image src={course?.thumbnail?.imageUrl} alt={course?.name} priority={true} width={1000} height={1000} className="aspect-video" />
                     </div>
 
                 </div>
@@ -151,7 +150,7 @@ export default function CourseInfo({ data }: Props) {
                             <div className="h-full w-full items-center flex px-4 gap-4">
                                 <BsInfoCircle size={34} className="text-primary-400 drop-shadow-xl" />
                                 <div className="flex flex-col gap-1">
-                                    <span className="text-black dark:!text-white font-bold ">وضعیت دوره</span>
+                                    <p className="text-black dark:text-[#fff] font-bold ">وضعیت دوره</p>
                                     <span className="text-gray-700 dark:text-gray-400 text-sm ">اتمام</span>
                                 </div>
                             </div>

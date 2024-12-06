@@ -111,14 +111,12 @@ input {
 }
 
 .background span:nth-child(2) {
-    /* background: linear-gradient(48deg, rgba(114, 184, 250, .5) 1%, #62ffb8 95%)!important; */
     position: absolute;
     border-radius: 100%;
     bottom: 0%;
     right: -15%;
     width: 60%;
     height: 55%;
-
     filter: blur(75px);
     transform: rotateZ(40deg);
     -webkit-filter: blur(75px);

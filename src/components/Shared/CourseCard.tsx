@@ -62,7 +62,7 @@ export const CourseCard = ({ data }: CardProps) => {
             <div className="w-full h-full flex flex-col">
 
                 <Link href={`courses/${link}`} className="p-2 overflow-hidden h-[18rem] md:h-[14rem] md:aspect-video">
-                    <Image className="w-full h-full object-center hover:scale-110 transition-transform rounded-md "
+                    <Image className="w-full h-full object-center object-cover hover:scale-110 transition-transform rounded-md "
                         width={450} height={300} alt="" src={data.thumbnail.imageUrl} />
                 </Link>
 
