@@ -68,7 +68,7 @@ const TeacherInfo = ({ data }: Props) => {
     return (
         <div className="w-full flex flex-col">
 
-            <div className="w-full pb-12 p-4 lg:p-8 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
+            <div className="w-full pb-12 p-4 lg:p-8 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
 
                 <div className="w-full h-48 md:h-64 lg:h-[27rem] relative rounded-2xl ">
                     <Image className="w-full h-full -mt-24 md:-mt-32 lg:-mt-40 rounded-2xl object-cover object-center shadow-medium" priority={true}
@@ -103,7 +103,7 @@ const TeacherInfo = ({ data }: Props) => {
 
             <div className="w-full lg:h-[20rem] mt-6 lg:mt-8 flex flex-col lg:flex-row items-start gap-6 lg:gap-4">
 
-                <div className="h-auto lg:min-h-[20rem] lg:w-full flex-grow order-2 lg:order-1 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl ">
+                <div className="h-auto lg:min-h-[20rem] lg:w-full flex-grow order-2 lg:order-1 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl ">
                     <div className="p-4 pt-6 text-center">
                         <h2 className={clsx(title({ color: 'secondary' }), 'inline w-full lg:text-left text-2xl lg:text-4xl font-bold')}>{data.faName} در ویرچوال لرن</h2>
 
@@ -114,9 +114,9 @@ const TeacherInfo = ({ data }: Props) => {
                     </div>
                 </div>
 
-                <div className="w-full order-1 lg:order-2 lg:w-[27rem] p-4 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-4 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
+                <div className="w-full order-1 lg:order-2 lg:w-[27rem] p-4 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-4 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
 
-                    <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-xl">
+                    <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-xl">
                         <div className="w-full h-full flex flex-col items-center justify-center">
                             <SiHtmlacademy className="text-4xl text-secondary-400" />
                             <span className="mt-3 text-sm">تعداد آکادمی فعال:</span>
@@ -124,7 +124,7 @@ const TeacherInfo = ({ data }: Props) => {
                         </div>
                     </div>
 
-                    <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-xl">
+                    <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-xl">
                         <div className="w-full h-full flex flex-col items-center justify-center">
                             <PiStudentBold className="text-4xl text-secondary-400" />
                             <span className="mt-3 text-sm">تعداد دانشجوها:</span>
@@ -132,7 +132,7 @@ const TeacherInfo = ({ data }: Props) => {
                         </div>
                     </div>
 
-                    <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-xl">
+                    <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-xl">
                         <div className="w-full h-full flex flex-col items-center justify-center">
                             <MdOutlineCastForEducation className="text-4xl text-secondary-400" />
                             <span className="mt-3 text-sm">تعداد دوره‌ها:</span>
@@ -140,7 +140,7 @@ const TeacherInfo = ({ data }: Props) => {
                         </div>
                     </div>
 
-                    <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-xl">
+                    <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-xl">
                         <div className="w-full h-full flex flex-col items-center justify-center">
                             <FaStar className="text-4xl text-secondary-400" />
                             <span className="mt-3 text-sm">امتیاز</span>
@@ -153,7 +153,7 @@ const TeacherInfo = ({ data }: Props) => {
             </div>
 
             <div className="mt-6 lg:mt-8">
-                <div className="p-4 pb-2 lg:pb-8 lg:p-8 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl ">
+                <div className="p-4 pb-2 lg:pb-8 lg:p-8 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl ">
                     {data.totalAcademies ?
                         <Suspense fallback={
                             <FavoritAcademyForTeacherLoading name={data.engName} totalTeachers={data.totalAcademies}>
@@ -173,7 +173,7 @@ const TeacherInfo = ({ data }: Props) => {
             </div>
 
             <div className="mt-6 lg:mt-8">
-                <div className="p-4 pb-2 lg:pb-8 lg:p-8 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl ">
+                <div className="p-4 pb-2 lg:pb-8 lg:p-8 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl ">
                     {data.totalCourses ?
                         <Suspense fallback={
                             <FavoriteCoursesForTeacherLoading totalCourses={data.totalCourses}>

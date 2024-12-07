@@ -1,13 +1,18 @@
 'use client'
 import { Button } from "@nextui-org/button";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
-import { numberSeparator, toPersianNumber } from "@/src/utils/functions";
+import { formatDate, numberSeparator, secondsToTimeString, toPersianNumber } from "@/src/utils/functions";
 import React from "react";
 import DiscountCounter from "./Discount";
 import '@vidstack/react/player/styles/base.css';
-import { MediaPlayer, MediaProvider } from '@vidstack/react';
-import { BsInfoCircle } from "react-icons/bs";
 import Image from "next/image";
+import { PiStudentBold } from "react-icons/pi";
+import { HiOutlineInformationCircle } from "react-icons/hi";
+import { WiTime3 } from "react-icons/wi";
+import { LuCalendarDays } from "react-icons/lu";
+import { IoIosFilm } from "react-icons/io";
+import { FaStar } from "react-icons/fa6"
+
 
 type Props = {
     data: any
@@ -50,7 +55,7 @@ export default function CourseInfo({ data }: Props) {
                         {/* <span className="w-full h-[1px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-600 dark:bg-gray-400 rotate-[15deg] "></span> */}
                     </span>
                     {priceAfterDiscont === 0 ?
-                        <span className="text-2xl md:text-3xl font-semibold text-white">رایگان</span>
+                        <span className="text-2xl md:text-3xl font-semibold ">رایگان</span>
                         :
                         <span className="text-2xl md:text-3xl font-semibold text-white">{toPersianNumber(numberSeparator(`${priceAfterDiscont}`))}</span>
                     }
@@ -97,11 +102,12 @@ export default function CourseInfo({ data }: Props) {
     if (status === 2) {
 
     }
-    console.log(data)
+
+    console.log(course)
     return (
         <div className='w-full mt-28 flex flex-col'>
 
-            <div className="w-full p-4 lg:p-8 dark:bg-primary-50/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium lg:shadow-none/ rounded-2xl lg:bg-transparent/ lg:dark:bg-transparent/ ">
+            <div className="w-full p-4 lg:p-8 dark:bg-primary-50/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium lg:shadow-none/ rounded-2xl lg:bg-transparent/ lg:dark:bg-transparent/ ">
 
                 <div className="w-full h-48 md:h-64 lg:h-[27rem] relative rounded-2xl shadow-medium">
                     <Image className="w-full h-full -mt-24 md:-mt-32 lg:-mt-40 rounded-2xl object-cover object-center shadow-medium
@@ -112,7 +118,7 @@ export default function CourseInfo({ data }: Props) {
 
                 </div>
 
-                <div className="mt-8 lg:mt-12 flex flex-col lg:flex-row items-center gap-6">
+                <div className="mt-8 lg:mt-12 flex flex-col lg:flex-row gap-6">
 
                     <div className="w-full lg:w-1/2 order-2 lg:order-1">
 
@@ -143,57 +149,149 @@ export default function CourseInfo({ data }: Props) {
             </div>
 
             <div className="w-full mt-10 flex flex-col lg:flex-row gap-6">
-                <div className="w-full lg:w-[70%] dark:opacity-85 dark:backdrop-blur-md shadow-medium/ rounded-2xl">
-                    <div className="h-full w-full  grid grid-cols-3 grid-rows-2 gap-5">
-
-                        <div className="h-20 bg-white dark:bg-primary-50/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-lg">
-                            <div className="h-full w-full items-center flex px-4 gap-4">
-                                <BsInfoCircle size={34} className="text-primary-400 drop-shadow-xl" />
-                                <div className="flex flex-col gap-1">
-                                    <p className="text-black dark:text-[#fff] font-bold ">وضعیت دوره</p>
-                                    <span className="text-gray-700 dark:text-gray-400 text-sm ">اتمام</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="h-20 bg-white dark:bg-primary-50/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-lg">
-                            f
-                        </div>
-                        <div className="h-20 bg-white dark:bg-primary-50/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-lg">
-                            f
-                        </div>
-                        <div className="h-20 bg-white dark:bg-primary-50/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-lg">
-                            f
-                        </div>
-                        <div className="h-20 bg-white dark:bg-primary-50/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-lg">
-                            f
-                        </div>
-                        <div className="h-20 bg-white dark:bg-primary-50/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-lg">
-                            f
-                        </div>
-                    </div>
-                </div>
-                <div className="w-full min-w-72 lg:w-[30%] bg-white dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
+                <div className="w-full lg:w-[70%]  bg-white dark:bg-[#131d35] dark:bg-opacity-85/ dark:backdrop-blur-md/ shadow-medium rounded-2xl">
                     fff
                 </div>
-            </div>
 
-            <div className="w-full mt-56 flex flex-col lg:flex-row gap-4 ">
-
-                <div className="w-full lg:w-[70%] flex flex-col gap-4 ">
-                    <div className="w-full h-screen bg-white dark:bg-[#131d35] dark:opacity-85/ dark:backdrop-blur-md/ shadow-medium rounded-2xl">
+                <div className="w-full min-w-72 lg:w-[30%] flex flex-col gap-4">
+                    <div>
+                        <SidebarFeature data={course} />
 
                     </div>
-                    <div className="w-full bg-white dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
+
+
+                    <PercentToFull total={course?.holeCourseVideos} translated={course?.totalVideos} />
+
+                </div>
+
+            </div>
+
+            {/* <div className="w-full mt-56 flex flex-col lg:flex-row gap-4 ">
+
+                <div className="w-full lg:w-[70%] flex flex-col gap-4 ">
+                    <div className="w-full h-screen bg-white dark:bg-[#131d35] dark:bg-opacity-85/ dark:backdrop-blur-md/ shadow-medium rounded-2xl">
+
+                    </div>
+                    <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
                         ffff
                     </div>
                 </div>
 
-                <div className="w-full min-w-72 lg:w-[30%] bg-white dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
+                <div className="w-full min-w-72 lg:w-[30%] bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
                     fff
+                </div>
+
+            </div> */}
+        </div>
+    )
+}
+
+type Props2 = {
+    data: any
+}
+
+function SidebarFeature({ data }: Props2) {
+    return (
+        <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
+
+
+
+            <div className="p-2 grid grid-cols-3 sm:grid-cols-4 md2:grid-cols-6 lg:grid-cols-3 gap-2 bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
+
+                <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-xl">
+
+                    <div className="w-full h-full flex flex-col items-center justify-center">
+
+                        <HiOutlineInformationCircle size={40} className="text-primary-400" />
+                        <span className="mt-3 text-sm">وضعیت دوره:</span>
+                        <span className="mt-0.5 font-medium">اتمام</span>
+
+                    </div>
+                </div>
+
+                <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-xl">
+                    <div className="w-full h-full flex flex-col items-center justify-center">
+
+                        <PiStudentBold size={38} className="text-primary-400" />
+                        <span className="mt-3 text-sm">تعداد دانشجو‌ها:</span>
+                        <span className="mt-0.5 font-medium">{toPersianNumber(`${data.purchased}`)}</span>
+
+                    </div>
+                </div>
+
+                <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-xl">
+                    <div className="w-full h-full flex flex-col items-center justify-center">
+
+                        <WiTime3 size={38} className="text-primary-400" />
+                        <span className="mt-3 text-sm">مدت زمان دوره:</span>
+                        <span className="mt-0.5 font-medium">{toPersianNumber(secondsToTimeString(data.courseLength))}</span>
+
+                    </div>
+                </div>
+
+                <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-xl">
+                    <div className="w-full h-full flex flex-col items-center justify-center">
+
+                        <LuCalendarDays size={34} className="text-primary-400" />
+                        <span className="mt-3 text-sm">آخرین بروزرسانی:</span>
+                        <span className="mt-1 font-medium">{toPersianNumber(formatDate(data.lastContentUpdate))}</span>
+
+                    </div>
+                </div>
+
+                <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-xl">
+                    <div className="w-full h-full flex flex-col items-center justify-center">
+
+                        <IoIosFilm size={34} className="text-primary-400" />
+                        <span className="mt-3 text-sm">تعداد جلسات:</span>
+                        <span className=" font-medium">{toPersianNumber(data.totalVideos)}</span>
+
+                    </div>
+                </div>
+
+                <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-xl">
+                    <div className="w-full h-full flex flex-col items-center justify-center">
+
+                        <FaStar size={34} className="text-primary-400/ text-warning-400" />
+                        <span className="mt-3 text-sm">امتیاز:</span>
+                        <span className=" font-medium">{toPersianNumber(data?.ratings?.toFixed(1))}</span>
+
+                    </div>
                 </div>
 
             </div>
         </div>
     )
 }
+
+function PercentToFull({ total, translated }: { total: number; translated: number }) {
+
+    const percentage = Math.min(100, Math.max(0, (translated / total) * 100)); // جلوگیری از درصدهای غیر معتبر
+
+    return (
+        <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
+
+            <div className="p-4 bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
+                <div className="w-full flex justify-between items-center">
+                    <span className="font-medium">درصد تکمیل دوره</span>
+                    <span dir="ltr" className="font-medium"> {toPersianNumber(percentage.toFixed(1))} ٪</span>
+                </div>
+                <div className="w-full mt-4 bg-gray-200 rounded-full h-3 dark:bg-gray-700">
+                    <div className="bg-primary-500 h-3 rounded-full" style={{ width: `${percentage}%` }}></div>
+                </div>
+
+            </div>
+        </div>
+    );
+}
+
+function TeacherInfo({ data }: Props2) {
+    return(
+        <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
+            
+        </div>
+    )
+}
+
+
+

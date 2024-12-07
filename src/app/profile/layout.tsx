@@ -12,7 +12,7 @@ export default function ProfileLayout({ children, }: { children: React.ReactNode
             <section className="w-full max-w-7xl px-4 md:px-8 2xl:px-2 mt-28 lg:mt-20 flex flex-col lg:flex-row gap-4">
                 <Navbar />
 
-                <div className="w-full bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl relative">
+                <div className="w-full bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl relative">
                     <div className="min-h-[70vh]   h-full flex flex-col px-4 py-4">
                         {children}
                     </div>
