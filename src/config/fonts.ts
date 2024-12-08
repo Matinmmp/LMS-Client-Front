@@ -10,7 +10,8 @@ export const Baloo = Baloo_Bhaijaan_2({
 export const Vazir = Vazirmatn({
     weight:["100","200","300","400","500","600","700","800","900"],
     display: "swap",
-    variable:"--font-vazir"
+    variable:"--font-vazir",
+    subsets: ["arabic"],
 
 })
 
