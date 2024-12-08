@@ -81,7 +81,7 @@ export const CourseCard = ({ data }: CardProps) => {
                         </div>
 
                         <Link href={`courses/${link}`} className="h-16">
-                            <h4 className="mt-2 px-3 text-[1.05rem] font-semibold hover:text-primary-400 transition-all">{data.name}</h4>
+                            <h4 dir="ltr" className="mt-2 px-3 text-[1.05rem] font-semibold hover:text-primary-400 transition-all">{data.name}</h4>
                         </Link>
 
                         <div className=" px-3 mt-3 flex items-center gap-4">

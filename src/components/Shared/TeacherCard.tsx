@@ -28,6 +28,9 @@ type CardProps = {
 };
 
 const TeacherCard = ({ data }: CardProps) => {
+    let name = data.engName
+    if(name.split(' ').length >2 )
+        name = `${name.split(' ')[0]} ${name.split(' ')[1]}` 
     return (
         <Link href={`/teachers/${data.engName}`} className="w-full max-w-[25rem] h-[22rem]">
 
@@ -40,7 +43,7 @@ const TeacherCard = ({ data }: CardProps) => {
 
                     <div className="w-full pt-6 px-6 flex items-center justify-between">
 
-                        <Avatar className="h-[5.5rem] w-[5.5rem] shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="full" isBordered color="secondary" src={data.avatar.imageUrl} fallback />
+                        <Avatar className="h-[4.5rem] w-[4.5rem] shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="full" isBordered color="secondary" src={data.avatar.imageUrl} fallback />
 
                         <div className="flex flex-col gap-1">
                             <div className='py-1 px-2 flex items-center gap-2 rounded-md border-1 border-secondary-50 dark:border-secondary-300 shadow-sm'>
@@ -63,17 +66,16 @@ const TeacherCard = ({ data }: CardProps) => {
 
                                 <FaStar size={20} className="text-warning-400" />
                             </div>
-                            <h4 className={clsx(title({ color: 'secondary' }), 'text-2xl lg:text-3xl font-bold')}>{data.engName}</h4>
+                            <h4 className={clsx(title({ color: 'secondary' }), 'text-2xl font-bold')}>{name}</h4>
                         </div>
                         <h5 className="mt-4 dark:text-[#d0e0ef] text-gray-800">
-                            <span className="font-bold text-secondary-400 inline"> {data.engName} </span>
-                            <p className="inline font-medium line-clamp-4"> {data.description} </p>
+                            <p className="text-sm line-clamp-5"> {data.description} </p>
                         </h5>
                     </div>
 
                     <div className="w-full mt-auto">
-                        <div className="w-full px-12 py-4 flex items-center justify-center gap-2 border-t-2 border-secondary-50 dark:border-secondary-300">
-                            <p className="ms-auto font-medium">مشاهده اطلاعات {data.engName}</p>
+                        <div className="w-full p-4 flex items-center justify-center gap-2 border-t-2 border-secondary-50 dark:border-secondary-300">
+                            <p className=" font-medium">مشاهده اطلاعات {name}</p>
                             <TbArrowBigLeftLinesFilled size={20} className="text-secondary-300 " />
                         </div>
                     </div>
@@ -132,8 +134,8 @@ const TeacherCardLoading = () => {
                 </div>
 
                 <div className="w-full mt-auto">
-                    <div className="w-full px-12 py-4 flex items-center justify-center gap-2 border-t-2 border-secondary-50 dark:border-secondary-300">
-                        <Skeleton className="w-48 h-5 mt-2 ms-auto rounded-md" />
+                    <div className="w-full p-4 flex items-center justify-center gap-2 border-t-2 border-secondary-50 dark:border-secondary-300">
+                        <Skeleton className="w-48 h-5 mt-2 rounded-md" />
                         <TbArrowBigLeftLinesFilled size={20} className="text-secondary-300 mt-1" />
                     </div>
                 </div>

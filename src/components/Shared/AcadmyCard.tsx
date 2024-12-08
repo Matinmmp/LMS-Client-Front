@@ -27,11 +27,10 @@ type CardProps = {
 };
 
 const AcadmyCard = ({ data }: CardProps) => {
-    let description = data.description;
+    let name = data.engName
+    if(name.split(' ').length >2 )
+        name = `${name.split(' ')[0]} ${name.split(' ')[1]}` 
 
-    if (description.length > 180) {
-        description = description.substring(0, 180) + ' ... ';
-    }
     return (
         <Link href={`/academies/${data.engName}`} className="w-full max-w-[25rem] h-[22rem] ">
             <div className="w-full h-full rounded-lg transition-all
@@ -71,18 +70,17 @@ const AcadmyCard = ({ data }: CardProps) => {
                                 <span className="pt-1 text-md font-semibold text-warning-400">{toPersianNumber(data.rates)}</span>
                                 <FaStar size={20} className="text-warning-400" />
                             </div>
-                            <h4 className={clsx(title({ color: 'green' }), 'text-2xl lg:text-3xl font-extrabold')}>{data.engName}</h4>
+                            <h4 className={clsx(title({ color: 'green' }), 'text-2xl font-extrabold')}>{name}</h4>
                         </div>
 
                         <h5 className="mt-4 dark:text-[#d0e0ef] text-gray-800 max-h-24">
-                            <span className="font-bold text-success-400 inline"> {data.faName} </span>
-                            <p className="inline font-medium line-clamp-4"> {description} </p>
+                            <p className="text-sm line-clamp-5"> {data?.description} </p>
                         </h5>
                     </div>
 
                     <div className="w-full mt-auto">
-                        <div className="w-full px-12 py-4 flex items-center justify-center gap-2 border-t-2 border-success-50 dark:border-success-300">
-                            <p className="ms-auto font-medium">مشاهده اطلاعات {data.faName}</p>
+                        <div className="w-full p-4 flex items-center justify-center gap-2 border-t-2 border-success-50 dark:border-success-300">
+                            <p className=" font-medium">مشاهده اطلاعات {name}</p>
                             <TbArrowBigLeftLinesFilled size={20} className="text-success-300 " />
                         </div>
                     </div>
@@ -134,9 +132,8 @@ const AcadmyCardLoading = () => {
                 </div>
 
                 <div className="w-full mt-auto">
-                    <div className="w-full px-12 py-4 flex items-center justify-center gap-2 border-t-2 border-success-50 dark:border-success-300">
-
-                        <Skeleton className="w-48 h-5 mt-2 ms-auto rounded-md" />
+                    <div className="w-full p-4 flex items-center justify-center gap-2 border-t-2 border-success-50 dark:border-success-300">
+                        <Skeleton className="w-48 h-5 mt-2 rounded-md" />
                         <TbArrowBigLeftLinesFilled size={20} className="text-success-300 mt-1" />
                     </div>
                 </div>

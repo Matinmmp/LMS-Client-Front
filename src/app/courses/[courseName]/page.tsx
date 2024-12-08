@@ -27,6 +27,7 @@ const decodeTitle = (encodedTitle: string) => {
 export default async function CourseDetail({ params: { courseName } }: Props) {
 
     const name = await decodeTitle(decodeURIComponent(courseName));
+    // console.log()
 
     const data: any = await getCourseByName(name)
 

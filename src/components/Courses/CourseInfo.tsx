@@ -1,7 +1,7 @@
 'use client'
 import { Button } from "@nextui-org/button";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
-import { formatDate, numberSeparator, secondsToTimeString, toPersianNumber } from "@/src/utils/functions";
+import { encodeToShortCode, formatDate, numberSeparator, secondsToTimeString, toPersianNumber } from "@/src/utils/functions";
 import React from "react";
 import DiscountCounter from "./Discount";
 import '@vidstack/react/player/styles/base.css';
@@ -12,7 +12,10 @@ import { WiTime3 } from "react-icons/wi";
 import { LuCalendarDays } from "react-icons/lu";
 import { IoIosFilm } from "react-icons/io";
 import { FaStar } from "react-icons/fa6"
-
+import { Avatar } from "@nextui-org/avatar";
+import Link from "next/link";
+import { ShortLink } from "./CourseInfoComponents";
+import { TbFileDescription } from "react-icons/tb";
 
 type Props = {
     data: any
@@ -41,7 +44,6 @@ export default function CourseInfo({ data }: Props) {
     const teacher = data?.teacher;
     const academy = data?.academy
 
-    console.log(course?.discount?.percent)
 
     let priceAfterDiscont = 0;
     if (isValide(course?.discount?.expireTime, course?.discount?.percent)) {
@@ -103,7 +105,7 @@ export default function CourseInfo({ data }: Props) {
 
     }
 
-    console.log(course)
+    console.log(teacher)
     return (
         <div className='w-full mt-28 flex flex-col'>
 
@@ -128,7 +130,7 @@ export default function CourseInfo({ data }: Props) {
                                 {toPersianNumber(course?.name)}
                             </h1>
 
-                            <p className="mt-6 lg:text-[1.2rem] font-light dark:text-[#ddeefd] text-gray-900 overflow-hidden text-ellipsis leading-7 line-clamp-4 lg:line-clamp-3 lg:tracking-wider">
+                            <p className="mt-6 font-light dark:text-[#ddeefd] text-gray-900 overflow-hidden text-ellipsis leading-7 line-clamp-4 lg:line-clamp-3 lg:tracking-wider">
                                 {course?.description}
                             </p>
 
@@ -149,39 +151,32 @@ export default function CourseInfo({ data }: Props) {
             </div>
 
             <div className="w-full mt-10 flex flex-col lg:flex-row gap-6">
-                <div className="w-full lg:w-[70%]  bg-white dark:bg-[#131d35] dark:bg-opacity-85/ dark:backdrop-blur-md/ shadow-medium rounded-2xl">
-                    fff
+
+                <div className="w-full lg:w-[70%] bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
+                    <div className="p-6 text-primary-400 dark:text-white">
+                        <div className="flex items-center gap-2">
+                            <TbFileDescription size={40}/>
+                            <p className="text-2xl font-bold">توضیحات دوره</p>
+
+                        </div>
+                    </div>
                 </div>
 
                 <div className="w-full min-w-72 lg:w-[30%] flex flex-col gap-4">
-                    <div>
-                        <SidebarFeature data={course} />
 
-                    </div>
-
+                    <SidebarFeature data={course} />
 
                     <PercentToFull total={course?.holeCourseVideos} translated={course?.totalVideos} />
+
+                    <ShortLink name={course?.name} />
+
+                    <TeacherInfo data={teacher} />
+
+                    <AcademyInfo data={academy} />
 
                 </div>
 
             </div>
-
-            {/* <div className="w-full mt-56 flex flex-col lg:flex-row gap-4 ">
-
-                <div className="w-full lg:w-[70%] flex flex-col gap-4 ">
-                    <div className="w-full h-screen bg-white dark:bg-[#131d35] dark:bg-opacity-85/ dark:backdrop-blur-md/ shadow-medium rounded-2xl">
-
-                    </div>
-                    <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
-                        ffff
-                    </div>
-                </div>
-
-                <div className="w-full min-w-72 lg:w-[30%] bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
-                    fff
-                </div>
-
-            </div> */}
         </div>
     )
 }
@@ -273,7 +268,7 @@ function PercentToFull({ total, translated }: { total: number; translated: numbe
 
             <div className="p-4 bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
                 <div className="w-full flex justify-between items-center">
-                    <span className="font-medium">درصد تکمیل دوره</span>
+                    <span className="font-medium">درصد تکمیل ترجمه‌ی دوره</span>
                     <span dir="ltr" className="font-medium"> {toPersianNumber(percentage.toFixed(1))} ٪</span>
                 </div>
                 <div className="w-full mt-4 bg-gray-200 rounded-full h-3 dark:bg-gray-700">
@@ -286,9 +281,38 @@ function PercentToFull({ total, translated }: { total: number; translated: numbe
 }
 
 function TeacherInfo({ data }: Props2) {
-    return(
+    return (
         <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
-            
+            <div className="w-full px-4 py-6 flex flex-col items-center">
+                <Avatar className="h-[5.5rem] w-[5.5rem] shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="full" isBordered color="secondary" src={data.avatar.imageUrl} fallback />
+
+                <h6 className="mt-3 text-xl font-bold hover:text-secondary-400 transition-all">
+                    <Link href={`/teachers/${data?.engName}`}>{data?.engName}</Link>
+                </h6>
+
+                <span className="-mt-1 text-sm text-gray-700 dark:text-gray-300">مدرس دوره</span>
+
+                <p className="mt-4 px-2 text-sm text-gray-700 leading-6 dark:text-gray-300 text-center line-clamp-5 sm:line-clamp-3 lg:line-clamp-6">{data.description}</p>
+            </div>
+        </div>
+    )
+}
+
+
+function AcademyInfo({ data }: Props2) {
+    return (
+        <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
+            <div className="w-full px-4 py-6 flex flex-col items-center">
+                <Avatar className="h-[4.5rem] w-[4.5rem] shadow-[0_0_15px_0_#44de77]" size="lg" radius="sm" isBordered color="success" src={data.avatar.imageUrl} />
+
+                <h6 className="mt-3 text-xl font-bold hover:text-success-400 transition-all">
+                    <Link href={`/academies/${data?.engName}`}>{data?.engName}</Link>
+                </h6>
+
+                <span className="-mt-1 text-sm text-gray-700 dark:text-gray-300">آکادمی</span>
+
+                <p className="mt-4 px-2 text-sm text-gray-700 leading-6 dark:text-gray-300 text-center line-clamp-5 sm:line-clamp-3 lg:line-clamp-6">{data.description}</p>
+            </div>
         </div>
     )
 }

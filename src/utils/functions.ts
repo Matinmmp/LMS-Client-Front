@@ -82,11 +82,23 @@ const formatDate2 = (date: string) => {
     }
 };
 
+function encodeToShortCode(text:string) {
+    // محاسبه هش ساده با استفاده از کدهای کاراکتر
+    let hash = 0;
+    for (let i = 0; i < text.length; i++) {
+        hash = (hash << 5) - hash + text.charCodeAt(i);
+        hash |= 0; // تبدیل به 32 بیت
+    }
+    // تبدیل به هگزادسیمال و برش به 4 کاراکتر
+    return Math.abs(hash).toString(16).substring(0, 4);
+}
+
 export {
     toPersianNumber,
     secondsToTimeString,
     numberSeparator,
     fixNumbers,
     formatDate,
-    formatDate2
+    formatDate2,
+    encodeToShortCode
 }
