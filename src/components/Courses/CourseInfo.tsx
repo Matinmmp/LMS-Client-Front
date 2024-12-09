@@ -14,11 +14,11 @@ import { IoIosFilm } from "react-icons/io";
 import { FaStar } from "react-icons/fa6"
 import { Avatar } from "@nextui-org/avatar";
 import Link from "next/link";
-import { ShortLink } from "./CourseInfoComponents";
+import { Description, ShortLink } from "./CourseInfoComponents";
 import { TbFileDescription } from "react-icons/tb";
 
 type Props = {
-    data: any
+    data: any,
 }
 
 let AddToCartComponent: any = React.Component;
@@ -105,7 +105,7 @@ export default function CourseInfo({ data }: Props) {
 
     }
 
-    console.log(teacher)
+    console.log(course)
     return (
         <div className='w-full mt-28 flex flex-col'>
 
@@ -152,13 +152,10 @@ export default function CourseInfo({ data }: Props) {
 
             <div className="w-full mt-10 flex flex-col lg:flex-row gap-6">
 
-                <div className="w-full lg:w-[70%] bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
-                    <div className="p-6 text-primary-400 dark:text-white">
-                        <div className="flex items-center gap-2">
-                            <TbFileDescription size={40}/>
-                            <p className="text-2xl font-bold">توضیحات دوره</p>
+                <div className="w-full lg:w-[70%] ">
+                    <div className="bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
+                        <Description desc={course?.longDescription} />
 
-                        </div>
                     </div>
                 </div>
 
@@ -177,7 +174,7 @@ export default function CourseInfo({ data }: Props) {
                 </div>
 
             </div>
-        </div>
+        </div >
     )
 }
 
