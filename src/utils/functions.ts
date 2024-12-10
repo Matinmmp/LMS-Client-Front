@@ -39,7 +39,6 @@ const fixNumbers = (str: string) => {
 
 //۱۴۰۳/۰۸/۲۵
 const formatDate = (date: string) => {
-    console.log(date)
 
     try {
         // تبدیل رشته تاریخ به یک شیء تاریخ معتبر
@@ -53,7 +52,7 @@ const formatDate = (date: string) => {
 
         return persianDate;
     } catch (error: any) {
-        console.log(error)
+        
         return '';
     }
 }

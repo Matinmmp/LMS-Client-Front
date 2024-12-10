@@ -3,12 +3,11 @@
 import { encodeToShortCode } from "@/src/utils/functions"
 import { FaRegCopy } from "react-icons/fa6"
 import { motion } from 'framer-motion';
-import React, { useState } from "react";
+import React, {useState } from "react";
 import { TbFileDescription } from "react-icons/tb";
 import { Button } from "@nextui-org/button";
-import { MdOutlineAddShoppingCart } from "react-icons/md";
 import { SlEye } from "react-icons/sl";
-
+import { IoIosSchool } from "react-icons/io";
 
 export function ShortLink({ name }: { name: string }) {
     const copy = () => navigator.clipboard.writeText(`virtual-learn.com/?r=${encodeToShortCode(name)}`);
@@ -37,41 +36,44 @@ export function ShortLink({ name }: { name: string }) {
     )
 }
 
-
 export function Description({ desc }: { desc: string }) {
     const [open, setOpen] = useState(false);
-
     return (
-        <div className="p-6">
-
+        <div className="relative">
             <motion.div
-                transition={{ type: 'spring', damping: 30, stiffness: 300 ,duration:600}}
-                initial={{ height: '65rem' }}
-                animate={{ height: open ? 'auto' : '65rem' }}
-                className=" overflow-hidden"
-                exit={{ height: '65rem' }}
-                style={{ overflow: 'hidden', marginTop: '1.25rem' }} >
-
+                transition={{ type: 'spring', damping: 30, stiffness: 300, duration: 600 }}
+                initial={{ height: 1400 }}
+                animate={{ height: open ? 'auto' : 1400 }}
+                className="p-6 overflow-hidden"
+                exit={{ height: 1400 }}
+                style={{ overflow: 'hidden' }}
+            >
                 <div className="flex items-center gap-2 text-primary-400 dark:text-white">
                     <TbFileDescription size={40} />
                     <p className="text-2xl font-bold">توضیحات دوره</p>
-
                 </div>
 
-                <div className="mt-6" dangerouslySetInnerHTML={{ __html: desc }}></div>
-
-
+                <div className="mt-6 pb-20" dangerouslySetInnerHTML={{ __html: desc }}></div>
             </motion.div>
 
-            <div className={`mt-10 flex justify-center backdrop-blur-[1px]/`}> 
-                    {
-                        !open &&
-                            <Button onClick={() => setOpen(!open)} endContent={<SlEye size={22} />} variant="ghost" color="primary" size="lg" className=" font-semibold ">ادامه مطلب</Button>
-                            
-                    }
-            </div>
-
+            {!open && (
+                <div
+                    className="w-full h-44 flex justify-center items-end bg-gradient-to-b
+                        from-transparent from-10% to-55% to-white dark:to-[#131E34] backdrop-blur-[1px] absolute bottom-0 rounded-b-2xl"
+                >
+                    <Button
+                        onClick={() => setOpen(!open)}
+                        endContent={<SlEye size={22} />}
+                        variant="ghost"
+                        color="secondary"
+                        size="lg"
+                        className="mb-5 font-semibold"
+                    >
+                        ادامه مطلب
+                    </Button>
+                </div>
+            )}
         </div>
-
-    )
+    );
 }
+

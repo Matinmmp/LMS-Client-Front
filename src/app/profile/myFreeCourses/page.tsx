@@ -15,7 +15,7 @@ export default function ProfilePage() {
     const { user, loading, error } = useSelector((state: any) => state.auth)
     const getUserFreeCoursesQuery: any = useQuery({ queryKey: ['getUserFreeCourses'], queryFn: getUserFreeCourses });
 
-    console.log(getUserFreeCoursesQuery?.data?.courses);
+    
 
     return (
         <div className="h-full w-full flex flex-col">

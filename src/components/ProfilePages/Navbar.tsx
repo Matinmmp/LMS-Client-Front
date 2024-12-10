@@ -67,7 +67,7 @@ export default function Navbar() {
         onError: () => showToast({ type: 'error', message: 'خطایی پیش آمده است.' })
     })
 
-    console.log(path === '/profile' || path === '/profile/edit' ? 'mb-20':'mb-0')
+    
 
     return (
         <div className={`h-full lg:block w-full lg:w-1/4 ${path === '/profile' || path === '/profile/edit' ? 'mb-20':'mb-0'}  bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl overflow-hidden`}>

@@ -14,8 +14,9 @@ import { IoIosFilm } from "react-icons/io";
 import { FaStar } from "react-icons/fa6"
 import { Avatar } from "@nextui-org/avatar";
 import Link from "next/link";
-import { Description, ShortLink } from "./CourseInfoComponents";
+import {  Description, ShortLink } from "./CourseInfoComponents";
 import { TbFileDescription } from "react-icons/tb";
+import { CourseLessons } from "./CourseInfoServerComponents";
 
 type Props = {
     data: any,
@@ -104,8 +105,7 @@ export default function CourseInfo({ data }: Props) {
     if (status === 2) {
 
     }
-
-    console.log(course)
+ 
     return (
         <div className='w-full mt-28 flex flex-col'>
 
@@ -155,11 +155,13 @@ export default function CourseInfo({ data }: Props) {
                 <div className="w-full lg:w-[70%] ">
                     <div className="bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
                         <Description desc={course?.longDescription} />
-
+                    </div>
+                    <div className="mt-8">
+                    <CourseLessons />
                     </div>
                 </div>
 
-                <div className="w-full min-w-72 lg:w-[30%] flex flex-col gap-4">
+                <div id="courseInfoSidebar" className="w-full min-w-72 lg:w-[30%] flex flex-col gap-4">
 
                     <SidebarFeature data={course} />
 
