@@ -14,13 +14,11 @@ import { IoIosFilm } from "react-icons/io";
 import { FaStar } from "react-icons/fa6"
 import { Avatar } from "@nextui-org/avatar";
 import Link from "next/link";
-import {  Description, ShortLink } from "./CourseInfoComponents";
-import { CourseLessons } from "./CourseInfoServerComponents";
+import {  CourseLessons, Description, ShortLink } from "./CourseInfoComponents";
+ 
 
 type Props = {
     data: any,
-    data2: any,
-
 }
 
 let AddToCartComponent: any = React.Component;
@@ -41,11 +39,11 @@ const isValide = (expireTime: string, percent: string) => {
     return true
 };
 
-export default function CourseInfo({ data ,data2}: Props) {
+export default function CourseInfo({ data }: Props) {
     const course = data?.course;
     const teacher = data?.teacher;
     const academy = data?.academy
-    console.log(data2)
+  
 
 
     let priceAfterDiscont = 0;
@@ -156,7 +154,7 @@ export default function CourseInfo({ data ,data2}: Props) {
                         <Description desc={course?.longDescription} />
                     </div>
                     <div className="mt-8">
-                    {/* <CourseLessons /> */}
+                    <CourseLessons name={course?.name}/>
                     </div>
                 </div>
 

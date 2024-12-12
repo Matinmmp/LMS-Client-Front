@@ -3,11 +3,15 @@
 import { encodeToShortCode } from "@/src/utils/functions"
 import { FaRegCopy } from "react-icons/fa6"
 import { motion } from 'framer-motion';
-import React, {useState } from "react";
+import React, { useState } from "react";
 import { TbFileDescription } from "react-icons/tb";
 import { Button } from "@nextui-org/button";
 import { SlEye } from "react-icons/sl";
 import { IoIosSchool } from "react-icons/io";
+import { getAccessTokenFromCookies } from "@/src/lib/fetcher";
+import { getCourseDataByNameLoged, getCourseDataByNameNoLoged } from "@/src/lib/apis/courseApis";
+import { useQuery } from "@tanstack/react-query";
+import cookies from 'js-cookie'
 
 export function ShortLink({ name }: { name: string }) {
     const copy = () => navigator.clipboard.writeText(`virtual-learn.com/?r=${encodeToShortCode(name)}`);
@@ -77,3 +81,36 @@ export function Description({ desc }: { desc: string }) {
     );
 }
 
+
+
+
+const refresh_token = cookies.get('refresh_token') 
+const access_token = cookies.get('access_token') 
+
+export function CourseLessons({ name }: { name: any }) {
+    let getCourseData: any
+  
+  
+
+    console.log('refresh_token',refresh_token)
+    console.log('access_token',access_token)
+
+    if (!refresh_token || !access_token)
+        getCourseData = useQuery({ queryKey: ['getCourseDataByNameNoLoged'], queryFn: () => getCourseDataByNameNoLoged(name) });
+
+    if (refresh_token)
+        getCourseData = useQuery({ queryKey: ['getCourseDataByNameLoged'], queryFn: () => getCourseDataByNameLoged(name) });
+
+    console.log(getCourseData.data);
+
+    return (
+        <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
+            <div className="p-6 flex flex-col gap-6">
+                <div className="flex items-center gap-2 text-primary-400 dark:text-white">
+                    <IoIosSchool size={40} />
+                    <p className="text-2xl font-bold">سرفصل‌ها</p>
+                </div>
+            </div>
+        </div>
+    );
+}

@@ -14,13 +14,25 @@ export const getCourseByName = async (name: string) => {
     }
 }
 
-export const getCourseDataByName = async (name: string,access_token:string) => {
+export const getCourseDataByNameNoLoged = async (name: string) => {
     try {
-        const data = await customFetch(`/get-courseData/${name}`, {
+        const data = await customFetch(`/getCourseDataByNameNoLoged/${name}`, {
             method: 'GET',
             cache: 'no-store',
             credentials: 'include',
-            access_token:access_token
+        });
+        return await data;
+    } catch (error) {
+        return error
+    }
+}
+
+export const getCourseDataByNameLoged = async (name: string) => {
+    try {
+        const data = await customFetch(`/getCourseDataByNameLoged/${name}`, {
+            method: 'GET',
+            cache: 'no-store',
+            credentials: 'include',
         });
         return await data;
     } catch (error) {
