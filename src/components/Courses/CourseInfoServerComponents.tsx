@@ -1,9 +1,9 @@
- 
+
 import { getCourseDataByName } from "@/src/lib/apis/courseApis";
 import { IoIosSchool } from "react-icons/io";
 
 export async function CourseLessons() {
-    const data: any =await getCourseDataByName('100 Days of Code: The Complete Python Pro Bootcamp');
+    const data: any = await getCourseDataByName('100 Days of Code: The Complete Python Pro Bootcamp');
     console.log(data)
     return (
         <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">

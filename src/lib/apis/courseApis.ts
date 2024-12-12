@@ -14,13 +14,14 @@ export const getCourseByName = async (name: string) => {
     }
 }
 
-export const getCourseDataByName = async (name: string) => {
+export const getCourseDataByName = async (name: string,access_token:string) => {
     try {
         const data = await customFetch(`/get-courseData/${name}`, {
             method: 'GET',
-            cache: 'no-store'
-        }
-        );
+            cache: 'no-store',
+            credentials: 'include',
+            access_token:access_token
+        });
         return await data;
     } catch (error) {
         return error

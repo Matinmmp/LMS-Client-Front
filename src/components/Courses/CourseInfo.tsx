@@ -1,7 +1,7 @@
 'use client'
 import { Button } from "@nextui-org/button";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
-import { encodeToShortCode, formatDate, numberSeparator, secondsToTimeString, toPersianNumber } from "@/src/utils/functions";
+import { formatDate, numberSeparator, secondsToTimeString, toPersianNumber } from "@/src/utils/functions";
 import React from "react";
 import DiscountCounter from "./Discount";
 import '@vidstack/react/player/styles/base.css';
@@ -15,11 +15,12 @@ import { FaStar } from "react-icons/fa6"
 import { Avatar } from "@nextui-org/avatar";
 import Link from "next/link";
 import {  Description, ShortLink } from "./CourseInfoComponents";
-import { TbFileDescription } from "react-icons/tb";
 import { CourseLessons } from "./CourseInfoServerComponents";
 
 type Props = {
     data: any,
+    data2: any,
+
 }
 
 let AddToCartComponent: any = React.Component;
@@ -40,10 +41,11 @@ const isValide = (expireTime: string, percent: string) => {
     return true
 };
 
-export default function CourseInfo({ data }: Props) {
+export default function CourseInfo({ data ,data2}: Props) {
     const course = data?.course;
     const teacher = data?.teacher;
     const academy = data?.academy
+    console.log(data2)
 
 
     let priceAfterDiscont = 0;
@@ -102,10 +104,7 @@ export default function CourseInfo({ data }: Props) {
             </>
     }
 
-    if (status === 2) {
-
-    }
- 
+    
     return (
         <div className='w-full mt-28 flex flex-col'>
 
@@ -157,7 +156,7 @@ export default function CourseInfo({ data }: Props) {
                         <Description desc={course?.longDescription} />
                     </div>
                     <div className="mt-8">
-                    <CourseLessons />
+                    {/* <CourseLessons /> */}
                     </div>
                 </div>
 
