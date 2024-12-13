@@ -1,8 +1,7 @@
 'use client'
-import React, { Children, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "@nextui-org/input";
 import { Select, SelectItem } from "@nextui-org/select";
-import { ImBooks } from "react-icons/im";
 import { Button } from "@nextui-org/button";
 import { motion } from 'framer-motion';
 import { IoIosArrowBack } from "react-icons/io";

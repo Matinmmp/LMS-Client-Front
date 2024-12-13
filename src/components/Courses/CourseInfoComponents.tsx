@@ -7,7 +7,7 @@ import React, { useState } from "react";
 import { TbFileDescription } from "react-icons/tb";
 import { Button } from "@nextui-org/button";
 import { SlEye } from "react-icons/sl";
-import { IoIosSchool } from "react-icons/io";
+import { IoIosArrowBack, IoIosSchool } from "react-icons/io";
 import { getAccessTokenFromCookies } from "@/src/lib/fetcher";
 import { getCourseDataByNameLoged, getCourseDataByNameNoLoged } from "@/src/lib/apis/courseApis";
 import { useQuery } from "@tanstack/react-query";
@@ -84,16 +84,11 @@ export function Description({ desc }: { desc: string }) {
 
 
 
-const refresh_token = cookies.get('refresh_token') 
-const access_token = cookies.get('access_token') 
+const refresh_token = cookies.get('refresh_token')
+const access_token = cookies.get('access_token')
 
 export function CourseLessons({ name }: { name: any }) {
     let getCourseData: any
-  
-  
-
-    console.log('refresh_token',refresh_token)
-    console.log('access_token',access_token)
 
     if (!refresh_token || !access_token)
         getCourseData = useQuery({ queryKey: ['getCourseDataByNameNoLoged'], queryFn: () => getCourseDataByNameNoLoged(name) });
@@ -101,7 +96,17 @@ export function CourseLessons({ name }: { name: any }) {
     if (refresh_token)
         getCourseData = useQuery({ queryKey: ['getCourseDataByNameLoged'], queryFn: () => getCourseDataByNameLoged(name) });
 
-    console.log(getCourseData.data);
+
+
+    let categorizedData: any
+    console.log(getCourseData.isLoading)
+    if (!getCourseData.isLoading && getCourseData.isSuccess && getCourseData?.data?.success) {
+
+        categorizedData = categorizeVideos(getCourseData?.data?.courseData);
+
+
+    }
+
 
     return (
         <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
@@ -110,7 +115,95 @@ export function CourseLessons({ name }: { name: any }) {
                     <IoIosSchool size={40} />
                     <p className="text-2xl font-bold">سرفصل‌ها</p>
                 </div>
+
+                <div className="w-full">
+                    <div className="flex flex-col gap-4">
+                        {!getCourseData.isLoading && getCourseData.isSuccess &&
+                            categorizedData.map((item: any, index: number) => <Acordian item={item}/>)
+                        }
+
+                    </div>
+                </div>
             </div>
         </div>
     );
 }
+
+
+const Acordian = ({ item }: { item: any}) => {
+    const [open, setOpen] = useState(false)
+
+    return (
+        <div className="flex flex-col justify-center dark:shadow-small rounded-xl overflow-hidden bg-[#F3F4F6] dark:bg-slate-800">
+            <div onClick={() => setOpen(!open)} className={`p-4 py-5 cursor-pointer transition-all
+                 ${open ?"bg-primary-500" :" bg-[#F3F4F6] dark:bg-slate-800"} `}>
+                <div className="w-full flex- items-center">
+                    <p className={`text-[1.1rem] font-medium ${open ?"text-white" :" text-black dark:text-white"}`}>{item?.videoSection}</p>
+                </div>
+            </div>
+
+            <motion.div
+                transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+                initial={{ height: 0 }}
+                animate={{ height: open ? 'auto' : 0 }}
+                exit={{ height: 0 }}
+                style={{ overflow: 'hidden' }} >
+                <div className="mt-2 p-4">
+                    ffff
+                </div>
+            </motion.div>
+
+        </div>
+    )
+}
+
+
+function categorizeVideos(data: any[]) {
+
+    const result = Object.values(
+        data.reduce((acc: any, item: any) => {
+            const section = item.videoSection;
+
+            if (!acc[section]) {
+                acc[section] = {
+                    videoSection: section,
+                    sectionFiles: [],
+                    sectionLinks: [],
+                    totalLength: 0,
+                    videoList: []
+                };
+            }
+
+            // اضافه کردن اطلاعات بخش
+            acc[section].sectionLinks = [...acc[section].sectionLinks, ...(item.sectionLinks || [])];
+            acc[section].sectionFiles = acc[section].sectionFiles === 'true' ? 'true' : acc[section].sectionFiles || [];
+
+            if (item.sectionFiles && item.sectionFiles !== "true") {
+                acc[section].sectionFiles.push(item.sectionFiles);
+            }
+            else acc[section].sectionFiles = 'true'
+
+            // به‌روزرسانی طول کل
+            acc[section].totalLength += Number(item.videoLength || 0);
+
+            // اضافه کردن ویدیو به لیست
+            const videoData = {
+                isFree: item.isFree,
+                title: item.title,
+                description: item.description,
+                videoLength: item.videoLength,
+                videoLinks: item.videoLinks,
+                videoFiles: item.videoFiles,
+                videoUrl: item.videoUrl
+            };
+            acc[section].videoList.push(videoData);
+
+            return acc;
+        }, {})
+    );
+
+    return result;
+}
+
+
+
