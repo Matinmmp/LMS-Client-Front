@@ -16,6 +16,34 @@ function secondsToTimeString(secondsInput: string) {
     return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
 }
 
+function hoursAndMinutesString(secondsInput: string): string {
+    const totalSeconds = +secondsInput; // تبدیل به عدد
+    const hours = Math.floor(totalSeconds / 3600); // تبدیل به ساعت
+    const minutes = Math.floor((totalSeconds % 3600) / 60); // تبدیل به دقیقه
+
+    const formattedHours = hours > 0 ? `${hours}h` : ""; // اگر ساعت داریم
+    const formattedMinutes = minutes > 0 ? `${minutes}m` : ""; // اگر دقیقه داریم
+
+    return `${formattedHours} ${formattedMinutes}`.trim(); // حذف فاصله اضافی
+}
+
+function secondsToTimeString2(secondsInput: string): string {
+    const totalSeconds = +secondsInput; // تبدیل به عدد
+    const hours = Math.floor(totalSeconds / 3600); // تبدیل به ساعت
+    const minutes = Math.floor((totalSeconds % 3600) / 60); // تبدیل به دقیقه
+    const seconds = totalSeconds % 60; // باقی‌مانده ثانیه
+
+    // استفاده از padStart برای نمایش دو رقمی
+    const formattedHours = String(hours).padStart(2, '0');
+    const formattedMinutes = String(minutes).padStart(2, '0');
+    const formattedSeconds = String(seconds).padStart(2, '0');
+
+    return hours > 0
+        ? `${formattedHours}:${formattedMinutes}:${formattedSeconds}` // اگر ساعت داریم
+        : `${formattedMinutes}:${formattedSeconds}`; // اگر ساعت نداریم
+}
+
+
 const numberSeparator = (number: string) => {
     number += '';
     number = number.replace(',', '');
@@ -99,5 +127,7 @@ export {
     fixNumbers,
     formatDate,
     formatDate2,
-    encodeToShortCode
+    encodeToShortCode,
+    hoursAndMinutesString,
+    secondsToTimeString2
 }

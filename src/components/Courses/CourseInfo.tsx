@@ -14,8 +14,8 @@ import { IoIosFilm } from "react-icons/io";
 import { FaStar } from "react-icons/fa6"
 import { Avatar } from "@nextui-org/avatar";
 import Link from "next/link";
-import {  CourseLessons, Description, ShortLink } from "./CourseInfoComponents";
- 
+import { CourseLessons, Description, ShortLink } from "./CourseInfoComponents";
+
 
 type Props = {
     data: any,
@@ -43,7 +43,7 @@ export default function CourseInfo({ data }: Props) {
     const course = data?.course;
     const teacher = data?.teacher;
     const academy = data?.academy
-  
+
 
 
     let priceAfterDiscont = 0;
@@ -53,10 +53,9 @@ export default function CourseInfo({ data }: Props) {
         PriceAfterDiscountComponent =
             <div className="flex items-center gap-2">
                 <div className="flex items-center gap-3">
-                    <span className="text-xl md:text-2xl font-normal text-gray-600 dark:text-gray-400 relative line-through">
+                    {course?.price ? <span className="text-xl md:text-2xl font-normal text-gray-600 dark:text-gray-400 relative line-through">
                         {toPersianNumber(numberSeparator(`${course?.price}`))}
-                        {/* <span className="w-full h-[1px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-600 dark:bg-gray-400 rotate-[15deg] "></span> */}
-                    </span>
+                    </span> : ''}
                     {priceAfterDiscont === 0 ?
                         <span className="text-2xl md:text-3xl font-semibold ">رایگان</span>
                         :
@@ -89,8 +88,9 @@ export default function CourseInfo({ data }: Props) {
     if (status === 1) {
         AddToCartComponent =
             <>
-                <DiscountCounter expireTime={course?.discount?.expireTime} percent={course?.discount?.percent} usageCount={course?.discount?.usageCount} />
-
+                {course?.price ?
+                    <DiscountCounter expireTime={course?.discount?.expireTime} percent={course?.discount?.percent} usageCount={course?.discount?.usageCount} />
+                    : ''}
                 <div className={`w-full ${!isValide(course?.discount?.expireTime, course?.discount?.percent) ? 'md:mt-14' : 'md:mt-6'} flex flex-col sm:flex-row items-center justify-between gap-2`}>
                     <Button startContent={<MdOutlineAddShoppingCart size={22} />} variant="shadow" color="primary" size="lg" className="w-full sm:w-max font-medium order-2 sm:order-1">افزودن به سبد خرید</Button>
 
@@ -102,7 +102,7 @@ export default function CourseInfo({ data }: Props) {
             </>
     }
 
-    
+
     return (
         <div className='w-full mt-28 flex flex-col'>
 
@@ -154,7 +154,7 @@ export default function CourseInfo({ data }: Props) {
                         <Description desc={course?.longDescription} />
                     </div>
                     <div className="mt-8">
-                    <CourseLessons name={course?.name}/>
+                        <CourseLessons name={course?.name} />
                     </div>
                 </div>
 

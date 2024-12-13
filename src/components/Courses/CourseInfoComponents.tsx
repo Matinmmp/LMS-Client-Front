@@ -1,6 +1,6 @@
 'use client'
 
-import { encodeToShortCode } from "@/src/utils/functions"
+import { encodeToShortCode, hoursAndMinutesString, secondsToTimeString, secondsToTimeString2, toPersianNumber } from "@/src/utils/functions"
 import { FaRegCopy } from "react-icons/fa6"
 import { motion } from 'framer-motion';
 import React, { useState } from "react";
@@ -12,6 +12,9 @@ import { getAccessTokenFromCookies } from "@/src/lib/fetcher";
 import { getCourseDataByNameLoged, getCourseDataByNameNoLoged } from "@/src/lib/apis/courseApis";
 import { useQuery } from "@tanstack/react-query";
 import cookies from 'js-cookie'
+import { RxDotFilled } from "react-icons/rx";
+import { PiMonitorPlay } from "react-icons/pi";
+import { RiLockLine } from "react-icons/ri";
 
 export function ShortLink({ name }: { name: string }) {
     const copy = () => navigator.clipboard.writeText(`virtual-learn.com/?r=${encodeToShortCode(name)}`);
@@ -119,7 +122,7 @@ export function CourseLessons({ name }: { name: any }) {
                 <div className="w-full">
                     <div className="flex flex-col gap-4">
                         {!getCourseData.isLoading && getCourseData.isSuccess &&
-                            categorizedData.map((item: any, index: number) => <Acordian item={item}/>)
+                            categorizedData.map((item: any, index: number) => <Acordian item={item} />)
                         }
 
                     </div>
@@ -128,18 +131,67 @@ export function CourseLessons({ name }: { name: any }) {
         </div>
     );
 }
+// secondsToTimeString2
 
-
-const Acordian = ({ item }: { item: any}) => {
+const Acordian = ({ item }: { item: any }) => {
     const [open, setOpen] = useState(false)
+    const [open2, setOpen2] = useState(false)
 
     return (
-        <div className="flex flex-col justify-center dark:shadow-small rounded-xl overflow-hidden bg-[#F3F4F6] dark:bg-slate-800">
+        <div className="flex flex-col justify-center dark:shadow-small rounded-xl overflow-hidden bg-[#f3f4f8] dark:bg-slate-800">
             <div onClick={() => setOpen(!open)} className={`p-4 py-5 cursor-pointer transition-all
-                 ${open ?"bg-primary-500" :" bg-[#F3F4F6] dark:bg-slate-800"} `}>
-                <div className="w-full flex- items-center">
-                    <p className={`text-[1.1rem] font-medium ${open ?"text-white" :" text-black dark:text-white"}`}>{item?.videoSection}</p>
+                 ${open ? "bg-primary-500" : " bg-[#f3f4f8] dark:bg-slate-800"} `}>
+                <div className={`w-full flex items-center justify-between ${open ? "text-white" : " text-black dark:text-white"}`}>
+                    <p className={`text-[1.1rem] font-medium `}>{item?.videoSection}</p>
+
+                    <div className="flex items-center gap-0.5">
+                        <span className="font-light">{toPersianNumber(hoursAndMinutesString(item?.totalLength))}</span>
+                        <RxDotFilled />
+                        <span className="font-light">{toPersianNumber(item?.videoList?.length)} درس</span>
+
+                        <IoIosArrowBack size={26} className={`${open ? '-rotate-90' : 'rotate-90'} ms-4 transition-transform`} />
+
+                    </div>
                 </div>
+            </div>
+
+            <motion.div
+                transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+                initial={{ height: 0 }}
+                animate={{ height: open ? 'auto' : 0 }}
+                exit={{ height: 0 }}
+                style={{ overflow: 'hidden' }} >
+                <div>
+                    {item?.videoList?.map((item2: any, index: number) => <LessonAcordian index={index} item={item2} open={open2} setOpen={setOpen2} />)}
+
+                </div>
+            </motion.div>
+
+        </div>
+    )
+}
+
+const LessonAcordian = ({ item, open, setOpen, index }: { item: any, open: boolean, setOpen: (open: boolean) => void, index: number }) => {
+
+    return (
+        <div className="flex flex-col justify-cente border-b-2 border-b-primary-50">
+            <div onClick={() =>{item?.isFree && setOpen(!open)} } className={`p-4 py-5 ${item?.isFree?"cursor-pointer":'cursor-default'} transition-all `}>
+
+                <div className={`w-full flex items-center justify-between  ${open ? "text-white" : " text-black dark:text-white"}`}>
+
+                    <div className="flex items-center gap-3 ">
+                        <span className="w-7 h-7 pt-[1px] flex items-center justify-center rounded-md bg-primary-500 shadow-small font-semibold text-white  ">{toPersianNumber(index + 1)}</span>
+
+                        <p className=" text-[1.1rem] hover:text-primary-400">{item?.title}</p>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                        <span className="font-medium">{toPersianNumber(secondsToTimeString2(item?.videoLength))}</span>
+                        {item?.isFree ? <PiMonitorPlay size={28} /> : <RiLockLine size={28} />}
+                    </div>
+
+                </div>
+
             </div>
 
             <motion.div
@@ -156,7 +208,6 @@ const Acordian = ({ item }: { item: any}) => {
         </div>
     )
 }
-
 
 function categorizeVideos(data: any[]) {
 
