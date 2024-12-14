@@ -123,7 +123,7 @@ export default function CourseInfo({ data }: Props) {
 
                         <div className="h-full flex flex-col ">
 
-                            <h1 dir="ltr" className='text-primary-400 font-bold text-2xl md:text-3xl 2xl:text-[2rem] md:leading-10'>
+                            <h1 dir="ltr" className='text-primary-400 font-bold text-xl md:text-3xl 2xl:text-[2rem] md:leading-10'>
                                 {course?.name}
                             </h1>
 

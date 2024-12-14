@@ -15,6 +15,7 @@ import cookies from 'js-cookie'
 import { RxDotFilled } from "react-icons/rx";
 import { PiMonitorPlay } from "react-icons/pi";
 import { RiLockLine } from "react-icons/ri";
+import { FaDownload } from "react-icons/fa6";
 
 export function ShortLink({ name }: { name: string }) {
     const copy = () => navigator.clipboard.writeText(`virtual-learn.com/?r=${encodeToShortCode(name)}`);
@@ -113,7 +114,7 @@ export function CourseLessons({ name }: { name: any }) {
 
     return (
         <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
-            <div className="p-6 flex flex-col gap-6">
+            <div className="p-4 px-2 sm:p-6 flex flex-col gap-6">
                 <div className="flex items-center gap-2 text-primary-400 dark:text-white">
                     <IoIosSchool size={40} />
                     <p className="text-2xl font-bold">سرفصل‌ها</p>
@@ -131,23 +132,23 @@ export function CourseLessons({ name }: { name: any }) {
         </div>
     );
 }
-// secondsToTimeString2
+
 
 const Acordian = ({ item }: { item: any }) => {
     const [open, setOpen] = useState(false)
-    const [open2, setOpen2] = useState(false)
+    const [selectedLesson, setSelectedLesson] = useState('')
 
     return (
-        <div className="flex flex-col justify-center dark:shadow-small rounded-xl overflow-hidden bg-[#f3f4f8] dark:bg-slate-800">
+        <div dir="ltr" className="flex flex-col justify-center dark:shadow-small rounded-xl overflow-hidden bg-[#f3f4f8] dark:bg-slate-800">
             <div onClick={() => setOpen(!open)} className={`p-4 py-5 cursor-pointer transition-all
                  ${open ? "bg-primary-500" : " bg-[#f3f4f8] dark:bg-slate-800"} `}>
                 <div className={`w-full flex items-center justify-between ${open ? "text-white" : " text-black dark:text-white"}`}>
-                    <p className={`text-[1.1rem] font-medium `}>{item?.videoSection}</p>
+                    <p className={`sm:text-[1.1rem] font-medium `}>{item?.videoSection}</p>
 
                     <div className="flex items-center gap-0.5">
-                        <span className="font-light">{toPersianNumber(hoursAndMinutesString(item?.totalLength))}</span>
-                        <RxDotFilled />
-                        <span className="font-light">{toPersianNumber(item?.videoList?.length)} درس</span>
+                        <span className="hidden sm:inline font-light">{toPersianNumber(hoursAndMinutesString(item?.totalLength))}</span>
+                        <RxDotFilled className="hidden sm:inline" />
+                        <span className="hidden sm:inline font-light">{toPersianNumber(item?.videoList?.length)} درس</span>
 
                         <IoIosArrowBack size={26} className={`${open ? '-rotate-90' : 'rotate-90'} ms-4 transition-transform`} />
 
@@ -162,7 +163,7 @@ const Acordian = ({ item }: { item: any }) => {
                 exit={{ height: 0 }}
                 style={{ overflow: 'hidden' }} >
                 <div>
-                    {item?.videoList?.map((item2: any, index: number) => <LessonAcordian index={index} item={item2} open={open2} setOpen={setOpen2} />)}
+                    {item?.videoList?.map((item2: any, index: number) => <LessonAcordian index={index} item={item2} selectedLesson={selectedLesson} setSelectedLesson={setSelectedLesson} />)}
 
                 </div>
             </motion.div>
@@ -171,23 +172,39 @@ const Acordian = ({ item }: { item: any }) => {
     )
 }
 
-const LessonAcordian = ({ item, open, setOpen, index }: { item: any, open: boolean, setOpen: (open: boolean) => void, index: number }) => {
+const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index }: { item: any, selectedLesson: string, setSelectedLesson: (index: string) => void, index: number }) => {
+
+    const handleClick = () => {
+        if (item?.isFree) {
+            if (selectedLesson === `${index}`) setSelectedLesson(``)
+            else setSelectedLesson(`${index}`)
+
+        }
+    }
 
     return (
         <div className="flex flex-col justify-cente border-b-2 border-b-primary-50">
-            <div onClick={() =>{item?.isFree && setOpen(!open)} } className={`p-4 py-5 ${item?.isFree?"cursor-pointer":'cursor-default'} transition-all `}>
+            <div onClick={handleClick} className={`p-4 py-5 ${item?.isFree ? "cursor-pointer" : 'cursor-default'} transition-all `}>
 
-                <div className={`w-full flex items-center justify-between  ${open ? "text-white" : " text-black dark:text-white"}`}>
+                <div className={`w-full flex flex-wrap items-center gap-2`}>
 
                     <div className="flex items-center gap-3 ">
                         <span className="w-7 h-7 pt-[1px] flex items-center justify-center rounded-md bg-primary-500 shadow-small font-semibold text-white  ">{toPersianNumber(index + 1)}</span>
 
-                        <p className=" text-[1.1rem] hover:text-primary-400">{item?.title}</p>
+                        <p className={` text-[1.1rem] hover:text-primary-400 ${selectedLesson === `${index}` ? "text-primary-400 " : " "}`}>{item?.title}</p>
                     </div>
 
-                    <div className="flex items-center gap-2">
+                    <div className="ms-auto flex items-center gap-2">
+                        {item?.videoFiles === 'true' || item?.videoFiles.length ?
+                            <div className=" me-2 flex items-center gap-1">
+                                <FaDownload />
+                                <span className="text-sm font-light">پیوست</span>
+                            </div>
+                            : ''}
+
                         <span className="font-medium">{toPersianNumber(secondsToTimeString2(item?.videoLength))}</span>
                         {item?.isFree ? <PiMonitorPlay size={28} /> : <RiLockLine size={28} />}
+
                     </div>
 
                 </div>
@@ -197,11 +214,11 @@ const LessonAcordian = ({ item, open, setOpen, index }: { item: any, open: boole
             <motion.div
                 transition={{ type: 'spring', damping: 30, stiffness: 300 }}
                 initial={{ height: 0 }}
-                animate={{ height: open ? 'auto' : 0 }}
+                animate={{ height: selectedLesson === `${index}` ? 'auto' : 0 }}
                 exit={{ height: 0 }}
                 style={{ overflow: 'hidden' }} >
-                <div className="mt-2 p-4">
-                    ffff
+                <div className="mt-2">
+
                 </div>
             </motion.div>
 
