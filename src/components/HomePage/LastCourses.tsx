@@ -11,10 +11,10 @@ type Props = {
 
 
 
-const LastCourses = async (props: Props)  => {
+const LastCourses = async (props: Props) => {
     const data: any = await getHomeLastCourses();
 
-    if (data && data.success)
+    if (data && data.success && data.courses.length)
 
         return (
             <section className="w-full pb-10 flex flex-col relative">
@@ -34,9 +34,9 @@ const LastCourses = async (props: Props)  => {
                 <div className="mt-10">
                     <div className="grid grid-cols-1 sm:grid-cols-2 md2:grid-cols-3 xl:grid-cols-4 justify-items-center gap-y-8 gap-x-8 ">
                         {
-                            data.courses.length && data.courses.map((item: any, index: number) =>
+                            data.courses.length ? data.courses.map((item: any, index: number) =>
                                 <CourseCard key={index} data={item} />
-                            )
+                            ) : ''
                         }
                     </div>
                 </div>

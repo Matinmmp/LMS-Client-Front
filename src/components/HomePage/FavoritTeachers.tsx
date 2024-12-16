@@ -13,7 +13,7 @@ const FavoritTeachers = async (props: Props) => {
 
     const data: any = await getHomeFavoritTeachers();
 
-    if (data && data.success)
+    if (data && data.success && data.teachers.length)
         return (
             <section className="w-full pb-10 flex flex-col relative">
 

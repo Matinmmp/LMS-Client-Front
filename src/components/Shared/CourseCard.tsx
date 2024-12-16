@@ -1,3 +1,4 @@
+'use client'
 import { numberSeparator, secondsToTimeString, toPersianNumber } from "@/src/utils/functions"
 import Image from "next/image"
 import { FaStar } from "react-icons/fa6"
@@ -14,7 +15,7 @@ import Link from "next/link"
 
 type CardProps = {
     data: {
-        totalVideos: number,
+        totalLessons: number,
         isInVirtualPlus: boolean,
         discount: {
             percent: number
@@ -47,8 +48,8 @@ const encodeTitle = (title:string) => {
         .replace(/\u200C/g, '-'); // جایگزینی نیم‌فاصله با -
 }
 
-export const CourseCard = ({ data }: CardProps) => {
-
+export const CourseCard = ({ data }: {data:any}) => {
+    console.log(data)
     let status = data.status === 0 ? 'درحال ترجمه' : data.status === 1 ? 'پایان یافته' : 'متوقف شده'
     let link = encodeTitle(data?.name);
 
@@ -89,12 +90,12 @@ export const CourseCard = ({ data }: CardProps) => {
                             <div className="flex flex-col">
                                 <div className="mt-1 flex items-center gap-1">
                                     <GiTeacher size={16} className="text-primary-400" />
-                                    <span className="text-xs font-semibold text-gray-400">{data.teacher.teacherFaName}</span>
+                                    <span className="text-xs font-semibold text-gray-400">{data.teacher.teacherEngName}</span>
                                 </div>
 
                                 <div className="mt-1 flex items-center gap-1">
                                     <IoIosFilm size={16} className="text-primary-400" />
-                                    <span className="text-xs font-semibold text-gray-400">{toPersianNumber(data.totalVideos)} درس</span>
+                                    <span className="text-xs font-semibold text-gray-400">{toPersianNumber(data.totalLessons)} درس</span>
                                 </div>
                             </div>
 
