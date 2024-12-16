@@ -78,11 +78,10 @@ const AcademyInfo = ({ data }: Props) => {
                 <div className="w-full mt-10 flex flex-col items-center lg:items-start lg:flex-row justify-between">
 
                     <div className="order-2 lg:order-1 mt-8 lg:mt-4 text-center lg:text-left" style={{ lineBreak: 'anywhere' }}>
-                        <h1 className={clsx(title({ color: 'green' }), 'inline w-full text-left text-2xl md:text-4xl lg2:text-[2.5rem] xl:text-5xl !font-bold md:leading-[3.2rem] whitespace-nowrap')}>
+                        <h1 className={clsx(title({ color: 'green' }), 'inline w-full text-left text-2xl md:text-4xl lg2:text-[2.5rem]  !font-bold md:leading-[3.2rem] whitespace-nowrap')}>
                             {data.faName}
-
                         </h1>
-                        <h2 className={clsx(title({ color: 'green' }), 'inline w-full text-left text-2xl md:text-4xl lg2:text-[2.5rem] xl:text-5xl !font-bold md:leading-[3.2rem] whitespace-nowrap')}>
+                        <h2 className={clsx(title({ color: 'green' }), 'inline w-full text-left text-2xl md:text-4xl lg2:text-[2.5rem]  !font-bold md:leading-[3.2rem] whitespace-nowrap')}>
                             {` (${data.engName}) `}
 
                         </h2>

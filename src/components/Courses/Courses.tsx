@@ -152,7 +152,7 @@ const Courses = ({ children }: Props) => {
         <section className="w-full pb-10 flex flex-col ">
 
             <div className="flex items-center flex-wrap md:flex-nowrap gap-4 py-6 px-4 shadow-medium rounded-lg 
-                bg-[#ffffffbf] dark:bg-[#2020207c] dark:backdrop-blur-md ">
+                bg-[#ffffffbf] dark:bg-[#131d35] dark:backdrop-blur-md ">
 
                 <Input placeholder="نام دوره را وارد کنید" size="lg" radius="sm" variant="bordered" color="primary"
                     endContent={<IoSearch size={24} className="cursor-pointer" onClick={handleSearch} />}
@@ -177,7 +177,7 @@ const Courses = ({ children }: Props) => {
 
                 <div className="w-full flex flex-col gap-3 lg:w-4/12 xl:w-3/12">
 
-                    <div className="w-full bg-[#ffffffbf] dark:bg-[#20202065]  dark:backdrop-blur-md shadow-medium rounded-lg">
+                    <div className="w-full bg-[#ffffffbf] dark:bg-[#131d35]  dark:backdrop-blur-md shadow-medium rounded-lg">
 
                         <Acordian open={open1} title="فیلتر قیمت" setOpen={setOpen1} initialHeight={'auto'}>
 
@@ -199,7 +199,7 @@ const Courses = ({ children }: Props) => {
 
                     </div>
 
-                    <div className="w-full bg-[#ffffffbf] dark:bg-[#20202065]  dark:backdrop-blur-md shadow-medium rounded-lg">
+                    <div className="w-full bg-[#ffffffbf] dark:bg-[#131d35]  dark:backdrop-blur-md shadow-medium rounded-lg">
 
                         <Acordian open={open2} title="فیلتر آکادمی" setOpen={setOpen2} initialHeight={0} closeInMobile={true}>
                             <div className="w-full flex flex-col gap-3">
@@ -213,7 +213,7 @@ const Courses = ({ children }: Props) => {
 
                     </div>
 
-                    <div className="w-full bg-[#ffffffbf] dark:bg-[#20202065]  dark:backdrop-blur-md shadow-medium rounded-lg">
+                    <div className="w-full bg-[#ffffffbf] dark:bg-[#131d35]  dark:backdrop-blur-md shadow-medium rounded-lg">
                         <Acordian open={open3} title="فیلتر مدرس" setOpen={setOpen3} initialHeight={0} closeInMobile={true}>
                             <div className="w-full flex flex-col gap-3">
                                 {teachersList.map((item: any, index) =>
@@ -225,7 +225,7 @@ const Courses = ({ children }: Props) => {
                         </Acordian>
                     </div>
 
-                    <div className="w-full bg-[#ffffffbf] dark:bg-[#20202065] dark:backdrop-blur-md shadow-medium rounded-lg">
+                    <div className="w-full bg-[#ffffffbf] dark:bg-[#131d35] dark:backdrop-blur-md shadow-medium rounded-lg">
                         <Acordian open={open4} title="فیلتر دسته بندی" setOpen={setOpen4} initialHeight={'auto'} closeInMobile={true}>
                             <div className="w-full flex flex-col gap-3">
                                 {renderCategories(

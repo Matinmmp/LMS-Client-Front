@@ -84,7 +84,7 @@ const AcademiesList = ({ list }: Props) => {
 
             <div >
                 <div className="flex items-center flex-wrap md:flex-nowrap gap-4 py-6 px-4 shadow-medium rounded-lg 
-                bg-[#ffffffbf] backdrop-blur-[10px] dark:bg-[#2020204d] ">
+                bg-[#ffffffbf] backdrop-blur-[10px] dark:bg-[#131d35] ">
                     <Input
                         onChange={(e) => handleSearchChange(e.target.value)}
                         value={searchText} dir={inputDirection}

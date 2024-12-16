@@ -125,7 +125,7 @@ const TeachersList = ({ list }: Props) => {
         <section className="w-full pb-10 flex flex-col ">
             <div>
                 <div className="flex items-center flex-wrap md:flex-nowrap gap-4 py-6 px-4 shadow-medium dark: rounded-lg 
-                bg-[#ffffffbf] backdrop-blur-[10px] dark:bg-[#20202080] ">
+                bg-[#ffffffbf] backdrop-blur-[10px] dark:bg-[#131d35] ">
 
                     <Input onChange={(e) => handleSearchChange(e.target.value)} value={searchText} dir={inputDirection}
                         placeholder="نام مدرس را وارد کنید" size="lg" radius="sm" variant="bordered" color="secondary" />

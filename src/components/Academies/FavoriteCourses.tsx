@@ -1,4 +1,4 @@
-
+'use client'
 import React from "react";
 import { TbArrowBigLeftLinesFilled } from "react-icons/tb";
 import Link from "next/link";
@@ -16,7 +16,7 @@ type Props = {
 
 const FavoriteCoursesForAcademy = async (props: Props) => {
     const data: any = await getAcademyCoursesByEngName(props.name);
-
+    console.log(data);
     if (data && data.success)
         return (
             <section className="w-full pb-4 flex flex-col relative">

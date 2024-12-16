@@ -154,7 +154,7 @@ export default function CourseInfo({ data }: Props) {
                         <Description desc={course?.longDescription} />
                     </div>
                     <div className="mt-8">
-                        <CourseLessons name={course?.name} />
+                        {/* <CourseLessons name={course?.name} /> */}
                     </div>
                 </div>
 
@@ -162,7 +162,7 @@ export default function CourseInfo({ data }: Props) {
 
                     <SidebarFeature data={course} />
 
-                    <PercentToFull total={course?.holeCourseVideos} translated={course?.totalVideos} />
+                    <PercentToFull total={course?.holeCourseVideos} translated={course?.totalLessons} />
 
                     <ShortLink name={course?.name} />
 
@@ -185,8 +185,6 @@ function SidebarFeature({ data }: Props2) {
     return (
         <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
 
-
-
             <div className="p-2 grid grid-cols-3 sm:grid-cols-4 md2:grid-cols-6 lg:grid-cols-3 gap-2 bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
 
                 <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-xl">
@@ -195,7 +193,11 @@ function SidebarFeature({ data }: Props2) {
 
                         <HiOutlineInformationCircle size={40} className="text-primary-400" />
                         <span className="mt-3 text-sm">وضعیت دوره:</span>
-                        <span className="mt-0.5 font-medium">اتمام</span>
+                        <span className="mt-0.5 text-sm">
+                            {
+                                data.status == 0 ? 'در‌حال ترجمه': data?.status == 1 ? 'اتمام':'متوقف شده'
+                            }
+                        </span>
 
                     </div>
                 </div>
@@ -205,7 +207,7 @@ function SidebarFeature({ data }: Props2) {
 
                         <PiStudentBold size={38} className="text-primary-400" />
                         <span className="mt-3 text-sm">تعداد دانشجو‌ها:</span>
-                        <span className="mt-0.5 font-medium">{toPersianNumber(`${data.purchased}`)}</span>
+                        <span className="mt-0.5 text-sm">{toPersianNumber(`${data.purchased}`)}</span>
 
                     </div>
                 </div>
@@ -215,7 +217,7 @@ function SidebarFeature({ data }: Props2) {
 
                         <WiTime3 size={38} className="text-primary-400" />
                         <span className="mt-3 text-sm">مدت زمان دوره:</span>
-                        <span className="mt-0.5 font-medium">{toPersianNumber(secondsToTimeString(data.courseLength))}</span>
+                        <span className="mt-0.5 text-sm">{toPersianNumber(secondsToTimeString(data.courseLength))}</span>
 
                     </div>
                 </div>
@@ -225,7 +227,7 @@ function SidebarFeature({ data }: Props2) {
 
                         <LuCalendarDays size={34} className="text-primary-400" />
                         <span className="mt-3 text-sm">آخرین بروزرسانی:</span>
-                        <span className="mt-1 font-medium">{toPersianNumber(formatDate(data.lastContentUpdate))}</span>
+                        <span className="mt-1 text-sm">{toPersianNumber(formatDate(data.lastContentUpdate))}</span>
 
                     </div>
                 </div>
@@ -235,7 +237,7 @@ function SidebarFeature({ data }: Props2) {
 
                         <IoIosFilm size={34} className="text-primary-400" />
                         <span className="mt-3 text-sm">تعداد جلسات:</span>
-                        <span className=" font-medium">{toPersianNumber(data.totalVideos)}</span>
+                        <span className="text-sm">{toPersianNumber(data.totalLessons)}</span>
 
                     </div>
                 </div>
@@ -245,7 +247,7 @@ function SidebarFeature({ data }: Props2) {
 
                         <FaStar size={34} className="text-primary-400/ text-warning-400" />
                         <span className="mt-3 text-sm">امتیاز:</span>
-                        <span className=" font-medium">{toPersianNumber(data?.ratings?.toFixed(1))}</span>
+                        <span className="text-sm">{toPersianNumber(data?.ratings?.toFixed(1))}</span>
 
                     </div>
                 </div>
