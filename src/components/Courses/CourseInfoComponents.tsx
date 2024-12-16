@@ -103,12 +103,11 @@ export function CourseLessons({ name }: { name: any }) {
 
 
     let categorizedData: any
-    console.log(getCourseData.isLoading)
+   
     if (!getCourseData.isLoading && getCourseData.isSuccess && getCourseData?.data?.success) {
 
         categorizedData = categorizeVideos(getCourseData?.data?.courseData);
-
-
+        console.log(getCourseData?.data)
     }
 
 
@@ -121,12 +120,12 @@ export function CourseLessons({ name }: { name: any }) {
                 </div>
 
                 <div className="w-full">
-                    <div className="flex flex-col gap-4">
+                    {/* <div className="flex flex-col gap-4">
                         {!getCourseData.isLoading && getCourseData.isSuccess &&
                             categorizedData.map((item: any, index: number) => <Acordian item={item} />)
                         }
 
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

@@ -154,7 +154,7 @@ export default function CourseInfo({ data }: Props) {
                         <Description desc={course?.longDescription} />
                     </div>
                     <div className="mt-8">
-                        {/* <CourseLessons name={course?.name} /> */}
+                        <CourseLessons name={course?.name} />
                     </div>
                 </div>
 
