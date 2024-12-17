@@ -16,7 +16,7 @@ import { RxDotFilled } from "react-icons/rx";
 import { PiMonitorPlay } from "react-icons/pi";
 import { RiLockLine } from "react-icons/ri";
 import { FaDownload } from "react-icons/fa6";
-
+import { FaRegFile } from "react-icons/fa";
 import ReactPlayer from 'react-player'
 
 export function ShortLink({ name }: { name: string }) {
@@ -102,17 +102,6 @@ export function CourseLessons({ name }: { name: any }) {
     if (refresh_token)
         getCourseData = useQuery({ queryKey: ['getCourseDataByNameLoged'], queryFn: () => getCourseDataByNameLoged(name) });
 
-
-
-    // let categorizedData: any
-
-    // if (!getCourseData.isLoading && getCourseData.isSuccess && getCourseData?.data?.success) {
-
-    //     // categorizedData = categorizeVideos(getCourseData?.data?.courseData);
-    //     console.log(getCourseData?.data)
-    // }
-
-
     return (
         <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
             <div className="p-4 px-2 sm:p-6 flex flex-col gap-6">
@@ -124,7 +113,7 @@ export function CourseLessons({ name }: { name: any }) {
                 <div className="w-full">
                     <div className="flex flex-col gap-4">
                         {!getCourseData.isLoading && getCourseData.isSuccess &&
-                            getCourseData?.data?.courseData?.map((item: any, index: number) => <Acordian item={item} key={index} />)
+                            getCourseData?.data?.courseData?.map((item: any, index: number) => <Acordian item={item} key={index} isCourseFree={getCourseData?.data?.isCourseFree} />)
                         }
 
                     </div>
@@ -135,7 +124,7 @@ export function CourseLessons({ name }: { name: any }) {
 }
 
 
-const Acordian = ({ item }: { item: any }) => {
+const Acordian = ({ item, isCourseFree }: { item: any, isCourseFree: boolean }) => {
     const [open, setOpen] = useState(false)
     const [selectedLesson, setSelectedLesson] = useState('')
 
@@ -166,7 +155,7 @@ const Acordian = ({ item }: { item: any }) => {
                 style={{ overflow: 'hidden' }} >
                 <div>
                     {item?.lessonsList?.map((item2: any, index: number) =>
-                        <LessonAcordian key={index} index={index} item={item2} selectedLesson={selectedLesson} setSelectedLesson={setSelectedLesson} />)}
+                        <LessonAcordian key={index} index={index} item={item2} selectedLesson={selectedLesson} setSelectedLesson={setSelectedLesson} isCourseFree={isCourseFree} />)}
 
                 </div>
             </motion.div>
@@ -175,28 +164,39 @@ const Acordian = ({ item }: { item: any }) => {
     )
 }
 
-const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index }: { item: any, selectedLesson: string, setSelectedLesson: (index: string) => void, index: number }) => {
 
+type LessonAcordianProps = { isCourseFree: boolean, item: any, selectedLesson: string, setSelectedLesson: (index: string) => void, index: number }
+
+const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index, isCourseFree }: LessonAcordianProps) => {
+    let lessonIcon = <RiLockLine size={26} />
+    if (item?.isFree || isCourseFree)
+        if (item.lessonType === 'video')
+            lessonIcon = <PiMonitorPlay size={26} />
+        else
+            lessonIcon = <FaRegFile size={20} />
     const handleClick = () => {
-        if (item?.isFree) {
+        if (item?.isFree || isCourseFree) {
             if (selectedLesson === `${index}`) setSelectedLesson(``)
             else setSelectedLesson(`${index}`)
+
+
         }
     }
     console.log(item)
 
-
-
     return (
         <div className="flex flex-col justify-cente border-b-2 border-b-primary-50">
-            <div onClick={handleClick} className={`p-4 py-5 ${item?.isFree ? "cursor-pointer" : 'cursor-default'} transition-all `}>
+            <div onClick={handleClick} className={`p-2 md:p-4 py-5 ${item?.isFree ? "cursor-pointer" : 'cursor-default'} transition-all `}>
 
                 <div className={`w-full flex flex-wrap items-center gap-2`}>
 
                     <div className="flex items-center gap-3 ">
-                        <span className="w-7 h-7 pt-[1px] flex items-center justify-center rounded-md bg-primary-500 shadow-small font-semibold text-white  ">{toPersianNumber(index + 1)}</span>
+                        <span className="min-w-7 min-h-7 pt-[1px] flex items-center justify-center rounded-md bg-primary-500 shadow-small font-semibold text-white  ">{toPersianNumber(index + 1)}</span>
 
-                        <p className={` text-[1.1rem] hover:text-primary-400 ${selectedLesson === `${index}` ? "text-primary-400 " : " "}`}>{item?.lessonTitle}</p>
+                        <div className={`flex items-center gap-2 hover:text-primary-400 ${selectedLesson === `${index}` ? "text-primary-400 " : " "}`}>
+                            {lessonIcon}
+                            <p className={`mt-0.5 md:text-[1.1rem]`}>{item?.lessonTitle}</p>
+                        </div>
                     </div>
 
                     <div className="ms-auto flex items-center gap-2">
@@ -208,7 +208,7 @@ const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index }: { it
                             : ''}
 
                         {item?.lessonLength ? <span className="font-medium">{toPersianNumber(secondsToTimeString2(item?.lessonLength))}</span> : ''}
-                        {item?.isFree ? <PiMonitorPlay size={28} /> : <RiLockLine size={28} />}
+
 
                     </div>
 
@@ -222,64 +222,17 @@ const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index }: { it
                 animate={{ height: selectedLesson === `${index}` ? 'auto' : 0 }}
                 exit={{ height: 0 }}
                 style={{ overflow: 'hidden' }} >
-                <div className="mt-2">
-                    {item.type==='video'&&<ReactPlayer
-                        className='aspect-video !w-full'
-                        url={item?.lessonFile.fileName}
-                        controls />}
+                <div className="mt-2 p-2 md:p-4">
+                    {item.lessonType === 'video' &&
+                        <div className="w-full h-full overflow-hidden rounded-xl">
+                            <ReactPlayer className='!h-auto !w-full' url={item?.lessonFile.fileName} controls />
+                        </div>}
 
                 </div>
             </motion.div>
 
         </div>
     )
-}
-
-function categorizeVideos(data: any[]) {
-
-    const result = Object.values(
-        data.reduce((acc: any, item: any) => {
-            const section = item.videoSection;
-
-            if (!acc[section]) {
-                acc[section] = {
-                    videoSection: section,
-                    sectionFiles: [],
-                    sectionLinks: [],
-                    totalLength: 0,
-                    videoList: []
-                };
-            }
-
-            // اضافه کردن اطلاعات بخش
-            acc[section].sectionLinks = [...acc[section].sectionLinks, ...(item.sectionLinks || [])];
-            acc[section].sectionFiles = acc[section].sectionFiles === 'true' ? 'true' : acc[section].sectionFiles || [];
-
-            if (item.sectionFiles && item.sectionFiles !== "true") {
-                acc[section].sectionFiles.push(item.sectionFiles);
-            }
-            else acc[section].sectionFiles = 'true'
-
-            // به‌روزرسانی طول کل
-            acc[section].totalLength += Number(item.videoLength || 0);
-
-            // اضافه کردن ویدیو به لیست
-            const videoData = {
-                isFree: item.isFree,
-                title: item.title,
-                description: item.description,
-                videoLength: item.videoLength,
-                videoLinks: item.videoLinks,
-                videoFiles: item.videoFiles,
-                videoUrl: item.videoUrl
-            };
-            acc[section].videoList.push(videoData);
-
-            return acc;
-        }, {})
-    );
-
-    return result;
 }
 
 
