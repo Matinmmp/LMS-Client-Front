@@ -8,7 +8,7 @@ import { TbFileDescription } from "react-icons/tb";
 import { Button } from "@nextui-org/button";
 import { SlEye } from "react-icons/sl";
 import { IoIosArrowBack, IoIosSchool } from "react-icons/io";
-import { getAccessTokenFromCookies } from "@/src/lib/fetcher";
+
 import { getCourseDataByNameLoged, getCourseDataByNameNoLoged } from "@/src/lib/apis/courseApis";
 import { useQuery } from "@tanstack/react-query";
 import cookies from 'js-cookie'
@@ -16,6 +16,8 @@ import { RxDotFilled } from "react-icons/rx";
 import { PiMonitorPlay } from "react-icons/pi";
 import { RiLockLine } from "react-icons/ri";
 import { FaDownload } from "react-icons/fa6";
+
+import ReactPlayer from 'react-player'
 
 export function ShortLink({ name }: { name: string }) {
     const copy = () => navigator.clipboard.writeText(`virtual-learn.com/?r=${encodeToShortCode(name)}`);
@@ -102,13 +104,13 @@ export function CourseLessons({ name }: { name: any }) {
 
 
 
-    let categorizedData: any
-   
-    if (!getCourseData.isLoading && getCourseData.isSuccess && getCourseData?.data?.success) {
+    // let categorizedData: any
 
-        categorizedData = categorizeVideos(getCourseData?.data?.courseData);
-        console.log(getCourseData?.data)
-    }
+    // if (!getCourseData.isLoading && getCourseData.isSuccess && getCourseData?.data?.success) {
+
+    //     // categorizedData = categorizeVideos(getCourseData?.data?.courseData);
+    //     console.log(getCourseData?.data)
+    // }
 
 
     return (
@@ -120,12 +122,12 @@ export function CourseLessons({ name }: { name: any }) {
                 </div>
 
                 <div className="w-full">
-                    {/* <div className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-4">
                         {!getCourseData.isLoading && getCourseData.isSuccess &&
-                            categorizedData.map((item: any, index: number) => <Acordian item={item} />)
+                            getCourseData?.data?.courseData?.map((item: any, index: number) => <Acordian item={item} key={index} />)
                         }
 
-                    </div> */}
+                    </div>
                 </div>
             </div>
         </div>
@@ -137,17 +139,18 @@ const Acordian = ({ item }: { item: any }) => {
     const [open, setOpen] = useState(false)
     const [selectedLesson, setSelectedLesson] = useState('')
 
+
     return (
         <div dir="ltr" className="flex flex-col justify-center dark:shadow-small rounded-xl overflow-hidden bg-[#f3f4f8] dark:bg-slate-800">
             <div onClick={() => setOpen(!open)} className={`p-4 py-5 cursor-pointer transition-all
                  ${open ? "bg-primary-500" : " bg-[#f3f4f8] dark:bg-slate-800"} `}>
                 <div className={`w-full flex items-center justify-between ${open ? "text-white" : " text-black dark:text-white"}`}>
-                    <p className={`sm:text-[1.1rem] font-medium `}>{item?.videoSection}</p>
+                    <p className={`sm:text-[1.1rem] font-medium `}>{item?.sectionName}</p>
 
                     <div className="flex items-center gap-0.5">
-                        <span className="hidden sm:inline font-light">{toPersianNumber(hoursAndMinutesString(item?.totalLength))}</span>
+                        {item?.totalLength && <span className="hidden sm:inline font-light">{toPersianNumber(hoursAndMinutesString(item?.totalLength))}</span>}
                         <RxDotFilled className="hidden sm:inline" />
-                        <span className="hidden sm:inline font-light">{toPersianNumber(item?.videoList?.length)} درس</span>
+                        <span dir="rtl" className="hidden sm:inline font-light">{toPersianNumber(item?.lessonsList?.length)} درس</span>
 
                         <IoIosArrowBack size={26} className={`${open ? '-rotate-90' : 'rotate-90'} ms-4 transition-transform`} />
 
@@ -162,7 +165,8 @@ const Acordian = ({ item }: { item: any }) => {
                 exit={{ height: 0 }}
                 style={{ overflow: 'hidden' }} >
                 <div>
-                    {item?.videoList?.map((item2: any, index: number) => <LessonAcordian index={index} item={item2} selectedLesson={selectedLesson} setSelectedLesson={setSelectedLesson} />)}
+                    {item?.lessonsList?.map((item2: any, index: number) =>
+                        <LessonAcordian key={index} index={index} item={item2} selectedLesson={selectedLesson} setSelectedLesson={setSelectedLesson} />)}
 
                 </div>
             </motion.div>
@@ -177,9 +181,11 @@ const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index }: { it
         if (item?.isFree) {
             if (selectedLesson === `${index}`) setSelectedLesson(``)
             else setSelectedLesson(`${index}`)
-
         }
     }
+    console.log(item)
+
+
 
     return (
         <div className="flex flex-col justify-cente border-b-2 border-b-primary-50">
@@ -190,18 +196,18 @@ const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index }: { it
                     <div className="flex items-center gap-3 ">
                         <span className="w-7 h-7 pt-[1px] flex items-center justify-center rounded-md bg-primary-500 shadow-small font-semibold text-white  ">{toPersianNumber(index + 1)}</span>
 
-                        <p className={` text-[1.1rem] hover:text-primary-400 ${selectedLesson === `${index}` ? "text-primary-400 " : " "}`}>{item?.title}</p>
+                        <p className={` text-[1.1rem] hover:text-primary-400 ${selectedLesson === `${index}` ? "text-primary-400 " : " "}`}>{item?.lessonTitle}</p>
                     </div>
 
                     <div className="ms-auto flex items-center gap-2">
-                        {item?.videoFiles === 'true' || item?.videoFiles.length ?
+                        {item.attachedFile === true || item?.attachedFile.length ?
                             <div className=" me-2 flex items-center gap-1">
                                 <FaDownload />
                                 <span className="text-sm font-light">پیوست</span>
                             </div>
                             : ''}
 
-                        <span className="font-medium">{toPersianNumber(secondsToTimeString2(item?.videoLength))}</span>
+                        {item?.lessonLength ? <span className="font-medium">{toPersianNumber(secondsToTimeString2(item?.lessonLength))}</span> : ''}
                         {item?.isFree ? <PiMonitorPlay size={28} /> : <RiLockLine size={28} />}
 
                     </div>
@@ -217,6 +223,10 @@ const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index }: { it
                 exit={{ height: 0 }}
                 style={{ overflow: 'hidden' }} >
                 <div className="mt-2">
+                    {item.type==='video'&&<ReactPlayer
+                        className='aspect-video !w-full'
+                        url={item?.lessonFile.fileName}
+                        controls />}
 
                 </div>
             </motion.div>
