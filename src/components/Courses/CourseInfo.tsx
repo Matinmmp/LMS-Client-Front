@@ -1,4 +1,4 @@
-'use client'
+
 import { Button } from "@nextui-org/button";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 import { formatDate, numberSeparator, secondsToTimeString, toPersianNumber } from "@/src/utils/functions";
@@ -14,7 +14,8 @@ import { IoIosFilm } from "react-icons/io";
 import { FaStar } from "react-icons/fa6"
 import { Avatar } from "@nextui-org/avatar";
 import Link from "next/link";
-import { CourseLessons, Description, ShortLink } from "./CourseInfoComponents";
+import { CourseLessons, Description, ShortLink, VideoPlayer } from "./CourseInfoComponents";
+
 
 
 type Props = {
@@ -44,7 +45,7 @@ export default function CourseInfo({ data }: Props) {
     const teacher = data?.teacher;
     const academy = data?.academy
 
-
+    console.log(course)
 
     let priceAfterDiscont = 0;
     if (isValide(course?.discount?.expireTime, course?.discount?.percent)) {
@@ -139,8 +140,14 @@ export default function CourseInfo({ data }: Props) {
                     </div>
 
                     <div className="w-full lg:w-1/2 order-1 lg:order-2">
+                        {
+                            course?.previewVideoUrl ?
+                                // <VideoPlayer url={course?.previewVideoUrl} thumbnail={course?.thumbnail?.imageUrl} />
+                                <VideoPlayer url={course?.previewVideoUrl}  />
 
-                        <Image src={course?.thumbnail?.imageUrl} alt={course?.name} priority={true} width={1000} height={1000} className="aspect-video" />
+                                :
+                                <Image src={course?.thumbnail?.imageUrl} alt={course?.name} priority={true} width={1000} height={1000} className="aspect-video" />
+                        }
                     </div>
 
                 </div>
@@ -195,7 +202,7 @@ function SidebarFeature({ data }: Props2) {
                         <span className="mt-3 text-sm">وضعیت دوره:</span>
                         <span className="mt-0.5 text-sm">
                             {
-                                data.status == 0 ? 'در‌حال ترجمه': data?.status == 1 ? 'اتمام':'متوقف شده'
+                                data.status == 0 ? 'در‌حال ترجمه' : data?.status == 1 ? 'اتمام' : 'متوقف شده'
                             }
                         </span>
 

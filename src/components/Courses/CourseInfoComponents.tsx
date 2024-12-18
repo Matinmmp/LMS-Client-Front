@@ -3,7 +3,7 @@
 import { encodeToShortCode, hoursAndMinutesString, secondsToTimeString, secondsToTimeString2, toPersianNumber } from "@/src/utils/functions"
 import { FaRegCopy } from "react-icons/fa6"
 import { motion } from 'framer-motion';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TbFileDescription } from "react-icons/tb";
 import { Button } from "@nextui-org/button";
 import { SlEye } from "react-icons/sl";
@@ -17,7 +17,15 @@ import { PiMonitorPlay } from "react-icons/pi";
 import { RiLockLine } from "react-icons/ri";
 import { FaDownload } from "react-icons/fa6";
 import { FaRegFile } from "react-icons/fa";
-import ReactPlayer from 'react-player'
+
+ 
+import "plyr-react/plyr.css";
+
+import dynamic from 'next/dynamic';
+import Link from "next/link";
+
+const Plyr = dynamic(() => import('plyr-react'), { ssr: false });
+
 
 export function ShortLink({ name }: { name: string }) {
     const copy = () => navigator.clipboard.writeText(`virtual-learn.com/?r=${encodeToShortCode(name)}`);
@@ -87,9 +95,6 @@ export function Description({ desc }: { desc: string }) {
     );
 }
 
-
-
-
 const refresh_token = cookies.get('refresh_token')
 const access_token = cookies.get('access_token')
 
@@ -133,6 +138,7 @@ const Acordian = ({ item, isCourseFree }: { item: any, isCourseFree: boolean }) 
         <div dir="ltr" className="flex flex-col justify-center dark:shadow-small rounded-xl overflow-hidden bg-[#f3f4f8] dark:bg-slate-800">
             <div onClick={() => setOpen(!open)} className={`p-4 py-5 cursor-pointer transition-all
                  ${open ? "bg-primary-500" : " bg-[#f3f4f8] dark:bg-slate-800"} `}>
+
                 <div className={`w-full flex items-center justify-between ${open ? "text-white" : " text-black dark:text-white"}`}>
                     <p className={`sm:text-[1.1rem] font-medium `}>{item?.sectionName}</p>
 
@@ -164,7 +170,6 @@ const Acordian = ({ item, isCourseFree }: { item: any, isCourseFree: boolean }) 
     )
 }
 
-
 type LessonAcordianProps = { isCourseFree: boolean, item: any, selectedLesson: string, setSelectedLesson: (index: string) => void, index: number }
 
 const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index, isCourseFree }: LessonAcordianProps) => {
@@ -182,7 +187,31 @@ const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index, isCour
 
         }
     }
-    console.log(item)
+
+    let lesson: any;
+    if (item.lessonType === 'video') {
+   
+        lesson =
+            <div className="flex flex-col gap-4">
+                <VideoPlayer url={item?.lessonFile.fileName} />
+
+                <div className="flex flex-col py-4">
+
+                    <Button
+                        color="primary" variant="shadow" radius="sm"
+                        download="GeneratedFile.txt"
+                        href={item?.lessonFile.fileName} as={Link}
+                        target="_blank">
+                        دانلود ویدیو این بخش
+                    </Button>
+
+                </div>
+            </div>
+    }
+
+    else {
+
+    }
 
     return (
         <div className="flex flex-col justify-cente border-b-2 border-b-primary-50">
@@ -224,8 +253,9 @@ const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index, isCour
                 style={{ overflow: 'hidden' }} >
                 <div className="mt-2 p-2 md:p-4">
                     {item.lessonType === 'video' &&
-                        <div className="w-full h-full overflow-hidden rounded-xl">
-                            <ReactPlayer className='!h-auto !w-full' url={item?.lessonFile.fileName} controls />
+                        <div className="w-full h-full min-h-44 overflow-hidden rounded-xl">
+                            {lesson}
+
                         </div>}
 
                 </div>
@@ -235,5 +265,117 @@ const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index, isCour
     )
 }
 
+export const VideoPlayer: React.FC<{ url: string }> = ({ url }) => {
+    const videoSource = {
+        type: "video" as "video",
+        sources: [
+            {
+                src: url,
+                type: "video/mp4",
+            },
+        ],
+    };
 
+    useEffect(() => {
+        const updateTimeToPersian = () => {
+            const timeElements = document.querySelectorAll(".plyr__time");
+            timeElements.forEach((element) => {
+                element.textContent = toPersianNumber(element.textContent || "");
+            });
+        };
 
+        updateTimeToPersian();
+
+        const observer = new MutationObserver(updateTimeToPersian);
+        const controls = document.querySelector(".plyr__controls");
+
+        if (controls) {
+            observer.observe(controls, {
+                childList: true,
+                subtree: true,
+                characterData: true,
+            });
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
+    return (
+        <div className="w-full h-auto rounded-xl overflow-hidden">
+            <Plyr
+                source={videoSource}
+                options={{
+                    autoplay: false,
+                    muted: false,
+                    controls: ["progress", "play-large", "rewind", "play", "fast-forward", "current-time", "mute", "volume", "settings", "pip", "fullscreen"],
+                }}
+            />
+        </div>
+    );
+};
+
+// const options = {
+//     autoplay: false,               // آیا ویدیو به‌صورت خودکار پخش شود؟
+//     muted: false,                  // آیا ویدیو به‌صورت بی‌صدا شروع شود؟
+//     loop: { active: false },       // تنظیم حالت پخش حلقه‌ای
+//     controls: [                    // لیست کنترل‌های موجود روی پخش‌کننده
+//         'play-large',              // دکمه پخش بزرگ در وسط ویدیو
+//         'restart',                 // دکمه بازگشت به ابتدا
+//         'rewind',                  // دکمه بازگشت به عقب
+//         'play',                    // دکمه پخش
+//         'fast-forward',            // دکمه حرکت به جلو
+//         'progress',                // نوار پیشرفت پخش
+//         'current-time',            // زمان فعلی
+//         'duration',                // کل زمان ویدیو
+//         'mute',                    // دکمه قطع صدا
+//         'volume',                  // کنترل میزان صدا
+//         'captions',                // کنترل زیرنویس
+//         'settings',                // دکمه تنظیمات (مانند کیفیت و سرعت)
+//         'pip',                     // دکمه تصویر در تصویر (Picture-in-Picture)
+//         'airplay',                 // دکمه پخش روی دستگاه‌های دیگر (AirPlay)
+//         'download',                // دکمه دانلود ویدیو
+//         'fullscreen'               // دکمه تمام‌صفحه
+//     ],
+//     settings: ['captions', 'quality', 'speed'], // تنظیمات سفارشی در منوی تنظیمات
+//     speed: {                          // تنظیم سرعت پخش
+//         selected: 1,                  // سرعت پیش‌فرض
+//         options: [0.5, 1, 1.5, 2],    // سرعت‌های قابل انتخاب
+//     },
+//     quality: {
+//         default: 720,                 // کیفیت پیش‌فرض
+//         options: [360, 720, 1080],    // کیفیت‌های قابل انتخاب
+//         forced: false,                // آیا کاربران می‌توانند کیفیت را تغییر دهند؟
+//         onChange: (quality: number) => {
+//             console.log(`Quality changed to ${quality}`);
+//         },
+//     },
+//     invertTime: true,                 // آیا زمان باقی‌مانده نمایش داده شود؟
+//     captions: {                       // تنظیمات زیرنویس
+//         active: true,                 // زیرنویس به‌صورت پیش‌فرض فعال باشد؟
+//         language: 'en',               // زبان زیرنویس پیش‌فرض
+//         update: true,                 // به‌روزرسانی زیرنویس در زمان واقعی
+//     },
+//     fullscreen: { enabled: true },    // فعال‌سازی تمام‌صفحه
+//     ratio: '16:9',                    // نسبت ابعاد ویدیو
+//     clickToPlay: true,                // پخش و توقف با کلیک
+//     hideControls: true,               // پنهان کردن کنترل‌ها در صورت عدم استفاده
+//     disableContextMenu: false,        // غیرفعال کردن منوی کلیک راست
+//     loadSprite: true,                 // بارگذاری آیکون‌ها از اسپرایت SVG
+//     iconUrl: null,                    // مسیر سفارشی برای آیکون‌ها
+//     keyboard: {                       // پشتیبانی از میانبرهای صفحه‌کلید
+//         focused: true,
+//         global: false,
+//     },
+//     tooltips: {                       // نمایش توضیحات (Tooltips) برای دکمه‌ها
+//         controls: false,
+//         seek: true,
+//     },
+//     seekTime: 10,                     // زمان جستجوی سریع (برحسب ثانیه)
+//     volume: 0.8,                      // سطح صدای پیش‌فرض (۰ تا ۱)
+//     storage: {                        // ذخیره تنظیمات کاربر در لوکال‌استوریج
+//         enabled: true,
+//         key: 'plyr-settings',
+//     },
+//     poster: '',                       // تصویر پیش‌نمایش ویدیو
+//     debug: false,                     // فعال کردن لاگ‌های دیباگ
+// };

@@ -1,3 +1,4 @@
+'use client'
 import { toPersianNumber } from '@/src/utils/functions';
 import React, { useEffect, useState } from 'react';
 
