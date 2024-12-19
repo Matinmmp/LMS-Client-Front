@@ -17,12 +17,14 @@ import { PiMonitorPlay } from "react-icons/pi";
 import { RiLockLine } from "react-icons/ri";
 import { FaDownload } from "react-icons/fa6";
 import { FaRegFile } from "react-icons/fa";
-
- 
+import { TiAttachmentOutline } from "react-icons/ti";
+import { FaExternalLinkAlt } from "react-icons/fa";
 import "plyr-react/plyr.css";
-
+import { PiShieldWarningFill } from "react-icons/pi";
 import dynamic from 'next/dynamic';
 import Link from "next/link";
+import { IoIosInformationCircle } from "react-icons/io";
+
 
 const Plyr = dynamic(() => import('plyr-react'), { ssr: false });
 
@@ -118,7 +120,7 @@ export function CourseLessons({ name }: { name: any }) {
                 <div className="w-full">
                     <div className="flex flex-col gap-4">
                         {!getCourseData.isLoading && getCourseData.isSuccess &&
-                            getCourseData?.data?.courseData?.map((item: any, index: number) => <Acordian item={item} key={index} isCourseFree={getCourseData?.data?.isCourseFree} />)
+                            getCourseData?.data?.courseData?.map((item: any, index: number) => <SectionAcordian item={item} key={index} isCourseFree={getCourseData?.data?.isCourseFree} />)
                         }
 
                     </div>
@@ -129,20 +131,22 @@ export function CourseLessons({ name }: { name: any }) {
 }
 
 
-const Acordian = ({ item, isCourseFree }: { item: any, isCourseFree: boolean }) => {
+const SectionAcordian = ({ item, isCourseFree }: { item: any, isCourseFree: boolean }) => {
     const [open, setOpen] = useState(false)
     const [selectedLesson, setSelectedLesson] = useState('')
 
+ 
 
     return (
         <div dir="ltr" className="flex flex-col justify-center dark:shadow-small rounded-xl overflow-hidden bg-[#f3f4f8] dark:bg-slate-800">
+
             <div onClick={() => setOpen(!open)} className={`p-4 py-5 cursor-pointer transition-all
                  ${open ? "bg-primary-500" : " bg-[#f3f4f8] dark:bg-slate-800"} `}>
 
-                <div className={`w-full flex items-center justify-between ${open ? "text-white" : " text-black dark:text-white"}`}>
+                <div className={`w-full flex items-center justify-between gap-2 ${open ? "text-white" : " text-black dark:text-white"}`}>
                     <p className={`sm:text-[1.1rem] font-medium `}>{item?.sectionName}</p>
 
-                    <div className="flex items-center gap-0.5">
+                    <div className="flex items-center gap-0.5 whitespace-nowrap">
                         {item?.totalLength && <span className="hidden sm:inline font-light">{toPersianNumber(hoursAndMinutesString(item?.totalLength))}</span>}
                         <RxDotFilled className="hidden sm:inline" />
                         <span dir="rtl" className="hidden sm:inline font-light">{toPersianNumber(item?.lessonsList?.length)} درس</span>
@@ -160,8 +164,13 @@ const Acordian = ({ item, isCourseFree }: { item: any, isCourseFree: boolean }) 
                 exit={{ height: 0 }}
                 style={{ overflow: 'hidden' }} >
                 <div>
+                    {item?.notice ? <AlertWarning text={item.notice} /> : ''}
                     {item?.lessonsList?.map((item2: any, index: number) =>
                         <LessonAcordian key={index} index={index} item={item2} selectedLesson={selectedLesson} setSelectedLesson={setSelectedLesson} isCourseFree={isCourseFree} />)}
+
+                    {item?.sectionFiles.length ? <SectionFileAcordian sectionFiles={item?.sectionFiles} index={3232} selectedLesson={selectedLesson} setSelectedLesson={setSelectedLesson} isSectionFree={item?.isFree || isCourseFree} /> : ''}
+                    {item?.sectionLinks.length ? <SectionLinkAcordian sectionLinks={item?.sectionLinks} index={3233} selectedLesson={selectedLesson} setSelectedLesson={setSelectedLesson} isSectionFree={item?.isFree || isCourseFree} /> : ''}
+
 
                 </div>
             </motion.div>
@@ -174,11 +183,14 @@ type LessonAcordianProps = { isCourseFree: boolean, item: any, selectedLesson: s
 
 const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index, isCourseFree }: LessonAcordianProps) => {
     let lessonIcon = <RiLockLine size={26} />
+    const infoText = 'توجه داشته باشید محتوای این درس به صورت فایل میباشد که میتواند، فایل متنی، سوال، تمرین، نکته، داکیومنت باشد.'
+
     if (item?.isFree || isCourseFree)
         if (item.lessonType === 'video')
             lessonIcon = <PiMonitorPlay size={26} />
         else
             lessonIcon = <FaRegFile size={20} />
+
     const handleClick = () => {
         if (item?.isFree || isCourseFree) {
             if (selectedLesson === `${index}`) setSelectedLesson(``)
@@ -188,43 +200,127 @@ const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index, isCour
         }
     }
 
+
+
     let lesson: any;
-    if (item.lessonType === 'video') {
-   
+    if (item.lessonType === 'video' && (item?.isFree || isCourseFree)) {
+
         lesson =
             <div className="flex flex-col gap-4">
                 <VideoPlayer url={item?.lessonFile.fileName} />
 
-                <div className="flex flex-col py-4">
+                <div className="flex flex-col pt-4 pb-8">
 
-                    <Button
-                        color="primary" variant="shadow" radius="sm"
-                        download="GeneratedFile.txt"
-                        href={item?.lessonFile.fileName} as={Link}
-                        target="_blank">
+                    {item?.notice ? <div className="my-4">
+                        <AlertWarning text={item?.notice} />
+                    </div> : ""}
+
+                    <Button color="primary" variant="shadow" radius="sm" href={item?.lessonFile.fileName} as={Link}>
                         دانلود ویدیو این بخش
                     </Button>
+
+                    {item?.attachedFile.length ?
+                        <div dir="rtl" className="mt-8">
+                            <p className="mb-4 flex items-center gap-1">
+                                <TiAttachmentOutline size={20} />
+                                <span className="text-lg font-bold">پیوست</span>
+                            </p>
+
+
+                            <div className="flex flex-col justify-start gap-2">
+                                {item?.attachedFile?.map((file: any, index: number) =>
+                                    <Button className="max-w-max" startContent={<TiAttachmentOutline size={20} />} key={index} color="primary" variant="shadow" radius="sm" href={file.fileName} as={Link}>
+                                        {file?.fileTitle}
+                                    </Button>)}
+                            </div>
+                        </div> : ''}
+
+                    {item?.links.length ?
+                        <div dir="rtl" className="mt-8">
+                            <p className="mb-2 flex items-center gap-1">
+                                <FaExternalLinkAlt size={16} />
+                                <span className="ms-1 text-lg font-bold">لینک</span>
+                            </p>
+
+                            <div className="flex flex-col justify-start gap-2">
+                                {item?.links?.map((link: any, index: number) =>
+                                    <Link key={index} href={link?.url} target="_blank">
+                                        {link?.title}
+                                    </Link>)}
+                            </div>
+                        </div> : ''}
+
 
                 </div>
             </div>
     }
 
-    else {
+    console.log(item)
 
+    if (item.lessonType !== 'video' && (item?.isFree || isCourseFree)) {
+
+        lesson =
+            <div className="-mt-4 pb-8 flex flex-col ">
+
+                {item?.notice ? <div className="my-4">
+                    <AlertWarning text={item?.notice} />
+                </div> : ""}
+
+                <div className="my-4">
+                    <AlertInfo text={infoText} />
+                </div>
+
+                <Button color="primary" variant="shadow" radius="sm" href={item?.lessonFile.fileName} as={Link}>
+                    دانلود فایل این بخش
+                </Button>
+
+                {item?.attachedFile.length ?
+                    <div dir="rtl" className="mt-8">
+                        <p className="mb-4 flex items-center gap-1">
+                            <TiAttachmentOutline size={20} />
+                            <span className="text-lg font-bold">پیوست</span>
+                        </p>
+
+
+                        <div className="flex flex-col justify-start gap-2">
+                            {item?.attachedFile?.map((file: any, index: number) =>
+                                <Button className="max-w-max" startContent={<TiAttachmentOutline size={20} />} key={index} color="primary" variant="shadow" radius="sm" href={file.fileName} as={Link}>
+                                    {file?.fileTitle}
+                                </Button>)}
+                        </div>
+                    </div> : ''}
+
+                {item?.links.length ?
+                    <div dir="rtl" className="mt-8">
+                        <p className="mb-2 flex items-center gap-1">
+                            <FaExternalLinkAlt size={16} />
+                            <span className="ms-1 text-lg font-bold">لینک</span>
+                        </p>
+
+                        <div className="flex flex-col justify-start gap-2">
+                            {item?.links?.map((link: any, index: number) =>
+                                <Link key={index} href={link?.url} target="_blank">
+                                    {link?.title}
+                                </Link>)}
+                        </div>
+                    </div> : ''}
+
+
+            </div>
     }
 
     return (
         <div className="flex flex-col justify-cente border-b-2 border-b-primary-50">
-            <div onClick={handleClick} className={`p-2 md:p-4 py-5 ${item?.isFree ? "cursor-pointer" : 'cursor-default'} transition-all `}>
+            <div onClick={handleClick} className={`p-2 md:p-4 py-5 ${isCourseFree || item?.isFree ? "cursor-pointer" : 'cursor-default'} transition-all `}>
 
                 <div className={`w-full flex flex-wrap items-center gap-2`}>
 
                     <div className="flex items-center gap-3 ">
                         <span className="min-w-7 min-h-7 pt-[1px] flex items-center justify-center rounded-md bg-primary-500 shadow-small font-semibold text-white  ">{toPersianNumber(index + 1)}</span>
 
-                        <div className={`flex items-center gap-2 hover:text-primary-400 ${selectedLesson === `${index}` ? "text-primary-400 " : " "}`}>
+                        <div className={`flex items-center gap-2 hover:text-secondary-500 ${selectedLesson === `${index}` ? "text-secondary-500 " : " "}`}>
                             {lessonIcon}
-                            <p className={`mt-0.5 md:text-[1.1rem]`}>{item?.lessonTitle}</p>
+                            <p className={`mt-0.5 md:text-[1.1rem] font-medium`}>{item?.lessonTitle}</p>
                         </div>
                     </div>
 
@@ -251,12 +347,121 @@ const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index, isCour
                 animate={{ height: selectedLesson === `${index}` ? 'auto' : 0 }}
                 exit={{ height: 0 }}
                 style={{ overflow: 'hidden' }} >
-                <div className="mt-2 p-2 md:p-4">
-                    {item.lessonType === 'video' &&
-                        <div className="w-full h-full min-h-44 overflow-hidden rounded-xl">
-                            {lesson}
+                <div className="mt-2 p-2 sm:p-4">
 
-                        </div>}
+                    <div className="w-full h-full min-h-44">
+                        {lesson}
+
+                    </div>
+
+                </div>
+            </motion.div>
+
+        </div>
+    )
+}
+
+type SextionFileAcordianProps = { isSectionFree: boolean, sectionFiles: any, selectedLesson: string, setSelectedLesson: (index: string) => void, index: number }
+
+const SectionFileAcordian = ({ sectionFiles, selectedLesson, setSelectedLesson, isSectionFree, index }: SextionFileAcordianProps) => {
+    let lessonIcon = <RiLockLine size={26} />
+
+    if (isSectionFree)
+        lessonIcon = <FaRegFile size={20} />
+
+    const handleClick = () => {
+        if (isSectionFree) {
+            if (selectedLesson === `${index}`) setSelectedLesson(``)
+            else setSelectedLesson(`${index}`)
+
+
+        }
+    }
+
+
+    return (
+        <div className="flex flex-col justify-cente border-b-2 border-b-primary-50">
+            <div onClick={handleClick} className={`p-2 md:p-4 py-5 ${isSectionFree ? "cursor-pointer" : 'cursor-default'} transition-all `}>
+
+                <div dir="rtl" className={`flex items-center gap-2 hover:text-secondary-500 ${selectedLesson === `${index}` ? "text-secondary-500 " : " "}`}>
+                    {lessonIcon}
+                    <p className={`mt-0.5 md:text-[1.1rem] font-medium`}>فایل‌های این بخش</p>
+                </div>
+
+            </div>
+
+            <motion.div
+                transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+                initial={{ height: 0 }}
+                animate={{ height: selectedLesson === `${index}` ? 'auto' : 0 }}
+                exit={{ height: 0 }}
+                style={{ overflow: 'hidden' }} >
+                <div className="mt-2 p-2 sm:p-4">
+
+                    <div dir="rtl">
+
+                        <div className="flex flex-col justify-start gap-2">
+                            {sectionFiles[0] !== true ? sectionFiles?.map((file: any, index: number) =>
+                                <Button className="max-w-max" startContent={<TiAttachmentOutline size={20} />} key={index} color="primary" variant="shadow" radius="sm" href={file.fileName} as={Link}>
+                                    {file?.fileTitle}
+                                </Button>) : ''}
+                        </div>
+                    </div>
+
+                </div>
+            </motion.div>
+
+        </div>
+    )
+}
+
+type SectionLinkAcordianProps = { isSectionFree: boolean, sectionLinks: any, selectedLesson: string, setSelectedLesson: (index: string) => void, index: number }
+
+const SectionLinkAcordian = ({ sectionLinks, selectedLesson, setSelectedLesson, isSectionFree, index }: SectionLinkAcordianProps) => {
+    let lessonIcon = <RiLockLine size={26} />
+
+    if (isSectionFree)
+        lessonIcon = <FaExternalLinkAlt size={20} />
+
+    const handleClick = () => {
+        if (isSectionFree) {
+            if (selectedLesson === `${index}`) setSelectedLesson(``)
+            else setSelectedLesson(`${index}`)
+
+
+        }
+    }
+
+
+    return (
+        <div className="flex flex-col justify-cente border-b-2 border-b-primary-50">
+            <div onClick={handleClick} className={`p-2 md:p-4 py-5 ${isSectionFree ? "cursor-pointer" : 'cursor-default'} transition-all `}>
+
+                <div dir="rtl" className={`flex items-center gap-2 hover:text-secondary-500 ${selectedLesson === `${index}` ? "text-secondary-500 " : " "}`}>
+                    {lessonIcon}
+                    <p className={`mt-0.5 md:text-[1.1rem] font-medium`}>لینک‌های این بخش</p>
+                </div>
+
+            </div>
+
+            <motion.div
+                transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+                initial={{ height: 0 }}
+                animate={{ height: selectedLesson === `${index}` ? 'auto' : 0 }}
+                exit={{ height: 0 }}
+                style={{ overflow: 'hidden' }} >
+                <div className="mt-2 p-2 sm:p-4">
+
+
+                    <div dir="rtl">
+                        <div className="flex flex-col justify-start gap-2">
+                            {sectionLinks[0] !== true ? sectionLinks?.map((link: any, index: number) =>
+                                <Link key={index} href={link?.url} target="_blank">
+                                    {link?.title}
+                                </Link>) : ''}
+                        </div>
+
+                    </div>
 
                 </div>
             </motion.div>
@@ -313,6 +518,45 @@ export const VideoPlayer: React.FC<{ url: string }> = ({ url }) => {
         </div>
     );
 };
+
+
+export const AlertWarning = ({ text, title }: { text: string, title?: string }) => {
+    return (
+        <div dir="rtl" className="w-full py-3 px-4 border-1 border-default-200 border-s-4 border-s-warning-700 
+        dark:border-s-warning-400 rounded-e-xl bg-[#FAFAFA] dark:bg-[#131313]/70 ">
+
+            <div className="w-full flex items-start gap-4">
+                <span className="p-1 rounded-full border-1 border-warning-200 shadow-small dark:shadow-none">
+                    <PiShieldWarningFill className="text-warning-700 dark:text-warning-400 text-xl md:text-2xl" />
+                </span>
+                <div>
+                    {title && <p className="mb-1 text-xs sm:text-sm font-semibold text-warning-700 dark:text-warning-400">{title}</p>}
+                    <p className="text-xs sm:text-sm w-full font-medium block leading-5
+                     text-warning-700 dark:text-warning-400">{text}</p>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export const AlertInfo = ({ text, title }: { text: string, title?: string }) => {
+    return (
+        <div dir="rtl" className="w-full py-3 px-4 border-1 border-default-200 border-s-4 border-s-secondary-700 
+        dark:border-s-secondary-400 rounded-e-xl bg-[#FAFAFA] dark:bg-[#131313]/70">
+
+            <div className="w-full flex items-start gap-4">
+                <span className="p-1 rounded-full border-1 border-secondary-200 shadow-small dark:shadow-none">
+                    <IoIosInformationCircle className="text-secondary-700 dark:text-secondary-400 text-xl md:text-2xl" />
+                </span>
+                <div>
+                    {title && <p className="mb-1 text-xs sm:text-sm font-semibold text-secondary-700 dark:text-secondary-400">{title}</p>}
+                    <p className="text-xs sm:text-sm w-full font-medium block leading-5
+                     text-secondary-700 dark:text-secondary-400">{text}</p>
+                </div>
+            </div>
+        </div>
+    )
+}
 
 // const options = {
 //     autoplay: false,               // آیا ویدیو به‌صورت خودکار پخش شود؟

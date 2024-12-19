@@ -107,7 +107,7 @@ export default function CourseInfo({ data }: Props) {
     return (
         <div className='w-full mt-28 flex flex-col'>
 
-            <div className="w-full p-4 lg:p-8 dark:bg-primary-50/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium lg:shadow-none/ rounded-2xl lg:bg-transparent/ lg:dark:bg-transparent/ ">
+            {/* <div className="w-full p-4 lg:p-8 dark:bg-primary-50/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium lg:shadow-none/ rounded-2xl lg:bg-transparent/ lg:dark:bg-transparent/ ">
 
                 <div className="w-full h-48 md:h-64 lg:h-[27rem] relative rounded-2xl shadow-medium">
                     <Image className="w-full h-full -mt-24 md:-mt-32 lg:-mt-40 rounded-2xl object-cover object-center shadow-medium
@@ -152,20 +152,21 @@ export default function CourseInfo({ data }: Props) {
 
                 </div>
 
-            </div>
+            </div> */}
 
             <div className="w-full mt-10 flex flex-col lg:flex-row gap-6">
 
                 <div className="w-full lg:w-[70%] ">
-                    <div className="bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
+                    {/* <div className="bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
                         <Description desc={course?.longDescription} />
-                    </div>
+                    </div> */}
                     <div className="mt-8">
+                        
                         <CourseLessons name={course?.name} />
                     </div>
                 </div>
 
-                <div id="courseInfoSidebar" className="w-full min-w-72 lg:w-[30%] flex flex-col gap-4">
+                {/* <div id="courseInfoSidebar" className="w-full min-w-72 lg:w-[30%] flex flex-col gap-4">
 
                     <SidebarFeature data={course} />
 
@@ -177,7 +178,7 @@ export default function CourseInfo({ data }: Props) {
 
                     <AcademyInfo data={academy} />
 
-                </div>
+                </div> */}
 
             </div>
         </div >
