@@ -13,7 +13,7 @@ export const AlertDanger = ({ text, title }: AlertProps) => {
 
     return (
         <div dir="rtl" className={`w-full py-3 px-4 border-1 border-default-200 border-s-4 border-s-danger-700 
-        dark:border-s-danger-400 rounded-e-xl bg-[#241c1c] dark:bg-[#131313]/70`}>
+        dark:border-s-danger-400 rounded-e-xl bg-[#FFFFFF] dark:bg-[#131313]/70 shadow-small`}>
 
             <div className="w-full flex items-start gap-4">
                 <span className={`p-1 rounded-full border-1 border-danger-200 shadow-small dark:shadow-none`}>
@@ -33,7 +33,7 @@ export const AlertDanger = ({ text, title }: AlertProps) => {
 export const AlertSecondary = ({ text, title }: AlertProps) => {
     return (
         <div dir="rtl" className={`w-full py-3 px-4 border-1 border-default-200 border-s-4 border-s-secondary-700 
-        dark:border-s-secondary-400 rounded-e-xl bg-[#241c1c] dark:bg-[#131313]/70`}>
+        dark:border-s-secondary-400 rounded-e-xl bg-[#FFFFFF] dark:bg-[#131313]/70 shadow-small`}>
 
             <div className="w-full flex items-start gap-4">
                 <span className={`p-1 rounded-full border-1 border-secondary-200 shadow-small dark:shadow-none`}>
@@ -53,7 +53,7 @@ export const AlertSecondary = ({ text, title }: AlertProps) => {
 export const AlertWarning = ({ text, title }: AlertProps) => {
     return (
         <div dir="rtl" className={`w-full py-3 px-4 border-1 border-default-200 border-s-4 border-s-warning-700 
-        dark:border-s-warning-400 rounded-e-xl bg-[#241c1c] dark:bg-[#131313]/70`}>
+        dark:border-s-warning-400 rounded-e-xl bg-[#FFFFFF] dark:bg-[#131313]/70 shadow-small`}>
 
             <div className="w-full flex items-start gap-4">
                 <span className={`p-1 rounded-full border-1 border-warning-200 shadow-small dark:shadow-none`}>
