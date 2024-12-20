@@ -1,14 +1,13 @@
 'use client'
 
-import { encodeToShortCode, hoursAndMinutesString, secondsToTimeString, secondsToTimeString2, toPersianNumber } from "@/src/utils/functions"
+import { encodeToShortCode, hoursAndMinutesString, secondsToTimeString2, toPersianNumber } from "@/src/utils/functions"
 import { FaRegCopy } from "react-icons/fa6"
 import { motion } from 'framer-motion';
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { TbFileDescription } from "react-icons/tb";
 import { Button } from "@nextui-org/button";
 import { SlEye } from "react-icons/sl";
 import { IoIosArrowBack, IoIosSchool } from "react-icons/io";
-
 import { getCourseDataByNameLoged, getCourseDataByNameNoLoged } from "@/src/lib/apis/courseApis";
 import { useQuery } from "@tanstack/react-query";
 import cookies from 'js-cookie'
@@ -19,14 +18,12 @@ import { FaDownload } from "react-icons/fa6";
 import { FaRegFile } from "react-icons/fa";
 import { TiAttachmentOutline } from "react-icons/ti";
 import { FaExternalLinkAlt } from "react-icons/fa";
-import "plyr-react/plyr.css";
-import { PiShieldWarningFill } from "react-icons/pi";
-import dynamic from 'next/dynamic';
 import Link from "next/link";
-import { IoIosInformationCircle } from "react-icons/io";
+import { VideoPlayer } from "../Shared/VideoPlayer";
+import { AlertDanger, AlertSecondary, AlertWarning } from "../Shared/Alert";
 
 
-const Plyr = dynamic(() => import('plyr-react'), { ssr: false });
+
 
 
 export function ShortLink({ name }: { name: string }) {
@@ -117,10 +114,21 @@ export function CourseLessons({ name }: { name: any }) {
                     <p className="text-2xl font-bold">سرفصل‌ها</p>
                 </div>
 
+                {(getCourseData?.data?.error || getCourseData?.data?.warning || getCourseData?.data?.info) ? <div className="mb-4 flex flex-col gap-2">
+                    {getCourseData?.data?.error ? <AlertDanger text={getCourseData?.data.error} /> : ''}
+                    {getCourseData?.data?.warning ? <AlertWarning text={getCourseData?.data.warning} /> : ''}
+                    {getCourseData?.data?.info ? <AlertSecondary text={getCourseData?.data.info} /> : ''}
+                </div> : ''}
+
                 <div className="w-full">
                     <div className="flex flex-col gap-4">
                         {!getCourseData.isLoading && getCourseData.isSuccess &&
                             getCourseData?.data?.courseData?.map((item: any, index: number) => <SectionAcordian item={item} key={index} isCourseFree={getCourseData?.data?.isCourseFree} />)
+                        }
+
+                        {
+                            !getCourseData.isLoading && getCourseData.isSuccess && getCourseData?.data?.courseFiles &&
+                            <CourseFileAcordian courseFiles={getCourseData?.data?.courseFiles} isCourseFree={getCourseData?.data?.isCourseFree} />
                         }
 
                     </div>
@@ -131,11 +139,53 @@ export function CourseLessons({ name }: { name: any }) {
 }
 
 
+const CourseFileAcordian = ({ courseFiles, isCourseFree }: { courseFiles: any, isCourseFree: boolean }) => {
+    const [open, setOpen] = useState(false);
+
+
+    const handleClick = () => {
+        if (isCourseFree) {
+            setOpen(!open)
+        }
+    }
+
+    return (
+        <div dir="rtl" className="flex flex-col justify-center dark:shadow-small rounded-xl overflow-hidden bg-[#f3f4f8] dark:bg-slate-800">
+
+            <div onClick={handleClick} className={`p-4 py-5 cursor-pointer transition-all
+                 ${open ? "bg-primary-500" : " bg-[#f3f4f8] dark:bg-slate-800"} `}>
+
+                <div className={`w-full flex items-center justify-between gap-2 ${open ? "text-white" : " text-black dark:text-white"}`}>
+                    <p dir="rtl" className={`sm:text-[1.1rem] font-medium `}>فایل‌های دوره</p>
+                </div>
+            </div>
+
+            <motion.div
+                transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+                initial={{ height: 0 }}
+                animate={{ height: open ? 'auto' : 0 }}
+                exit={{ height: 0 }}
+                style={{ overflow: 'hidden' }} >
+                <div className="mt-2 p-2 sm:p-4">
+                    <div className="flex flex-col justify-start gap-2">
+                        {courseFiles[0] !== true ? courseFiles?.map((file: any, index: number) =>
+                            <Button className="max-w-max" startContent={<TiAttachmentOutline size={20} />} key={index} color="primary" variant="shadow" radius="sm" href={file.fileName} as={Link}>
+                                {file?.fileTitle}
+                            </Button>) : ''}
+                    </div>
+                </div>
+            </motion.div>
+
+        </div>
+    )
+}
+
+
 const SectionAcordian = ({ item, isCourseFree }: { item: any, isCourseFree: boolean }) => {
     const [open, setOpen] = useState(false)
     const [selectedLesson, setSelectedLesson] = useState('')
 
- 
+
 
     return (
         <div dir="ltr" className="flex flex-col justify-center dark:shadow-small rounded-xl overflow-hidden bg-[#f3f4f8] dark:bg-slate-800">
@@ -164,7 +214,10 @@ const SectionAcordian = ({ item, isCourseFree }: { item: any, isCourseFree: bool
                 exit={{ height: 0 }}
                 style={{ overflow: 'hidden' }} >
                 <div>
-                    {item?.notice ? <AlertWarning text={item.notice} /> : ''}
+                    {item?.error ? <AlertDanger text={item.error} /> : ''}
+                    {item?.warning ? <AlertWarning text={item.warning} /> : ''}
+                    {item?.info ? <AlertSecondary text={item.info} /> : ''}
+
                     {item?.lessonsList?.map((item2: any, index: number) =>
                         <LessonAcordian key={index} index={index} item={item2} selectedLesson={selectedLesson} setSelectedLesson={setSelectedLesson} isCourseFree={isCourseFree} />)}
 
@@ -195,12 +248,8 @@ const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index, isCour
         if (item?.isFree || isCourseFree) {
             if (selectedLesson === `${index}`) setSelectedLesson(``)
             else setSelectedLesson(`${index}`)
-
-
         }
     }
-
-
 
     let lesson: any;
     if (item.lessonType === 'video' && (item?.isFree || isCourseFree)) {
@@ -211,9 +260,15 @@ const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index, isCour
 
                 <div className="flex flex-col pt-4 pb-8">
 
-                    {item?.notice ? <div className="my-4">
-                        <AlertWarning text={item?.notice} />
-                    </div> : ""}
+                    {(item?.error || item?.warning || item?.info) ?
+                        <div className="mb-6">
+                            {item?.error ? <div className="my-2"><AlertDanger text={item?.error} /></div> : ""}
+
+                            {item?.warning ? <div className="my-2"><AlertWarning text={item?.warning} /></div> : ""}
+
+                            {item?.info ? <div className="my-2"><AlertSecondary text={item?.info} /></div> : ""}
+                        </div> : ''
+                    }
 
                     <Button color="primary" variant="shadow" radius="sm" href={item?.lessonFile.fileName} as={Link}>
                         دانلود ویدیو این بخش
@@ -255,22 +310,21 @@ const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index, isCour
             </div>
     }
 
-    console.log(item)
 
     if (item.lessonType !== 'video' && (item?.isFree || isCourseFree)) {
 
         lesson =
             <div className="-mt-4 pb-8 flex flex-col ">
 
-                {item?.notice ? <div className="my-4">
-                    <AlertWarning text={item?.notice} />
-                </div> : ""}
+                <div className="my-2"><AlertSecondary text={infoText} /></div>
 
-                <div className="my-4">
-                    <AlertInfo text={infoText} />
-                </div>
+                {item?.error ? <div className="my-2"><AlertDanger text={item?.error} /></div> : ""}
 
-                <Button color="primary" variant="shadow" radius="sm" href={item?.lessonFile.fileName} as={Link}>
+                {item?.warning ? <div className="my-2"><AlertWarning text={item?.warning} /></div> : ""}
+
+                {item?.info ? <div className="my-2"><AlertSecondary text={item?.info} /></div> : ""}
+
+                <Button className="mt-4" color="primary" variant="shadow" radius="sm" href={item?.lessonFile.fileName} as={Link}>
                     دانلود فایل این بخش
                 </Button>
 
@@ -470,156 +524,3 @@ const SectionLinkAcordian = ({ sectionLinks, selectedLesson, setSelectedLesson, 
     )
 }
 
-export const VideoPlayer: React.FC<{ url: string }> = ({ url }) => {
-    const videoSource = {
-        type: "video" as "video",
-        sources: [
-            {
-                src: url,
-                type: "video/mp4",
-            },
-        ],
-    };
-
-    useEffect(() => {
-        const updateTimeToPersian = () => {
-            const timeElements = document.querySelectorAll(".plyr__time");
-            timeElements.forEach((element) => {
-                element.textContent = toPersianNumber(element.textContent || "");
-            });
-        };
-
-        updateTimeToPersian();
-
-        const observer = new MutationObserver(updateTimeToPersian);
-        const controls = document.querySelector(".plyr__controls");
-
-        if (controls) {
-            observer.observe(controls, {
-                childList: true,
-                subtree: true,
-                characterData: true,
-            });
-        }
-
-        return () => observer.disconnect();
-    }, []);
-
-    return (
-        <div className="w-full h-auto rounded-xl overflow-hidden">
-            <Plyr
-                source={videoSource}
-                options={{
-                    autoplay: false,
-                    muted: false,
-                    controls: ["progress", "play-large", "rewind", "play", "fast-forward", "current-time", "mute", "volume", "settings", "pip", "fullscreen"],
-                }}
-            />
-        </div>
-    );
-};
-
-
-export const AlertWarning = ({ text, title }: { text: string, title?: string }) => {
-    return (
-        <div dir="rtl" className="w-full py-3 px-4 border-1 border-default-200 border-s-4 border-s-warning-700 
-        dark:border-s-warning-400 rounded-e-xl bg-[#FAFAFA] dark:bg-[#131313]/70 ">
-
-            <div className="w-full flex items-start gap-4">
-                <span className="p-1 rounded-full border-1 border-warning-200 shadow-small dark:shadow-none">
-                    <PiShieldWarningFill className="text-warning-700 dark:text-warning-400 text-xl md:text-2xl" />
-                </span>
-                <div>
-                    {title && <p className="mb-1 text-xs sm:text-sm font-semibold text-warning-700 dark:text-warning-400">{title}</p>}
-                    <p className="text-xs sm:text-sm w-full font-medium block leading-5
-                     text-warning-700 dark:text-warning-400">{text}</p>
-                </div>
-            </div>
-        </div>
-    )
-}
-
-export const AlertInfo = ({ text, title }: { text: string, title?: string }) => {
-    return (
-        <div dir="rtl" className="w-full py-3 px-4 border-1 border-default-200 border-s-4 border-s-secondary-700 
-        dark:border-s-secondary-400 rounded-e-xl bg-[#FAFAFA] dark:bg-[#131313]/70">
-
-            <div className="w-full flex items-start gap-4">
-                <span className="p-1 rounded-full border-1 border-secondary-200 shadow-small dark:shadow-none">
-                    <IoIosInformationCircle className="text-secondary-700 dark:text-secondary-400 text-xl md:text-2xl" />
-                </span>
-                <div>
-                    {title && <p className="mb-1 text-xs sm:text-sm font-semibold text-secondary-700 dark:text-secondary-400">{title}</p>}
-                    <p className="text-xs sm:text-sm w-full font-medium block leading-5
-                     text-secondary-700 dark:text-secondary-400">{text}</p>
-                </div>
-            </div>
-        </div>
-    )
-}
-
-// const options = {
-//     autoplay: false,               // آیا ویدیو به‌صورت خودکار پخش شود؟
-//     muted: false,                  // آیا ویدیو به‌صورت بی‌صدا شروع شود؟
-//     loop: { active: false },       // تنظیم حالت پخش حلقه‌ای
-//     controls: [                    // لیست کنترل‌های موجود روی پخش‌کننده
-//         'play-large',              // دکمه پخش بزرگ در وسط ویدیو
-//         'restart',                 // دکمه بازگشت به ابتدا
-//         'rewind',                  // دکمه بازگشت به عقب
-//         'play',                    // دکمه پخش
-//         'fast-forward',            // دکمه حرکت به جلو
-//         'progress',                // نوار پیشرفت پخش
-//         'current-time',            // زمان فعلی
-//         'duration',                // کل زمان ویدیو
-//         'mute',                    // دکمه قطع صدا
-//         'volume',                  // کنترل میزان صدا
-//         'captions',                // کنترل زیرنویس
-//         'settings',                // دکمه تنظیمات (مانند کیفیت و سرعت)
-//         'pip',                     // دکمه تصویر در تصویر (Picture-in-Picture)
-//         'airplay',                 // دکمه پخش روی دستگاه‌های دیگر (AirPlay)
-//         'download',                // دکمه دانلود ویدیو
-//         'fullscreen'               // دکمه تمام‌صفحه
-//     ],
-//     settings: ['captions', 'quality', 'speed'], // تنظیمات سفارشی در منوی تنظیمات
-//     speed: {                          // تنظیم سرعت پخش
-//         selected: 1,                  // سرعت پیش‌فرض
-//         options: [0.5, 1, 1.5, 2],    // سرعت‌های قابل انتخاب
-//     },
-//     quality: {
-//         default: 720,                 // کیفیت پیش‌فرض
-//         options: [360, 720, 1080],    // کیفیت‌های قابل انتخاب
-//         forced: false,                // آیا کاربران می‌توانند کیفیت را تغییر دهند؟
-//         onChange: (quality: number) => {
-//             console.log(`Quality changed to ${quality}`);
-//         },
-//     },
-//     invertTime: true,                 // آیا زمان باقی‌مانده نمایش داده شود؟
-//     captions: {                       // تنظیمات زیرنویس
-//         active: true,                 // زیرنویس به‌صورت پیش‌فرض فعال باشد؟
-//         language: 'en',               // زبان زیرنویس پیش‌فرض
-//         update: true,                 // به‌روزرسانی زیرنویس در زمان واقعی
-//     },
-//     fullscreen: { enabled: true },    // فعال‌سازی تمام‌صفحه
-//     ratio: '16:9',                    // نسبت ابعاد ویدیو
-//     clickToPlay: true,                // پخش و توقف با کلیک
-//     hideControls: true,               // پنهان کردن کنترل‌ها در صورت عدم استفاده
-//     disableContextMenu: false,        // غیرفعال کردن منوی کلیک راست
-//     loadSprite: true,                 // بارگذاری آیکون‌ها از اسپرایت SVG
-//     iconUrl: null,                    // مسیر سفارشی برای آیکون‌ها
-//     keyboard: {                       // پشتیبانی از میانبرهای صفحه‌کلید
-//         focused: true,
-//         global: false,
-//     },
-//     tooltips: {                       // نمایش توضیحات (Tooltips) برای دکمه‌ها
-//         controls: false,
-//         seek: true,
-//     },
-//     seekTime: 10,                     // زمان جستجوی سریع (برحسب ثانیه)
-//     volume: 0.8,                      // سطح صدای پیش‌فرض (۰ تا ۱)
-//     storage: {                        // ذخیره تنظیمات کاربر در لوکال‌استوریج
-//         enabled: true,
-//         key: 'plyr-settings',
-//     },
-//     poster: '',                       // تصویر پیش‌نمایش ویدیو
-//     debug: false,                     // فعال کردن لاگ‌های دیباگ
-// };

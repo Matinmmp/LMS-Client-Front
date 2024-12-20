@@ -14,7 +14,7 @@ import { IoIosFilm } from "react-icons/io";
 import { FaStar } from "react-icons/fa6"
 import { Avatar } from "@nextui-org/avatar";
 import Link from "next/link";
-import { CourseLessons, Description, ShortLink, VideoPlayer } from "./CourseInfoComponents";
+import { CourseLessons, Description, ShortLink } from "./CourseInfoComponents";
 
 
 
