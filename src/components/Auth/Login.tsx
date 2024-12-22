@@ -71,6 +71,7 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
     const loginMutation = useMutation({
         mutationFn: (data: { email: string, password: string }) => login(data),
         onSuccess: (e) => {
+            location?.reload();
             dispatch(userLoggedIn(e))
             getUserMutation.mutate();
             setOpen(false);

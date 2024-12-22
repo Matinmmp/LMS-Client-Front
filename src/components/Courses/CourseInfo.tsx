@@ -162,7 +162,7 @@ export default function CourseInfo({ data }: Props) {
                     </div> */}
                     <div className="mt-8">
                         
-                        <CourseLessons name={course?.name} />
+                        <CourseLessons name={course?.urlName} />
                     </div>
                 </div>
 
