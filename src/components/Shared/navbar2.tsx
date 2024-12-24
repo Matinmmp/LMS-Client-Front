@@ -44,7 +44,6 @@ import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { showToast } from "@/src/utils/toast";
 import { logoutUser } from "@/src/lib/apis/userApis";
-import { userLoggedIn, userLoggedOut } from "@/src/redux/auth/authSlice";
 import { useRouter } from "next/navigation";
 
 
@@ -80,9 +79,13 @@ const categories = buildCategoryTree(navObject.categoryObject.categoryList, null
 const academiesObject = navObject.academyObject
 const teacherObject = navObject.teacherObject
 
+const encodeTitle = (title: string) => {
+    return title
+        .replace(/\s/g, '_')       // جایگزینی فاصله‌ها با _
+        .replace(/\u200C/g, '-'); // جایگزینی نیم‌فاصله با -
+}
 
 export const Navbar = () => {
-    const dispatch = useDispatch();
     const path = usePathname();
     const searchParams = useSearchParams();
     const [scrolled, setScrolled] = useState(false);
@@ -112,8 +115,8 @@ export const Navbar = () => {
         const handleOutsideClick = (event: any) => {
             if (searchRef.current && !searchRef.current.contains(event.target)) {
                 setSearch('')
-                 setTimeout(() => setOpen2(false), 500)
-                
+                setTimeout(() => setOpen2(false), 500)
+
             }
         };
 
@@ -181,11 +184,11 @@ export const Navbar = () => {
 
     const handleSearchIteemClick = () => {
         if (!search) return;
-        
-            setTimeout(() => {
-                setSearch('')
-                setTimeout(() => setOpen2(false), 500)
-            }, 500)
+
+        setTimeout(() => {
+            setSearch('')
+            setTimeout(() => setOpen2(false), 500)
+        }, 500)
     }
 
     return (
@@ -264,7 +267,7 @@ export const Navbar = () => {
 
                                     <div className="w-[30rem] max-h-[50rem] p-4 grid gap-6 grid-cols-4 justify-beetwen " dir='rtl'>
                                         {teacherObject.teacherList.slice(0, 7).map((item, index) => (
-                                            <NextLink href={`/teachers/${item.engName}`} key={index} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
+                                            <NextLink href={`/teachers/${encodeTitle(item.engName)}`} key={index} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
                                                 <Avatar radius={'full'} isBordered size={'lg'} color={'primary'} name={item.engName} showFallback src={item.imageUrl} />
                                                 <span className='text-center whitespace-break-spaces'>{item.engName}</span>
                                             </NextLink>
@@ -289,13 +292,13 @@ export const Navbar = () => {
 
                                     <div className="w-[25rem] max-h-[50rem] p-4 grid gap-6 grid-cols-3 justify-beetwen " dir='rtl'>
                                         {academiesObject.academyList.slice(0, 5).map((item, index) => (
-                                            <NextLink href={`/academies/${item.engName}`} key={index} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
+                                            <NextLink href={`/academies/${encodeTitle(item.engName)}`} key={index} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
                                                 <Avatar radius={'sm'} isBordered size={'lg'} color={'secondary'} name={item.engName} showFallback src={item.imageUrl} />
                                                 <span className='text-center whitespace-break-spaces'>{item.engName}</span>
                                             </NextLink>
                                         ))}
                                         <NextLink href={"/academies"} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
-                                            <Avatar name={toPersianNumber(academiesObject.total - academiesObject.academyList.slice(0, 4).length) + '+'}
+                                            <Avatar name={toPersianNumber(academiesObject.total - academiesObject.academyList.slice(0, 5).length) + '+'}
                                                 radius={'sm'} isBordered size={'lg'} color={'secondary'} className='text-xl cursor-pointer' />
                                             <span className='text-center'>مشاهده همه</span>
                                         </NextLink>
@@ -470,33 +473,35 @@ export const Navbar = () => {
 
                                         className="max-h-[60vh] overflow-scroll w-full p-2 ps-6 pb-3 pt-6 flex flex-col gap-3 scroll-10 ">
                                         {
-                                            list?.map((item: any, index: number) =>
-
-                                                <NextLink href={`/courses/${item.name}`} key={index} className="w-full h-full flex gap-4" onClick={handleSearchIteemClick}>
-                                                    <div>
-                                                        <div className="w-16 h-12 p-[1px]   rounded-sm border-1 border-primary-400 overflow-hidden shadow-medium">
-                                                            <Image className="w-full h-full rounded-sm" width={500} height={500} src={item.thumbnail.imageUrl} alt={item.name} />
-                                                        </div>
-                                                    </div>
-                                                    <div className="w-full flex flex-col">
-                                                        <div className="w-full flex items-start justify-between">
-                                                            <p className={clsx(linkStyles({ color: "foreground" }), "w-full text-lg font-semibold cursor-pointer hover:text-primary-400 transition-all")} >
-                                                                {item.name}
-                                                            </p>
-
-                                                            <div className="flex items-center gap-1">
-                                                                <span className="pt-1 text-md font-semibold text-warning-400">{toPersianNumber(item.ratings)}</span>
-                                                                <FaStar size={16} className="text-warning-400" />
+                                            list?.map((item: any, index: number) => {
+                                                let link = encodeTitle(item?.urlName);
+                                                return (
+                                                    <NextLink href={`/courses/${link}`} key={index} className="w-full h-full flex gap-4 transition-all" onClick={handleSearchIteemClick}>
+                                                        <div>
+                                                            <div className="w-16 h-12 p-[1px] rounded-sm border-1 border-primary-400 overflow-hidden shadow-medium">
+                                                                <Image className="w-full h-full rounded-sm" width={320} height={180} src={item.thumbnail.imageUrl} alt={item.name} />
                                                             </div>
                                                         </div>
-                                                        <div>
-                                                            <p className="w-full !text-sm !font-normal ">
-                                                                {`مدرس : ${item?.teacherId?.faName}`}
-                                                            </p>
-                                                        </div>
-                                                    </div>
+                                                        <div className="w-full flex flex-col">
+                                                            <div className="w-full flex items-start justify-between">
+                                                                <p className={clsx(linkStyles({ color: "foreground" }), "w-full text-lg font-semibold cursor-pointer hover:text-primary-400 transition-all")} >
+                                                                    {item.name}
+                                                                </p>
 
-                                                </NextLink>
+                                                                <div className="flex items-center gap-1">
+                                                                    <span className="pt-1 text-md font-semibold text-warning-400">{toPersianNumber(item.ratings)}</span>
+                                                                    <FaStar size={16} className="text-warning-400" />
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <p className="w-full !text-sm !font-normal ">
+                                                                    {`مدرس : ${item?.teacherId?.faName}`}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+
+                                                    </NextLink>)
+                                            }
                                             )
                                         }
                                     </motion.div>}
@@ -508,7 +513,7 @@ export const Navbar = () => {
                 </div>
 
                 <Drawer isOpen={isMenuOpen} setIsOpen={setIsMenuOpen}>
-                    <DrawerContent setIsOpen={setIsMenuOpen} categoryList={categories[0].subCategories} />
+                    <DrawerContent setIsOpen={setIsMenuOpen} />
                 </Drawer>
 
                 {
@@ -550,13 +555,14 @@ const DropDown = ({ children, position, title, link }: DropDownProps) => {
 
     return (
         <div className="w-full relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-            <NextLink className={clsx(linkStyles({ color: "foreground" }), "w-full font-semibold cursor-pointer relative")} href={link}>
+            <NextLink className={clsx(linkStyles({ color: "foreground" }), "w-full font-semibold cursor-pointer relative")}
+                href={link}>
                 {title}
             </NextLink>
 
             {open && (
                 <div className={clsx(positionStyle, "absolute pt-10 transition-opacity duration-200 opacity-0", open ? "opacity-100" : "opacity-0")}>
-                    <div className=" overflow-x-auto rounded-md backdrop-blur-lg backdrop-saturate-200 bg-[#18181B]" dir="ltr">
+                    <div className=" overflow-x-auto/ rounded-md backdrop-blur-lg backdrop-saturate-200 bg-white dark:bg-[#131d35] shadow-medium" dir="ltr">
                         {children}
                     </div>
                 </div>
@@ -567,7 +573,7 @@ const DropDown = ({ children, position, title, link }: DropDownProps) => {
 
 type DrawerContentProps = {
     setIsOpen: (isOpen: boolean) => void;
-    categoryList: any[];
+
 };
 
 const DrawerContent = ({ setIsOpen }: DrawerContentProps) => {
@@ -595,10 +601,10 @@ const DrawerContent = ({ setIsOpen }: DrawerContentProps) => {
 
 
                 <div className="w-full mt-6 px-2 flex flex-col gap-4">
-                    <DrawerDropDown categoryList={categories[0].subCategories} />
-                    <DrawerDropDown2 color={'primary'} total={teacherObject.total} list={teacherObject.teacherList} title={'مدرس‌ها'} radius="full" />
-                    <DrawerDropDown2 color={'secondary'} total={teacherObject.total} list={academiesObject.academyList} title={'آکادمی ها'} radius="sm" />
-                    <DrawerDropDown3 list={links} title="لینک‌های مفید" />
+                    <DrawerDropDown categoryList={categories[0].subCategories} setIsOpen={setIsOpen} />
+                    <DrawerDropDown2 setIsOpen={setIsOpen} baseUrl="teachers" color={'primary'} total={teacherObject.total} list={teacherObject.teacherList} title={'مدرس‌ها'} radius="full" />
+                    <DrawerDropDown2 setIsOpen={setIsOpen} baseUrl="academies" color={'secondary'} total={academiesObject.total} list={academiesObject.academyList} title={'آکادمی ها'} radius="sm" />
+                    <DrawerDropDown3 title="لینک‌های مفید" setIsOpen={setIsOpen} />
                 </div>
             </div>
 
@@ -608,9 +614,11 @@ const DrawerContent = ({ setIsOpen }: DrawerContentProps) => {
 
 
 type DrawerDropDownProps = {
-    categoryList: any[]
+    categoryList: any[];
+    setIsOpen: (isOpen: boolean) => void;
 };
-const DrawerDropDown = ({ categoryList }: DrawerDropDownProps) => {
+
+const DrawerDropDown = ({ categoryList, setIsOpen }: DrawerDropDownProps) => {
     const [open, setOpen] = useState(false);
 
     const containerVariants = {
@@ -625,18 +633,20 @@ const DrawerDropDown = ({ categoryList }: DrawerDropDownProps) => {
 
     return (
         <div className="w-full flex flex-col">
-            <div className="w-full ">
-                <NextLink color="foreground" href={'/'}
-                    className="w-full text-base hover:text-primary-400 transition cursor-pointer relative flex items-center justify-between" >
+            <div className="w-full flex items-center justify-between cursor-pointer">
+                <NextLink color="foreground" href={'/courses'} onClick={() => setTimeout(() => setIsOpen(false), 200)}
+                    className="w-full text-base hover:text-primary-400 transition relative " >
+
                     <div className='flex items-center gap-1'>
                         <FaCaretLeft size={12} className="text-primary-400" />
                         <span>دوره‌های برنامه نویسی</span>
                     </div>
-                    {open ?
-                        <CiSquareMinus size={24} className="text-primary-400" onClick={() => setOpen(false)} />
-                        :
-                        <CiSquarePlus size={24} className="text-primary-400" onClick={() => setOpen(true)} />}
+
                 </NextLink>
+                {open ?
+                    <CiSquareMinus size={24} className="text-primary-400" onClick={() => setOpen(false)} />
+                    :
+                    <CiSquarePlus size={24} className="text-primary-400" onClick={() => setOpen(true)} />}
             </div>
 
             <motion.div className="overflow-hidden" initial={false} animate={open ? "open" : "closed"} variants={containerVariants}>
@@ -646,23 +656,27 @@ const DrawerDropDown = ({ categoryList }: DrawerDropDownProps) => {
                             const [openSub, setOpenSub] = useState(false);
                             return (
                                 <div className="flex flex-col" key={index}>
-                                    <NextLink color="foreground" href={'/'}
-                                        className="w-full mt-3 text-sm hover:text-primary-400 transition cursor-pointer relative flex items-center justify-between" >
-                                        <div className='flex items-center gap-1'>
-                                            <FaChevronLeft size={8} className="text-primary-400" />
-                                            <span>{item.name}</span>
-                                        </div>
+                                    <div className="cursor-pointer relative flex items-center justify-between">
+
+                                        <NextLink color="foreground" href={`/courses?category=${item.name}`} onClick={() => setTimeout(() => setIsOpen(false), 200)}
+                                            className="w-full mt-3 text-sm hover:text-primary-400 transition relative" >
+                                            <div className='flex items-center gap-1'>
+                                                <FaChevronLeft size={8} className="text-primary-400" />
+                                                <span>{item.name}</span>
+                                            </div>
+
+                                        </NextLink>
                                         {item.subCategories && (openSub ?
                                             <CiSquareMinus size={24} className="text-primary-400" onClick={() => setOpenSub(false)} />
                                             :
                                             <CiSquarePlus size={24} className="text-primary-400" onClick={() => setOpenSub(true)} />)}
-                                    </NextLink>
+                                    </div>
 
                                     {item.subCategories && (
                                         <motion.div className="ps-5 overflow-hidden" initial={false} animate={openSub ? "open" : "closed"} variants={subCategoryVariants}>
                                             {item.subCategories.map((itemSub: any, index2: number) => (
                                                 <div className="flex flex-col" key={index2}>
-                                                    <NextLink color="foreground" href={'/'}
+                                                    <NextLink color="foreground" href={`/courses?category=${itemSub.name}`} onClick={() => setTimeout(() => setIsOpen(false), 200)}
                                                         className="w-full mt-3 text-sm hover:text-primary-400 transition cursor-pointer relative flex items-center justify-between" >
                                                         <div className='flex items-center gap-1'>
                                                             <GoDotFill size={10} className="text-primary-400" />
@@ -673,12 +687,14 @@ const DrawerDropDown = ({ categoryList }: DrawerDropDownProps) => {
                                             ))}
                                         </motion.div>
                                     )}
+
                                 </div>
                             )
                         })
                     }
                 </div>
             </motion.div>
+
         </div>
     );
 }
@@ -689,9 +705,12 @@ type DrawerDropDown2Props = {
     title: string;
     radius: 'full' | 'sm',
     total: number,
-    color: 'primary' | 'secondary'
+    color: 'primary' | 'secondary',
+    baseUrl: string,
+    setIsOpen: (isOpen: boolean) => void;
+
 };
-const DrawerDropDown2 = ({ list, title, radius, total, color }: DrawerDropDown2Props) => {
+const DrawerDropDown2 = ({ list, title, radius, total, color, baseUrl, setIsOpen }: DrawerDropDown2Props) => {
     const [open, setOpen] = useState(false);
 
     const containerVariants = {
@@ -701,35 +720,38 @@ const DrawerDropDown2 = ({ list, title, radius, total, color }: DrawerDropDown2P
 
     return (
         <div className="w-full flex flex-col">
-            <div className="w-full ">
-                <NextLink color="foreground" href={'/'}
-                    className="w-full text-base hover:text-primary-400 transition cursor-pointer relative flex items-center justify-between" >
+            <div className="w-full flex items-center justify-between cursor-pointer ">
+                <NextLink color="foreground" href={`/${baseUrl}`} onClick={() => setTimeout(() => setIsOpen(false), 200)}
+                    className="w-full text-base hover:text-primary-400 transition relative" >
                     <div className='flex items-center gap-1'>
                         <FaCaretLeft size={12} className="text-primary-400" />
                         <span>{title}</span>
                     </div>
-                    {open ?
-                        <CiSquareMinus size={24} className="text-primary-400" onClick={() => setOpen(false)} />
-                        :
-                        <CiSquarePlus size={24} className="text-primary-400" onClick={() => setOpen(true)} />}
+
                 </NextLink>
+
+                {open ?
+                    <CiSquareMinus size={24} className="text-primary-400" onClick={() => setOpen(false)} />
+                    :
+                    <CiSquarePlus size={24} className="text-primary-400" onClick={() => setOpen(true)} />}
             </div>
 
             <motion.div className="overflow-hidden" initial={false} animate={open ? "open" : "closed"} variants={containerVariants}>
 
                 <div className='w-full p-2 pt-8 grid gap-6 grid-cols-3 justify-beetwen'>
 
-                    {list.map((item, index) => (
-                        <NextLink href={'/'} key={index} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
+                    {list?.slice(0, 8)?.map((item, index) => (
+                        <NextLink href={`/${baseUrl}/${encodeTitle(item.engName)}`} key={index} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer' >
                             <Avatar radius={radius} isBordered size={'lg'} color={color} name={item.engName} showFallback src={item.imageUrl} />
                             <span className='text-center whitespace-break-spaces'>{item.engName}</span>
                         </NextLink>
                     ))}
-                    <NextLink href={'/'} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
-                        <Avatar name={toPersianNumber(total - list.length) + '+'}
-                            radius={radius} isBordered size={'lg'} color={color} className='text-xl cursor-pointer' />
-                        <span className='text-center'>مشاهده همه</span>
-                    </NextLink>
+                    {total > 8 ?
+                        <NextLink href={`/${baseUrl}`} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer' onClick={() => setTimeout(() => setIsOpen(false), 200)}>
+                            <Avatar name={toPersianNumber(total - list.slice(8)?.length) + '+'}
+                                radius={radius} isBordered size={'lg'} color={color} className='text-xl cursor-pointer' />
+                            <span className='text-center'>مشاهده همه</span>
+                        </NextLink> : ''}
 
                 </div>
 
@@ -739,10 +761,11 @@ const DrawerDropDown2 = ({ list, title, radius, total, color }: DrawerDropDown2P
 }
 
 type DrawerDropDown3Props = {
-    list: any[];
     title: string;
+    setIsOpen: (isOpen: boolean) => void;
+
 };
-const DrawerDropDown3 = ({ list, title }: DrawerDropDown3Props) => {
+const DrawerDropDown3 = ({ title, setIsOpen }: DrawerDropDown3Props) => {
     const [open, setOpen] = useState(false);
 
     const containerVariants = {
@@ -752,18 +775,19 @@ const DrawerDropDown3 = ({ list, title }: DrawerDropDown3Props) => {
 
     return (
         <div className="w-full flex flex-col">
-            <div className="w-full ">
-                <NextLink color="foreground" href={'/'}
-                    className="w-full text-base hover:text-primary-400 transition cursor-pointer relative flex items-center justify-between" >
+            <div className="w-full flex items-center justify-between  cursor-pointer">
+                <NextLink color="foreground" href={'/'} onClick={() => setTimeout(() => setIsOpen(false), 200)}
+                    className="w-full text-base hover:text-primary-400 transition relative" >
                     <div className='flex items-center gap-1'>
                         <FaCaretLeft size={12} className="text-primary-400" />
                         <span>{title}</span>
                     </div>
-                    {open ?
-                        <CiSquareMinus size={24} className="text-primary-400" onClick={() => setOpen(false)} />
-                        :
-                        <CiSquarePlus size={24} className="text-primary-400" onClick={() => setOpen(true)} />}
+
                 </NextLink>
+                {open ?
+                    <CiSquareMinus size={24} className="text-primary-400" onClick={() => setOpen(false)} />
+                    :
+                    <CiSquarePlus size={24} className="text-primary-400" onClick={() => setOpen(true)} />}
             </div>
 
             <motion.div className="overflow-hidden" initial={false} animate={open ? "open" : "closed"} variants={containerVariants}>

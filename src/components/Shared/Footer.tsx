@@ -10,6 +10,7 @@ import { link as linkStyles } from "@nextui-org/theme";
 import { buildCategoryTree } from "@/src/utils/categorySorter";
 import { MdOutlineContactMail } from "react-icons/md";
 import { HiOutlineInformationCircle } from "react-icons/hi";
+import { encodeTitle } from '@/src/utils/functions';
 
 type CardProps = {
 };
@@ -69,7 +70,7 @@ const Footer = ({ }: CardProps) => {
                                 {
                                     categories[0].subCategories.map((item, index) =>
                                         <li key={index}>
-                                            <Link color="foreground" href={`/category/${item.name}`} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
+                                            <Link color="foreground" href={`/courses/?category=${item.name}`} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
                                                 {item.name}
                                             </Link>
                                         </li>)
@@ -83,7 +84,7 @@ const Footer = ({ }: CardProps) => {
                                 {
                                     teacherObject.teacherList.slice(0, 10).map((item, index) =>
                                         <li key={index}>
-                                            <Link color="foreground" href={`/teachers/${item.engName}`} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
+                                            <Link color="foreground" href={`/teachers/${encodeTitle(item.engName)}`} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
                                                 {item.engName}
                                             </Link>
                                         </li>)
@@ -106,7 +107,7 @@ const Footer = ({ }: CardProps) => {
                                 {
                                     academiesObject.academyList.slice(0, 10).map((item, index) =>
                                         <li key={index}>
-                                            <Link color="foreground" href={`/academies/${item.engName}`} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
+                                            <Link color="foreground" href={`/academies/${encodeTitle(item.engName)}`} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
                                                 {item.engName}
                                             </Link>
                                         </li>)
@@ -184,7 +185,7 @@ const Footer = ({ }: CardProps) => {
                     </div>
                 </div>
 
-                
+
             </div>
 
         </footer >

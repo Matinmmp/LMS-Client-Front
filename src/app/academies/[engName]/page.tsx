@@ -1,5 +1,6 @@
 import AcademyInfo from "@/src/components/Academies/AcademyInfo";
 import { getAcademyByName, getAllAcademyNames } from "@/src/lib/apis/academyApis";
+import { decodeTitle, encodeTitle } from "@/src/utils/functions";
 
 
 type Props = {
@@ -12,7 +13,7 @@ export async function generateStaticParams() {
 
  
     return academyNames?.academiesName?.map((academy: { engName: string }) => ({
-        engName: encodeURIComponent(academy.engName),
+        engName:encodeTitle(encodeURIComponent(academy.engName)),
     })) || [];
 }
 
@@ -20,7 +21,7 @@ export async function generateStaticParams() {
 
 export default async function Academy({ params: { engName } }: Props) {
     const name = await decodeURIComponent(engName);
-    const data: any = await getAcademyByName(name);
+    const data: any = await getAcademyByName(decodeTitle(name));
 
 
     if (data && data.success)

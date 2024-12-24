@@ -1,6 +1,7 @@
 import { getAllTeachersName, getTeacherByName } from "@/src/lib/apis/teacherApis";
 import TeacherInfo from '../../../components/Teachers/TeacherInfo';
- 
+import { decodeTitle, encodeTitle } from "@/src/utils/functions";
+
 
 
 type Props = {
@@ -8,11 +9,11 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-    
-    const teacherNames:any = await getAllTeachersName();
+
+    const teacherNames: any = await getAllTeachersName();
 
     return teacherNames?.teachersName?.map((teacher: { engName: string }) => ({
-        engName: encodeURIComponent(teacher.engName),
+        engName: encodeTitle(encodeURIComponent(teacher.engName)),
     })) || [];
 }
 
@@ -20,7 +21,7 @@ export async function generateStaticParams() {
 
 export default async function Teacher({ params: { engName } }: Props) {
     const name = await decodeURIComponent(engName);
-    const data: any = await getTeacherByName(name);
+    const data: any = await getTeacherByName(decodeTitle(name));
 
 
     if (data && data.success)

@@ -44,7 +44,7 @@ const Drawer = ({ children, isOpen, setIsOpen }: Props) => {
                 {isOpen && (
                     <MotionComponent
                         className="flex flex-col z-[60] h-full bg-content1q w-[19rem] shadow-small overflow-y-hidden fixed right-0 top-0 bottom-0
-                        backdrop-blur-lg data-[menu-open=true]:backdrop-blur-xl backdrop-saturate-150 bg-background/90 bg-[#18181B]"
+                        backdrop-blur-lg data-[menu-open=true]:backdrop-blur-xl backdrop-saturate-150 bg-background/90 dark:bg-[#131d35eb]"
                         initial={{ x: "100%" }}  // Starts off-screen on the right
                         animate={{ x: "0%" }}     // Animates into view
                         exit={{ x: "100%" }}      // Exits to the right

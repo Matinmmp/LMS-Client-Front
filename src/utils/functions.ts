@@ -120,7 +120,21 @@ function encodeToShortCode(text:string) {
     return Math.abs(hash).toString(16).substring(0, 4);
 }
 
+const encodeTitle = (title:string) => {
+    return title
+        .replace(/\s/g, '_')       // جایگزینی فاصله‌ها با _
+        .replace(/\u200C/g, '-'); // جایگزینی نیم‌فاصله با -
+}
+
+const decodeTitle = (encodedTitle: string) => {
+    return encodedTitle
+        .replace(/_/g, ' ')      // جایگزینی _ با فاصله
+        .replace(/-/g, '\u200C'); // جایگزینی - با نیم‌فاصله
+};
+
 export {
+    decodeTitle,
+    encodeTitle,
     toPersianNumber,
     secondsToTimeString,
     numberSeparator,

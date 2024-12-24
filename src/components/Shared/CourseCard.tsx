@@ -1,5 +1,4 @@
-'use client'
-import { numberSeparator, secondsToTimeString, toPersianNumber } from "@/src/utils/functions"
+import { encodeTitle, numberSeparator, secondsToTimeString, toPersianNumber } from "@/src/utils/functions"
 import Image from "next/image"
 import { FaStar } from "react-icons/fa6"
 import { GiTeacher } from "react-icons/gi"
@@ -23,14 +22,14 @@ type CardProps = {
         }
         thumbnail: {
             imageUrl: string,
-        }//
-        status: number,//
-        ratings: number,//
+        }
+        status: number,
+        ratings: number,
         level: string,
         description: string,
-        name: string,//
+        name: string,
         teacher: {
-            teacherFaName: string,
+            teacherEngName: string,
             teacherId: string,
         },
         academy: {
@@ -38,20 +37,14 @@ type CardProps = {
             academyId: string,
         },
         courseLength: string,
-        price: number
+        price: number,
+        urlName:string,
     }
 };
 
-const encodeTitle = (title:string) => {
-    return title
-        .replace(/\s/g, '_')       // جایگزینی فاصله‌ها با _
-        .replace(/\u200C/g, '-'); // جایگزینی نیم‌فاصله با -
-}
-
-export const CourseCard = ({ data }: {data:any}) => {
-    console.log(data)
+export const CourseCard = ({ data }: CardProps) => {
     let status = data.status === 0 ? 'درحال ترجمه' : data.status === 1 ? 'پایان یافته' : 'متوقف شده'
-    let link = encodeTitle(data?.name);
+    let link = encodeTitle(data?.urlName);
 
     return (
         <div className="w-full max-w-[25rem] h-[30rem] md:h-[29rem] transition-all shadow-medium dark:shadow-xl  
@@ -62,7 +55,7 @@ export const CourseCard = ({ data }: {data:any}) => {
 
             <div className="w-full h-full flex flex-col">
 
-                <Link href={`courses/${link}`} className="p-2 overflow-hidden h-[18rem] md:h-[14rem] md:aspect-video">
+                <Link href={`/courses/${link}`} className="p-2 overflow-hidden h-[18rem] md:h-[14rem] md:aspect-video">
                     <Image className="w-full h-full object-center object-cover hover:scale-110 transition-transform rounded-md "
                         width={450} height={300} alt="" src={data.thumbnail.imageUrl} />
                 </Link>
@@ -81,7 +74,7 @@ export const CourseCard = ({ data }: {data:any}) => {
                             </div>
                         </div>
 
-                        <Link href={`courses/${link}`} className="h-16">
+                        <Link href={`/courses/${link}`} className="h-16">
                             <h4 dir="ltr" className="mt-2 px-3 text-[1.05rem] font-semibold hover:text-primary-400 transition-all">{data.name}</h4>
                         </Link>
 
