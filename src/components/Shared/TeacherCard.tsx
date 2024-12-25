@@ -1,4 +1,4 @@
-import { toPersianNumber } from "@/src/utils/functions";
+import { encodeTitle, toPersianNumber } from "@/src/utils/functions";
 import { Avatar } from "@nextui-org/avatar";
 import { PiStudentBold } from "react-icons/pi";
 import { MdOutlineCastForEducation } from "react-icons/md";
@@ -29,10 +29,11 @@ type CardProps = {
 
 const TeacherCard = ({ data }: CardProps) => {
     let name = data.engName
-    if(name.split(' ').length >2 )
-        name = `${name.split(' ')[0]} ${name.split(' ')[1]}` 
+    if (name.split(' ').length > 2)
+        name = `${name.split(' ')[0]} ${name.split(' ')[1]}`
+
     return (
-        <Link href={`/teachers/${data.engName}`} className="w-full max-w-[25rem] h-[22rem]">
+        <Link href={`/teachers/${encodeTitle(data.engName)}`} className="w-full max-w-[25rem] h-[22rem]">
 
             <div className="w-full h-full rounded-2xl transition-all shadow-medium
                 shadow-[0px_0px_10px_0px_#42bff49b,_0px_2px_20px_0px_#42bff49b,_inset_0px_0px_1px_0px_#42bff49b]/
@@ -41,7 +42,7 @@ const TeacherCard = ({ data }: CardProps) => {
 
                 <div className="h-full w-full flex flex-col items-center">
 
-                    <div className="w-full pt-6 px-6 flex items-center justify-between">
+                    <div className="w-full p-4 flex items-center justify-between">
 
                         <Avatar className="h-[4.5rem] w-[4.5rem] shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="full" isBordered color="secondary" src={data.avatar.imageUrl} fallback />
 

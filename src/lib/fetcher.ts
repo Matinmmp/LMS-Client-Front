@@ -26,15 +26,15 @@ export async function customFetch<T>(url: string, options: FetchOptions = {}): P
     }
 
     const data: T | any = await response.json();
- 
+
     // // بررسی و هندل کردن ارور‌ها
-    if (!response.ok){
+    if (!response.ok) {
         throw {
             status: false,
             message: data.message,
-       
+
         };
-       
+
     }
 
     return data;
@@ -66,7 +66,7 @@ async function refreshAccessToken(): Promise<string | null> {
         return data.accessToken;
 
     } catch (error) {
- 
+
         return null;
     }
 }

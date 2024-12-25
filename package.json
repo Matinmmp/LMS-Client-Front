@@ -4,6 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev --turbo -p 3000",
+        "dev3":"next dev --turbo -p 3000 --experimental-https",
 		"dev2": "next dev",
 		"build": "next build",
 		"start": "next start"

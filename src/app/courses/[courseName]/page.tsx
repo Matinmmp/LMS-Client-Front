@@ -1,43 +1,33 @@
 import CourseInfo from "@/src/components/Courses/CourseInfo";
-import { getCourseByName, getCourseDataByNameLoged, getCourseDataByNameNoLoged } from "@/src/lib/apis/courseApis";
-import { cookies } from 'next/headers'
+import { getAllCourseUrlNames, getCourseByName, } from "@/src/lib/apis/courseApis";
+import { decodeTitle, encodeTitle } from "@/src/utils/functions";
 
-// export async function generateStaticParams() {
-//     const academyNames: any = await getAllAcademyNames();
+export async function generateStaticParams() {
+    const coursUrlNames: any = await getAllCourseUrlNames();
 
 
-//     return academyNames?.academiesName?.map((academy: { engName: string }) => ({
-//         engName: encodeURIComponent(academy.engName),
-//     })) || [];
-// }
+    return coursUrlNames?.coursUrlNames?.map((course: { urlName: string }) => ({
+        courseName: encodeURIComponent(encodeTitle(course?.urlName)),
+    })) || [];
+}
 
 type Props = {
     params: { courseName: string }
 };
-const decodeTitle = (encodedTitle: string) => {
-    return encodedTitle
-        .replace(/_/g, ' ')      // جایگزینی _ با فاصله
-        .replace(/-/g, '\u200C'); // جایگزینی - با نیم‌فاصله
-};
 
 export default async function CourseDetail({ params: { courseName } }: Props) {
 
-    const name = await decodeTitle(decodeURIComponent(courseName));
+    const name = await decodeURIComponent(decodeTitle(courseName));
 
-    
     const data: any = await getCourseByName(name)
 
 
     if (data && data.success)
         return (
             <section className=" flex flex-col items-center justify-center  " >
-
+                
                 <div className="w-full max-w-7xl mt-28 px-4 md:px-8 2xl:px-2 flex items-center justify-center ">
-
-                    <CourseInfo data={data?.courseData}/>
-
-
-
+                    <CourseInfo data={data?.courseData} />
                 </div>
 
             </section>

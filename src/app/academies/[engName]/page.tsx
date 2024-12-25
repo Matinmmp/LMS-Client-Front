@@ -8,12 +8,12 @@ type Props = {
 };
 
 export async function generateStaticParams() {
- 
-    const academyNames:any = await getAllAcademyNames();
 
- 
+    const academyNames: any = await getAllAcademyNames();
+
+
     return academyNames?.academiesName?.map((academy: { engName: string }) => ({
-        engName:encodeTitle(encodeURIComponent(academy.engName)),
+        engName: encodeURIComponent(encodeTitle(academy.engName)),
     })) || [];
 }
 

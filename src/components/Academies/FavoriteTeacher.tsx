@@ -18,7 +18,7 @@ const FavoritTeachersForAcademy = async (props: Props) => {
      
     if (data && data.success)
         return (
-            <section className="w-full pb-10 flex flex-col relative">
+            <section className="w-full pb-4 flex flex-col relative">
 
                 <div className="w-full flex justify-between">
 
@@ -28,8 +28,8 @@ const FavoritTeachersForAcademy = async (props: Props) => {
                             props.children
                         }
                     </div>
-                    <Link href={`/teachers?academy=${props.name}`} className={`flex items-center gap-1 text-sm md:text-base  hover:text-secondary-400 transition-all`}>
-                        <p>مشاهده همه مدرس‌‌ها ({toPersianNumber(props.totalTeachers)})</p>
+                    <Link href={`/teachers?academy=${props.name}`} className={`hidden md:flex items-center gap-1 text-sm md:text-base  hover:text-secondary-400 transition-all`}>
+                        <p>مشاهده همه مدرس‌های ({toPersianNumber(props.totalTeachers)})</p>
                         <TbArrowBigLeftLinesFilled size={20} className="text-secondary-400 " />
                     </Link>
                 </div>
@@ -40,7 +40,7 @@ const FavoritTeachersForAcademy = async (props: Props) => {
                         {data.teachers.length && data.teachers.map((item: any, index: number) => <TeacherCard key={index} data={item} />)}
                     </div>
 
-                    <div className="mt-10 sm:hidden flex justify-center">
+                    <div className="mt-10 md:hidden flex justify-center">
                         <Link href={`/teachers?academy=${props.name}`} className={`flex items-center gap-1 text-base  hover:text-primary-400 transition-all`}>
                             <p>مشاهده همه مدرس‌‌ها ({toPersianNumber(props.totalTeachers)})</p>
                             <TbArrowBigLeftLinesFilled size={20} className="text-primary-400 " />
@@ -55,10 +55,8 @@ const FavoritTeachersForAcademy = async (props: Props) => {
 
 
 export const FavoritTeachersForAcademyLoading = (props: Props) => {
-
-
     return (
-        <section className="w-full pb-10 flex flex-col relative">
+        <section className="w-full pb-4 flex flex-col relative">
 
             <div className="w-full flex justify-between">
 
@@ -68,7 +66,7 @@ export const FavoritTeachersForAcademyLoading = (props: Props) => {
                         props.children
                     }
                 </div>
-                <Link href={`/teachers?academy=${props.name}`} className={`hidden sm:flex items-center gap-1 text-sm md:text-base  hover:text-secondary-400 transition-all`}>
+                <Link href={`/teachers?academy=${props.name}`} className={`hidden md:flex items-center gap-1 text-sm md:text-base  hover:text-secondary-400 transition-all`}>
                     <p>مشاهده همه مدرس‌‌ها ({toPersianNumber(props.totalTeachers)})</p>
                     <TbArrowBigLeftLinesFilled size={20} className="text-secondary-400 " />
                 </Link>
@@ -81,7 +79,7 @@ export const FavoritTeachersForAcademyLoading = (props: Props) => {
 
                 </div>
 
-                <div className="mt-10 sm:hidden flex justify-center">
+                <div className="mt-10 md:hidden flex justify-center">
                     <Link href={`/teachers?academy=${props.name}`} className={`flex items-center gap-1 text-base  hover:text-primary-400 transition-all`}>
                         <p>مشاهده همه مدرس‌‌ها ({toPersianNumber(props.totalTeachers)})</p>
                         <TbArrowBigLeftLinesFilled size={20} className="text-primary-400 " />

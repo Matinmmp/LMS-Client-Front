@@ -18,7 +18,7 @@ type Props = {
         faName: string,
         engName: string,
         description: string,
-        longDescription:string,
+        longDescription: string,
         avatar: {
             imageUrl: string,
         }
@@ -64,7 +64,7 @@ function generateAcademyDescription(academyName: string, studentsCount: number, 
 
 
 const AcademyInfo = ({ data }: Props) => {
- 
+
     return (
         <div className="w-full flex flex-col">
 
@@ -87,7 +87,7 @@ const AcademyInfo = ({ data }: Props) => {
                         </h2>
                     </div>
 
-                    <Avatar className="order-1 lg:order-2 min-h-28 min-w-28 md:min-h-36 md:min-w-36 lg:min-h-52 lg:min-w-52 -mt-20 md:-mt-28 lg:-mt-20 lg:me-6 shadow-[0_0_15px_0_#44de77] " size="lg" radius="lg" isBordered color="success" src={data.avatar.imageUrl}  />
+                    <Avatar className="order-1 lg:order-2 min-h-28 min-w-28 md:min-h-36 md:min-w-36 lg:min-h-52 lg:min-w-52 -mt-20 md:-mt-28 lg:-mt-20 lg:me-6 shadow-[0_0_15px_0_#44de77] " size="lg" radius="lg" isBordered color="success" src={data.avatar.imageUrl} />
 
                 </div>
 
@@ -149,7 +149,7 @@ const AcademyInfo = ({ data }: Props) => {
                 </div>
 
             </div>
-
+{/* 
             <div className="mt-6 lg:mt-8">
                 <div className="p-4 pb-2 lg:pb-8 lg:p-8 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl ">
                     {data.totalTeachers ?
@@ -168,20 +168,15 @@ const AcademyInfo = ({ data }: Props) => {
                         </div>
                     }
                 </div>
-            </div>
+            </div> */}
 
             <div className="mt-6 lg:mt-8">
-                <div className="p-4 pb-2 lg:pb-8 lg:p-8 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl ">
+                <div className="p-4 pb-2 lg:p-8 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl ">
                     {data.totalCourses ?
-                        <Suspense fallback={
-                            <FavoriteCoursesForAcademyLoading totalCourses={data.totalCourses}>
-                                <h3 className={clsx(title({ color: 'blue' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین دوره‌های {data.engName}</h3>
-                            </FavoriteCoursesForAcademyLoading>}>
-
-                            <FavoriteCoursesForAcademy name={data.engName} totalCourses={data.totalCourses}>
-                                <h3 className={clsx(title({ color: 'blue' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین دوره‌های {data.engName}</h3>
-                            </FavoriteCoursesForAcademy>
-                        </Suspense> :
+                        <FavoriteCoursesForAcademy name={data.engName} totalCourses={data.totalCourses}>
+                            <h3 className={clsx(title({ color: 'blue' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین دوره‌های {data.engName}</h3>
+                        </FavoriteCoursesForAcademy>
+                        :
                         <div className="py-10 text-center flex flex-col items-center gap-6">
                             <PiMaskSad className="text-success text-6xl md:text-7xl" />
                             <p className="text-lg font-semibold">در‌حال حاضر دوره‌ای برای آکادمیه ({data.engName}) اضافه نشده است.</p>

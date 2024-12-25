@@ -11,9 +11,9 @@ type Props = {
 export async function generateStaticParams() {
 
     const teacherNames: any = await getAllTeachersName();
-
+    
     return teacherNames?.teachersName?.map((teacher: { engName: string }) => ({
-        engName: encodeTitle(encodeURIComponent(teacher.engName)),
+        engName: encodeURIComponent(encodeTitle(teacher.engName)),
     })) || [];
 }
 

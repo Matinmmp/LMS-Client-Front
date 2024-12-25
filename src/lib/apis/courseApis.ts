@@ -5,7 +5,7 @@ export const getCourseByName = async (name: string) => {
         const data = await customFetch(`/get-course/${name}`, {
             method: 'GET',
             //  next: { revalidate: 3600 }
-            cache: 'no-store'
+            cache: 'no-cache'
         }
         );
         return await data;
@@ -39,3 +39,18 @@ export const getCourseDataByNameLoged = async (name: string) => {
         return error
     }
 }
+
+export const getAllCourseUrlNames = async () => {
+    try {
+        const data = await customFetch(`/getAllCourseUrlNames`, {
+            method: 'GET',
+            //  next: { revalidate: 3600 }
+            cache: 'force-cache'
+        }
+        );
+        return await data;
+    } catch (error) {
+        return error
+    }
+}
+

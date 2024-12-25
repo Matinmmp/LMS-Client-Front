@@ -22,6 +22,7 @@ import Link from "next/link";
 import { VideoPlayer } from "../Shared/VideoPlayer";
 import { AlertDanger, AlertSecondary, AlertWarning } from "../Shared/Alert";
 import { showToast } from "@/src/utils/toast";
+import { Skeleton } from "@nextui-org/skeleton";
 
 
 export function ShortLink({ name }: { name: string }) {
@@ -59,7 +60,7 @@ export function Description({ desc }: { desc: string }) {
                 transition={{ type: 'spring', damping: 30, stiffness: 300, duration: 600 }}
                 initial={{ height: 1400 }}
                 animate={{ height: open ? 'auto' : 1400 }}
-                className="p-6 overflow-hidden"
+                className="p-4 overflow-hidden"
                 exit={{ height: 1400 }}
                 style={{ overflow: 'hidden' }}
             >
@@ -104,7 +105,7 @@ export function CourseLessons({ name }: { name: any }) {
     if (refresh_token)
         getCourseData = useQuery({ queryKey: ['getCourseDataByNameLoged'], queryFn: () => getCourseDataByNameLoged(name) });
 
-    console.log(getCourseData?.data)
+
     return (
         <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
             <div className="p-4 px-2 sm:p-6 flex flex-col gap-6">
@@ -113,13 +114,26 @@ export function CourseLessons({ name }: { name: any }) {
                     <p className="text-2xl font-bold">سرفصل‌ها</p>
                 </div>
 
-                {(getCourseData?.data?.error || getCourseData?.data?.warning || getCourseData?.data?.info) ? <div className="mb-4 flex flex-col gap-2">
-                    {getCourseData?.data?.error ? <AlertDanger text={getCourseData?.data.error} /> : ''}
-                    {getCourseData?.data?.warning ? <AlertWarning text={getCourseData?.data.warning} /> : ''}
-                    {getCourseData?.data?.info ? <AlertSecondary text={getCourseData?.data.info} /> : ''}
-                </div> : ''}
+                {!getCourseData.isLoading && getCourseData.isSuccess && (getCourseData?.data?.error || getCourseData?.data?.warning || getCourseData?.data?.info) ?
+                    <div className="mb-4 flex flex-col gap-2">
+                        {getCourseData?.data?.error ? <AlertDanger text={getCourseData?.data.error} /> : ''}
+                        {getCourseData?.data?.warning ? <AlertWarning text={getCourseData?.data.warning} /> : ''}
+                        {getCourseData?.data?.info ? <AlertSecondary text={getCourseData?.data.info} /> : ''}
+                    </div> : ''}
 
                 <div className="w-full">
+                <div className="flex flex-col gap-4">
+                        {getCourseData.isLoading &&
+                            <>
+                                <Skeleton className="w-full h-[4rem] rounded-xl shadow-small dark:shadow-small"/>
+                                <Skeleton className="w-full h-[4rem] rounded-xl shadow-small dark:shadow-small"/>
+                                <Skeleton className="w-full h-[4rem] rounded-xl shadow-small dark:shadow-small"/>
+
+                            </>
+                        }
+
+                    </div>
+
                     <div className="flex flex-col gap-4">
                         {!getCourseData.isLoading && getCourseData.isSuccess &&
                             getCourseData?.data?.courseData?.map((item: any, index: number) => <SectionAcordian item={item} key={index} isCourseFree={getCourseData?.data?.isPurchased} />)
@@ -203,8 +217,8 @@ const CourseLinkAcordian = ({ courseLinks, isCourseFree }: { courseLinks: any, i
     const handleClick = () => {
         if (isCourseFree) {
             setOpen(!open)
-        }else{
-            showToast({message:'برای دیدن لینک‌های دوره در دوره ثبت‌نام کنید.',type:'warning'})
+        } else {
+            showToast({ message: 'برای دیدن لینک‌های دوره در دوره ثبت‌نام کنید.', type: 'warning' })
         }
     }
 
@@ -258,7 +272,7 @@ const SectionAcordian = ({ item, isCourseFree }: { item: any, isCourseFree: bool
 
 
     return (
-        <div dir="ltr" className="flex flex-col justify-center dark:shadow-small rounded-xl overflow-hidden bg-[#f3f4f8] dark:bg-slate-800">
+        <div dir="ltr" className="flex flex-col justify-center shadow-small dark:shadow-small rounded-xl overflow-hidden bg-[#f3f4f8] dark:bg-slate-800">
 
             <div onClick={() => setOpen(!open)} className={`p-4 py-5 cursor-pointer transition-all
                  ${open ? "bg-primary-500" : " bg-[#f3f4f8] dark:bg-slate-800"} `}>
@@ -318,8 +332,8 @@ const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index, isCour
         if (item?.isFree || isCourseFree) {
             if (selectedLesson === `${index}`) setSelectedLesson(``)
             else setSelectedLesson(`${index}`)
-        }else{
-            showToast({message:'برای دیدن این درس در دوره ثبت‌نام کنید.',type:'warning'})
+        } else {
+            showToast({ message: 'برای دیدن این درس در دوره ثبت‌نام کنید.', type: 'warning' })
         }
     }
 
@@ -499,8 +513,8 @@ const SectionFileAcordian = ({ sectionFiles, selectedLesson, setSelectedLesson, 
         if (isSectionFree) {
             if (selectedLesson === `${index}`) setSelectedLesson(``)
             else setSelectedLesson(`${index}`)
-        }else{
-            showToast({message:'برای دیدن فایل‌های این بخش در دوره ثبت‌نام کنید.',type:'warning'})
+        } else {
+            showToast({ message: 'برای دیدن فایل‌های این بخش در دوره ثبت‌نام کنید.', type: 'warning' })
         }
     }
 
@@ -553,8 +567,8 @@ const SectionLinkAcordian = ({ sectionLinks, selectedLesson, setSelectedLesson, 
         if (isSectionFree) {
             if (selectedLesson === `${index}`) setSelectedLesson(``)
             else setSelectedLesson(`${index}`)
-        }else{
-            showToast({message:'برای دیدن لینک‌های این بخش در دوره ثبت‌نام کنید.',type:'warning'})
+        } else {
+            showToast({ message: 'برای دیدن لینک‌های این بخش در دوره ثبت‌نام کنید.', type: 'warning' })
         }
     }
 

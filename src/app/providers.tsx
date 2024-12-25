@@ -20,7 +20,10 @@ export interface ProvidersProps {
     themeProps?: ThemeProviderProps;
 }
 
-const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false, refetchOnWindowFocus: false } } })
+const queryClient = new QueryClient(
+    // { defaultOptions: { queries: { retry: false, refetchOnWindowFocus: false } } }
+
+)
 
 export function Providers({ children, themeProps }: ProvidersProps) {
     const router = useRouter();
