@@ -155,15 +155,10 @@ const TeacherInfo = ({ data }: Props) => {
             <div className="mt-6 lg:mt-8">
                 <div className="p-4 pb-2 lg:pb-8 lg:p-8 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl ">
                     {data.totalAcademies ?
-                        <Suspense fallback={
-                            <FavoritAcademyForTeacherLoading name={data.engName} totalTeachers={data.totalAcademies}>
-                                <h3 className={clsx(title({ color: 'green' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>آکادمی‌هایی که {data.engName} هست</h3>
-                            </FavoritAcademyForTeacherLoading>}>
-
-                            <FavoritAcademyForTeacher name={data.engName} totalTeachers={data.totalAcademies}>
-                                <h3 className={clsx(title({ color: 'green' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>آکادمی‌هایی که {data.engName} هست</h3>
-                            </FavoritAcademyForTeacher>
-                        </Suspense> :
+                        <FavoritAcademyForTeacher name={data.engName} totalTeachers={data.totalAcademies}>
+                            <h3 className={clsx(title({ color: 'green' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>آکادمی‌هایی که {data.engName} هست</h3>
+                        </FavoritAcademyForTeacher>
+                        :
                         <div className="py-10 text-center flex flex-col items-center gap-6">
                             <PiMaskSad className="text-secondary-400 text-6xl md:text-7xl" />
                             <p className="text-lg font-semibold">در‌حال حاضر ({data.engName}) در هیچ آکادمی‌ای نیست</p>

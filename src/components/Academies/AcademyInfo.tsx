@@ -8,7 +8,7 @@ import { toPersianNumber } from "@/src/utils/functions";
 import { MdOutlineCastForEducation } from "react-icons/md";
 import { FaStar } from "react-icons/fa6";
 import { Suspense } from 'react';
-import FavoriteCoursesForAcademy, { FavoriteCoursesForAcademyLoading } from "./FavoriteCourses";
+import FavoriteCoursesForAcademy from "./FavoriteCourses";
 import { PiMaskSad } from "react-icons/pi";
 import FavoritTeachersForAcademy, { FavoritTeachersForAcademyLoading } from "./FavoriteTeacher";
 
@@ -149,7 +149,7 @@ const AcademyInfo = ({ data }: Props) => {
                 </div>
 
             </div>
-{/* 
+
             <div className="mt-6 lg:mt-8">
                 <div className="p-4 pb-2 lg:pb-8 lg:p-8 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl ">
                     {data.totalTeachers ?
@@ -168,7 +168,7 @@ const AcademyInfo = ({ data }: Props) => {
                         </div>
                     }
                 </div>
-            </div> */}
+            </div>
 
             <div className="mt-6 lg:mt-8">
                 <div className="py-4 pb-2 lg:py-8 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl ">

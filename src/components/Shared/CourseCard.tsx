@@ -47,9 +47,8 @@ export const CourseCard = ({ data }: CardProps) => {
     let link = encodeTitle(data?.urlName);
 
     return (
-        <div className="w-full max-w-[25rem] h-[27rem] md:h-[29rem]/ transition-all shadow-medium dark:shadow-xl  
+        <div className="w-full max-w-[25rem] h-[27rem] transition-all shadow-medium dark:shadow-xl  
         hover:shadow-medium
-        hover:shadow-[0px_0px_15px_0px_#42bff46a,_0px_2px_30px_0px_#42bff46a,_0px_0px_1px_0px_#42bff46a]/
         dark:hover:shadow-[0px_0px_8px_0px_#2a5a6ec5,_0px_2px_20px_0px_#2a5a6ec5,_0px_0px_1px_0px_#2a5a6ec5]
         dark:border-1 dark:border-primary-400 bg-white dark:bg-[#212123]/70 dark:backdrop-blur-md dark:backdrop-saturate-150 rounded-md cursor-pointer overflow-hidden  ">
 
@@ -132,7 +131,7 @@ export const CourseCard = ({ data }: CardProps) => {
 
 export const CourseCardLoading = () => {
     return (
-        <div className="w-full max-w-[25rem] h-[30rem] md:h-[25rem] shadow-medium
+        <div className="w-full max-w-[25rem] h-[27rem] shadow-medium
         dark:border-0 bg-white dark:bg-[#212123]/70 dark:backdrop-blur-md dark:backdrop-saturate-150 rounded-md cursor-pointer overflow-hidden  ">
 
             <div className="w-full h-full flex flex-col">
@@ -147,7 +146,7 @@ export const CourseCardLoading = () => {
                 <div className="mt-1 w-full h-3/5">
                     <div className="h-full flex flex-col">
 
-                        <div className="px-3 pt-1 flex items-center justify-between gap-0.5">
+                        <div className="px-3 flex items-center justify-between gap-0.5">
 
                             <div className="flex items-center">
                                 <GoDotFill size={10} className="text-primary-400" />
@@ -247,9 +246,4 @@ export const CourseCardLoading = () => {
 }
 
 
-
-
-{/* <div className='py-1 px-2 flex items-center gap-2 rounded-md bg-primary-50'>
-                                <PiStudentBold size={20} className="text-secondary-400"/>
-                                <span>10</span>
-                            </div> */}
+ 
