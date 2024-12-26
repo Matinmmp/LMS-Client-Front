@@ -342,7 +342,7 @@ const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index, isCour
 
         lesson =
             <div className="flex flex-col gap-4">
-                <VideoPlayer url={item?.lessonFile.fileName} />
+                <VideoPlayer url={item?.lessonFile.videoName} />
 
                 <div className="flex flex-col pt-4 pb-8">
 
