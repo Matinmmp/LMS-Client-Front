@@ -47,7 +47,7 @@ export const CourseCard = ({ data }: CardProps) => {
     let link = encodeTitle(data?.urlName);
 
     return (
-        <div className="w-full max-w-[25rem] h-[30rem] md:h-[29rem] transition-all shadow-medium dark:shadow-xl  
+        <div className="w-full max-w-[25rem] h-[27rem] md:h-[29rem]/ transition-all shadow-medium dark:shadow-xl  
         hover:shadow-medium
         hover:shadow-[0px_0px_15px_0px_#42bff46a,_0px_2px_30px_0px_#42bff46a,_0px_0px_1px_0px_#42bff46a]/
         dark:hover:shadow-[0px_0px_8px_0px_#2a5a6ec5,_0px_2px_20px_0px_#2a5a6ec5,_0px_0px_1px_0px_#2a5a6ec5]
@@ -55,7 +55,7 @@ export const CourseCard = ({ data }: CardProps) => {
 
             <div className="w-full h-full flex flex-col">
 
-                <Link href={`/courses/${link}`} className="p-2 overflow-hidden h-[18rem] md:h-[14rem] md:aspect-video">
+                <Link href={`/courses/${link}`} className="p-2 overflow-hidden h-[14rem] md:h-[12rem] md:aspect-video">
                     <Image className="w-full h-full object-center object-cover hover:scale-110 transition-transform rounded-md "
                         width={450} height={300} alt="" src={data.thumbnail.imageUrl} />
                 </Link>
@@ -63,7 +63,7 @@ export const CourseCard = ({ data }: CardProps) => {
                 <div className="w-full h-3/5">
                     <div className="h-full flex flex-col">
 
-                        <div className="px-3 pt-1 flex items-center justify-between gap-0.5">
+                        <div className="px-3 flex items-center justify-between gap-0.5">
                             <div className="flex items-center">
                                 <GoDotFill size={10} className="text-primary-400" />
                                 <span className="text-xs font-semibold text-primary-400">{status}</span>
@@ -99,20 +99,10 @@ export const CourseCard = ({ data }: CardProps) => {
                                 </div>
                                 <div className="mt-1 flex items-center gap-1">
                                     <WiTime3 size={16} className="text-primary-400" />
-                                    <span className="text-xs font-semibold text-gray-400">{secondsToTimeString(data.courseLength)}</span>
+                                    <span className="text-xs font-semibold text-gray-400">{toPersianNumber(secondsToTimeString(data.courseLength))}</span>
                                 </div>
                             </div>
                         </div>
-
-                        {/* <div className="px-3 mt-3 flex items-center">
-
-                            {data.isInVirtualPlus && <div className="flex items-center gap-1 ">
-                                <div className="flex items-start text-lg text-primary-400 font-bold">
-                                    +V
-                                </div>
-                                <p className="text-xs font-semibold">دسترسی رایگان برای اعضای ورچوال پلاس</p>
-                            </div>}
-                        </div> */}
 
                         <div className="px-3 py-1 pb-2 mt-auto flex justify-end">
                             <div className="flex items-center gap-2">

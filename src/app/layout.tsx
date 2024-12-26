@@ -48,10 +48,11 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
 
                         dark:bg-gradient-to-b/ dark:from-[#020617]/ dark:to-[#181818]/
                         dark:bg-gradient-to-b/ dark:from-[#111827]/ dark:to-[#181818]/
+                        dark:bg-[#181818]/ dark:bg-[#020617]/ dark:bg-[#111827]/
                         
-                        dark:bg-gradient-to-b dark:from-[#111827] dark:to-[#181818]
-
-                        dark:bg-[#181818]/ dark:bg-[#020617]/ dark:bg-[#111827]/ ">
+                        dark:bg-gradient-to-b/ dark:from-[#111827]/ dark:to-[#181818]/
+                        dark:bg-[#111827]
+                         ">
 
                             <div className="background z-[1] ">
                                 {/* <span className="bg-none dark:bg-[#1582ff25]" />
