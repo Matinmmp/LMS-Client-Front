@@ -23,7 +23,7 @@ import { VideoPlayer } from "../Shared/VideoPlayer";
 import { AlertDanger, AlertSecondary, AlertWarning } from "../Shared/Alert";
 import { showToast } from "@/src/utils/toast";
 import { Skeleton } from "@nextui-org/skeleton";
-
+import { ImBooks } from "react-icons/im";
 
 export function ShortLink({ name }: { name: string }) {
     const copy = () => navigator.clipboard.writeText(`virtual-learn.com/?r=${encodeToShortCode(name)}`);
@@ -56,20 +56,22 @@ export function Description({ desc }: { desc: string }) {
     const [open, setOpen] = useState(false);
     return (
         <div className="relative">
+            <span className="absolute -right-2 top-5 h-12 w-2 bg-primary-400 rounded-r-md"></span>
             <motion.div
                 transition={{ type: 'spring', damping: 30, stiffness: 300, duration: 600 }}
                 initial={{ height: 1400 }}
                 animate={{ height: open ? 'auto' : 1400 }}
-                className="p-4 overflow-hidden"
+                className="p-4 pt-6 overflow-hidden/"
                 exit={{ height: 1400 }}
                 style={{ overflow: 'hidden' }}
             >
                 <div className="flex items-center gap-2 text-primary-400 dark:text-white">
-                    <TbFileDescription size={40} />
-                    <p className="text-2xl font-bold">توضیحات دوره</p>
+                    <TbFileDescription size={40} className="text-primary-400 hidden lg:inline "/>
+                    <p className="text-xl md:text-2xl font-semibold">توضیحات دوره</p>
+                    
                 </div>
 
-                <div className="mt-6 pb-20" dangerouslySetInnerHTML={{ __html: desc }}></div>
+                <div className="mt-8 pb-20" dangerouslySetInnerHTML={{ __html: desc }}></div>
             </motion.div>
 
             {!open && (
@@ -107,11 +109,12 @@ export function CourseLessons({ name }: { name: any }) {
 
 
     return (
-        <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
-            <div className="p-4 px-2 sm:p-6 flex flex-col gap-6">
-                <div className="flex items-center gap-2 text-primary-400 dark:text-white">
-                    <IoIosSchool size={40} />
-                    <p className="text-2xl font-bold">سرفصل‌ها</p>
+        <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl relative">
+            <span className="absolute -right-2 top-4 h-12 w-2 bg-primary-400 rounded-r-md"></span>
+            <div className="px-2 py-6 sm:px-4 flex flex-col gap-6">
+                <div className="px-2 sm:px-0 flex items-center gap-2 text-primary-400 dark:text-white">
+                    <IoIosSchool size={40}  className="text-primary-400 hidden lg:inline "/>
+                    <p className="text-lg sm:text-xl md:text-2xl font-semibold">سرفصل‌ها</p>
                 </div>
 
                 {!getCourseData.isLoading && getCourseData.isSuccess && (getCourseData?.data?.error || getCourseData?.data?.warning || getCourseData?.data?.info) ?
@@ -173,7 +176,7 @@ const CourseFileAcordian = ({ courseFiles, isCourseFree }: { courseFiles: any, i
     }
 
     return (
-        <div dir="rtl" className="flex flex-col justify-center dark:shadow-small rounded-xl overflow-hidden bg-[#f3f4f8] dark:bg-slate-800">
+        <div dir="rtl" className="flex flex-col justify-center shadow-small rounded-xl overflow-hidden bg-[#f3f4f8] dark:bg-slate-800">
 
             <div onClick={handleClick} className={`p-4 py-5 cursor-pointer transition-all
                  ${open ? "bg-primary-500" : " bg-[#f3f4f8] dark:bg-slate-800"} `}>
@@ -181,7 +184,7 @@ const CourseFileAcordian = ({ courseFiles, isCourseFree }: { courseFiles: any, i
                 <div className="flex items-center gap-3 ">
                     <div className={`flex items-center gap-2 ${open ? "text-white " : " "}`}>
                         {lessonIcon}
-                        <p dir="rtl" className={`sm:text-[1.1rem] font-medium `}>فایل‌های دوره</p>
+                        <p dir="rtl" className={`text-sm sm:text-[1.1rem] font-medium `}>فایل‌های دوره</p>
                     </div>
                 </div>
 
@@ -223,7 +226,7 @@ const CourseLinkAcordian = ({ courseLinks, isCourseFree }: { courseLinks: any, i
     }
 
     return (
-        <div dir="rtl" className="flex flex-col justify-center dark:shadow-small rounded-xl overflow-hidden bg-[#f3f4f8] dark:bg-slate-800">
+        <div dir="rtl" className="flex flex-col justify-center shadow-small rounded-xl overflow-hidden bg-[#f3f4f8] dark:bg-slate-800">
 
             <div onClick={handleClick} className={`p-4 py-5 cursor-pointer transition-all
                  ${open ? "bg-primary-500" : " bg-[#f3f4f8] dark:bg-slate-800"} `}>
@@ -231,7 +234,7 @@ const CourseLinkAcordian = ({ courseLinks, isCourseFree }: { courseLinks: any, i
                 <div className="flex items-center gap-3 ">
                     <div className={`flex items-center gap-2 ${open ? "text-white " : " "}`}>
                         {lessonIcon}
-                        <p dir="rtl" className={`sm:text-[1.1rem] font-medium `}>لینک‌های دوره</p>
+                        <p dir="rtl" className={`text-sm sm:text-[1.1rem] font-medium `}>لینک‌های دوره</p>
                     </div>
                 </div>
 
@@ -272,13 +275,13 @@ const SectionAcordian = ({ item, isCourseFree }: { item: any, isCourseFree: bool
 
 
     return (
-        <div dir="ltr" className="flex flex-col justify-center shadow-small dark:shadow-small rounded-xl overflow-hidden bg-[#f3f4f8] dark:bg-slate-800">
+        <div dir="ltr" className="flex flex-col justify-center shadow-small rounded-xl overflow-hidden bg-[#f3f4f8] dark:bg-slate-800">
 
             <div onClick={() => setOpen(!open)} className={`p-4 py-5 cursor-pointer transition-all
                  ${open ? "bg-primary-500" : " bg-[#f3f4f8] dark:bg-slate-800"} `}>
 
                 <div className={`w-full flex items-center justify-between gap-2 ${open ? "text-white" : " text-black dark:text-white"}`}>
-                    <p className={`sm:text-[1.1rem] font-medium `}>{item?.sectionName}</p>
+                    <p className={`text-sm sm:text-[1.1rem] font-medium `}>{item?.sectionName}</p>
 
                     <div className="flex items-center gap-0.5 whitespace-nowrap">
                         {item?.totalLength && <span className="hidden sm:inline font-light">{toPersianNumber(hoursAndMinutesString(item?.totalLength))}</span>}
@@ -342,7 +345,7 @@ const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index, isCour
 
         lesson =
             <div className="flex flex-col gap-4">
-                <VideoPlayer url={item?.lessonFile.videoName} />
+                <VideoPlayer url={item?.lessonFile.fileName} />
 
                 <div className="flex flex-col pt-4 pb-8">
 
@@ -460,7 +463,7 @@ const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index, isCour
 
                         <div className={`flex items-center gap-2 hover:text-secondary-500 ${selectedLesson === `${index}` ? "text-secondary-500 " : " "}`}>
                             {lessonIcon}
-                            <p className={`mt-0.5 md:text-[1.1rem] font-medium`}>{item?.lessonTitle}</p>
+                            <p className={`mt-0.5 text-sm sm:text-[1.1rem] font-medium `}>{item?.lessonTitle}</p>
                         </div>
                     </div>
 
@@ -525,7 +528,7 @@ const SectionFileAcordian = ({ sectionFiles, selectedLesson, setSelectedLesson, 
 
                 <div dir="rtl" className={`flex items-center gap-2 hover:text-secondary-500 ${selectedLesson === `${index}` ? "text-secondary-500 " : " "}`}>
                     {lessonIcon}
-                    <p className={`mt-0.5 md:text-[1.1rem] font-medium`}>فایل‌های این بخش</p>
+                    <p className={`mt-0.5 text-sm sm:text-[1.1rem] font-medium `}>فایل‌های این بخش</p>
                 </div>
 
             </div>
@@ -579,7 +582,7 @@ const SectionLinkAcordian = ({ sectionLinks, selectedLesson, setSelectedLesson, 
 
                 <div dir="rtl" className={`flex items-center gap-2 hover:text-secondary-500 ${selectedLesson === `${index}` ? "text-secondary-500 " : " "}`}>
                     {lessonIcon}
-                    <p className={`mt-0.5 md:text-[1.1rem] font-medium`}>لینک‌های این بخش</p>
+                    <p className={`mt-0.5 text-sm sm:text-[1.1rem] font-medium `}>لینک‌های این بخش</p>
                 </div>
 
             </div>
@@ -609,4 +612,5 @@ const SectionLinkAcordian = ({ sectionLinks, selectedLesson, setSelectedLesson, 
         </div>
     )
 }
+
 

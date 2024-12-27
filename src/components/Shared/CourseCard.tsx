@@ -50,7 +50,7 @@ export const CourseCard = ({ data }: CardProps) => {
         <div className="w-full max-w-[25rem] h-[27rem] transition-all shadow-medium dark:shadow-xl  
         hover:shadow-medium
         dark:hover:shadow-[0px_0px_8px_0px_#2a5a6ec5,_0px_2px_20px_0px_#2a5a6ec5,_0px_0px_1px_0px_#2a5a6ec5]
-        dark:border-1 dark:border-primary-400 bg-white dark:bg-[#212123]/70 dark:backdrop-blur-md dark:backdrop-saturate-150 rounded-md cursor-pointer overflow-hidden  ">
+        dark:border-1 dark:border-primary-400 bg-white dark:bg-[#212123]/70/ dark:bg-[#131814]/30 dark:backdrop-blur-md dark:backdrop-saturate-150 rounded-md cursor-pointer overflow-hidden  ">
 
             <div className="w-full h-full flex flex-col">
 
@@ -82,23 +82,23 @@ export const CourseCard = ({ data }: CardProps) => {
                             <div className="flex flex-col">
                                 <div className="mt-1 flex items-center gap-1">
                                     <GiTeacher size={16} className="text-primary-400" />
-                                    <span className="text-xs font-semibold text-gray-400">{data.teacher.teacherEngName}</span>
+                                    <span className="text-xs font-semibold text-gray-500 dark:text-gray-300">{data.teacher.teacherEngName}</span>
                                 </div>
 
                                 <div className="mt-1 flex items-center gap-1">
                                     <IoIosFilm size={16} className="text-primary-400" />
-                                    <span className="text-xs font-semibold text-gray-400">{toPersianNumber(data.totalLessons)} درس</span>
+                                    <span className="text-xs font-semibold text-gray-500 dark:text-gray-300">{toPersianNumber(data.totalLessons)} درس</span>
                                 </div>
                             </div>
 
                             <div className="flex flex-col">
                                 <div className="flex items-center gap-1">
                                     <SiHtmlacademy size={16} className="text-primary-400" />
-                                    <span className="text-xs font-semibold text-gray-400">{data.academy.academyEngName}</span>
+                                    <span className="text-xs font-semibold text-gray-500 dark:text-gray-300">{data.academy.academyEngName}</span>
                                 </div>
                                 <div className="mt-1 flex items-center gap-1">
                                     <WiTime3 size={16} className="text-primary-400" />
-                                    <span className="text-xs font-semibold text-gray-400">{toPersianNumber(secondsToTimeString(data.courseLength))}</span>
+                                    <span className="text-xs font-semibold text-gray-500 dark:text-gray-300">{toPersianNumber(secondsToTimeString(data.courseLength))}</span>
                                 </div>
                             </div>
                         </div>

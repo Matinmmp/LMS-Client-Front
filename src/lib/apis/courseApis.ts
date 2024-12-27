@@ -54,3 +54,17 @@ export const getAllCourseUrlNames = async () => {
     }
 }
 
+export const getRelatedCourses = async (name:string) => {
+    try {
+        const data = await customFetch(`/getRelatedCourses/${name}`, {
+            method: 'GET',
+            //  next: { revalidate: 3600 }
+            cache: 'no-cache'
+        }
+        );
+        return await data;
+    } catch (error) {
+        return error
+    }
+}
+

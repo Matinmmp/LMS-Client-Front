@@ -16,6 +16,7 @@ import Link from "next/link";
 import { CourseLessons, Description, ShortLink } from "./CourseInfoComponents";
 import { VideoPlayer } from "../Shared/VideoPlayer";
 import { AlertSecondary } from "../Shared/Alert";
+import { RelatedCourse } from "./CourseInfoServerComponents";
 
 
 
@@ -116,7 +117,7 @@ export default function CourseInfo({ data }: Props) {
     return (
         <div className='w-full mt-28 flex flex-col'>
 
-            <div className="w-full p-4 lg:p-8 dark:bg-primary-50/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium lg:shadow-none/ rounded-2xl lg:bg-transparent/ lg:dark:bg-transparent/ ">
+            <div className="w-full p-4 lg:p-8 bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium lg:shadow-none/ rounded-2xl lg:bg-transparent/ lg:dark:bg-transparent/ ">
 
                 <div className="w-full h-48 md:h-64 lg:h-[27rem] relative rounded-2xl shadow-medium">
                     <Image className="w-full h-full -mt-24 md:-mt-32 lg:-mt-40 rounded-2xl object-cover object-center shadow-medium
@@ -130,7 +131,7 @@ export default function CourseInfo({ data }: Props) {
 
                         <div className="h-full flex flex-col ">
 
-                            <h1 dir="ltr" className='text-primary-400 font-bold text-xl md:text-3xl 2xl:text-[2rem] md:leading-10'>
+                            <h1 dir="ltr" className='mt-4 lg:mt-0 text-primary-400 font-bold text-xl md:text-2xl 2xl:text-[2rem] md:leading-10'>
                                 {course?.name}
                             </h1>
 
@@ -169,6 +170,9 @@ export default function CourseInfo({ data }: Props) {
                     <div className="mt-8">
                         <CourseLessons name={course?.urlName} />
                     </div>
+                    <div className="mt-8">
+                        <RelatedCourse name={course?.urlName}/>
+                    </div>
                 </div>
 
                 <div id="courseInfoSidebar" className="w-full min-w-72 lg:w-[30%] flex flex-col gap-4">
@@ -205,9 +209,9 @@ function SidebarFeature({ data }: Props2) {
 
                     <div className="w-full h-full flex flex-col items-center justify-center">
 
-                        <HiOutlineInformationCircle size={40} className="text-primary-400" />
-                        <span className="mt-3 text-sm">وضعیت دوره:</span>
-                        <span className="mt-0.5 text-sm">
+                        <HiOutlineInformationCircle className="text-primary-400 text-3xl sm:text-4xl" />
+                        <span className="mt-3 text-xs sm:text-sm">وضعیت دوره:</span>
+                        <span className="mt-0.5 text-xs sm:text-sm">
                             {
                                 data.status == 0 ? 'در‌حال ترجمه' : data?.status == 1 ? 'اتمام' : 'متوقف شده'
                             }
@@ -219,9 +223,9 @@ function SidebarFeature({ data }: Props2) {
                 <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-xl">
                     <div className="w-full h-full flex flex-col items-center justify-center">
 
-                        <PiStudentBold size={38} className="text-primary-400" />
-                        <span className="mt-3 text-sm">تعداد دانشجو‌ها:</span>
-                        <span className="mt-0.5 text-sm">{toPersianNumber(`${data.purchased}`)}</span>
+                        <PiStudentBold className="text-primary-400 text-3xl sm:text-4xl" />
+                        <span className="mt-3 text-xs sm:text-sm">تعداد دانشجو‌ها:</span>
+                        <span className="mt-0.5 text-xs sm:text-sm">{toPersianNumber(`${data.purchased}`)}</span>
 
                     </div>
                 </div>
@@ -229,9 +233,9 @@ function SidebarFeature({ data }: Props2) {
                 <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-xl">
                     <div className="w-full h-full flex flex-col items-center justify-center">
 
-                        <WiTime3 size={38} className="text-primary-400" />
-                        <span className="mt-3 text-sm">مدت زمان دوره:</span>
-                        <span className="mt-0.5 text-sm">{toPersianNumber(secondsToTimeString(data.courseLength))}</span>
+                        <WiTime3 className="text-primary-400 text-3xl sm:text-4xl" />
+                        <span className="mt-3 text-xs sm:text-sm">مدت زمان دوره:</span>
+                        <span className="mt-0.5 text-xs sm:text-sm">{toPersianNumber(secondsToTimeString(data.courseLength))}</span>
 
                     </div>
                 </div>
@@ -239,9 +243,9 @@ function SidebarFeature({ data }: Props2) {
                 <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-xl">
                     <div className="w-full h-full flex flex-col items-center justify-center">
 
-                        <LuCalendarDays size={34} className="text-primary-400" />
-                        <span className="mt-3 text-sm">آخرین بروزرسانی:</span>
-                        <span className="mt-1 text-sm">{toPersianNumber(formatDate(data.lastContentUpdate))}</span>
+                        <LuCalendarDays className="text-primary-400 text-3xl sm:text-4xl" />
+                        <span className="mt-3 text-xs sm:text-sm">آخرین بروزرسانی:</span>
+                        <span className="mt-1 text-xs sm:text-sm">{toPersianNumber(formatDate(data.lastContentUpdate))}</span>
 
                     </div>
                 </div>
@@ -249,9 +253,9 @@ function SidebarFeature({ data }: Props2) {
                 <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-xl">
                     <div className="w-full h-full flex flex-col items-center justify-center">
 
-                        <IoIosFilm size={34} className="text-primary-400" />
-                        <span className="mt-3 text-sm">تعداد جلسات:</span>
-                        <span className="text-sm">{toPersianNumber(data.totalLessons)}</span>
+                        <IoIosFilm className="text-primary-400 text-3xl sm:text-4xl" />
+                        <span className="mt-3 text-xs sm:text-sm">تعداد جلسات:</span>
+                        <span className="text-xs sm:text-sm">{toPersianNumber(data.totalLessons)}</span>
 
                     </div>
                 </div>
@@ -259,9 +263,9 @@ function SidebarFeature({ data }: Props2) {
                 <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-xl">
                     <div className="w-full h-full flex flex-col items-center justify-center">
 
-                        <FaStar size={34} className="text-primary-400/ text-warning-400" />
-                        <span className="mt-3 text-sm">امتیاز:</span>
-                        <span className="text-sm">{toPersianNumber(data?.ratings?.toFixed(1))}</span>
+                        <FaStar className=" text-warning-400 text-3xl sm:text-4xl" />
+                        <span className="mt-3 text-xs sm:text-sm">امتیاز:</span>
+                        <span className="text-xs sm:text-sm">{toPersianNumber(data?.ratings?.toFixed(1))}</span>
 
                     </div>
                 </div>

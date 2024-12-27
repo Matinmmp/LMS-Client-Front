@@ -121,15 +121,22 @@ function encodeToShortCode(text:string) {
 }
 
 const encodeTitle = (title:string) => {
-    return title
-        .replace(/\s/g, '_')       // جایگزینی فاصله‌ها با _
-        .replace(/\u200C/g, '-'); // جایگزینی نیم‌فاصله با -
+    try{
+        return title.replace(/\s/g, '_').replace(/\u200C/g, '-');
+    }
+    catch{
+        return title;
+    }
 }
 
-const decodeTitle = (encodedTitle: string) => {
-    return encodedTitle
-        .replace(/_/g, ' ')      // جایگزینی _ با فاصله
-        .replace(/-/g, '\u200C'); // جایگزینی - با نیم‌فاصله
+const decodeTitle = (title: string) => {
+    try{
+        return title.replace(/_/g, ' ').replace(/-/g, '\u200C');
+    }
+    catch{
+        return title;
+    }
+    
 };
 
 export {
