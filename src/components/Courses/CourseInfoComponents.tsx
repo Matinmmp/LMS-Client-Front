@@ -110,10 +110,10 @@ export function CourseLessons({ name }: { name: any }) {
 
     return (
         <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl relative">
-            <span className="absolute -right-2 top-4 h-12 w-2 bg-primary-400 rounded-r-md"></span>
+            <span className="absolute -right-2 top-4 h-12 w-2 bg-secondary-400 rounded-r-md"></span>
             <div className="px-2 py-6 sm:px-4 flex flex-col gap-6">
-                <div className="px-2 sm:px-0 flex items-center gap-2 text-primary-400 dark:text-white">
-                    <IoIosSchool size={40}  className="text-primary-400 hidden lg:inline "/>
+                <div className="px-2 sm:px-0 flex items-center gap-2 text-secondary-400 dark:text-white">
+                    <IoIosSchool size={40}  className="text-secondary-400 hidden lg:inline "/>
                     <p className="text-lg sm:text-xl md:text-2xl font-semibold">سرفصل‌ها</p>
                 </div>
 

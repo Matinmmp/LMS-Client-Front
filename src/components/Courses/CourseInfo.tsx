@@ -16,7 +16,7 @@ import Link from "next/link";
 import { CourseLessons, Description, ShortLink } from "./CourseInfoComponents";
 import { VideoPlayer } from "../Shared/VideoPlayer";
 import { AlertSecondary } from "../Shared/Alert";
-import { RelatedCourse } from "./CourseInfoServerComponents";
+import { RelatedCourse,RelatedBlog } from "./CourseInfoServerComponents";
 
 
 
@@ -173,6 +173,10 @@ export default function CourseInfo({ data }: Props) {
                     <div className="mt-8">
                         <RelatedCourse name={course?.urlName}/>
                     </div>
+                    <div className="mt-8">
+                        <RelatedBlog name={course?.urlName}/>
+                    </div>
+                    
                 </div>
 
                 <div id="courseInfoSidebar" className="w-full min-w-72 lg:w-[30%] flex flex-col gap-4">
