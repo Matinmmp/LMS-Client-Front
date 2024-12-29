@@ -22,7 +22,7 @@ type Props = {
         avatar: {
             imageUrl: string,
         }
-        rates: number,
+        rating: number,
         totalStudents: number,
         totalTeachers: number,
         totalCourses: number,
@@ -106,7 +106,7 @@ const AcademyInfo = ({ data }: Props) => {
                         <h2 className={clsx(title({ color: 'green' }), 'inline w-full lg:text-left text-2xl lg:text-4xl font-bold')}>آکادمی {data.faName} در ویرچوال لرن</h2>
 
                         <p className="mt-4 text-right text-lg font-semibold leading-8 text-[#475466 dark:text-[#9aaed1]">
-                            {generateAcademyDescription(data.engName, data.totalStudents, data.rates, data.totalCourses, data.totalTeachers)}
+                            {generateAcademyDescription(data.engName, data.totalStudents, data.rating, data.totalCourses, data.totalTeachers)}
                         </p>
 
                     </div>
@@ -142,7 +142,7 @@ const AcademyInfo = ({ data }: Props) => {
                         <div className="w-full h-full flex flex-col items-center justify-center">
                             <FaStar className="text-4xl text-success-400" />
                             <span className="mt-3 text-sm">امتیاز</span>
-                            <span className="mt-0.5 font-bold">{toPersianNumber(data.rates)}</span>
+                            <span className="mt-0.5 font-bold">{toPersianNumber(data.rating)}</span>
                         </div>
                     </div>
 

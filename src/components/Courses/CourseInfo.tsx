@@ -13,7 +13,7 @@ import { IoIosFilm } from "react-icons/io";
 import { FaStar } from "react-icons/fa6"
 import { Avatar } from "@nextui-org/avatar";
 import Link from "next/link";
-import { CourseLessons, Description, ShortLink } from "./CourseInfoComponents";
+import { Commments, CourseLessons, Description, ShortLink } from "./CourseInfoComponents";
 import { VideoPlayer } from "../Shared/VideoPlayer";
 import { AlertSecondary } from "../Shared/Alert";
 import { RelatedCourse,RelatedBlog } from "./CourseInfoServerComponents";
@@ -176,6 +176,12 @@ export default function CourseInfo({ data }: Props) {
                     <div className="mt-8">
                         <RelatedBlog name={course?.urlName}/>
                     </div>
+
+                    <div className="mt-8">
+                        <Commments name={course?.urlName}/>
+                    </div>
+                    
+
                     
                 </div>
 

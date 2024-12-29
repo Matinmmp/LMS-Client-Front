@@ -10,8 +10,6 @@ import { FaStar } from "react-icons/fa6";
 import Link from "next/link";
 
 
-
-
 type CardProps = {
     data: {
         faName: string,
@@ -20,7 +18,7 @@ type CardProps = {
         avatar: {
             imageUrl: string,
         }
-        rates: number,
+        rating: number,
         totalStudents: number,
         totalCourses: number,
 
@@ -60,10 +58,10 @@ const TeacherCard = ({ data }: CardProps) => {
 
                     </div>
 
-                    <div className="w-full mt-6 px-6 pb-4 flex flex-col items-start">
+                    <div className="w-full mt-2 px-6 pb-4 flex flex-col items-start">
                         <div className="w-full flex items-center justify-between">
                             <div className="flex items-center gap-1">
-                                <span className="pt-1 text-md font-semibold text-warning-400">{toPersianNumber(data.rates)}</span>
+                                <span className="pt-1 text-md font-semibold text-warning-400">{toPersianNumber(data.rating)}</span>
 
                                 <FaStar size={20} className="text-warning-400" />
                             </div>

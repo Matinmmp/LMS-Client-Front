@@ -23,7 +23,8 @@ import { VideoPlayer } from "../Shared/VideoPlayer";
 import { AlertDanger, AlertSecondary, AlertWarning } from "../Shared/Alert";
 import { showToast } from "@/src/utils/toast";
 import { Skeleton } from "@nextui-org/skeleton";
-import { ImBooks } from "react-icons/im";
+import { FaComments } from "react-icons/fa6";
+import { getCourseComments } from "@/src/lib/apis/courseReviewApis";
 
 export function ShortLink({ name }: { name: string }) {
     const copy = () => navigator.clipboard.writeText(`virtual-learn.com/?r=${encodeToShortCode(name)}`);
@@ -66,9 +67,9 @@ export function Description({ desc }: { desc: string }) {
                 style={{ overflow: 'hidden' }}
             >
                 <div className="flex items-center gap-2 text-primary-400 dark:text-white">
-                    <TbFileDescription size={40} className="text-primary-400 hidden lg:inline "/>
+                    <TbFileDescription size={40} className="text-primary-400 hidden lg:inline " />
                     <p className="text-xl md:text-2xl font-semibold">توضیحات دوره</p>
-                    
+
                 </div>
 
                 <div className="mt-8 pb-20" dangerouslySetInnerHTML={{ __html: desc }}></div>
@@ -99,21 +100,41 @@ const refresh_token = cookies.get('refresh_token')
 const access_token = cookies.get('access_token')
 
 export function CourseLessons({ name }: { name: any }) {
+    const [open, setOpen] = useState(false);
     let getCourseData: any
 
     if (!refresh_token || !access_token)
-        getCourseData = useQuery({ queryKey: ['getCourseDataByNameNoLoged'], queryFn: () => getCourseDataByNameNoLoged(name) });
+        getCourseData = useQuery({ queryKey: ['getCourseDataByNameNoLoged', name], queryFn: () => getCourseDataByNameNoLoged(name) });
 
     if (refresh_token)
-        getCourseData = useQuery({ queryKey: ['getCourseDataByNameLoged'], queryFn: () => getCourseDataByNameLoged(name) });
+        getCourseData = useQuery({ queryKey: ['getCourseDataByNameLoged', name], queryFn: () => getCourseDataByNameLoged(name) });
 
+    let data: any = null;
+    if (!getCourseData.isLoading && getCourseData.isSuccess && getCourseData?.data)
+        data = getCourseData?.data;
+
+    let lessonsList: any = []
+    if (!getCourseData.isLoading && getCourseData.isSuccess && getCourseData?.data)
+        lessonsList = data?.courseData;
+
+
+    let totalSections = 0;
+
+    if (!getCourseData.isLoading && getCourseData.isSuccess && getCourseData?.data)
+        totalSections = lessonsList?.length;
+
+    if (!getCourseData.isLoading && getCourseData.isSuccess && data?.courseFiles && (data?.courseFiles === true || data?.courseFiles?.length))
+        totalSections += 1;
+
+    if (!getCourseData.isLoading && getCourseData.isSuccess && data?.courseLinks && (data?.courseLinks === true || data?.courseLinks?.length))
+        totalSections += 1;
 
     return (
         <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl relative">
             <span className="absolute -right-2 top-4 h-12 w-2 bg-secondary-400 rounded-r-md"></span>
             <div className="px-2 py-6 sm:px-4 flex flex-col gap-6">
                 <div className="px-2 sm:px-0 flex items-center gap-2 text-secondary-400 dark:text-white">
-                    <IoIosSchool size={40}  className="text-secondary-400 hidden lg:inline "/>
+                    <IoIosSchool size={40} className="text-secondary-400 hidden lg:inline " />
                     <p className="text-lg sm:text-xl md:text-2xl font-semibold">سرفصل‌ها</p>
                 </div>
 
@@ -125,34 +146,49 @@ export function CourseLessons({ name }: { name: any }) {
                     </div> : ''}
 
                 <div className="w-full">
-                <div className="flex flex-col gap-4">
+
+                    <div className="flex flex-col gap-4">
                         {getCourseData.isLoading &&
                             <>
-                                <Skeleton className="w-full h-[4rem] rounded-xl shadow-small dark:shadow-small"/>
-                                <Skeleton className="w-full h-[4rem] rounded-xl shadow-small dark:shadow-small"/>
-                                <Skeleton className="w-full h-[4rem] rounded-xl shadow-small dark:shadow-small"/>
+                                <Skeleton className="w-full h-[4rem] rounded-xl shadow-small dark:shadow-small" />
+                                <Skeleton className="w-full h-[4rem] rounded-xl shadow-small dark:shadow-small" />
+                                <Skeleton className="w-full h-[4rem] rounded-xl shadow-small dark:shadow-small" />
 
                             </>
                         }
 
                     </div>
 
-                    <div className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-2">
                         {!getCourseData.isLoading && getCourseData.isSuccess &&
-                            getCourseData?.data?.courseData?.map((item: any, index: number) => <SectionAcordian item={item} key={index} isCourseFree={getCourseData?.data?.isPurchased} />)
+                            lessonsList?.slice(0, open ?
+                                // data?.courseData?.length 
+                                lessonsList.length : 10)?.map((item: any, index: number) => <SectionAcordian item={item} key={index} isCourseFree={data?.isPurchased} />)
                         }
 
                         {
-                            !getCourseData.isLoading && getCourseData.isSuccess && getCourseData?.data?.courseFiles && (getCourseData?.data?.courseFiles === true || getCourseData?.data?.courseFiles?.length) &&
-                            <CourseFileAcordian courseFiles={getCourseData?.data?.courseFiles} isCourseFree={getCourseData?.data?.isPurchased} />
+                            !getCourseData.isLoading && getCourseData.isSuccess && data?.courseFiles && (data?.courseFiles === true || data?.courseFiles?.length) &&
+                            (lessonsList.length < 10 || open) && <CourseFileAcordian courseFiles={data?.courseFiles} isCourseFree={data?.isPurchased} />
                         }
 
                         {
-                            !getCourseData.isLoading && getCourseData.isSuccess && getCourseData?.data?.courseLinks && (getCourseData?.data?.courseLinks === true || getCourseData?.data?.courseLinks?.length) &&
-                            <CourseLinkAcordian courseLinks={getCourseData?.data?.courseLinks} isCourseFree={getCourseData?.data?.isPurchased} />
+                            !getCourseData.isLoading && getCourseData.isSuccess && data?.courseLinks && (data?.courseLinks === true || data?.courseLinks?.length) &&
+                            (lessonsList.length < 10 || open) && <CourseLinkAcordian courseLinks={data?.courseLinks} isCourseFree={data?.isPurchased} />
                         }
 
                     </div>
+
+
+                    {
+                        lessonsList.length >= 10 &&
+                        <div className="w-full mt-6 flex justify-center">
+                            <Button variant="ghost" color="secondary" size="lg" className="w-full font-semibold"
+                                onClick={() => setOpen(!open)}>
+                                {`${toPersianNumber(totalSections - 10)} بخش دیگر`}
+                            </Button>
+                        </div>
+
+                    }
                 </div>
             </div>
         </div>
@@ -611,6 +647,85 @@ const SectionLinkAcordian = ({ sectionLinks, selectedLesson, setSelectedLesson, 
 
         </div>
     )
+}
+
+
+const list = {
+    comments: [
+        //comment
+        {
+            user: {
+                name: '',
+                avatar: '',
+                role: '',
+            },
+            comment: '',
+            createAt: Date,
+            commentsReplies: [
+                {
+                    user: {
+                        name: '',
+                        avatar: '',
+                        role: '',
+                    },
+                    comment: '',
+                    createAt: Date,
+                },
+                {
+                    user: {
+                        name: '',
+                        avatar: '',
+                        role: '',
+                    },
+                    comment: '',
+                    createAt: Date,
+                },
+            ]
+
+        },
+
+        //comment
+        {
+            user: {
+                name: '',
+                avatar: '',
+                role: '',
+            },
+            comment: '',
+            commentsReplies: []
+        }
+    ],
+
+    totalPage: 4,
+    currentPage: 1
+}
+
+
+export const Commments = ({ name }: { name: string }) => {
+
+    const getReviewData = useQuery({ queryKey: ['getReviewData', name], queryFn: () => getCourseComments({ name, currentPage: 1 }) });
+    console.log(getReviewData);
+
+    return(
+          <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl relative">
+            <span className="absolute -right-2 top-4 h-12 w-2 bg-warning-400 rounded-r-md"></span>
+            <div className="px-2 py-6 sm:px-4 flex flex-col gap-6">
+                <div className="px-2 sm:px-0 flex items-center gap-2 text-warning-400 dark:text-white">
+                    <FaComments size={40} className="text-warning-400 hidden lg:inline " />
+                    <p className="text-lg sm:text-xl md:text-2xl font-semibold">کامنت‌ها</p>
+                </div>
+
+            </div>
+
+
+            <div className="px-4 pb-4 flex flex-col gap-4">
+                <div className="w-full bg-primary-50">
+adsfadsf
+                </div>
+            </div>
+        </div>
+    )
+
 }
 
 

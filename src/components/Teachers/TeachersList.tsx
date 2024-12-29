@@ -33,6 +33,7 @@ const TeachersList = ({ list }: Props) => {
     const [inputDirection, setInputDirection] = useState('rtl');
     const [selectedOption, setSelectedOption] = useState('1');
 
+    console.log(list);
     // گرفتن لیست آکادمی‌ها و مقدار پیش‌فرض برای select box
     const [selectedAcademy, setSelectedAcademy] = useState("1");
 

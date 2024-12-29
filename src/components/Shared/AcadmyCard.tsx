@@ -18,7 +18,7 @@ type CardProps = {
         avatar: {
             imageUrl: string,
         }
-        rates: number,
+        rating: number,
         totalStudents: number,
         totalTeachers: number,
         totalCourses: number,
@@ -67,7 +67,7 @@ const AcadmyCard = ({ data }: CardProps) => {
 
                         <div className="w-full flex items-center justify-between">
                             <div className="flex items-center gap-1">
-                                <span className="pt-1 text-md font-semibold text-warning-400">{toPersianNumber(data.rates)}</span>
+                                <span className="pt-1 text-md font-semibold text-warning-400">{toPersianNumber(data.rating)}</span>
                                 <FaStar size={20} className="text-warning-400" />
                             </div>
                             <h4 className={clsx(title({ color: 'green' }), 'text-2xl font-extrabold')}>{name}</h4>
