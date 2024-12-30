@@ -1,6 +1,6 @@
 'use client'
 
-import { encodeToShortCode, hoursAndMinutesString, secondsToTimeString2, toPersianNumber } from "@/src/utils/functions"
+import { encodeToShortCode, formatDate, hoursAndMinutesString, secondsToTimeString2, toPersianNumber } from "@/src/utils/functions"
 import { FaRegCopy } from "react-icons/fa6"
 import { motion } from 'framer-motion';
 import React, { useState } from "react";
@@ -12,7 +12,7 @@ import { getCourseDataByNameLoged, getCourseDataByNameNoLoged } from "@/src/lib/
 import { useQuery } from "@tanstack/react-query";
 import cookies from 'js-cookie'
 import { RxDotFilled } from "react-icons/rx";
-import { PiMonitorPlay } from "react-icons/pi";
+import { PiMaskSad, PiMonitorPlay } from "react-icons/pi";
 import { RiLockLine } from "react-icons/ri";
 import { FaDownload } from "react-icons/fa6";
 import { FaRegFile } from "react-icons/fa";
@@ -25,6 +25,9 @@ import { showToast } from "@/src/utils/toast";
 import { Skeleton } from "@nextui-org/skeleton";
 import { FaComments } from "react-icons/fa6";
 import { getCourseComments } from "@/src/lib/apis/courseReviewApis";
+import { Spinner } from "@nextui-org/spinner"
+import { Avatar } from "@nextui-org/avatar";
+
 
 export function ShortLink({ name }: { name: string }) {
     const copy = () => navigator.clipboard.writeText(`virtual-learn.com/?r=${encodeToShortCode(name)}`);
@@ -703,29 +706,98 @@ const list = {
 
 export const Commments = ({ name }: { name: string }) => {
 
-    const getReviewData = useQuery({ queryKey: ['getReviewData', name], queryFn: () => getCourseComments({ name, currentPage: 1 }) });
-    console.log(getReviewData);
+    const getReviewData: any = useQuery({ queryKey: ['getReviewData', name], queryFn: () => getCourseComments({ name, currentPage: 1 }) });
 
-    return(
-          <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl relative">
-            <span className="absolute -right-2 top-4 h-12 w-2 bg-warning-400 rounded-r-md"></span>
+    console.log(getReviewData?.data)
+
+    return (
+        <div className="w-full pb-4 bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl relative">
+            <span className="absolute -right-2 top-4 h-12 w-2 bg-warning-500 rounded-r-md"></span>
+
             <div className="px-2 py-6 sm:px-4 flex flex-col gap-6">
-                <div className="px-2 sm:px-0 flex items-center gap-2 text-warning-400 dark:text-white">
-                    <FaComments size={40} className="text-warning-400 hidden lg:inline " />
+                <div className="px-2 sm:px-0 flex items-center gap-2 text-warning-500 dark:text-white">
+                    <FaComments size={40} className="text-warning-500 hidden lg:inline " />
                     <p className="text-lg sm:text-xl md:text-2xl font-semibold">کامنت‌ها</p>
                 </div>
 
             </div>
 
-
-            <div className="px-4 pb-4 flex flex-col gap-4">
-                <div className="w-full bg-primary-50">
-adsfadsf
+            {
+                getReviewData?.isLoading && !getReviewData?.isError &&
+                <div className="mt-4 pb-4 flex flex-col gap-4 items-center">
+                    <Spinner color="warning" size={'lg'} />
+                    <p className="text-xl font-semibold text-warning-500">درحال دریافت نظرات</p>
                 </div>
-            </div>
+            }
+            {
+                !getReviewData?.isLoading && getReviewData?.isSuccess && !getReviewData?.data?.comments?.length &&
+                <div className="mt-4 pb-4 flex flex-col gap-4 items-center">
+                    <PiMaskSad className="text-warning-500 text-5xl md:text-6xl" />
+                    <p className="text-xl font-semibold text-warning-500">نظری ثبت نشده است</p>
+                </div>
+            }
+            {
+                !getReviewData?.isLoading && getReviewData?.isSuccess && getReviewData?.data?.comments?.length &&
+                <div className="mt-4 px-4 flex flex-col gap-6">
+                    {getReviewData?.data?.comments?.map((item: any, index: number) => <Commment item={item} key={index} />)}
+                </div>
+            }
         </div>
     )
 
 }
 
 
+const Commment = ({ item }: { item: any }) => {
+    return (
+        <div className="w-full bg-primary-50 shadow-small rounded-lg border-1 border-primary-500">
+            <div className="p-4 md:p-6 flex flex-col">
+
+                <div className="pb-6 flex items-center justify-between border-b-1 border-b-primary-200 dark:border-b-primary-900">
+                    <div className="flex gap-4 ">
+                        <Avatar className="h-[2.5rem] w-[2.5rem] md:h-[3.5rem] md:w-[3.5rem] shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="full"
+                            isBordered color="primary" src={item?.user?.imageUrl} showFallback />
+
+                        <div className="flex flex-col justify-between gap-1 text-sm md:text-base">
+                            <div className="flex items-center gap-1">
+                                <span className="font-medium truncate">{item?.user?.name}</span>
+                                <span>|</span>
+                                <strong className=" font-semibold text-primary-500 dark:text-primary-400">{`${item?.user?.role === 'admin' ? 'مدیر' : 'کاربر'}`}</strong>
+                            </div>
+
+                            <span className='text-sm font-semibold text-gray-700 dark:text-gray-400'>{formatDate(item.createAt)}</span>
+                        </div>
+                    </div>
+                    <Button color="primary" size="sm" variant="ghost" className='font-semibold'>پاسخ</Button>
+                </div>
+
+                <div className="w-full pt-6 pb-4">
+                    <p>{item?.comment}</p>
+                </div>
+
+                <div className="mt-2 ps-4 flex flex-col gap-3">
+                    {item?.commentsReplies?.map((comm: any, index: number) =>
+                        <div className=" p-4 bg-white dark:bg-[#1E293B]/ dark:bg-[#1f2e44] rounded-lg shadow-small border-1 border-primary-400">
+                            <div className="flex gap-4 ">
+                                <Avatar className="h-[2.5rem] w-[2.5rem] md:h-[3.5rem] md:w-[3.5rem]" size="lg" radius="full"
+                                    isBordered color="primary" src={comm?.user?.imageUrl} showFallback />
+
+                                <div className="flex flex-col justify-between gap-1 text-sm md:text-base">
+                                    <div className="flex items-center gap-1">
+                                        <span className="font-medium truncate">{comm?.user?.name}</span>
+                                        <span>|</span>
+                                        <strong className=" font-semibold text-primary-500 dark:text-primary-400">{`${comm?.user?.role === 'admin' ? 'مدیر' : 'کاربر'}`}</strong>
+                                    </div>
+
+                                    <span className='text-sm font-semibold text-gray-700 dark:text-gray-400'>{formatDate(comm.createAt)}</span>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+
+
+            </div>
+        </div>)
+
+}

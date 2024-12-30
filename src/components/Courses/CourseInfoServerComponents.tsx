@@ -71,13 +71,13 @@ export async function RelatedBlog({ name }: { name: string }) {
                             data?.blogs?.map((item: any, index: number) => {
                                 let link = encodeTitle(item?.slug);
                                 return (
-                                    <div key={index} className="h-[6.8rem] p-2 flex items-center gap-3 bg-primary-50/60 rounded-xl shadow-small border-1 border-secondary-400">
+                                    <div key={index} className="h-[5rem] md:h-[6.8rem] p-2 flex items-center gap-3 bg-primary-50/60 rounded-xl shadow-small border-1 border-secondary-400">
                                         
-                                        <Image src={item.thumbnail.imageUrl} width={160} height={100} alt="" className="h-full h-24/ min-w-[9.5rem]/ max-w-[9.5rem]/ aspect-video rounded-xl shadow-small" />
+                                        <Image src={item.thumbnail.imageUrl} width={160} height={100} alt="" className="h-full w-full min-w-[8rem] max-w-[8rem] md:min-w-max !aspect-video rounded-xl shadow-small" />
                                       
-                                        <div className="h-full py-2 flex flex-col justify-between">
-                                            <Link href={`/blogs/${link}`} dir="rtl" className="font-medium line-clamp-1" >{item.title}</Link>
-                                            <div className="flex items-center gap-1 text-gray-500">
+                                        <div className="h-full py-1 md:py-2 flex flex-col justify-between">
+                                            <Link href={`/blogs/${link}`} dir="rtl" className="text-sm md:teext-base font-medium line-clamp-1" >{item.title}</Link>
+                                            <div className="flex items-center gap-1 text-gray-600 dark:text-gray-400">
                                                 <CiCalendar size={20}/>
                                                 <span className="text-sm font-semibold">{formatDate(item?.lastUpdated)}</span>
                                             </div>
