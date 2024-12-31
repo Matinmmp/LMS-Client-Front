@@ -27,7 +27,7 @@ import { FaComments } from "react-icons/fa6";
 import { getCourseComments } from "@/src/lib/apis/courseReviewApis";
 import { Spinner } from "@nextui-org/spinner"
 import { Avatar } from "@nextui-org/avatar";
-
+import { BiCommentDetail } from "react-icons/bi";
 
 export function ShortLink({ name }: { name: string }) {
     const copy = () => navigator.clipboard.writeText(`virtual-learn.com/?r=${encodeToShortCode(name)}`);
@@ -653,74 +653,37 @@ const SectionLinkAcordian = ({ sectionLinks, selectedLesson, setSelectedLesson, 
 }
 
 
-const list = {
-    comments: [
-        //comment
-        {
-            user: {
-                name: '',
-                avatar: '',
-                role: '',
-            },
-            comment: '',
-            createAt: Date,
-            commentsReplies: [
-                {
-                    user: {
-                        name: '',
-                        avatar: '',
-                        role: '',
-                    },
-                    comment: '',
-                    createAt: Date,
-                },
-                {
-                    user: {
-                        name: '',
-                        avatar: '',
-                        role: '',
-                    },
-                    comment: '',
-                    createAt: Date,
-                },
-            ]
+export const Commments = ({ name, refresh_token }: { name: string, refresh_token: any }) => {
 
-        },
-
-        //comment
-        {
-            user: {
-                name: '',
-                avatar: '',
-                role: '',
-            },
-            comment: '',
-            commentsReplies: []
-        }
-    ],
-
-    totalPage: 4,
-    currentPage: 1
-}
-
-
-export const Commments = ({ name }: { name: string }) => {
 
     const getReviewData: any = useQuery({ queryKey: ['getReviewData', name], queryFn: () => getCourseComments({ name, currentPage: 1 }) });
 
-    console.log(getReviewData?.data)
+    console.log(refresh_token)
+
+    const handleLoginClick = () => {
+        scrollTo({ top: 0, behavior: 'smooth' });
+        showToast({ message: 'برای ثبت نظر وارد حساب خود شودید.', type: 'warning' });
+    }
 
     return (
         <div className="w-full pb-4 bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl relative">
             <span className="absolute -right-2 top-4 h-12 w-2 bg-warning-500 rounded-r-md"></span>
 
-            <div className="px-2 py-6 sm:px-4 flex flex-col gap-6">
+            <div className="w-full px-2 py-6 sm:px-4 flex items-center justify-between">
                 <div className="px-2 sm:px-0 flex items-center gap-2 text-warning-500 dark:text-white">
                     <FaComments size={40} className="text-warning-500 hidden lg:inline " />
                     <p className="text-lg sm:text-xl md:text-2xl font-semibold">کامنت‌ها</p>
                 </div>
 
+                {refresh_token ?
+                    <Button onPress={handleLoginClick} endContent={<BiCommentDetail size={18}/>} color={'primary'} radius="sm" size="md">ثبت نظر</Button>
+                    :
+                    <Button onPress={handleLoginClick} color={'primary'} radius="sm" size="md">برای ثبت نظر وارد شوید</Button>
+                }
+
             </div>
+
+
 
             {
                 getReviewData?.isLoading && !getReviewData?.isError &&
@@ -753,7 +716,7 @@ const Commment = ({ item }: { item: any }) => {
         <div className="w-full bg-primary-50 shadow-small rounded-lg border-1 border-primary-500">
             <div className="p-4 md:p-6 flex flex-col">
 
-                <div className="pb-6 flex items-center justify-between border-b-1 border-b-primary-200 dark:border-b-primary-900">
+                <div className="pb-6 flex items-center justify-between flex-wrap gap-2 border-b-1 border-b-primary-200 dark:border-b-primary-900">
                     <div className="flex gap-4 ">
                         <Avatar className="h-[2.5rem] w-[2.5rem] md:h-[3.5rem] md:w-[3.5rem] shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="full"
                             isBordered color="primary" src={item?.user?.imageUrl} showFallback />
@@ -768,14 +731,14 @@ const Commment = ({ item }: { item: any }) => {
                             <span className='text-sm font-semibold text-gray-700 dark:text-gray-400'>{formatDate(item.createAt)}</span>
                         </div>
                     </div>
-                    <Button color="primary" size="sm" variant="ghost" className='font-semibold'>پاسخ</Button>
+                    <Button color="primary" size="sm" variant="ghost" className='font-bold ms-auto'>پاسخ</Button>
                 </div>
 
                 <div className="w-full pt-6 pb-4">
-                    <p>{item?.comment}</p>
+                    <p className="text-xs md:text-base">{item?.comment}</p>
                 </div>
 
-                <div className="mt-2 ps-4 flex flex-col gap-3">
+                <div className="mt-2 sm:ps-4 flex flex-col gap-3">
                     {item?.commentsReplies?.map((comm: any, index: number) =>
                         <div className="p-4 bg-white dark:bg-[#1f2e44]/ dark:bg-[#1b293a] rounded-lg shadow-small">
                             <div className="pb-6 w-full flex gap-4 border-b-1 border-b-primary-200 dark:border-b-primary-700">
@@ -794,7 +757,7 @@ const Commment = ({ item }: { item: any }) => {
                             </div>
 
                             <div className="w-full pt-6 pb-2">
-                                <p>{comm?.comment}</p>
+                                <p className="text-xs md:text-base">{comm?.comment}</p>
                             </div>
                         </div>
                     )}

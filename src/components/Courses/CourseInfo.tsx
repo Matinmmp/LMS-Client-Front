@@ -17,7 +17,7 @@ import { Commments, CourseLessons, Description, ShortLink } from "./CourseInfoCo
 import { VideoPlayer } from "../Shared/VideoPlayer";
 import { AlertSecondary } from "../Shared/Alert";
 import { RelatedCourse,RelatedBlog } from "./CourseInfoServerComponents";
-
+import { cookies } from 'next/headers'
 
 
 type Props = {
@@ -42,7 +42,10 @@ const isDiscountValide = (expireTime: string, percent: string) => {
     return true
 };
 
-export default function CourseInfo({ data }: Props) {
+export default async function CourseInfo({ data }: Props) {
+    const cookieStore = await cookies()
+    const refresh_token = cookieStore.get('refresh_token')
+
     const course = data?.course;
     const teacher = data?.teacher;
     const academy = data?.academy
@@ -178,7 +181,7 @@ export default function CourseInfo({ data }: Props) {
                     </div>
 
                     <div className="mt-8">
-                        <Commments name={course?.urlName}/>
+                        <Commments name={course?.urlName} refresh_token={refresh_token?.value}/>
                     </div>
                     
 

@@ -27,11 +27,10 @@ import { MdContactPhone } from "react-icons/md";
 import dynamic from "next/dynamic";
 import CustomeModal from "./CustomeModal";
 import { useDispatch, useSelector } from "react-redux";
-import Login from "../Auth/Login";
- 
 
+
+import Login from "../Auth/Login";
 import SignUp from "../Auth/SignUp";
- 
 import Verification from "../Auth/Verfication";
 
 
