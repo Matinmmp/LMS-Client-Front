@@ -354,7 +354,7 @@ export const Navbar = () => {
 
                                                     <DropdownMenu aria-label="Profile Actions" variant="flat" className="min-w-80">
 
-                                                        <DropdownItem color="default">
+                                                        <DropdownItem color="default" key={'user'}>
                                                             <div className="py-4 ps-1">
                                                                 <User
                                                                     as="button"
@@ -367,35 +367,35 @@ export const Navbar = () => {
                                                             </div>
                                                         </DropdownItem>
 
-                                                        <DropdownItem color="secondary" className="mt-4 ">
+                                                        <DropdownItem color="secondary" className="mt-4 " key={'profile'}>
                                                             <Link href={'/profile'} className="flex items-center gap-2">
                                                                 <LiaUser size={24} strokeWidth={0.7} />
                                                                 <span className="text-base font-medium">پروفایل</span>
                                                             </Link>
                                                         </DropdownItem>
 
-                                                        <DropdownItem color="secondary">
+                                                        <DropdownItem color="secondary" key={'password'}>
                                                             <Link href={'/profile/password'} className="flex items-center gap-2">
                                                                 <IoKeyOutline size={22} strokeWidth={1} />
                                                                 <span className="text-base font-medium">تغییر رمز عبور</span>
                                                             </Link>
                                                         </DropdownItem>
 
-                                                        <DropdownItem color="secondary">
+                                                        <DropdownItem color="secondary" key={"rec"}>
                                                             <Link href={'/profile/reciepts'} className="flex items-center gap-2">
                                                                 <IoReceiptOutline size={21} strokeWidth={0.7} />
                                                                 <span className="text-base font-medium">فاکتور‌ها</span>
                                                             </Link>
                                                         </DropdownItem>
 
-                                                        <DropdownItem color="secondary">
+                                                        <DropdownItem key={"myFree"} color="secondary">
                                                             <Link href={'/profile/myFreeCourses'} className="flex items-center gap-2">
                                                                 <MdAttachMoney size={21} />
                                                                 <span className="text-base font-medium">دوره‌های من</span>
                                                             </Link>
                                                         </DropdownItem>
 
-                                                        <DropdownItem className="mt-4" color="danger" onClick={() => logoutMutation.mutate()}>
+                                                        <DropdownItem key={'out'} className="mt-4" color="danger" onPress={() => logoutMutation.mutate()}>
                                                             <div className="flex items-center gap-2">
                                                                 <MdLogout size={21} />
                                                                 <span className="text-base font-medium">خروج</span>
