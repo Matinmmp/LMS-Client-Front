@@ -777,8 +777,8 @@ const Commment = ({ item }: { item: any }) => {
 
                 <div className="mt-2 ps-4 flex flex-col gap-3">
                     {item?.commentsReplies?.map((comm: any, index: number) =>
-                        <div className=" p-4 bg-white dark:bg-[#1E293B]/ dark:bg-[#1f2e44] rounded-lg shadow-small border-1 border-primary-400">
-                            <div className="flex gap-4 ">
+                        <div className="p-4 bg-white dark:bg-[#1f2e44]/ dark:bg-[#1b293a] rounded-lg shadow-small">
+                            <div className="pb-6 w-full flex gap-4 border-b-1 border-b-primary-200 dark:border-b-primary-700">
                                 <Avatar className="h-[2.5rem] w-[2.5rem] md:h-[3.5rem] md:w-[3.5rem]" size="lg" radius="full"
                                     isBordered color="primary" src={comm?.user?.imageUrl} showFallback />
 
@@ -791,6 +791,10 @@ const Commment = ({ item }: { item: any }) => {
 
                                     <span className='text-sm font-semibold text-gray-700 dark:text-gray-400'>{formatDate(comm.createAt)}</span>
                                 </div>
+                            </div>
+
+                            <div className="w-full pt-6 pb-2">
+                                <p>{comm?.comment}</p>
                             </div>
                         </div>
                     )}
