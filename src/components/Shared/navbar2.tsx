@@ -358,11 +358,11 @@ export const Navbar = () => {
                                                             <div className="py-4 ps-1">
                                                                 <User
                                                                     as="button"
-                                                                    avatarProps={{ isBordered: true, src: user.imageUrl, color: 'secondary' }}
+                                                                    avatarProps={{ isBordered: true, src: user?.imageUrl, color: 'secondary' }}
                                                                     classNames={{ description: 'text-md font-normal', name: 'text-lg font-normal' }}
                                                                     className="transition-transform"
-                                                                    description={user.email}
-                                                                    name={user.name}
+                                                                    description={user?.email}
+                                                                    name={user?.name}
                                                                 />
                                                             </div>
                                                         </DropdownItem>

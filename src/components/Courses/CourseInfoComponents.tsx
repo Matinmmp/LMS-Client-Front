@@ -28,6 +28,8 @@ import { getCourseComments } from "@/src/lib/apis/courseReviewApis";
 import { Spinner } from "@nextui-org/spinner"
 import { Avatar } from "@nextui-org/avatar";
 import { BiCommentDetail } from "react-icons/bi";
+import { useSelector } from "react-redux";
+import { Textarea } from "@nextui-org/input";
 
 export function ShortLink({ name }: { name: string }) {
     const copy = () => navigator.clipboard.writeText(`virtual-learn.com/?r=${encodeToShortCode(name)}`);
@@ -653,16 +655,21 @@ const SectionLinkAcordian = ({ sectionLinks, selectedLesson, setSelectedLesson, 
 }
 
 
-export const Commments = ({ name, refresh_token }: { name: string, refresh_token: any }) => {
-
+export const Commments = ({ name, refresh_token,courseId }: { name: string, refresh_token: any,courseId:string}) => {
+    const [showAddComment, setShowAddComment] = useState(true);
 
     const getReviewData: any = useQuery({ queryKey: ['getReviewData', name], queryFn: () => getCourseComments({ name, currentPage: 1 }) });
 
-    console.log(refresh_token)
+
+
 
     const handleLoginClick = () => {
         scrollTo({ top: 0, behavior: 'smooth' });
         showToast({ message: 'برای ثبت نظر وارد حساب خود شودید.', type: 'warning' });
+    }
+
+    const handleAddCommentClick = () => {
+        setShowAddComment(true);
     }
 
     return (
@@ -676,12 +683,14 @@ export const Commments = ({ name, refresh_token }: { name: string, refresh_token
                 </div>
 
                 {refresh_token ?
-                    <Button onPress={handleLoginClick} endContent={<BiCommentDetail size={18}/>} color={'primary'} radius="sm" size="md">ثبت نظر</Button>
+                    <Button onPress={handleAddCommentClick} endContent={<BiCommentDetail size={18} />} color={'primary'} radius="sm" size="md">ثبت نظر</Button>
                     :
                     <Button onPress={handleLoginClick} color={'primary'} radius="sm" size="md">برای ثبت نظر وارد شوید</Button>
                 }
 
             </div>
+
+            {showAddComment && <AddComment setShowAddComment={setShowAddComment} courseId={courseId}/>}
 
 
 
@@ -740,7 +749,7 @@ const Commment = ({ item }: { item: any }) => {
 
                 <div className="mt-2 sm:ps-4 flex flex-col gap-3">
                     {item?.commentsReplies?.map((comm: any, index: number) =>
-                        <div className="p-4 bg-white dark:bg-[#1f2e44]/ dark:bg-[#1b293a] rounded-lg shadow-small">
+                        <div key={index} className="p-4 bg-white dark:bg-[#1f2e44]/ dark:bg-[#1b293a] rounded-lg shadow-small">
                             <div className="pb-6 w-full flex gap-4 border-b-1 border-b-primary-200 dark:border-b-primary-700">
                                 <Avatar className="h-[2.5rem] w-[2.5rem] md:h-[3.5rem] md:w-[3.5rem]" size="lg" radius="full"
                                     isBordered color="primary" src={comm?.user?.imageUrl} showFallback />
@@ -767,4 +776,77 @@ const Commment = ({ item }: { item: any }) => {
             </div>
         </div>)
 
+}
+
+
+type AddCommentProps = {
+    setShowAddComment: (showAddComment:boolean)=>void,
+    courseId:string
+}
+const AddComment = ({setShowAddComment,courseId}:AddCommentProps) => {
+    const [showError, setShowError] = useState(false);
+    const [commentText, setCommentText] = useState('');
+    const { user, loading } = useSelector((state: any) => state.auth);
+
+
+
+    const handleCommentChange = (text: string) => {
+        setCommentText(text);
+        if (showError)
+            setShowError(false)
+    }
+
+    const handleCancleComment = () => {
+        setShowAddComment(false);
+        setCommentText('');
+        setShowError(false);
+    }
+
+    const handleAddComment = () => {
+        if (!commentText) {
+            setShowError(true);
+            return;
+        }
+    }
+
+    return (
+        <div className=" mt-4 mb-10 p-4">
+            <div className="p-4 md:p-6 pt-6 md:pt-8 flex flex-col gap-4 border-1 border-primary-500 rounded-lg shadow-small">
+                <div className="flex gap-4 ">
+                    <Avatar className="h-[2.5rem] w-[2.5rem] md:h-[3.5rem] md:w-[3.5rem] shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="full"
+                        isBordered color="primary" src={user?.imageUrl} showFallback />
+
+                    <div className="flex flex-col justify-between gap-1 text-sm md:text-base">
+
+                        <span className="font-medium truncate">{user?.name}</span>
+
+
+                        <span className='font-medium'>{user?.email}</span>
+                    </div>
+                </div>
+
+
+                <Textarea
+                    onChange={(e) => handleCommentChange(e.target.value)}
+                    className="mt-6 text-sm"
+                    classNames={{ inputWrapper: "dark:bg-opacity-30", errorMessage: 'text-sm font-medium mt-1' }}
+                    color={'primary'}
+                    errorMessage="برای ثبت نظر باید متن نظر پر باشد."
+                    isInvalid={showError}
+                    minRows={18}
+                    value={commentText}
+                    placeholder="نظر یا سوال خود را در اینجا بنویسید."
+                    variant="faded"
+                />
+
+                <div className="md:mt-2 pb-2 w-full flex justify-end gap-4">
+
+                    <Button onPress={handleCancleComment} className="w-full md:max-w-max  md:font-semibold" color="primary" variant="bordered" radius="sm" size="lg">لغو</Button>
+
+                    <Button onPress={handleAddComment} className="w-full md:max-w-max  md:font-semibold" color="primary" variant="shadow" radius="sm" size="lg">ثبت</Button>
+                </div>
+
+            </div>
+        </div>
+    )
 }

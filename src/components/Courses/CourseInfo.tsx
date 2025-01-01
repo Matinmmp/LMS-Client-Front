@@ -52,6 +52,8 @@ export default async function CourseInfo({ data }: Props) {
 
     let priceAfterDiscont = 0;
 
+ 
+
     if (isDiscountValide(course?.discount?.expireTime, course?.discount?.percent)) {
 
         priceAfterDiscont = course?.price - (course?.price * course?.discount?.percent / 100)
@@ -181,7 +183,7 @@ export default async function CourseInfo({ data }: Props) {
                     </div>
 
                     <div className="mt-8">
-                        <Commments name={course?.urlName} refresh_token={refresh_token?.value}/>
+                        <Commments name={course?.urlName} refresh_token={refresh_token?.value} courseId={course?._id}/>
                     </div>
                     
 
