@@ -8,8 +8,8 @@ import { TbFileDescription } from "react-icons/tb";
 import { Button } from "@nextui-org/button";
 import { SlEye } from "react-icons/sl";
 import { IoIosArrowBack, IoIosSchool } from "react-icons/io";
-import { getCourseDataByNameLoged, getCourseDataByNameNoLoged } from "@/src/lib/apis/courseApis";
-import { useQuery } from "@tanstack/react-query";
+import { getCourseDataByNameLoged, getCourseDataByNameNoLoged, postComment } from "@/src/lib/apis/courseApis";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import cookies from 'js-cookie'
 import { RxDotFilled } from "react-icons/rx";
 import { PiMaskSad, PiMonitorPlay } from "react-icons/pi";
@@ -655,12 +655,10 @@ const SectionLinkAcordian = ({ sectionLinks, selectedLesson, setSelectedLesson, 
 }
 
 
-export const Commments = ({ name, refresh_token,courseId }: { name: string, refresh_token: any,courseId:string}) => {
+export const Commments = ({ name, refresh_token, courseId }: { name: string, refresh_token: any, courseId: string }) => {
     const [showAddComment, setShowAddComment] = useState(true);
 
     const getReviewData: any = useQuery({ queryKey: ['getReviewData', name], queryFn: () => getCourseComments({ name, currentPage: 1 }) });
-
-
 
 
     const handleLoginClick = () => {
@@ -673,7 +671,7 @@ export const Commments = ({ name, refresh_token,courseId }: { name: string, refr
     }
 
     return (
-        <div className="w-full pb-4 bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl relative">
+        <div className="w-full pb-6 bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl relative">
             <span className="absolute -right-2 top-4 h-12 w-2 bg-warning-500 rounded-r-md"></span>
 
             <div className="w-full px-2 py-6 sm:px-4 flex items-center justify-between">
@@ -690,9 +688,7 @@ export const Commments = ({ name, refresh_token,courseId }: { name: string, refr
 
             </div>
 
-            {showAddComment && <AddComment setShowAddComment={setShowAddComment} courseId={courseId}/>}
-
-
+            {showAddComment && <AddComment setShowAddComment={setShowAddComment} courseId={courseId} />}
 
             {
                 getReviewData?.isLoading && !getReviewData?.isError &&
@@ -780,13 +776,21 @@ const Commment = ({ item }: { item: any }) => {
 
 
 type AddCommentProps = {
-    setShowAddComment: (showAddComment:boolean)=>void,
-    courseId:string
+    setShowAddComment: (showAddComment: boolean) => void,
+    courseId: string
 }
-const AddComment = ({setShowAddComment,courseId}:AddCommentProps) => {
+const AddComment = ({ setShowAddComment, courseId }: AddCommentProps) => {
     const [showError, setShowError] = useState(false);
     const [commentText, setCommentText] = useState('');
     const { user, loading } = useSelector((state: any) => state.auth);
+
+
+    const postCommentMutation = useMutation({
+        mutationFn: ({ comment, courseId, commentId }: { comment: string, courseId: string, commentId?: string }) =>
+            postComment({ comment, courseId, commentId }),
+        onSuccess: () => showToast({ type: 'success', message: 'نظر شما ثبت شد. پس از تایید نمایش داده میشود.' }),
+        onError: () => showToast({ type: 'error', message: 'خطایی پیش آمده است.' })
+    })
 
 
 
@@ -807,6 +811,8 @@ const AddComment = ({setShowAddComment,courseId}:AddCommentProps) => {
             setShowError(true);
             return;
         }
+        postCommentMutation.mutate({ comment: commentText, courseId });
+
     }
 
     return (
@@ -843,7 +849,9 @@ const AddComment = ({setShowAddComment,courseId}:AddCommentProps) => {
 
                     <Button onPress={handleCancleComment} className="w-full md:max-w-max  md:font-semibold" color="primary" variant="bordered" radius="sm" size="lg">لغو</Button>
 
-                    <Button onPress={handleAddComment} className="w-full md:max-w-max  md:font-semibold" color="primary" variant="shadow" radius="sm" size="lg">ثبت</Button>
+                    <Button onPress={handleAddComment} className="w-full md:max-w-max  md:font-semibold" color="primary" variant="shadow" radius="sm" size="lg">
+                        {postCommentMutation.isPending ? <Spinner color="secondary" /> : 'ثبت'}
+                    </Button>
                 </div>
 
             </div>

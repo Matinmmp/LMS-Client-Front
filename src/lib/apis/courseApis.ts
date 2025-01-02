@@ -54,7 +54,7 @@ export const getAllCourseUrlNames = async () => {
     }
 }
 
-export const getRelatedCourses = async (name:string) => {
+export const getRelatedCourses = async (name: string) => {
     try {
         const data = await customFetch(`/getRelatedCourses/${name}`, {
             method: 'GET',
@@ -66,5 +66,18 @@ export const getRelatedCourses = async (name:string) => {
     } catch (error) {
         return error
     }
+}
+
+export const postComment = async ({ comment, courseId, commentId }: { comment: string, courseId: string, commentId?: string }) => {
+ 
+        const data = await customFetch(`/postComment`, {
+            method: 'Post',
+            credentials: 'include' as const,
+            body: JSON.stringify({ comment, courseId, commentId }),
+            headers: { 'Content-Type': 'application/json' },
+        }
+        );
+        return await data;
+ 
 }
 
