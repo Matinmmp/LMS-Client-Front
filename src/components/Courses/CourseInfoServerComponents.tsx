@@ -19,7 +19,7 @@ export async function RelatedCourse({ name }: { name: string }) {
             <div className="w-full hidden md:block bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl relative">
                 <span className="absolute -right-2 top-4 h-12 w-2 bg-success-400 rounded-r-md"></span>
                 <div className="p-4 px-4 sm:py-6 flex flex-col gap-6">
-                    <div className="px-2 sm:px-0 flex items-center gap-2 text-success-400 dark:text-white">
+                    <div className=" flex items-center gap-2 text-success-400 dark:text-white">
                         <ImBooks size={40} className="text-success-400 hidden lg:inline " />
                         <p className="text-lg sm:text-xl md:text-2xl font-semibold">دوره‌های مرتبط</p>
                     </div>
@@ -61,7 +61,7 @@ export async function RelatedBlog({ name }: { name: string }) {
                 <span className="absolute -right-2 top-4 h-12 w-2 bg-danger-400 rounded-r-md"></span>
                 <div className="p-4 px-4 sm:py-6 flex flex-col gap-6">
 
-                    <div className="px-2 sm:px-0 flex items-center gap-2 text-danger-400 dark:text-white">
+                    <div className=" flex items-center gap-2 text-danger-400 dark:text-white">
                         <IoIosBook size={40} className="text-danger-400 hidden lg:inline " />
                         <p className="text-lg sm:text-xl md:text-2xl font-semibold">مقالات مرتبط</p>
                     </div>

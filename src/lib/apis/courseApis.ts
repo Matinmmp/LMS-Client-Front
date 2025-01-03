@@ -1,11 +1,15 @@
 import { customFetch } from "../fetcher";
 
-export const getCourseByName = async (name: string) => {
+export const getCourseByName = async (name: string,refresh_token:any,access_token:any) => {
     try {
         const data = await customFetch(`/get-course/${name}`, {
             method: 'GET',
             //  next: { revalidate: 3600 }
-            cache: 'no-cache'
+            cache: 'no-cache',
+            headers: {
+                "Content-Type": "application/json",
+                "Cookie": `refresh_token=${refresh_token};access_token=${access_token}`,
+            },
         }
         );
         return await data;

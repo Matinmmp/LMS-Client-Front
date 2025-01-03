@@ -16,7 +16,7 @@ import Link from "next/link";
 import { Commments, CourseLessons, Description, ShortLink } from "./CourseInfoComponents";
 import { VideoPlayer } from "../Shared/VideoPlayer";
 import { AlertSecondary } from "../Shared/Alert";
-import { RelatedCourse,RelatedBlog } from "./CourseInfoServerComponents";
+import { RelatedCourse, RelatedBlog } from "./CourseInfoServerComponents";
 import { cookies } from 'next/headers'
 
 
@@ -52,7 +52,7 @@ export default async function CourseInfo({ data }: Props) {
 
     let priceAfterDiscont = 0;
 
- 
+
 
     if (isDiscountValide(course?.discount?.expireTime, course?.discount?.percent)) {
 
@@ -166,45 +166,51 @@ export default async function CourseInfo({ data }: Props) {
 
             </div>
 
-            <div className="w-full mt-10 flex flex-col lg:flex-row gap-6">
+            <div className="w-full">
+                {course?.isPreOrder &&
+                    <div className="mt-6 -mb-2">
+                        <AlertSecondary text="این دوره در حال ترجمه است و به همین دلیل با ۴۰٪ کمتر نسبت به قیمت نهایی عرضه می‌شود. هدف از این تخفیف، حمایت از عزیزانی است که با خرید این دوره در حین ترجمه، از ما حمایت می‌کنند. پس از اتمام ترجمه، قیمت دوره به قیمت نهایی (بدون تخفیف) باز خواهد گشت." />
+                    </div>}
 
-                <div className="w-full lg:w-[70%] ">
-                    <div className="bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
-                        <Description desc={course?.longDescription} />
-                    </div>
-                    <div className="mt-8">
-                        <CourseLessons name={course?.urlName} />
-                    </div>
-                    <div className="mt-8">
-                        <RelatedCourse name={course?.urlName}/>
-                    </div>
-                    <div className="mt-8">
-                        <RelatedBlog name={course?.urlName}/>
+                <div className="w-full mt-8 flex flex-col lg:flex-row gap-6">
+
+                    <div className="w-full lg:w-[70%] ">
+                        <div className="bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
+                            <Description desc={course?.longDescription} />
+                        </div>
+                        <div className="mt-8">
+                            <CourseLessons name={course?.urlName} />
+                        </div>
+                        <div className="mt-8">
+                            <RelatedCourse name={course?.urlName} />
+                        </div>
+                        <div className="mt-8">
+                            <RelatedBlog name={course?.urlName} />
+                        </div>
+
+                        <div className="mt-8">
+                            <Commments name={course?.urlName} refresh_token={refresh_token?.value} courseId={course?._id} />
+                        </div>
+
+
+
                     </div>
 
-                    <div className="mt-8">
-                        <Commments name={course?.urlName} refresh_token={refresh_token?.value} courseId={course?._id}/>
-                    </div>
-                    
+                    <div id="courseInfoSidebar" className="w-full min-w-72 lg:w-[30%] flex flex-col gap-4">
 
-                    
+                        <SidebarFeature data={course} />
+
+                        <PercentToFull total={course?.holeCourseVideos} translated={course?.totalLessons} />
+
+                        <ShortLink name={course?.name} />
+
+                        <TeacherInfo data={teacher} />
+
+                        <AcademyInfo data={academy} />
+
+                    </div>
+
                 </div>
-
-                <div id="courseInfoSidebar" className="w-full min-w-72 lg:w-[30%] flex flex-col gap-4">
-                    {course?.isPreOrder && <AlertSecondary text="این دوره در حال ترجمه است و به همین دلیل با ۴۰٪ کمتر نسبت به قیمت نهایی عرضه می‌شود. هدف از این تخفیف، حمایت از عزیزانی است که با خرید این دوره در حین ترجمه، از ما حمایت می‌کنند. پس از اتمام ترجمه، قیمت دوره به قیمت نهایی (بدون تخفیف) باز خواهد گشت." />}
-
-                    <SidebarFeature data={course} />
-
-                    <PercentToFull total={course?.holeCourseVideos} translated={course?.totalLessons} />
-
-                    <ShortLink name={course?.name} />
-
-                    <TeacherInfo data={teacher} />
-
-                    <AcademyInfo data={academy} />
-
-                </div>
-
             </div>
         </div >
     )

@@ -3,13 +3,13 @@
 import { encodeToShortCode, formatDate, hoursAndMinutesString, secondsToTimeString2, toPersianNumber } from "@/src/utils/functions"
 import { FaRegCopy } from "react-icons/fa6"
 import { motion } from 'framer-motion';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TbFileDescription } from "react-icons/tb";
 import { Button } from "@nextui-org/button";
 import { SlEye } from "react-icons/sl";
 import { IoIosArrowBack, IoIosSchool } from "react-icons/io";
 import { getCourseDataByNameLoged, getCourseDataByNameNoLoged, postComment } from "@/src/lib/apis/courseApis";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query";
 import cookies from 'js-cookie'
 import { RxDotFilled } from "react-icons/rx";
 import { PiMaskSad, PiMonitorPlay } from "react-icons/pi";
@@ -37,7 +37,7 @@ export function ShortLink({ name }: { name: string }) {
     return (
         <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
             <div className="w-full px-4 py-6 flex flex-col items-center">
-                <p className="text-lg font-semibold text-center">لینک کوتاه آموزش</p>
+                <p className="md:text-lg font-semibold text-center">لینک کوتاه آموزش</p>
 
 
                 <div className="mt-4 flex flex-grow flex-row w-full py-3 px-4 gap-x-1 rounded-medium items-start bg-primary-500/20">
@@ -656,9 +656,13 @@ const SectionLinkAcordian = ({ sectionLinks, selectedLesson, setSelectedLesson, 
 
 
 export const Commments = ({ name, refresh_token, courseId }: { name: string, refresh_token: any, courseId: string }) => {
-    const [showAddComment, setShowAddComment] = useState(true);
+    const [showAddComment, setShowAddComment] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [list, setList] = useState<any>([]);
 
-    const getReviewData: any = useQuery({ queryKey: ['getReviewData', name], queryFn: () => getCourseComments({ name, currentPage: 1 }) });
+
+
+    const getReviewData: any = useQuery({ queryKey: ['getReviewData2', name, currentPage], queryFn: () => getCourseComments({ name, currentPage: currentPage }) });
 
 
     const handleLoginClick = () => {
@@ -670,20 +674,35 @@ export const Commments = ({ name, refresh_token, courseId }: { name: string, ref
         setShowAddComment(true);
     }
 
+    const handleNextPage = () => {
+        if (currentPage < getReviewData?.data?.totalPage && !getReviewData?.isLoading)
+            setCurrentPage(currentPage + 1)
+
+    }
+
+    console.log(currentPage, getReviewData?.data?.totalPage);
+
+    useEffect(() => {
+        if (getReviewData?.data?.comments?.length > 0) {
+            setList((list: any) => [...list, ...getReviewData.data.comments])
+        }
+    }, [getReviewData?.data?.currentPage && !getReviewData?.isLoading && getReviewData?.isSuccess])
+
+
     return (
         <div className="w-full pb-6 bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl relative">
             <span className="absolute -right-2 top-4 h-12 w-2 bg-warning-500 rounded-r-md"></span>
 
-            <div className="w-full px-2 py-6 sm:px-4 flex items-center justify-between">
-                <div className="px-2 sm:px-0 flex items-center gap-2 text-warning-500 dark:text-white">
+            <div className="w-full px-4 py-6 sm:px-4 flex items-center justify-between">
+                <div className="flex items-center gap-2 text-warning-500 dark:text-white">
                     <FaComments size={40} className="text-warning-500 hidden lg:inline " />
                     <p className="text-lg sm:text-xl md:text-2xl font-semibold">کامنت‌ها</p>
                 </div>
 
                 {refresh_token ?
-                    <Button onPress={handleAddCommentClick} endContent={<BiCommentDetail size={18} />} color={'primary'} radius="sm" size="md">ثبت نظر</Button>
+                    <Button onPress={handleAddCommentClick} endContent={<BiCommentDetail size={18} />} variant="shadow" color={'primary'} radius="sm" size="md">ثبت نظر</Button>
                     :
-                    <Button onPress={handleLoginClick} color={'primary'} radius="sm" size="md">برای ثبت نظر وارد شوید</Button>
+                    <Button onPress={handleLoginClick} variant="shadow" color={'primary'} radius="sm" size="md">برای ثبت نظر وارد شوید</Button>
                 }
 
             </div>
@@ -694,65 +713,95 @@ export const Commments = ({ name, refresh_token, courseId }: { name: string, ref
                 getReviewData?.isLoading && !getReviewData?.isError &&
                 <div className="mt-4 pb-4 flex flex-col gap-4 items-center">
                     <Spinner color="warning" size={'lg'} />
-                    <p className="text-xl font-semibold text-warning-500">درحال دریافت نظرات</p>
+                    <p className="lg:text-xl font-semibold text-warning-500">درحال دریافت نظرات</p>
                 </div>
             }
             {
-                !getReviewData?.isLoading && getReviewData?.isSuccess && !getReviewData?.data?.comments?.length &&
+                !getReviewData?.isLoading && getReviewData?.isSuccess && !list?.length &&
                 <div className="mt-4 pb-4 flex flex-col gap-4 items-center">
                     <PiMaskSad className="text-warning-500 text-5xl md:text-6xl" />
-                    <p className="text-xl font-semibold text-warning-500">نظری ثبت نشده است</p>
+                    <p className="lg:text-xl font-semibold text-warning-500">نظری ثبت نشده است</p>
                 </div>
             }
             {
-                !getReviewData?.isLoading && getReviewData?.isSuccess && getReviewData?.data?.comments?.length &&
-                <div className="mt-4 px-4 flex flex-col gap-6">
-                    {getReviewData?.data?.comments?.map((item: any, index: number) => <Commment item={item} key={index} />)}
+                list?.length &&
+                <div className="flex flex-col gap-6">
+                    <div className="mt-4 px-4 flex flex-col gap-4">
+                        {list?.map((item: any, index: number) => <Commment courseId={courseId} item={item} key={index} refresh_token={refresh_token} />)}
+                    </div>
+
+                    {getReviewData?.data?.currentPage < getReviewData?.data?.totalPage ?
+                        <div className='px-4 flex justify-center'>
+                            <Button onPress={handleNextPage} variant="shadow" color={'primary'} radius="sm" size="md" className='max-w-max'>
+                                {getReviewData.isLoading ? <Spinner color="secondary" /> : 'نمایش بیشتر'}
+                            </Button>
+                        </div> : ''}
+
                 </div>
             }
+
+
+
         </div>
     )
 
 }
 
 
-const Commment = ({ item }: { item: any }) => {
+const Commment = ({ item, refresh_token, courseId }: { item: any, refresh_token: any, courseId: string }) => {
+    const [showAddComment, setShowAddComment] = useState(false);
+
+
+    const handleAddCommentClick = () => {
+        if (!refresh_token) {
+            scrollTo({ top: 0, behavior: 'smooth' });
+            showToast({ message: 'برای ثبت نظر وارد حساب خود شودید.', type: 'warning' });
+        }
+        else
+            setShowAddComment(true);
+    }
+
+
     return (
         <div className="w-full bg-primary-50 shadow-small rounded-lg border-1 border-primary-500">
-            <div className="p-4 md:p-6 flex flex-col">
+            <div className="w-full py-4 md:pt-6 flex flex-col">
 
-                <div className="pb-6 flex items-center justify-between flex-wrap gap-2 border-b-1 border-b-primary-200 dark:border-b-primary-900">
-                    <div className="flex gap-4 ">
-                        <Avatar className="h-[2.5rem] w-[2.5rem] md:h-[3.5rem] md:w-[3.5rem] shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="full"
-                            isBordered color="primary" src={item?.user?.imageUrl} showFallback />
+                <div className="w-full px-4">
+                    <div className="w-full pb-4 md:pb-6 flex items-center justify-between flex-wrap gap-2 border-b-1 border-b-primary-200 dark:border-b-primary-900">
+                        <div className="max-w-max flex gap-4 items-center">
+                            <Avatar className="min-h-[2.5rem] max-h-[2.5rem] min-w-[2.5rem] max-w-[2.5rem] md:min-h-[3.5rem] md:min-w-[3.5rem] md:max-h-[3.5rem] md:max-w-[3.5rem]
+                                 shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="full"
+                                isBordered color="primary" src={item?.user?.imageUrl} showFallback />
 
-                        <div className="flex flex-col justify-between gap-1 text-sm md:text-base">
-                            <div className="flex items-center gap-1">
-                                <span className="font-medium truncate">{item?.user?.name}</span>
-                                <span>|</span>
-                                <strong className=" font-semibold text-primary-500 dark:text-primary-400">{`${item?.user?.role === 'admin' ? 'مدیر' : 'کاربر'}`}</strong>
+                            <div className="w-full flex flex-col justify-between gap-1 text-sm md:text-base">
+                                <div className="w-full text-sm md:text-base flex items-center gap-1 ">
+                                    <p className="max-w-max font-medium overflow-hidden text-ellipsis line-clamp-1">{item?.user?.name}</p>
+                                    <span>|</span>
+                                    <strong className=" font-semibold text-primary-500 dark:text-primary-400">{`${item?.user?.role === 'admin' ? 'مدیر' : 'کاربر'}`}</strong>
+                                </div>
+
+                                <span className='text-sm font-semibold text-gray-700 dark:text-gray-400'>{formatDate(item.createAt)}</span>
                             </div>
-
-                            <span className='text-sm font-semibold text-gray-700 dark:text-gray-400'>{formatDate(item.createAt)}</span>
                         </div>
+                        <Button onPress={handleAddCommentClick} color="primary" size="sm" variant="shadow" className='font-bold ms-auto'>پاسخ</Button>
                     </div>
-                    <Button color="primary" size="sm" variant="ghost" className='font-bold ms-auto'>پاسخ</Button>
                 </div>
-
                 <div className="w-full pt-6 pb-4">
-                    <p className="text-xs md:text-base">{item?.comment}</p>
+                    <p className="px-4 text-sm md:text-base">{item?.comment}</p>
                 </div>
 
-                <div className="mt-2 sm:ps-4 flex flex-col gap-3">
+                {showAddComment && <AddComment setShowAddComment={setShowAddComment} courseId={courseId} commentId={item.id} />}
+
+                <div className="w-full px-4 mt-2 sm:ps-8 flex flex-col gap-3">
                     {item?.commentsReplies?.map((comm: any, index: number) =>
-                        <div key={index} className="p-4 bg-white dark:bg-[#1f2e44]/ dark:bg-[#1b293a] rounded-lg shadow-small">
-                            <div className="pb-6 w-full flex gap-4 border-b-1 border-b-primary-200 dark:border-b-primary-700">
-                                <Avatar className="h-[2.5rem] w-[2.5rem] md:h-[3.5rem] md:w-[3.5rem]" size="lg" radius="full"
+                        <div key={index} className="w-full p-4 bg-white dark:bg-[#1f2e44]/ dark:bg-[#1b293a] rounded-lg shadow-small">
+                            <div className="w-full pb-4 flex gap-4 border-b-1 border-b-primary-200 dark:border-b-primary-700">
+                                <Avatar className="min-h-[2.5rem] max-h-[2.5rem] min-w-[2.5rem] max-w-[2.5rem] md:min-h-[3.5rem] md:min-w-[3.5rem] md:max-h-[3.5rem] md:max-w-[3.5rem]" size="lg" radius="full"
                                     isBordered color="primary" src={comm?.user?.imageUrl} showFallback />
 
-                                <div className="flex flex-col justify-between gap-1 text-sm md:text-base">
-                                    <div className="flex items-center gap-1">
-                                        <span className="font-medium truncate">{comm?.user?.name}</span>
+                                <div className="w-full flex flex-col justify-between gap-1 text-sm md:text-base">
+                                    <div className="w-full flex items-center gap-1">
+                                        <p className="font-medium overflow-hidden text-ellipsis line-clamp-1">{comm?.user?.name}</p>
                                         <span>|</span>
                                         <strong className=" font-semibold text-primary-500 dark:text-primary-400">{`${comm?.user?.role === 'admin' ? 'مدیر' : 'کاربر'}`}</strong>
                                     </div>
@@ -777,18 +826,23 @@ const Commment = ({ item }: { item: any }) => {
 
 type AddCommentProps = {
     setShowAddComment: (showAddComment: boolean) => void,
-    courseId: string
+    courseId: string,
+    commentId?: string,
 }
-const AddComment = ({ setShowAddComment, courseId }: AddCommentProps) => {
+const AddComment = ({ setShowAddComment, courseId, commentId }: AddCommentProps) => {
     const [showError, setShowError] = useState(false);
     const [commentText, setCommentText] = useState('');
-    const { user, loading } = useSelector((state: any) => state.auth);
+    const { user } = useSelector((state: any) => state.auth);
+
 
 
     const postCommentMutation = useMutation({
         mutationFn: ({ comment, courseId, commentId }: { comment: string, courseId: string, commentId?: string }) =>
             postComment({ comment, courseId, commentId }),
-        onSuccess: () => showToast({ type: 'success', message: 'نظر شما ثبت شد. پس از تایید نمایش داده میشود.' }),
+        onSuccess: () => {
+            showToast({ type: 'success', message: 'نظر شما ثبت شد. پس از تایید نمایش داده میشود.' });
+            setShowAddComment(false);
+        },
         onError: () => showToast({ type: 'error', message: 'خطایی پیش آمده است.' })
     })
 
@@ -811,24 +865,26 @@ const AddComment = ({ setShowAddComment, courseId }: AddCommentProps) => {
             setShowError(true);
             return;
         }
-        postCommentMutation.mutate({ comment: commentText, courseId });
+        if (!postCommentMutation.isPending)
+            postCommentMutation.mutate({ comment: commentText, courseId, commentId });
 
     }
 
     return (
-        <div className=" mt-4 mb-10 p-4">
-            <div className="p-4 md:p-6 pt-6 md:pt-8 flex flex-col gap-4 border-1 border-primary-500 rounded-lg shadow-small">
-                <div className="flex gap-4 ">
-                    <Avatar className="h-[2.5rem] w-[2.5rem] md:h-[3.5rem] md:w-[3.5rem] shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="full"
+        <div className="w-full mt-4 mb-8 p-4">
+            <div className="w-full p-4 md:p-6 pt-6 md:pt-8 flex flex-col gap-4 border-1 border-primary-500 rounded-lg shadow-small">
+                <div className="w-full flex gap-4 ">
+                    <Avatar className="
+                        min-h-[2.5rem] max-h-[2.5rem] min-w-[2.5rem] max-w-[2.5rem] md:min-h-[3.5rem] md:min-w-[3.5rem] md:max-h-[3.5rem] md:max-w-[3.5rem]
+                        shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="full"
                         isBordered color="primary" src={user?.imageUrl} showFallback />
 
-                    <div className="flex flex-col justify-between gap-1 text-sm md:text-base">
+                    <div className="w-full flex flex-col justify-between gap-1">
+                        <p className="max-w-[calc(100%-2.5rem)] md:max-w-[calc(100%-3.5rem)] font-medium text-sm md:text-base overflow-hidden text-ellipsis line-clamp-1 ">{user?.name}</p>
 
-                        <span className="font-medium truncate">{user?.name}</span>
-
-
-                        <span className='font-medium'>{user?.email}</span>
+                        <p className='max-w-[calc(100%-3rem)] md:max-w-[calc(100%-4rem)] text-xs md:text-base font-medium overflow-hidden text-ellipsis line-clamp-1'>{user?.email}</p>
                     </div>
+
                 </div>
 
 
@@ -847,11 +903,15 @@ const AddComment = ({ setShowAddComment, courseId }: AddCommentProps) => {
 
                 <div className="md:mt-2 pb-2 w-full flex justify-end gap-4">
 
-                    <Button onPress={handleCancleComment} className="w-full md:max-w-max  md:font-semibold" color="primary" variant="bordered" radius="sm" size="lg">لغو</Button>
 
-                    <Button onPress={handleAddComment} className="w-full md:max-w-max  md:font-semibold" color="primary" variant="shadow" radius="sm" size="lg">
+                    <Button onPress={handleCancleComment} className="w-full md:max-w-max  md:font-semibold" color="primary" variant="bordered" radius="sm" size="md">لغو</Button>
+
+                    <Button onPress={handleAddComment} className="w-full md:max-w-max  md:font-semibold" color="primary" variant="shadow" radius="sm" size="md">
                         {postCommentMutation.isPending ? <Spinner color="secondary" /> : 'ثبت'}
                     </Button>
+
+
+
                 </div>
 
             </div>
