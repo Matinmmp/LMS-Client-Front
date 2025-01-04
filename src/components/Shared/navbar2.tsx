@@ -24,6 +24,7 @@ import CustomeModal from "@/src/components/Shared/CustomeModal";
 
 import { FaRightToBracket, FaCaretLeft, FaChevronLeft, FaQuoteRight, FaRegEye, FaStar } from "react-icons/fa6";
 import { MdAttachMoney, MdKeyboardArrowDown, MdKeyboardArrowLeft, MdLogout, MdOutlinePersonAddAlt } from "react-icons/md";
+import { IoMdCart } from "react-icons/io";
 import { FaTelegramPlane } from "react-icons/fa";
 import { MdContactPhone } from "react-icons/md";
 import { GrInstagram } from "react-icons/gr";
@@ -45,6 +46,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { showToast } from "@/src/utils/toast";
 import { logoutUser } from "@/src/lib/apis/userApis";
 import { useRouter } from "next/navigation";
+import { Cart } from "./Cart";
 
 
 const links = [
@@ -336,10 +338,15 @@ export const Navbar = () => {
                             </li>
                         </ul>
 
-                        <ul className={`ms-auto flex items-center ${!loading && user ? 'gap-2' : 'gap-1'}`}>
+                        <ul className={`ms-auto flex items-center gap-3`}>                           
 
                             <li className="hidden sm:flex gap-2">
                                 <ThemeSwitch />
+                            </li>
+
+                            <li className="me-2">
+                               <Cart/>
+                               
                             </li>
 
                             <li className="hidden sm:flex">

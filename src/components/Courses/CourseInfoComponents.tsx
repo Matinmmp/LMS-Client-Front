@@ -9,7 +9,7 @@ import { Button } from "@nextui-org/button";
 import { SlEye } from "react-icons/sl";
 import { IoIosArrowBack, IoIosSchool } from "react-icons/io";
 import { getCourseDataByNameLoged, getCourseDataByNameNoLoged, postComment } from "@/src/lib/apis/courseApis";
-import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import cookies from 'js-cookie'
 import { RxDotFilled } from "react-icons/rx";
 import { PiMaskSad, PiMonitorPlay } from "react-icons/pi";
@@ -30,6 +30,7 @@ import { Avatar } from "@nextui-org/avatar";
 import { BiCommentDetail } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { Textarea } from "@nextui-org/input";
+import { MdOutlineAddShoppingCart } from "react-icons/md";
 
 export function ShortLink({ name }: { name: string }) {
     const copy = () => navigator.clipboard.writeText(`virtual-learn.com/?r=${encodeToShortCode(name)}`);
@@ -917,4 +918,16 @@ const AddComment = ({ setShowAddComment, courseId, commentId }: AddCommentProps)
             </div>
         </div>
     )
+}
+
+export const AddToCartButton = ({ isPurchased ,courseId}: { isPurchased: boolean,courseId:any }) => {
+ 
+    if (!isPurchased)
+        return (
+            <Button startContent={<MdOutlineAddShoppingCart size={22} />} variant="shadow" color="primary" size="lg" className="w-full sm:w-max font-medium order-2 sm:order-1">افزودن به سبد خرید</Button>
+        )
+    else
+        return (
+            <p className="w-full flex justify-center text-lg md:text-xl font-semibold text-secondary-400">شما دانشجوی این دوره هستید.</p>
+        )
 }

@@ -13,7 +13,7 @@ import { IoIosFilm } from "react-icons/io";
 import { FaStar } from "react-icons/fa6"
 import { Avatar } from "@nextui-org/avatar";
 import Link from "next/link";
-import { Commments, CourseLessons, Description, ShortLink } from "./CourseInfoComponents";
+import { AddToCartButton, Commments, CourseLessons, Description, ShortLink } from "./CourseInfoComponents";
 import { VideoPlayer } from "../Shared/VideoPlayer";
 import { AlertSecondary } from "../Shared/Alert";
 import { RelatedCourse, RelatedBlog } from "./CourseInfoServerComponents";
@@ -22,14 +22,11 @@ import { cookies } from 'next/headers'
 
 type Props = {
     data: any,
+    isPurchased:boolean
 }
 
 let AddToCartComponent: any = React.Component;
 let PriceAfterDiscountComponent: any = React.Component;
-
-//1 user not logedin should show price and add to card button
-//2 user is logedin and bouth the course should show that user is student and souldnt show price and add to cart and discount
-let status: number = 1;
 
 const isDiscountValide = (expireTime: string, percent: string) => {
     if (!expireTime || !percent) return false;
@@ -42,7 +39,7 @@ const isDiscountValide = (expireTime: string, percent: string) => {
     return true
 };
 
-export default async function CourseInfo({ data }: Props) {
+export default async function CourseInfo({ data,isPurchased }: Props) {
     const cookieStore = await cookies()
     const refresh_token = cookieStore.get('refresh_token')
 
@@ -100,23 +97,24 @@ export default async function CourseInfo({ data }: Props) {
 
     }
 
+    console.log('isPurchased',isPurchased)
 
-    if (status === 1) {
-        AddToCartComponent =
-            <>
-                {course?.price ?
-                    <DiscountCounter expireTime={course?.discount?.expireTime} percent={course?.discount?.percent} usageCount={course?.discount?.usageCount} />
-                    : ''}
-                <div className={`w-full ${!isDiscountValide(course?.discount?.expireTime, course?.discount?.percent) ? 'md:mt-14' : 'md:mt-6'} flex flex-col sm:flex-row items-center justify-between gap-2`}>
-                    <Button startContent={<MdOutlineAddShoppingCart size={22} />} variant="shadow" color="primary" size="lg" className="w-full sm:w-max font-medium order-2 sm:order-1">افزودن به سبد خرید</Button>
+    AddToCartComponent =
+        <>
+            {course?.price && !isPurchased ?
+                <DiscountCounter expireTime={course?.discount?.expireTime} percent={course?.discount?.percent} usageCount={course?.discount?.usageCount} />
+                : ''}
+            <div className={`w-full ${!isDiscountValide(course?.discount?.expireTime, course?.discount?.percent) ? 'md:mt-14' : 'md:mt-6'} flex flex-col sm:flex-row items-center justify-between gap-2`}>
+                <AddToCartButton isPurchased={isPurchased} courseId={course?._id} />
 
-                    <div className="px-3 py-1 pb-2 mt-auto flex justify-end order-1 sm:order-2">
+                {!isPurchased &&
+                    <div className="px-3 py-1 pb-2 mt-auto flex justify-end order-1 sm:order-2">                   
                         {PriceAfterDiscountComponent}
-                    </div>
+                    </div>}
 
-                </div>
-            </>
-    }
+            </div>
+        </>
+
 
 
     return (

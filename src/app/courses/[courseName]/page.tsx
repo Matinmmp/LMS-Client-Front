@@ -26,13 +26,13 @@ export default async function CourseDetail({ params: { courseName } }: Props) {
 
     const data: any = await getCourseByName(name, refresh_token?.value, access_token?.value)
 
-    console.log(data)
+   
     if (data && data.success)
         return (
             <section className=" flex flex-col items-center justify-center  " >
 
                 <div className="w-full max-w-7xl mt-28 px-4 md:px-8 2xl:px-2 flex items-center justify-center ">
-                    <CourseInfo data={data?.courseData} />
+                    <CourseInfo data={data?.courseData} isPurchased={data?.isPurchased}/>
                 </div>
 
             </section>
