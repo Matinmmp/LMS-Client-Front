@@ -134,7 +134,7 @@ export default async function CourseInfo({ data,isPurchased }: Props) {
 
                         <div className="h-full flex flex-col ">
 
-                            <h1 dir="ltr" className='mt-4 lg:mt-0 text-primary-400 font-bold text-xl md:text-2xl 2xl:text-[2rem] md:leading-10'>
+                            <h1 dir="ltr" className='mt-4 lg:mt-0 text-secondary-500 font-bold text-xl md:text-2xl 2xl:text-[2rem] md:leading-10'>
                                 {course?.name}
                             </h1>
 

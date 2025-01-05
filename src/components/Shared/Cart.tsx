@@ -16,7 +16,7 @@ export const Cart = () => {
 
     return (
         <div className="relative cursor-pointer">
-            <div onClick={() => dispatch(addCourse({ courseId: 'ffffff' }))} className="min-w-11 min-h-11 max-h-11 max-w-11 flex items-center justify-center rounded-full bg-secondary-500 shadow-[0_0_7px_0_#42C0F4]">
+            <div className="min-w-11 min-h-11 max-h-11 max-w-11 flex items-center justify-center rounded-full bg-secondary-500 shadow-[0_0_7px_0_#42C0F4]">
                 <IoMdCart size={26} className="text-white" />
             </div>
             {courseIds?.length ?

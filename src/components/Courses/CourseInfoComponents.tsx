@@ -28,9 +28,13 @@ import { getCourseComments } from "@/src/lib/apis/courseReviewApis";
 import { Spinner } from "@nextui-org/spinner"
 import { Avatar } from "@nextui-org/avatar";
 import { BiCommentDetail } from "react-icons/bi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Textarea } from "@nextui-org/input";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
+import { LuEye } from "react-icons/lu";
+import { addCourse } from "@/src/redux/cart/cartSlice";
+
+
 
 export function ShortLink({ name }: { name: string }) {
     const copy = () => navigator.clipboard.writeText(`virtual-learn.com/?r=${encodeToShortCode(name)}`);
@@ -136,7 +140,7 @@ export function CourseLessons({ name }: { name: any }) {
         totalSections += 1;
 
     return (
-        <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl relative">
+        <div id="course_lessons" className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl relative">
             <span className="absolute -right-2 top-4 h-12 w-2 bg-secondary-400 rounded-r-md"></span>
             <div className="px-2 py-6 sm:px-4 flex flex-col gap-6">
                 <div className="px-2 sm:px-0 flex items-center gap-2 text-secondary-400 dark:text-white">
@@ -920,14 +924,22 @@ const AddComment = ({ setShowAddComment, courseId, commentId }: AddCommentProps)
     )
 }
 
-export const AddToCartButton = ({ isPurchased ,courseId}: { isPurchased: boolean,courseId:any }) => {
- 
+export const AddToCartButton = ({ isPurchased, courseId }: { isPurchased: boolean, courseId: any }) => {
+    const dispatch = useDispatch();
+    const handleClick = () => {
+        dispatch(addCourse({ courseId }))
+    }
     if (!isPurchased)
         return (
-            <Button startContent={<MdOutlineAddShoppingCart size={22} />} variant="shadow" color="primary" size="lg" className="w-full sm:w-max font-medium order-2 sm:order-1">افزودن به سبد خرید</Button>
+            <Button onPress={handleClick} startContent={<MdOutlineAddShoppingCart size={22} />} variant="shadow" color="primary" size="lg" className="w-full sm:w-max font-medium order-2 sm:order-1">افزودن به سبد خرید</Button>
         )
     else
         return (
-            <p className="w-full flex justify-center text-lg md:text-xl font-semibold text-secondary-400">شما دانشجوی این دوره هستید.</p>
+            <div className='mt-6 md:mt-0 w-full flex items-center justify-center sm:justify-between flex-wrap md:flex-nowrap gap-4'>
+                <Button href="#course_lessons"
+                    as={Link} startContent={<SlEye size={22} />} variant="shadow" color="primary" size="lg" className="w-full sm:w-max font-medium order-2 sm:order-1">مشاهده‌ی درس‌ها</Button>
+
+                <p className=" text-lg md:text-xl font-semibold text-secondary-400">شما دانشجوی این دوره هستید.</p>
+            </div>
         )
 }

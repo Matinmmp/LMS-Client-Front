@@ -2,7 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    scroll-behavior: smooth;
+}
 
+#course_lessons {
+    scroll-margin-top: 150px; /* فاصله‌ای که بالاتر از عنصر هدف قرار می‌گیرد */
+}
 
 input {
     outline: none;

@@ -1,3 +1,4 @@
+import { showToast } from "@/src/utils/toast";
 import { createSlice } from "@reduxjs/toolkit";
 
 const LOCAL_STORAGE_KEY = "cart";
@@ -26,7 +27,11 @@ const cartSlice = createSlice({
                 state.courseIds.push(courseId);
                 if (typeof window !== "undefined") {
                     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
+                    showToast({message:'به سبد خرید شما اضافه شد.',type:'success'})
+
                 }
+            }else{
+                showToast({message:'این دوره قبلا اضافه شده.',type:'error'})
             }
         },
 
