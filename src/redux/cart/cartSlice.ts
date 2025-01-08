@@ -37,11 +37,14 @@ const cartSlice = createSlice({
 
         deleteCourse: (state: any, action) => {
             const { courseId } = action.payload;
+            console.log(action.payload)
             const index = state.courseIds.indexOf(courseId);
             if (index > -1) {
                 state.courseIds.splice(index, 1);
                 if (typeof window !== "undefined") {
                     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
+                    showToast({message:'با موفقیت حذف شد.',type:'success'})
+
                 }
             }
         },
