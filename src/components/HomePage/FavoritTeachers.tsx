@@ -12,7 +12,7 @@ type Props = {
 const FavoritTeachers = async (props: Props) => {
 
     const data: any = await getHomeFavoritTeachers();
-    console.log(data);
+
     if (data && data.success && data.teachers.length)
         return (
             <section className="w-full pb-10 flex flex-col relative">

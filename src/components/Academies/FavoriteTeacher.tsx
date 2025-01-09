@@ -15,7 +15,7 @@ type Props = {
 const FavoritTeachersForAcademy = async (props: Props) => {
 
     const data: any = await getAcademyTeachersByEngName(props.name);
-    console.log(data);
+
     if (data && data.success)
         return (
             <section className="w-full pb-4 flex flex-col relative">

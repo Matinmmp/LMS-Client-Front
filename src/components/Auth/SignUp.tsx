@@ -1,16 +1,17 @@
-import { registration } from "@/src/lib/apis/authApis"
+import { loginWithGoogle, registration } from "@/src/lib/apis/authApis"
+import { getUserInfo } from "@/src/lib/apis/userApis"
 import { userLoggedIn, userRegistration } from "@/src/redux/auth/authSlice"
+import { convertToEnglishNumbers } from "@/src/utils/functions"
 import { showToast } from "@/src/utils/toast"
 import { Button } from "@nextui-org/button"
 
 import { Input } from "@nextui-org/input"
 import { ModalBody, ModalHeader } from "@nextui-org/modal"
 import { Spinner } from "@nextui-org/spinner"
+import { GoogleLogin } from "@react-oauth/google"
 import { useMutation } from "@tanstack/react-query"
 import { useFormik } from "formik"
-import { signIn, useSession } from "next-auth/react"
 import { FC, useState } from "react"
-import { FcGoogle } from "react-icons/fc"
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useDispatch } from "react-redux"
 import * as Yup from 'yup'
@@ -34,8 +35,6 @@ const SignUp: FC<Props> = ({ setRoute, setOpen }) => {
     const dispatch = useDispatch();
     const [isVisible, setIsVisible] = useState(false);
     const toggleVisibility = () => setIsVisible(!isVisible);
-    const { data } = useSession();
-
 
     const registrationMutation = useMutation({
         mutationFn: (data: { name: string, email: string, password: string }) => registration(data),
@@ -53,11 +52,48 @@ const SignUp: FC<Props> = ({ setRoute, setOpen }) => {
         initialValues: { name: "", email: "", password: "" },
         validationSchema: schema,
         onSubmit: async ({ name, email, password }) => {
-            await registrationMutation.mutate({ name, email, password })
+            await registrationMutation.mutate({ name, email: convertToEnglishNumbers(email), password: convertToEnglishNumbers(password) })
         }
     })
 
     const { errors, touched, handleChange, handleSubmit, values } = formik;
+
+    const getUserMutation = useMutation({
+        mutationFn: () => getUserInfo(),
+        onMutate: () => dispatch(userLoggedIn({ loading: true })),
+        onSuccess: (e) => dispatch(userLoggedIn(e)),
+        onError: (e: any) => {
+            e.loading = false;
+            dispatch(userLoggedIn(e));
+        },
+        onSettled: (e: any) => {
+            e.loading = false;
+            dispatch(userLoggedIn(e));
+        }
+    })
+
+    const loginMutationWithGoogle = useMutation({
+        mutationFn: (token: string) => loginWithGoogle(token),
+        onSuccess: (e) => {
+            location?.reload();
+            dispatch(userLoggedIn(e))
+            getUserMutation.mutate();
+            setOpen(false);
+            showToast({ type: 'success', message: 'با موفقیت وارد شدید' });
+        },
+        onError: () => {
+            showToast({ type: 'error', message: 'ایمیل یا رمز عبور اشتباه است' });
+        },
+    })
+
+    const handleSuccess = (credentialResponse: any) => {
+        console.log(credentialResponse);
+        loginMutationWithGoogle.mutate(credentialResponse?.credential)
+    };
+
+    const handleError = () => {
+        console.error('Login Failed');
+    };
 
 
     return (
@@ -69,9 +105,9 @@ const SignUp: FC<Props> = ({ setRoute, setOpen }) => {
 
             </ModalHeader>
 
-            <ModalBody>
-                <form onSubmit={handleSubmit}>
-                    <div className="flex flex-col gap-5">
+            <ModalBody className="pt-2">
+                <form onSubmit={handleSubmit} >
+                    <div className="flex flex-col gap-3">
                         <Input onChange={handleChange} placeholder="رضا رضایی" id="name" name="name" labelPlacement="outside" type="text" label="نام" size="lg" radius="sm"
                             variant="bordered" color="primary" classNames={{ label: 'font-semibold text-base dark:text-white top-7 -ms-2' }}
                             isInvalid={!!errors.name && !!touched.name}
@@ -97,18 +133,17 @@ const SignUp: FC<Props> = ({ setRoute, setOpen }) => {
                             isInvalid={!!errors.password && !!touched.password}
                             errorMessage={errors.password} value={values.password} />
 
-                        <div className="w-full flex gap-2 items-center justify-center cursor-pointer" onClick={() => signIn('google')}>
-                            <p className="text-sm font-semibold mt-1">ورود با گوگل</p>
-                            <FcGoogle size={24} />
+                        <div className="mt-4">
+                        <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
                         </div>
 
 
                     </div>
 
 
-                    <div className="mt-5">
+                    <div className="mt-4">
 
-                        <Button type="submit" disabled={registrationMutation.isPending} color="primary" variant="shadow" elementType={'button'} radius="md" className="w-full max-w-full text-lg" size="lg">
+                        <Button fullWidth type="submit" disabled={registrationMutation.isPending} color="primary" variant="shadow" elementType={'button'} radius="md" size="lg">
                             {registrationMutation.isPending ? <Spinner color="secondary" /> : 'ثبت نام'}
                         </Button>
 
@@ -117,10 +152,7 @@ const SignUp: FC<Props> = ({ setRoute, setOpen }) => {
                 </form>
 
                 <div className="mt-2">
-                    <div className="mt-2 flex items-center justify-center gap-1 font-semibold">
-
-                        <span className="text-secondary cursor-pointer" onClick={() => setRoute('Login')}>ورود</span>
-                    </div>
+                    <Button fullWidth onPress={() => setRoute('Login')} color="secondary" variant="bordered" radius="md" size="lg">ورود</Button>
                 </div>
             </ModalBody>
         </div>

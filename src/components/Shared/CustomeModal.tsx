@@ -42,6 +42,7 @@ const CustomeModal: FC<Props> = ({ open, setOpen, component: Component, setRoute
                 backdrop: "bg-[#292f46]/30 backdrop-opacity-40",
                 base: "bg-[#ffffff] dark:bg-[#19191e]  backdrop-blur w-full max-w-[90%] md:max-w-[25rem]",
                 closeButton: "hidden",
+                
             }}>
 
             <ModalContent className="relative">

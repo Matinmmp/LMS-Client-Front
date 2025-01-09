@@ -12,7 +12,7 @@ export default function ProfilePage() {
     const { user, loading, error } = useSelector((state: any) => state.auth)
     const getFacgetUserPaidCoursesQuery: any = useQuery({ queryKey: ['getFacgetUserPaidCourses'], queryFn: getFacgetUserPaidCourses });
 
-    console.log(getFacgetUserPaidCoursesQuery?.data?.courses);
+
 
     return (
         <div className="h-full w-full flex flex-col">

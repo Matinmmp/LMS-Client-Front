@@ -11,6 +11,17 @@ export const login = async ({ email, password }: { email: string, password: stri
     return await data;
 }
 
+export const loginWithGoogle = async (token: string) => {
+    const data = await customFetch('/social-auth',
+        {
+            method: 'POST',
+            credentials: 'include' as const,
+            body: JSON.stringify({ token }),
+            headers: { 'Content-Type': 'application/json' },
+        });
+    return await data;
+}
+
 export const registration = async ({ name, email, password }: { name: string, email: string, password: string }) => {
     const data = await customFetch('registration',
         {
@@ -33,3 +44,14 @@ export const activation = async ({ activation_code, activation_token }: { activa
     return await data;
 }
 
+
+export const forgetPassword = async ( email: string) => {
+    const data = await customFetch('forgetPassword',
+        {
+            method: 'POST',
+            credentials: 'include' as const,
+            body: JSON.stringify({ email}),
+            headers: { 'Content-Type': 'application/json' },
+        });
+    return await data;
+}

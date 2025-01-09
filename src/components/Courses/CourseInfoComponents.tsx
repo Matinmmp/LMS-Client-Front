@@ -685,7 +685,6 @@ export const Commments = ({ name, refresh_token, courseId }: { name: string, ref
 
     }
 
-    console.log(currentPage, getReviewData?.data?.totalPage);
 
     useEffect(() => {
         if (getReviewData?.data?.comments?.length > 0) {

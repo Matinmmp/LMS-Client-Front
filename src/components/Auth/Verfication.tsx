@@ -6,6 +6,7 @@ import { Spinner } from '@nextui-org/spinner'
 import { useMutation } from '@tanstack/react-query';
 import React, { FC, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { convertToEnglishNumbers } from '@/src/utils/functions';
 
 type Props = {
     setRoute: (route: string) => void
@@ -59,7 +60,7 @@ const Verification: FC<Props> = ({ setRoute,setOpen }) => {
         }
         await activationMutation.mutate({
             activation_token: token,
-            activation_code: verificationNumber
+            activation_code: convertToEnglishNumbers(verificationNumber)
         })
     }
 

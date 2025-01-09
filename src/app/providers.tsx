@@ -13,7 +13,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { getUserInfo } from "../lib/apis/userApis";
 import { userLoggedIn } from "../redux/auth/authSlice";
 import { getRefreshTokenFromCookies } from "../lib/fetcher";
-import { SessionProvider } from "next-auth/react";
+// import { SessionProvider } from "next-auth/react";
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 export interface ProvidersProps {
     children: React.ReactNode;
@@ -24,6 +25,11 @@ const queryClient = new QueryClient(
     // { defaultOptions: { queries: { retry: false, refetchOnWindowFocus: false } } }
 
 )
+
+const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+const clientSecret = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET;
+
+
 
 export function Providers({ children, themeProps }: ProvidersProps) {
     const router = useRouter();
@@ -46,9 +52,12 @@ export function Providers({ children, themeProps }: ProvidersProps) {
                         pauseOnHover
                         theme="dark"
                     />
-                    <SessionProvider>
+                    {/* <SessionProvider> */}
+                    <GoogleOAuthProvider clientId={clientId || ''}>
                         <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
-                    </SessionProvider>
+
+                    </GoogleOAuthProvider>
+                    {/* </SessionProvider> */}
                 </Provider>
             </NextUIProvider>
         </QueryClientProvider>
@@ -57,10 +66,10 @@ export function Providers({ children, themeProps }: ProvidersProps) {
 
 function RequestProviders() {
     const dispatch = useDispatch();
-    const { user  } = useSelector((state: any) => state.auth)
+    const { user } = useSelector((state: any) => state.auth)
     const getUserQuery = useQuery({ queryKey: ['getUserQuery'], queryFn: () => getUserInfo(), enabled: !!getRefreshTokenFromCookies() });
 
-   
+
 
     React.useEffect(() => {
         let data: any = {};

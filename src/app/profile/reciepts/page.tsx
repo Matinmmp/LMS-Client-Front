@@ -14,7 +14,6 @@ export default function ProfilePage() {
     const { user, loading, error } = useSelector((state: any) => state.auth)
     const getFactorQuery: any = useQuery({ queryKey: ['getFactorQuery'], queryFn: getFactor });
 
-    console.log(getFactorQuery?.data?.invoices);
 
     return (
         <div className="h-full w-full flex flex-col">

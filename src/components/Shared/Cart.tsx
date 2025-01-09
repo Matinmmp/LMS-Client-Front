@@ -15,7 +15,7 @@ import { FiTrash2 } from "react-icons/fi";
 import { Button } from "@nextui-org/button";
 
 export const Cart = () => {
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const cartRef = useRef<HTMLDivElement | null>(null); // برای مرجع‌دادن به کل منو
 
     const dispatch = useDispatch();
@@ -28,16 +28,16 @@ export const Cart = () => {
     }, [dispatch]);
 
     // بستن منو در صورتی که کاربر خارج از آن کلیک کند
-    // useEffect(() => {
-    //     const handleClickOutside = (event: MouseEvent) => {
-    //         if (cartRef.current && !cartRef.current.contains(event.target as Node)) {
-    //             setOpen(false); // بستن منو
-    //         }
-    //     };
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (cartRef.current && !cartRef.current.contains(event.target as Node)) {
+                setOpen(false); // بستن منو
+            }
+        };
 
-    //     document.addEventListener("mousedown", handleClickOutside); // افزودن رویداد کلیک
-    //     return () => document.removeEventListener("mousedown", handleClickOutside); // پاک‌کردن رویداد هنگام حذف کامپوننت
-    // }, []);
+        document.addEventListener("mousedown", handleClickOutside); // افزودن رویداد کلیک
+        return () => document.removeEventListener("mousedown", handleClickOutside); // پاک‌کردن رویداد هنگام حذف کامپوننت
+    }, []);
 
     return (
         <div ref={cartRef} className="relative cursor-pointer">

@@ -1,6 +1,26 @@
 var persianNumbers = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g,];
 var arabicNumbers = [/٠/g, /١/g, /٢/g, /٣/g, /٤/g, /٥/g, /٦/g, /٧/g, /٨/g, /٩/g];
 
+const convertToEnglishNumbers = (input: string): string => {
+    // تعریف نقشه اعداد فارسی به انگلیسی
+    const persianToEnglishMap: { [key: string]: string } = {
+        '۰': '0',
+        '۱': '1',
+        '۲': '2',
+        '۳': '3',
+        '۴': '4',
+        '۵': '5',
+        '۶': '6',
+        '۷': '7',
+        '۸': '8',
+        '۹': '9',
+    };
+
+    // تبدیل هر عدد فارسی به معادل انگلیسی
+    return input.replace(/[۰-۹]/g, (char) => persianToEnglishMap[char] || char);
+};
+
+
 const toPersianNumber = (s: any) => String(s).replace(/\d/g, (d: any) => "۰۱۲۳۴۵۶۷۸۹"[d]);
 
 function secondsToTimeString(secondsInput: string) {
@@ -150,5 +170,6 @@ export {
     formatDate2,
     encodeToShortCode,
     hoursAndMinutesString,
-    secondsToTimeString2
+    secondsToTimeString2,
+    convertToEnglishNumbers
 }

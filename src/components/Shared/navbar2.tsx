@@ -47,6 +47,7 @@ import { showToast } from "@/src/utils/toast";
 import { logoutUser } from "@/src/lib/apis/userApis";
 import { useRouter } from "next/navigation";
 import { Cart } from "./Cart";
+import ForgetPassword from "../Auth/ForgetPasswrod";
 
 
 const links = [
@@ -338,15 +339,15 @@ export const Navbar = () => {
                             </li>
                         </ul>
 
-                        <ul className={`ms-auto flex items-center gap-3`}>                           
+                        <ul className={`ms-auto flex items-center gap-3`}>
 
-                            <li className="hidden sm:flex gap-2">
+                            <li className="hidden md:flex gap-2">
                                 <ThemeSwitch />
                             </li>
 
                             <li className="me-2">
-                               <Cart/>
-                               
+                                <Cart />
+
                             </li>
 
                             <li className="hidden sm:flex">
@@ -414,14 +415,14 @@ export const Navbar = () => {
 
                                             </div>
                                             :
-                                            <div className="flex items-center" >
-                                                <Button onClick={() => { setOpen(true); setRoute('Login'); }} radius="sm" variant="shadow" color="secondary" className="w-[5.5rem] -me-4 gap-0.5 ps-2 text-white"
+                                            <div className="flex items-center font-medium" >
+                                                <Button onPress={() => { setOpen(true); setRoute('Login'); }} radius="sm" variant="shadow" color="secondary" className="w-[5.5rem] -me-4 gap-0.5 ps-2 text-white"
                                                     endContent={<FaRightToBracket className="ms-1 text-base font-medium" size={20} />} >
                                                     ورود
                                                 </Button>
 
-                                                <Button onClick={() => { setOpen(true); setRoute('Sign-Up'); }} className="px-2 w-24" color="primary" radius="sm" variant="shadow">
-                                                    <span className="text-base font-medium ">عضویت</span>
+                                                <Button onPress={() => { setOpen(true); setRoute('Sign-Up'); }} className="px-2 w-24" color="primary" radius="sm" variant="shadow">
+                                                    <span >عضویت</span>
                                                     <MdOutlinePersonAddAlt size={24} />
                                                 </Button>
                                             </div>
@@ -535,6 +536,11 @@ export const Navbar = () => {
                 {
                     route === 'Verification' &&
                     <CustomeModal open={open} setOpen={setOpen} setRoute={setRoute} component={Verification} />
+                }
+
+                {
+                    route === 'ForgetPassword' &&
+                    <CustomeModal open={open} setOpen={setOpen} setRoute={setRoute} component={ForgetPassword} />
                 }
             </div>
 

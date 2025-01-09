@@ -1,5 +1,5 @@
 
-import { login } from "@/src/lib/apis/authApis"
+import { login, loginWithGoogle } from "@/src/lib/apis/authApis"
 import { userLoggedIn } from "@/src/redux/auth/authSlice"
 import { showToast } from "@/src/utils/toast"
 import { Button } from "@nextui-org/button"
@@ -13,10 +13,10 @@ import { FC, useState } from "react"
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useDispatch } from "react-redux"
 import * as Yup from 'yup'
-import { FcGoogle } from "react-icons/fc";
-import { signIn, useSession } from "next-auth/react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { getUserInfo } from "@/src/lib/apis/userApis"
+import { GoogleLogin } from "@react-oauth/google"
+import { convertToEnglishNumbers } from "@/src/utils/functions"
 
 type Props = {
     setRoute: (route: string) => void
@@ -41,7 +41,7 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
     const [isVisible, setIsVisible] = useState(false);
     const [rememberMe, setRememberMe] = useState(!!localStorage.getItem('loginInfo'));
     const toggleVisibility = () => setIsVisible(!isVisible);
-    const { data } = useSession();
+    // const { data } = useSession();
 
 
 
@@ -66,10 +66,28 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
         }
     })
 
-
-
     const loginMutation = useMutation({
         mutationFn: (data: { email: string, password: string }) => login(data),
+        onSuccess: (e) => {
+            location?.reload();
+            dispatch(userLoggedIn(e))
+            getUserMutation.mutate();
+            setOpen(false);
+            showToast({ type: 'success', message: 'با موفقیت وارد شدید' });
+        },
+        onError: () => {
+            showToast({ type: 'error', message: 'ایمیل یا رمز عبور اشتباه است' });
+        },
+
+        onSettled: () => {
+            if (searchParams?.get('openLogin')) {
+                router.replace('/');
+            }
+        }
+    })
+
+    const loginMutationWithGoogle = useMutation({
+        mutationFn: (token: string) => loginWithGoogle(token),
         onSuccess: (e) => {
             location?.reload();
             dispatch(userLoggedIn(e))
@@ -97,13 +115,21 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
                 localStorage.setItem('loginInfo', JSON.stringify({ password, email }))
             else
                 localStorage.removeItem('loginInfo');
-            await loginMutation.mutate({ email, password })
+            console.log({ email: convertToEnglishNumbers(email), password: convertToEnglishNumbers(password) })
+            await loginMutation.mutate({ email: convertToEnglishNumbers(email), password: convertToEnglishNumbers(password) })
         }
     })
 
     const { errors, touched, handleChange, handleSubmit, values } = formik;
 
+    const handleSuccess = (credentialResponse: any) => {
+        console.log(credentialResponse);
+        loginMutationWithGoogle.mutate(credentialResponse?.credential)
+    };
 
+    const handleError = () => {
+        console.error('Login Failed');
+    };
 
     return (
         <div className="h-max max-h-[35rem] flex flex-col ">
@@ -117,7 +143,7 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
             <ModalBody className="pt-2">
                 <form onSubmit={handleSubmit}>
 
-                    <div className="flex flex-col gap-5">
+                    <div className="flex flex-col gap-3">
 
                         <Input onChange={handleChange} placeholder="you@example.com" dir='ltr' id='email' name="email" labelPlacement="outside" type="email" label="ایمیل" size="lg" radius="sm"
                             variant="bordered" color="primary" classNames={{ label: 'font-semibold text-base dark:text-white top-7 -ms-2' }}
@@ -143,16 +169,15 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
                             <Checkbox classNames={{ label: "text-small" }} isSelected={rememberMe} onValueChange={setRememberMe}>
                                 منو یادت باشه
                             </Checkbox>
-                            <p className="text-small text-secondary cursor-pointer" onClick={() => setRoute('FotgetPassword')}>رمزتو فراموش کردی ؟</p>
+                            <p className="text-small text-secondary cursor-pointer" onClick={() => setRoute('ForgetPassword')}>رمزتو فراموش کردی ؟</p>
                         </div>
 
-                        <div className="w-full flex gap-2 items-center justify-center cursor-pointer" onClick={() => signIn('google')}>
-                            <p className="text-sm font-semibold mt-1">ورود با گوگل</p>
-                            <FcGoogle size={24} />
+                        <div className='mt-4'>
+                        <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
                         </div>
                     </div>
 
-                    <div className="mt-7">
+                    <div className="mt-4">
 
                         <Button type="submit" disabled={loginMutation.isPending} color="primary" variant="shadow" elementType={'button'} radius="md" className="w-full max-w-full text-lg" size="lg">
                             {loginMutation.isPending ? <Spinner color="secondary" /> : 'ورود'}

@@ -97,7 +97,6 @@ export default async function CourseInfo({ data,isPurchased }: Props) {
 
     }
 
-    console.log('isPurchased',isPurchased)
 
     AddToCartComponent =
         <>
