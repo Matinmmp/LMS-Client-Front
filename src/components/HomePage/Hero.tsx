@@ -14,7 +14,7 @@ const Hero = (props: Props) => {
             <div className="pb-10 flex flex-col md2:flex-row justify-between relative z-10">
                 <div className="w-full md2:w-1/2 order-2 md2:order-1">
                     <div className="w-full mt-4 text-center md2:text-right">
-                        <h1 className={clsx(title({ color: 'blue' }), 'inline w-full text-center text-[1.75rem] md:text-[2.5rem] !font-bold md:leading-[3.2rem]')}>آموزش برنامه‌نویسی به زبان فارسی با ترجمه اختصاصی از بهترین آکادمی‌های جهان
+                        <h1 className={clsx(title({ color: 'blue' }), 'inline w-full text-center text-[1.6rem] leading-9 md:text-3xl md:leading-10 xl:text-[2.5rem] xl:leading-[3.2rem] !font-bold ')}>آموزش برنامه‌نویسی به زبان فارسی با ترجمه اختصاصی از بهترین آکادمی‌های جهان
                         </h1>
                         <br />
 
@@ -29,7 +29,7 @@ const Hero = (props: Props) => {
                 </div>
 
                 <div className="w-full md2:w-1/2 order-1 md2:order-2">
-                    <Image className="-mt-20 " priority={true}
+                    <Image className="-mt-10 md:lg:mt-0 lg:-mt-20 " priority={true}
                         width={1000} height={1000} alt="virtual learn hero" src={"https://buckettest.storage.c2.liara.space/images/hero4.svg"} />
                 </div>
 
