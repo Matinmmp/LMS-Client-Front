@@ -26,7 +26,7 @@ const FavoriteCourses = async (props: Props) => {
                         {props.children}
                     </div>
 
-                    <Link href={'/'} className={`flex items-center gap-1 text-sm md:text-base  hover:text-primary-400 transition-all`}>
+                    <Link href={'/courses?order=5'} className={`flex items-center gap-1 text-sm md:text-base  hover:text-primary-400 transition-all`}>
                         <p>مشاهده همه دوره‌ها</p>
                         <TbArrowBigLeftLinesFilled size={20} className="text-primary-400 " />
                     </Link>
@@ -59,7 +59,7 @@ export const FavoriteCoursesLoading = (props: Props) => {
                     <BsBookmarkHeartFill className="text-primary-400 text-[1.5rem] md:text-[2rem] lg:text-[2.5rem]" />
                     {props.children}
                 </div>
-                <Link href={'/'} className={`flex items-center gap-1 hover:text-primary-400 text-sm md:text-base transition-all`}>
+                <Link href={'/courses?order=5'} className={`flex items-center gap-1 hover:text-primary-400 text-sm md:text-base transition-all`}>
                     <p>مشاهده همه دوره‌ها</p>
 
                     <TbArrowBigLeftLinesFilled size={20} className="text-primary-400 " />

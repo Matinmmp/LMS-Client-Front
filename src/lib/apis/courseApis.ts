@@ -23,7 +23,6 @@ export const getCourseDataByNameNoLoged = async (name: string) => {
         const data = await customFetch(`/getCourseDataByNameNoLoged/${name}`, {
             method: 'GET',
             cache: 'no-store',
-            credentials: 'include',
         });
         return await data;
     } catch (error) {

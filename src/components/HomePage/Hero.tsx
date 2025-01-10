@@ -34,22 +34,6 @@ const Hero = (props: Props) => {
                 </div>
 
             </div>
-            {/* <div className="mt-4">
-                <div className="flex flex-wrap justify-evenly lg:justify-center items-center gap-8">
-                    <div className="w-72 h-36 rounded-xl transition-all bg-white dark:bg-[#212123]/50 shadow-[0_0_9px_0_#c1c2c4] dark:shadow-[0_0_9px_0_#2b2b2b] hover:shadow-primary-400 dark:hover:shadow-primary-400">
-                        <SiSololearn size={44} className="text-primary-400" />
-                    </div>
-                    <div className="w-72 h-36 rounded-xl transition-all bg-white dark:bg-[#212123]/50 shadow-[0_0_9px_0_#c1c2c4] dark:shadow-[0_0_9px_0_#2b2b2b] hover:shadow-danger-400 dark:hover:shadow-danger-400">
-                        <PiStudentBold size={44} className="text-danger-400" />
-                    </div>
-                    <div className="w-72 h-36 rounded-xl transition-all bg-white dark:bg-[#212123]/50 shadow-[0_0_9px_0_#c1c2c4] dark:shadow-[0_0_9px_0_#2b2b2b] hover:shadow-success-400 dark:hover:shadow-success-400">
-                        <FaChalkboardTeacher size={44} className="text-success-400" />
-                    </div>
-                    <div className="w-72 h-36 rounded-xl transition-all bg-white dark:bg-[#212123]/50 shadow-[0_0_9px_0_#c1c2c4] dark:shadow-[0_0_9px_0_#2b2b2b] hover:shadow-warning-500 dark:hover:shadow-warning-500">
-                        <SiHtmlacademy size={44} className="text-warning-500" />
-                    </div>
-                </div>
-            </div> */}
         </div >
     );
 };

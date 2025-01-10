@@ -58,7 +58,7 @@ const TeacherCard = ({ data }: CardProps) => {
 
                     </div>
 
-                    <div className="w-full mt-2 px-6 pb-4 flex flex-col items-start">
+                    <div className="w-full mt-2 px-4 pb-4 flex flex-col items-start">
                         <div className="w-full flex items-center justify-between">
                             <div className="flex items-center gap-1">
                                 <span className="pt-1 text-md font-semibold text-warning-400">{toPersianNumber(data.rating)}</span>

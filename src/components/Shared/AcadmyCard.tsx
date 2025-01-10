@@ -41,7 +41,7 @@ const AcadmyCard = ({ data }: CardProps) => {
 
                 <div className="h-full w-full flex flex-col items-center">
 
-                    <div className="w-full p-6 flex items-center justify-between">
+                    <div className="w-full p-4 flex items-center justify-between">
                         <Avatar className="h-[4.5rem] w-[4.5rem] shadow-[0_0_15px_0_#44de77]" size="lg" radius="sm" isBordered color="success" src={data.avatar.imageUrl} />
 
                         <div className="flex flex-col gap-1">
@@ -63,9 +63,9 @@ const AcadmyCard = ({ data }: CardProps) => {
 
                     </div>
 
-                    <div className="w-full px-6 pb-4 flex flex-col items-start">
+                    <div className="w-full px-4 pb-4 flex flex-col items-start">
 
-                        <div className="w-full flex items-center justify-between">
+                        <div className="mt-2 w-full flex items-center justify-between">
                             <div className="flex items-center gap-1">
                                 <span className="pt-1 text-md font-semibold text-warning-400">{toPersianNumber(data.rating)}</span>
                                 <FaStar size={20} className="text-warning-400" />

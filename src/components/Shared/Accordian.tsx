@@ -13,7 +13,7 @@ const Accordion = ({ title = '', description = '' }) => {
 
                     <IoIosArrowBack size={20} className={`${isOpen ? '-rotate-90' : 'rotate-0'} transition-transform`}/>
 
-                    <h5 className='text-lg md:text-xl font-semibold text-right'>{title}</h5>
+                    <h5 className=' md:text-xl font-semibold text-right'>{title}</h5>
                 </label>
 
                 <motion.div
@@ -23,7 +23,7 @@ const Accordion = ({ title = '', description = '' }) => {
                     exit={{ height: 0 }}
                     style={{ overflow: 'hidden' }} >
 
-                    <p className='p-2 pb-7 txt-lg font-medium text-start leading-7 tracking-[0.03rem]'>{description}</p>
+                    <p className='p-2 pb-7 text-sm font-medium text-start leading-7 tracking-[0.03rem]'>{description}</p>
                 </motion.div>
 
             </div>

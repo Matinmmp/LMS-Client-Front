@@ -9,7 +9,7 @@ import { toPersianNumber } from "@/src/utils/functions";
 import { useQuery } from "@tanstack/react-query";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-
+ 
 
 type Props = {
     children: React.ReactNode

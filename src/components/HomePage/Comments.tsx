@@ -1,12 +1,12 @@
 'use client'
 import { title } from "../primitives";
 import { clsx } from "clsx";
-import { useKeenSlider } from "keen-slider/react"
 import { Rating, RoundedStar } from '@smastrom/react-rating'
-import 'keen-slider/keen-slider.min.css'
 import '@smastrom/react-rating/style.css'
 import { Avatar, AvatarIcon } from "@nextui-org/avatar";
- 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+
 
 
 
@@ -68,14 +68,8 @@ const Comments = (props: Props) => {
         itemShapes: RoundedStar,
         activeFillColor: '#ffb700',
         inactiveFillColor: '#fbf1a9'
-      }
+    }
 
-    const [sliderRef] = useKeenSlider<HTMLDivElement>({
-        loop: false,
-        mode: "snap",
-        rtl: true,
-        slides: { perView: "auto", spacing: 0 },
-    })
 
     return (
         <div className="w-full  relative">
@@ -88,31 +82,52 @@ const Comments = (props: Props) => {
                         </h3>
 
                         <div className="mt-6 md:mt-16">
-                            <div ref={sliderRef} className="w-full keen-slider h-[16rem]" >
+                            <Swiper slidesPerView={'auto'} spaceBetween={15} className="mySwiper w-full"   >
                                 {
-                                    list.map((item, index) => {
-                                        return (
-                                            <div key={index} className="keen-slider__slide max-w-[25rem] min-w-[22rem] min-h-[16rem] max-h-[16rem] px-3 py-5 transition-all">
-                                                <div className="h-full bg-white dark:bg-primary-50/90 shadow-medium  rounded-xl">
-                                                    <div className="h-full p-4">
-                                                        <div className="w-full flex items-center gap-4">
-                                                            <Avatar className="h-16 w-16 shadow-medium" size="lg" radius="full" isBordered color="secondary" icon={<AvatarIcon />} />
-                                                            <div className="flex flex-col items-start gap-1">
-                                                                <p className="text-lg font-semibold">{item.name}</p>
-                                                                <Rating readOnly value={5} style={{maxWidth:100}}  itemStyles={myStyles}/>
-                                                            </div>
-                                                            
+                                    list.map((item, index) =>
+                                        <SwiperSlide key={index} className='flex justify-center items-center max-w-96 min-h-80 max-h-60'>
+
+                                            <div className=" p-4 bg-white dark:bg-primary-50/90 shadow-medium rounded-xl max-w-96 min-h-6max-h-60 max-h-60 transition-all">
+                                                <div className="w-full flex items-center gap-4">
+                                                    <Avatar className="h-16 w-16 shadow-medium" size="lg" radius="full" isBordered color="secondary" icon={<AvatarIcon />} />
+                                                    <div className="flex flex-col items-start gap-1">
+                                                        <p className="text-lg font-semibold">{item.name}</p>
+                                                        <Rating readOnly value={5} style={{ maxWidth: 100 }} itemStyles={myStyles} />
+                                                    </div>
+
+                                                </div>
+                                                <div className="mt-4">
+                                                    <p className="font-medium text-start">{item.comment}</p>
+                                                </div>
+                                            </div>
+                                        </SwiperSlide>
+                                    )
+                                }
+                            </Swiper >
+                            {/* {
+                                list.map((item, index) => {
+                                    return (
+                                        <div key={index} className="keen-slider__slide max-w-[25rem] min-w-[22rem] min-h-[16rem] max-h-[16rem] px-3 py-5 transition-all">
+                                            <div className="h-full bg-white dark:bg-primary-50/90 shadow-medium  rounded-xl">
+                                                <div className="h-full p-4">
+                                                    <div className="w-full flex items-center gap-4">
+                                                        <Avatar className="h-16 w-16 shadow-medium" size="lg" radius="full" isBordered color="secondary" icon={<AvatarIcon />} />
+                                                        <div className="flex flex-col items-start gap-1">
+                                                            <p className="text-lg font-semibold">{item.name}</p>
+                                                            <Rating readOnly value={5} style={{ maxWidth: 100 }} itemStyles={myStyles} />
                                                         </div>
-                                                        <div className="mt-4">
-                                                                <p className="font-medium text-start">{item.comment}</p>
-                                                            </div>
+
+                                                    </div>
+                                                    <div className="mt-4">
+                                                        <p className="font-medium text-start">{item.comment}</p>
                                                     </div>
                                                 </div>
                                             </div>
-                                        )
-                                    })
-                                }
-                            </div>
+                                        </div>
+                                    )
+                                })
+                            } */}
+
                         </div>
 
                     </div>

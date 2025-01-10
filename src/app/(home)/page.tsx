@@ -17,6 +17,7 @@ import LastCourses from "@/src/components/HomePage/LastCourses";
 import FavoritAcademies from "@/src/components/HomePage/FavoritAcademies";
 import FavoritTeachers from "@/src/components/HomePage/FavoritTeachers";
 import FavoriteCourses from "@/src/components/HomePage/FavoriteCourses";
+import DiscountCourses, { DiscountCoursesLoading } from "@/src/components/HomePage/DiscountCourses";
 
 
 export default async function Home() {
@@ -52,6 +53,20 @@ export default async function Home() {
                 <div className="w-full mt-24">
 
                     <Suspense fallback={
+                        <DiscountCoursesLoading>
+                            <h3 className={clsx(title({ color: 'blue' }), "text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>تخفیف‌دار‌ها</h3>
+                        </DiscountCoursesLoading>}
+                    >
+                        <DiscountCourses>
+                        <h3 className={clsx(title({ color: 'blue' }), "text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>تخفیف‌دار‌ها</h3>
+                        </DiscountCourses>
+                    </Suspense>
+
+                </div>
+
+                <div className="w-full mt-24">
+
+                    <Suspense fallback={
                         <FavoriteCoursesLoading>
                             <h3 className={clsx(title({ color: 'blue' }), "text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>محبوب‌ترین دوره‌ها</h3>
                         </FavoriteCoursesLoading>}
@@ -74,6 +89,7 @@ export default async function Home() {
                     </Suspense>
 
                 </div>
+                
 
                 <div className="w-full mt-24 ">
                     <Suspense fallback={
@@ -91,7 +107,7 @@ export default async function Home() {
                     <Comments />
                 </div>
 
-                <div className="w-full mt-20 md:mt-32 ">
+                <div className="w-full">
                     <FAQ />
                 </div>
 
