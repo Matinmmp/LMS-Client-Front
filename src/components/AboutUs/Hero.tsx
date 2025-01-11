@@ -20,7 +20,7 @@ const Hero = (props: Props) => {
                         </h1>
                         <br />
 
-                        <h2 className={`mt-6 lg:mt-10 text-xl md:text-2xl text-center lg:text-right font-normal leading-8 md:leading-10`}>
+                        <h2 className={`mt-10  md:text-2xl text-center lg:text-right font-normal leading-8 md:leading-10`}>
                             <strong className="text-primary-400">ویرچوال لرن</strong> یک پلتفرم آموزشی است که برنامه‌های آموزشی بین‌المللی را به زبان فارسی ترجمه و در دسترس قرار می‌دهد. هدف اصلی سایت، ارائه آموزش‌های تخصصی برنامه‌نویسی به زبان فارسی برای دسترسی راحت‌تر کاربران به منابع معتبر جهانی است.
                         </h2>
                     </div>

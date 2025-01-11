@@ -18,15 +18,15 @@ export default function AboutPage() {
                         <Description1 />
                     </div>
 
-                    <div className="mt-24 lg:mt-48   ">
+                    <div className="mt-28 lg:mt-48   ">
                         <Description2 />
                     </div>
 
-                    <div className="mt-24 lg:mt-40   ">
+                    <div className="mt-28 lg:mt-40   ">
                         <Description3 />
                     </div>
 
-                    <div className="mt-24 lg:mt-40   ">
+                    <div className="mt-28 lg:mt-40   ">
                         <FAQ/>
                     </div>
                 </div>

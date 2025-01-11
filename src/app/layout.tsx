@@ -21,28 +21,20 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
     return (
 
         <html dir="rtl" lang="fa" id="html">
-
+ 
             <link rel="canonical" href="https://www.vc-virtual-learn.com/" />
             <meta property="og:type" content="website" />
             <meta property="og:locale" content="fa_IR" />
-            <meta http-equiv="Content-Language" content="fa" />
-
-            <meta name="twitter:card" content="summary_large_image" />
-
-            {/* بعدا ادرس عکس درسته بزن */}
-            <meta name="twitter:image" content="https://www.virtuallearn.com/logo.png" />
-
-            {/* بعدا ادرس عکس درسته بزن */}
+            <meta httpEquiv="Content-Language" content="fa" />
+            <meta name="twitter:card" content="summary_large_image" />     
+            {/* بعدا لوگو رو بذار */}
             <meta name="twitter:image" content="https://www.virtuallearn.com/logo.png" />
             <meta name="theme-color" content="#079CED" />
             <meta name="author" content="Virtual Learn" />
             <meta charSet="UTF-8" />
-            {/* بعدا ادرس عکس درسته بزن */}
 
-            <meta property="og:image" content="https://www.virtuallearn.com/logo.png" />
-            <meta property="og:url" content="https://www.vc-virtual-learn.com/" />
             <meta property="og:site_name" content="Virtual Learn" />
-            
+
 
             <body className={clsx("min-h-screen bg-background  font-sans antialiased", Vazir.className, Inter.className)} >
                 <NextTopLoader />

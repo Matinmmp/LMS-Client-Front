@@ -54,7 +54,7 @@ const links = [
     {
         icon: <FaTelegramPlane size={20} color="#079CED" />,
         title: 'کانال تلگرام',
-        link: '/',
+        link: 'https://t.me/VC_Virtual_Learn',
     },
     {
         icon: <GrInstagram size={18} color="#ed071e" />,
@@ -64,7 +64,7 @@ const links = [
     {
         icon: <MdContactPhone size={18} color="#07edd2" />,
         title: 'ارتباط با ما',
-        link: '/',
+        link: '/contact-us',
     },
     {
         icon: <FcAbout size={20} />,

@@ -4,7 +4,7 @@ import Script from "next/script";
 const schema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Virtual Learn",
+    "name": "Virtual Learn | آموزش برنامه‌نویسی به زبان فارسی",
     "url": "https://www.vc-virtual-learn.com/",
     "description": "آموزش برنامه‌نویسی به زبان فارسی با ترجمه اختصاصی از بهترین آکادمی‌های جهان. با دسترسی به بهترین دوره‌های برنامه‌نویسی جهان به زبان فارسی، مهارت‌های خود را ارتقا دهید.",
     "keywords": "آموزش برنامه‌نویسی, دوره‌های ترجمه‌شده فارسی, آموزش آنلاین, Virtual Learn",
@@ -17,7 +17,7 @@ const schema = {
     },
     "sameAs": [
         "https://www.instagram.com/virtual_learn",
-        "https://www.telegram.com/virtual_learn",
+        "https://t.me/VC_Virtual_Learn"
 
     ],
     "publisher": {
@@ -51,9 +51,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <meta property="og:title" content="Virtual Learn | آموزش برنامه‌نویسی به زبان فارسی" />
             <meta property="og:description" content="آموزش برنامه‌نویسی به زبان فارسی با ترجمه اختصاصی از بهترین آکادمی‌های جهان. با دسترسی به بهترین دوره‌های برنامه‌نویسی جهان به زبان فارسی، مهارت‌های خود را ارتقا دهید." />
             <meta property="og:url" content="https://www.vc-virtual-learn.com/" />
+            <meta property="og:image" content="https://www.vc-virtual-learn.com/assets/contact-banner.png" />
 
             <meta name="twitter:title" content="Virtual Learn | آموزش برنامه‌نویسی به زبان فارسی" />
             <meta name="twitter:description" content="آموزش برنامه‌نویسی به زبان فارسی با ترجمه اختصاصی از بهترین آکادمی‌های جهان. با دسترسی به بهترین دوره‌های برنامه‌نویسی جهان به زبان فارسی، مهارت‌های خود را ارتقا دهید." />
+            <meta name="twitter:image" content="https://www.vc-virtual-learn.com/assets/contact-banner.png" />
             <meta name="revisit-after" content="1 days" />
 
             <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />

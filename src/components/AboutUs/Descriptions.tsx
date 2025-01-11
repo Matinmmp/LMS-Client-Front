@@ -2,12 +2,8 @@ import { clsx } from "clsx";
 import { title } from "../primitives";
 import Image from "next/image";
 
-type Props = {
-};
 
-
-
-const Description1 = (props: Props) => {
+const Description1 = () => {
     return (
 
         <div className="w-full  relative">
@@ -18,11 +14,12 @@ const Description1 = (props: Props) => {
                     <h2 className={clsx(title({ color: 'blue' }), 'text-[#475466] dark:text-white inline w-full text-center text-3xl md:text-4xl lg:text-5xl !font-semibold md:leading-[3.2rem]')}>
                         هدف ویرچوال لرن
                     </h2>
+
                     <br />
 
                     <div className="flex flex-col items-center">
 
-                        <p className={`w-full lg:w-10/12 mt-6 lg:mt-10 text-lg md:text-xl text-center font-light lg:font-normal leading-8 md:leading-10`}>
+                        <p className={`w-full lg:w-10/12 mt-10  md:text-xl text-center font-light lg:font-normal leading-8 md:leading-10`}>
                             هدف ما در <span className={clsx(title({ color: 'blue' }), 'text-lg md:text-2xl !font-bold')}>Virtual Learn</span>  این است که دسترسی به آموزش‌های تخصصی برنامه‌نویسی را برای همه علاقه‌مندان، به‌خصوص فارسی‌زبانان، ساده‌تر کنیم. با استفاده از تکنولوژی هوش مصنوعی، ما دوره‌های آموزشی بین‌المللی را با دقت به زبان فارسی ترجمه می‌کنیم و این دوره‌ها را با قیمتی مناسب و منصفانه ارائه می‌دهیم. با این کار، به هر فردی این امکان را می‌دهیم که بدون نیاز به دانش زبان انگلیسی به منابع ارزشمند آموزشی دسترسی داشته باشد.
                         </p>
 
@@ -42,7 +39,7 @@ const Description1 = (props: Props) => {
     );
 };
 
-const Description2 = (props: Props) => {
+const Description2 = () => {
     return (
 
         <div className="w-full relative">
@@ -62,7 +59,7 @@ const Description2 = (props: Props) => {
 
                     <div className="flex flex-col items-center">
 
-                        <p className={`w-full mt-6 lg:mt-10 text-lg md:text-xl text-center lg:text-right font-light lg:font-normal leading-10 md:leading-[2.75rem]`}>
+                        <p className={`w-full mt-10 md:text-xl text-center lg:text-right font-light lg:font-normal leading-10 md:leading-[2.75rem]`}>
                             ماموریت ما ارائه دوره‌های آموزشی باکیفیت و جامع از برترین آکادمی‌های جهانی به زبان فارسی است. ما با استفاده از هوش مصنوعی و فناوری‌های پیشرفته، به‌طور مستمر دوره‌های به‌روز و کاربردی را ترجمه و با قیمت‌های مناسب در دسترس همگان قرار می‌دهیم. هدف اصلی ما، تسهیل دسترسی به آموزش‌های بین‌المللی برای تمامی فارسی‌زبانان است تا بدون محدودیت زبانی به دانش و مهارت‌های جدید دست یابند. همچنین، ما به ارتقاء سطح علمی و حرفه‌ای کاربران خود از طریق ارائه محتوای معتبر و غنی متعهد هستیم و می‌کوشیم با استفاده از نظرات و بازخوردهای کاربران، کیفیت خدمات خود را به‌طور مداوم بهبود بخشیم.
 
                         </p>
@@ -78,7 +75,7 @@ const Description2 = (props: Props) => {
     );
 };
 
-const Description3 = (props: Props) => {
+const Description3 = () => {
 
     return (
 
@@ -86,7 +83,7 @@ const Description3 = (props: Props) => {
 
             <div className="pb-10 flex flex-col gap-6 md2:flex-row justify-between items-center relative z-10">
 
-                <div className="w-ful md2:w-3/4 order-2 md2:order-1  lg:mt-0 text-center md:text-left">
+                <div className="w-ful md2:w-3/4 order-2 md2:order-1  lg:mt-0 text-center md:text-right ">
 
                     <h3 className={clsx(title({ color: 'blue' }), 'inline w-full text-3xl lg:text-4xl !font-bold md:leading-[3.2rem]')}>
                         چشم‌انداز
@@ -94,7 +91,7 @@ const Description3 = (props: Props) => {
 
                     <div className="flex flex-col items-center">
 
-                        <p className={`w-full mt-6 lg:mt-10 text-lg md:text-xl text-center lg:text-right font-light lg:font-normal leading-10 md:leading-[2.75rem]`}>
+                        <p className={`w-full mt-10 md:text-xl text-center lg:text-right font-light lg:font-normal leading-10 md:leading-[2.75rem]`}>
                             چشم‌انداز ما این است که به بزرگ‌ترین مرجع آموزش‌های ترجمه‌شده به فارسی در حوزه‌های متنوع، به‌ویژه در زمینه تکنولوژی‌های پیشرفته و مهارت‌های آینده‌نگر تبدیل شویم. در آینده، ما قصد داریم دامنه محتوای خود را به سمت دوره‌های مختلفی از جمله هنر، ترید و معماری گسترش دهیم و با بهره‌گیری از فناوری‌های نوین و مبتکرانه، تجربه یادگیری را برای کاربران بهینه‌تر و جذاب‌تر کنیم. هدف ما این است که یک پلتفرم هوشمند و کاربرمحور ایجاد کنیم که دسترسی به دانش و مهارت‌های جهانی را برای تمامی علاقه‌مندان تسهیل کند و به آن‌ها امکان یادگیری راحت‌تر و سریع‌تر را بدهد. ما متعهد به ایجاد یک جامعه آموزشی پویا هستیم که در آن کاربران بتوانند به راحتی تجربیات خود را به اشتراک بگذارند و از یکدیگر بیاموزند.
                         </p>
 

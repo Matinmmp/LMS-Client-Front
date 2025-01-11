@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { title } from "../primitives";
 import Link from "next/link";
 import Image from "next/image";
-import { FaTelegramPlane } from "react-icons/fa";
+import { FaTelegramPlane } from "react-icons/fa"; 
 import { RxInstagramLogo } from "react-icons/rx";
 import { navObject } from "@/src/config/site";
 import { link as linkStyles } from "@nextui-org/theme";
@@ -39,7 +39,7 @@ const Footer = ({ }: CardProps) => {
                                 </Link>
                             </li>
                             <li className="mt-4 ">
-                                <Link className={`flex items-center gap-2 font-medium`} href="/">
+                                <Link className={`flex items-center gap-2 font-medium`} href="https://t.me/VC_Virtual_Learn">
                                     <FaTelegramPlane size={20} />
                                     <span >تلگرام</span>
                                 </Link>
@@ -51,7 +51,7 @@ const Footer = ({ }: CardProps) => {
                                 </Link>
                             </li>
                             <li className="mt-1">
-                                <Link className="flex items-center gap-2 font-medium " href="/">
+                                <Link className="flex items-center gap-2 font-medium " href="/contact-us">
                                     <MdOutlineContactMail size={20} />
                                     <span >ارتباط با ما</span>
                                 </Link>
