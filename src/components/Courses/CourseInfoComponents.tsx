@@ -106,10 +106,12 @@ export function Description({ desc }: { desc: string }) {
     );
 }
 
-const refresh_token = cookies.get('refresh_token')
-const access_token = cookies.get('access_token')
+
 
 export function CourseLessons({ name }: { name: any }) {
+    const refresh_token = cookies.get('refresh_token')
+    const access_token = cookies.get('access_token')
+
     const [open, setOpen] = useState(false);
     let getCourseData: any
 
@@ -728,20 +730,20 @@ export const Commments = ({ name, refresh_token, courseId }: { name: string, ref
                 </div>
             }
             {
-                list?.length &&
-                <div className="flex flex-col gap-6">
-                    <div className="mt-4 px-4 flex flex-col gap-4">
-                        {list?.map((item: any, index: number) => <Commment courseId={courseId} item={item} key={index} refresh_token={refresh_token} />)}
-                    </div>
+                list?.length ?
+                    <div className="flex flex-col gap-6">
+                        <div className="mt-4 px-4 flex flex-col gap-4">
+                            {list?.map((item: any, index: number) => <Commment courseId={courseId} item={item} key={index} refresh_token={refresh_token} />)}
+                        </div>
 
-                    {getReviewData?.data?.currentPage < getReviewData?.data?.totalPage ?
-                        <div className='px-4 flex justify-center'>
-                            <Button onPress={handleNextPage} variant="shadow" color={'primary'} radius="sm" size="md" className='max-w-max'>
-                                {getReviewData.isLoading ? <Spinner color="secondary" /> : 'نمایش بیشتر'}
-                            </Button>
-                        </div> : ''}
+                        {getReviewData?.data?.currentPage < getReviewData?.data?.totalPage ?
+                            <div className='px-4 flex justify-center'>
+                                <Button onPress={handleNextPage} variant="shadow" color={'primary'} radius="sm" size="md" className='max-w-max'>
+                                    {getReviewData.isLoading ? <Spinner color="secondary" /> : 'نمایش بیشتر'}
+                                </Button>
+                            </div> : ''}
 
-                </div>
+                    </div> : ''
             }
 
 

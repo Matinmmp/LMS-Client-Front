@@ -33,7 +33,7 @@ const FavoriteCourses = async (props: Props) => {
                 </div>
 
                 <div className="mt-10">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md2:grid-cols-3 xl:grid-cols-4 justify-items-center gap-y-8 gap-x-8 ">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md2:grid-cols-3 xl:grid-cols-4 justify-items-center gap-y-4 gap-x-4 lg:gap-y-8 lg:gap-x-8 ">
                         {
                             data.courses.length ? data.courses.map((item: any, index: number) =>
                                 <CourseCard key={index} data={item} />
@@ -67,7 +67,7 @@ export const FavoriteCoursesLoading = (props: Props) => {
             </div>
 
             <div className="mt-10">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md2:grid-cols-3 xl:grid-cols-4 justify-items-center gap-y-8 gap-x-8 ">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md2:grid-cols-3 xl:grid-cols-4 justify-items-center gap-y-4 gap-x-4 lg:gap-y-8 lg:gap-x-8 ">
                     {
                         Array(4).fill(null).map((index: number) =>
                             <CourseCardLoading key={index} />

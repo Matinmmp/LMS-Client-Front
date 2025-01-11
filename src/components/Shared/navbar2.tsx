@@ -309,11 +309,11 @@ export const Navbar = () => {
                                 </DropDown>
                             </li>
 
-                            <li >
+                            {/* <li >
                                 <NextLink color="foreground" href={"/"} className={clsx(linkStyles({ color: "foreground" }), "font-semibold")} >
                                     بلاگ
                                 </NextLink>
-                            </li>
+                            </li> */}
 
                             <li>
                                 <DropDown link={"/"} position="bottom-left"

@@ -81,35 +81,13 @@ const Comments = (props: Props) => {
                             نظرات درباره‌ی <strong className="!font-extrabold">ویرچوال لرن</strong>
                         </h3>
 
-                        <div className="mt-6 md:mt-16">
-                            <Swiper slidesPerView={'auto'} spaceBetween={15} className="mySwiper w-full"   >
+                        <div className="mt-6 md:mt-12">
+                            <Swiper slidesPerView={'auto'} spaceBetween={0} className="mySwiper w-full"   >
                                 {
                                     list.map((item, index) =>
-                                        <SwiperSlide key={index} className='flex justify-center items-center max-w-96 min-h-80 max-h-60'>
-
-                                            <div className=" p-4 bg-white dark:bg-primary-50/90 shadow-medium rounded-xl max-w-96 min-h-6max-h-60 max-h-60 transition-all">
-                                                <div className="w-full flex items-center gap-4">
-                                                    <Avatar className="h-16 w-16 shadow-medium" size="lg" radius="full" isBordered color="secondary" icon={<AvatarIcon />} />
-                                                    <div className="flex flex-col items-start gap-1">
-                                                        <p className="text-lg font-semibold">{item.name}</p>
-                                                        <Rating readOnly value={5} style={{ maxWidth: 100 }} itemStyles={myStyles} />
-                                                    </div>
-
-                                                </div>
-                                                <div className="mt-4">
-                                                    <p className="font-medium text-start">{item.comment}</p>
-                                                </div>
-                                            </div>
-                                        </SwiperSlide>
-                                    )
-                                }
-                            </Swiper >
-                            {/* {
-                                list.map((item, index) => {
-                                    return (
-                                        <div key={index} className="keen-slider__slide max-w-[25rem] min-w-[22rem] min-h-[16rem] max-h-[16rem] px-3 py-5 transition-all">
-                                            <div className="h-full bg-white dark:bg-primary-50/90 shadow-medium  rounded-xl">
-                                                <div className="h-full p-4">
+                                        <SwiperSlide key={index} className='flex justify-center items-center max-w-96 min-h-64 max-h-64'>
+                                            <div className="py-5 px-2">
+                                                <div className=" p-4 bg-white dark:bg-primary-50/90 shadow-medium rounded-xl max-w-96 min-h-56 max-h-56 transition-all">
                                                     <div className="w-full flex items-center gap-4">
                                                         <Avatar className="h-16 w-16 shadow-medium" size="lg" radius="full" isBordered color="secondary" icon={<AvatarIcon />} />
                                                         <div className="flex flex-col items-start gap-1">
@@ -123,10 +101,10 @@ const Comments = (props: Props) => {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </SwiperSlide>
                                     )
-                                })
-                            } */}
+                                }
+                            </Swiper >
 
                         </div>
 

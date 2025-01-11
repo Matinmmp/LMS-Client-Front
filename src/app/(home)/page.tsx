@@ -17,7 +17,7 @@ import LastCourses from "@/src/components/HomePage/LastCourses";
 import FavoritAcademies from "@/src/components/HomePage/FavoritAcademies";
 import FavoritTeachers from "@/src/components/HomePage/FavoritTeachers";
 import FavoriteCourses from "@/src/components/HomePage/FavoriteCourses";
-import DiscountCourses, { DiscountCoursesLoading } from "@/src/components/HomePage/DiscountCourses";
+import DiscountCourses from "@/src/components/HomePage/DiscountCourses";
 
 
 export default async function Home() {
@@ -42,7 +42,7 @@ export default async function Home() {
                             <h3 className={clsx(title({ color: 'blue' }), "pt-1 text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>آخرین دوره‌ها</h3>
                         </LastCoursesLoading>}
                     >
-                       
+
                         <LastCourses>
                             <h3 className={clsx(title({ color: 'blue' }), "pt-1 text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>آخرین دوره‌ها</h3>
                         </LastCourses>
@@ -51,16 +51,9 @@ export default async function Home() {
                 </div>
 
                 <div className="w-full mt-24">
-
-                    <Suspense fallback={
-                        <DiscountCoursesLoading>
-                            <h3 className={clsx(title({ color: 'blue' }), "text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>تخفیف‌دار‌ها</h3>
-                        </DiscountCoursesLoading>}
-                    >
-                        <DiscountCourses>
+                    <DiscountCourses>
                         <h3 className={clsx(title({ color: 'blue' }), "text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>تخفیف‌دار‌ها</h3>
-                        </DiscountCourses>
-                    </Suspense>
+                    </DiscountCourses>
 
                 </div>
 
@@ -89,7 +82,7 @@ export default async function Home() {
                     </Suspense>
 
                 </div>
-                
+
 
                 <div className="w-full mt-24 ">
                     <Suspense fallback={
@@ -107,7 +100,7 @@ export default async function Home() {
                     <Comments />
                 </div>
 
-                <div className="w-full">
+                <div className="mt-8 md:mt-16 w-full">
                     <FAQ />
                 </div>
 

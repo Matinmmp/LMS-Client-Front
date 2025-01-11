@@ -21,18 +21,28 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
     return (
 
         <html dir="rtl" lang="fa" id="html">
-            {/* بعدا درستشون کن  */}
-            <title>Virtual Learn | آموزش برنامه‌نویسی به زبان فارسی</title>
-            <meta name="revisit-after" content="5 days"></meta>
-            <meta name="description" content="آموزش برنامه‌نویسی به زبان فارسی با ترجمه اختصاصی از بهترین آکادمی‌های جهان." />
-            <meta name="keywords" content="آموزش برنامه‌نویسی, ترجمه دوره‌ها, برنامه‌نویسی فارسی, آموزش آنلاین" />
-            <link rel="canonical" href="https://www.virtuallearn.com/" />
+
+            <link rel="canonical" href="https://www.vc-virtual-learn.com/" />
             <meta property="og:type" content="website" />
             <meta property="og:locale" content="fa_IR" />
+            <meta http-equiv="Content-Language" content="fa" />
+
+            <meta name="twitter:card" content="summary_large_image" />
+
+            {/* بعدا ادرس عکس درسته بزن */}
             <meta name="twitter:image" content="https://www.virtuallearn.com/logo.png" />
-            <meta name="theme-color" content="#00b3ff" />
+
+            {/* بعدا ادرس عکس درسته بزن */}
+            <meta name="twitter:image" content="https://www.virtuallearn.com/logo.png" />
+            <meta name="theme-color" content="#079CED" />
             <meta name="author" content="Virtual Learn" />
             <meta charSet="UTF-8" />
+            {/* بعدا ادرس عکس درسته بزن */}
+
+            <meta property="og:image" content="https://www.virtuallearn.com/logo.png" />
+            <meta property="og:url" content="https://www.vc-virtual-learn.com/" />
+            <meta property="og:site_name" content="Virtual Learn" />
+            
 
             <body className={clsx("min-h-screen bg-background  font-sans antialiased", Vazir.className, Inter.className)} >
                 <NextTopLoader />
@@ -48,11 +58,14 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
 
                         dark:bg-gradient-to-b/ dark:from-[#020617]/ dark:to-[#181818]/
                         dark:bg-gradient-to-b/ dark:from-[#111827]/ dark:to-[#181818]/
-                        dark:bg-[#181818]/ dark:bg-[#020617]/ dark:bg-[#111827]/
+                        dark:bg-[#181818]/ dark:bg-[#020617] dark:bg-[#111827]/
                         
                         dark:bg-gradient-to-b/ dark:from-[#111827]/ dark:to-[#181818]/
-                        dark:bg-[#111827]
-                        dark:bg-[#1b2026]/2
+                        dark:bg-[#111827]/
+                        dark:bg-[#1b1e26]/
+                        dark:bg-[#1c212f]/
+                        dark:bg-[#172034]/
+                        dark:bg-[#1b2026]/
                   
 
                          ">

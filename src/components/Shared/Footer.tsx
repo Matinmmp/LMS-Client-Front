@@ -39,25 +39,25 @@ const Footer = ({ }: CardProps) => {
                                 </Link>
                             </li>
                             <li className="mt-4 ">
-                                <Link className={` flex items-center gap-2 text-lg font-medium`} href="/">
+                                <Link className={`flex items-center gap-2 font-medium`} href="/">
                                     <FaTelegramPlane size={20} />
                                     <span >تلگرام</span>
                                 </Link>
                             </li>
                             <li className="mt-1">
-                                <Link className="flex items-center gap-2 text-lg font-medium " href="/">
+                                <Link className="flex items-center gap-2 font-medium " href="/">
                                     <RxInstagramLogo size={20} />
                                     <span >ایناستگرام</span>
                                 </Link>
                             </li>
                             <li className="mt-1">
-                                <Link className="flex items-center gap-2 text-lg font-medium " href="/">
+                                <Link className="flex items-center gap-2 font-medium " href="/">
                                     <MdOutlineContactMail size={20} />
                                     <span >ارتباط با ما</span>
                                 </Link>
                             </li>
                             <li className="mt-1">
-                                <Link className="flex items-center gap-2 text-lg font-medium " href="/about-us">
+                                <Link className="flex items-center gap-2 font-medium " href="/about-us">
                                     <HiOutlineInformationCircle size={24} className="text-black dark:text-white" />
                                     <span >درباره‌ی ما</span>
                                 </Link>
@@ -127,11 +127,11 @@ const Footer = ({ }: CardProps) => {
                         <div className="min-w-[12rem]">
                             <h5 className={clsx(title({ color: 'blue' }), 'text-xl lg:text-2xl font-bold')}>دسترسی سریع</h5>
                             <ul className="mt-6 className= flex flex-col gap-3">
-                                <li>
+                                {/* <li>
                                     <Link color="foreground" href={"/"} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
                                         بلاگ
                                     </Link>
-                                </li>
+                                </li> */}
 
                                 <li>
                                     <Link color="foreground" href={"/teachers"} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
