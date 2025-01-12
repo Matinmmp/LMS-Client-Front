@@ -32,7 +32,7 @@ const FavoritTeachers = async (props: Props) => {
                 </div>
 
                 <div className="mt-10">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg2:grid-cols-3 xl:grid-cols-4d  justify-items-center gap-y-8 gap-x-8 ">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg2:grid-cols-3 xl:grid-cols-4d  justify-items-center gap-4 lg:gap-y-8 lg:gap-x-8">
 
                         {data.teachers.length && data.teachers.map((item: any, index: number) => <TeacherCard key={index} data={item} />)}
                     </div>

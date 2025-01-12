@@ -1,7 +1,6 @@
 'use client'
 import { title } from "../primitives";
 import { clsx } from "clsx";
-import 'keen-slider/keen-slider.min.css'
 import '@smastrom/react-rating/style.css'
 import { AccordionList } from "../Shared/Accordian";
 

@@ -13,7 +13,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { getUserInfo } from "../lib/apis/userApis";
 import { userLoggedIn } from "../redux/auth/authSlice";
 import { getRefreshTokenFromCookies } from "../lib/fetcher";
-// import { SessionProvider } from "next-auth/react";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
 export interface ProvidersProps {
