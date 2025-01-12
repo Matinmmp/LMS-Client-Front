@@ -12,7 +12,7 @@ const schema = {
     "alternateName": "Virtual Learn | آموزش برنامه‌نویسی به زبان فارسی",
     "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://www.vc-virtual-learn.com/search?query={search_term_string}",
+        "target": "https://www.vc-virtual-learn.com/courses?searchText={search_term_string}",
         "query-input": "required name=search_term_string"
     },
     "sameAs": [

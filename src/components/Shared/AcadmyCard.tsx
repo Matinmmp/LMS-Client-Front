@@ -27,9 +27,6 @@ type CardProps = {
 };
 
 const AcadmyCard = ({ data }: CardProps) => {
-    let name = data.engName
-    if (name.split(' ').length > 2)
-        name = `${name.split(' ')[0]} ${name.split(' ')[1]}`
 
     return (
         <Link href={`/academies/${encodeTitle(data.engName)}`} className="w-full max-w-[25rem] h-[22rem] ">
@@ -70,18 +67,18 @@ const AcadmyCard = ({ data }: CardProps) => {
                                 <span className="pt-1 text-md font-semibold text-warning-400">{toPersianNumber(data.rating)}</span>
                                 <FaStar size={20} className="text-warning-400" />
                             </div>
-                            <h4 className={clsx(title({ color: 'green' }), 'text-2xl font-extrabold')}>{name}</h4>
+                            <h4 className={clsx(title({ color: 'green' }), 'text-xl font-extrabold')}>{data.engName}</h4>
                         </div>
 
                         <h5 className="mt-4 dark:text-[#d0e0ef] text-gray-800 max-h-24">
-                            <p className="text-sm line-clamp-5"> {data?.description} </p>
+                            <p className="text-sm font-light line-clamp-5"> {data?.description} </p>
                         </h5>
                     </div>
 
                     <div className="w-full mt-auto">
-                        <div className="w-full p-4 flex items-center justify-center gap-2 border-t-2 border-success-50 dark:border-success-300">
-                            <p className=" font-medium">مشاهده اطلاعات {name}</p>
-                            <TbArrowBigLeftLinesFilled size={20} className="text-success-300 " />
+                        <div className="w-full p-4 flex text-sm lg:text-base items-center justify-center gap-2 border-t-2 border-success-50 dark:border-success-300">
+                            <p>مشاهده اطلاعات <span className="text-success-500">{data?.engName}</span></p>
+                            <TbArrowBigLeftLinesFilled size={20} className="text-success-300" />
                         </div>
                     </div>
 

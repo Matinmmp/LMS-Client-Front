@@ -57,14 +57,14 @@ function generateAcademyDescription(academyName: string, studentsCount: number, 
 
     // توضیحات مربوط به تعداد دوره‌ها و مدرسین
     description += `آکادمی ${academyName} با ${coursesCount} دوره‌ی آموزشی و ${teachersCount} مدرس در پلتفرم «Virtual Learn» حضور دارد و دوره‌های به‌روز و کاربردی را به علاقه‌مندان ارائه می‌کند. `;
-    description += `اطلاعات ارائه‌شده، مختص به فعالیت این آکادمی در پلتفرم ما است و نشان‌دهنده‌ی میزان فعالیت آن در سایت «Virtual Learn» می‌باشد.`;
+    // description += `اطلاعات ارائه‌شده، مختص به فعالیت این آکادمی در پلتفرم ما است و نشان‌دهنده‌ی میزان فعالیت آن در سایت «Virtual Learn» می‌باشد.`;
 
     return description;
 }
 
 
 const AcademyInfo = ({ data }: Props) => {
-
+    console.log(data);
     return (
         <div className="w-full flex flex-col">
 
@@ -92,7 +92,7 @@ const AcademyInfo = ({ data }: Props) => {
                 </div>
 
                 <div className="w-full mt-10 lg:mt-14">
-                    <p className={`w-full text-lg text-right font-light lg:font-normal leading-8 md:leading-10`}>
+                    <p className={`w-full text-sm md:text-base lg:text-lg text-right font-light lg:font-normal leading-8 md:leading-10`}>
                         {data.longDescription}
                     </p>
                 </div>
@@ -103,10 +103,10 @@ const AcademyInfo = ({ data }: Props) => {
 
                 <div className="h-auto lg:min-h-[20rem] lg:w-full flex-grow order-2 lg:order-1 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl ">
                     <div className="p-4 pt-6 text-center">
-                        <h2 className={clsx(title({ color: 'green' }), 'inline w-full lg:text-left text-2xl lg:text-4xl font-bold')}>آکادمی {data.faName} در ویرچوال لرن</h2>
+                        <h2 className={clsx(title({ color: 'green' }), 'inline w-full lg:text-left text-xl lg:text-2xl xl:text-3xl font-bold leading-10')}>آکادمی {data.faName} در ویرچوال لرن</h2>
 
-                        <p className="mt-4 text-right text-lg font-semibold leading-8 text-[#475466 dark:text-[#9aaed1]">
-                            {generateAcademyDescription(data.engName, data.totalStudents, data.rating, data.totalCourses, data.totalTeachers)}
+                        <p className="mt-6 text-right text-sm md:text-base lg:text-lg font-semibold leading-8 text-[#2c333e] dark:text-[#a7badb]">
+                            {toPersianNumber(generateAcademyDescription(data.engName, data.totalStudents, data.rating, data.totalCourses, data.totalTeachers))}
                         </p>
 
                     </div>
@@ -151,7 +151,7 @@ const AcademyInfo = ({ data }: Props) => {
             </div>
 
             <div className="mt-6 lg:mt-8">
-                <div className="p-4 pb-2 lg:pb-8 lg:p-8 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl ">
+                <div className="p-4 pt-6 pb-2 lg:pb-8 lg:p-8 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl ">
                     {data.totalTeachers ?
                         <Suspense fallback={
                             <FavoritTeachersForAcademyLoading name={data.engName} totalTeachers={data.totalTeachers}>

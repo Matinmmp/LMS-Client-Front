@@ -1,11 +1,8 @@
-
 import AcademiesList from "@/src/components/Academies/AcademiesList";
 import Hero from "@/src/components/Academies/Hero";
-
 import { getAcademies } from "@/src/lib/apis/academyApis";
+import { encodeTitle } from "@/src/utils/functions";
 import Script from "next/script";
-
-
 
 
 export default async function Home() {
@@ -16,7 +13,7 @@ export default async function Home() {
     const schema = {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
-        "name": ">لیست آکادمی‌های آموزشی | Virtual Learn",
+        "name": "لیست آکادمی‌های آموزشی | Virtual Learn",
         "url": "https://www.vc-virtual-learn.com/academies",
         "description": "لیست آکادمی‌های آموزشی معتبر با دوره‌های ترجمه‌شده به زبان فارسی در ویرچوال لرن. بهترین منابع آموزشی برای ارتقای مهارت‌های برنامه‌نویسی شما.",
         "inLanguage": "fa",
@@ -28,16 +25,7 @@ export default async function Home() {
         "mainEntity": {
             "@type": "ItemList",
             "name": "لیست آکادمی‌ها",
-            "itemListElement": [
-                {
-                    "@type": "EducationalOrganization",
-                    "name": "آکادمی ۱",
-                    "url": "https://www.vc-virtual-learn.com/academies/academy-1",
-                    "description": "توضیحات مربوط به آکادمی ۱.",
-                    "image": "https://www.vc-virtual-learn.com/assets/academy-1.png",
-
-                },
-            ]
+            "itemListElement": []
         },
         "publisher": {
             "@type": "Organization",
@@ -53,33 +41,53 @@ export default async function Home() {
         "image": "https://www.vc-virtual-learn.com/assets/academies-banner.png",// پرش کن
     }
 
-    const item = {
-        "@context": "https://schema.org",
-        "@type": "EducationalOrganization",
-        "name": "آکادمی ۱",
-        "url": "https://www.vc-virtual-learn.com/academies/academy-1",
-        "description": "توضیحات مربوط به آکادمی ۱. این آکادمی ارائه‌دهنده دوره‌های آموزشی تخصصی برنامه‌نویسی است.",
-        "image": "https://www.vc-virtual-learn.com/assets/academy-1.png",
-        "logo": {
-            "@type": "ImageObject",
-            "url": "https://www.vc-virtual-learn.com/assets/academy-1-logo.png",
-            "width": 512,
-            "height": 512
-        },
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.8",
-            "reviewCount": "350",
-            "bestRating": "5",
-        },
-    }
 
+    if (data && data.success) {
+        let items = data?.academies?.map((item: any, index: number) => {
+            return {
+                "@context": "https://schema.org",
+                "@type": "EducationalOrganization",
+                "name": item.engName,
+                "url": `https://www.vc-virtual-learn.com/academies/${encodeTitle(item?.engName)}`,
+                "description": item?.description,
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": item?.avatar?.imageUrl,
+                    "width": 512,
+                    "height": 512
+                },
 
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": item?.rating,
+                    "reviewCount": item?.ratingNumber,
+                    "bestRating": "5",
+                },
+            }
+        })
 
-    if (data && data.success)
+        schema.mainEntity.itemListElement = items;
+
         return (
             <section className=" flex flex-col items-center justify-center  " >
+                <title>لیست آکادمی‌های آموزشی | Virtual Learn</title>
+                <meta name="description" content="لیست آکادمی‌های آموزشی معتبر با دوره‌های ترجمه‌شده به زبان فارسی در ویرچوال لرن. بهترین منابع آموزشی برای ارتقای مهارت‌های برنامه‌نویسی شما." />
+                <meta name="keywords" content="آکادمی‌های آموزشی, آموزش برنامه‌نویسی, ترجمه دوره‌ها, آموزش آنلاین, ویرچوال لرن" />
+                <meta name="robots" content="index, follow" />
+                <meta name="revisit-after" content="5 days" />
 
+                <meta property="og:title" content="لیست آکادمی‌های آموزشی | Virtual Learn" />
+                <meta property="og:description" content="لیست آکادمی‌های آموزشی معتبر با دوره‌های ترجمه‌شده به زبان فارسی در ویرچوال لرن. بهترین منابع آموزشی برای ارتقای مهارت‌های برنامه‌نویسی شما." />
+                <meta property="og:url" content="https://www.vc-virtual-learn.com/academies" />
+                <meta property="og:image" content="https://www.vc-virtual-learn.com/assets/academies-banner.png" />
+
+                <meta name="twitter:title" content="لیست آکادمی‌های آموزشی | Virtual Learn" />
+                <meta name="twitter:description" content="لیست آکادمی‌های آموزشی معتبر با دوره‌های ترجمه‌شده به زبان فارسی در ویرچوال لرن. بهترین منابع آموزشی برای ارتقای مهارت‌های برنامه‌نویسی شما." />
+
+                {/* بعدا عکسو بذار */}
+                <meta name="twitter:image" content="https://www.vc-virtual-learn.com/assets/academies-banner.png" />
+
+                <link rel="canonical" href="https://www.vc-virtual-learn.com/academies" />
                 <div className="-mt-32 pt-36 lg:pt-48 pb-12 lg:pb-20 w-full flex items-center justify-center 
                     dark:bg-gradient-to-b  dark:from-primary-50 dark:to-transparent backdrop-blur-md">
 
@@ -97,4 +105,5 @@ export default async function Home() {
                 <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
             </section>
         );
+    }
 }

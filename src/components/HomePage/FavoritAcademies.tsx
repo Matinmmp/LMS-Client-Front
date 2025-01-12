@@ -3,7 +3,7 @@ import { TbArrowBigLeftLinesFilled } from "react-icons/tb";
 import Link from "next/link";
 import { AcadmyCard, AcadmyCardLoading } from "../Shared/AcadmyCard";
 import { SiHtmlacademy } from "react-icons/si";
-import { getHomeFavoritAcademies, getHomeFavoritCourses } from '@/src/lib/apis/homeApis';
+import { getHomeFavoritAcademies } from '@/src/lib/apis/homeApis';
 
 type Props = {
     children: React.ReactNode

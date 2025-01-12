@@ -26,9 +26,6 @@ type CardProps = {
 };
 
 const TeacherCard = ({ data }: CardProps) => {
-    let name = data.engName
-    if (name.split(' ').length > 2)
-        name = `${name.split(' ')[0]} ${name.split(' ')[1]}`
 
     return (
         <Link href={`/teachers/${encodeTitle(data.engName)}`} className="w-full max-w-[25rem] h-[22rem]">
@@ -65,16 +62,16 @@ const TeacherCard = ({ data }: CardProps) => {
 
                                 <FaStar size={20} className="text-warning-400" />
                             </div>
-                            <h4 className={clsx(title({ color: 'secondary' }), 'text-2xl font-bold')}>{name}</h4>
+                            <h4 className={clsx(title({ color: 'secondary' }), 'text-xl font-bold')}>{data?.engName}</h4>
                         </div>
                         <h5 className="mt-4 dark:text-[#d0e0ef] text-gray-800">
-                            <p className="text-sm line-clamp-5"> {data.description} </p>
+                            <p className="text-sm font-light line-clamp-5"> {data.description} </p>
                         </h5>
                     </div>
 
                     <div className="w-full mt-auto">
-                        <div className="w-full p-4 flex items-center justify-center gap-2 border-t-2 border-secondary-50 dark:border-secondary-300">
-                            <p className=" font-medium">مشاهده اطلاعات {name}</p>
+                        <div className="w-full p-4 text-sm lg:text-base flex items-center justify-center gap-2 border-t-2 border-secondary-50 dark:border-secondary-300">
+                            <p>مشاهده اطلاعات <span className="text-secondary-500">{data?.engName}</span></p>
                             <TbArrowBigLeftLinesFilled size={20} className="text-secondary-300 " />
                         </div>
                     </div>

@@ -21,14 +21,10 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
     return (
 
         <html dir="rtl" lang="fa" id="html">
- 
-            <link rel="canonical" href="https://www.vc-virtual-learn.com/" />
             <meta property="og:type" content="website" />
             <meta property="og:locale" content="fa_IR" />
             <meta httpEquiv="Content-Language" content="fa" />
-            <meta name="twitter:card" content="summary_large_image" />     
-            {/* بعدا لوگو رو بذار */}
-            <meta name="twitter:image" content="https://www.virtuallearn.com/logo.png" />
+            <meta name="twitter:card" content="summary_large_image" />
             <meta name="theme-color" content="#079CED" />
             <meta name="author" content="Virtual Learn" />
             <meta charSet="UTF-8" />
