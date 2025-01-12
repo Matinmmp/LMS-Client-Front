@@ -3,6 +3,7 @@ import AcademiesList from "@/src/components/Academies/AcademiesList";
 import Hero from "@/src/components/Academies/Hero";
 
 import { getAcademies } from "@/src/lib/apis/academyApis";
+import Script from "next/script";
 
 
 
@@ -10,8 +11,70 @@ import { getAcademies } from "@/src/lib/apis/academyApis";
 export default async function Home() {
 
     const data: any = await getAcademies();
- 
- 
+
+
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": ">لیست آکادمی‌های آموزشی | Virtual Learn",
+        "url": "https://www.vc-virtual-learn.com/academies",
+        "description": "لیست آکادمی‌های آموزشی معتبر با دوره‌های ترجمه‌شده به زبان فارسی در ویرچوال لرن. بهترین منابع آموزشی برای ارتقای مهارت‌های برنامه‌نویسی شما.",
+        "inLanguage": "fa",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "ویرچوال لرن",
+            "url": "https://www.vc-virtual-learn.com"
+        },
+        "mainEntity": {
+            "@type": "ItemList",
+            "name": "لیست آکادمی‌ها",
+            "itemListElement": [
+                {
+                    "@type": "EducationalOrganization",
+                    "name": "آکادمی ۱",
+                    "url": "https://www.vc-virtual-learn.com/academies/academy-1",
+                    "description": "توضیحات مربوط به آکادمی ۱.",
+                    "image": "https://www.vc-virtual-learn.com/assets/academy-1.png",
+
+                },
+            ]
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Virtual Learn",
+            "url": "https://www.vc-virtual-learn.com",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.vc-virtual-learn.com/assets/logo.png", //پرش کن
+                "width": 512,
+                "height": 512
+            }
+        },
+        "image": "https://www.vc-virtual-learn.com/assets/academies-banner.png",// پرش کن
+    }
+
+    const item = {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "آکادمی ۱",
+        "url": "https://www.vc-virtual-learn.com/academies/academy-1",
+        "description": "توضیحات مربوط به آکادمی ۱. این آکادمی ارائه‌دهنده دوره‌های آموزشی تخصصی برنامه‌نویسی است.",
+        "image": "https://www.vc-virtual-learn.com/assets/academy-1.png",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.vc-virtual-learn.com/assets/academy-1-logo.png",
+            "width": 512,
+            "height": 512
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "350",
+            "bestRating": "5",
+        },
+    }
+
+
 
     if (data && data.success)
         return (
@@ -31,6 +94,7 @@ export default async function Home() {
                         <AcademiesList list={data.academies} />
                     </div>
                 </div>
+                <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
             </section>
         );
 }

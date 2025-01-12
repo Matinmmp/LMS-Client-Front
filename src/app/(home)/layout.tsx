@@ -58,6 +58,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <meta name="twitter:image" content="https://www.vc-virtual-learn.com/assets/contact-banner.png" />
             <meta name="revisit-after" content="1 days" />
 
+            <link rel="canonical" href="https://www.vc-virtual-learn.com/"/>
+
             <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
             {children}

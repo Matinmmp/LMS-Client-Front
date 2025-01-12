@@ -59,6 +59,8 @@ export default function AboutLayout({ children, }: { children: React.ReactNode }
             <meta name="twitter:title" content="درباره‌ی ویرچوال لرن" />
             <meta name="twitter:description" content="آموزش برنامه‌نویسی به زبان فارسی با ترجمه اختصاصی از بهترین آکادمی‌های جهان." />
             <meta name="twitter:image" content="https://www.vc-virtual-learn.com/assets/contact-banner.png" />
+            <link rel="canonical" href="https://www.vc-virtual-learn.com/about-us"/>
+
             <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
             <div className="relative z-20">

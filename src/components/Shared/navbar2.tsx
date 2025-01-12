@@ -71,11 +71,11 @@ const links = [
         title: 'درباره‌ی ما',
         link: '/about-us',
     },
-    {
-        icon: <FaQuoteRight size={20} />,
-        title: 'سوالات متداول',
-        link: '/',
-    },
+    // {
+    //     icon: <FaQuoteRight size={20} />,
+    //     title: 'سوالات متداول',
+    //     link: '/',
+    // },
 ]
 
 const categories = buildCategoryTree(navObject.categoryObject.categoryList, null);

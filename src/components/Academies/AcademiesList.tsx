@@ -14,7 +14,7 @@ type Props = {
 };
 
 const AcademiesList = ({ list }: Props) => {
-
+    console.log(list);
     const [searchText, setSearchText] = useState('');
     const [filteredAcademies, setFilteredAcademies] = useState(list);
     const [inputDirection, setInputDirection] = useState('rtl');
@@ -27,7 +27,6 @@ const AcademiesList = ({ list }: Props) => {
         { key: '4', label: 'براساس امتیاز' },
     ];
 
-    // Fuse.js setup for searching
     const fuse = new Fuse(list, {
         keys: ['faName', 'engName'],
         threshold: 0.3,
@@ -39,7 +38,9 @@ const AcademiesList = ({ list }: Props) => {
         else setInputDirection('ltr');
 
         const result = fuse.search(text).map(result => result.item);
-        setFilteredAcademies(result.length ? result as any : list);
+        setFilteredAcademies(result.length ? result as any : []);
+        if (!text)
+            setFilteredAcademies(list);
     };
 
     // Function to handle sorting
@@ -69,14 +70,14 @@ const AcademiesList = ({ list }: Props) => {
         setFilteredAcademies(sortedList as any);
     };
 
-    // Apply the filter when the selected option changes
+
     useEffect(() => {
         handleSort(selectedOption, filteredAcademies);
     }, [selectedOption, filteredAcademies]);
 
-    // Set default sorting on first render
+
     useEffect(() => {
-        handleSort('1', list); // Sort by popularity as the default
+        handleSort('1', list);
     }, [list]);
 
     return (

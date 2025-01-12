@@ -43,11 +43,6 @@ const schema = {
 export default function AboutLayout({ children, }: { children: React.ReactNode }) {
     return (
         <>
-
-            <meta name="twitter:image" content="https://www.virtuallearn.com/logo.png" />
-            <meta name="twitter:description" content="آموزش برنامه‌نویسی به زبان فارسی با ترجمه اختصاصی از بهترین آکادمی‌های جهان." />
-
-
             <title>ارتباط با ما | Virtual Learn</title>
             <meta name="description" content="برای ارتباط با تیم ویرچوال لرن و دریافت پشتیبانی، می‌توانید از اطلاعات تماس موجود در این صفحه استفاده کنید. سوالات و نظرات خود را با ما به اشتراک بگذارید." />
             <meta name="keywords" content="ارتباط با ما, تماس با ویرچوال لرن, پشتیبانی ویرچوال لرن, سوالات و نظرات" />
@@ -64,7 +59,7 @@ export default function AboutLayout({ children, }: { children: React.ReactNode }
             <meta name="twitter:title" content="ارتباط با ما | Virtual Learn" />
             <meta name="twitter:description" content="برای ارتباط با تیم ویرچوال لرن و دریافت پشتیبانی، می‌توانید از اطلاعات تماس موجود در این صفحه استفاده کنید." />
             <meta name="twitter:image" content="https://www.vc-virtual-learn.com/assets/contact-banner.png" />
-    
+            <link rel="canonical" href="https://www.vc-virtual-learn.com/contact-us"/>
 
 
             <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
