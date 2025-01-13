@@ -181,9 +181,9 @@ export default async function CourseInfo({ data,isPurchased }: Props) {
                         <div className="mt-8">
                             <RelatedCourse name={course?.urlName} />
                         </div>
-                        <div className="mt-8">
+                        {/* <div className="mt-8">
                             <RelatedBlog name={course?.urlName} />
-                        </div>
+                        </div> */}
 
                         <div className="mt-8">
                             <Commments name={course?.urlName} refresh_token={refresh_token?.value} courseId={course?._id} />

@@ -2,7 +2,7 @@ import Hero from "@/src/components/Courses/Hero";
 import { Suspense } from "react";
 import CoursesList from "../../components/Courses/CoursesList";
 import Courses from "@/src/components/Courses/Courses";
-
+import { Spinner } from "@nextui-org/spinner";
 
 export default async function CourseSearch(p: any) {
 
@@ -49,13 +49,27 @@ export default async function CourseSearch(p: any) {
 
             <div className="w-full max-w-7xl px-4 md:px-8 2xl:px-2 flex flex-col items-center justify-center ">
                 <Courses>
-                    <Suspense fallback={<div>loading</div>}>
+                    <Suspense fallback={<Loading />}>
 
-                        <CoursesList object={object}/>
+                        <CoursesList object={object} />
 
                     </Suspense>
                 </Courses>
             </div>
         </section>
     );
+}
+
+const Loading = () => {
+    return <div className="mt-8 flex flex-col items-center gap-6">
+        <p className='text-lg md:text-xl lg:text-2xl text-primary-400 font-semibold'>درحال دریافت دوره‌ها...</p>
+        <Spinner color="primary" size="lg"
+            classNames={{
+                circle1: 'w-12 h-12 md:w-16 md:h-16 border-[4px]',
+                circle2: 'w-12 h-12 md:w-16 md:h-16 border-[4px]',
+                base: 'w-12 h-12 md:w-16 md:h-16',
+                wrapper: 'w-12 h-12 md:w-16 md:h-16'
+            }} />
+    </div>
+
 }

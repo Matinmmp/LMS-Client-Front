@@ -123,6 +123,13 @@ const Courses = ({ children }: Props) => {
         router.push(`${path}?${queryParams.toString()}`);
     }
 
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            handleSearch();
+        }
+    };
+
 
 
     useEffect(() => {
@@ -154,7 +161,7 @@ const Courses = ({ children }: Props) => {
             <div className="flex items-center flex-wrap md:flex-nowrap gap-4 py-6 px-4 shadow-medium rounded-lg 
                 bg-[#ffffffbf] dark:bg-[#131d35] dark:backdrop-blur-md ">
 
-                <Input placeholder="نام دوره را وارد کنید" size="lg" radius="sm" variant="bordered" color="primary"
+                <Input placeholder="نام دوره را وارد کنید" size="lg" radius="sm" variant="bordered" color="primary" onKeyDown={handleKeyDown}
                     endContent={<IoSearch size={24} className="cursor-pointer" onClick={handleSearch} />}
                     onChange={(e) => setSearchText(e.target.value)} value={searchText} dir={'rtl'}
                 />
@@ -181,18 +188,21 @@ const Courses = ({ children }: Props) => {
 
                         <Acordian open={open1} title="فیلتر قیمت" setOpen={setOpen1} initialHeight={'auto'}>
 
-                            <div className="w-full flex items-center">
-                                <Button className="w-full rounded-md " onClick={() => handlePriceSelect("1")}
-                                    variant="solid" color={selectedPrice === "1" ? 'secondary' : 'info'}>همه</Button>
-                                <Button className="w-full rounded-md " onClick={() => handlePriceSelect("3")}
-                                    variant="solid" color={selectedPrice === "3" ? 'secondary' : 'info'}>فقط نقدی</Button>
-                            </div>
-                            <div className="w-full flex items-center">
-                                <Button className="w-full rounded-md " onClick={() => handlePriceSelect("2")}
-                                    variant="solid" color={selectedPrice === "2" ? 'secondary' : 'info'}>رایگان</Button>
+                            <div className="w-full flex items-center gap-1">
+                                <Button className="w-full rounded-md font-semibold text-white" onPress={() => handlePriceSelect("1")}
+                                    variant={selectedPrice === "1" ? 'solid' : 'light'} color={'secondary'}>همه</Button>
 
-                                <Button className="w-full rounded-md " onClick={() => handlePriceSelect("4")}
-                                    variant="solid" color={selectedPrice === "4" ? 'secondary' : 'info'}>تخفیف‌دار</Button>
+
+                                <Button className="w-full rounded-md font-semibold text-white" onPress={() => handlePriceSelect("3")}
+                                    variant={selectedPrice === "3" ? 'solid' : 'light'} color={'secondary'}>فقط نقدی</Button>
+
+                            </div>
+                            <div className="mt-1 w-full flex items-center gap-1">
+                                <Button className="w-full rounded-md font-semibold text-white" onPress={() => handlePriceSelect("2")}
+                                    variant={selectedPrice === "2" ? 'solid' : 'light'} color={'secondary'}>رایگان</Button>
+
+                                <Button className="w-full rounded-md font-semibold text-white" onPress={() => handlePriceSelect("4")}
+                                    variant={selectedPrice === "4" ? 'solid' : 'light'} color={'secondary'}>تخفیف‌دار</Button>
                             </div>
 
                         </Acordian>
