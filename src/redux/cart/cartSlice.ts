@@ -37,7 +37,6 @@ const cartSlice = createSlice({
 
         deleteCourse: (state: any, action) => {
             const { courseId } = action.payload;
-            console.log(action.payload)
             const index = state.courseIds.indexOf(courseId);
             if (index > -1) {
                 state.courseIds.splice(index, 1);

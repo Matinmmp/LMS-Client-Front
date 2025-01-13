@@ -115,7 +115,6 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
                 localStorage.setItem('loginInfo', JSON.stringify({ password, email }))
             else
                 localStorage.removeItem('loginInfo');
-            console.log({ email: convertToEnglishNumbers(email), password: convertToEnglishNumbers(password) })
             await loginMutation.mutate({ email: convertToEnglishNumbers(email), password: convertToEnglishNumbers(password) })
         }
     })
@@ -123,7 +122,6 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
     const { errors, touched, handleChange, handleSubmit, values } = formik;
 
     const handleSuccess = (credentialResponse: any) => {
-        console.log(credentialResponse);
         loginMutationWithGoogle.mutate(credentialResponse?.credential)
     };
 

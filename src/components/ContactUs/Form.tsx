@@ -25,7 +25,6 @@ const ContactUsForm = () => {
         validationSchema: schema,
         onSubmit: async ({ email, desc, name, subject }) => {
             postFormMutation.mutate({ email, message: desc, name, subject: list[+subject] })
-            console.log("Form Data:", { email, desc, name, subject: list[+subject] });
         },
     });
 

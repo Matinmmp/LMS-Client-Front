@@ -37,7 +37,6 @@ const ForgetPassword: FC<Props> = ({ setRoute, setOpen }) => {
         initialValues: { email: "" },
         validationSchema: schema,
         onSubmit: async ({ email }) => {
-            console.log(email)
             await forgetPasswrodMutation.mutate(email)
         }
     })

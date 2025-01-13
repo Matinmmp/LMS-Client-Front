@@ -87,7 +87,6 @@ const SignUp: FC<Props> = ({ setRoute, setOpen }) => {
     })
 
     const handleSuccess = (credentialResponse: any) => {
-        console.log(credentialResponse);
         loginMutationWithGoogle.mutate(credentialResponse?.credential)
     };
 
