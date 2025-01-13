@@ -10,7 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
  
-
+ 
 type Props = {
     children: React.ReactNode
     name: string,
@@ -27,7 +27,7 @@ const FavoriteCoursesForAcademy = (props: Props) => {
 
             <div className="w-full px-4 pb-2 lg:px-8 flex justify-between">
                 <div className="flex items-center gap-2">
-                    <BsBookmarkHeartFill className="text-primary-400 text-[1.5rem] md:text-[2rem] lg:text-[2.5rem]" />
+                    <BsBookmarkHeartFill className="text-primary-400 text-[1.3rem] md:text-[1.8rem] lg:text-[2.2rem]" />
                     {props.children}
                 </div>
 

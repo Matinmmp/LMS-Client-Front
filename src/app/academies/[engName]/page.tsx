@@ -24,7 +24,7 @@ export default async function Academy({ params: { engName } }: Props) {
     const name = await decodeURIComponent(engName);
     const data: any = await getAcademyByName(decodeTitle(name));
 
-
+ 
     if (data && data.success) {
         const schema = {
             "@context": "https://schema.org",

@@ -10,7 +10,7 @@ import { FaStar } from "react-icons/fa6";
 import { Suspense } from 'react';
 import { PiMaskSad } from "react-icons/pi";
 import FavoritAcademyForTeacher, { FavoritAcademyForTeacherLoading } from "./FavoriteAcademies";
-import FavoriteCoursesForTeacher, { FavoriteCoursesForTeacherLoading } from "./FavoriteCourses";
+import FavoriteCoursesForTeacher from "./FavoriteCourses";
 
 
 
@@ -57,7 +57,6 @@ function generateTeacherDescription(teacherName: string, studentsCount: number, 
 
     // توضیحات مربوط به تعداد دوره‌ها و آکادمی‌ها
     description += `${teacherName} با ${coursesCount} دوره‌ی آموزشی در پلتفرم «Virtual Learn» حضور دارد و در ${academyCount} آکادمی فعالیت داشته است. `;
-    description += `اطلاعات ارائه‌شده، مختص به فعالیت این مدرس در پلتفرم ما است و نشان‌دهنده‌ی میزان مشارکت او در سایت «Virtual Learn» می‌باشد.`;
 
     return description;
 }
@@ -93,7 +92,7 @@ const TeacherInfo = ({ data }: Props) => {
                 </div>
 
                 <div className="w-full mt-10 lg:mt-14">
-                    <p className={`w-full text-lg text-right font-light lg:font-normal leading-8 md:leading-10`}>
+                    <p className={`w-full tracking-wide text-sm md:text-base lg:text-lg text-right font-light lg:font-normal leading-8 md:leading-10`}>
                         {data.longDescription}
                     </p>
 
@@ -104,11 +103,11 @@ const TeacherInfo = ({ data }: Props) => {
             <div className="w-full lg:h-[20rem] mt-6 lg:mt-8 flex flex-col lg:flex-row items-start gap-6 lg:gap-4">
 
                 <div className="h-auto lg:min-h-[20rem] lg:w-full flex-grow order-2 lg:order-1 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl ">
-                    <div className="p-4 pt-6 text-center">
-                        <h2 className={clsx(title({ color: 'secondary' }), 'inline w-full lg:text-left text-2xl lg:text-4xl font-bold')}>{data.faName} در ویرچوال لرن</h2>
+                    <div className="p-4 pt-8 text-center">
+                        <h2 className={clsx(title({ color: 'secondary' }), 'inline w-full lg:text-left text-xl lg:text-2xl xl:text-3xl font-bold leading-10')}>{data.faName} در ویرچوال لرن</h2>
 
-                        <p className="mt-4 text-right text-lg font-semibold leading-8 text-[#475466 dark:text-[#9aaed1]">
-                            {generateTeacherDescription(data.engName, data.totalStudents, data.rating, data.totalCourses, data.totalAcademies)}
+                        <p className="mt-6 tracking-wide text-right text-sm md:text-base lg:text-lg  leading-8 ">
+                            {toPersianNumber(generateTeacherDescription(data.engName, data.totalStudents, data.rating, data.totalCourses, data.totalAcademies))}
                         </p>
 
                     </div>
@@ -153,15 +152,20 @@ const TeacherInfo = ({ data }: Props) => {
             </div>
 
             <div className="mt-6 lg:mt-8">
-                <div className="p-4 pb-2 lg:pb-8 lg:p-8 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl ">
+                <div className="p-4 pt-6 pb-2 lg:pb-8 lg:p-8 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl ">
                     {data.totalAcademies ?
-                        <FavoritAcademyForTeacher name={data.engName} totalTeachers={data.totalAcademies}>
-                            <h3 className={clsx(title({ color: 'green' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>آکادمی‌هایی که {data.engName} هست</h3>
-                        </FavoritAcademyForTeacher>
-                        :
+                        <Suspense fallback={
+                            <FavoritAcademyForTeacherLoading name={data.engName} totalTeachers={data.totalAcademies}>
+                                <h3 className={clsx(title({ color: 'green' }), "text-lg md:text-xl lg:text-2xl")}>آکادمی‌هایی که {data.engName} هست</h3>
+                            </FavoritAcademyForTeacherLoading>}>
+
+                            <FavoritAcademyForTeacher name={data.engName} totalTeachers={data.totalAcademies}>
+                                <h3 className={clsx(title({ color: 'green' }), "text-lg md:text-xl lg:text-2xl")}>آکادمی‌هایی که {data.engName} هست</h3>
+                            </FavoritAcademyForTeacher>
+                        </Suspense> :
                         <div className="py-10 text-center flex flex-col items-center gap-6">
-                            <PiMaskSad className="text-secondary-400 text-6xl md:text-7xl" />
-                            <p className="text-lg font-semibold">در‌حال حاضر ({data.engName}) در هیچ آکادمی‌ای نیست</p>
+                            <PiMaskSad className="text-success text-6xl md:text-7xl" />
+                            <p className="text-lg font-semibold">در‌حال حاضر مدرسی برای آکادمیه ({data.engName}) اضافه نشده است.</p>
                         </div>
                     }
                 </div>
@@ -170,15 +174,10 @@ const TeacherInfo = ({ data }: Props) => {
             <div className="mt-6 lg:mt-8">
                 <div className="p-4 pb-2 lg:pb-8 lg:p-8 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl ">
                     {data.totalCourses ?
-                        <Suspense fallback={
-                            <FavoriteCoursesForTeacherLoading totalCourses={data.totalCourses}>
-                                <h3 className={clsx(title({ color: 'blue' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین دوره‌های {data.engName}</h3>
-                            </FavoriteCoursesForTeacherLoading>}>
-
-                            <FavoriteCoursesForTeacher name={data.engName} totalCourses={data.totalCourses}>
-                                <h3 className={clsx(title({ color: 'blue' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین دوره‌های {data.engName}</h3>
-                            </FavoriteCoursesForTeacher>
-                        </Suspense> :
+                        <FavoriteCoursesForTeacher name={data.engName} totalCourses={data.totalCourses}>
+                            <h3 className={clsx(title({ color: 'blue' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین دوره‌های {data.engName}</h3>
+                        </FavoriteCoursesForTeacher>
+                        :
                         <div className="py-10 text-center flex flex-col items-center gap-6">
                             <PiMaskSad className="text-secondary-400 text-6xl md:text-7xl" />
                             <p className="text-lg font-semibold">در‌حال حاضر دوره‌ای برای ({data.engName}) اضافه نشده است.</p>

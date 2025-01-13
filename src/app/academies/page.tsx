@@ -1,5 +1,6 @@
 import AcademiesList from "@/src/components/Academies/AcademiesList";
 import Hero from "@/src/components/Academies/Hero";
+import { Problem } from "@/src/components/Shared/Problem";
 import { getAcademies } from "@/src/lib/apis/academyApis";
 import { encodeTitle } from "@/src/utils/functions";
 import Script from "next/script";
@@ -41,8 +42,7 @@ export default async function Home() {
         "image": "https://www.vc-virtual-learn.com/assets/academies-banner.png",// پرش کن
     }
 
-
-    if (data && data.success) {
+    if (data) {
         let items = data?.academies?.map((item: any, index: number) => {
             return {
                 "@context": "https://schema.org",
@@ -88,6 +88,7 @@ export default async function Home() {
                 <meta name="twitter:image" content="https://www.vc-virtual-learn.com/assets/academies-banner.png" />
 
                 <link rel="canonical" href="https://www.vc-virtual-learn.com/academies" />
+
                 <div className="-mt-32 pt-36 lg:pt-48 pb-12 lg:pb-20 w-full flex items-center justify-center 
                     dark:bg-gradient-to-b  dark:from-primary-50 dark:to-transparent backdrop-blur-md">
 
@@ -99,7 +100,7 @@ export default async function Home() {
 
                 <div className="w-full max-w-7xl px-4 md:px-8 2xl:px-2 flex flex-col items-center justify-center ">
                     <div className="w-full mt-6">
-                        <AcademiesList list={data.academies} />
+                        {data?.success ? <AcademiesList list={data?.academies} /> : <Problem />}
                     </div>
                 </div>
                 <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />

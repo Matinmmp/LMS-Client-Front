@@ -36,8 +36,8 @@ const AcademiesList = ({ list }: Props) => {
         if (/[\u0600-\u06FF]/.test(text)) setInputDirection('rtl');
         else setInputDirection('ltr');
 
-        const result = fuse.search(text).map(result => result.item);
-        setFilteredAcademies(result.length ? result as any : []);
+        const result = fuse.search(text).map(result => result?.item);
+        setFilteredAcademies(result?.length ? result as any : []);
         if (!text)
             setFilteredAcademies(list);
     };
@@ -91,16 +91,8 @@ const AcademiesList = ({ list }: Props) => {
                         placeholder="نام آکادمی را وارد کنید" size="lg" radius="sm" variant="bordered" color="success"
                     />
                     <div className="w-full md:w-6/12 lg:w-4/12 xl:w-3/12">
-                        <Select
-                            size="lg"
-                            radius="sm"
-                            color="success"
-                            variant="bordered"
-                            disableSelectorIconRotation
-                            className="text-base"
-                            onChange={(e) => setSelectedOption(e.target.value)}
-                            selectedKeys={selectedOption}
-                        >
+                        <Select size="lg" radius="sm" color="success" variant="bordered" selectedKeys={selectedOption}
+                            disableSelectorIconRotation className="text-base" onChange={(e) => setSelectedOption(e.target.value)}>
                             {selectOptions.map((option) => (
                                 <SelectItem key={option.key} variant="bordered" color="success">
                                     {option.label}
@@ -127,7 +119,8 @@ const AcademiesList = ({ list }: Props) => {
                     :
 
                     <div className='w-full mt-20'>
-                        <p className="text-2xl font-semibold text-center">مدرسی با این نام پیدا نشد</p>
+                        <p className="text-xl md:text-2xl font-semibold text-center">آکادمی‌ای با این نام پیشدا نشد.</p>
+                        <p className="mt-4 text-base md:text-lg text-center">اگر دوره یا آکادمی‌ای که دنبال آن هستید در سایت وجود ندارد از قسمت ارتباط با ما درخواست خود را برای افزودن دوره یا آکادمی دلخواه ثبت کنید.</p>
                     </div>
 
                 }

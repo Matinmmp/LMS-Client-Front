@@ -91,7 +91,7 @@ const AcademyInfo = ({ data }: Props) => {
                 </div>
 
                 <div className="w-full mt-10 lg:mt-14">
-                    <p className={`w-full text-sm md:text-base lg:text-lg text-right font-light lg:font-normal leading-8 md:leading-10`}>
+                    <p className={`w-full tracking-wide text-sm md:text-base lg:text-lg text-right font-light lg:font-normal leading-8 md:leading-10`}>
                         {data.longDescription}
                     </p>
                 </div>
@@ -101,10 +101,10 @@ const AcademyInfo = ({ data }: Props) => {
             <div className="w-full lg:h-[20rem] mt-6 lg:mt-8 flex flex-col lg:flex-row items-start gap-6 lg:gap-4">
 
                 <div className="h-auto lg:min-h-[20rem] lg:w-full flex-grow order-2 lg:order-1 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl ">
-                    <div className="p-4 pt-6 text-center">
+                    <div className="p-4 pt-8 text-center">
                         <h2 className={clsx(title({ color: 'green' }), 'inline w-full lg:text-left text-xl lg:text-2xl xl:text-3xl font-bold leading-10')}>آکادمی {data.faName} در ویرچوال لرن</h2>
 
-                        <p className="mt-6 text-right text-sm md:text-base lg:text-lg font-semibold leading-8 text-[#2c333e] dark:text-[#a7badb]">
+                        <p className="mt-6 tracking-wide text-right text-sm md:text-base lg:text-lg leading-8 ">
                             {toPersianNumber(generateAcademyDescription(data.engName, data.totalStudents, data.rating, data.totalCourses, data.totalTeachers))}
                         </p>
 
@@ -154,11 +154,11 @@ const AcademyInfo = ({ data }: Props) => {
                     {data.totalTeachers ?
                         <Suspense fallback={
                             <FavoritTeachersForAcademyLoading name={data.engName} totalTeachers={data.totalTeachers}>
-                                <h3 className={clsx(title({ color: 'secondary' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین مدرس‌ها {data.engName}</h3>
+                                <h3 className={clsx(title({ color: 'secondary' }), "text-lg md:text-xl lg:text-2xl")}>محبوب‌ترین مدرس‌ها {data.engName}</h3>
                             </FavoritTeachersForAcademyLoading>}>
 
                             <FavoritTeachersForAcademy name={data.engName} totalTeachers={data.totalTeachers}>
-                                <h3 className={clsx(title({ color: 'secondary' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین مدرس‌ها {data.engName}</h3>
+                                <h3 className={clsx(title({ color: 'secondary' }), "text-lg md:text-xl lg:text-2xl")}>محبوب‌ترین مدرس‌ها {data.engName}</h3>
                             </FavoritTeachersForAcademy>
                         </Suspense> :
                         <div className="py-10 text-center flex flex-col items-center gap-6">
@@ -173,7 +173,7 @@ const AcademyInfo = ({ data }: Props) => {
                 <div className="py-4 pb-2 lg:py-8 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl ">
                     {data.totalCourses ?
                         <FavoriteCoursesForAcademy name={data.engName} totalCourses={data.totalCourses}>
-                            <h3 className={clsx(title({ color: 'blue' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین دوره‌های {data.engName}</h3>
+                            <h3 className={clsx(title({ color: 'blue' }), "text-lg md:text-xl lg:text-2xl ")}>محبوب‌ترین دوره‌های {data.engName}</h3>
                         </FavoriteCoursesForAcademy>
                         :
                         <div className="py-10 text-center flex flex-col items-center gap-6">

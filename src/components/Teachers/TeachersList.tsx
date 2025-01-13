@@ -50,14 +50,16 @@ const TeachersList = ({ list }: Props) => {
         keys: ['faName', 'engName'],
         threshold: 0.3,
     });
-
+ 
     const handleSearchChange = (text: string) => {
         setSearchText(text);
         if (/[\u0600-\u06FF]/.test(text)) setInputDirection('rtl');
         else setInputDirection('ltr');
 
         const result = fuse.search(text).map(result => result.item);
-        setFilteredTeachers(result.length ? result as any : list);
+        setFilteredTeachers(result.length ? result as any : []);
+        if (!text)
+            setFilteredTeachers(list);
     };
 
     const handleSort = (option: string, data: any[]) => {
@@ -175,7 +177,8 @@ const TeachersList = ({ list }: Props) => {
                     </div>
                     :
                     <div className='w-full mt-20'>
-                        <p className="text-2xl font-semibold text-center">مدرسی با این نام پیدا نشد</p>
+                        <p className="text-xl md:text-2xl font-semibold text-center">مدرسی با این نام پیشدا نشد.</p>
+                        <p className="mt-4 text-base md:text-lg text-center">اگر دوره یا مدرسی که دنبال آن هستید در سایت وجود ندارد از قسمت ارتباط با ما درخواست خود را برای افزودن دوره یا مدرس دلخواه ثبت کنید.</p>
                     </div>
                 }
             </div>
