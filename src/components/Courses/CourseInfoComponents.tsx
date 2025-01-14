@@ -33,6 +33,7 @@ import { Textarea } from "@nextui-org/input";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 import { LuEye } from "react-icons/lu";
 import { addCourse } from "@/src/redux/cart/cartSlice";
+import Image from "next/image";
 
 
 
@@ -122,24 +123,25 @@ export function CourseLessons({ name }: { name: any }) {
         getCourseData = useQuery({ queryKey: ['getCourseDataByNameLoged', name], queryFn: () => getCourseDataByNameLoged(name) });
 
     let data: any = null;
-    if (!getCourseData.isLoading && getCourseData.isSuccess && getCourseData?.data)
+    if (!getCourseData?.isLoading && getCourseData?.isSuccess && getCourseData?.data)
         data = getCourseData?.data;
 
     let lessonsList: any = []
-    if (!getCourseData.isLoading && getCourseData.isSuccess && getCourseData?.data)
+    if (!getCourseData?.isLoading && getCourseData?.isSuccess && getCourseData?.data)
         lessonsList = data?.courseData;
 
 
     let totalSections = 0;
 
-    if (!getCourseData.isLoading && getCourseData.isSuccess && getCourseData?.data)
+    if (!getCourseData?.isLoading && getCourseData?.isSuccess && getCourseData?.data)
         totalSections = lessonsList?.length;
 
-    if (!getCourseData.isLoading && getCourseData.isSuccess && data?.courseFiles && (data?.courseFiles === true || data?.courseFiles?.length))
+    if (!getCourseData?.isLoading && getCourseData?.isSuccess && data?.courseFiles && (data?.courseFiles === true || data?.courseFiles?.length))
         totalSections += 1;
 
-    if (!getCourseData.isLoading && getCourseData.isSuccess && data?.courseLinks && (data?.courseLinks === true || data?.courseLinks?.length))
+    if (!getCourseData?.isLoading && getCourseData?.isSuccess && data?.courseLinks && (data?.courseLinks === true || data?.courseLinks?.length))
         totalSections += 1;
+
 
     return (
         <div id="course_lessons" className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl relative">
@@ -150,7 +152,17 @@ export function CourseLessons({ name }: { name: any }) {
                     <p className="text-lg sm:text-xl md:text-2xl font-semibold">سرفصل‌ها</p>
                 </div>
 
-                {!getCourseData.isLoading && getCourseData.isSuccess && (getCourseData?.data?.error || getCourseData?.data?.warning || getCourseData?.data?.info) ?
+                {
+                    !getCourseData?.isLoading && getCourseData?.isError &&
+                    <div className="mt-6 w-full flex flex-col items-center">
+                        <p className="text-lg lg:text-xl font-bold text-danger-500">خطایی رخ داده است</p>
+                        <p className="mt-6 md:text-lg text-danger-500 text-center font-medium">متأسفیم، مشکلی در سرور پیش آمده است. لطفاً بعداً دوباره امتحان کنید یا با پشتیبانی تماس بگیرید.</p>
+
+                        <Image src={'https://buckettest.storage.c2.liara.space/images/error1.svg'} alt='' width={1000} height={1000} className="mt-18 max-w-40" />
+                    </div>
+                }
+
+                {!getCourseData?.isLoading && getCourseData?.isSuccess && (getCourseData?.data?.error || getCourseData?.data?.warning || getCourseData?.data?.info) ?
                     <div className="mb-4 flex flex-col gap-2">
                         {getCourseData?.data?.error ? <AlertDanger text={getCourseData?.data.error} /> : ''}
                         {getCourseData?.data?.warning ? <AlertWarning text={getCourseData?.data.warning} /> : ''}
@@ -160,7 +172,7 @@ export function CourseLessons({ name }: { name: any }) {
                 <div className="w-full">
 
                     <div className="flex flex-col gap-4">
-                        {getCourseData.isLoading &&
+                        {getCourseData?.isLoading &&
                             <>
                                 <Skeleton className="w-full h-[4rem] rounded-xl shadow-small dark:shadow-small" />
                                 <Skeleton className="w-full h-[4rem] rounded-xl shadow-small dark:shadow-small" />
@@ -172,30 +184,30 @@ export function CourseLessons({ name }: { name: any }) {
                     </div>
 
                     <div className="flex flex-col gap-2">
-                        {!getCourseData.isLoading && getCourseData.isSuccess &&
+                        {!getCourseData?.isLoading && getCourseData?.isSuccess &&
                             lessonsList?.slice(0, open ?
                                 // data?.courseData?.length 
-                                lessonsList.length : 10)?.map((item: any, index: number) => <SectionAcordian item={item} key={index} isCourseFree={data?.isPurchased} />)
+                                lessonsList?.length : 10)?.map((item: any, index: number) => <SectionAcordian item={item} key={index} isCourseFree={data?.isPurchased} />)
                         }
 
                         {
-                            !getCourseData.isLoading && getCourseData.isSuccess && data?.courseFiles && (data?.courseFiles === true || data?.courseFiles?.length) &&
-                            (lessonsList.length < 10 || open) && <CourseFileAcordian courseFiles={data?.courseFiles} isCourseFree={data?.isPurchased} />
+                            !getCourseData?.isLoading && getCourseData?.isSuccess && data?.courseFiles && (data?.courseFiles === true || data?.courseFiles?.length) &&
+                            (lessonsList?.length < 10 || open) && <CourseFileAcordian courseFiles={data?.courseFiles} isCourseFree={data?.isPurchased} />
                         }
 
                         {
-                            !getCourseData.isLoading && getCourseData.isSuccess && data?.courseLinks && (data?.courseLinks === true || data?.courseLinks?.length) &&
-                            (lessonsList.length < 10 || open) && <CourseLinkAcordian courseLinks={data?.courseLinks} isCourseFree={data?.isPurchased} />
+                            !getCourseData?.isLoading && getCourseData?.isSuccess && data?.courseLinks && (data?.courseLinks === true || data?.courseLinks?.length) &&
+                            (lessonsList?.length < 10 || open) && <CourseLinkAcordian courseLinks={data?.courseLinks} isCourseFree={data?.isPurchased} />
                         }
 
                     </div>
 
 
                     {
-                        lessonsList.length >= 10 &&
+                        lessonsList?.length >= 10 &&
                         <div className="w-full mt-6 flex justify-center">
                             <Button variant="ghost" color="secondary" size="lg" className="w-full font-semibold"
-                                onClick={() => setOpen(!open)}>
+                                onPress={() => setOpen(!open)}>
                                 {`${toPersianNumber(totalSections - 10)} بخش دیگر`}
                             </Button>
                         </div>
@@ -714,6 +726,16 @@ export const Commments = ({ name, refresh_token, courseId }: { name: string, ref
             </div>
 
             {showAddComment && <AddComment setShowAddComment={setShowAddComment} courseId={courseId} />}
+
+            {
+                !getReviewData?.isLoading && getReviewData?.isError &&
+                <div className="mt-6 w-full flex flex-col items-center">
+                    <p className="text-lg lg:text-xl font-bold text-danger-500">خطایی رخ داده است</p>
+                    <p className="mt-6 md:text-lg text-danger-500 text-center font-medium">متأسفیم، مشکلی در سرور پیش آمده است. لطفاً بعداً دوباره امتحان کنید یا با پشتیبانی تماس بگیرید.</p>
+
+                    <Image src={'https://buckettest.storage.c2.liara.space/images/error1.svg'} alt='' width={1000} height={1000} className="mt-18 max-w-40" />
+                </div>
+            }
 
             {
                 getReviewData?.isLoading && !getReviewData?.isError &&

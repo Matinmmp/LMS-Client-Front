@@ -173,7 +173,7 @@ const TeacherInfo = ({ data }: Props) => {
 
             <div className="mt-6 lg:mt-8">
                 <div className="p-4 pb-2 lg:pb-8 lg:p-8 bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl ">
-                    {data.totalCourses ?
+                    {data?.totalCourses ?
                         <FavoriteCoursesForTeacher name={data.engName} totalCourses={data.totalCourses}>
                             <h3 className={clsx(title({ color: 'blue' }), "text-lg md:text-xl lg:text-2xl xl:text-3xl")}>محبوب‌ترین دوره‌های {data.engName}</h3>
                         </FavoriteCoursesForTeacher>

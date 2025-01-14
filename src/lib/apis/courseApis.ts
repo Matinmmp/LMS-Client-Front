@@ -1,6 +1,6 @@
 import { customFetch } from "../fetcher";
 
-export const getCourseByName = async (name: string,refresh_token:any,access_token:any) => {
+export const getCourseByName = async (name: string, refresh_token: any, access_token: any) => {
     try {
         const data = await customFetch(`/get-course/${name}`, {
             method: 'GET',
@@ -19,28 +19,24 @@ export const getCourseByName = async (name: string,refresh_token:any,access_toke
 }
 
 export const getCourseDataByNameNoLoged = async (name: string) => {
-    try {
-        const data = await customFetch(`/getCourseDataByNameNoLoged/${name}`, {
-            method: 'GET',
-            cache: 'no-store',
-        });
-        return await data;
-    } catch (error) {
-        return error
-    }
+
+    const data = await customFetch(`/getCourseDataByNameNoLoged/${name}`, {
+        method: 'GET',
+        cache: 'no-store',
+    });
+    return await data;
+
 }
 
 export const getCourseDataByNameLoged = async (name: string) => {
-    try {
-        const data = await customFetch(`/getCourseDataByNameLoged/${name}`, {
-            method: 'GET',
-            cache: 'no-store',
-            credentials: 'include',
-        });
-        return await data;
-    } catch (error) {
-        return error
-    }
+
+    const data = await customFetch(`/getCourseDataByNameLoged/${name}`, {
+        method: 'GET',
+        cache: 'no-store',
+        credentials: 'include',
+    });
+    return await data;
+
 }
 
 export const getAllCourseUrlNames = async () => {
@@ -66,21 +62,24 @@ export const getRelatedCourses = async (name: string) => {
         }
         );
         return await data;
-    } catch (error) {
+    }
+    catch (error) {
         return error
     }
+
+
 }
 
 export const postComment = async ({ comment, courseId, commentId }: { comment: string, courseId: string, commentId?: string }) => {
- 
-        const data = await customFetch(`/postComment`, {
-            method: 'Post',
-            credentials: 'include' as const,
-            body: JSON.stringify({ comment, courseId, commentId }),
-            headers: { 'Content-Type': 'application/json' },
-        }
-        );
-        return await data;
- 
+
+    const data = await customFetch(`/postComment`, {
+        method: 'Post',
+        credentials: 'include' as const,
+        body: JSON.stringify({ comment, courseId, commentId }),
+        headers: { 'Content-Type': 'application/json' },
+    }
+    );
+    return await data;
+
 }
 

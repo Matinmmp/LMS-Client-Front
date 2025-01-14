@@ -19,7 +19,7 @@ type Props = {
 
 
 const FavoriteCoursesForTeacher = (props: Props) => {
-    const TeacherCourses: any = useQuery({ queryKey: [props.name], queryFn: () => getTeacherCoursesByEngName(props.name) });
+    const TeacherCourses: any = useQuery({ queryKey: [props?.name], queryFn: () => getTeacherCoursesByEngName(props?.name) });
 
 
     return (
@@ -32,7 +32,7 @@ const FavoriteCoursesForTeacher = (props: Props) => {
                 </div>
 
                 <Link href={'/'} className={`hidden sm:flex items-center gap-1 text-sm md:text-base  hover:text-primary-400 transition-all`}>
-                    <p>مشاهده همه دوره‌ها ({toPersianNumber(props.totalCourses)})</p>
+                    <p>مشاهده همه دوره‌ها ({toPersianNumber(props?.totalCourses)})</p>
                     <TbArrowBigLeftLinesFilled size={20} className="text-primary-400 " />
                 </Link>
             </div>
@@ -41,7 +41,7 @@ const FavoriteCoursesForTeacher = (props: Props) => {
                 {!TeacherCourses.isLoading ?
                     <Swiper slidesPerView={1} spaceBetween={15} className="mySwiper w-full" breakpoints={{ 576: { slidesPerView: 'auto' } }}  >
                         {
-                            TeacherCourses?.data.courses.length && TeacherCourses?.data.courses.map((item: any, index: number) =>
+                            TeacherCourses?.data?.courses?.length && TeacherCourses?.data?.courses?.map((item: any, index: number) =>
                                 <SwiperSlide key={index} className='flex justify-center items-center  sm:max-w-[18rem]'>
                                     <div className="max-w-[20rem] mx-auto sm:mx-0">
                                         <CourseCard data={item} />

@@ -38,10 +38,10 @@ const FavoriteCoursesForAcademy = (props: Props) => {
             </div>
 
             <div className="w-full mt-10 px-4 lg:px-8">
-                {!AcademyCourses.isLoading ?
+                {!AcademyCourses?.isLoading ?
                     <Swiper slidesPerView={1} spaceBetween={15} className="mySwiper w-full" breakpoints={{ 576: { slidesPerView: 'auto' } }}  >
                         {
-                            AcademyCourses?.data.courses.length && AcademyCourses?.data.courses.map((item: any, index: number) =>
+                            AcademyCourses?.data?.courses?.length && AcademyCourses?.data?.courses?.map((item: any, index: number) =>
                                 <SwiperSlide key={index} className='flex justify-center items-center  sm:max-w-[18rem]'>
                                     <div className="max-w-[20rem] mx-auto sm:mx-0">
                                         <CourseCard data={item} />

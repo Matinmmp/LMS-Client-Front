@@ -13,7 +13,7 @@ export async function RelatedCourse({ name }: { name: string }) {
     const data: any = await getRelatedCourses(name)
 
 
-    if (data && data.success && data?.courses?.length)
+    if (data && data?.success && data?.courses?.length)
 
         return (
             <div className="w-full hidden md:block bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl relative">
