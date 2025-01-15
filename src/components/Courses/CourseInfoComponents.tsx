@@ -116,7 +116,7 @@ export function CourseLessons({ name }: { name: any }) {
     const [open, setOpen] = useState(false);
     let getCourseData: any
 
-    if (!refresh_token || !access_token)
+    if (!refresh_token)
         getCourseData = useQuery({ queryKey: ['getCourseDataByNameNoLoged', name], queryFn: () => getCourseDataByNameNoLoged(name) });
 
     if (refresh_token)

@@ -88,61 +88,61 @@ export const Cart = () => {
                                     <div className='max-h-[20rem] overflow-y-auto pb-4 pt-6 px-2 flex flex-col gap-4'>
                                         {
                                             cartCourses?.data?.courses
-                                            ?.map((course: any, index: number) => {
-                                                let link = encodeTitle(course?.urlName);
-                                                const originalPrice = course?.price; // قیمت اصلی
-                                                const discount = course?.discount; // آبجکت تخفیف
+                                                ?.map((course: any, index: number) => {
+                                                    let link = encodeTitle(course?.urlName);
+                                                    const originalPrice = course?.price; // قیمت اصلی
+                                                    const discount = course?.discount; // آبجکت تخفیف
 
-                                                // بررسی شرایط برای قیمت
-                                                let isFree = originalPrice === 0; // آیا رایگان است؟
-                                                let hasDiscount = discount && discount.percent && discount.expireTime; // آیا تخفیف دارد؟
-                                                let discountExpired = hasDiscount && new Date(discount.expireTime) <= new Date(); // آیا تخفیف منقضی شده؟
-                                                let isFullyDiscounted = hasDiscount && discount.percent === 100 && !discountExpired; // آیا تخفیف 100% است؟
-                                                let discountedPrice = hasDiscount && !discountExpired
-                                                    ? Math.floor(originalPrice * (1 - discount.percent / 100))
-                                                    : originalPrice; // قیمت پس از اعمال تخفیف (اگر معتبر بود)
+                                                    // بررسی شرایط برای قیمت
+                                                    let isFree = originalPrice === 0; // آیا رایگان است؟
+                                                    let hasDiscount = discount && discount.percent && discount.expireTime; // آیا تخفیف دارد؟
+                                                    let discountExpired = hasDiscount && new Date(discount.expireTime) <= new Date(); // آیا تخفیف منقضی شده؟
+                                                    let isFullyDiscounted = hasDiscount && discount.percent === 100 && !discountExpired; // آیا تخفیف 100% است؟
+                                                    let discountedPrice = hasDiscount && !discountExpired
+                                                        ? Math.floor(originalPrice * (1 - discount.percent / 100))
+                                                        : originalPrice; // قیمت پس از اعمال تخفیف (اگر معتبر بود)
 
-                                                return (
-                                                    <div key={index} className="flex items-center justify-between gap-2">
-                                                        <Link href={`/courses/${link}`} className="flex items-center gap-2 ">
-                                                            <Image src={course?.thumbnail?.imageUrl} width={160} height={90} alt="" className="w-24 h-[3.375rem] rounded-lg shadow-small" />
-                                                            <div className="flex flex-col gap-1 ">
-                                                                <span className='text-xs md:text-sm text-left text-meidum' dir="ltr">{course.name}</span>
+                                                    return (
+                                                        <div key={index} className="flex items-center justify-between gap-2">
+                                                            <Link href={`/courses/${link}`} className="flex items-center gap-2 ">
+                                                                <Image src={course?.thumbnail?.imageUrl} width={160} height={90} alt="" className="w-24 h-[3.375rem] rounded-lg shadow-small" />
+                                                                <div className="flex flex-col gap-1 ">
+                                                                    <span className='text-xs md:text-sm text-left text-meidum' dir="ltr">{course.name}</span>
 
-                                                                {/* مدیریت نمایش قیمت */}
-                                                                {isFree || isFullyDiscounted ? (
-                                                                    <div className="flex items-center gap-2">
-                                                                        <span className="text-left font-bold">رایگان</span>
-                                                                        {originalPrice > 0 && (
+                                                                    {/* مدیریت نمایش قیمت */}
+                                                                    {isFree || isFullyDiscounted ? (
+                                                                        <div className="flex items-center gap-2">
+                                                                            <span className="text-left font-bold">رایگان</span>
+                                                                            {originalPrice > 0 && (
+                                                                                <del className="text-left text-gray-600 dark:text-gray-400 text-sm">
+                                                                                    {toPersianNumber(numberSeparator(originalPrice))}
+                                                                                </del>
+                                                                            )}
+                                                                        </div>
+                                                                    ) : hasDiscount && !discountExpired ? (
+                                                                        <div className="flex items-center gap-2">
+                                                                            <span className="text-left text-gray-600 dark:text-gray-400 font-bold">
+                                                                                {toPersianNumber(numberSeparator(discountedPrice))}
+                                                                            </span>
                                                                             <del className="text-left text-gray-600 dark:text-gray-400 text-sm">
                                                                                 {toPersianNumber(numberSeparator(originalPrice))}
                                                                             </del>
-                                                                        )}
-                                                                    </div>
-                                                                ) : hasDiscount && !discountExpired ? (
-                                                                    <div className="flex items-center gap-2">
-                                                                        <span className="text-left text-gray-600 dark:text-gray-400 font-bold">
-                                                                            {toPersianNumber(numberSeparator(discountedPrice))}
-                                                                        </span>
-                                                                        <del className="text-left text-gray-600 dark:text-gray-400 text-sm">
+                                                                        </div>
+                                                                    ) : (
+                                                                        <span className="text-left text-gray-600 dark:text-gray-400">
                                                                             {toPersianNumber(numberSeparator(originalPrice))}
-                                                                        </del>
-                                                                    </div>
-                                                                ) : (
-                                                                    <span className="text-left text-gray-600 dark:text-gray-400">
-                                                                        {toPersianNumber(numberSeparator(originalPrice))}
-                                                                    </span>
-                                                                )}
-                                                            </div>
-                                                        </Link>
-                                                        <FiTrash2
-                                                            onClick={() => dispatch(deleteCourse({ courseId: course?._id }))}
-                                                            className="text-danger-500 cursor-pointer min-w-4"
-                                                            size={16}
-                                                        />
-                                                    </div>
-                                                );
-                                            })
+                                                                        </span>
+                                                                    )}
+                                                                </div>
+                                                            </Link>
+                                                            <FiTrash2
+                                                                onClick={() => dispatch(deleteCourse({ courseId: course?._id }))}
+                                                                className="text-danger-500 cursor-pointer min-w-4"
+                                                                size={16}
+                                                            />
+                                                        </div>
+                                                    );
+                                                })
                                         }
                                     </div>
                                 }
@@ -152,7 +152,7 @@ export const Cart = () => {
                                         <div className="py-4 flex flex-col border-t-1 border-t-gray-700 dark:border-t-gray-600">
                                             <div className="w-full flex items-center justify-between">
                                                 <div className='flex items-center gap-1'>
-                                                   
+
                                                     <span className="text-lg font-bold">
                                                         {
                                                             (() => {
@@ -192,7 +192,7 @@ export const Cart = () => {
                                                 </div>
                                                 <span className='font-bold' dir="rtl">مبلغ قابل پرداخت:</span>
                                             </div>
-                                            <Button className="mt-6" size="lg" variant="shadow" color="primary" radius="md" fullWidth>
+                                            <Button onPress={() => setTimeout(() => setOpen(false), 300)} href="/cart" as={Link} className="mt-6" size="lg" variant="shadow" color="primary" radius="md" fullWidth>
                                                 مشاهده سبد خرید
                                             </Button>
                                         </div>
