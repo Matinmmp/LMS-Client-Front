@@ -107,7 +107,7 @@ export const Cart = () => {
                                                             <Link href={`/courses/${link}`} className="flex items-center gap-2 ">
                                                                 <Image src={course?.thumbnail?.imageUrl} width={160} height={90} alt="" className="w-24 h-[3.375rem] rounded-lg shadow-small" />
                                                                 <div className="flex flex-col gap-1 ">
-                                                                    <span className='text-xs md:text-sm text-left text-meidum' dir="ltr">{course.name}</span>
+                                                                    <span className='text-xs md:text-sm text-left font-meidum' dir="ltr">{course.name}</span>
 
                                                                     {/* مدیریت نمایش قیمت */}
                                                                     {isFree || isFullyDiscounted ? (
@@ -148,7 +148,7 @@ export const Cart = () => {
                                 }
                                 {
                                     !cartCourses.isLoading && cartCourses.isSuccess && courseIds?.length &&
-                                    <div className="mt-6 px-4">
+                                    <div className="mt-4 px-4">
                                         <div className="py-4 flex flex-col border-t-1 border-t-gray-700 dark:border-t-gray-600">
                                             <div className="w-full flex items-center justify-between">
                                                 <div className='flex items-center gap-1'>
