@@ -1,6 +1,5 @@
 import Script from "next/script";
 
-
 const schema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -27,7 +26,7 @@ const schema = {
         "logo": {
             "@type": "ImageObject",
             // ادرس عکسو بعدا بذار
-            "url": "https://www.vc-virtual-learn.com/assets/logo.png",
+            "url": `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}logo-main.png`,
             "width": 512,
             "height": 512
         }
@@ -51,12 +50,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <meta property="og:title" content="Virtual Learn | آموزش برنامه‌نویسی به زبان فارسی" />
             <meta property="og:description" content="آموزش برنامه‌نویسی به زبان فارسی با ترجمه اختصاصی از بهترین آکادمی‌های جهان. با دسترسی به بهترین دوره‌های برنامه‌نویسی جهان به زبان فارسی، مهارت‌های خود را ارتقا دهید." />
             <meta property="og:url" content="https://www.vc-virtual-learn.com/" />
-            <meta property="og:image" content="https://www.vc-virtual-learn.com/assets/contact-banner.png" />
+            <meta property="og:image" content={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}hero4.svg`}/>
 
             <meta name="twitter:title" content="Virtual Learn | آموزش برنامه‌نویسی به زبان فارسی" />
             <meta name="twitter:description" content="آموزش برنامه‌نویسی به زبان فارسی با ترجمه اختصاصی از بهترین آکادمی‌های جهان. با دسترسی به بهترین دوره‌های برنامه‌نویسی جهان به زبان فارسی، مهارت‌های خود را ارتقا دهید." />
-            <meta name="twitter:image" content="https://www.vc-virtual-learn.com/assets/contact-banner.png" />
-            <meta name="revisit-after" content="1 days" />
+            <meta name="twitter:image" content={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}hero4.svg`}/>
+            <meta name="revisit-after" content="5 days" />
 
             <link rel="canonical" href="https://www.vc-virtual-learn.com/"/>
 

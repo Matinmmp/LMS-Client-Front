@@ -31,8 +31,8 @@ export default async function Teacher({ params: { engName } }: Props) {
             "name": data?.teacher?.seoMeta?.title,
             "url": `https://www.vc-virtual-learn.com/teachers/${name}`,
             "description": data?.teacher?.seoMeta?.description,
-            "image": "https://www.vc-virtual-learn.com/assets/teachers-1-banner.png",//بعدا بذار
-            "logo": "https://www.vc-virtual-learn.com/assets/teachers-logo.png",//بعدا بذار
+            "image":`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}Contact-us-bro.svg`,//بعدا بذار
+            "logo": `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}logo-main.svg`,//بعدا بذار
             "inLanguage": "fa",
             "isPartOf": {
                 "@type": "WebSite",
@@ -51,7 +51,7 @@ export default async function Teacher({ params: { engName } }: Props) {
                 "url": "https://www.vc-virtual-learn.com",
                 "logo": {
                     "@type": "ImageObject",
-                    "url": "https://www.vc-virtual-learn.com/assets/logo.png", //پرش کن
+                    "url": `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}logo-main.png`, //پرش کن
                     "width": 512,
                     "height": 512
                 }
@@ -72,13 +72,13 @@ export default async function Teacher({ params: { engName } }: Props) {
                 <meta property="og:description" content={data?.teacher?.seoMeta?.description} />
                 <meta property="og:url" content={`https://www.vc-virtual-learn.com/teachers/${name}`} />
                 {/* بعدا عکسو بذار */}
-                <meta property="og:image" content="https://www.vc-virtual-learn.com/assets/teachers-banner.png" />
+                <meta property="og:image" content={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}teacher2.png`} />
 
                 <meta name="twitter:title" content={data?.teacher?.seoMeta?.title} />
                 <meta name="twitter:description" content={data?.teacher?.seoMeta?.description} />
 
                 {/* بعدا عکسو بذار */}
-                <meta name="twitter:image" content="https://www.vc-virtual-learn.com/assets/teachers-banner.png" />
+                <meta name="twitter:image" content={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}teacher2.png`} />
 
                 <link rel="canonical" href={`https://www.vc-virtual-learn.com/teachers/${name}`} />
 

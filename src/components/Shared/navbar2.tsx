@@ -78,9 +78,9 @@ const links = [
     // },
 ]
 
-const categories = buildCategoryTree(navObject.categoryObject.categoryList, null);
-const academiesObject = navObject.academyObject
-const teacherObject = navObject.teacherObject
+const categories:any = buildCategoryTree(navObject.categoryObject.categoryList, null);
+const academiesObject:any = navObject.academyObject
+const teacherObject:any = navObject.teacherObject
 
 const encodeTitle = (title: string) => {
     return title
@@ -207,7 +207,7 @@ export const Navbar = () => {
                         <GrMenu size={25} className="cursor-pointer md:hidden" onClick={() => setIsMenuOpen(true)} />
 
                         <NextLink className=" md:-me-8 lg:m-0 absolute left-1/2  transform -translate-x-1/2 md:relative md:right-0 md:transform-none" href="/">
-                            <Image priority alt="logo" className="w-12 h-12" height={100} width={100}
+                            <Image priority alt="لوگوی ویرچوال لرن، پلتفرم آموزش برنامه‌نویسی" className="w-12 h-12" height={100} width={100}
                                 src={process.env.NEXT_PUBLIC_IMAGE_BASE_URL + "logo-main.png"} />
                         </NextLink>
 
@@ -222,7 +222,7 @@ export const Navbar = () => {
                                     }>
 
                                     <div className="w-52 max-h-[25rem] p-3">
-                                        {categories[0].subCategories.map((item, index) => {
+                                        {categories[0]?.subCategories?.map((item:any, index:number) => {
                                             if (item?.subCategories)
                                                 return (
                                                     <div key={index}>
@@ -234,9 +234,9 @@ export const Navbar = () => {
                                                                     <GoDotFill className="text-primary-300" size={10} />
                                                                 </div>}>
 
-                                                            {item?.subCategories.length ? <div className="w-44 max-h-[25rem] p-3 flex flex-col ">
-                                                                {item.subCategories.map((sub, index) => (
-                                                                    <NextLink color="foreground" href={`/courses?category=${sub.name}`} key={index}
+                                                            {item?.subCategories?.length ? <div className="w-44 max-h-[25rem] p-3 flex flex-col ">
+                                                                {item?.subCategories.map((sub:any, index:number) => (
+                                                                    <NextLink color="foreground" href={`/courses?category=${sub?.name}`} key={index}
                                                                         className={clsx(linkStyles({ color: "foreground" }), " w-full flex items-center justify-end gap-1 py-1 hover:text-primary-300 ",)}>
                                                                         {sub.name}
                                                                         <GoDotFill className="text-primary-300" size={10} />
@@ -269,7 +269,7 @@ export const Navbar = () => {
                                     }>
 
                                     <div className="w-[30rem] max-h-[50rem] p-4 grid gap-6 grid-cols-4 justify-beetwen " dir='rtl'>
-                                        {teacherObject.teacherList.slice(0, 7).map((item, index) => (
+                                        {teacherObject.teacherList.slice(0, 7).map((item:any, index:number) => (
                                             <NextLink href={`/teachers/${encodeTitle(item.engName)}`} key={index} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
                                                 <Avatar radius={'full'} isBordered size={'lg'} color={'primary'} name={item.engName} showFallback src={item.imageUrl} />
                                                 <span className='text-center whitespace-break-spaces'>{item.engName}</span>
@@ -294,7 +294,7 @@ export const Navbar = () => {
                                     }>
 
                                     <div className="w-[25rem] max-h-[50rem] p-4 grid gap-6 grid-cols-3 justify-beetwen " dir='rtl'>
-                                        {academiesObject.academyList.slice(0, 5).map((item, index) => (
+                                        {academiesObject.academyList.slice(0, 5).map((item:any, index:number) => (
                                             <NextLink href={`/academies/${encodeTitle(item.engName)}`} key={index} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
                                                 <Avatar radius={'sm'} isBordered size={'lg'} color={'secondary'} name={item.engName} showFallback src={item.imageUrl} />
                                                 <span className='text-center whitespace-break-spaces'>{item.engName}</span>
@@ -357,7 +357,7 @@ export const Navbar = () => {
                                             <div className="flex items-center gap-4">
                                                 <Dropdown placement="bottom-end" >
                                                     <DropdownTrigger>
-                                                        <Avatar isBordered as="button" className="transition-transform shadow-[0_0_15px_0_#42C0F4]" color="secondary" src={user.imageUrl} />
+                                                        <Avatar isBordered showFallback as="button" className="transition-transform shadow-[0_0_15px_0_#42C0F4]" color="secondary" src={user.imageUrl} />
                                                     </DropdownTrigger>
 
                                                     <DropdownMenu aria-label="Profile Actions" variant="flat" className="min-w-80">
@@ -487,7 +487,7 @@ export const Navbar = () => {
                                                     <NextLink href={`/courses/${link}`} key={index} className="w-full h-full flex gap-4 transition-all" onClick={handleSearchIteemClick}>
                                                         <div>
                                                             <div className="w-16 h-12 p-[1px] rounded-sm border-1 border-primary-400 overflow-hidden shadow-medium">
-                                                                <Image className="w-full h-full rounded-sm" width={320} height={180} src={item.thumbnail.imageUrl} alt={item.name} />
+                                                                <Image className="w-full h-full rounded-sm" width={320} height={180} src={item?.thumbnail?.imageUrl} alt={item.name} />
                                                             </div>
                                                         </div>
                                                         <div className="w-full flex flex-col">
@@ -614,7 +614,7 @@ const DrawerContent = ({ setIsOpen }: DrawerContentProps) => {
 
 
                 <div className="w-full mt-6 px-2 flex flex-col gap-4">
-                    <DrawerDropDown categoryList={categories[0].subCategories} setIsOpen={setIsOpen} />
+                    <DrawerDropDown categoryList={categories[0]?.subCategories} setIsOpen={setIsOpen} />
                     <DrawerDropDown2 setIsOpen={setIsOpen} baseUrl="teachers" color={'primary'} total={teacherObject.total} list={teacherObject.teacherList} title={'مدرس‌ها'} radius="full" />
                     <DrawerDropDown2 setIsOpen={setIsOpen} baseUrl="academies" color={'secondary'} total={academiesObject.total} list={academiesObject.academyList} title={'آکادمی ها'} radius="sm" />
                     <DrawerDropDown3 title="لینک‌های مفید" setIsOpen={setIsOpen} />
@@ -679,15 +679,15 @@ const DrawerDropDown = ({ categoryList, setIsOpen }: DrawerDropDownProps) => {
                                             </div>
 
                                         </NextLink>
-                                        {item.subCategories && (openSub ?
+                                        {item?.subCategories && (openSub ?
                                             <CiSquareMinus size={24} className="text-primary-400" onClick={() => setOpenSub(false)} />
                                             :
                                             <CiSquarePlus size={24} className="text-primary-400" onClick={() => setOpenSub(true)} />)}
                                     </div>
 
-                                    {item.subCategories && (
+                                    {item?.subCategories && (
                                         <motion.div className="ps-5 overflow-hidden" initial={false} animate={openSub ? "open" : "closed"} variants={subCategoryVariants}>
-                                            {item.subCategories.map((itemSub: any, index2: number) => (
+                                            {item?.subCategories.map((itemSub: any, index2: number) => (
                                                 <div className="flex flex-col" key={index2}>
                                                     <NextLink color="foreground" href={`/courses?category=${itemSub.name}`} onClick={() => setTimeout(() => setIsOpen(false), 200)}
                                                         className="w-full mt-3 text-sm hover:text-primary-400 transition cursor-pointer relative flex items-center justify-between" >

@@ -1,5 +1,5 @@
 import Script from "next/script";
-
+ 
 const schema = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
@@ -14,14 +14,14 @@ const schema = {
         "url": "https://www.vc-virtual-learn.com/",
         "logo": {
             "@type": "ImageObject",
-            "url": "https://www.vc-virtual-learn.com/assets/logo.png", // آدرس دقیق لوگو را جایگزین کنید
+            "url": `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}logo-main.png`, // آدرس دقیق لوگو را جایگزین کنید
             "width": 512,
             "height": 512
         }
     },
     "image": {
         "@type": "ImageObject",
-        "url": "https://www.vc-virtual-learn.com/assets/about-banner.png", // آدرس دقیق تصویر صفحه را جایگزین کنید
+        "url": `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}about5.svg`, // آدرس دقیق تصویر صفحه را جایگزین کنید
         "width": 1200,
         "height": 628
     },
@@ -54,11 +54,11 @@ export default function AboutLayout({ children, }: { children: React.ReactNode }
             <meta property="og:title" content="درباره‌ی ویرچوال لرن" />
             <meta property="og:description" content="آموزش برنامه‌نویسی به زبان فارسی با ترجمه اختصاصی از بهترین آکادمی‌های جهان." />
             <meta property="og:url" content="https://www.vc-virtual-learn.com/about-us" />
-            <meta property="og:image" content="https://www.vc-virtual-learn.com/assets/contact-banner.png" />
+            <meta property="og:image" content={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}about5.svg`} />
 
             <meta name="twitter:title" content="درباره‌ی ویرچوال لرن" />
             <meta name="twitter:description" content="آموزش برنامه‌نویسی به زبان فارسی با ترجمه اختصاصی از بهترین آکادمی‌های جهان." />
-            <meta name="twitter:image" content="https://www.vc-virtual-learn.com/assets/contact-banner.png" />
+            <meta name="twitter:image" content={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}about5.svg`} />
             <link rel="canonical" href="https://www.vc-virtual-learn.com/about-us"/>
 
             <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />

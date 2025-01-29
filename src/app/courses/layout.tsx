@@ -17,14 +17,14 @@ const schema = {
         "target": "https://www.vc-virtual-learn.com/courses/search?searchText={search_term_string}",
         "query-input": "required name=search_term_string"
     },
-    "image": "https://www.vc-virtual-learn.com/assets/courses-search-banner.png",//بعدا درستش کن
+    // "image": "https://www.vc-virtual-learn.com/assets/courses-search-banner.png",//بعدا درستش کن
     "publisher": {
         "@type": "Organization",
         "name": "Virtual Learn",
         "url": "https://www.vc-virtual-learn.com",
         "logo": {
             "@type": "ImageObject",
-            "url": "https://www.vc-virtual-learn.com/assets/logo.png",
+            "url": `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}logo-main.png`,
             "width": 512,
             "height": 512
         }
@@ -44,13 +44,13 @@ export default function AboutLayout({ children, }: { children: React.ReactNode }
             <meta property="og:title" content="دوره‌های آموزشی | Virtual Learn" />
             <meta property="og:description" content="در این صفحه می‌توانید دوره‌های برنامه‌نویسی مختلف را جستجو کرده و با مقایسه آن‌ها، بهترین گزینه را انتخاب کنید. Virtual Learn انتخاب شما برای یادگیری برنامه‌نویسی به زبان فارسی است." />
             <meta property="og:url" content="https://www.vc-virtual-learn.com/courses" />
-            <meta property="og:image" content="https://www.vc-virtual-learn.com/assets/academies-banner.png" />
+            {/* <meta property="og:image" content="https://www.vc-virtual-learn.com/assets/academies-banner.png" /> */}
 
             <meta name="twitter:title" content="دوره‌های آموزشی | Virtual Learn" />
             <meta name="twitter:description" content="در این صفحه می‌توانید دوره‌های برنامه‌نویسی مختلف را جستجو کرده و با مقایسه آن‌ها، بهترین گزینه را انتخاب کنید. Virtual Learn انتخاب شما برای یادگیری برنامه‌نویسی به زبان فارسی است." />
 
             {/* بعدا عکسو بذار */}
-            <meta name="twitter:image" content="https://www.vc-virtual-learn.com/assets/academies-banner.png" />
+            {/* <meta name="twitter:image" content="https://www.vc-virtual-learn.com/assets/academies-banner.png" /> */}
 
             <link rel="canonical" href="https://www.vc-virtual-learn.com/courses" />
 

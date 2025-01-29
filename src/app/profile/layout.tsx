@@ -7,7 +7,8 @@ export default function ProfileLayout({ children, }: { children: React.ReactNode
     return (
         <div className="-mt-32 pt-36 lg:pt-48 pb-12 lg:pb-20 w-full flex items-center justify-center 
                  dark:bg-gradient-to-b dark:from-primary-50 dark:to-transparent dark:bg-opacity-10 backdrop-blur-md">
-            <meta name="robots" content="noindex, nofollow" />
+               <title>پروفایل</title>
+               <meta name="robots" content="noindex, nofollow" />
             <section className="w-full max-w-7xl px-4 md:px-8 2xl:px-2 mt-28 lg:mt-20 flex flex-col lg:flex-row gap-4">
                 <Navbar />
 

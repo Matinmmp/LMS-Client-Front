@@ -89,7 +89,7 @@ const Comments = (props: Props) => {
                                             <div className="py-5 px-2">
                                                 <div className=" p-4 bg-white dark:bg-primary-50/90 shadow-medium rounded-xl max-w-96 min-h-56 max-h-56 transition-all">
                                                     <div className="w-full flex items-center gap-4">
-                                                        <Avatar className="h-16 w-16 shadow-medium" size="lg" radius="full" isBordered color="secondary" icon={<AvatarIcon />} />
+                                                        <Avatar alt="" className="h-16 w-16 shadow-medium" size="lg" radius="full" isBordered color="secondary" icon={<AvatarIcon />} />
                                                         <div className="flex flex-col items-start gap-1">
                                                             <p className="text-lg font-semibold">{item.name}</p>
                                                             <Rating readOnly value={5} style={{ maxWidth: 100 }} itemStyles={myStyles} />

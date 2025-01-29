@@ -48,11 +48,11 @@ const list = [
         title: 'دوره‌های رایگان من',
         link: '/profile/myFreeCourses',
     },
-    {
-        icons: <CiBookmarkCheck size={21} strokeWidth={0.7} />,
-        title: 'دوره‌های موردعلاقه من',
-        link: '/profile/myFavoritCourses',
-    },
+    // {
+    //     icons: <CiBookmarkCheck size={21} strokeWidth={0.7} />,
+    //     title: 'دوره‌های موردعلاقه من',
+    //     link: '/profile/myFavoritCourses',
+    // },
 ]
 
 export default function Navbar() {
@@ -74,7 +74,7 @@ export default function Navbar() {
             <div className="w-full pb-4">
                 <div className="hidden lg:flex w-full items-center justify-center aspect-[16/10] ">
                     <Link className="" href="/">
-                        <Image priority alt="logo" className="w-24 h-24" height={100} width={100}
+                        <Image priority alt="لوگوی ویرچوال لرن، پلتفرم آموزش برنامه‌نویسی " className="w-24 h-24" height={100} width={100}
                             src={process.env.NEXT_PUBLIC_IMAGE_BASE_URL + "logo-main.png"} />
                     </Link>
                 </div>

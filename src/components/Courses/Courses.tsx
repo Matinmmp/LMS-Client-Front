@@ -18,12 +18,12 @@ type Props = {
 };
 
 const categories = buildCategoryTree(navObject.categoryObject.categoryList, null);
-const academiesObject = navObject.academyObject;
-const teacherObject = navObject.teacherObject;
+const academiesObject:any = navObject?.academyObject;
+const teacherObject:any = navObject?.teacherObject;
 
 const Courses = ({ children }: Props) => {
-    const teachersList = teacherObject.teacherList.map(item => { return { engName: item.engName } });
-    const academiesList = academiesObject.academyList.map(item => { return { engName: item.engName } });
+    const teachersList = teacherObject?.teacherList?.map((item:any) => { return { engName: item?.engName } });
+    const academiesList = academiesObject?.academyList?.map((item:any) => { return { engName: item?.engName } });
 
     const searchParams = useSearchParams();
     const path = usePathname();
@@ -213,7 +213,7 @@ const Courses = ({ children }: Props) => {
 
                         <Acordian open={open2} title="فیلتر آکادمی" setOpen={setOpen2} initialHeight={0} closeInMobile={true}>
                             <div className="w-full flex flex-col gap-3">
-                                {academiesList.map((item: any, index) =>
+                                {academiesList.map((item: any, index:number) =>
                                     <Checkbox isSelected={selectedAcadmies.includes(item.engName)} onClick={() => handleAcademySelect(item.engName)}
                                         key={index} defaultSelected radius="sm" size="lg">
                                         {item.engName}
@@ -226,7 +226,7 @@ const Courses = ({ children }: Props) => {
                     <div className="w-full bg-[#ffffffbf] dark:bg-[#131d35]  dark:backdrop-blur-md shadow-medium rounded-lg">
                         <Acordian open={open3} title="فیلتر مدرس" setOpen={setOpen3} initialHeight={0} closeInMobile={true}>
                             <div className="w-full flex flex-col gap-3">
-                                {teachersList.map((item: any, index) =>
+                                {teachersList.map((item: any, index:number) =>
                                     <Checkbox isSelected={selectedTeachers.includes(item.engName)} onClick={() => handleTeacherSelect(item.engName)}
                                         key={index} defaultSelected radius="sm" size="lg">
                                         {item.engName}
@@ -239,7 +239,7 @@ const Courses = ({ children }: Props) => {
                         <Acordian open={open4} title="فیلتر دسته بندی" setOpen={setOpen4} initialHeight={'auto'} closeInMobile={true}>
                             <div className="w-full flex flex-col gap-3">
                                 {renderCategories(
-                                    { categories: categories[0].subCategories, selectedCategories: selectedCategories, level: 0, handleCategorySelect: handleCategorySelect }
+                                    { categories: categories[0]?.subCategories, selectedCategories: selectedCategories, level: 0, handleCategorySelect: handleCategorySelect }
                                 )}
                             </div>
                         </Acordian>
@@ -329,7 +329,7 @@ const renderCategories = ({ categories, selectedCategories, handleCategorySelect
                 defaultSelected radius="sm" size="lg" >
                 {category.name}
             </Checkbox>
-            {category.subCategories.length > 0 && renderCategories({ categories: category.subCategories, selectedCategories, handleCategorySelect, level: level + 1 })}
+            {category?.subCategories?.length > 0 && renderCategories({ categories: category?.subCategories, selectedCategories, handleCategorySelect, level: level + 1 })}
         </div>
     ));
 };

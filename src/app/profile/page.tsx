@@ -17,7 +17,7 @@ export default function ProfilePage() {
         <div className="h-full w-full flex-1">
 
             <div className="h-28 w-28 md:h-32 md:w-32 xl:w-40 xl:h-40  absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
-                <Avatar className="h-full w-full shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="full"
+                <Avatar alt={user?.name} className="h-full w-full shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="full"
                     isBordered color="secondary" src={user?.imageUrl} showFallback />
             </div>
 

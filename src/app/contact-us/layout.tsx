@@ -26,14 +26,14 @@ const schema = {
         "url": "https://www.vc-virtual-learn.com",
         "logo": {
             "@type": "ImageObject",
-            "url": "https://www.vc-virtual-learn.com/assets/logo.png",//اینم تغییر بده
+            "url": `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}logo-main.png` ,//اینم تغییر بده
             "width": 512,
             "height": 512
         }
     },
     "image": {
         "@type": "ImageObject",
-        "url": "https://www.vc-virtual-learn.com/assets/contact-banner.png",
+        "url": `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}Contact-us-bro.svg` ,
         "width": 1200,
         "height": 628
     }
@@ -54,11 +54,11 @@ export default function AboutLayout({ children, }: { children: React.ReactNode }
             <meta property="og:url" content="https://www.vc-virtual-learn.com/contact-us" />
 
             {/* بعدا عکسو درست کن */}
-            <meta property="og:image" content="https://www.vc-virtual-learn.com/assets/contact-banner.png" />
+            <meta property="og:image" content={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}Contact-us-bro.svg`} />
 
             <meta name="twitter:title" content="ارتباط با ما | Virtual Learn" />
             <meta name="twitter:description" content="برای ارتباط با تیم ویرچوال لرن و دریافت پشتیبانی، می‌توانید از اطلاعات تماس موجود در این صفحه استفاده کنید." />
-            <meta name="twitter:image" content="https://www.vc-virtual-learn.com/assets/contact-banner.png" />
+            <meta name="twitter:image" content={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}Contact-us-bro.svg`} />
             <link rel="canonical" href="https://www.vc-virtual-learn.com/contact-us"/>
 
 

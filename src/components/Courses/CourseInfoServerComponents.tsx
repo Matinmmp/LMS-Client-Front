@@ -30,7 +30,7 @@ export async function RelatedCourse({ name }: { name: string }) {
                                 return (
                                     <div key={index} className="h-[4.4rem] p-2 flex items-center justify-between bg-primary-50 rounded-xl shadow-small border-1 border-primary-400">
                                         <Link href={`/courses/${link}`} className="flex items-center gap-4 ">
-                                            <Image src={item.thumbnail.imageUrl} width={160} height={90} alt="" className="w-24 h-[3.375rem] rounded-lg shadow-small" />
+                                            <Image src={item.thumbnail.imageUrl} width={160} height={90} alt={item?.name} className="w-24 h-[3.375rem] rounded-lg shadow-small" />
                                             <span dir="ltr" className="font-semibold" >{item.name}</span>
                                         </Link>
 
@@ -73,7 +73,7 @@ export async function RelatedBlog({ name }: { name: string }) {
                                 return (
                                     <div key={index} className="h-[5rem] md:h-[6.8rem] p-2 flex items-center gap-3 bg-primary-50/60 rounded-xl shadow-small border-1 border-secondary-400">
                                         
-                                        <Image src={item.thumbnail.imageUrl} width={160} height={100} alt="" className="h-full w-full min-w-[8rem] max-w-[8rem] md:min-w-max !aspect-video rounded-xl shadow-small" />
+                                        <Image src={item?.thumbnail?.imageUrl} width={160} height={100} alt={item?.title} className="h-full w-full min-w-[8rem] max-w-[8rem] md:min-w-max !aspect-video rounded-xl shadow-small" />
                                       
                                         <div className="h-full py-1 md:py-2 flex flex-col justify-between">
                                             <Link href={`/blogs/${link}`} dir="rtl" className="text-sm md:teext-base font-medium line-clamp-1" >{item.title}</Link>

@@ -34,12 +34,11 @@ export default async function Home() {
             "url": "https://www.vc-virtual-learn.com",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://www.vc-virtual-learn.com/assets/logo.png", //پرش کن
+                "url": `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}logo-main.png`, 
                 "width": 512,
                 "height": 512
             }
         },
-        "image": "https://www.vc-virtual-learn.com/assets/academies-banner.png",// پرش کن
     }
 
     if (data) {
@@ -79,13 +78,13 @@ export default async function Home() {
                 <meta property="og:title" content="لیست آکادمی‌های آموزشی | Virtual Learn" />
                 <meta property="og:description" content="لیست آکادمی‌های آموزشی معتبر با دوره‌های ترجمه‌شده به زبان فارسی در ویرچوال لرن. بهترین منابع آموزشی برای ارتقای مهارت‌های برنامه‌نویسی شما." />
                 <meta property="og:url" content="https://www.vc-virtual-learn.com/academies" />
-                <meta property="og:image" content="https://www.vc-virtual-learn.com/assets/academies-banner.png" />
+                {/* <meta property="og:image" content="https://www.vc-virtual-learn.com/assets/academies-banner.png" /> */}
 
                 <meta name="twitter:title" content="لیست آکادمی‌های آموزشی | Virtual Learn" />
                 <meta name="twitter:description" content="لیست آکادمی‌های آموزشی معتبر با دوره‌های ترجمه‌شده به زبان فارسی در ویرچوال لرن. بهترین منابع آموزشی برای ارتقای مهارت‌های برنامه‌نویسی شما." />
 
                 {/* بعدا عکسو بذار */}
-                <meta name="twitter:image" content="https://www.vc-virtual-learn.com/assets/academies-banner.png" />
+                {/* <meta name="twitter:image" content="https://www.vc-virtual-learn.com/assets/academies-banner.png" /> */}
 
                 <link rel="canonical" href="https://www.vc-virtual-learn.com/academies" />
 

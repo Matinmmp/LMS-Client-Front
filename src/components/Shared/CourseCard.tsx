@@ -82,7 +82,7 @@ export const CourseCard = ({ data }: CardProps) => {
 
                 <Link href={`/courses/${link}`} className="p-2 overflow-hidden h-[14rem] md:h-[12rem] md:aspect-video">
                     <Image className="w-full h-full object-center object-cover hover:scale-110 transition-transform rounded-md "
-                        width={450} height={300} alt="" src={data.thumbnail.imageUrl} />
+                        width={450} height={300} alt={`${data?.teacher?.teacherEngName}، مدرس دوره ${data?.name} در ویرچوال لرن`} src={data?.thumbnail?.imageUrl}/>
                 </Link>
 
                 <div className="w-full h-3/5">

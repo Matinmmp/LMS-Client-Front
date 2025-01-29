@@ -39,7 +39,7 @@ const AcadmyCard = ({ data }: CardProps) => {
                 <div className="h-full w-full flex flex-col items-center">
 
                     <div className="w-full p-4 flex items-center justify-between">
-                        <Avatar className="h-[4.5rem] w-[4.5rem] shadow-[0_0_15px_0_#44de77]" size="lg" radius="sm" isBordered color="success" src={data.avatar.imageUrl} />
+                        <Avatar alt={`آکادمی ${data?.faName} در ویرچوال لرن`} className="h-[4.5rem] w-[4.5rem] shadow-[0_0_15px_0_#44de77]" size="lg" radius="sm" isBordered color="success" src={data.avatar.imageUrl} />
 
                         <div className="flex flex-col gap-1">
                             <div className='py-[2px] px-3 flex items-center gap-2 rounded-md border-1 border-success-50 dark:border-success-300 shadow-sm'>

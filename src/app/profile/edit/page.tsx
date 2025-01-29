@@ -102,7 +102,7 @@ export default function ProfilePage() {
                                         <div className="h-full w-full rounded-full bg-white/50 absolute z-30 flex items-center justify-center">
                                             <Spinner color="secondary" size="lg" />
                                         </div>}
-                                    <Avatar className="h-full w-full shadow-[0_0_15px_0_#42C0F4] object-cover object-center cursor-pointer z-10" size="lg" radius="full"
+                                    <Avatar alt="" className="h-full w-full shadow-[0_0_15px_0_#42C0F4] object-cover object-center cursor-pointer z-10" size="lg" radius="full"
                                         isBordered color="secondary" src={imageUrl} showFallback onClick={() => imageRef.current.click()} />
                                     <span className="flex items-center justify-center absolute bottom-0 left-0 lg:left-4 bg-primary-500 rounded-full z-20">
                                         <IoAddCircle size={30} className="text-white  " />

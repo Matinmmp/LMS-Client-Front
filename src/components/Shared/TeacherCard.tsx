@@ -39,7 +39,7 @@ const TeacherCard = ({ data }: CardProps) => {
 
                     <div className="w-full p-4 flex items-center justify-between">
 
-                        <Avatar className="h-[4.5rem] w-[4.5rem] shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="full" isBordered color="secondary" src={data.avatar.imageUrl} fallback />
+                        <Avatar alt={`مدرس ${data.faName} در ویرچوال لرن`} className="h-[4.5rem] w-[4.5rem] shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="full" isBordered color="secondary" src={data.avatar.imageUrl} fallback />
 
                         <div className="flex flex-col gap-1">
                             <div className='py-1 px-2 flex items-center gap-2 rounded-md border-1 border-secondary-50 dark:border-secondary-300 shadow-sm'>

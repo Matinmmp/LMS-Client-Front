@@ -26,7 +26,6 @@ export default async function CourseDetail({ params: { courseName } }: Props) {
     const name = await decodeURIComponent(decodeTitle(courseName));
 
     const data: any = await getCourseByName(name, refresh_token?.value, access_token?.value)
-    console.log(data.courseData);
 
     if (data && data.success) {
 

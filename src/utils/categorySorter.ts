@@ -12,7 +12,7 @@ interface CategoryTree {
 
 export function buildCategoryTree(categories: any[], parentId?: string | null): CategoryTree[] {
     const categoryTree: CategoryTree[] = [];
-    const filteredCategories = categories.filter(category => category.parentCategoryId === parentId);
+    const filteredCategories = categories.filter(category => category?.parentCategoryId === parentId);
 
     for (const category of filteredCategories) {
         const subCategories = buildCategoryTree(categories, category._id);

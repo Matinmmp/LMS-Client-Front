@@ -66,7 +66,7 @@ export default function ProfilePage() {
                                                         return (
                                                             <TableRow key={index} className="mt-6">
                                                                 <TableCell className="flex justify-center text-center">
-                                                                    <Avatar className="h-12 w-16 shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="sm" isBordered color="secondary" src={item?.thumbnail?.imageUrl} />
+                                                                    <Avatar alt="" className="h-12 w-16 shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="sm" isBordered color="secondary" src={item?.thumbnail?.imageUrl} />
                                                                 </TableCell>
                                                                 <TableCell className="text-center">
                                                                     <Link href={`/courses/${item.name}`} className="font-semibold text-lg hover:text-secondary-400 transition-all text-nowrap">

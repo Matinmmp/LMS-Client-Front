@@ -71,7 +71,7 @@ const AcademyInfo = ({ data }: Props) => {
 
                 <div className="w-full h-48 md:h-64 lg:h-[27rem] relative rounded-2xl ">
                     <Image className="w-full h-full -mt-24 md:-mt-32 lg:-mt-40 rounded-2xl object-cover object-center shadow-medium" priority={true}
-                        width={1000} height={1000} alt="virtual learn hero" src={"https://buckettest.storage.c2.liara.space/images/academy19.png"} />
+                        width={1000} height={1000} alt="" src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}academy19.png`} />
                 </div>
 
                 <div className="w-full mt-10 flex flex-col items-center lg:items-start lg:flex-row justify-between">
@@ -86,7 +86,7 @@ const AcademyInfo = ({ data }: Props) => {
                         </h2>
                     </div>
 
-                    <Avatar className="order-1 lg:order-2 min-h-28 min-w-28 md:min-h-36 md:min-w-36 lg:min-h-52 lg:min-w-52 -mt-20 md:-mt-28 lg:-mt-20 lg:me-6 shadow-[0_0_15px_0_#44de77] " size="lg" radius="lg" isBordered color="success" src={data.avatar.imageUrl} />
+                    <Avatar className="order-1 lg:order-2 min-h-28 min-w-28 md:min-h-36 md:min-w-36 lg:min-h-52 lg:min-w-52 -mt-20 md:-mt-28 lg:-mt-20 lg:me-6 shadow-[0_0_15px_0_#44de77] " size="lg" radius="lg" alt={`آکادمی ${data.faName}, در ویرچوال لرن`} isBordered color="success" src={data.avatar.imageUrl} />
 
                 </div>
 

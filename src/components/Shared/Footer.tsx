@@ -17,8 +17,8 @@ type CardProps = {
 
 const Footer = ({ }: CardProps) => {
     const categories = buildCategoryTree(navObject.categoryObject.categoryList, null);
-    const academiesObject = navObject.academyObject
-    const teacherObject = navObject.teacherObject
+    const academiesObject:any = navObject.academyObject
+    const teacherObject:any = navObject.teacherObject
 
     return (
         <footer className="w-full flex justify-center relative backdrop-blur-xl z-40">
@@ -33,7 +33,7 @@ const Footer = ({ }: CardProps) => {
                         <ul className="min-w-[12rem] flex flex-col gap-2 lg:-mt-6">
                             <li>
                                 <Link className="flex items-center gap-1" href="/">
-                                    <Image priority alt="logo" className="h-12 w-12 md:w-16 md:h-16" height={100} width={100}
+                                    <Image priority alt="لوگوی ویرچوال لرن در فوتر سایت" className="h-12 w-12 md:w-16 md:h-16" height={100} width={100}
                                         src={process.env.NEXT_PUBLIC_IMAGE_BASE_URL + "logo-main.png"} />
                                     <span className="text-xl font-extrabold text-primary-400">ویرچوال‌لرن</span>
                                 </Link>
@@ -68,7 +68,7 @@ const Footer = ({ }: CardProps) => {
                             <h5 className={clsx(title({ color: 'blue' }), 'text-xl lg:text-2xl font-bold')}>دسته بندی‌ها</h5>
                             <ul className="mt-6 className= flex flex-col gap-3">
                                 {
-                                    categories[0].subCategories.map((item, index) =>
+                                    categories[0]?.subCategories?.map((item, index) =>
                                         <li key={index}>
                                             <Link color="foreground" href={`/courses/?category=${item.name}`} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
                                                 {item.name}
@@ -82,10 +82,10 @@ const Footer = ({ }: CardProps) => {
                             <h5 className={clsx(title({ color: 'blue' }), 'text-xl lg:text-2xl font-bold')}>مدرس‌ها</h5>
                             <ul className="mt-6 className= flex flex-col gap-3">
                                 {
-                                    teacherObject.teacherList.slice(0, 10).map((item, index) =>
+                                    teacherObject?.teacherList?.slice(0, 10).map((item:any, index:number) =>
                                         <li key={index}>
-                                            <Link color="foreground" href={`/teachers/${encodeTitle(item.engName)}`} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
-                                                {item.engName}
+                                            <Link color="foreground" href={`/teachers/${encodeTitle(item?.engName)}`} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
+                                                {item?.engName}
                                             </Link>
                                         </li>)
                                 }
@@ -105,7 +105,7 @@ const Footer = ({ }: CardProps) => {
                             <h5 className={clsx(title({ color: 'blue' }), 'text-xl lg:text-2xl font-bold')}>آکادمی‌ها</h5>
                             <ul className="mt-6 className= flex flex-col gap-3">
                                 {
-                                    academiesObject.academyList.slice(0, 10).map((item, index) =>
+                                    academiesObject.academyList.slice(0, 10).map((item:any, index:number) =>
                                         <li key={index}>
                                             <Link color="foreground" href={`/academies/${encodeTitle(item.engName)}`} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
                                                 {item.engName}

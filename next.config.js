@@ -6,9 +6,6 @@ const nextConfig = {
         swcMinify: true,
     },
 
-    // compilerOptions: {
-    //     target: "es2015"
-    // },
       
     compress: true,
     optimizeFonts: true,
@@ -16,20 +13,8 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: 'buckettest.storage.c2.liara.space',
+                hostname: 'images.vc-virtual-learn.com',
             },
-            {
-                protocol: 'https',
-                hostname: 'lottie.host'
-            },
-            {
-                protocol: 'https',
-                hostname: 'www.google.com'
-            },
-            {
-                protocol: 'https',
-                hostname: 'img-c.udemycdn.com'
-            }
         ]
     }
 };

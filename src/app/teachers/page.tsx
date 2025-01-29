@@ -34,12 +34,12 @@ export default async function Home() {
             "url": "https://www.vc-virtual-learn.com",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://www.vc-virtual-learn.com/assets/logo.png", //پرش کن
+                "url": `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}logo-main.png`, //پرش کن
                 "width": 512,
                 "height": 512
             }
         },
-        "image": "https://www.vc-virtual-learn.com/assets/teachers-banner.png",// پرش کن
+        // "image": "https://www.vc-virtual-learn.com/assets/teachers-banner.png",// پرش کن
     }
 
     if (data) {
@@ -80,13 +80,13 @@ export default async function Home() {
                 <meta property="og:title" content="لیست مدرس‌های آموزشی | Virtual Learn" />
                 <meta property="og:description" content="لیست مدرس‌های آموزشی معتبر با دوره‌های ترجمه‌شده به زبان فارسی در ویرچوال لرن. بهترین منابع آموزشی برای ارتقای مهارت‌های برنامه‌نویسی شما." />
                 <meta property="og:url" content="https://www.vc-virtual-learn.com/teachers" />
-                <meta property="og:image" content="https://www.vc-virtual-learn.com/assets/teachers-banner.png" />
+                {/* <meta property="og:image" content="https://www.vc-virtual-learn.com/assets/teachers-banner.png" /> */}
 
                 <meta name="twitter:title" content="لیست مدرس‌های آموزشی | Virtual Learn" />
                 <meta name="twitter:description" content="لیست مدرس‌های آموزشی معتبر با دوره‌های ترجمه‌شده به زبان فارسی در ویرچوال لرن. بهترین منابع آموزشی برای ارتقای مهارت‌های برنامه‌نویسی شما." />
 
                 {/* بعدا عکسو بذار */}
-                <meta name="twitter:image" content="https://www.vc-virtual-learn.com/assets/teachers-banner.png" />
+                {/* <meta name="twitter:image" content="https://www.vc-virtual-learn.com/assets/teachers-banner.png" /> */}
 
                 <link rel="canonical" href="https://www.vc-virtual-learn.com/teachers" />
 

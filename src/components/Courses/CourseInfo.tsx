@@ -124,7 +124,7 @@ export default async function CourseInfo({ data,isPurchased }: Props) {
                 <div className="w-full h-48 md:h-64 lg:h-[27rem] relative rounded-2xl shadow-medium">
                     <Image className="w-full h-full -mt-24 md:-mt-32 lg:-mt-40 rounded-2xl object-cover object-center shadow-medium
                     filter brightness-90 dark:brightness-100 blur-sm/"
-                        priority={true} width={1000} height={1000} alt="virtual learn hero" src={course?.thumbnail?.imageUrl} />
+                        priority={true} width={1000} height={1000} alt={`${teacher?.faName}، مدرس دوره ${course?.faName} در ویرچوال لرن`} src={course?.thumbnail?.imageUrl} />
                 </div>
 
                 <div className="mt-8 lg:mt-12 flex flex-col lg:flex-row gap-6">
@@ -155,7 +155,7 @@ export default async function CourseInfo({ data,isPurchased }: Props) {
                                 <VideoPlayer url={course?.previewVideoUrl} />
 
                                 :
-                                <Image src={course?.thumbnail?.imageUrl} alt={course?.name} priority={true} width={1000} height={1000} className="aspect-video" />
+                                <Image src={course?.thumbnail?.imageUrl} alt={`دوره‌ی ${course?.name}`} priority={true} width={1000} height={1000} className="aspect-video" />
                         }
                     </div>
 
@@ -195,15 +195,15 @@ export default async function CourseInfo({ data,isPurchased }: Props) {
 
                     <div id="courseInfoSidebar" className="w-full min-w-72 lg:w-[30%] flex flex-col gap-4">
 
-                        <SidebarFeature data={course} />
+                        <SidebarFeature data={course} course={course}/>
 
                         <PercentToFull total={course?.holeCourseVideos} translated={course?.totalLessons} />
 
                         <ShortLink name={course?.name} />
 
-                        <TeacherInfo data={teacher} />
+                        <TeacherInfo data={teacher} course={course} />
 
-                        <AcademyInfo data={academy} />
+                        <AcademyInfo data={academy} course={course} />
 
                     </div>
 
@@ -215,6 +215,7 @@ export default async function CourseInfo({ data,isPurchased }: Props) {
 
 type Props2 = {
     data: any
+    course:any
 }
 
 function SidebarFeature({ data }: Props2) {
@@ -314,11 +315,11 @@ function PercentToFull({ total, translated }: { total: number; translated: numbe
     );
 }
 
-function TeacherInfo({ data }: Props2) {
+function TeacherInfo({ course,data }: Props2) {
     return (
         <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
             <div className="w-full px-4 py-6 flex flex-col items-center">
-                <Avatar className="h-[5.5rem] w-[5.5rem] shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="full" isBordered color="secondary" src={data.avatar.imageUrl} fallback />
+                <Avatar alt={`${data?.faName}، مدرس دوره ${course?.faName} در ویرچوال لرن`} className="h-[5.5rem] w-[5.5rem] shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="full" isBordered color="secondary" src={data.avatar.imageUrl} fallback />
 
                 <h6 className="mt-3 text-xl font-bold hover:text-secondary-400 transition-all">
                     <Link href={`/teachers/${encodeTitle(data?.engName)}`}>{data?.engName}</Link>
@@ -333,11 +334,11 @@ function TeacherInfo({ data }: Props2) {
 }
 
 
-function AcademyInfo({ data }: Props2) {
+function AcademyInfo({ data,course }: Props2) {
     return (
         <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
             <div className="w-full px-4 py-6 flex flex-col items-center">
-                <Avatar className="h-[4.5rem] w-[4.5rem] shadow-[0_0_15px_0_#44de77]" size="lg" radius="sm" isBordered color="success" src={data.avatar.imageUrl} />
+                <Avatar alt={`${data?.faName}، آکادمی ${course?.faName} در ویرچوال لرن`} className="h-[4.5rem] w-[4.5rem] shadow-[0_0_15px_0_#44de77]" size="lg" radius="sm" isBordered color="success" src={data.avatar.imageUrl} />
 
                 <h6 className="mt-3 text-xl font-bold hover:text-success-400 transition-all">
                     <Link href={`/academies/${encodeTitle(data?.engName)}`}>{data?.engName}</Link>

@@ -30,7 +30,7 @@ const Hero = (props: Props) => {
 
                 <div className="w-full md2:w-1/2 order-1 md2:order-2">
                     <Image className="-mt-10 md:lg:mt-0 lg:-mt-20 " priority={true}
-                        width={1000} height={1000} alt="virtual learn hero" src={"https://buckettest.storage.c2.liara.space/images/hero4.svg"} />
+                        width={1000} height={1000} alt="ویرچوال لرن، پلتفرم آموزش آنلاین با ترجمه دوره‌های بین‌المللی" src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}hero4.svg`} />
                 </div>
 
             </div>

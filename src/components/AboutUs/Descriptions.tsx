@@ -48,7 +48,7 @@ const Description2 = () => {
 
                 <div className="w-[17rem] order-1 md2:order-1">
                     <Image priority={true}
-                        width={1000} height={1000} alt="virtual learn hero" src={"https://buckettest.storage.c2.liara.space/images/mission.svg"} />
+                        width={1000} height={1000} alt="ماموریت ویرچوال لرن" src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}mission.svg`} />
                 </div>
 
                 <div className="w-ful md2:w-3/4 order-2 md2:order-2 lg:mt-0 text-center md:text-right">
@@ -102,7 +102,7 @@ const Description3 = () => {
 
                 <div className="w-[17rem] order-1 md2:order-2">
                     <Image priority={true}
-                        width={1000} height={1000} alt="virtual learn hero" src={"https://buckettest.storage.c2.liara.space/images/future.svg"} />
+                        width={1000} height={1000} alt="چشم‌انداز ویرچوال لرن" src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}future.svg`} />
                 </div>
 
             </div>
