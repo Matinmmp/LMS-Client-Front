@@ -1,0 +1,25 @@
+# *
+User-agent: *
+Allow: /
+Allow: /about-us
+Allow: /academies
+Allow: /academies/*
+Allow: /contact-us
+Allow: /courses
+Allow: /courses/*
+Allow: /teachers
+Allow: /teachers/*
+Disallow: /profile
+Disallow: /profile/*
+Disallow: /error
+Disallow: /apple-icon.png
+
+# Sitemap
+Sitemap: https://www.vc-virtual-learn.com/sitemap.xml
+
+# Host
+Host: https://www.vc-virtual-learn.com
+
+# Sitemaps
+Sitemap: https://www.vc-virtual-learn.com/sitemap.xml
+Sitemap: https://www.vc-virtual-learn.com/sitemap-index.xml

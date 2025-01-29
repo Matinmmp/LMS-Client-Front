@@ -20,6 +20,7 @@ import FavoriteCourses from "@/src/components/HomePage/FavoriteCourses";
 import DiscountCourses from "@/src/components/HomePage/DiscountCourses";
 
 
+
 export default async function Home() {
 
     return (
