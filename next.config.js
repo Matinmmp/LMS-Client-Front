@@ -15,6 +15,10 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'images.vc-virtual-learn.com',
             },
+            {
+                protocol: 'https',
+                hostname: 'buckettest.storage.c2.liara.space',
+            },
         ]
     }
 };

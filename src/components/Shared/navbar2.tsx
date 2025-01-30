@@ -71,11 +71,11 @@ const links = [
         title: 'درباره‌ی ما',
         link: '/about-us',
     },
-    // {
-    //     icon: <FaQuoteRight size={20} />,
-    //     title: 'سوالات متداول',
-    //     link: '/',
-    // },
+    {
+        icon: <FaQuoteRight size={20} />,
+        title: 'قوانین',
+        link: '/roles',
+    },
 ]
 
 const categories:any = buildCategoryTree(navObject.categoryObject.categoryList, null);
@@ -615,8 +615,8 @@ const DrawerContent = ({ setIsOpen }: DrawerContentProps) => {
 
                 <div className="w-full mt-6 px-2 flex flex-col gap-4">
                     <DrawerDropDown categoryList={categories[0]?.subCategories} setIsOpen={setIsOpen} />
-                    <DrawerDropDown2 setIsOpen={setIsOpen} baseUrl="teachers" color={'primary'} total={teacherObject.total} list={teacherObject.teacherList} title={'مدرس‌ها'} radius="full" />
-                    <DrawerDropDown2 setIsOpen={setIsOpen} baseUrl="academies" color={'secondary'} total={academiesObject.total} list={academiesObject.academyList} title={'آکادمی ها'} radius="sm" />
+                    <DrawerDropDown2 setIsOpen={setIsOpen} baseUrl="teachers" color={'primary'} total={teacherObject?.total} list={teacherObject?.teacherList} title={'مدرس‌ها'} radius="full" />
+                    <DrawerDropDown2 setIsOpen={setIsOpen} baseUrl="academies" color={'secondary'} total={academiesObject?.total} list={academiesObject?.academyList} title={'آکادمی ها'} radius="sm" />
                     <DrawerDropDown3 title="لینک‌های مفید" setIsOpen={setIsOpen} />
                 </div>
             </div>
@@ -665,7 +665,7 @@ const DrawerDropDown = ({ categoryList, setIsOpen }: DrawerDropDownProps) => {
             <motion.div className="overflow-hidden" initial={false} animate={open ? "open" : "closed"} variants={containerVariants}>
                 <div className='ps-4'>
                     {
-                        categoryList.map((item, index) => {
+                        categoryList?.map((item, index) => {
                             const [openSub, setOpenSub] = useState(false);
                             return (
                                 <div className="flex flex-col" key={index}>
@@ -675,7 +675,7 @@ const DrawerDropDown = ({ categoryList, setIsOpen }: DrawerDropDownProps) => {
                                             className="w-full mt-3 text-sm hover:text-primary-400 transition relative" >
                                             <div className='flex items-center gap-1'>
                                                 <FaChevronLeft size={8} className="text-primary-400" />
-                                                <span>{item.name}</span>
+                                                <span>{item?.name}</span>
                                             </div>
 
                                         </NextLink>
@@ -689,11 +689,11 @@ const DrawerDropDown = ({ categoryList, setIsOpen }: DrawerDropDownProps) => {
                                         <motion.div className="ps-5 overflow-hidden" initial={false} animate={openSub ? "open" : "closed"} variants={subCategoryVariants}>
                                             {item?.subCategories.map((itemSub: any, index2: number) => (
                                                 <div className="flex flex-col" key={index2}>
-                                                    <NextLink color="foreground" href={`/courses?category=${itemSub.name}`} onClick={() => setTimeout(() => setIsOpen(false), 200)}
+                                                    <NextLink color="foreground" href={`/courses?category=${itemSub?.name}`} onClick={() => setTimeout(() => setIsOpen(false), 200)}
                                                         className="w-full mt-3 text-sm hover:text-primary-400 transition cursor-pointer relative flex items-center justify-between" >
                                                         <div className='flex items-center gap-1'>
                                                             <GoDotFill size={10} className="text-primary-400" />
-                                                            <span>{itemSub.name}</span>
+                                                            <span>{itemSub?.name}</span>
                                                         </div>
                                                     </NextLink>
                                                 </div>
@@ -754,9 +754,9 @@ const DrawerDropDown2 = ({ list, title, radius, total, color, baseUrl, setIsOpen
                 <div className='w-full p-2 pt-8 grid gap-6 grid-cols-3 justify-beetwen'>
 
                     {list?.slice(0, 8)?.map((item, index) => (
-                        <NextLink href={`/${baseUrl}/${encodeTitle(item.engName)}`} key={index} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer' >
-                            <Avatar radius={radius} isBordered size={'lg'} color={color} name={item.engName} showFallback src={item.imageUrl} />
-                            <span className='text-center whitespace-break-spaces'>{item.engName}</span>
+                        <NextLink href={`/${baseUrl}/${encodeTitle(item?.engName)}`} key={index} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer' >
+                            <Avatar radius={radius} isBordered size={'lg'} color={color} name={item?.engName} showFallback src={item?.imageUrl} />
+                            <span className='text-center whitespace-break-spaces'>{item?.engName}</span>
                         </NextLink>
                     ))}
                     {total > 8 ?

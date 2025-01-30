@@ -1,6 +1,7 @@
 import { getAllTeachersName, getTeacherByName } from "@/src/lib/apis/teacherApis";
 import TeacherInfo from '../../../components/Teachers/TeacherInfo';
 import { decodeTitle, encodeTitle } from "@/src/utils/functions";
+import { notFound } from "next/navigation";
 
 
 
@@ -24,6 +25,9 @@ export default async function Teacher({ params: { engName } }: Props) {
     const data: any = await getTeacherByName(decodeTitle(name));
 
 
+    if (data && data?.message === 'Teacher not found')
+        notFound();
+
     if (data && data.success) {
         const schema = {
             "@context": "https://schema.org",
@@ -31,7 +35,7 @@ export default async function Teacher({ params: { engName } }: Props) {
             "name": data?.teacher?.seoMeta?.title,
             "url": `https://www.vc-virtual-learn.com/teachers/${name}`,
             "description": data?.teacher?.seoMeta?.description,
-            "image":`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}Contact-us-bro.svg`,//بعدا بذار
+            "image": `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}Contact-us-bro.svg`,//بعدا بذار
             "logo": `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}logo-main.svg`,//بعدا بذار
             "inLanguage": "fa",
             "isPartOf": {

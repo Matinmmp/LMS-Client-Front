@@ -42,8 +42,8 @@ module.exports = {
             { loc: '/contact-us', priority: 0.8 },
             { loc: '/courses', priority: 0.9 },
             { loc: '/teachers', priority: 0.9 },
-            { loc: '/academies', priority: 0.9 }
-
+            { loc: '/academies', priority: 0.9 },
+            { loc: '/roles', priority: 0.9 },
         ];
         dynamicPaths.push(...staticPaths);
         try {

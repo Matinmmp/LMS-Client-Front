@@ -322,7 +322,7 @@ type Props2 = {
 
 const renderCategories = ({ categories, selectedCategories, handleCategorySelect, level }: Props2) => {
 
-    return categories.map((category: any) => (
+    return categories?.map((category: any) => (
 
         <div key={category._id} style={{ paddingRight: `${level * 30}px` }}>
             <Checkbox isSelected={selectedCategories.includes(category.name)} onClick={() => handleCategorySelect(category.name)}

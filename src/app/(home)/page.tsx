@@ -50,7 +50,7 @@ export default function Home() {
                     <h3 className={clsx(title({ color: 'blue' }), "text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>تخفیف‌دار‌ها</h3>
                 </DiscountCourses>
 
-                {/* <Suspense fallback={
+                <Suspense fallback={
                     <FavoriteCoursesLoading>
                         <h3 className={clsx(title({ color: 'blue' }), "text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>محبوب‌ترین دوره‌ها</h3>
                     </FavoriteCoursesLoading>}
@@ -76,7 +76,7 @@ export default function Home() {
                     <FavoritTeachers >
                         <h3 className={clsx(title({ color: 'secondary' }), "text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>محبوب‌ترین مدرس‌ها</h3>
                     </FavoritTeachers>
-                </Suspense> */}
+                </Suspense>
 
 
                 <div className="w-full mt-28 md:mt-52 ">

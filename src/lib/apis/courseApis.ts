@@ -83,3 +83,15 @@ export const postComment = async ({ comment, courseId, commentId }: { comment: s
 
 }
 
+export const rateCourse = async ({ courseId, rating }: { courseId: string, rating: any }) => {
+
+    const data = await customFetch(`/rateCourse`, {
+        method: 'Post',
+        credentials: 'include' as const,
+        body: JSON.stringify({ courseId, rating }),
+        headers: { 'Content-Type': 'application/json' },
+    }
+    );
+    return await data;
+
+}

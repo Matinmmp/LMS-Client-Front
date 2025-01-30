@@ -13,7 +13,7 @@ import { IoIosFilm } from "react-icons/io";
 import { FaStar } from "react-icons/fa6"
 import { Avatar } from "@nextui-org/avatar";
 import Link from "next/link";
-import { AddToCartButton, Commments, CourseLessons, Description, ShortLink } from "./CourseInfoComponents";
+import { AddToCartButton, Commments, CourseLessons, Description, RatingCommponent, ShortLink } from "./CourseInfoComponents";
 import { VideoPlayer } from "../Shared/VideoPlayer";
 import { AlertSecondary } from "../Shared/Alert";
 import { RelatedCourse, RelatedBlog } from "./CourseInfoServerComponents";
@@ -22,7 +22,8 @@ import { cookies } from 'next/headers'
 
 type Props = {
     data: any,
-    isPurchased:boolean
+    isPurchased: boolean,
+    userRate: any
 }
 
 let AddToCartComponent: any = React.Component;
@@ -39,7 +40,7 @@ const isDiscountValide = (expireTime: string, percent: string) => {
     return true
 };
 
-export default async function CourseInfo({ data,isPurchased }: Props) {
+export default async function CourseInfo({ data, isPurchased, userRate }: Props) {
     const cookieStore = await cookies()
     const refresh_token = cookieStore.get('refresh_token')
 
@@ -107,7 +108,7 @@ export default async function CourseInfo({ data,isPurchased }: Props) {
                 <AddToCartButton isPurchased={isPurchased} courseId={course?._id} />
 
                 {!isPurchased &&
-                    <div className="px-3 py-1 pb-2 mt-auto flex justify-end order-1 sm:order-2">                   
+                    <div className="px-3 py-1 pb-2 mt-auto flex justify-end order-1 sm:order-2">
                         {PriceAfterDiscountComponent}
                     </div>}
 
@@ -185,17 +186,19 @@ export default async function CourseInfo({ data,isPurchased }: Props) {
                             <RelatedBlog name={course?.urlName} />
                         </div> */}
 
+                        <div className="mt-8  lg:hidden">
+                            <RatingCommponent userRate={userRate} courseId={course?._id}/>
+                        </div>
+
                         <div className="mt-8">
                             <Commments name={course?.urlName} refresh_token={refresh_token?.value} courseId={course?._id} />
                         </div>
-
-
 
                     </div>
 
                     <div id="courseInfoSidebar" className="w-full min-w-72 lg:w-[30%] flex flex-col gap-4">
 
-                        <SidebarFeature data={course} course={course}/>
+                        <SidebarFeature data={course} course={course} />
 
                         <PercentToFull total={course?.holeCourseVideos} translated={course?.totalLessons} />
 
@@ -204,6 +207,10 @@ export default async function CourseInfo({ data,isPurchased }: Props) {
                         <TeacherInfo data={teacher} course={course} />
 
                         <AcademyInfo data={academy} course={course} />
+
+                        <div className="hidden lg:block">
+                            <RatingCommponent userRate={userRate} courseId={course?._id}/>
+                        </div>
 
                     </div>
 
@@ -215,7 +222,7 @@ export default async function CourseInfo({ data,isPurchased }: Props) {
 
 type Props2 = {
     data: any
-    course:any
+    course: any
 }
 
 function SidebarFeature({ data }: Props2) {
@@ -315,7 +322,7 @@ function PercentToFull({ total, translated }: { total: number; translated: numbe
     );
 }
 
-function TeacherInfo({ course,data }: Props2) {
+function TeacherInfo({ course, data }: Props2) {
     return (
         <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
             <div className="w-full px-4 py-6 flex flex-col items-center">
@@ -334,7 +341,7 @@ function TeacherInfo({ course,data }: Props2) {
 }
 
 
-function AcademyInfo({ data,course }: Props2) {
+function AcademyInfo({ data, course }: Props2) {
     return (
         <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
             <div className="w-full px-4 py-6 flex flex-col items-center">

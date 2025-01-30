@@ -62,6 +62,12 @@ const Footer = ({ }: CardProps) => {
                                     <span >درباره‌ی ما</span>
                                 </Link>
                             </li>
+                            <li className="mt-1">
+                                <Link className="flex items-center gap-2 font-medium " href="/roles">
+                                    {/* <HiOutlineInformationCircle size={24} className="text-black dark:text-white" /> */}
+                                    <span >قوانین</span>
+                                </Link>
+                            </li>
                         </ul>
 
                         <div className="min-w-[12rem]">

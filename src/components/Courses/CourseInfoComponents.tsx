@@ -8,7 +8,7 @@ import { TbFileDescription } from "react-icons/tb";
 import { Button } from "@nextui-org/button";
 import { SlEye } from "react-icons/sl";
 import { IoIosArrowBack, IoIosSchool } from "react-icons/io";
-import { getCourseDataByNameLoged, getCourseDataByNameNoLoged, postComment } from "@/src/lib/apis/courseApis";
+import { getCourseDataByNameLoged, getCourseDataByNameNoLoged, postComment, rateCourse } from "@/src/lib/apis/courseApis";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import cookies from 'js-cookie'
 import { RxDotFilled } from "react-icons/rx";
@@ -31,11 +31,12 @@ import { BiCommentDetail } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { Textarea } from "@nextui-org/input";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
-import { LuEye } from "react-icons/lu";
 import { addCourse } from "@/src/redux/cart/cartSlice";
 import Image from "next/image";
 
+import { Rating, RoundedStar } from '@smastrom/react-rating'
 
+import '@smastrom/react-rating/style.css'
 
 export function ShortLink({ name }: { name: string }) {
     const copy = () => navigator.clipboard.writeText(`virtual-learn.com/?r=${encodeToShortCode(name)}`);
@@ -965,4 +966,57 @@ export const AddToCartButton = ({ isPurchased, courseId }: { isPurchased: boolea
                 <p className=" text-lg md:text-xl font-semibold text-secondary-400">شما دانشجوی این دوره هستید.</p>
             </div>
         )
+}
+
+const myStyles = {
+    itemShapes: RoundedStar,
+    activeFillColor: '#ffb700', // رنگ پرشده‌ی ستاره‌های فعال
+    inactiveFillColor: '#ffffff', // رنگ پرشده‌ی ستاره‌های غیرفعال (سفید)
+    inactiveStrokeColor: '#ffb700', // بردر زرد برای ستاره‌های غیرفعال
+    activeStrokeColor: '#ffb700',
+    itemStrokeWidth: 1 // ضخامت خط بردر
+
+}
+
+
+export const RatingCommponent = ({ userRate, courseId }: { userRate: any, courseId: string }) => {
+    const refresh_token = cookies.get('refresh_token')
+    const access_token = cookies.get('access_token')
+    const rate = userRate == -1 ? 0 : userRate;
+    const [rating, setRating] = useState(rate);
+
+    const postRateMutation = useMutation({
+        mutationFn: ({ rating, courseId }: { courseId: string, rating: any }) => rateCourse({ rating, courseId }),
+        onSuccess: () => {
+            showToast({ type: 'success', message: 'امتیار با موفقیت ثبت شد.' });
+        },
+        onError: () => {
+            setRating(0);
+            showToast({ type: 'error', message: 'خطایی پیش آمده است.' })
+        }
+    })
+
+    const handleRating = (number: number) => {
+        if (!refresh_token && !access_token) {
+            showToast({ message: 'برای ثبت امتیاز وارد حساب خود شوید.', type: 'warning' })
+        } else {
+            setRating(number)
+            postRateMutation.mutate({ courseId, rating: number })
+        }
+    }
+
+
+    return (
+        <div className="w-full p-4 pb-6 flex flex-col items-center bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl relative">
+            {
+                userRate == -1 ?
+                    <p className="mb-4 font-medium">امتیازی برای این دوره ثبت نکرده‌اید.</p>
+                    :
+                    <p className="mb-4 font-medium">برای این دوره امتیاز ثبت شده.</p>
+            }
+
+            <Rating style={{ maxWidth: 250 }} value={rating} onChange={handleRating} itemStyles={myStyles} />
+
+        </div>
+    )
 }
