@@ -23,7 +23,7 @@ const DiscountCourses = (props: Props) => {
     if (discountedCourses && discountedCourses?.data?.success && discountedCourses?.data?.courses?.length)
 
         return (
-            <section className="w-full pb-10 flex flex-col relative">
+            <section className="w-full mt-24 pb-10 flex flex-col relative">
 
                 <div className="w-full flex justify-between">
                     <div className="flex items-center gap-2">

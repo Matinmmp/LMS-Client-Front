@@ -9,6 +9,7 @@ module.exports = {
     ],
     theme: {
         extend: {
+            
             fontFamily: {
                 // sans: ["var(--font-baloo)"],
                 mono: ["var(--font-inter)"],

@@ -45,7 +45,7 @@ const Footer = ({ }: CardProps) => {
                                 </Link>
                             </li>
                             <li className="mt-1">
-                                <Link className="flex items-center gap-2 font-medium " href="/">
+                                <Link className="flex items-center gap-2 font-medium " href="https://www.instagram.com/vc_virtual_learn">
                                     <RxInstagramLogo size={20} />
                                     <span >ایناستگرام</span>
                                 </Link>

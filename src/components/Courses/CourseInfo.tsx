@@ -284,7 +284,7 @@ function SidebarFeature({ data }: Props2) {
 
                         <FaStar className=" text-warning-400 text-3xl sm:text-4xl" />
                         <span className="mt-3 text-xs sm:text-sm">امتیاز:</span>
-                        <span className="text-xs sm:text-sm">{toPersianNumber(data?.ratings?.toFixed(1))}</span>
+                        <span className="text-xs sm:text-sm">{toPersianNumber(data?.rating?.toFixed(1))}</span>
 
                     </div>
                 </div>

@@ -49,7 +49,7 @@ import { useRouter } from "next/navigation";
 import { Cart } from "./Cart";
 import ForgetPassword from "../Auth/ForgetPasswrod";
 
-
+ 
 const links = [
     {
         icon: <FaTelegramPlane size={20} color="#079CED" />,
@@ -59,7 +59,7 @@ const links = [
     {
         icon: <GrInstagram size={18} color="#ed071e" />,
         title: 'پیج اینستاگرام',
-        link: '/',
+        link: 'https://www.instagram.com/vc_virtual_learn',
     },
     {
         icon: <MdContactPhone size={18} color="#07edd2" />,
@@ -497,7 +497,7 @@ export const Navbar = () => {
                                                                 </p>
 
                                                                 <div className="flex items-center gap-1">
-                                                                    <span className="pt-1 text-md font-semibold text-warning-400">{toPersianNumber(item.ratings)}</span>
+                                                                    <span className="pt-1 text-md font-semibold text-warning-400">{toPersianNumber(item.rating)}</span>
                                                                     <FaStar size={16} className="text-warning-400" />
                                                                 </div>
                                                             </div>

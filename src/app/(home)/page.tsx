@@ -1,12 +1,10 @@
 const cash = 'no-store'
 import Hero from "@/src/components/HomePage/Hero";
-
 import Comments from "@/src/components/HomePage/Comments";
 import FAQ from "@/src/components/HomePage/FAQ";
 import clsx from "clsx";
 import { title } from "@/src/components/primitives";
 import { Suspense } from "react";
-
 
 import { LastCoursesLoading } from "@/src/components/HomePage/LastCourses";
 import { FavoritAcademiesLoading } from "@/src/components/HomePage/FavoritAcademies";
@@ -21,7 +19,7 @@ import DiscountCourses from "@/src/components/HomePage/DiscountCourses";
 
 
 
-export default async function Home() {
+export default function Home() {
 
     return (
         <section className=" flex flex-col items-center justify-center  " >
@@ -36,66 +34,50 @@ export default async function Home() {
                     <Hero />
                 </div>
 
-                <div className="w-full mt-24">
 
-                    <Suspense fallback={
-                        <LastCoursesLoading>
-                            <h3 className={clsx(title({ color: 'blue' }), "pt-1 text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>آخرین دوره‌ها</h3>
-                        </LastCoursesLoading>}
-                    >
+                <Suspense fallback={
+                    <LastCoursesLoading>
+                        <h3 className={clsx(title({ color: 'blue' }), "pt-1 text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>آخرین دوره‌ها</h3>
+                    </LastCoursesLoading>}
+                >
 
-                        <LastCourses>
-                            <h3 className={clsx(title({ color: 'blue' }), "pt-1 text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>آخرین دوره‌ها</h3>
-                        </LastCourses>
-                    </Suspense>
+                    <LastCourses>
+                        <h3 className={clsx(title({ color: 'blue' }), "pt-1 text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>آخرین دوره‌ها</h3>
+                    </LastCourses>
+                </Suspense>
 
-                </div>
+                <DiscountCourses>
+                    <h3 className={clsx(title({ color: 'blue' }), "text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>تخفیف‌دار‌ها</h3>
+                </DiscountCourses>
 
-                <div className="w-full mt-24">
-                    <DiscountCourses>
-                        <h3 className={clsx(title({ color: 'blue' }), "text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>تخفیف‌دار‌ها</h3>
-                    </DiscountCourses>
+                {/* <Suspense fallback={
+                    <FavoriteCoursesLoading>
+                        <h3 className={clsx(title({ color: 'blue' }), "text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>محبوب‌ترین دوره‌ها</h3>
+                    </FavoriteCoursesLoading>}
+                >
+                    <FavoriteCourses>
+                        <h3 className={clsx(title({ color: 'blue' }), "text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>محبوب‌ترین دوره‌ها</h3>
+                    </FavoriteCourses>
+                </Suspense>
 
-                </div>
+                <Suspense fallback={
+                    <FavoritAcademiesLoading>
+                        <h3 className={clsx(title({ color: 'green' }), "text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>محبوب‌ترین آکادمی‌ها</h3>
+                    </FavoritAcademiesLoading>}>
+                    <FavoritAcademies >
+                        <h3 className={clsx(title({ color: 'green' }), "text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>محبوب‌ترین آکادمی‌ها</h3>
+                    </FavoritAcademies>
+                </Suspense>
 
-                <div className="w-full mt-24">
+                <Suspense fallback={
+                    <FavoritTeachersLoading>
+                        <h3 className={clsx(title({ color: 'secondary' }), "text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>محبوب‌ترین مدرس‌ها</h3>
+                    </FavoritTeachersLoading>}>
+                    <FavoritTeachers >
+                        <h3 className={clsx(title({ color: 'secondary' }), "text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>محبوب‌ترین مدرس‌ها</h3>
+                    </FavoritTeachers>
+                </Suspense> */}
 
-                    <Suspense fallback={
-                        <FavoriteCoursesLoading>
-                            <h3 className={clsx(title({ color: 'blue' }), "text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>محبوب‌ترین دوره‌ها</h3>
-                        </FavoriteCoursesLoading>}
-                    >
-                        <FavoriteCourses>
-                            <h3 className={clsx(title({ color: 'blue' }), "text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>محبوب‌ترین دوره‌ها</h3>
-                        </FavoriteCourses>
-                    </Suspense>
-
-                </div>
-
-                <div className="w-full mt-24 ">
-                    <Suspense fallback={
-                        <FavoritAcademiesLoading>
-                            <h3 className={clsx(title({ color: 'green' }), "text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>محبوب‌ترین آکادمی‌ها</h3>
-                        </FavoritAcademiesLoading>}>
-                        <FavoritAcademies >
-                            <h3 className={clsx(title({ color: 'green' }), "text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>محبوب‌ترین آکادمی‌ها</h3>
-                        </FavoritAcademies>
-                    </Suspense>
-
-                </div>
-
-
-                <div className="w-full mt-24 ">
-                    <Suspense fallback={
-                        <FavoritTeachersLoading>
-                            <h3 className={clsx(title({ color: 'secondary' }), "text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>محبوب‌ترین مدرس‌ها</h3>
-                        </FavoritTeachersLoading>}>
-                        <FavoritTeachers >
-                            <h3 className={clsx(title({ color: 'secondary' }), "text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>محبوب‌ترین مدرس‌ها</h3>
-                        </FavoritTeachers>
-                    </Suspense>
-
-                </div>
 
                 <div className="w-full mt-28 md:mt-52 ">
                     <Comments />

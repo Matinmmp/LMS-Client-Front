@@ -24,7 +24,7 @@ const LastCourses = async (props: Props) => {
                         <PiBooksFill className="text-primary-400 text-[1.5rem] md:text-[2.5rem] lg:text-[3rem]" />
                         {props.children}
                     </div>
-                    <Link href={'/'} className={`flex items-center gap-1 hover:text-primary-400 text-sm md:text-base transition-all`}>
+                    <Link href={'/courses'} className="flex items-center gap-1 hover:text-primary-400 text-sm md:text-base transition-all">
                         <p>مشاهده همه دوره‌ها</p>
 
                         <TbArrowBigLeftLinesFilled size={20} className="text-primary-400 " />
@@ -42,12 +42,13 @@ const LastCourses = async (props: Props) => {
                 </div>
             </section>
         );
+    else return ''
 };
 
 export const LastCoursesLoading = (props: Props) => {
 
     return (
-        <section className="w-full pb-10 flex flex-col relative">
+        <section className="w-full mt-24 pb-10 flex flex-col relative">
 
             <div className="w-full flex justify-between">
                 <div className="flex items-center gap-1 md:gap-2">
@@ -56,7 +57,7 @@ export const LastCoursesLoading = (props: Props) => {
 
                     {props.children}
                 </div>
-                <Link href={'/'} className={`flex items-center gap-1 hover:text-primary-400 text-sm md:text-base transition-all`}>
+                <Link href={'/courses'} className={`flex items-center gap-1 hover:text-primary-400 text-sm md:text-base transition-all`}>
                     <p>مشاهده همه دوره‌ها</p>
 
                     <TbArrowBigLeftLinesFilled size={20} className="text-primary-400 " />

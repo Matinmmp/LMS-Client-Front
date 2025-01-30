@@ -24,7 +24,7 @@ type CardProps = {
             imageUrl: string,
         }
         status: number,
-        ratings: number,
+        rating: number,
         level: string,
         description: string,
         name: string,
@@ -94,7 +94,7 @@ export const CourseCard = ({ data }: CardProps) => {
                                 <span className={`text-xs font-bold ${statusColor}`}>{status}</span>
                             </div>
                             <div className="flex items-center gap-1">
-                                <span className="pt-1 text-sm font-semibold text-warning-400">{toPersianNumber(data.ratings)}</span>
+                                <span className="pt-1 text-sm font-semibold text-warning-400">{toPersianNumber(data.rating)}</span>
                                 <FaStar size={16} className="text-warning-400" />
                             </div>
                         </div>

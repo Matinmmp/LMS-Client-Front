@@ -32,7 +32,10 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
             <meta property="og:site_name" content="Virtual Learn" />
 
 
-            <body className={clsx("min-h-screen bg-background  font-sans antialiased", Vazir.className, Inter.className)} >
+            <body
+                className={Vazir.className + ' ' + Inter.className + ' ' + 'min-h-screen bg-background  '}
+            //  className={clsx("min-h-screen bg-background  font-sans antialiased", Vazir.className, Inter.className)} 
+            >
                 <NextTopLoader />
 
                 <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
@@ -68,9 +71,9 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
 
                             </div>
                             <div className="relative z-20 ">
-                                {/* <Suspense> */}
-                                <Navbar />
-                                {/* </Suspense> */}
+                                <Suspense>
+                                    <Navbar />
+                                </Suspense>
                                 {children}
                                 <div className="mt-64">
                                     <Footer />

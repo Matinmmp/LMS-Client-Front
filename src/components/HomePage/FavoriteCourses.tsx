@@ -18,7 +18,7 @@ const FavoriteCourses = async (props: Props) => {
 
 
         return (
-            <section className="w-full pb-10 flex flex-col relative">
+            <section className="w-full mt-24 pb-10 flex flex-col relative">
 
                 <div className="w-full flex justify-between">
                     <div className="flex items-center gap-2">
@@ -52,7 +52,7 @@ const FavoriteCourses = async (props: Props) => {
 export const FavoriteCoursesLoading = (props: Props) => {
 
     return (
-        <section className="w-full pb-10 flex flex-col relative">
+        <section className="w-full mt-24 pb-10 flex flex-col relative">
 
             <div className="w-full flex justify-between">
                 <div className="flex items-center gap-1 md:gap-2">

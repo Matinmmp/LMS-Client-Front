@@ -15,7 +15,7 @@ const FavoritTeachers = async (props: Props) => {
 
     if (data && data.success && data.teachers.length)
         return (
-            <section className="w-full pb-10 flex flex-col relative">
+            <section className="w-full mt-24 pb-10 flex flex-col relative">
 
                 <div className="w-full flex justify-between">
 
@@ -47,7 +47,7 @@ export const FavoritTeachersLoading =  (props: Props) => {
 
 
     return (
-        <section className="w-full pb-10 flex flex-col relative">
+        <section className="w-full mt-24 pb-10 flex flex-col relative">
 
             <div className="w-full flex justify-between">
 
