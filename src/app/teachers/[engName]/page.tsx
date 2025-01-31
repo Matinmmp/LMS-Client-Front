@@ -9,14 +9,14 @@ type Props = {
     params: { engName: string }
 };
 
-export async function generateStaticParams() {
+// export async function generateStaticParams() {
 
-    const teacherNames: any = await getAllTeachersName();
+//     const teacherNames: any = await getAllTeachersName();
 
-    return teacherNames?.teachersName?.map((teacher: { engName: string }) => ({
-        engName: encodeURIComponent(encodeTitle(teacher.engName)),
-    })) || [];
-}
+//     return teacherNames?.teachersName?.map((teacher: { engName: string }) => ({
+//         engName: encodeURIComponent(encodeTitle(teacher.engName)),
+//     })) || [];
+// }
 
 
 
@@ -68,7 +68,7 @@ export default async function Teacher({ params: { engName } }: Props) {
 
                 <title>{data?.teacher?.seoMeta?.title}</title>
                 <meta name="description" content={data?.teacher?.seoMeta?.description} />
-                <meta name="keywords" content={data?.teacher?.seoMeta?.keywords?.join(' ,')} />
+                <meta name="keywords" content={data?.teacher?.seoMeta?.keywords} />
                 <meta name="robots" content="index, follow" />
                 <meta name="revisit-after" content="5 days" />
 

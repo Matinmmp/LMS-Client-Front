@@ -9,15 +9,15 @@ type Props = {
     params: { engName: string }
 };
 
-export async function generateStaticParams() {
+// export async function generateStaticParams() {
 
-    const academyNames: any = await getAllAcademyNames();
+//     const academyNames: any = await getAllAcademyNames();
 
 
-    return academyNames?.academiesName?.map((academy: { engName: string }) => ({
-        engName: encodeURIComponent(encodeTitle(academy.engName)),
-    })) || [];
-}
+//     return academyNames?.academiesName?.map((academy: { engName: string }) => ({
+//         engName: encodeURIComponent(encodeTitle(academy.engName)),
+//     })) || [];
+// }
 
 
 
@@ -69,7 +69,7 @@ export default async function Academy({ params: { engName } }: Props) {
 
                 <title>{data?.academy?.seoMeta?.title}</title>
                 <meta name="description" content={data?.academy?.seoMeta?.description} />
-                <meta name="keywords" content={data?.academy?.seoMeta?.keywords?.join(' ,')} />
+                <meta name="keywords" content={data?.academy?.seoMeta?.keywords} />
                 <meta name="robots" content="index, follow" />
                 <meta name="revisit-after" content="5 days" />
 

@@ -140,24 +140,21 @@ function encodeToShortCode(text:string) {
     return Math.abs(hash).toString(16).substring(0, 4);
 }
 
-const encodeTitle = (title:string) => {
-    try{
-        return title.replace(/\s/g, '_').replace(/\u200C/g, '-');
-    }
-    catch{
+const encodeTitle = (title: string) => {
+    try {
+        return title.trim().replace(/\s+/g, '-'); // تبدیل فاصله‌ها به "-"
+    } catch {
         return title;
     }
 }
 
 const decodeTitle = (title: string) => {
-    try{
-        return title.replace(/_/g, ' ').replace(/-/g, '\u200C');
-    }
-    catch{
+    try {
+        return title.replace(/-/g, ' '); // تبدیل "-" به فاصله
+    } catch {
         return title;
     }
-    
-};
+}
 
 export {
     decodeTitle,

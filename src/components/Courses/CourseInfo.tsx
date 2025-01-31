@@ -115,8 +115,6 @@ export default async function CourseInfo({ data, isPurchased, userRate }: Props)
             </div>
         </>
 
-
-
     return (
         <div className='w-full mt-28 flex flex-col'>
 
@@ -138,7 +136,8 @@ export default async function CourseInfo({ data, isPurchased, userRate }: Props)
                                 {course?.name}
                             </h1>
 
-                            <p className="mt-6 font-light dark:text-[#ddeefd] text-gray-900 overflow-hidden text-ellipsis leading-7 line-clamp-4 lg:line-clamp-3 lg:tracking-wider">
+                            <h2 className="mt-6 dark:text-[#ddeefd] text-gray-900 font-semibold md:text-lg">{course?.faName}</h2>
+                            <p className="mt-1 font-light dark:text-[#ddeefd] text-gray-900 overflow-hidden text-ellipsis leading-7 line-clamp-4 lg:line-clamp-3 lg:tracking-wider">
                                 {course?.description}
                             </p>
 
@@ -187,7 +186,7 @@ export default async function CourseInfo({ data, isPurchased, userRate }: Props)
                         </div> */}
 
                         <div className="mt-8  lg:hidden">
-                            <RatingCommponent userRate={userRate} courseId={course?._id}/>
+                            <RatingCommponent userRate={userRate} courseId={course?._id} />
                         </div>
 
                         <div className="mt-8">
@@ -202,14 +201,14 @@ export default async function CourseInfo({ data, isPurchased, userRate }: Props)
 
                         <PercentToFull total={course?.holeCourseVideos} translated={course?.totalLessons} />
 
-                        <ShortLink name={course?.name} />
+                        {/* <ShortLink name={course?.name} /> */}
 
                         <TeacherInfo data={teacher} course={course} />
 
                         <AcademyInfo data={academy} course={course} />
 
                         <div className="hidden lg:block">
-                            <RatingCommponent userRate={userRate} courseId={course?._id}/>
+                            <RatingCommponent userRate={userRate} courseId={course?._id} />
                         </div>
 
                     </div>

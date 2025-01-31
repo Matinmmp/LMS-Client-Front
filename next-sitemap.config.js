@@ -2,9 +2,8 @@ const axios = require('axios');
 
 const encodeTitle = (title) => {
     try {
-        return title.replace(/\s/g, '_').replace(/\u200C/g, '-');
-    }
-    catch {
+        return title.trim().replace(/\s+/g, '-'); // تبدیل فاصله‌ها به "-"
+    } catch {
         return title;
     }
 }

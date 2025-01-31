@@ -77,14 +77,14 @@ export function Description({ desc }: { desc: string }) {
                 className="p-4 pt-6 overflow-hidden/"
                 exit={{ height: 1400 }}
                 style={{ overflow: 'hidden' }}
-            >
+             >
                 <div className="flex items-center gap-2 text-primary-400 dark:text-white">
                     <TbFileDescription size={40} className="text-primary-400 hidden lg:inline " />
                     <p className="text-xl md:text-2xl font-semibold">توضیحات دوره</p>
 
                 </div>
 
-                <div className="mt-8 pb-20" dangerouslySetInnerHTML={{ __html: desc }}></div>
+                <div className="mt-8 pb-20 leading-7 lg:leading-8 tracking-wide blog_course" dangerouslySetInnerHTML={{ __html: desc }}></div>
             </motion.div>
 
             {!open && (

@@ -5,14 +5,14 @@ import { cookies } from 'next/headers'
 import { notFound } from "next/navigation";
 import Script from "next/script";
 
-export async function generateStaticParams() {
-    const coursUrlNames: any = await getAllCourseUrlNames();
+// export async function generateStaticParams() {
+//     const coursUrlNames: any = await getAllCourseUrlNames();
 
 
-    return coursUrlNames?.coursUrlNames?.map((course: { urlName: string }) => ({
-        courseName: encodeURIComponent(encodeTitle(course?.urlName)),
-    })) || [];
-}
+//     return coursUrlNames?.coursUrlNames?.map((course: { urlName: string }) => ({
+//         courseName: encodeURIComponent(encodeTitle(course?.urlName)),
+//     })) || [];
+// }
 
 type Props = {
     params: { courseName: string }
@@ -27,6 +27,7 @@ export default async function CourseDetail({ params: { courseName } }: Props) {
     const name = await decodeURIComponent(decodeTitle(courseName));
 
     const data: any = await getCourseByName(name, refresh_token?.value, access_token?.value)
+ 
 
     if (data && data?.message === 'دوره‌ای با این نام یافت نشد')
         notFound();

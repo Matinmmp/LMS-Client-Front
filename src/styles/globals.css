@@ -201,11 +201,11 @@ input::-webkit-inner-spin-button {
 
 @layer components {
     .input {
-        @apply bg-[] dark:bg-[#27272A] outline-none border-[2px] border-[#00000019] rounded-[0.4375rem] transition-all duration-300 py-[0.75rem] px-[0.9375rem] text-[0.875rem] focus:border-primary placeholder:text-[#BCBCBC] placeholder:font-semibold placeholder:text-[0.75rem]
+        @apply bg-[] dark:bg-[#27272A] outline-none border-[2px] border-[#00000019] rounded-[0.4375rem] transition-all duration-400 py-[0.75rem] px-[0.9375rem] text-[0.875rem] focus:border-primary placeholder:text-[#BCBCBC] placeholder:font-semibold placeholder:text-[0.75rem]
     }
 
     .input-error {
-        @apply bg-[] dark:bg-[#27272A] outline-none border-[2px] border-danger rounded-[0.4375rem] transition-all duration-300 py-[0.75rem] px-[0.9375rem] text-[0.875rem] placeholder:text-[#BCBCBC] placeholder:font-semibold placeholder:text-[0.75rem]
+        @apply bg-[] dark:bg-[#27272A] outline-none border-[2px] border-danger rounded-[0.4375rem] transition-all duration-400 py-[0.75rem] px-[0.9375rem] text-[0.875rem] placeholder:text-[#BCBCBC] placeholder:font-semibold placeholder:text-[0.75rem]
     }
 }
 
@@ -290,4 +290,320 @@ input::-webkit-inner-spin-button {
     margin-inline-end: auto;
 }
 
- 
+/* #3AD874; */
+/* #0065D9 */
+
+/* teacher */
+
+.blog_teacher {
+    word-spacing: 0.05rem;
+}
+
+.blog_teacher img{
+    border-radius: 1rem;
+    margin-block: 1.5rem;
+}
+
+.blog_teacher ul{
+    margin-block: 1.5rem;
+    list-style-type: disc !important;
+    padding-inline-start: 1.5rem;
+}
+
+.blog_teacher ul li{
+    margin-block: 0.3rem;
+    font-size: .85rem;
+}
+
+.blog_teacher p {
+    font-weight: 400;
+    margin-top: 0.5rem;
+    font-size: .85rem;
+}
+
+.blog_teacher strong {
+    font-weight: 500 !important;
+}
+
+
+.blog_teacher p strong, .blog_teacher ul li strong {
+    font-weight: 500 !important;
+    color: #2DB4F2;
+}
+
+.blog_teacher h2, .blog_teacher h3{
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+
+.blog_teacher h4 {
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #2DB4F2;
+}
+
+/* مدیا کوئری برای تبلت (md) */
+@media (min-width: 768px) {
+    .blog_teacher img {
+        margin-block: 2rem;
+    }
+
+    .blog_teacher ul {
+        padding-inline-start: 2rem;
+    }
+
+     .blog_teacher h2, .blog_teacher h3 {
+        font-size: 1.6rem;
+        margin-top: 4rem;
+    }
+
+    .blog_teacher h4 {
+        font-size: 1.15rem;
+    }
+
+    .blog_teacher p {
+        font-weight: 400;
+        margin-top: 0.5rem;
+        font-size: 1rem;
+    }
+    .blog_teacher ul li {
+        margin-block: 0.3rem;
+        font-size: 1rem;
+    }
+}
+
+/* مدیا کوئری برای دسکتاپ (lg به بعد) */
+@media (min-width: 1024px) {
+    .blog_teacher img {
+        margin-block: 3rem;
+    }
+
+    .blog_teacher ul {
+        padding-inline-start: 2.5rem;
+    }
+
+    .blog_teacher h2, .blog_teacher h3 {
+        font-size: 1.75rem;
+    }
+
+    .blog_teacher h4 {
+        font-size: 1.2rem;
+    }
+}
+
+
+
+/* academy */
+.blog_acadmy{
+    word-spacing: 0.05rem;
+}
+
+.blog_acadmy img{
+    border-radius: 1rem;
+    margin-block: 1.5rem;
+}
+
+.blog_acadmy ul{
+    margin-block: 1.5rem;
+    list-style-type: disc !important;
+    padding-inline-start: 1.5rem;
+}
+
+.blog_acadmy ul li{
+    margin-block: 0.3rem;
+    font-size: .85rem;
+}
+
+.blog_acadmy p {
+    font-weight: 400;
+    margin-top: 0.5rem;
+    font-size: .85rem;
+}
+
+.blog_acadmy strong {
+    font-weight: 500 !important;
+}
+
+
+.blog_acadmy p strong, .blog_acadmy ul li strong {
+    font-weight: 500 !important;
+    color: #3AD874;
+}
+
+.blog_acadmy h2, .blog_acadmy h3{
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+
+.blog_acadmy h4 {
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #3AD874;
+}
+
+/* مدیا کوئری برای تبلت (md) */
+@media (min-width: 768px) {
+    .blog_acadmy img {
+        margin-block: 2rem;
+    }
+
+    .blog_acadmy ul {
+        padding-inline-start: 2rem;
+    }
+
+    .blog_acadmy h2, .blog_acadmy h3 {
+        font-size: 1.6rem;
+        margin-top: 4rem;
+    }
+
+    .blog_acadmy h4 {
+        font-size: 1.15rem;
+    }
+
+    .blog_acadmy p {
+        font-weight: 400;
+        margin-top: 0.5rem;
+        font-size: 1rem;
+    }
+    .blog_acadmy ul li {
+        margin-block: 0.3rem;
+        font-size: 1rem;
+    }
+}
+
+/* مدیا کوئری برای دسکتاپ (lg به بعد) */
+@media (min-width: 1024px) {
+    .blog_acadmy img {
+        margin-block: 3rem;
+    }
+
+    .blog_acadmy ul {
+        padding-inline-start: 2.5rem;
+    }
+
+    .blog_acadmy h2, .blog_acadmy h3 {
+        font-size: 1.75rem;
+    }
+
+    .blog_acadmy h4 {
+        font-size: 1.2rem;
+    }
+}
+
+
+
+
+/* course */
+.blog_course{
+    word-spacing: 0.05rem;
+}
+
+.blog_course img{
+    border-radius: 1rem;
+    margin-block: 1.5rem;
+}
+
+.blog_course ul{
+    margin-block: 1.5rem;
+    list-style-type: disc !important;
+    padding-inline-start: 1.5rem;
+}
+
+.blog_course ul li{
+    margin-block: 0.3rem;
+    font-size: .85rem;
+}
+
+.blog_course p {
+    font-weight: 400;
+    margin-top: 0.5rem;
+    font-size: .85rem;
+}
+
+.blog_course strong {
+    font-weight: 500 !important;
+}
+
+
+.blog_course p strong, .blog_course ul li strong {
+    font-weight: 500 !important;
+    color: #079CED ;
+}
+
+.blog_course h2, .blog_course h3{
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-size: 1.2rem;
+    
+}
+
+
+.blog_course h4 {
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #0065D9 ;
+}
+
+/* مدیا کوئری برای تبلت (md) */
+@media (min-width: 768px) {
+    .blog_course img {
+        margin-block: 2rem;
+    }
+
+    .blog_course ul {
+        padding-inline-start: 2rem;
+    }
+
+    .blog_course h2, .blog_course h3 {
+        font-size: 1.6rem;
+        margin-top: 4rem;
+        line-height: 2rem;
+    }
+
+    .blog_course h4 {
+        font-size: 1.15rem;
+    }
+
+    .blog_course p {
+        font-weight: 400;
+        margin-top: 0.5rem;
+        font-size: 1rem;
+    }
+    .blog_course ul li {
+        margin-block: 0.3rem;
+        font-size: 1rem;
+    }
+}
+
+/* مدیا کوئری برای دسکتاپ (lg به بعد) */
+@media (min-width: 1024px) {
+    .blog_course img {
+        margin-block: 3rem;
+    }
+
+    .blog_course ul {
+        padding-inline-start: 2.5rem;
+    }
+
+    .blog_course h2, .blog_course h3 {
+        font-size: 1.75rem;
+        line-height: 2.5rem;
+    }
+
+    .blog_course h4 {
+        font-size: 1.2rem;
+    }
+}
