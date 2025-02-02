@@ -75,8 +75,9 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
             setOpen(false);
             showToast({ type: 'success', message: 'با موفقیت وارد شدید' });
         },
-        onError: () => {
-            showToast({ type: 'error', message: 'ایمیل یا رمز عبور اشتباه است' });
+        onError: (e:any) => {
+            console.log(e)
+            showToast({ type: 'error', message: e.message });
         },
 
         onSettled: () => {
@@ -95,7 +96,9 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
             setOpen(false);
             showToast({ type: 'success', message: 'با موفقیت وارد شدید' });
         },
-        onError: () => {
+        onError: (e:any) => {
+            console.log(e)
+
             showToast({ type: 'error', message: 'ایمیل یا رمز عبور اشتباه است' });
         },
 

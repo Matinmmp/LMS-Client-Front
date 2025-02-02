@@ -29,6 +29,7 @@
 User-agent: *
 Disallow: /
 Disallow: /about-us
+Disallow: /roles
 Disallow: /academies
 Disallow: /academies/*
 Disallow: /contact-us

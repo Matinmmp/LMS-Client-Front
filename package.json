@@ -9,7 +9,7 @@
 		"build": "next build",
 		"start": "next start",
 		"postbuild": "next-sitemap",
-        "analyze": "cross-env ANALYZE=true next build"
+		"analyze": "cross-env ANALYZE=true next build"
 	},
 	"license": "ISC",
 	"dependencies": {

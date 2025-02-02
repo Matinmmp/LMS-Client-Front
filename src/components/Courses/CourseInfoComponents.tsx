@@ -19,7 +19,7 @@ import { FaRegFile } from "react-icons/fa";
 import { TiAttachmentOutline } from "react-icons/ti";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import Link from "next/link";
-import { VideoPlayer } from "../Shared/VideoPlayer";
+import  VideoPlayer  from "../Shared/VideoPlayer";
 import { AlertDanger, AlertSecondary, AlertWarning } from "../Shared/Alert";
 import { showToast } from "@/src/utils/toast";
 import { Skeleton } from "@nextui-org/skeleton";
@@ -42,7 +42,7 @@ export function ShortLink({ name }: { name: string }) {
     const copy = () => navigator.clipboard.writeText(`virtual-learn.com/?r=${encodeToShortCode(name)}`);
 
     return (
-        <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
+        <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85/ dark:backdrop-blur-md shadow-medium rounded-2xl">
             <div className="w-full px-4 py-6 flex flex-col items-center">
                 <p className="md:text-lg font-semibold text-center">لینک کوتاه آموزش</p>
 
@@ -77,7 +77,7 @@ export function Description({ desc }: { desc: string }) {
                 className="p-4 pt-6 overflow-hidden/"
                 exit={{ height: 1400 }}
                 style={{ overflow: 'hidden' }}
-             >
+            >
                 <div className="flex items-center gap-2 text-primary-400 dark:text-white">
                     <TbFileDescription size={40} className="text-primary-400 hidden lg:inline " />
                     <p className="text-xl md:text-2xl font-semibold">توضیحات دوره</p>
@@ -85,6 +85,8 @@ export function Description({ desc }: { desc: string }) {
                 </div>
 
                 <div className="mt-8 pb-20 leading-7 lg:leading-8 tracking-wide blog_course" dangerouslySetInnerHTML={{ __html: desc }}></div>
+
+
             </motion.div>
 
             {!open && (
@@ -145,7 +147,7 @@ export function CourseLessons({ name }: { name: any }) {
 
 
     return (
-        <div id="course_lessons" className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl relative">
+        <div id="course_lessons" className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85/ dark:backdrop-blur-md shadow-medium rounded-2xl relative">
             <span className="absolute -right-2 top-4 h-12 w-2 bg-secondary-400 rounded-r-md"></span>
             <div className="px-2 py-6 sm:px-4 flex flex-col gap-6">
                 <div className="px-2 sm:px-0 flex items-center gap-2 text-secondary-400 dark:text-white">
@@ -709,7 +711,7 @@ export const Commments = ({ name, refresh_token, courseId }: { name: string, ref
 
 
     return (
-        <div className="w-full pb-6 bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl relative">
+        <div className="w-full pb-6 bg-white dark:bg-[#131d35] dark:bg-opacity-85/ dark:backdrop-blur-md shadow-medium rounded-2xl relative">
             <span className="absolute -right-2 top-4 h-12 w-2 bg-warning-500 rounded-r-md"></span>
 
             <div className="w-full px-4 py-6 sm:px-4 flex items-center justify-between">
@@ -1007,7 +1009,7 @@ export const RatingCommponent = ({ userRate, courseId }: { userRate: any, course
 
 
     return (
-        <div className="w-full p-4 pb-6 flex flex-col items-center bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl relative">
+        <div className="w-full p-4 pb-6 flex flex-col items-center bg-white dark:bg-[#131d35] dark:bg-opacity-85/ dark:backdrop-blur-md shadow-medium rounded-2xl relative">
             {
                 userRate == -1 ?
                     <p className="mb-4 font-medium">امتیازی برای این دوره ثبت نکرده‌اید.</p>

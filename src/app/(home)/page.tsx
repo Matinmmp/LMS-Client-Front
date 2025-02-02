@@ -16,6 +16,7 @@ import FavoritAcademies from "@/src/components/HomePage/FavoritAcademies";
 import FavoritTeachers from "@/src/components/HomePage/FavoritTeachers";
 import FavoriteCourses from "@/src/components/HomePage/FavoriteCourses";
 import DiscountCourses from "@/src/components/HomePage/DiscountCourses";
+import VideoPlayer from "@/src/components/Shared/VideoPlayer";
 
 
 
@@ -33,8 +34,7 @@ export default function Home() {
                     </div>
                     <Hero />
                 </div>
-
-
+                
                 <Suspense fallback={
                     <LastCoursesLoading>
                         <h3 className={clsx(title({ color: 'blue' }), "pt-1 text-xl md:text-2xl lg:text-3xl xl:text-4xl")}>آخرین دوره‌ها</h3>

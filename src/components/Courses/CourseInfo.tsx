@@ -14,7 +14,7 @@ import { FaStar } from "react-icons/fa6"
 import { Avatar } from "@nextui-org/avatar";
 import Link from "next/link";
 import { AddToCartButton, Commments, CourseLessons, Description, RatingCommponent, ShortLink } from "./CourseInfoComponents";
-import { VideoPlayer } from "../Shared/VideoPlayer";
+import  VideoPlayer  from "../Shared/VideoPlayer";
 import { AlertSecondary } from "../Shared/Alert";
 import { RelatedCourse, RelatedBlog } from "./CourseInfoServerComponents";
 import { cookies } from 'next/headers'
@@ -226,11 +226,11 @@ type Props2 = {
 
 function SidebarFeature({ data }: Props2) {
     return (
-        <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
+        <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85/ dark:backdrop-blur-md shadow-medium rounded-2xl">
 
-            <div className="p-2 grid grid-cols-3 sm:grid-cols-4 md2:grid-cols-6 lg:grid-cols-3 gap-2 bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
+            <div className="p-2 grid grid-cols-3 sm:grid-cols-4 md2:grid-cols-6 lg:grid-cols-3 gap-2 bg-white dark:bg-[#131d35] dark:bg-opacity-85/ dark:backdrop-blur-md shadow-medium rounded-2xl">
 
-                <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-xl">
+                <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85/ dark:backdrop-blur-md shadow-medium rounded-xl">
 
                     <div className="w-full h-full flex flex-col items-center justify-center">
 
@@ -245,7 +245,7 @@ function SidebarFeature({ data }: Props2) {
                     </div>
                 </div>
 
-                <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-xl">
+                <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85/ dark:backdrop-blur-md shadow-medium rounded-xl">
                     <div className="w-full h-full flex flex-col items-center justify-center">
 
                         <PiStudentBold className="text-primary-400 text-3xl sm:text-4xl" />
@@ -255,7 +255,7 @@ function SidebarFeature({ data }: Props2) {
                     </div>
                 </div>
 
-                <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-xl">
+                <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85/ dark:backdrop-blur-md shadow-medium rounded-xl">
                     <div className="w-full h-full flex flex-col items-center justify-center">
 
                         <WiTime3 className="text-primary-400 text-3xl sm:text-4xl" />
@@ -265,7 +265,7 @@ function SidebarFeature({ data }: Props2) {
                     </div>
                 </div>
 
-                <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-xl">
+                <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85/ dark:backdrop-blur-md shadow-medium rounded-xl">
                     <div className="w-full h-full flex flex-col items-center justify-center">
 
                         <LuCalendarDays className="text-primary-400 text-3xl sm:text-4xl" />
@@ -275,7 +275,7 @@ function SidebarFeature({ data }: Props2) {
                     </div>
                 </div>
 
-                <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-xl">
+                <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85/ dark:backdrop-blur-md shadow-medium rounded-xl">
                     <div className="w-full h-full flex flex-col items-center justify-center">
 
                         <IoIosFilm className="text-primary-400 text-3xl sm:text-4xl" />
@@ -285,7 +285,7 @@ function SidebarFeature({ data }: Props2) {
                     </div>
                 </div>
 
-                <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-xl">
+                <div className="aspect-square bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85/ dark:backdrop-blur-md shadow-medium rounded-xl">
                     <div className="w-full h-full flex flex-col items-center justify-center">
 
                         <FaStar className=" text-warning-400 text-3xl sm:text-4xl" />
@@ -305,9 +305,9 @@ function PercentToFull({ total, translated }: { total: number; translated: numbe
     const percentage = Math.min(100, Math.max(0, (translated / total) * 100)); // جلوگیری از درصدهای غیر معتبر
 
     return (
-        <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
+        <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85/ dark:backdrop-blur-md shadow-medium rounded-2xl">
 
-            <div className="p-4 bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
+            <div className="p-4 bg-white dark:bg-[#131d35] dark:bg-opacity-85/ dark:backdrop-blur-md shadow-medium rounded-2xl">
                 <div className="w-full flex justify-between items-center">
                     <span className="font-medium">درصد تکمیل ترجمه‌ی دوره</span>
                     <span dir="ltr" className="font-medium"> {toPersianNumber(percentage?.toFixed(1))} ٪</span>
@@ -323,7 +323,7 @@ function PercentToFull({ total, translated }: { total: number; translated: numbe
 
 function TeacherInfo({ course, data }: Props2) {
     return (
-        <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
+        <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85/ dark:backdrop-blur-md shadow-medium rounded-2xl">
             <div className="w-full px-4 py-6 flex flex-col items-center">
                 <Avatar alt={`${data?.faName}، مدرس دوره ${course?.faName} در ویرچوال لرن`} className="h-[5.5rem] w-[5.5rem] shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="full" isBordered color="secondary" src={data.avatar.imageUrl} fallback />
 
@@ -342,7 +342,7 @@ function TeacherInfo({ course, data }: Props2) {
 
 function AcademyInfo({ data, course }: Props2) {
     return (
-        <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
+        <div className="w-full bg-white dark:bg-[#131d35] dark:bg-opacity-85/ dark:backdrop-blur-md shadow-medium rounded-2xl">
             <div className="w-full px-4 py-6 flex flex-col items-center">
                 <Avatar alt={`${data?.faName}، آکادمی ${course?.faName} در ویرچوال لرن`} className="h-[4.5rem] w-[4.5rem] shadow-[0_0_15px_0_#44de77]" size="lg" radius="sm" isBordered color="success" src={data.avatar.imageUrl} />
 

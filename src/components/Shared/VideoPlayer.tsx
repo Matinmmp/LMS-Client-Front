@@ -5,8 +5,8 @@ import { useEffect } from "react";
 import { toPersianNumber } from "@/src/utils/functions";
 const Plyr = dynamic(() => import('plyr-react'), { ssr: false });
 
-
-export const VideoPlayer: React.FC<{ url: string }> = ({ url }) => {
+// https://courses12.storage.c2.liara.space/Courses/JonasSchmedtmannBRRWWwHaC/CourseLessons/Preview.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=c2gmhcnho74iltfu%2F20250201%2Fdefault%2Fs3%2Faws4_request&X-Amz-Date=20250201T201820Z&X-Amz-Expires=432000&X-Amz-Signature=036817a3f5e3217c2bcc4477fdd351d19a1c9f46c7eec14dfd5fafe89b8ccc61&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22Build%20Responsive%20Real-World%20Websites%20with%20HTML%20and%20CSS_preview%22.mp4&x-amz-checksum-mode=ENABLED&x-id=GetObject
+const VideoPlayer: React.FC<{ url: string }> = ({ url }) => {
     const videoSource = {
         type: "video" as "video",
         sources: [
@@ -54,7 +54,7 @@ export const VideoPlayer: React.FC<{ url: string }> = ({ url }) => {
         </div>
     );
 };
-
+export default VideoPlayer
 
 
 // const options = {
@@ -122,3 +122,5 @@ export const VideoPlayer: React.FC<{ url: string }> = ({ url }) => {
 //     poster: '',                       // تصویر پیش‌نمایش ویدیو
 //     debug: false,                     // فعال کردن لاگ‌های دیباگ
 // };
+
+
