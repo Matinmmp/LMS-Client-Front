@@ -7,6 +7,7 @@ import { Navbar } from "../components/Shared/navbar2";
 import Footer from "../components/Shared/Footer";
 import NextTopLoader from 'nextjs-toploader';
 import { Suspense } from "react";
+import Script from "next/script";
 
 
 
@@ -21,6 +22,17 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
     return (
 
         <html dir="rtl" lang="fa" id="html">
+            <head>
+                <Script async src="https://www.googletagmanager.com/gtag/js?id=G-PPNQCJ8DN0" />
+                <Script id="google-analytics">
+                    { `
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-PPNQCJ8DN0');
+                    `}
+                </Script>
+            </head>
             <meta property="og:type" content="website" />
             <meta property="og:locale" content="fa_IR" />
             <meta httpEquiv="Content-Language" content="fa" />
