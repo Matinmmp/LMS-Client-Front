@@ -26,9 +26,6 @@ const queryClient = new QueryClient(
 )
 
 const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
-const clientSecret = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET;
-
-
 
 export function Providers({ children, themeProps }: ProvidersProps) {
     const router = useRouter();
@@ -68,7 +65,7 @@ function RequestProviders() {
     const { user } = useSelector((state: any) => state.auth)
     const getUserQuery = useQuery({ queryKey: ['getUserQuery'], queryFn: () => getUserInfo(), enabled: !!getRefreshTokenFromCookies() });
 
-
+ 
 
     React.useEffect(() => {
         let data: any = {};
