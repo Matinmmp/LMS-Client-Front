@@ -27,8 +27,6 @@ export default function CartPage() {
     }, [dispatch]);
 
 
-    console.log(cartCourses?.data)
-
 
     let totalPrice = 0; // مجموع قیمت اولیه
     let discountAmount = 0; // مجموع مقدار تخفیف
@@ -71,7 +69,7 @@ export default function CartPage() {
             <div className="w-full max-w-lg sm2:max-w-7xl px-4 md:px-8 2xl:px-2 flex flex-col items-center justify-center ">
 
                 {
-                    courseIds?.leangth ?
+                    courseIds?.length ?
 
                         <div className="w-full mt-28 flex flex-wrap lg2:flex-nowrap gap-4 lg2:gap-6 ">
 

@@ -40,7 +40,7 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
             <meta name="theme-color" content="#079CED" />
             <meta name="author" content="Virtual Learn" />
             <meta charSet="UTF-8" />
-
+            <meta name="enamad" content="67578191" />
             <meta property="og:site_name" content="Virtual Learn" />
 
 

@@ -12,13 +12,11 @@ import { MdOutlineContactMail } from "react-icons/md";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 import { encodeTitle } from '@/src/utils/functions';
 
-type CardProps = {
-};
 
-const Footer = ({ }: CardProps) => {
+const Footer = ({ }) => {
     const categories = buildCategoryTree(navObject.categoryObject.categoryList, null);
-    const academiesObject: any = navObject.academyObject
-    const teacherObject: any = navObject.teacherObject
+    const academiesObject= navObject.academyObject
+    const teacherObject= navObject.teacherObject
 
     return (
         <>
@@ -89,7 +87,7 @@ const Footer = ({ }: CardProps) => {
                                 <h5 className={clsx(title({ color: 'blue' }), 'text-xl lg:text-2xl font-bold')}>مدرس‌ها</h5>
                                 <ul className="mt-6 className= flex flex-col gap-3">
                                     {
-                                        teacherObject?.teacherList?.slice(0, 10).map((item: any, index: number) =>
+                                        teacherObject?.teacherList?.slice(0, 10).map((item, index) =>
                                             <li key={index}>
                                                 <Link color="foreground" href={`/teachers/${encodeTitle(item?.engName)}`} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
                                                     {item?.engName}
@@ -112,7 +110,7 @@ const Footer = ({ }: CardProps) => {
                                 <h5 className={clsx(title({ color: 'blue' }), 'text-xl lg:text-2xl font-bold')}>آکادمی‌ها</h5>
                                 <ul className="mt-6 className= flex flex-col gap-3">
                                     {
-                                        academiesObject.academyList.slice(0, 10).map((item: any, index: number) =>
+                                        academiesObject.academyList.slice(0, 10).map((item, index) =>
                                             <li key={index}>
                                                 <Link color="foreground" href={`/academies/${encodeTitle(item.engName)}`} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
                                                     {item.engName}
@@ -192,28 +190,22 @@ const Footer = ({ }: CardProps) => {
                         </div>
                     </div>
 
-                    <div className="mt-12 flex">
-                        <ul>
-                            <li>
-                                <span>شماره تماس : </span>
-                                <span>09183102170</span>
-
-                            </li>
-                            <li>
-                                <span> ایمیل: </span>
-                                <span>vc.virtuallearn@gmail.com</span>
-
-                            </li>
-                        </ul>
-
-                    </div>
-
 
                 </div>
 
             </footer >
+
+            <div className="mt-16 flex items-center justify-center">
+                <div className="bg-primary-50 p-4 rounded-xl shadow-medium">
+                    <a referrerPolicy='origin' target='_blank' href='https://trustseal.enamad.ir/?id=576221&Code=pBSlMlXgLYOjvQu242SjugLtK89Q0ssL'>
+                        <img referrerPolicy="origin" src='https://trustseal.enamad.ir/logo.aspx?id=576221&Code=pBSlMlXgLYOjvQu242SjugLtK89Q0ssL'
+                            alt='' style={{ cursor: 'pointer' }} code='pBSlMlXgLYOjvQu242SjugLtK89Q0ssL' />
+                    </a>
+           
+                </div>
+            </div>
             <div className="mt-10 bg-primary-50 py-10 ">
-                <p className="text-center font-bold text-lg lg:text-xl">کپی رایت تمام حقوق برای شخص محمد متین محمدی پگا محفوظ است.</p>
+                <p className="text-center font-bold text-lg ">کپی رایت تمام حقوق برای ویرچوال لرن محفوظ است.</p>
             </div>
         </>
     )
