@@ -19,7 +19,7 @@ import { FaRegFile } from "react-icons/fa";
 import { TiAttachmentOutline } from "react-icons/ti";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import Link from "next/link";
-import  VideoPlayer  from "../Shared/VideoPlayer";
+import VideoPlayer from "../Shared/VideoPlayer";
 import { AlertDanger, AlertSecondary, AlertWarning } from "../Shared/Alert";
 import { showToast } from "@/src/utils/toast";
 import { Skeleton } from "@nextui-org/skeleton";
@@ -84,16 +84,14 @@ export function Description({ desc }: { desc: string }) {
 
                 </div>
 
-                <div className="mt-8 pb-20 leading-7 lg:leading-8 tracking-wide blog_course" dangerouslySetInnerHTML={{ __html: desc }}></div>
-
+                <div className="mt-8 pb-20 leading-7 lg:leading-8 tracking-wide" dangerouslySetInnerHTML={{ __html: desc }}></div>
+       
 
             </motion.div>
 
             {!open && (
-                <div
-                    className="w-full h-44 flex justify-center items-end bg-gradient-to-b
-                        from-transparent from-10% to-55% to-white dark:to-[#131E34] backdrop-blur-[1px] absolute bottom-0 rounded-b-2xl"
-                >
+                <div className="w-full h-44 flex justify-center items-end bg-gradient-to-b
+                        from-transparent from-10% to-55% to-white dark:to-[#131E34] backdrop-blur-[1px] absolute bottom-0 rounded-b-2xl">
                     <Button
                         onClick={() => setOpen(!open)}
                         endContent={<SlEye size={22} />}
