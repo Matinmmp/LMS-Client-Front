@@ -27,11 +27,11 @@ const cartSlice = createSlice({
                 state.courseIds.push(courseId);
                 if (typeof window !== "undefined") {
                     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
-                    showToast({message:'به سبد خرید شما اضافه شد.',type:'success'})
+                    showToast({ message: 'به سبد خرید شما اضافه شد.', type: 'success' })
 
                 }
-            }else{
-                showToast({message:'این دوره قبلا اضافه شده.',type:'error'})
+            } else {
+                showToast({ message: 'این دوره قبلا اضافه شده.', type: 'error' })
             }
         },
 
@@ -42,12 +42,27 @@ const cartSlice = createSlice({
                 state.courseIds.splice(index, 1);
                 if (typeof window !== "undefined") {
                     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
-                    showToast({message:'با موفقیت حذف شد.',type:'success'})
+                    showToast({ message: 'با موفقیت حذف شد.', type: 'success' })
 
                 }
             }
         },
-        
+
+        deleteCourses: (state: any, action) => {
+            const { courseIds } = action.payload;
+
+            courseIds?.forEach((courseId: any) => {
+                const index = state.courseIds.indexOf(courseId);
+                if (index > -1) {
+                    state.courseIds.splice(index, 1);
+                    if (typeof window !== "undefined") {
+                        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
+                    }
+                }
+            });
+
+        },
+
         clearCart: (state: any) => {
             state.courseIds = [];
             if (typeof window !== "undefined") {
@@ -57,5 +72,5 @@ const cartSlice = createSlice({
     }
 });
 
-export const { hydrateCart, addCourse, deleteCourse, clearCart } = cartSlice.actions;
+export const { hydrateCart, addCourse, deleteCourse, clearCart ,deleteCourses} = cartSlice.actions;
 export default cartSlice.reducer;

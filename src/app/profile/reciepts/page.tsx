@@ -93,7 +93,7 @@ const Accordion = ({ invoice }: { invoice: any }) => {
                     <div className='pt-4 pb-7 px-4 bg-primary-50'>
 
                         <div className="mb-4">
-                            <p className="font-semibold text-lg">آیدی تراکنش: {invoice.refId}</p>
+                            <p className="font-semibold text-lg">آیدی تراکنش: {invoice?.refId ? invoice.refId:invoice._id}</p>
                             <p className="font-medium text-sm text-gray-500">
                                 وضعیت پرداخت: 
                                 <span className={`ml-2 font-bold ${invoice.paymentStatus === "successful" ? "text-green-500" : "text-red-500"}`}>

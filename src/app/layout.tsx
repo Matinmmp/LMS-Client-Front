@@ -83,9 +83,9 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
 
                             </div>
                             <div className="relative z-20 ">
-                                <Suspense>
+                                {/* <Suspense> */}
                                     <Navbar />
-                                </Suspense>
+                                {/* </Suspense> */}
                                 {children}
                                 <div className="mt-64">
                                     <Footer />

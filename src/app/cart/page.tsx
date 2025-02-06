@@ -1,7 +1,7 @@
 'use client'
 import { getCartCourses } from "@/src/lib/apis/cartApis";
-import { deleteCourse, hydrateCart } from "@/src/redux/cart/cartSlice";
-import { useQuery } from "@tanstack/react-query";
+import { clearCart, deleteCourse, deleteCourses, hydrateCart } from "@/src/redux/cart/cartSlice";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IoMdCart } from "react-icons/io";
@@ -12,6 +12,10 @@ import Link from "next/link";
 import { CiCreditCard1 } from "react-icons/ci";
 import { Button } from "@nextui-org/button";
 import { Checkbox } from "@nextui-org/checkbox";
+import { initiatePayment } from "@/src/lib/apis/invoiceApis";
+import { showToast } from "@/src/utils/toast";
+import cookies from 'js-cookie'
+import { Spinner } from "@nextui-org/spinner";
 
 
 
@@ -22,10 +26,25 @@ export default function CartPage() {
     const cartCourses: any =
         useQuery({ queryKey: ['cartCourses', courseIds], queryFn: () => getCartCourses(courseIds), enabled: !!courseIds?.length });
 
+    const initiatePaymentMutation: any = useMutation({
+        mutationFn: (courses: any[]) => initiatePayment(courses),
+        onError: () => showToast({ type: 'error', message: 'عملیات ناموفق' }),
+        onSuccess: (res: any) => {
+            if (res?.isFree) {
+                showToast({ message: res?.message, type: 'success' });
+                dispatch(deleteCourses({ courseIds }))
+            }
+            if(!res?.isFree){
+                window.location.replace(res?.url)
+            }
+            console.log(res)
+        }
+    })
+    console.log(courseIds);
+
     useEffect(() => {
         dispatch(hydrateCart()); // بارگذاری داده‌ها از localStorage
     }, [dispatch]);
-
 
 
     let totalPrice = 0; // مجموع قیمت اولیه
@@ -49,7 +68,7 @@ export default function CartPage() {
     const finalPrice = totalPrice - discountAmount;
 
     // درصد کل تخفیف
-    const totalDiscountPercent = ((discountAmount / totalPrice) * 100).toFixed(0);
+    const totalDiscountPercent = discountAmount ? ((discountAmount / totalPrice) * 100).toFixed(0) : 0;
 
     // نتیجه
     const result = {
@@ -59,6 +78,15 @@ export default function CartPage() {
         totalDiscountPercent // درصد کل تخفیف
     };
 
+    const handleBuyClick = () => {
+        const refresh_token = cookies.get('refresh_token')
+        console.log(refresh_token);
+        if (refresh_token)
+            initiatePaymentMutation.mutate(courseIds)
+        else
+            showToast({ message: 'برای پرداخت وارد حساب خود شوید.', type: 'warning' })
+    }
+
 
     return (
         <section className=" flex flex-col items-center justify-center " >
@@ -67,9 +95,15 @@ export default function CartPage() {
             <meta name="robots" content="noindex, nofollow" />
 
             <div className="w-full max-w-lg sm2:max-w-7xl px-4 md:px-8 2xl:px-2 flex flex-col items-center justify-center ">
-
                 {
-                    courseIds?.length ?
+                    cartCourses?.isLoading &&
+                    <div className="w-full mt-28 flex justify-center items-center">
+                        <Spinner size="lg" color="primary" />
+                    </div>
+
+                }
+                {
+                    cartCourses?.data?.courses?.length && !cartCourses?.isLoading ?
 
                         <div className="w-full mt-28 flex flex-wrap lg2:flex-nowrap gap-4 lg2:gap-6 ">
 
@@ -184,7 +218,7 @@ export default function CartPage() {
                                                     </div>
                                                 </div>
 
-                                                <div className="w-full flex items-center justify-between text-secondary-500">
+                                                {discountAmount ? <div className="w-full flex items-center justify-between text-secondary-500">
                                                     <span className='font-medium' dir="rtl">تخفیف</span>
                                                     <div className="flex items-center gap-1">
                                                         {totalDiscountPercent ? <span className="">{`(${toPersianNumber(totalDiscountPercent)}٪)`}</span> : ''}
@@ -196,7 +230,7 @@ export default function CartPage() {
                                                             </svg>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> : ''}
 
                                                 <div className="flex flex-col pt-6 border-t-1 border-t-gray-300 dark:border-t-gray-600">
 
@@ -223,8 +257,8 @@ export default function CartPage() {
                                                     </div>
 
 
-                                                    <Button isDisabled={!readRoles} className="mt-6" size="lg" variant="shadow" color="primary" radius="md" fullWidth>
-                                                        مشاهده سبد خرید
+                                                    <Button onPress={handleBuyClick} isDisabled={!readRoles} className="mt-6" size="lg" variant="shadow" color="primary" radius="md" fullWidth>
+                                                        {initiatePaymentMutation.isPending ? <Spinner color="secondary" /> : "پرداخت"}
                                                     </Button>
                                                 </div>
                                             </div>
@@ -234,14 +268,17 @@ export default function CartPage() {
                             </div>
 
                         </div>
-                        :
+                        : ''
+                }
+                {
+                    !cartCourses?.isLoading && !cartCourses?.data?.courses?.length ?
                         <div className="w-full mt-32 py-28 bg-white dark:bg-[#131D35] rounded-2xl shadow-medium">
                             <div className=' flex flex-col items-center'>
                                 <Image className="w-96 " alt="" width={800} height={800} src={process.env.NEXT_PUBLIC_IMAGE_BASE_URL + 'add-to-cart-animate.svg'} />
                                 <p className="md:text-lg mb-5 md:mb-6 text-center">سبد خرید شما خالی است برای مشاهده لیست دوره ها کلیک کنید </p>
                                 <Button className="min-w-80" size="lg" color="primary" variant="shadow" radius="sm" as={Link} href="/courses">لیست دوره‌ها</Button>
                             </div>
-                        </div>
+                        </div> : ''
                 }
             </div>
         </section>
