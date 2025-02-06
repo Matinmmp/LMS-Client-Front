@@ -105,7 +105,7 @@ export const Cart = () => {
                                                     return (
                                                         <div key={index} className="flex items-center justify-between gap-2">
                                                             <Link href={`/courses/${link}`} className="flex items-center gap-2 ">
-                                                                <Image src={course?.thumbnail?.imageUrl} width={160} height={90} alt="" className="w-24 h-[3.375rem] rounded-lg shadow-small" />
+                                                                <Image src={course?.thumbnail?.imageUrl} width={160} height={90} alt={course.name} className="w-24 h-[3.375rem] rounded-lg shadow-small" />
                                                                 <div className="flex flex-col gap-1 ">
                                                                     <span className='text-xs md:text-sm text-left font-meidum' dir="ltr">{course.name}</span>
 

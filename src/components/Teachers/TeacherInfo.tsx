@@ -71,7 +71,7 @@ const TeacherInfo = ({ data }: Props) => {
 
                 <div className="w-full h-48 md:h-64 lg:h-[27rem] relative rounded-2xl ">
                     <Image className="w-full h-full -mt-24 md:-mt-32 lg:-mt-40 rounded-2xl object-cover object-center shadow-medium" priority={true}
-                        width={1000} height={1000} alt="" src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}teacher2.png`} />
+                        width={1000} height={1000} alt="teacher" src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}teacher2.png`} />
                 </div>
 
                 <div className="w-full mt-10 flex flex-col items-center lg:items-start lg:flex-row justify-between">

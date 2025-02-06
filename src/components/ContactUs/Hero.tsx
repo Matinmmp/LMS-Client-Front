@@ -22,11 +22,11 @@ const Hero = (props: Props) => {
 
                 <div className="mt-10 lg:mt-16">
                     <div className="flex items-center gap-4 justify-center">
-                        <Link href="https://t.me/VC_Virtual_Learn" className="p-4 flex items-center justify-center border-secondary-500 rounded-xl border-2 shadow-medium">
+                        <Link href="https://t.me/VC_Virtual_Learn" target="_blank" rel="noopener noreferrer" className="p-4 flex items-center justify-center border-secondary-500 rounded-xl border-2 shadow-medium">
                             <FaTelegramPlane className="text-3xl lg:text-4xl text-secondary-500" />
                         </Link>
 
-                        <Link href="https://www.instagram.com/vc_virtual_learn" className="p-4 flex items-center justify-center border-danger-500 rounded-xl border-2 shadow-medium">
+                        <Link href="https://www.instagram.com/vc_virtual_learn" target="_blank" rel="noopener noreferrer" className="p-4 flex items-center justify-center border-danger-500 rounded-xl border-2 shadow-medium">
                             <RxInstagramLogo className="text-3xl lg:text-4xl text-danger-500" />
                         </Link>
 

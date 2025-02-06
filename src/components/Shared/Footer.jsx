@@ -38,13 +38,13 @@ const Footer = ({ }) => {
                                     </Link>
                                 </li>
                                 <li className="mt-4 ">
-                                    <Link className={`flex items-center gap-2 font-medium`} href="https://t.me/VC_Virtual_Learn">
+                                    <Link className={`flex items-center gap-2 font-medium`} href="https://t.me/VC_Virtual_Learn" target="_blank" rel="noopener noreferrer">
                                         <FaTelegramPlane size={20} />
                                         <span >تلگرام</span>
                                     </Link>
                                 </li>
                                 <li className="mt-1">
-                                    <Link className="flex items-center gap-2 font-medium " href="https://www.instagram.com/vc_virtual_learn">
+                                    <Link className="flex items-center gap-2 font-medium " href="https://www.instagram.com/vc_virtual_learn" target="_blank" rel="noopener noreferrer">
                                         <RxInstagramLogo size={20} />
                                         <span >ایناستگرام</span>
                                     </Link>
@@ -70,7 +70,7 @@ const Footer = ({ }) => {
                             </ul>
 
                             <div className="min-w-[12rem]">
-                                <h5 className={clsx(title({ color: 'blue' }), 'text-xl lg:text-2xl font-bold')}>دسته بندی‌ها</h5>
+                                <p className={clsx(title({ color: 'blue' }), 'text-xl lg:text-2xl font-bold')}>دسته بندی‌ها</p>
                                 <ul className="mt-6 className= flex flex-col gap-3">
                                     {
                                         categories[0]?.subCategories?.map((item, index) =>
@@ -84,7 +84,7 @@ const Footer = ({ }) => {
                             </div>
 
                             <div className="min-w-[12rem]">
-                                <h5 className={clsx(title({ color: 'blue' }), 'text-xl lg:text-2xl font-bold')}>مدرس‌ها</h5>
+                                <p className={clsx(title({ color: 'blue' }), 'text-xl lg:text-2xl font-bold')}>مدرس‌ها</p>
                                 <ul className="mt-6 className= flex flex-col gap-3">
                                     {
                                         teacherObject?.teacherList?.slice(0, 10).map((item, index) =>
@@ -107,7 +107,7 @@ const Footer = ({ }) => {
                             </div>
 
                             <div className="min-w-[12rem]">
-                                <h5 className={clsx(title({ color: 'blue' }), 'text-xl lg:text-2xl font-bold')}>آکادمی‌ها</h5>
+                                <p className={clsx(title({ color: 'blue' }), 'text-xl lg:text-2xl font-bold')}>آکادمی‌ها</p>
                                 <ul className="mt-6 className= flex flex-col gap-3">
                                     {
                                         academiesObject.academyList.slice(0, 10).map((item, index) =>
@@ -130,7 +130,7 @@ const Footer = ({ }) => {
                             </div>
 
                             <div className="min-w-[12rem]">
-                                <h5 className={clsx(title({ color: 'blue' }), 'text-xl lg:text-2xl font-bold')}>دسترسی سریع</h5>
+                                <p className={clsx(title({ color: 'blue' }), 'text-xl lg:text-2xl font-bold')}>دسترسی سریع</p>
                                 <ul className="mt-6 className= flex flex-col gap-3">
                                     {/* <li>
                                     <Link color="foreground" href={"/"} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
@@ -199,7 +199,7 @@ const Footer = ({ }) => {
                 <div className="bg-primary-50 p-4 rounded-xl shadow-medium">
                     <a referrerPolicy='origin' target='_blank' href='https://trustseal.enamad.ir/?id=576221&Code=pBSlMlXgLYOjvQu242SjugLtK89Q0ssL'>
                         <img referrerPolicy="origin" src='https://trustseal.enamad.ir/logo.aspx?id=576221&Code=pBSlMlXgLYOjvQu242SjugLtK89Q0ssL'
-                            alt='' style={{ cursor: 'pointer' }} code='pBSlMlXgLYOjvQu242SjugLtK89Q0ssL' />
+                            alt='logo-enamad' style={{ cursor: 'pointer' }} code='pBSlMlXgLYOjvQu242SjugLtK89Q0ssL' />
                     </a>
            
                 </div>

@@ -159,7 +159,7 @@ export function CourseLessons({ name }: { name: any }) {
                         <p className="text-lg lg:text-xl font-bold text-danger-500">خطایی رخ داده است</p>
                         <p className="mt-6 md:text-lg text-danger-500 text-center font-medium">متأسفیم، مشکلی در سرور پیش آمده است. لطفاً بعداً دوباره امتحان کنید یا با پشتیبانی تماس بگیرید.</p>
 
-                        <Image src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}error1.svg`} alt='' width={1000} height={1000} className="mt-18 max-w-40" />
+                        <Image src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}error1.svg`} alt='course error' width={1000} height={1000} className="mt-18 max-w-40" />
                     </div>
                 }
 
@@ -734,7 +734,7 @@ export const Commments = ({ name, refresh_token, courseId }: { name: string, ref
                     <p className="text-lg lg:text-xl font-bold text-danger-500">خطایی رخ داده است</p>
                     <p className="mt-6 md:text-lg text-danger-500 text-center font-medium">متأسفیم، مشکلی در سرور پیش آمده است. لطفاً بعداً دوباره امتحان کنید یا با پشتیبانی تماس بگیرید.</p>
 
-                    <Image src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}error1.svg`} alt='' width={1000} height={1000} className="mt-18 max-w-40" />
+                    <Image src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}error1.svg`} alt='comments erorr' width={1000} height={1000} className="mt-18 max-w-40" />
                 </div>
             }
 
@@ -798,7 +798,7 @@ const Commment = ({ item, refresh_token, courseId }: { item: any, refresh_token:
                 <div className="w-full px-4">
                     <div className="w-full pb-4 md:pb-6 flex items-center justify-between flex-wrap gap-2 border-b-1 border-b-primary-200 dark:border-b-primary-900">
                         <div className="max-w-max flex gap-4 items-center">
-                            <Avatar alt="" className="min-h-[2.5rem] max-h-[2.5rem] min-w-[2.5rem] max-w-[2.5rem] md:min-h-[3.5rem] md:min-w-[3.5rem] md:max-h-[3.5rem] md:max-w-[3.5rem]
+                            <Avatar className="min-h-[2.5rem] max-h-[2.5rem] min-w-[2.5rem] max-w-[2.5rem] md:min-h-[3.5rem] md:min-w-[3.5rem] md:max-h-[3.5rem] md:max-w-[3.5rem]
                                  shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="full"
                                 isBordered color="primary" src={item?.user?.imageUrl} showFallback />
 
@@ -825,7 +825,7 @@ const Commment = ({ item, refresh_token, courseId }: { item: any, refresh_token:
                     {item?.commentsReplies?.map((comm: any, index: number) =>
                         <div key={index} className="w-full p-4 bg-white dark:bg-[#1f2e44]/ dark:bg-[#1b293a] rounded-lg shadow-small">
                             <div className="w-full pb-4 flex gap-4 border-b-1 border-b-primary-200 dark:border-b-primary-700">
-                                <Avatar alt="" className="min-h-[2.5rem] max-h-[2.5rem] min-w-[2.5rem] max-w-[2.5rem] md:min-h-[3.5rem] md:min-w-[3.5rem] md:max-h-[3.5rem] md:max-w-[3.5rem]" size="lg" radius="full"
+                                <Avatar  className="min-h-[2.5rem] max-h-[2.5rem] min-w-[2.5rem] max-w-[2.5rem] md:min-h-[3.5rem] md:min-w-[3.5rem] md:max-h-[3.5rem] md:max-w-[3.5rem]" size="lg" radius="full"
                                     isBordered color="primary" src={comm?.user?.imageUrl} showFallback />
 
                                 <div className="w-full flex flex-col justify-between gap-1 text-sm md:text-base">
@@ -903,7 +903,7 @@ const AddComment = ({ setShowAddComment, courseId, commentId }: AddCommentProps)
         <div className="w-full mt-4 mb-8 p-4">
             <div className="w-full p-4 md:p-6 pt-6 md:pt-8 flex flex-col gap-4 border-1 border-primary-500 rounded-lg shadow-small">
                 <div className="w-full flex gap-4 ">
-                    <Avatar alt="" className="
+                    <Avatar alt="avatar" className="
                         min-h-[2.5rem] max-h-[2.5rem] min-w-[2.5rem] max-w-[2.5rem] md:min-h-[3.5rem] md:min-w-[3.5rem] md:max-h-[3.5rem] md:max-w-[3.5rem]
                         shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="full"
                         isBordered color="primary" src={user?.imageUrl} showFallback />

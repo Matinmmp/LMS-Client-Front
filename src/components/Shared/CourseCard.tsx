@@ -108,7 +108,7 @@ export const CourseCard = ({ data }: CardProps) => {
                             <div className="flex flex-col">
                                 <div className="mt-1 flex items-center gap-1">
                                     <GiTeacher size={16} className="text-primary-400" />
-                                    <Link href={`/teachers/${teacherLink}`} className="text-xs font-semibold text-gray-500 dark:text-gray-300">{data.teacher.teacherEngName}</Link>
+                                    <p className="text-xs font-semibold text-gray-500 dark:text-gray-300">{data.teacher.teacherEngName}</p>
                                 </div>
 
                                 <div className="mt-1 flex items-center gap-1">
@@ -120,7 +120,7 @@ export const CourseCard = ({ data }: CardProps) => {
                             <div className="flex flex-col">
                                 <div className="flex items-center gap-1">
                                     <SiHtmlacademy size={16} className="text-primary-400" />
-                                    <Link href={`/academies/${academyLink}`} className="text-xs font-semibold text-gray-500 dark:text-gray-300">{data.academy.academyEngName}</Link>
+                                    <p  className="text-xs font-semibold text-gray-500 dark:text-gray-300">{data.academy.academyEngName}</p>
                                 </div>
                                 <div className="mt-1 flex items-center gap-1">
                                     <WiTime3 size={16} className="text-primary-400" />

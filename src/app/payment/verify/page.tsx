@@ -36,7 +36,7 @@ export default function CartPage(s: any) {
 
                     <div className="w-full mt-32 py-28 bg-white dark:bg-[#131D35] rounded-2xl shadow-medium">
                         <div className=' flex flex-col items-center'>
-                            <Image className="w-96 " alt="" width={800} height={800} src={process.env.NEXT_PUBLIC_IMAGE_BASE_URL + 'contact-us-animate%20%281%29.svg'} />
+                            <Image className="w-96 " alt="contact us error" width={800} height={800} src={process.env.NEXT_PUBLIC_IMAGE_BASE_URL + 'contact-us-animate%20%281%29.svg'} />
                             <p className="md:text-lg mb-5 md:mb-6 text-center">اطلاعات اشتباه هست. اگر مشکلی در خرید دارید از قسمت ارتباط با ما مطرح کنید تا بلافاصله رسیدگی شود.</p>
                             <Button className="min-w-80" size="lg" color="primary" variant="shadow" radius="sm" as={Link} href="/contact-us">ارتباط با ما</Button>
                         </div>
@@ -64,7 +64,7 @@ export default function CartPage(s: any) {
                     !verify?.isLoading && verify?.data?.success ?
                         <div className="w-full mt-32 py-28 bg-white dark:bg-[#131D35] rounded-2xl shadow-medium">
                             <div className=' flex flex-col items-center'>
-                                <Image className="w-96 " alt="" width={800} height={800} src={process.env.NEXT_PUBLIC_IMAGE_BASE_URL + 'online-groceries-animate.svg'} />
+                                <Image className="w-96 " alt="success payment" width={800} height={800} src={process.env.NEXT_PUBLIC_IMAGE_BASE_URL + 'online-groceries-animate.svg'} />
                                 <p className="md:text-lg mb-5 md:mb-6 text-center">{verify?.data?.message}</p>
                                 <div className="md:text-lg mt-4 mb-5 md:mb-6 text-center">
                                     <span>شماره تراکنش:</span>
@@ -79,7 +79,7 @@ export default function CartPage(s: any) {
                     !verify?.isLoading && !verify?.data?.success||Status === 'NOK' ?
                         <div className="w-full mt-32 py-28 bg-white dark:bg-[#131D35] rounded-2xl shadow-medium">
                             <div className=' flex flex-col items-center'>
-                                <Image className="w-96 " alt="" width={800} height={800} src={process.env.NEXT_PUBLIC_IMAGE_BASE_URL + 'invoice-falied.svg'} />
+                                <Image className="w-96 " alt="failed payment" width={800} height={800} src={process.env.NEXT_PUBLIC_IMAGE_BASE_URL + 'invoice-falied.svg'} />
                                 <p className="md:text-lg lg:text-xl mb-5 md:mb-6 text-center">پرداخت ناموفق بود.</p>
                                 <Button className="min-w-80" size="lg" color="primary" variant="shadow" radius="sm" as={Link} href="/contact-us">ارتباط با ما</Button>
                             </div>

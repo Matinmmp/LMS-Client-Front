@@ -138,7 +138,7 @@ export default function CartPage() {
                                                             <Link href={`/courses/${link}`} className="flex flex-col sm2:flex-row gap-3">
 
                                                                 <div className=" flex justify-center sm2:justify-start gap-2">
-                                                                    <Image src={course?.thumbnail?.imageUrl} width={146} height={81} alt="" className="w-72 aspect-video sm2:w-40 rounded-xl shadow-small" />
+                                                                    <Image src={course?.thumbnail?.imageUrl} width={146} height={81} alt={course.name} className="w-72 aspect-video sm2:w-40 rounded-xl shadow-small" />
                                                                 </div>
 
                                                                 <div className="mt-2 sm2:mt-0 flex flex-col items-center sm2:items-start gap-2 sm2:py-3 justify-between">
@@ -274,7 +274,7 @@ export default function CartPage() {
                     !cartCourses?.isLoading && !cartCourses?.data?.courses?.length ?
                         <div className="w-full mt-32 py-28 bg-white dark:bg-[#131D35] rounded-2xl shadow-medium">
                             <div className=' flex flex-col items-center'>
-                                <Image className="w-96 " alt="" width={800} height={800} src={process.env.NEXT_PUBLIC_IMAGE_BASE_URL + 'add-to-cart-animate.svg'} />
+                                <Image className="w-96 " alt="empty cart" width={800} height={800} src={process.env.NEXT_PUBLIC_IMAGE_BASE_URL + 'add-to-cart-animate.svg'} />
                                 <p className="md:text-lg mb-5 md:mb-6 text-center">سبد خرید شما خالی است برای مشاهده لیست دوره ها کلیک کنید </p>
                                 <Button className="min-w-80" size="lg" color="primary" variant="shadow" radius="sm" as={Link} href="/courses">لیست دوره‌ها</Button>
                             </div>

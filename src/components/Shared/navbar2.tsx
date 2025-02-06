@@ -49,17 +49,19 @@ import { useRouter } from "next/navigation";
 import { Cart } from "./Cart";
 import ForgetPassword from "../Auth/ForgetPasswrod";
 
- 
+
 const links = [
     {
         icon: <FaTelegramPlane size={20} color="#079CED" />,
         title: 'کانال تلگرام',
         link: 'https://t.me/VC_Virtual_Learn',
+        isOut: true,
     },
     {
         icon: <GrInstagram size={18} color="#ed071e" />,
         title: 'پیج اینستاگرام',
         link: 'https://www.instagram.com/vc_virtual_learn',
+        isOut: true,
     },
     {
         icon: <MdContactPhone size={18} color="#07edd2" />,
@@ -78,9 +80,9 @@ const links = [
     },
 ]
 
-const categories:any = buildCategoryTree(navObject.categoryObject.categoryList, null);
-const academiesObject:any = navObject.academyObject
-const teacherObject:any = navObject.teacherObject
+const categories: any = buildCategoryTree(navObject.categoryObject.categoryList, null);
+const academiesObject: any = navObject.academyObject
+const teacherObject: any = navObject.teacherObject
 
 const encodeTitle = (title: string) => {
     return title
@@ -222,7 +224,7 @@ export const Navbar = () => {
                                     }>
 
                                     <div className="w-52 max-h-[25rem] p-3">
-                                        {categories[0]?.subCategories?.map((item:any, index:number) => {
+                                        {categories[0]?.subCategories?.map((item: any, index: number) => {
                                             if (item?.subCategories)
                                                 return (
                                                     <div key={index}>
@@ -235,7 +237,7 @@ export const Navbar = () => {
                                                                 </div>}>
 
                                                             {item?.subCategories?.length ? <div className="w-44 max-h-[25rem] p-3 flex flex-col ">
-                                                                {item?.subCategories.map((sub:any, index:number) => (
+                                                                {item?.subCategories.map((sub: any, index: number) => (
                                                                     <NextLink color="foreground" href={`/courses?category=${sub?.name}`} key={index}
                                                                         className={clsx(linkStyles({ color: "foreground" }), " w-full flex items-center justify-end gap-1 py-1 hover:text-primary-300 ",)}>
                                                                         {sub.name}
@@ -269,7 +271,7 @@ export const Navbar = () => {
                                     }>
 
                                     <div className="w-[30rem] max-h-[50rem] p-4 grid gap-6 grid-cols-4 justify-beetwen " dir='rtl'>
-                                        {teacherObject.teacherList.slice(0, 7).map((item:any, index:number) => (
+                                        {teacherObject.teacherList.slice(0, 7).map((item: any, index: number) => (
                                             <NextLink href={`/teachers/${encodeTitle(item.engName)}`} key={index} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
                                                 <Avatar radius={'full'} isBordered size={'lg'} color={'primary'} name={item.engName} showFallback src={item.imageUrl} />
                                                 <span className='text-center whitespace-break-spaces'>{item.engName}</span>
@@ -294,7 +296,7 @@ export const Navbar = () => {
                                     }>
 
                                     <div className="w-[25rem] max-h-[50rem] p-4 grid gap-6 grid-cols-3 justify-beetwen " dir='rtl'>
-                                        {academiesObject.academyList.slice(0, 5).map((item:any, index:number) => (
+                                        {academiesObject.academyList.slice(0, 5).map((item: any, index: number) => (
                                             <NextLink href={`/academies/${encodeTitle(item.engName)}`} key={index} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
                                                 <Avatar radius={'sm'} isBordered size={'lg'} color={'secondary'} name={item.engName} showFallback src={item.imageUrl} />
                                                 <span className='text-center whitespace-break-spaces'>{item.engName}</span>
@@ -327,7 +329,7 @@ export const Navbar = () => {
                                     <div className="w-[10rem] max-h-[50rem] p-3 flex flex-col gap-2">
                                         {links.map((item, index) => (
 
-                                            <NextLink key={index} color="foreground" href={item.link}
+                                            <NextLink key={index} color="foreground" href={item.link}  rel={item?.isOut ? "noopener noreferrer" : ''} target={item?.isOut ? "_blank" : ''}
                                                 className={clsx(linkStyles({ color: "foreground" }), "w-full flex items-center justify-end gap-2 py-1 hover:text-primary-300 ")}>
                                                 {item.title}
                                                 {item.icon}
@@ -808,7 +810,7 @@ const DrawerDropDown3 = ({ title, setIsOpen }: DrawerDropDown3Props) => {
                 <div className="p-3 ps-6 pt-5 flex flex-col gap-2" dir='ltr'>
                     {links.map((item, index) => (
 
-                        <NextLink key={index} color="foreground" href={item.link}
+                        <NextLink key={index} color="foreground" href={item.link} rel={item?.isOut ? "noopener noreferrer" : ''} target={item?.isOut ? "_blank" : ''}
                             className={clsx(linkStyles({ color: "foreground" }), "w-full flex items-center justify-end gap-2 py-1 text-sm hover:text-primary-300 ")}>
                             {item.title}
                             {item.icon}
