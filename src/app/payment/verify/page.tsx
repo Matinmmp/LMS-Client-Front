@@ -17,7 +17,8 @@ export default function CartPage(s: any) {
     const dispatch = useDispatch();
     const { courseIds } = useSelector((state: any) => state.cart);
     const verify: any =
-        useQuery({ queryKey: ['verifyPayment'], queryFn: () => verifyPayment({ Authority, Status, invoiceId }), enabled: !!(Authority && Status && invoiceId) });
+        useQuery({ queryKey: ['verifyPayment'], queryFn: () => verifyPayment({ Authority, Status, invoiceId }), 
+        enabled: !!(Authority && Status && invoiceId && Status == "OK") });
 
     if(verify?.isSuccess && !verify?.isLoading && verify?.data?.success){
         dispatch(deleteCourses({ courseIds }))
