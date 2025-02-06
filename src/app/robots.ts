@@ -6,9 +6,9 @@ export default function robots():MetadataRoute.Robots{
         rules:[
             {
                 userAgent:'*',
-                // allow:'/',
-                // disallow:['/profile','/profile/*','/error'],
-                disallow:['/','/*'],
+                allow:'/',
+                disallow:['/profile','/profile/*','/error'],
+                // disallow:['/','/*'],
 
             }
         ],

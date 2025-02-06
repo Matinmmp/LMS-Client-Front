@@ -71,7 +71,7 @@ export default function CartPage(s: any) {
                                     <span>{verify?.data?.refId}</span>
                                 </div>
 
-                                <Button className="min-w-80" size="lg" color="primary" variant="shadow" radius="sm" as={Link} href="/courses">لیست دوره‌ها</Button>
+                                <Button className="min-w-80" size="lg" color="primary" variant="shadow" radius="sm" as={Link} href="/profile/reciepts">فاکتورها</Button>
                             </div>
                         </div> : ''
                 }
