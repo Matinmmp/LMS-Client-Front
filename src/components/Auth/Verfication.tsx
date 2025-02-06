@@ -23,6 +23,9 @@ type VerifyNumber = {
 
 const Verification: FC<Props> = ({ setRoute,setOpen }) => {
     const { token } = useSelector((state: any) => state.auth)
+    const [tok,setTok] = useState(token)
+    const auth = useSelector((state: any) => state)
+
 
     const activationMutation = useMutation({
         mutationFn: (data: { activation_token: string, activation_code: string }) => activation(data),
@@ -60,7 +63,7 @@ const Verification: FC<Props> = ({ setRoute,setOpen }) => {
         }
         await activationMutation.mutate({
             activation_token: token,
-            activation_code: convertToEnglishNumbers(verificationNumber)
+            activation_code: convertToEnglishNumbers(`${verificationNumber}`)
         })
     }
 
@@ -76,20 +79,14 @@ const Verification: FC<Props> = ({ setRoute,setOpen }) => {
     }
 
     return (
-        <div className="h-max max-h-[25rem] flex flex-col ">
+        <div className="h-max max-h-[30rem] flex flex-col ">
             <ModalHeader className="flex flex-col relative">
                 <p className={`p-2 mt-4 text-center font-semibold text-3xl text-primary-400`}>
                     فعال سازی حساب
                 </p>
-
-                {/* <div className='w-full mt-4 flex items-center justify-center'>
-                    <MdOutlineVpnKey size={70} className='text-primary' />
-                </div> */}
             </ModalHeader>
 
             <ModalBody className='gap-1'>
-
-
 
                 <div className='m-auto flex items-center gap-3 justify-around' dir='ltr'>
                     {

@@ -20,10 +20,7 @@ export interface ProvidersProps {
     themeProps?: ThemeProviderProps;
 }
 
-const queryClient = new QueryClient(
-    // { defaultOptions: { queries: { retry: false, refetchOnWindowFocus: false } } }
-
-)
+const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false, refetchOnWindowFocus: false } } })
 
 const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
 

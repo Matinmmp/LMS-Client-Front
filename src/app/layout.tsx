@@ -1,14 +1,15 @@
 import "@/src/styles/globals.css";
 import { Viewport } from "next";
-import clsx from "clsx";
 import { Inter, Vazir } from "../config/fonts";
 import { Providers } from "./providers";
-import { Navbar } from "../components/Shared/navbar2";
 import Footer from "../components/Shared/Footer";
 import NextTopLoader from 'nextjs-toploader';
 import { Suspense } from "react";
 import Script from "next/script";
-
+import dynamic from "next/dynamic";
+const Navbar = dynamic(() => import('../components/Shared/navbar2'), {
+    loading: () => <p></p>,
+  })
 
 
 export const viewport: Viewport = {

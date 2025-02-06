@@ -15,7 +15,7 @@ import { useMutation } from "@tanstack/react-query";
 import { logoutUser } from "@/src/lib/apis/userApis";
 import { userLoggedOut } from "@/src/redux/auth/authSlice";
 import { showToast } from "@/src/utils/toast";
-import { useDispatch } from "react-redux";
+import cookies from 'js-cookie'
 
 const list = [
     {
@@ -57,20 +57,24 @@ const list = [
 
 export default function Navbar() {
     const path = usePathname();
-   
-  
-    
+
+
+
 
     const logoutMutation = useMutation({
         mutationFn: logoutUser,
-        onSuccess: () =>  location?.reload(),
+        onSuccess: () => {
+            location?.reload();
+            cookies.remove('access_token');
+            cookies.remove('refresh_token');
+        },
         onError: () => showToast({ type: 'error', message: 'خطایی پیش آمده است.' })
     })
 
-    
+
 
     return (
-        <div className={`h-full lg:block w-full lg:w-1/4 ${path === '/profile' || path === '/profile/edit' ? 'mb-20':'mb-0'}  bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl overflow-hidden`}>
+        <div className={`h-full lg:block w-full lg:w-1/4 ${path === '/profile' || path === '/profile/edit' ? 'mb-20' : 'mb-0'}  bg-white dark:bg-slate-900/ dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl overflow-hidden`}>
             <div className="w-full pb-4">
                 <div className="hidden lg:flex w-full items-center justify-center aspect-[16/10] ">
                     <Link className="" href="/">

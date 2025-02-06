@@ -1,5 +1,6 @@
 "use client";
 
+import cookies from 'js-cookie'
 import { buildCategoryTree } from "@/src/utils/categorySorter";
 import { CiSquareMinus, CiSquarePlus } from "react-icons/ci";
 import { ThemeSwitch } from "@/src/components/theme-switch";
@@ -90,7 +91,7 @@ const encodeTitle = (title: string) => {
         .replace(/\u200C/g, '-'); // جایگزینی نیم‌فاصله با -
 }
 
-export const Navbar = () => {
+ const Navbar = () => {
     const path = usePathname();
     const searchParams = useSearchParams();
     const [scrolled, setScrolled] = useState(false);
@@ -110,7 +111,11 @@ export const Navbar = () => {
 
     const logoutMutation = useMutation({
         mutationFn: logoutUser,
-        onSuccess: () => location?.reload(),
+        onSuccess: () => {
+            location?.reload();
+            cookies.remove('access_token');
+            cookies.remove('refresh_token');
+        },
         onError: () => showToast({ type: 'error', message: 'خطایی پیش آمده است.' })
     })
 
@@ -329,7 +334,7 @@ export const Navbar = () => {
                                     <div className="w-[10rem] max-h-[50rem] p-3 flex flex-col gap-2">
                                         {links.map((item, index) => (
 
-                                            <NextLink key={index} color="foreground" href={item.link}  rel={item?.isOut ? "noopener noreferrer" : ''} target={item?.isOut ? "_blank" : ''}
+                                            <NextLink key={index} color="foreground" href={item.link} rel={item?.isOut ? "noopener noreferrer" : ''} target={item?.isOut ? "_blank" : ''}
                                                 className={clsx(linkStyles({ color: "foreground" }), "w-full flex items-center justify-end gap-2 py-1 hover:text-primary-300 ")}>
                                                 {item.title}
                                                 {item.icon}
@@ -549,7 +554,7 @@ export const Navbar = () => {
         </div>
     );
 };
-
+export default Navbar
 type DropDownProps = {
     children: React.ReactNode;
     position: | "top" | "bottom" | "left" | "right" | "bottom-middle" | "bottom-left";

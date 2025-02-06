@@ -37,10 +37,8 @@ export default function CartPage() {
             if(!res?.isFree){
                 window.location.replace(res?.url)
             }
-            console.log(res)
         }
     })
-    console.log(courseIds);
 
     useEffect(() => {
         dispatch(hydrateCart()); // بارگذاری داده‌ها از localStorage
@@ -80,7 +78,6 @@ export default function CartPage() {
 
     const handleBuyClick = () => {
         const refresh_token = cookies.get('refresh_token')
-        console.log(refresh_token);
         if (refresh_token)
             initiatePaymentMutation.mutate(courseIds)
         else
