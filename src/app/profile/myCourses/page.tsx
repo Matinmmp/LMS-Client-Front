@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Skeleton } from "@nextui-org/skeleton";
 import { useQuery } from "@tanstack/react-query";
 import { getFacgetUserPaidCourses, getFactor } from "@/src/lib/apis/userApis";
-import { formatDate,  toPersianNumber } from "@/src/utils/functions";
+import { encodeTitle, formatDate,  toPersianNumber } from "@/src/utils/functions";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/table";
 import { Avatar } from "@nextui-org/avatar";
 import Link from "next/link";
@@ -66,11 +66,11 @@ export default function ProfilePage() {
                                                         return (
                                                             <TableRow key={index} className="mt-6">
                                                                 <TableCell className="flex justify-center text-center">
-                                                                    <Avatar alt={item.name} className="h-12 w-16 shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="sm" isBordered color="secondary" src={item?.thumbnail?.imageUrl} />
+                                                                    <Avatar alt={item?.name} className="h-16 w-20 shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="sm" isBordered color="secondary" src={item?.thumbnail?.imageUrl} />
                                                                 </TableCell>
                                                                 <TableCell className="text-center">
-                                                                    <Link href={`/courses/${item.name}`} className="font-semibold text-lg hover:text-secondary-400 transition-all text-nowrap">
-                                                                        {item.name}
+                                                                    <Link href={`/courses/${encodeTitle(item?.urlName)}`} className="font-semibold hover:text-secondary-400 transition-all text-nowrap">
+                                                                        {item?.name}
                                                                     </Link>
                                                                 </TableCell>
                                                                 <TableCell className="text-base font-medium text-center">{formatDate(item.updatedAt)}</TableCell>

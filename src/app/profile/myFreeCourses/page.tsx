@@ -2,11 +2,11 @@
 import { useSelector } from "react-redux";
 import { Skeleton } from "@nextui-org/skeleton";
 import { useQuery } from "@tanstack/react-query";
-import { getUserFreeCourses} from "@/src/lib/apis/userApis";
+import { getUserFreeCourses } from "@/src/lib/apis/userApis";
 import { motion } from 'framer-motion';
 import { useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
-import { formatDate, formatDate2, toPersianNumber } from "@/src/utils/functions";
+import { encodeTitle, formatDate, formatDate2, toPersianNumber } from "@/src/utils/functions";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/table";
 import { Avatar } from "@nextui-org/avatar";
 import Link from "next/link";
@@ -15,7 +15,7 @@ export default function ProfilePage() {
     const { user, loading, error } = useSelector((state: any) => state.auth)
     const getUserFreeCoursesQuery: any = useQuery({ queryKey: ['getUserFreeCourses'], queryFn: getUserFreeCourses });
 
-    
+
 
     return (
         <div className="h-full w-full flex flex-col">
@@ -56,14 +56,14 @@ export default function ProfilePage() {
                                         </div>
 
 
-                                        <Table  
-                                            classNames={{ wrapper: 'bg-transparent shadow-none',emptyWrapper:'text-secondary-500 font-medium text-base' }}>
+                                        <Table
+                                            classNames={{ wrapper: 'bg-transparent shadow-none', emptyWrapper: 'text-secondary-500 font-medium text-base' }}>
                                             <TableHeader className="text-center">
                                                 <TableColumn className="text-sm font-medium text-center">تصویر</TableColumn>
                                                 <TableColumn className="text-sm font-medium text-center">عنوان آموزش</TableColumn>
                                                 <TableColumn className="text-sm font-medium text-center">تاریخ آخرین به روز رسانی</TableColumn>
                                             </TableHeader>
-                                            <TableBody  emptyContent={"در هیچ دوره‌ای شرکت نکرده اید."}>
+                                            <TableBody emptyContent={"در هیچ دوره‌ای شرکت نکرده اید."}>
                                                 {getUserFreeCoursesQuery?.data?.courses?.length ?
                                                     getUserFreeCoursesQuery?.data?.courses.map((item: any, index: number) => {
                                                         return (
@@ -72,8 +72,8 @@ export default function ProfilePage() {
                                                                     <Avatar alt={item.name} className="h-12 w-16 shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="sm" isBordered color="secondary" src={item?.thumbnail?.imageUrl} />
                                                                 </TableCell>
                                                                 <TableCell className="text-center">
-                                                                    <Link href={`/courses/${item.name}`} className="font-semibold text-lg hover:text-secondary-400 transition-all text-nowrap">
-                                                                        {item.name}
+                                                                    <Link href={`/courses/${encodeTitle(item?.urlName)}`} className="font-semibold hover:text-secondary-400 transition-all text-nowrap">
+                                                                        {item?.name}
                                                                     </Link>
                                                                 </TableCell>
                                                                 <TableCell className="text-base font-medium text-center">{formatDate(item.updatedAt)}</TableCell>

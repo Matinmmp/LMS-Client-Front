@@ -14,7 +14,7 @@ import Image from "next/image";
 import { FiTrash2 } from "react-icons/fi";
 import { Button } from "@nextui-org/button";
 
-export const Cart = () => {
+ const Cart = () => {
     const [open, setOpen] = useState(false);
     const cartRef = useRef<HTMLDivElement | null>(null); // برای مرجع‌دادن به کل منو
 
@@ -210,3 +210,4 @@ export const Cart = () => {
     );
 };
 
+export default Cart;

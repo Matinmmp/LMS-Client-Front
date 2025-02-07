@@ -1,5 +1,3 @@
-import { Button } from "@nextui-org/button";
-import { MdOutlineAddShoppingCart } from "react-icons/md";
 import { encodeTitle, formatDate, numberSeparator, secondsToTimeString, toPersianNumber } from "@/src/utils/functions";
 import React from "react";
 import DiscountCounter from "./Discount";
@@ -97,8 +95,7 @@ export default async function CourseInfo({ data, isPurchased, userRate }: Props)
             </div>
 
     }
-
-
+ 
     AddToCartComponent =
         <>
             {course?.price && !isPurchased ?

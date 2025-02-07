@@ -8,7 +8,7 @@ type DiscountProps = {
     expireTime: string;
 };
 
-const DiscountCounter = ({ percent, usageCount, expireTime }: DiscountProps) => {
+const DiscountCounter = ({ percent, usageCount=1, expireTime }: DiscountProps) => {
     const [days, setDays] = useState(0);
     const [hours, setHours] = useState(0);
     const [minutes, setMinutes] = useState(0);
@@ -17,7 +17,7 @@ const DiscountCounter = ({ percent, usageCount, expireTime }: DiscountProps) => 
 
     // بررسی وجود داده‌های معتبر
     useEffect(() => {
-        if (!percent || !usageCount || !expireTime) {
+        if (!percent || !expireTime) {
             setIsValid(false);
             return;
         }
@@ -25,12 +25,12 @@ const DiscountCounter = ({ percent, usageCount, expireTime }: DiscountProps) => 
         const now = new Date().getTime();
         const expiry = new Date(expireTime).getTime();
 
-        if (expiry > now && usageCount > 0) {
+        if (expiry > now ) {
             setIsValid(true); // تخفیف معتبر است
         } else {
             setIsValid(false); // تخفیف نامعتبر است
         }
-    }, [percent, usageCount, expireTime]);
+    }, [percent, expireTime]);
 
     // تابع محاسبه زمان باقی‌مانده
     const calculateTimeLeft = () => {

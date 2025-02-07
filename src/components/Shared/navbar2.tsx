@@ -1,6 +1,4 @@
 "use client";
-
-import cookies from 'js-cookie'
 import { buildCategoryTree } from "@/src/utils/categorySorter";
 import { CiSquareMinus, CiSquarePlus } from "react-icons/ci";
 import { ThemeSwitch } from "@/src/components/theme-switch";
@@ -8,7 +6,6 @@ import { toPersianNumber } from "@/src/utils/functions";
 import { link as linkStyles } from "@nextui-org/theme";
 import { useEffect, useRef, useState } from "react";
 import { navObject } from "@/src/config/site";
-import { Button } from "@nextui-org/button";
 import { Avatar } from "@nextui-org/avatar";
 import { Edu } from "@/src/config/fonts";
 import { useTheme } from "next-themes";
@@ -17,20 +14,12 @@ import Image from "next/image";
 import clsx from "clsx";
 
 
-import Drawer from '@/src/components/Shared/Drawer'
-import Login from "@/src/components/Auth/Login";
-import SignUp from "@/src/components/Auth/SignUp";
-import Verification from "@/src/components/Auth/Verfication";
-import CustomeModal from "@/src/components/Shared/CustomeModal";
-
-import { FaRightToBracket, FaCaretLeft, FaChevronLeft, FaQuoteRight, FaRegEye, FaStar } from "react-icons/fa6";
-import { MdAttachMoney, MdKeyboardArrowDown, MdKeyboardArrowLeft, MdLogout, MdOutlinePersonAddAlt } from "react-icons/md";
-import { IoMdCart } from "react-icons/io";
+import { FaCaretLeft, FaChevronLeft, FaQuoteRight, FaRegEye, FaStar } from "react-icons/fa6";
+import { MdKeyboardArrowDown, MdKeyboardArrowLeft} from "react-icons/md";
 import { FaTelegramPlane } from "react-icons/fa";
 import { MdContactPhone } from "react-icons/md";
 import { GrInstagram } from "react-icons/gr";
 import { GoDotFill } from "react-icons/go";
-import { useDispatch, useSelector } from "react-redux";
 import { FcAbout } from "react-icons/fc";
 import { CgClose } from "react-icons/cg";
 import { GrMenu } from "react-icons/gr";
@@ -38,17 +27,28 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useMutation } from "@tanstack/react-query";
 import { homeSearch } from "@/src/lib/apis/homeApis";
 
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/dropdown";
-import { User } from "@nextui-org/user";
-import { LiaUser } from "react-icons/lia";
-import { IoKeyOutline, IoReceiptOutline } from "react-icons/io5";
-import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import {  usePathname, useSearchParams } from "next/navigation";
 import { showToast } from "@/src/utils/toast";
-import { logoutUser } from "@/src/lib/apis/userApis";
 import { useRouter } from "next/navigation";
-import { Cart } from "./Cart";
-import ForgetPassword from "../Auth/ForgetPasswrod";
+import dynamic from 'next/dynamic';
+
+// import Drawer from '@/src/components/Shared/Drawer'
+// import Login from "@/src/components/Auth/Login";
+// import SignUp from "@/src/components/Auth/SignUp";
+// import Verification from "@/src/components/Auth/Verfication";
+// import CustomeModal from "@/src/components/Shared/CustomeModal";
+// import { Cart } from "./Cart";
+// import ForgetPassword from "../Auth/ForgetPasswrod";
+
+const UserDropDown = dynamic(() => import("../UserDropDown"), { ssr: false });
+
+const Drawer = dynamic(() => import("@/src/components/Shared/Drawer"), { ssr: false });
+const Login = dynamic(() => import("@/src/components/Auth/Login"), { ssr: false });
+const SignUp = dynamic(() => import("@/src/components/Auth/SignUp"), { ssr: false });
+const Verification = dynamic(() => import("@/src/components/Auth/Verfication"), { ssr: false });
+const CustomeModal = dynamic(() => import("@/src/components/Shared/CustomeModal"), { ssr: false });
+const Cart = dynamic(() => import("./Cart"), { ssr: false });
+const ForgetPassword = dynamic(() => import("../Auth/ForgetPasswrod"), { ssr: false });
 
 
 const links = [
@@ -91,7 +91,7 @@ const encodeTitle = (title: string) => {
         .replace(/\u200C/g, '-'); // جایگزینی نیم‌فاصله با -
 }
 
- const Navbar = () => {
+const Navbar = () => {
     const path = usePathname();
     const searchParams = useSearchParams();
     const [scrolled, setScrolled] = useState(false);
@@ -103,21 +103,11 @@ const encodeTitle = (title: string) => {
 
     const [open, setOpen] = useState(!!searchParams?.get('openLogin') || false);
     const [route, setRoute] = useState('Login')
-    const { user, loading } = useSelector((state: any) => state.auth)
+
 
     const [open2, setOpen2] = useState(false);
     const searchRef = useRef<any>();
 
-
-    const logoutMutation = useMutation({
-        mutationFn: logoutUser,
-        onSuccess: () => {
-            location?.reload();
-            cookies.remove('access_token');
-            cookies.remove('refresh_token');
-        },
-        onError: () => showToast({ type: 'error', message: 'خطایی پیش آمده است.' })
-    })
 
 
 
@@ -357,100 +347,7 @@ const encodeTitle = (title: string) => {
 
                             </li>
 
-                            <li className="hidden sm:flex">
-                                {
-                                    !loading ?
-                                        user ?
-                                            <div className="flex items-center gap-4">
-                                                <Dropdown placement="bottom-end" >
-                                                    <DropdownTrigger>
-                                                        <Avatar isBordered showFallback as="button" className="transition-transform shadow-[0_0_15px_0_#42C0F4]" color="secondary" src={user.imageUrl} />
-                                                    </DropdownTrigger>
-
-                                                    <DropdownMenu aria-label="Profile Actions" variant="flat" className="min-w-80">
-
-                                                        <DropdownItem color="default" key={'user'}>
-                                                            <div className="py-4 ps-1">
-                                                                <User
-                                                                    as="button"
-                                                                    avatarProps={{ isBordered: true, src: user?.imageUrl, color: 'secondary' }}
-                                                                    classNames={{ description: 'text-md font-normal', name: 'text-lg font-normal' }}
-                                                                    className="transition-transform"
-                                                                    description={user?.email}
-                                                                    name={user?.name}
-                                                                />
-                                                            </div>
-                                                        </DropdownItem>
-
-                                                        <DropdownItem color="secondary" className="mt-4 " key={'profile'}>
-                                                            <Link href={'/profile'} className="flex items-center gap-2">
-                                                                <LiaUser size={24} strokeWidth={0.7} />
-                                                                <span className="text-base font-medium">پروفایل</span>
-                                                            </Link>
-                                                        </DropdownItem>
-
-                                                        <DropdownItem color="secondary" key={'password'}>
-                                                            <Link href={'/profile/password'} className="flex items-center gap-2">
-                                                                <IoKeyOutline size={22} strokeWidth={1} />
-                                                                <span className="text-base font-medium">تغییر رمز عبور</span>
-                                                            </Link>
-                                                        </DropdownItem>
-
-                                                        <DropdownItem color="secondary" key={"rec"}>
-                                                            <Link href={'/profile/reciepts'} className="flex items-center gap-2">
-                                                                <IoReceiptOutline size={21} strokeWidth={0.7} />
-                                                                <span className="text-base font-medium">فاکتور‌ها</span>
-                                                            </Link>
-                                                        </DropdownItem>
-
-                                                        <DropdownItem key={"myFree"} color="secondary">
-                                                            <Link href={'/profile/myFreeCourses'} className="flex items-center gap-2">
-                                                                <MdAttachMoney size={21} />
-                                                                <span className="text-base font-medium">دوره‌های من</span>
-                                                            </Link>
-                                                        </DropdownItem>
-
-                                                        <DropdownItem key={'out'} className="mt-4" color="danger" onPress={() => logoutMutation.mutate()}>
-                                                            <div className="flex items-center gap-2">
-                                                                <MdLogout size={21} />
-                                                                <span className="text-base font-medium">خروج</span>
-                                                            </div>
-                                                        </DropdownItem>
-
-                                                    </DropdownMenu>
-                                                </Dropdown>
-
-                                            </div>
-                                            :
-                                            <div className="flex items-center font-medium" >
-                                                <Button onPress={() => { setOpen(true); setRoute('Login'); }} radius="sm" variant="shadow" color="secondary" className="w-[5.5rem] -me-4 gap-0.5 ps-2 text-white"
-                                                    endContent={<FaRightToBracket className="ms-1 text-base font-medium" size={20} />} >
-                                                    ورود
-                                                </Button>
-
-                                                <Button onPress={() => { setOpen(true); setRoute('Sign-Up'); }} className="px-2 w-24" color="primary" radius="sm" variant="shadow">
-                                                    <span >عضویت</span>
-                                                    <MdOutlinePersonAddAlt size={24} />
-                                                </Button>
-                                            </div>
-                                        : ''}
-
-                            </li>
-
-                            <li className="sm:hidden">
-                                {
-                                    !loading ?
-                                        user ?
-                                            <NextLink href={'/profile'}>
-                                                <Avatar className="cursor-pointer" isBordered color="secondary" src={user.imageUrl} />
-                                            </NextLink>
-                                            :
-                                            <Button radius="sm" variant="shadow" color="secondary" className="!min-w-8 text-white"
-                                                endContent={<FaRightToBracket className="text-base font-medium" size={20} />} onClick={() => setOpen(true)}>
-                                            </Button>
-                                        : ''
-                                }
-                            </li>
+                            <UserDropDown setOpen={setOpen} setRoute={setRoute} />
 
                         </ul>
 
