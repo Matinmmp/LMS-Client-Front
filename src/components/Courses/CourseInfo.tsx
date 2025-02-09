@@ -12,11 +12,11 @@ import { FaStar } from "react-icons/fa6"
 import { Avatar } from "@nextui-org/avatar";
 import Link from "next/link";
 import { AddToCartButton, Commments, CourseLessons, Description, RatingCommponent, ShortLink } from "./CourseInfoComponents";
-import  VideoPlayer  from "../Shared/VideoPlayer";
+import VideoPlayer from "../Shared/VideoPlayer";
 import { AlertSecondary } from "../Shared/Alert";
 import { RelatedCourse, RelatedBlog } from "./CourseInfoServerComponents";
 import { cookies } from 'next/headers'
-
+import { IoWarningOutline } from "react-icons/io5";
 
 type Props = {
     data: any,
@@ -95,7 +95,7 @@ export default async function CourseInfo({ data, isPurchased, userRate }: Props)
             </div>
 
     }
- 
+
     AddToCartComponent =
         <>
             {course?.price && !isPurchased ?
@@ -171,6 +171,30 @@ export default async function CourseInfo({ data, isPurchased, userRate }: Props)
                     <div className="w-full lg:w-[70%] ">
                         <div className="bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
                             <Description desc={course?.longDescription} />
+                        </div>
+                        <div className="mt-8">
+                            <div className="w-full pb-6 bg-white dark:bg-[#131d35] dark:bg-opacity-85/ dark:backdrop-blur-md shadow-medium rounded-2xl relative">
+                                <span className="absolute -right-2 top-4 h-12 w-2 bg-danger-500 rounded-r-md"></span>
+
+                                <div className="w-full px-4 py-6 sm:px-4 flex flex-col ">
+                                    <div className="flex items-center gap-2 text-danger-500 dark:text-white">
+                                        <IoWarningOutline size={40} className="text-danger-500 hidden lg:inline " />
+                                        <p className="text-lg sm:text-xl md:text-2xl font-semibold">توجه</p>
+                                    </div>
+
+                                    <div >
+                                        <p className="mt-1 font-light dark:text-[#ddeefd] text-gray-900 leading-7 lg:tracking-wider">اگر ویدیو ها را در سیستم نگاه میکنید حتما از برنامه ی KMPlayer استفاده کنید. اگر هم از موبایل استفاده میکنید از MXPlayer استفاده کنید برای فایل هایی هم که پسوند .rar یا .zip دارند از برنامه ی winrar برای استخراج استفاده کنید</p>
+                                    <p className="mt-1 font-light dark:text-[#ddeefd] text-gray-900 leading-7 lg:tracking-wider">
+                                        برای مدیریت بهتر فایل‌ها برای هر فصل یک پوشه با همان نام بسازید و فایل‌های مربوط به آن فصل را درون آن پوشه بگذارید.
+                                    </p>
+                                    </div>
+
+
+                                </div>
+
+
+
+                            </div>
                         </div>
                         <div className="mt-8">
                             <CourseLessons name={course?.urlName} />

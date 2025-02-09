@@ -85,7 +85,7 @@ export default async function CourseDetail({ params: { courseName } }: Props) {
                 <title>{data?.courseData?.course?.seoMeta?.title ? data?.courseData?.course?.seoMeta?.title : data?.courseData?.course?.name}</title>
                 <meta name="description" content={data?.courseData?.course?.seoMeta?.description} />
                 <meta name="keywords" content={data?.courseData?.course?.seoMeta?.keywords} />
-                <meta name="robots" content="noindex, follow" />
+                <meta name="robots" content="index, follow" />
                 <meta name="revisit-after" content="5 days" />
 
                 <meta property="og:title" content={data?.courseData?.course?.seoMeta?.title ? data?.courseData?.course?.seoMeta?.title : data?.courseData?.course?.name} />

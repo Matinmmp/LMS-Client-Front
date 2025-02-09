@@ -9,20 +9,20 @@ export default async function name(): Promise<MetadataRoute.Sitemap> {
     const academyNamesResponse = await axios.get(`${BASE_URL}/getAllAcademyNames`);
 
     const acadmeyEntries: MetadataRoute.Sitemap = academyNamesResponse?.data?.academiesName?.map((academy: any) => ({
-        url: `https://www.vc-virtual-learn.com/academies/${encodeURIComponent(encodeTitle(academy.engName))}`,
+        url: `https://vc-virtual-learn.com/academies/${encodeURIComponent(encodeTitle(academy.engName))}`,
         priority: 0.9
     }))
 
     const teacherNamesResponse = await axios.get(`${BASE_URL}/getAllTeachersName`);
     const teacherEntries: MetadataRoute.Sitemap = teacherNamesResponse?.data?.teachersName?.map((teacher: any) => ({
-        url: `https://www.vc-virtual-learn.com/teachers/${encodeURIComponent(encodeTitle(teacher.engName))}`,
+        url: `https://vc-virtual-learn.com/teachers/${encodeURIComponent(encodeTitle(teacher.engName))}`,
         priority: 0.9
     }))
 
 
     const courseNameResponse = await axios.get(`${BASE_URL}/getAllCourseUrlNames`);
     const courseEntries: MetadataRoute.Sitemap = courseNameResponse?.data?.courseUrlNames?.map((course: any) => ({
-        url: `https://www.vc-virtual-learn.com/courses/${encodeURIComponent(encodeTitle(course?.urlName))}`,
+        url: `https://vc-virtual-learn.com/courses/${encodeURIComponent(encodeTitle(course?.urlName))}`,
         priority: 0.9
     }))
 
@@ -35,31 +35,31 @@ export default async function name(): Promise<MetadataRoute.Sitemap> {
         ...list2,
         ...list3,
         {
-            url: `https://www.vc-virtual-learn.com/`,
+            url: `https://vc-virtual-learn.com/`,
             priority: 1,
         },
         {
-            url: `https://www.vc-virtual-learn.com/about-us`,
+            url: `https://vc-virtual-learn.com/about-us`,
             priority: 0.8,
         },
         {
-            url: `https://www.vc-virtual-learn.com/contact-us`,
+            url: `https://vc-virtual-learn.com/contact-us`,
             priority: 0.8,
         },
         {
-            url: `https://www.vc-virtual-learn.com/courses`,
+            url: `https://vc-virtual-learn.com/courses`,
             priority: 0.9,
         },
         {
-            url: `https://www.vc-virtual-learn.com/teachers`,
+            url: `https://vc-virtual-learn.com/teachers`,
             priority: 0.9,
         },
         {
-            url: `https://www.vc-virtual-learn.com/academies`,
+            url: `https://vc-virtual-learn.com/academies`,
             priority: 0.9,
         },
         {
-            url: `https://www.vc-virtual-learn.com/roles`,
+            url: `https://vc-virtual-learn.com/roles`,
             priority: 0.8,
         },
     ]

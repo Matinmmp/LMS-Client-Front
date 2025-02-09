@@ -245,7 +245,7 @@ const CourseFileAcordian = ({ courseFiles, isCourseFree }: { courseFiles: any, i
                 <div className="flex items-center gap-3 ">
                     <div className={`flex items-center gap-2 ${open ? "text-white " : " "}`}>
                         {lessonIcon}
-                        <p dir="rtl" className={`text-sm sm:text-[1.1rem] font-medium `}>فایل‌های دوره</p>
+                        <p dir="rtl" className={`text-sm sm:text-base font-medium `}>فایل‌های دوره</p>
                     </div>
                 </div>
 
@@ -261,7 +261,7 @@ const CourseFileAcordian = ({ courseFiles, isCourseFree }: { courseFiles: any, i
                 <div className="mt-2 p-2 sm:p-4">
                     <div className="flex flex-col justify-start gap-2">
                         {Array.isArray(courseFiles) ? courseFiles?.map((file: any, index: number) =>
-                            <Button className="max-w-max" startContent={<TiAttachmentOutline size={20} />} key={index} color="primary" variant="shadow" radius="sm" href={file.fileName} as={Link}>
+                            <Button dir="ltr" className="max-w-max" startContent={<TiAttachmentOutline size={20} />} key={index} color="primary" variant="shadow" radius="sm" href={file.fileName} as={Link}>
                                 {file?.fileTitle}
                             </Button>) : ''}
                     </div>
@@ -295,7 +295,7 @@ const CourseLinkAcordian = ({ courseLinks, isCourseFree }: { courseLinks: any, i
                 <div className="flex items-center gap-3 ">
                     <div className={`flex items-center gap-2 ${open ? "text-white " : " "}`}>
                         {lessonIcon}
-                        <p dir="rtl" className={`text-sm sm:text-[1.1rem] font-medium `}>لینک‌های دوره</p>
+                        <p dir="rtl" className={`text-sm sm:text-base font-medium `}>لینک‌های دوره</p>
                     </div>
                 </div>
 
@@ -342,7 +342,7 @@ const SectionAcordian = ({ item, isCourseFree }: { item: any, isCourseFree: bool
                  ${open ? "bg-primary-500" : " bg-[#f3f4f8] dark:bg-slate-800"} `}>
 
                 <div className={`w-full flex items-center justify-between gap-2 ${open ? "text-white" : " text-black dark:text-white"}`}>
-                    <p className={`text-sm sm:text-[1.1rem] font-medium `}>{item?.sectionName}</p>
+                    <p className={`text-sm sm:text-base font-medium `}>{item?.sectionName}</p>
 
                     <div className="flex items-center gap-0.5 whitespace-nowrap">
                         {item?.totalLength && <span className="hidden sm:inline font-light">{toPersianNumber(hoursAndMinutesString(item?.totalLength))}</span>}
@@ -434,7 +434,7 @@ const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index, isCour
 
                             <div className="flex flex-col justify-start gap-2">
                                 {item?.attachedFile?.map((file: any, index: number) =>
-                                    <Button className="max-w-max" startContent={<TiAttachmentOutline size={20} />} key={index} color="primary" variant="shadow" radius="sm" href={file.fileName} as={Link}>
+                                    <Button dir="ltr" className="max-w-max" startContent={<TiAttachmentOutline size={20} />} key={index} color="primary" variant="shadow" radius="sm" href={file.fileName} as={Link}>
                                         {file?.fileTitle}
                                     </Button>)}
                             </div>
@@ -488,7 +488,7 @@ const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index, isCour
 
                         <div className="flex flex-col justify-start gap-2">
                             {item?.attachedFile?.map((file: any, index: number) =>
-                                <Button className="max-w-max" startContent={<TiAttachmentOutline size={20} />} key={index} color="primary" variant="shadow" radius="sm" href={file.fileName} as={Link}>
+                                <Button dir="ltr" className="max-w-max" startContent={<TiAttachmentOutline size={20} />} key={index} color="primary" variant="shadow" radius="sm" href={file.fileName} as={Link}>
                                     {file?.fileTitle}
                                 </Button>)}
                         </div>
@@ -524,7 +524,7 @@ const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index, isCour
 
                         <div className={`flex items-center gap-2 hover:text-secondary-500 ${selectedLesson === `${index}` ? "text-secondary-500 " : " "}`}>
                             {lessonIcon}
-                            <p className={`mt-0.5 text-sm sm:text-[1.1rem] font-medium `}>{item?.lessonTitle}</p>
+                            <p className={`mt-0.5 text-sm sm:text-base font-medium `}>{item?.lessonTitle}</p>
                         </div>
                     </div>
 
@@ -589,7 +589,7 @@ const SectionFileAcordian = ({ sectionFiles, selectedLesson, setSelectedLesson, 
 
                 <div dir="rtl" className={`flex items-center gap-2 hover:text-secondary-500 ${selectedLesson === `${index}` ? "text-secondary-500 " : " "}`}>
                     {lessonIcon}
-                    <p className={`mt-0.5 text-sm sm:text-[1.1rem] font-medium `}>فایل‌های این بخش</p>
+                    <p className={`mt-0.5 text-sm sm:text-base font-medium `}>فایل‌های این بخش</p>
                 </div>
 
             </div>
@@ -606,7 +606,7 @@ const SectionFileAcordian = ({ sectionFiles, selectedLesson, setSelectedLesson, 
 
                         <div className="flex flex-col justify-start gap-2">
                             {Array.isArray(sectionFiles) ? sectionFiles?.map((file: any, index: number) =>
-                                <Button className="max-w-max" startContent={<TiAttachmentOutline size={20} />} key={index} color="primary" variant="shadow" radius="sm" href={file.fileName} as={Link}>
+                                <Button dir="ltr" className="max-w-max" startContent={<TiAttachmentOutline size={20} />} key={index} color="primary" variant="shadow" radius="sm" href={file.fileName} as={Link}>
                                     {file?.fileTitle}
                                 </Button>) : ''}
                         </div>
@@ -643,7 +643,7 @@ const SectionLinkAcordian = ({ sectionLinks, selectedLesson, setSelectedLesson, 
 
                 <div dir="rtl" className={`flex items-center gap-2 hover:text-secondary-500 ${selectedLesson === `${index}` ? "text-secondary-500 " : " "}`}>
                     {lessonIcon}
-                    <p className={`mt-0.5 text-sm sm:text-[1.1rem] font-medium `}>لینک‌های این بخش</p>
+                    <p className={`mt-0.5 text-sm sm:text-base font-medium `}>لینک‌های این بخش</p>
                 </div>
 
             </div>

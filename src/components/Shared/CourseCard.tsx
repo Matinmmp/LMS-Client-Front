@@ -72,10 +72,10 @@ export const CourseCard = ({ data }: CardProps) => {
         dark:hover:shadow-[0px_0px_8px_0px_#2a5a6ec5,_0px_2px_20px_0px_#2a5a6ec5,_0px_0px_1px_0px_#2a5a6ec5]
         dark:border-1 dark:border-primary-400 bg-white dark:bg-[#131814]/30 dark:backdrop-blur-md dark:backdrop-saturate-150 rounded-md overflow-hidden  ">
 
-            {hasDiscount && !discountExpired&&
+            {(hasDiscount && !discountExpired)?
             <span className="absolute bg-danger-500 text-white text-lg font-semibold px-3 py-1 rounded-tr-md rounded-bl-md z-50">
                 {toPersianNumber(data?.discount?.percent)}٪
-            </span>
+            </span> :''
             }
 
             <div className="w-full h-full flex flex-col">
