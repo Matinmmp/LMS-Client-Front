@@ -90,7 +90,7 @@ const AcademyInfo = ({ data }: Props) => {
 
                 </div>
 
-                <article className="blog_acadmey w-full mt-10 lg:mt-14 leading-7 lg:leading-8 tracking-wide " dangerouslySetInnerHTML={{ __html: data.longDescription }}>
+                <article className="blog_acadmy w-full mt-10 lg:mt-14 leading-7 lg:leading-8 tracking-wide " dangerouslySetInnerHTML={{ __html: data.longDescription }}>
 
                 </article>
 

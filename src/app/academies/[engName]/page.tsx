@@ -30,7 +30,7 @@ export default async function Academy({ params: { engName } }: Props) {
         notFound();
 
     if (data && data.success) {
-        const schema = {
+        const schema:any = {
             "@context": "https://schema.org",
             "@type": "EducationalOrganization",
             "name": data?.academy?.seoMeta?.title,
@@ -44,12 +44,6 @@ export default async function Academy({ params: { engName } }: Props) {
                 "name": "ویرچوال لرن",
                 "url": "https://www.vc-virtual-learn.com"
             },
-            "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": data?.academy?.rating,
-                "reviewCount": data?.academy?.ratingNumber,
-                "bestRating": "5",
-            },
             "publisher": {
                 "@type": "Organization",
                 "name": "Virtual Learn",
@@ -61,9 +55,17 @@ export default async function Academy({ params: { engName } }: Props) {
                     "height": 512
                 }
             },
-
         }
 
+        if (data?.academy?.rating || data?.academy?.ratingNumber) {
+            schema.aggregateRating = {
+                "@type": "AggregateRating",
+                "ratingValue": `${data?.academy?.rating}`,
+                "reviewCount": `${data?.academy?.ratingNumber}`,
+                "bestRating": "5",
+            };
+        }
+ 
         return (
             <section className=" flex flex-col items-center justify-center  " >
 

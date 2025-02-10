@@ -2,7 +2,7 @@
 import { buildCategoryTree } from "@/src/utils/categorySorter";
 import { CiSquareMinus, CiSquarePlus } from "react-icons/ci";
 import { ThemeSwitch } from "@/src/components/theme-switch";
-import { toPersianNumber } from "@/src/utils/functions";
+import { encodeTitle, toPersianNumber } from "@/src/utils/functions";
 import { link as linkStyles } from "@nextui-org/theme";
 import { useEffect, useRef, useState } from "react";
 import { navObject } from "@/src/config/site";
@@ -85,11 +85,6 @@ const categories: any = buildCategoryTree(navObject.categoryObject.categoryList,
 const academiesObject: any = navObject.academyObject
 const teacherObject: any = navObject.teacherObject
 
-const encodeTitle = (title: string) => {
-    return title
-        .replace(/\s/g, '_')       // جایگزینی فاصله‌ها با _
-        .replace(/\u200C/g, '-'); // جایگزینی نیم‌فاصله با -
-}
 
 const Navbar = () => {
     const path = usePathname();

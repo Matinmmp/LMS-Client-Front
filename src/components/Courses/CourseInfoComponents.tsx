@@ -33,7 +33,7 @@ import { Textarea } from "@nextui-org/input";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 import { addCourse } from "@/src/redux/cart/cartSlice";
 import Image from "next/image";
-
+import { LuFileQuestion } from "react-icons/lu";
 import { Rating, RoundedStar } from '@smastrom/react-rating'
 
 import '@smastrom/react-rating/style.css'
@@ -85,7 +85,7 @@ export function Description({ desc }: { desc: string }) {
                 </div>
 
                 <div className="mt-8 pb-20 leading-7 lg:leading-8 tracking-wide" dangerouslySetInnerHTML={{ __html: desc }}></div>
-       
+
 
             </motion.div>
 
@@ -383,14 +383,18 @@ const SectionAcordian = ({ item, isCourseFree }: { item: any, isCourseFree: bool
 type LessonAcordianProps = { isCourseFree: boolean, item: any, selectedLesson: string, setSelectedLesson: (index: string) => void, index: number }
 
 const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index, isCourseFree }: LessonAcordianProps) => {
-    let lessonIcon = <RiLockLine size={26} />
+    let lessonIcon = <RiLockLine size={24} />
     const infoText = 'توجه داشته باشید محتوای این درس به صورت فایل میباشد که میتواند، فایل متنی، سوال، تمرین، نکته، داکیومنت باشد.'
 
-    if (item?.isFree || isCourseFree)
-        if (item.lessonType === 'video')
-            lessonIcon = <PiMonitorPlay size={26} />
-        else
-            lessonIcon = <FaRegFile size={20} />
+    if (item?.isFree || isCourseFree) {
+        if (item?.lessonType === 'video')
+            lessonIcon = <PiMonitorPlay size={24} />
+        if (item?.lessonType === 'quiz')
+            lessonIcon = <LuFileQuestion size={22} />
+        if (item?.lessonType === 'file')
+            lessonIcon = <FaRegFile size={18} />
+    }
+
 
     const handleClick = () => {
         if (item?.isFree || isCourseFree) {
@@ -402,8 +406,8 @@ const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index, isCour
     }
 
     let lesson: any;
-    if (item.lessonType === 'video' && (item?.isFree || isCourseFree)) {
 
+    if (item.lessonType === 'video' && (item?.isFree || isCourseFree) && selectedLesson === `${index}`) {
         lesson =
             <div className="flex flex-col gap-4">
                 <VideoPlayer url={item?.lessonFile.fileName} />
@@ -461,8 +465,7 @@ const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index, isCour
     }
 
 
-    if (item.lessonType !== 'video' && (item?.isFree || isCourseFree)) {
-
+    if (item.lessonType !== 'video' && (item?.isFree || isCourseFree && selectedLesson === `${index}`)) {
         lesson =
             <div className="-mt-4 pb-8 flex flex-col ">
 
@@ -554,7 +557,8 @@ const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index, isCour
                 <div className="mt-2 p-2 sm:p-4">
 
                     <div className="w-full h-full min-h-44">
-                        {lesson}
+
+                         {lesson}  
 
                     </div>
 
@@ -825,7 +829,7 @@ const Commment = ({ item, refresh_token, courseId }: { item: any, refresh_token:
                     {item?.commentsReplies?.map((comm: any, index: number) =>
                         <div key={index} className="w-full p-4 bg-white dark:bg-[#1f2e44]/ dark:bg-[#1b293a] rounded-lg shadow-small">
                             <div className="w-full pb-4 flex gap-4 border-b-1 border-b-primary-200 dark:border-b-primary-700">
-                                <Avatar  className="min-h-[2.5rem] max-h-[2.5rem] min-w-[2.5rem] max-w-[2.5rem] md:min-h-[3.5rem] md:min-w-[3.5rem] md:max-h-[3.5rem] md:max-w-[3.5rem]" size="lg" radius="full"
+                                <Avatar className="min-h-[2.5rem] max-h-[2.5rem] min-w-[2.5rem] max-w-[2.5rem] md:min-h-[3.5rem] md:min-w-[3.5rem] md:max-h-[3.5rem] md:max-w-[3.5rem]" size="lg" radius="full"
                                     isBordered color="primary" src={comm?.user?.imageUrl} showFallback />
 
                                 <div className="w-full flex flex-col justify-between gap-1 text-sm md:text-base">

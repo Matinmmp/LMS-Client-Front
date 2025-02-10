@@ -43,8 +43,8 @@ export default async function Home() {
     }
 
     if (data) {
-        let items = data?.academies?.map((item: any, index: number) => {
-            return {
+        let items = data?.teachers?.map((item: any, index: number) => {
+            const s: any = {
                 "@context": "https://schema.org",
                 "@type": "EducationalOrganization",
                 "name": item.engName,
@@ -56,16 +56,19 @@ export default async function Home() {
                     "width": 512,
                     "height": 512
                 },
-
-                "aggregateRating": {
-                    "@type": "AggregateRating",
-                    "ratingValue": item?.rating,
-                    "reviewCount": item?.ratingNumber,
-                    "bestRating": "5",
-                },
             }
-        })
 
+            if (item?.rating || item?.ratingNumber)
+                s.aggregateRating = {
+                    "@type": "AggregateRating",
+                    "ratingValue": `${item?.rating}`,
+                    "reviewCount": `${item?.ratingNumber}`,
+                    "bestRating": "5",
+                }
+
+            return s
+        })
+        console.log(items);
         schema.mainEntity.itemListElement = items;
 
         return (

@@ -34,7 +34,7 @@ export default async function Home() {
             "url": "https://www.vc-virtual-learn.com",
             "logo": {
                 "@type": "ImageObject",
-                "url": `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}logo-main.png`, 
+                "url": `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}logo-main.png`,
                 "width": 512,
                 "height": 512
             }
@@ -43,7 +43,7 @@ export default async function Home() {
 
     if (data) {
         let items = data?.academies?.map((item: any, index: number) => {
-            return {
+            const s: any = {
                 "@context": "https://schema.org",
                 "@type": "EducationalOrganization",
                 "name": item.engName,
@@ -55,14 +55,16 @@ export default async function Home() {
                     "width": 512,
                     "height": 512
                 },
-
-                "aggregateRating": {
-                    "@type": "AggregateRating",
-                    "ratingValue": item?.rating,
-                    "reviewCount": item?.ratingNumber,
-                    "bestRating": "5",
-                },
             }
+            if (item?.rating || item?.ratingNumber)
+                s.aggregateRating = {
+                    "@type": "AggregateRating",
+                    "ratingValue": `${item?.rating}`,
+                    "reviewCount": `${item?.ratingNumber}`,
+                    "bestRating": "5",
+                }
+
+            return s
         })
 
         schema.mainEntity.itemListElement = items;

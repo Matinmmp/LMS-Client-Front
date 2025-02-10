@@ -27,14 +27,14 @@ export default async function CourseDetail({ params: { courseName } }: Props) {
     const name = await decodeURIComponent(decodeTitle(courseName));
 
     const data: any = await getCourseByName(name, refresh_token?.value, access_token?.value)
- 
+
 
     if (data && data?.message === 'دوره‌ای با این نام یافت نشد')
         notFound();
 
     if (data && data.success) {
 
-        const schema = {
+        const schema: any = {
             "@context": "https://schema.org",
             "@type": "Course",
             "name": data?.courseData?.course?.seoMeta?.title || data?.courseData?.course?.name, // عنوان دوره
@@ -55,6 +55,7 @@ export default async function CourseDetail({ params: { courseName } }: Props) {
                 "courseMode": 'Online', // حالت برگزاری دوره
                 "startDate": data?.courseData?.course?.createDate, // تاریخ شروع دوره
                 "endDate": data?.courseData?.course?.endDate, // تاریخ پایان دوره (در صورت وجود)
+                "courseWorkload": "2 ساعت در هفته",
                 "instructor": {
                     "@type": "Person",
                     "name": data?.courseData?.teacher?.engName, // نام مدرس دوره
@@ -70,16 +71,25 @@ export default async function CourseDetail({ params: { courseName } }: Props) {
             "duration": secondsToTimeString(data?.courseData?.course?.courseLength), // مدت زمان دوره
 
             // "isAccessibleForFree": { data?.courseData?.course?.isFree? "true": "false" }, // آیا رایگان است؟
-            "offers": {
-                "@type": "Offer",
-                "price": data?.courseData?.course?.price, // قیمت دوره
-                "priceCurrency": "IRR", // واحد پول
-                "availability": true, // وضعیت دوره
-                "url": `https://www.vc-virtual-learn.com/courses/${encodeTitle(data?.courseData?.course?.urlName)}`  // لینک به دوره
-            }
+
+        }
+        // "offers": {
+        //                 "@type": "Offer",
+        //                 "price": data?.courseData?.course?.price, // قیمت دوره
+        //                 "priceCurrency": "IRR", // واحد پول
+        //                 "availability": true, // وضعیت دوره
+        //                 "url": `https://www.vc-virtual-learn.com/courses/${encodeTitle(data?.courseData?.course?.urlName)}`  // لینک به دوره
+        //             }
+        if (data?.courseData?.course?.rating || data?.courseData?.course?.ratingNumber) {
+            schema.aggregateRating = {
+                "@type": "AggregateRating",
+                "ratingValue": `${data?.courseData?.course?.rating}`,
+                "reviewCount": `${data?.courseData?.course?.ratingNumber}`,
+                "bestRating": "5",
+            };
         }
 
-
+        console.log(schema?.aggregateRating);
         return (
             <section className=" flex flex-col items-center justify-center" >
                 <title>{data?.courseData?.course?.seoMeta?.title ? data?.courseData?.course?.seoMeta?.title : data?.courseData?.course?.name}</title>
@@ -102,7 +112,7 @@ export default async function CourseDetail({ params: { courseName } }: Props) {
                 <link rel="canonical" href={`https://www.vc-virtual-learn.com/courses/${courseName}`} />
 
                 <div className="w-full max-w-7xl mt-28 px-4 md:px-8 2xl:px-2 flex items-center justify-center ">
-                    <CourseInfo data={data?.courseData} isPurchased={data?.isPurchased} userRate={data?.userRate}/>
+                    <CourseInfo data={data?.courseData} isPurchased={data?.isPurchased} userRate={data?.userRate} />
                 </div>
                 <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 

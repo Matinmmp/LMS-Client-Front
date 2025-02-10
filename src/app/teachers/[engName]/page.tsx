@@ -29,7 +29,7 @@ export default async function Teacher({ params: { engName } }: Props) {
         notFound();
 
     if (data && data.success) {
-        const schema = {
+        const schema:any = {
             "@context": "https://schema.org",
             "@type": "EducationalOrganization",
             "name": data?.teacher?.seoMeta?.title,
@@ -42,12 +42,6 @@ export default async function Teacher({ params: { engName } }: Props) {
                 "@type": "WebSite",
                 "name": "ویرچوال لرن",
                 "url": "https://www.vc-virtual-learn.com"
-            },
-            "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": data?.teacher?.rating,
-                "reviewCount": data?.teacher?.ratingNumber,
-                "bestRating": "5",
             },
             "publisher": {
                 "@type": "Organization",
@@ -62,7 +56,16 @@ export default async function Teacher({ params: { engName } }: Props) {
             },
 
         }
+        if (data?.teacher?.rating || data?.teacher?.ratingNumber) {
+            schema.aggregateRating = {
+                "@type": "AggregateRating",
+                "ratingValue": `${data?.teacher?.rating}`,
+                "reviewCount": `${data?.teacher?.ratingNumber}`,
+                "bestRating": "5",
+            };
+        }
 
+   
         return (
             <section className=" flex flex-col items-center justify-center  " >
 
