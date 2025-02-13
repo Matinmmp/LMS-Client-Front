@@ -15,8 +15,8 @@ import { encodeTitle } from '@/src/utils/functions';
 
 const Footer = ({ }) => {
     const categories = buildCategoryTree(navObject.categoryObject.categoryList, null);
-    const academiesObject= navObject.academyObject
-    const teacherObject= navObject.teacherObject
+    const academiesObject = navObject.academyObject
+    const teacherObject = navObject.teacherObject
 
     return (
         <>
@@ -190,8 +190,9 @@ const Footer = ({ }) => {
                         </div>
                     </div>
 
-
                 </div>
+
+
 
             </footer >
 
@@ -201,7 +202,7 @@ const Footer = ({ }) => {
                         <img referrerPolicy="origin" src='https://trustseal.enamad.ir/logo.aspx?id=576221&Code=pBSlMlXgLYOjvQu242SjugLtK89Q0ssL'
                             alt='logo-enamad' style={{ cursor: 'pointer' }} code='pBSlMlXgLYOjvQu242SjugLtK89Q0ssL' />
                     </a>
-           
+
                 </div>
             </div>
             <div className="mt-10 bg-primary-50 py-10 ">

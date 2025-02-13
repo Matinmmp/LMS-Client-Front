@@ -2,6 +2,8 @@ import Link from "next/link";
 import { FaTelegramPlane } from "react-icons/fa";
 import { RxInstagramLogo } from "react-icons/rx";
 import { BiLogoGmail } from "react-icons/bi";
+import { title } from "../primitives";
+import { clsx } from "clsx";
 
 type Props = {
 };
@@ -36,6 +38,7 @@ const Hero = (props: Props) => {
 
 
                     </div>
+
                 </div>
             </div>
 

@@ -15,7 +15,7 @@ import clsx from "clsx";
 
 
 import { FaCaretLeft, FaChevronLeft, FaQuoteRight, FaRegEye, FaStar } from "react-icons/fa6";
-import { MdKeyboardArrowDown, MdKeyboardArrowLeft} from "react-icons/md";
+import { MdKeyboardArrowDown, MdKeyboardArrowLeft } from "react-icons/md";
 import { FaTelegramPlane } from "react-icons/fa";
 import { MdContactPhone } from "react-icons/md";
 import { GrInstagram } from "react-icons/gr";
@@ -27,10 +27,12 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useMutation } from "@tanstack/react-query";
 import { homeSearch } from "@/src/lib/apis/homeApis";
 
-import {  usePathname, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { showToast } from "@/src/utils/toast";
 import { useRouter } from "next/navigation";
 import dynamic from 'next/dynamic';
+import Cookies from "js-cookie";
+import LootieModal from "./LootieModal";
 
 // import Drawer from '@/src/components/Shared/Drawer'
 // import Login from "@/src/components/Auth/Login";
@@ -185,6 +187,7 @@ const Navbar = () => {
             setTimeout(() => setOpen2(false), 500)
         }, 500)
     }
+
 
     return (
         <div className="w-full flex flex-col justify-center items-center sticky md:top-0 z-50 ">
@@ -422,6 +425,10 @@ const Navbar = () => {
                 <Drawer isOpen={isMenuOpen} setIsOpen={setIsMenuOpen}>
                     <DrawerContent setIsOpen={setIsMenuOpen} />
                 </Drawer>
+
+                {
+                    <LootieModal />
+                }
 
                 {
                     route === 'Login' &&
