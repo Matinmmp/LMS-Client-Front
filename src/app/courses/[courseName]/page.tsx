@@ -18,6 +18,14 @@ type Props = {
     params: { courseName: string }
 };
 
+const isDiscountValid = (expireTime: string, percent: number) => {
+    if (!expireTime || !percent) return false;
+    const now = new Date().getTime();
+    const expiry = new Date(expireTime).getTime();
+    return expiry > now; // اگر تاریخ انقضا نگذشته باشد، تخفیف معتبر است
+};
+
+
 export default async function CourseDetail({ params: { courseName } }: Props) {
     const cookieStore = await cookies();
     const refresh_token = cookieStore.get('refresh_token');
@@ -37,11 +45,11 @@ export default async function CourseDetail({ params: { courseName } }: Props) {
         const schema: any = {
             "@context": "https://schema.org",
             "@type": "Course",
-            "name": data?.courseData?.course?.seoMeta?.title || data?.courseData?.course?.name, // عنوان دوره
-            "description": data?.courseData?.course?.seoMeta?.description, // توضیحات دوره
+            "name": data?.courseData?.course?.seoMeta?.title || data?.courseData?.course?.name,
+            "description": data?.courseData?.course?.seoMeta?.description,
             "provider": {
                 "@type": "Organization",
-                "name": "Virtual Learn", // نام پلتفرم شما
+                "name": "Virtual Learn",
                 "url": "https://www.vc-virtual-learn.com"
             },
             "isPartOf": {
@@ -51,47 +59,61 @@ export default async function CourseDetail({ params: { courseName } }: Props) {
             },
             "hasCourseInstance": {
                 "@type": "CourseInstance",
-                "name": data?.courseData?.course?.name, // نام دوره (نسخه)
-                "courseMode": 'Online', // حالت برگزاری دوره
-                "startDate": data?.courseData?.course?.createDate, // تاریخ شروع دوره
-                "endDate": data?.courseData?.course?.endDate, // تاریخ پایان دوره (در صورت وجود)
-                "courseWorkload": "2 ساعت در هفته",
+                "name": data?.courseData?.course?.name,
+                "courseMode": "Online",
+                "startDate": data?.courseData?.course?.createDate,
+                "endDate": data?.courseData?.course?.endDate,
+                "courseWorkload": "PT2H", // 2 ساعت در هفته به فرمت ISO 8601
+                "courseSchedule": "Flexible", // برای جلوگیری از خطا اضافه شده
                 "instructor": {
                     "@type": "Person",
-                    "name": data?.courseData?.teacher?.engName, // نام مدرس دوره
-                    "url": `https://www.vc-virtual-learn.com/teachers/${encodeTitle(data?.courseData?.teacher?.engName)}` // لینک به پروفایل مدرس
+                    "name": data?.courseData?.teacher?.engName,
+                    "url": `https://www.vc-virtual-learn.com/teachers/${encodeTitle(data?.courseData?.teacher?.engName)}`
                 },
                 "location": {
                     "@type": "VirtualLocation",
-                    "url": `https://www.vc-virtual-learn.com/courses/${encodeTitle(data?.courseData?.course?.urlName)}` // آدرس URL صفحه دوره
+                    "url": `https://www.vc-virtual-learn.com/courses/${encodeTitle(data?.courseData?.course?.urlName)}`
                 }
             },
-            "image": data?.courseData?.course?.thumbnail?.imageUrl, // تصویر دوره
+            "image": data?.courseData?.course?.thumbnail?.imageUrl,
+            "duration": secondsToTimeString(data?.courseData?.course?.courseLength),
+            "offers": {
+                "@type": "Offer",
+                "price": data?.courseData?.course?.price,
+                "priceCurrency": "IRR",
+                "availability": "InStock",
+                "category": data?.courseData?.course?.category || "Programming",
+                "url": `https://www.vc-virtual-learn.com/courses/${encodeTitle(data?.courseData?.course?.urlName)}`
+            }
+        };
 
-            "duration": secondsToTimeString(data?.courseData?.course?.courseLength), // مدت زمان دوره
-
-            // "isAccessibleForFree": { data?.courseData?.course?.isFree? "true": "false" }, // آیا رایگان است؟
-
-        }
-        // "offers": {
-        //                 "@type": "Offer",
-        //                 "price": data?.courseData?.course?.price, // قیمت دوره
-        //                 "priceCurrency": "IRR", // واحد پول
-        //                 "availability": true, // وضعیت دوره
-        //                 "url": `https://www.vc-virtual-learn.com/courses/${encodeTitle(data?.courseData?.course?.urlName)}`  // لینک به دوره
-        //             }
-        if (data?.courseData?.course?.rating || data?.courseData?.course?.ratingNumber) {
+        // اضافه کردن امتیاز دوره در صورت وجود
+        if (data?.courseData?.course?.rating && data?.courseData?.course?.ratingNumber) {
             schema.aggregateRating = {
                 "@type": "AggregateRating",
-                "ratingValue": `${data?.courseData?.course?.rating}`,
-                "reviewCount": `${data?.courseData?.course?.ratingNumber}`,
-                "bestRating": "5",
+                "ratingValue": data?.courseData?.course?.rating.toString(),
+                "reviewCount": data?.courseData?.course?.ratingNumber.toString(),
+                "bestRating": "5"
             };
         }
+ 
+        const course = data?.courseData?.course;
 
-        console.log(schema?.aggregateRating);
+        // بررسی معتبر بودن تخفیف
+        const hasDiscount = isDiscountValid(course?.discount?.expireTime, course?.discount?.percent);
+
+        // محاسبه قیمت بعد از تخفیف
+        const priceAfterDiscount = hasDiscount ? course?.price - (course?.price * course?.discount?.percent / 100) : course?.price;
+
         return (
             <section className=" flex flex-col items-center justify-center" >
+                <meta name="product_id" content={data?.courseData?.course?._id} />
+                <meta name="product_name" content={data?.courseData?.course?.faName} />
+                <meta property="og:image" content={data?.courseData?.course?.thumbnail?.imageUrl} />
+                <meta name="product_price" content={priceAfterDiscount} />
+                <meta name="product_old_price" content={course?.price} />
+                <meta name="availability" content="instock" />
+
                 <title>{data?.courseData?.course?.seoMeta?.title ? data?.courseData?.course?.seoMeta?.title : data?.courseData?.course?.name}</title>
                 <meta name="description" content={data?.courseData?.course?.seoMeta?.description} />
                 <meta name="keywords" content={data?.courseData?.course?.seoMeta?.keywords} />
