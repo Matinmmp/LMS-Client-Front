@@ -7,9 +7,19 @@ export const navObject = {
                 "engName": "Udemy",
                 "faName": "یودمی",
                 "imageUrl": "https://images.vc-virtual-learn.com/academy/dxQNOYUnYXegzzGoMjKB-Udemy.png"
+            },
+            {
+                "engName": "GameDev.tv Team",
+                "faName": "تیم گیم‌دو",
+                "imageUrl": "https://images.vc-virtual-learn.com/academy/t2OUjXcZyTZFkoPRCxsZ-GameDev.tv Team.png"
+            },
+            {
+                "engName": "Net Ninja",
+                "faName": "نت نینجا",
+                "imageUrl": "https://images.vc-virtual-learn.com//academy/Pq9aThctYLllSHBVwxCQ-Net Ninja.png"
             }
         ],
-        "total": 1
+        "total": 3
     },
     "teacherObject": {
         "teacherList": [
@@ -22,9 +32,19 @@ export const navObject = {
                 "engName": "Angela Yu",
                 "faName": "آنجلا یو",
                 "imageUrl": "https://images.vc-virtual-learn.com/teacher/pUZMAv8DZZQYZFWEYgcK-Angela Yu.png"
+            },
+            {
+                "engName": "Rick Davidson",
+                "faName": "ریک دیویدسون",
+                "imageUrl": "https://images.vc-virtual-learn.com/teacher/WEtBgHuNwCYbKqHOtLNN-Rick Davidson.png"
+            },
+            {
+                "engName": "Shaun Pelling",
+                "faName": "شان پلینگ",
+                "imageUrl": "https://images.vc-virtual-learn.com/teacher/WOwFVZ5gGAXoLUDmHlZE-Shaun Pelling.png"
             }
         ],
-        "total": 2
+        "total": 4
     },
     "categoryObject": {
         "categoryList": [
@@ -62,6 +82,16 @@ export const navObject = {
                 "_id": "67a3430485834a1f7016e3c0",
                 "name": "برنامه نویسی‌وب",
                 "parentCategoryId": "679ce2791925d32fd822c995"
+            },
+            {
+                "_id": "67aa18c195f59ad5253c1aff",
+                "name": "بازی‌سازی",
+                "parentCategoryId": "679ce2791925d32fd822c995"
+            },
+            {
+                "_id": "67aa18cc95f59ad5253c1b04",
+                "name": "Unity",
+                "parentCategoryId": "67aa18c195f59ad5253c1aff"
             }
         ]
     }
