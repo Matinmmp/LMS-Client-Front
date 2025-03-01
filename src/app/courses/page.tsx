@@ -86,13 +86,10 @@ export default async function CourseSearch(p: any) {
             <meta property="og:title" content="دوره‌های آموزشی | Virtual Learn" />
             <meta property="og:description" content="در این صفحه می‌توانید دوره‌های برنامه‌نویسی مختلف را جستجو کرده و با مقایسه آن‌ها، بهترین گزینه را انتخاب کنید. Virtual Learn انتخاب شما برای یادگیری برنامه‌نویسی به زبان فارسی است." />
             <meta property="og:url" content="https://www.vc-virtual-learn.com/courses" />
-            {/* <meta property="og:image" content="https://www.vc-virtual-learn.com/assets/academies-banner.png" /> */}
+
 
             <meta name="twitter:title" content="دوره‌های آموزشی | Virtual Learn" />
             <meta name="twitter:description" content="در این صفحه می‌توانید دوره‌های برنامه‌نویسی مختلف را جستجو کرده و با مقایسه آن‌ها، بهترین گزینه را انتخاب کنید. Virtual Learn انتخاب شما برای یادگیری برنامه‌نویسی به زبان فارسی است." />
-
-            {/* بعدا عکسو بذار */}
-            {/* <meta name="twitter:image" content="https://www.vc-virtual-learn.com/assets/academies-banner.png" /> */}
 
             <link rel="canonical" href="https://www.vc-virtual-learn.com/courses" />
 

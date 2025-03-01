@@ -18,12 +18,12 @@ type Props = {
 };
 
 const categories = buildCategoryTree(navObject.categoryObject.categoryList, null);
-const academiesObject:any = navObject?.academyObject;
-const teacherObject:any = navObject?.teacherObject;
+const academiesObject: any = navObject?.academyObject;
+const teacherObject: any = navObject?.teacherObject;
 
 const Courses = ({ children }: Props) => {
-    const teachersList = teacherObject?.teacherList?.map((item:any) => { return { engName: item?.engName } });
-    const academiesList = academiesObject?.academyList?.map((item:any) => { return { engName: item?.engName } });
+    const teachersList = teacherObject?.teacherList?.map((item: any) => { return { engName: item?.engName } });
+    const academiesList = academiesObject?.academyList?.map((item: any) => { return { engName: item?.engName } });
 
     const searchParams = useSearchParams();
     const path = usePathname();
@@ -66,7 +66,7 @@ const Courses = ({ children }: Props) => {
 
     const handleAcademySelect = (academyName: string) => {
         const academy: any = academiesList.find((item: any) => item.engName === academyName);
-
+        console.log(academyName);
         if (!selectedAcadmies.includes(academy.engName))
             setSelectedAcadmies((selectedAcadmies) => [...selectedAcadmies, academyName])
         else
@@ -213,8 +213,8 @@ const Courses = ({ children }: Props) => {
 
                         <Acordian open={open2} title="فیلتر آکادمی" setOpen={setOpen2} initialHeight={0} closeInMobile={true}>
                             <div className="w-full flex flex-col gap-3">
-                                {academiesList.map((item: any, index:number) =>
-                                    <Checkbox isSelected={selectedAcadmies.includes(item.engName)} onClick={() => handleAcademySelect(item.engName)}
+                                {academiesList.map((item: any, index: number) =>
+                                    <Checkbox isSelected={selectedAcadmies.includes(item.engName)} onValueChange={() => handleAcademySelect(item.engName)}
                                         key={index} defaultSelected radius="sm" size="lg">
                                         {item.engName}
                                     </Checkbox>)}
@@ -226,8 +226,8 @@ const Courses = ({ children }: Props) => {
                     <div className="w-full bg-[#ffffffbf] dark:bg-[#131d35]  dark:backdrop-blur-md shadow-medium rounded-lg">
                         <Acordian open={open3} title="فیلتر مدرس" setOpen={setOpen3} initialHeight={0} closeInMobile={true}>
                             <div className="w-full flex flex-col gap-3">
-                                {teachersList.map((item: any, index:number) =>
-                                    <Checkbox isSelected={selectedTeachers.includes(item.engName)} onClick={() => handleTeacherSelect(item.engName)}
+                                {teachersList.map((item: any, index: number) =>
+                                    <Checkbox isSelected={selectedTeachers.includes(item.engName)} onValueChange={() => handleTeacherSelect(item.engName)}
                                         key={index} defaultSelected radius="sm" size="lg">
                                         {item.engName}
                                     </Checkbox>)}
@@ -271,10 +271,14 @@ type Props1 = {
 const Acordian = ({ open, children, title, initialHeight, setOpen, closeInMobile = false }: Props1) => {
     const [adjustedInitialHeight, setAdjustedInitialHeight] = useState(initialHeight);
     const [adjustedOpen, setAdjustedOpen] = useState(open);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
-            if (closeInMobile && window.innerWidth < 992) {
+            const mobileView = window.innerWidth < 992;
+            setIsMobile(mobileView);
+
+            if (closeInMobile && mobileView) {
                 setAdjustedInitialHeight(0);
                 setAdjustedOpen(false);
             } else {
@@ -289,10 +293,17 @@ const Acordian = ({ open, children, title, initialHeight, setOpen, closeInMobile
         return () => window.removeEventListener("resize", handleResize); // پاکسازی رویداد
     }, [closeInMobile, initialHeight, open]);
 
+    const toggleAccordion = () => {
+        if (isMobile && closeInMobile) {
+            setAdjustedOpen((prev) => !prev);
+        } else {
+            setOpen(!open);
+        }
+    };
+
     return (
         <div className="flex flex-col justify-center">
-            <div onClick={() => setOpen(!open)}
-                className={`flex items-center justify-between p-4 ${adjustedOpen ? "border-b-1 border-b-primary-50" : ""} cursor-pointer`}>
+            <div onClick={toggleAccordion} className={`flex items-center justify-between p-4 ${adjustedOpen ? "border-b-1 border-b-primary-50" : ""} cursor-pointer`}>
                 <p className="font-semibold text-[1.05rem]">{title}</p>
                 <IoIosArrowBack size={20} className={`${adjustedOpen ? '-rotate-90' : 'rotate-90'} transition-transform`} />
             </div>
@@ -302,15 +313,14 @@ const Acordian = ({ open, children, title, initialHeight, setOpen, closeInMobile
                 initial={{ height: adjustedInitialHeight }}
                 animate={{ height: adjustedOpen ? 'auto' : 0 }}
                 exit={{ height: 0 }}
-                style={{ overflow: 'hidden' }} >
-                <div className="mt-2 p-4">
-                    {children}
-                </div>
+                style={{ overflow: 'hidden' }}
+            >
+                <div className="mt-2 p-4">{children}</div>
             </motion.div>
-
         </div>
-    )
-}
+    );
+};
+
 
 
 type Props2 = {
@@ -324,8 +334,8 @@ const renderCategories = ({ categories, selectedCategories, handleCategorySelect
 
     return categories?.map((category: any) => (
 
-        <div key={category._id} style={{ paddingRight: `${level * 30}px` }}>
-            <Checkbox isSelected={selectedCategories.includes(category.name)} onClick={() => handleCategorySelect(category.name)}
+        <div key={category._id} style={{ paddingRight: `${level * 20}px` }} className="mt-1">
+            <Checkbox isSelected={selectedCategories.includes(category.name)} onValueChange={() => handleCategorySelect(category.name)}
                 defaultSelected radius="sm" size="lg" >
                 {category.name}
             </Checkbox>
