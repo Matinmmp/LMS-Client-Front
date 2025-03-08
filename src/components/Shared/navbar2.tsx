@@ -32,7 +32,7 @@ import { showToast } from "@/src/utils/toast";
 import { useRouter } from "next/navigation";
 import dynamic from 'next/dynamic';
 import Cookies from "js-cookie";
-import LootieModal from "./LootieModal";
+// import LootieModal from "./LootieModal";
 
 // import Drawer from '@/src/components/Shared/Drawer'
 // import Login from "@/src/components/Auth/Login";
@@ -426,9 +426,9 @@ const Navbar = () => {
                     <DrawerContent setIsOpen={setIsMenuOpen} />
                 </Drawer>
 
-                {
+                {/* {
                     <LootieModal />
-                }
+                } */}
 
                 {
                     route === 'Login' &&

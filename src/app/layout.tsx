@@ -7,9 +7,7 @@ import NextTopLoader from 'nextjs-toploader';
 import { Suspense } from "react";
 import Script from "next/script";
 import dynamic from "next/dynamic";
-const Navbar = dynamic(() => import('../components/Shared/navbar2'), {
-    loading: () => <p></p>,
-  })
+const Navbar = dynamic(() => import('../components/Shared/navbar2'), {loading: () => <p></p>,})
 
 
 export const viewport: Viewport = {
@@ -84,9 +82,6 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
 
                             </div>
                             <div className="relative z-20 ">
-                                {/* <Suspense> */}
-                                    <Navbar />
-                                {/* </Suspense> */}
                                 {children}
                                 <div className="mt-64">
                                     <Footer />

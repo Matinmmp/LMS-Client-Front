@@ -1,6 +1,6 @@
 import Hero from "@/src/components/Courses/Hero";
 import { Suspense } from "react";
-import CoursesList from "../../components/Courses/CoursesList";
+import CoursesList from "../../../components/Courses/CoursesList";
 import Courses from "@/src/components/Courses/Courses";
 import { Spinner } from "@nextui-org/spinner";
 import Script from "next/script";

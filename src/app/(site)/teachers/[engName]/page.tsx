@@ -1,5 +1,5 @@
 import { getAllTeachersName, getTeacherByName } from "@/src/lib/apis/teacherApis";
-import TeacherInfo from '../../../components/Teachers/TeacherInfo';
+import TeacherInfo from '../../../../components/Teachers/TeacherInfo';
 import { decodeTitle, encodeTitle } from "@/src/utils/functions";
 import { notFound } from "next/navigation";
 

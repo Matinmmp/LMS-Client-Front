@@ -16,7 +16,6 @@ import FavoritAcademies from "@/src/components/HomePage/FavoritAcademies";
 import FavoritTeachers from "@/src/components/HomePage/FavoritTeachers";
 import FavoriteCourses from "@/src/components/HomePage/FavoriteCourses";
 import DiscountCourses from "@/src/components/HomePage/DiscountCourses";
-import VideoPlayer from "@/src/components/Shared/VideoPlayer";
 
 
 
