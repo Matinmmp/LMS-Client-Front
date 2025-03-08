@@ -1,7 +1,5 @@
-import Footer from "@/src/components/Shared/Footer";
+import BlogHeader from "@/src/blog assetes/components/Header";
 import "@/src/styles/globals.css";
-import dynamic from "next/dynamic";
-const Navbar = dynamic(() => import('../../components/Shared/navbar2'), { loading: () => <p></p>, })
 
 
 export default function RootLayout({ children, }: { children: React.ReactNode }) {
@@ -18,14 +16,9 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
             <meta name="enamad" content="67578191" />
             <meta property="og:site_name" content="Virtual Learn" />
 
-            <div className="relative z-20 bg-[#fffdfd] dark:bg-[#020617]">
-
-                <Navbar />
-
+            <div className="relative z-20 bg-[#fffdfd] dark:bg-[#111111] bg-[#202425]/ dark:bg-[#000]/ min-h-screen">
+                <BlogHeader/>
                 {children}
-                <div className="mt-64">
-                    <Footer />
-                </div>
             </div>
 
         </>
