@@ -6,7 +6,6 @@ import { encodeTitle, toPersianNumber } from "@/src/utils/functions";
 import { link as linkStyles } from "@nextui-org/theme";
 import { useEffect, useRef, useState } from "react";
 import { navObject } from "@/src/config/site";
-import { Avatar } from "@nextui-org/avatar";
 import { Edu } from "@/src/config/fonts";
 import { useTheme } from "next-themes";
 import NextLink from "next/link";
@@ -31,16 +30,15 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { showToast } from "@/src/utils/toast";
 import { useRouter } from "next/navigation";
 import dynamic from 'next/dynamic';
-import Cookies from "js-cookie";
 
-const UserDropDown = dynamic(() => import("../../components/UserDropDown"), { ssr: false });
+const UserDropDown = dynamic(() => import("../UserDropDown"), { ssr: false });
 
 const Drawer = dynamic(() => import("@/src/components/Shared/Drawer"), { ssr: false });
 const Login = dynamic(() => import("@/src/components/Auth/Login"), { ssr: false });
 const SignUp = dynamic(() => import("@/src/components/Auth/SignUp"), { ssr: false });
 const Verification = dynamic(() => import("@/src/components/Auth/Verfication"), { ssr: false });
 const CustomeModal = dynamic(() => import("@/src/components/Shared/CustomeModal"), { ssr: false });
-const Cart = dynamic(() => import("../../components/Shared/Cart"), { ssr: false });
+const Cart = dynamic(() => import("../Shared/Cart"), { ssr: false });
 const ForgetPassword = dynamic(() => import("@/src/components/Auth//ForgetPasswrod"), { ssr: false });
 
 
@@ -75,9 +73,6 @@ const links = [
 ]
 
 const categories: any = buildCategoryTree(navObject.categoryObject.categoryList, null);
-const academiesObject: any = navObject.academyObject
-const teacherObject: any = navObject.teacherObject
-
 
 const BlogNavbar = () => {
     const path = usePathname();
@@ -186,7 +181,7 @@ const BlogNavbar = () => {
             <div className={`sticky top-10 w-full transition-all ${!scrolled ? "max-w-full md:px-0 left-0 right-0" : "md:max-w-[90rem] md:px-4 md:mt-4 "}`}>
 
                 <nav className={`w-full backdrop-blur-[10px] bg-[#ffffffb7] dark:bg-[#2020204d]
-                     relative z-[57] ${!scrolled ? 'h-[5.5rem] rounded-none ' : 'h-24 md:rounded-2xl md:border-[1px] md:border-[#58585880]'} `}>
+                     relative z-[57] ${!scrolled ? 'h-[5.5rem] rounded-none ' : 'h-24 md:rounded-2xl md:border-[1px] md:border-[#58585880]/ md:border-secondary-500 shadow-medium'} `}>
 
                     <header className='h-full px-4 flex items-center gap-4 relative'  >
 
@@ -198,6 +193,17 @@ const BlogNavbar = () => {
                         </NextLink>
 
                         <ul className="ms-10 md:ms-6 hidden md:flex gap-4 justify-start ml-2">
+                            <li >
+                                <NextLink color="foreground" href={"/blog"} className={clsx(linkStyles({ color: "foreground" }), "font-semibold")} >
+                                    خانه
+                                </NextLink>
+                            </li>
+                            <li >
+                                <NextLink color="foreground" href={"/blog/categories"} className={clsx(linkStyles({ color: "foreground" }), "font-semibold")} >
+                                    دسته بندی‌ها
+                                </NextLink>
+                            </li>
+
                             <li>
                                 <DropDown link={"/courses"} position="bottom-middle"
                                     title={
@@ -246,62 +252,6 @@ const BlogNavbar = () => {
                             </li>
 
                             <li>
-                                <DropDown link={"/teachers"} position="bottom-left"
-                                    title={
-                                        <div className="w-full flex items-center justify-between">
-                                            <span>مدرس‌ها</span>
-                                            <MdKeyboardArrowDown size={24} />
-                                        </div>
-                                    }>
-
-                                    <div className="w-[30rem] max-h-[50rem] p-4 grid gap-6 grid-cols-4 justify-beetwen " dir='rtl'>
-                                        {teacherObject.teacherList.slice(0, 7).map((item: any, index: number) => (
-                                            <NextLink href={`/teachers/${encodeTitle(item.engName)}`} key={index} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
-                                                <Avatar radius={'full'} isBordered size={'lg'} color={'primary'} name={item.engName} showFallback src={item.imageUrl} />
-                                                <span className='text-center whitespace-break-spaces'>{item.engName}</span>
-                                            </NextLink>
-                                        ))}
-                                        <NextLink href={"/teachers"} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
-                                            <Avatar name={toPersianNumber(teacherObject.total - teacherObject.teacherList.slice(0, 7).length) + '+'}
-                                                radius={'full'} isBordered size={'lg'} color={'primary'} className='text-xl cursor-pointer' />
-                                            <span className='text-center'>مشاهده همه</span>
-                                        </NextLink>
-                                    </div>
-                                </DropDown>
-                            </li>
-
-                            <li>
-                                <DropDown link={"/academies"} position="bottom-left"
-                                    title={
-                                        <div className="w-full flex items-center justify-between">
-                                            <span>آکادمی‌ها</span>
-                                            <MdKeyboardArrowDown size={24} />
-                                        </div>
-                                    }>
-
-                                    <div className="w-[25rem] max-h-[50rem] p-4 grid gap-6 grid-cols-3 justify-beetwen " dir='rtl'>
-                                        {academiesObject.academyList.slice(0, 5).map((item: any, index: number) => (
-                                            <NextLink href={`/academies/${encodeTitle(item.engName)}`} key={index} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
-                                                <Avatar radius={'sm'} isBordered size={'lg'} color={'secondary'} name={item.engName} showFallback src={item.imageUrl} />
-                                                <span className='text-center whitespace-break-spaces'>{item.engName}</span>
-                                            </NextLink>
-                                        ))}
-                                        <NextLink href={"/academies"} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer'>
-                                            <Avatar name={toPersianNumber(academiesObject.total - academiesObject.academyList.slice(0, 5).length) + '+'}
-                                                radius={'sm'} isBordered size={'lg'} color={'secondary'} className='text-xl cursor-pointer' />
-                                            <span className='text-center'>مشاهده همه</span>
-                                        </NextLink>
-                                    </div>
-                                </DropDown>
-                            </li>
-
-                            {/* <li >
-                                <NextLink color="foreground" href={"/"} className={clsx(linkStyles({ color: "foreground" }), "font-semibold")} >
-                                    بلاگ
-                                </NextLink>
-                            </li> */}
-
-                            <li>
                                 <DropDown link={"/"} position="bottom-left"
                                     title={
                                         <div className="w-full flex items-center justify-between">
@@ -333,7 +283,6 @@ const BlogNavbar = () => {
 
                             <li className="me-2">
                                 <Cart />
-
                             </li>
 
                             <UserDropDown setOpen={setOpen} setRoute={setRoute} />
@@ -348,13 +297,13 @@ const BlogNavbar = () => {
 
                     <div className=" w-full max-w-3xl flex justify-center transition-all ">
                         <div ref={searchRef} onClick={() => setOpen2(true)}
-                            className={`min-h-14 flex flex-col items-center md:border-[#58585880] ${open2 ? "w-full px-4" : "w-14 rounded-b-full"} ${scrolled ? ' md:border-[1px] md:border-t-0' : 'border-0'} rounded-b-[2rem]
+                            className={`min-h-14 flex flex-col items-center md:border-[#58585880]/ border-secondary-500 shadow-medium ${open2 ? "w-full px-4" : "w-14 rounded-b-full"} ${scrolled ? ' md:border-[1px] md:border-t-0' : 'border-0'} rounded-b-[2rem]
                             cursor-pointer transition-all backdrop-blur-xl bg-[#ffffffb7] dark:bg-[#2020204d]`}>
 
                             <div className={`h-11 mt-1.5 ${open2 ? "w-full ps-4 border-primary-400" : "w-11 dark:border-white "} 
                               p-[2px] border-[3px] rounded-[5rem] transition-all  relative border-primary-400 `}>
 
-                                <input placeholder="جستوجو بین دوره‌ها" value={search} onChange={handleSearch}
+                                <input placeholder="جستوجو بین بلاگ‌ها" value={search} onChange={handleSearch}
                                     className={`${open2 ? "w-11/12" : "w-0"} h-8 mt-[2px] absolute right-3 bg-transparent placeholder:text-sm md:text-lg placeholder:pb-1 ps-1`} />
 
                                 <div onClick={handleSearchClick}
@@ -416,10 +365,6 @@ const BlogNavbar = () => {
                 <Drawer isOpen={isMenuOpen} setIsOpen={setIsMenuOpen}>
                     <DrawerContent setIsOpen={setIsMenuOpen} />
                 </Drawer>
-
-                {/* {
-                    <LootieModal />
-                } */}
 
                 {
                     route === 'Login' &&
@@ -510,12 +455,20 @@ const DrawerContent = ({ setIsOpen }: DrawerContentProps) => {
                 <div className="mt-8 w-11/12 h-[0.05rem] bg-primary-400"></div>
 
 
-                <div className="w-full mt-6 px-2 flex flex-col gap-4">
+                <ul className="w-full mt-6 px-2 flex flex-col gap-4">
+                    <li >
+                        <NextLink color="foreground" href={"/blog"} className="w-full text-base hover:text-primary-400 transition relative" >
+                            خانه
+                        </NextLink>
+                    </li>
+                    <li >
+                        <NextLink color="foreground" href={"/blog/categories"} className="w-full text-base hover:text-primary-400 transition relative" >
+                            دسته بندی‌ها
+                        </NextLink>
+                    </li>
                     <DrawerDropDown categoryList={categories[0]?.subCategories} setIsOpen={setIsOpen} />
-                    <DrawerDropDown2 setIsOpen={setIsOpen} baseUrl="teachers" color={'primary'} total={teacherObject?.total} list={teacherObject?.teacherList} title={'مدرس‌ها'} radius="full" />
-                    <DrawerDropDown2 setIsOpen={setIsOpen} baseUrl="academies" color={'secondary'} total={academiesObject?.total} list={academiesObject?.academyList} title={'آکادمی ها'} radius="sm" />
                     <DrawerDropDown3 title="لینک‌های مفید" setIsOpen={setIsOpen} />
-                </div>
+                </ul>
             </div>
 
         </div>
@@ -610,71 +563,13 @@ const DrawerDropDown = ({ categoryList, setIsOpen }: DrawerDropDownProps) => {
 }
 
 
-type DrawerDropDown2Props = {
-    list: any[];
-    title: string;
-    radius: 'full' | 'sm',
-    total: number,
-    color: 'primary' | 'secondary',
-    baseUrl: string,
-    setIsOpen: (isOpen: boolean) => void;
-
-};
-const DrawerDropDown2 = ({ list, title, radius, total, color, baseUrl, setIsOpen }: DrawerDropDown2Props) => {
-    const [open, setOpen] = useState(false);
-
-    const containerVariants = {
-        open: { maxHeight: "40rem", opacity: 1, transition: { duration: 0.3 } },
-        closed: { maxHeight: 0, transition: { duration: 0.3 } },
-    };
-
-    return (
-        <div className="w-full flex flex-col">
-            <div className="w-full flex items-center justify-between cursor-pointer ">
-                <NextLink color="foreground" href={`/${baseUrl}`} onClick={() => setTimeout(() => setIsOpen(false), 200)}
-                    className="w-full text-base hover:text-primary-400 transition relative" >
-                    <div className='flex items-center gap-1'>
-                        <FaCaretLeft size={12} className="text-primary-400" />
-                        <span>{title}</span>
-                    </div>
-
-                </NextLink>
-
-                {open ?
-                    <CiSquareMinus size={24} className="text-primary-400" onClick={() => setOpen(false)} />
-                    :
-                    <CiSquarePlus size={24} className="text-primary-400" onClick={() => setOpen(true)} />}
-            </div>
-
-            <motion.div className="overflow-hidden" initial={false} animate={open ? "open" : "closed"} variants={containerVariants}>
-
-                <div className='w-full p-2 pt-8 grid gap-6 grid-cols-3 justify-beetwen'>
-
-                    {list?.slice(0, 8)?.map((item, index) => (
-                        <NextLink href={`/${baseUrl}/${encodeTitle(item?.engName)}`} key={index} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer' >
-                            <Avatar radius={radius} isBordered size={'lg'} color={color} name={item?.engName} showFallback src={item?.imageUrl} />
-                            <span className='text-center whitespace-break-spaces'>{item?.engName}</span>
-                        </NextLink>
-                    ))}
-                    {total > 8 ?
-                        <NextLink href={`/${baseUrl}`} className='flex flex-col items-center gap-2 hover:text-primary-400 transition cursor-pointer' onClick={() => setTimeout(() => setIsOpen(false), 200)}>
-                            <Avatar name={toPersianNumber(total - list.slice(8)?.length) + '+'}
-                                radius={radius} isBordered size={'lg'} color={color} className='text-xl cursor-pointer' />
-                            <span className='text-center'>مشاهده همه</span>
-                        </NextLink> : ''}
-
-                </div>
-
-            </motion.div>
-        </div>
-    );
-}
 
 type DrawerDropDown3Props = {
     title: string;
     setIsOpen: (isOpen: boolean) => void;
 
 };
+
 const DrawerDropDown3 = ({ title, setIsOpen }: DrawerDropDown3Props) => {
     const [open, setOpen] = useState(false);
 
