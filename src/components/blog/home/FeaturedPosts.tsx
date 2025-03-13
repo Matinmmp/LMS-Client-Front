@@ -10,9 +10,9 @@ export default function FeaturedPosts() {
             <h2 className=" text-2xl lg:text-3xl xl:text-4xl font-semibold underline decoration-secondary-500
              decoration-wavy decoration-[2px] underline-offset-[1rem] lg:underline-offset-[1.5rem]">پست‌های ویژه</h2>
             <div className="w-full mt-16 p-6 pe-3 rounded-md border-1 border-secondary-500 shadow-medium">
-                <div className="flex flex-col lg:flex-row gap-6">
+                <div className="flex flex-col md:flex-row gap-6">
 
-                    <div className="w-full lg:w-1/2">
+                    <div className="w-full md:w-1/2">
                         <div className="w-full flex flex-col">
                             <Image src={'https://buckettest.storage.c2.liara.space/images/academy19.png'} alt="1" width={500} height={300}
                                 className="w-full rounded-md aspect-video object-cover object-center shadow-medium" />
@@ -35,7 +35,7 @@ export default function FeaturedPosts() {
                         </div>
                     </div>
 
-                    <div className="w-full lg:w-1/2">
+                    <div className="w-full md:w-1/2">
                         <div className="pe-3 overflow-auto scrollbar-w-[10px] mt-8 max-h-[480px] scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-border dark:scrollbar-track-gray-800 dark:scrollbar-thumb-darkmode-theme-dark md:mt-0 md:col-6">
 
                             <div className="mb-6 flex gap-4 pb-6 border-b border-border">

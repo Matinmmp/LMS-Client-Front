@@ -1,7 +1,7 @@
 
 import MainSlider from '@/src/components/blog/home/MainSlider';
 import FeaturedPosts from '@/src/components/blog/home/FeaturedPosts';
-import {VirtualInfo,FeaturedSidebar} from '@/src/components/blog/home/Components';
+import { VirtualInfo, FeaturedSidebar, NewSteler } from '@/src/components/blog/home/Components';
 
 export default function Home() {
 
@@ -18,15 +18,16 @@ export default function Home() {
             <div className='mt-4'></div>
             <MainSlider />
 
-            <div className='mt-20'></div>
+    
 
-            <div className='w-full flex flex-col lg:flex-row gap-6'>
-                <div className=' w-[70%]'>
+            <div className='mt-10 lg:mt-20 w-full flex flex-col lg:flex-row gap-6'>
+                <div className='w-full lg:w-[70%]'>
                     <FeaturedPosts />
                 </div>
-                <aside className='mt-10 w-[30%] flex flex-col gap-8'>
-                        <VirtualInfo />
-                    <FeaturedSidebar/>
+                <aside className='mt-10 w-full lg:w-[30%] flex flex-col gap-8'>
+                    <VirtualInfo />
+                    <FeaturedSidebar />
+                    <NewSteler />
                 </aside>
 
             </div>

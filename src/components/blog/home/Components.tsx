@@ -1,5 +1,4 @@
 'use client'
-import { FaUser } from "react-icons/fa";
 import Image from "next/image";
 import { IoLogoLinkedin } from "react-icons/io5";
 import Link from 'next/link';
@@ -8,13 +7,16 @@ import { useTheme } from "next-themes";
 import { FaSquareInstagram } from "react-icons/fa6";
 import { FaTelegram } from "react-icons/fa";
 import { Button } from "@nextui-org/button";
-
+import { LuCalendarDays } from "react-icons/lu";
+import { Avatar } from "@nextui-org/avatar";
+import { Input } from "@nextui-org/input";
+import { MdEmail } from "react-icons/md";
 
 function VirtualInfo() {
     const { theme } = useTheme();
 
     return (
-        <section className="mt-16  w-full relative">
+        <section className="lg:mt-16  w-full relative">
 
             <Image src={process.env.NEXT_PUBLIC_IMAGE_BASE_URL + 'background1.jpeg'} alt="back" width={300} height={300}
                 className="absolute z-10 opacity-30 h-full aspect-square w-full bg-contain bg-center" style={{ mixBlendMode: 'soft-light' }} />
@@ -54,7 +56,119 @@ function FeaturedSidebar() {
                     <Button variant="shadow" color="secondary" radius="full" className="font-bold" size="lg">جدید‌ها</Button>
 
                 </div>
+                <div className='mt-12'>
+                    <div className="mb-4 flex items-center gap-4 pb-6 border-b border-border border-secondary-500">
+                        <Avatar className="w-20 h-20" isBordered size={'lg'} color="secondary" radius="full" src="https://buckettest.storage.c2.liara.space/images/academy19.png" />
 
+                        <div className='mb-3'>
+                            <h3 className="text-lg font-medium mb-2">
+                                <a className="block hover:text-secondary-500">یه بلاگ خیلی خوب</a>
+                            </h3>
+                            <div className="flex items-center gap-2">
+                                <LuCalendarDays size={14} />
+                                <span className="text-xs font-medium">ویرچوال لرن</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className="mb-4 flex items-center gap-4 pb-6 border-b border-border border-secondary-500">
+                        <Avatar className="w-20 h-20" isBordered size={'lg'} color="secondary" radius="full" src="https://buckettest.storage.c2.liara.space/images/academy19.png" />
+
+                        <div className='mb-3'>
+                            <h3 className="text-lg font-medium mb-2">
+                                <a className="block hover:text-secondary-500">یه بلاگ خیلی خوب</a>
+                            </h3>
+                            <div className="flex items-center gap-2">
+                                <LuCalendarDays size={14} />
+                                <span className="text-xs font-medium">ویرچوال لرن</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className="mb-4 flex items-center gap-4 pb-6 border-b border-border border-secondary-500">
+                        <Avatar className="w-20 h-20" isBordered size={'lg'} color="secondary" radius="full" src="https://buckettest.storage.c2.liara.space/images/academy19.png" />
+
+                        <div className='mb-3'>
+                            <h3 className="text-lg font-medium mb-2">
+                                <a className="block hover:text-secondary-500">یه بلاگ خیلی خوب</a>
+                            </h3>
+                            <div className="flex items-center gap-2">
+                                <LuCalendarDays size={14} />
+                                <span className="text-xs font-medium">ویرچوال لرن</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className="mb-4 flex items-center gap-4 pb-6 border-b border-border border-secondary-500">
+                        <Avatar className="w-20 h-20" isBordered size={'lg'} color="secondary" radius="full" src="https://buckettest.storage.c2.liara.space/images/academy19.png" />
+
+                        <div className='mb-3'>
+                            <h3 className="text-lg font-medium mb-2">
+                                <a className="block hover:text-secondary-500">یه بلاگ خیلی خوب</a>
+                            </h3>
+                            <div className="flex items-center gap-2">
+                                <LuCalendarDays size={14} />
+                                <span className="text-xs font-medium">ویرچوال لرن</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className="mb-4 flex items-center gap-4 pb-6 border-b border-border border-secondary-500">
+                        <Avatar className="w-20 h-20" isBordered size={'lg'} color="secondary" radius="full" src="https://buckettest.storage.c2.liara.space/images/academy19.png" />
+
+                        <div className='mb-3'>
+                            <h3 className="text-lg font-medium mb-2">
+                                <a className="block hover:text-secondary-500">یه بلاگ خیلی خوب</a>
+                            </h3>
+                            <div className="flex items-center gap-2">
+                                <LuCalendarDays size={14} />
+                                <span className="text-xs font-medium">ویرچوال لرن</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    );
+}
+
+function NewSteler() {
+
+
+    return (
+        <section className="w-full relative">
+            <Image src={process.env.NEXT_PUBLIC_IMAGE_BASE_URL + 'background1.jpeg'} alt="back" width={300} height={300}
+                className="absolute z-10 opacity-30 h-full aspect-square w-full bg-cover bg-center" style={{ mixBlendMode: 'soft-light' }} />
+
+            <div className="w-full p-4 pb-6 pe-3 rounded-md border-1 border-secondary-500 shadow-medium relative">
+                <div className="flex flex-col gap-4 items-center relative z-20">
+
+                    <h4 className="mt-2 text-2xl font-semibold underline decoration-secondary-500
+                decoration-wavy decoration-[2px] underline-offset-[1rem] lg:underline-offset-[1.3rem] text-center">خبرنامه‌ی ویرچوال لرن</h4>
+
+                    <p className="mt-8 px-2 text-sm text-center">عضو خبرنامه‌ی ویرچول لرن بشید تا از آخرین احبار حوضه‌ی برنامه نویسی و تکنبوژی مطلع بشید.</p>
+
+                    <div className="mt-4 w-full">
+                        <Input
+                            radius="full"
+                            labelPlacement="outside"
+                            placeholder="you@example.com"
+                            className="w-full"
+                            size="lg"
+                            color={'secondary'}
+                            variant={'bordered'}
+                            startContent={
+                                <MdEmail className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                            }
+                            type="email"
+                        />
+
+                    <Button  variant="shadow" color="secondary" radius="full" className="mt-4 w-full font-bold" size="lg">عضویت</Button>
+
+                    </div>
+                </div>
             </div>
         </section>
     );
@@ -62,5 +176,6 @@ function FeaturedSidebar() {
 
 export {
     VirtualInfo,
-    FeaturedSidebar
+    FeaturedSidebar,
+    NewSteler
 }
