@@ -3,6 +3,7 @@ import MainSlider from '@/src/components/blog/home/MainSlider';
 import BlogHeader from '../../../components/blog/Header';
 import Hero from '@/src/components/HomePage/Hero';
 import FeaturedPosts from '@/src/components/blog/home/FeaturedPosts';
+import VirtualInfo from '@/src/components/blog/home/Components';
 
 export default function Home() {
 
@@ -16,17 +17,21 @@ export default function Home() {
 
             </div>
 
+            <div className='mt-4'></div>
             <MainSlider />
 
-            <div className='mt-32'></div>
+            <div className='mt-20'></div>
 
-            <div className='w-full flex flex-col lg:flex-row'>
+            <div className='w-full flex flex-col lg:flex-row gap-6'>
                 <div className=' w-[70%]'>
                     <FeaturedPosts />
                 </div>
-                <div className=' w-[30%]'>
+                <aside className='mt-10 w-[30%]'>
+                    <div className=''>
+                        <VirtualInfo />
 
-                </div>
+                    </div>
+                </aside>
 
             </div>
             <p>ffff</p>
