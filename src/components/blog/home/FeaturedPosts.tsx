@@ -2,6 +2,7 @@
 import { FaUser } from "react-icons/fa";
 import Image from "next/image";
 import { LuCalendarDays } from "react-icons/lu";
+import { Button } from "@nextui-org/button";
 
 export default function FeaturedPosts() {
     return (
@@ -28,6 +29,9 @@ export default function FeaturedPosts() {
 
                             </div>
                             <p className='mt-2 leading-7 text-[#555555] dark:text-gray-200'>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری   </p>
+                            <div className='mt-5'>
+                                <Button variant="shadow" color="secondary" radius="full" className="font-bold">مطالعه‌ی بیشتر</Button>
+                            </div>
                         </div>
                     </div>
 

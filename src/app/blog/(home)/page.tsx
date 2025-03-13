@@ -1,9 +1,7 @@
 
 import MainSlider from '@/src/components/blog/home/MainSlider';
-import BlogHeader from '../../../components/blog/Header';
-import Hero from '@/src/components/HomePage/Hero';
 import FeaturedPosts from '@/src/components/blog/home/FeaturedPosts';
-import VirtualInfo from '@/src/components/blog/home/Components';
+import {VirtualInfo,FeaturedSidebar} from '@/src/components/blog/home/Components';
 
 export default function Home() {
 
@@ -26,11 +24,9 @@ export default function Home() {
                 <div className=' w-[70%]'>
                     <FeaturedPosts />
                 </div>
-                <aside className='mt-10 w-[30%]'>
-                    <div className=''>
+                <aside className='mt-10 w-[30%] flex flex-col gap-8'>
                         <VirtualInfo />
-
-                    </div>
+                    <FeaturedSidebar/>
                 </aside>
 
             </div>
