@@ -1,4 +1,5 @@
 import BlogHeader from "@/src/components/blog/Header";
+import Footer from "@/src/components/Shared/Footer";
 import "@/src/styles/globals.css";
 
 
@@ -23,6 +24,8 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
                 </div>
                 <BlogHeader />
                 {children}
+                <div className="mt-24"></div>
+                <Footer />
             </div>
 
         </>

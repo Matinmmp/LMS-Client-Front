@@ -5,12 +5,13 @@ import Link from 'next/link';
 import { Edu } from "@/src/config/fonts";
 import { useTheme } from "next-themes";
 import { FaSquareInstagram } from "react-icons/fa6";
-import { FaTelegram } from "react-icons/fa";
+import { FaTelegram, FaUser } from "react-icons/fa";
 import { Button } from "@nextui-org/button";
 import { LuCalendarDays } from "react-icons/lu";
 import { Avatar } from "@nextui-org/avatar";
 import { Input } from "@nextui-org/input";
 import { MdEmail } from "react-icons/md";
+import { useState } from "react";
 
 function VirtualInfo() {
     const { theme } = useTheme();
@@ -45,6 +46,7 @@ function VirtualInfo() {
 }
 
 function FeaturedSidebar() {
+    const [state, setState] = useState(1);
     return (
         <section className="w-full relative">
             <div className="w-full p-4 pe-3 rounded-md border-1 border-secondary-500 shadow-medium">
@@ -52,8 +54,8 @@ function FeaturedSidebar() {
                 decoration-wavy decoration-[2px] underline-offset-[1rem] lg:underline-offset-[1rem] text-center">محبوب‌ها</h4>
 
                 <div className='mt-10 flex justify-center gap-3'>
-                    <Button variant="bordered" color="secondary" radius="full" className="font-bold" size="lg">محبوب‌ها</Button>
-                    <Button variant="shadow" color="secondary" radius="full" className="font-bold" size="lg">جدید‌ها</Button>
+                    <Button onPress={() => setState(1)} variant={state ? 'shadow' : 'bordered'} color="secondary" radius="full" className="font-bold" size="lg">محبوب‌ها</Button>
+                    <Button onPress={() => setState(0)} variant={!state ? 'shadow' : 'bordered'} color="secondary" radius="full" className="font-bold" size="lg">جدید‌ها</Button>
 
                 </div>
                 <div className='mt-12'>
@@ -165,9 +167,89 @@ function NewSteler() {
                             type="email"
                         />
 
-                    <Button  variant="shadow" color="secondary" radius="full" className="mt-4 w-full font-bold" size="lg">عضویت</Button>
+                        <Button variant="shadow" color="secondary" radius="full" className="mt-4 w-full font-bold" size="lg">عضویت</Button>
 
                     </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+function ReceentPosts() {
+
+    return (
+        <section className="w-full relative">
+            <h2 className="text-2xl lg:text-3xl text-right font-semibold underline decoration-secondary-500
+                decoration-wavy decoration-[2px] underline-offset-[1rem] lg:underline-offset-[1.2rem]">پست‌های اخیر</h2>
+
+            <div className="mt-10 w-full p-4 pb-6 rounded-md border-1 border-secondary-500 shadow-medium relative">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-10">
+
+                    <div className="w-full flex flex-col">
+                        <Image src={'https://buckettest.storage.c2.liara.space/images/academy19.png'} alt="1" width={500} height={300}
+                            className="w-full rounded-md aspect-video object-cover object-center shadow-medium" />
+                        <h3 className="mt-3 text-xl lg:text-2xl font-medium hover:text-secondary-500 cursor-pointer">پست ویژه‌ی اول</h3>
+                        <div className="mt-4 flex items-center gap-4 text-[#555555] dark:text-gray-200">
+                            <div className="flex items-center gap-2">
+                                <FaUser size={14} />
+                                <span className="text-xs font-medium">ویرچوال لرن</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <LuCalendarDays size={14} />
+                                <span className="text-xs font-medium">ویرچوال لرن</span>
+                            </div>
+
+                        </div>
+                        <p className='mt-4 leading-7 text-[#555555] dark:text-gray-200'>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می با نرم افزارها شناخت بیشتری   </p>
+                        <div className='mt-5'>
+                            <Button variant="shadow" color="secondary" radius="full" className="font-bold">مطالعه‌ی بیشتر</Button>
+                        </div>
+                    </div>
+
+                    <div className="w-full flex flex-col">
+                        <Image src={'https://buckettest.storage.c2.liara.space/images/academy19.png'} alt="1" width={500} height={300}
+                            className="w-full rounded-md aspect-video object-cover object-center shadow-medium" />
+                        <h3 className="mt-3 text-xl lg:text-2xl font-medium hover:text-secondary-500 cursor-pointer">پست ویژه‌ی اول</h3>
+                        <div className="mt-4 flex items-center gap-4 text-[#555555] dark:text-gray-200">
+                            <div className="flex items-center gap-2">
+                                <FaUser size={14} />
+                                <span className="text-xs font-medium">ویرچوال لرن</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <LuCalendarDays size={14} />
+                                <span className="text-xs font-medium">ویرچوال لرن</span>
+                            </div>
+
+                        </div>
+                        <p className='mt-4 leading-7 text-[#555555] dark:text-gray-200'>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می با نرم افزارها شناخت بیشتری   </p>
+                        <div className='mt-5'>
+                            <Button variant="shadow" color="secondary" radius="full" className="font-bold">مطالعه‌ی بیشتر</Button>
+                        </div>
+                    </div>
+
+                    <div className="w-full flex flex-col">
+                        <Image src={'https://buckettest.storage.c2.liara.space/images/academy19.png'} alt="1" width={500} height={300}
+                            className="w-full rounded-md aspect-video object-cover object-center shadow-medium" />
+                        <h3 className="mt-3 text-xl lg:text-2xl font-medium hover:text-secondary-500 cursor-pointer">پست ویژه‌ی اول</h3>
+                        <div className="mt-4 flex items-center gap-4 text-[#555555] dark:text-gray-200">
+                            <div className="flex items-center gap-2">
+                                <FaUser size={14} />
+                                <span className="text-xs font-medium">ویرچوال لرن</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <LuCalendarDays size={14} />
+                                <span className="text-xs font-medium">ویرچوال لرن</span>
+                            </div>
+
+                        </div>
+                        <p className='mt-4 leading-7 text-[#555555] dark:text-gray-200'>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می با نرم افزارها شناخت بیشتری   </p>
+                        <div className='mt-5'>
+                            <Button variant="shadow" color="secondary" radius="full" className="font-bold">مطالعه‌ی بیشتر</Button>
+                        </div>
+                    </div>
+                   
+
                 </div>
             </div>
         </section>
@@ -177,5 +259,6 @@ function NewSteler() {
 export {
     VirtualInfo,
     FeaturedSidebar,
-    NewSteler
+    NewSteler,
+    ReceentPosts
 }
