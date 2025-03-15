@@ -1,7 +1,7 @@
 
 import MainSlider from '@/src/components/blog/home/MainSlider';
 import FeaturedPosts from '@/src/components/blog/home/FeaturedPosts';
-import { VirtualInfo, FeaturedSidebar, NewSteler,ReceentPosts,CategoriesSidebar } from '@/src/components/blog/home/Components';
+import { VirtualInfo, FeaturedSidebar, NewSteler,ReceentPosts,CategoriesSidebar, CourseSlider } from '@/src/components/blog/home/Components';
 
 export default function Home() {
 
@@ -9,19 +9,21 @@ export default function Home() {
 
         <div className="w-full max-w-7xl px-4 md:px-8 2xl:px-2 flex flex-col items-center justify-center ">
 
-
             <div className="background z-[-1] !absolute">
                 <span className=" dark:bg-[#1582ff37] " />
 
             </div>
 
-            <div className='mt-4'></div>
-            <MainSlider />
+            <div className='w-full max-w-5xl mt-8'>
+                <CourseSlider/>
+            </div>
 
-    
+            <div className='mt-36'>
+                <h1 className='text-2xl md:text-3xl lg:text-4xl font-semibold text-center'>جدیدترین مقالات ویرچوال لرن</h1>
+            </div>
 
             <div className='mt-10 lg:mt-20 w-full flex flex-col lg:flex-row gap-6'>
-                <div className='w-full lg:w-[70%] flex flex-col gap-20'>
+                {/* <div className='w-full lg:w-[70%] flex flex-col gap-20'>
                     <FeaturedPosts />
                     <ReceentPosts/>
                 </div>
@@ -31,7 +33,7 @@ export default function Home() {
                     <FeaturedSidebar />
                     <NewSteler />
                     <CategoriesSidebar/>
-                </aside>
+                </aside> */}
 
             </div>
         </div>

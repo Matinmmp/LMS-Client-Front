@@ -7,16 +7,16 @@ import { Button } from "@nextui-org/button";
 export default function FeaturedPosts() {
     return (
         <section className="w-full">
-            <h2 className=" text-2xl lg:text-3xl xl:text-4xl font-semibold underline decoration-secondary-500
+            <h2 className=" text-2xl lg:text-3xl font-semibold underline decoration-secondary-500
              decoration-wavy decoration-[2px] underline-offset-[1rem] lg:underline-offset-[1.5rem]">پست‌های ویژه</h2>
-            <div className="w-full mt-16 p-6 pe-3 rounded-md border-1 border-secondary-500 shadow-medium">
+            <div className="w-full mt-16 p-6 pe-3 rounded-xl border-1 border-secondary-500 shadow-medium bg-white dark:bg-transparent">
                 <div className="flex flex-col md:flex-row gap-6">
 
                     <div className="w-full md:w-1/2">
                         <div className="w-full flex flex-col">
                             <Image src={'https://buckettest.storage.c2.liara.space/images/academy19.png'} alt="1" width={500} height={300}
                                 className="w-full rounded-md aspect-video object-cover object-center shadow-medium" />
-                            <h3 className="mt-3 text-xl lg:text-2xl font-semibold hover:text-secondary-500 cursor-pointer">پست ویژه‌ی اول</h3>
+                            <h3 className="mt-3 text-xl font-semibold hover:text-secondary-500 cursor-pointer">پست ویژه‌ی اول</h3>
                             <div className="mt-4 flex items-center gap-4 text-[#555555] dark:text-gray-200">
                                 <div className="flex items-center gap-2">
                                     <FaUser size={14} />
