@@ -386,9 +386,15 @@ function CategoriesPosts() {
         <section className="w-full">
             <div className="w-full">
                 <div className="w-full flex justify-center">
-                    <Tabs classNames={{ tabWrapper: 'w-full', base: 'flex justify-center' }} className="w-full" style={{ color: 'red' }} radius="full" size="lg" aria-label="Options" isVertical={false} color="secondary" variant="bordered">
+                    <Tabs classNames={{ tabWrapper: 'w-full', base: 'flex justify-center' }} className="w-full" style={{ color: 'red' }} radius="full" size="lg" aria-label="Options" isVertical={false} color="secondary" variant="underlined">
 
-                        <Tab className="w-full" key="photos" title="همه">
+                        <Tab className="w-full" key="photos" title={
+                            <div className=" flex gap-2 items-center">
+                                <span>همه</span>
+                                <span className="w-5 h-5 flex justify-center items-center rounded-full border-1 border-secondary-500 text-xs">
+                                    {toPersianNumber(7)}</span>
+                            </div>
+                        }>
                             <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4">
                                 <BlogPosts />
                                 <BlogPosts />

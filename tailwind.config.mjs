@@ -63,6 +63,7 @@ export default  {
                     800: "#024089",
                     900: "#012D71",
                     DEFAULT: "#079CED",
+                    // DEFAULT:"#06B6D4"
                 },
                 warning: {
                     100: "#FFF3CC",
