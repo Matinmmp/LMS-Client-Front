@@ -9,6 +9,7 @@ import { FaTelegram, FaUser } from "react-icons/fa";
 import { Button } from "@nextui-org/button";
 import { LuCalendarDays } from "react-icons/lu";
 import { Avatar } from "@nextui-org/avatar";
+import { Tabs, Tab } from "@heroui/tabs";
 import { Input } from "@nextui-org/input";
 import { MdEmail } from "react-icons/md";
 import { useState } from "react";
@@ -16,6 +17,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
+import { FaRegComment } from "react-icons/fa6";
+import { toPersianNumber } from "@/src/utils/functions";
 
 function VirtualInfo() {
     const { theme } = useTheme();
@@ -61,11 +64,11 @@ function WhatIsVirtualLearn() {
 
                         <div className="">
                             <h2 className="text-2xl lg:text-3xl font-semibold">ویرچوال لرن</h2>
-                            <p className="mt-6 leading-9 font-medium" style={{wordSpacing:'0.2rem'}}>
+                            <p className="mt-6 leading-9 font-medium" style={{ wordSpacing: '0.2rem' }}>
                                 ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و
                                 ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و
                                 ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و
-               
+
                             </p>
                         </div>
                     </div>
@@ -319,35 +322,135 @@ function CategoriesSidebar() {
 
 function CourseSlider() {
     return (
+        <div className="w-full flex flex-col lg:flex-row gap-6 ">
 
-        <Swiper pagination={true} modules={[Pagination]}
-            className="mySwiper w-full px-2 h-[15rem] md:h-[20rem] lg:h-[25rem] rounded-2xl lg:rounded-3xl">
-            <SwiperSlide className='w-full overflow-hidden relative rounded-2xl lg:rounded-3xl'>
-                <Image src={'https://buckettest.storage.c2.liara.space/images/academy19.png'} className='w-full h-full shadow-large' alt='aa' width={1000} height={600} />
-                <div className='z-50 absolute bottom-0 p-4 w-full flex items-center justify-start backdrop-blur-[1px] bg-[#ffffffb7]/ dark:bg-[#2020204d]'>
-                    <p className='text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white ps-1 md:ps-4 pb-4 lg:pb-6'>برنامه‌نویسی چیست و از کجا شروع کنیم؟</p>
-                </div>
-            </SwiperSlide>
-            <SwiperSlide className='w-full overflow-hidden relative rounded-2xl lg:rounded-3xl'>
-                <Image src={'https://buckettest.storage.c2.liara.space/images/academy19.png'} className='w-full h-full shadow-large' alt='aa' width={1000} height={600} />
-                <div className='z-50 absolute bottom-0 p-4 w-full flex items-center justify-start backdrop-blur-[1px] bg-[#ffffffb7]/ dark:bg-[#2020204d]'>
-                    <p className='text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white ps-1 md:ps-4 pb-4 lg:pb-6'>برنامه‌نویسی چیست و از کجا شروع کنیم؟</p>
-                </div>
-            </SwiperSlide>
-        </Swiper>
 
+            <Swiper pagination={true} modules={[Pagination]}
+                className="mySwiper w-full lg:w-2/3 px-2 h-[20rem] md:h-[20rem] lg:h-[25rem] rounded-2xl  shadow-medium">
+
+                <SwiperSlide className='w-full overflow-hidden relative rounded-2xl '>
+                    <Image src={'https://buckettest.storage.c2.liara.space/CoursesImages/2fPFPH5AXF6BJPRPWW0Q-Working%20with%20Files%20in%20Python.png'} className='w-full h-full shadow-large' alt='aa' width={1000} height={600} />
+                    <div className='z-50 absolute bottom-0 p-4 w-full flex items-center justify-start backdrop-blur-[1px] bg-[#ffffffb7]/ dark:bg-[#2020204d]'>
+                        <p className='text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white ps-1 md:ps-4 pb-4 lg:pb-6'>برنامه‌نویسی چیست و از کجا شروع کنیم؟</p>
+                    </div>
+                </SwiperSlide>
+
+                <SwiperSlide className='w-full overflow-hidden relative rounded-2xl '>
+                    <Image src={'https://buckettest.storage.c2.liara.space/CoursesImages/eRsYtMTIKQl4d8OQcOGB-Learn%20React%20Query%20In%2050%20Minutes.png'} className='w-full h-full shadow-large' alt='aa' width={1000} height={600} />
+                    <div className='z-50 absolute bottom-0 p-4 w-full flex items-center justify-start backdrop-blur-[1px] bg-[#ffffffb7]/ dark:bg-[#2020204d]'>
+                        <p className='text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white ps-1 md:ps-4 pb-4 lg:pb-6'>برنامه‌نویسی چیست و از کجا شروع کنیم؟</p>
+                    </div>
+                </SwiperSlide>
+
+            </Swiper>
+
+            <div className="w-full h-full max-h-[25rem] overflow-auto lg:w-1/3 rounded-2xl shadow-medium bg-white dark:bg-black/50">
+                <div className="h-full p-3 flex flex-col gap-1">
+                    <div className="p-3 flex items-center gap-4 hover:shadow-medium cursor-pointer rounded-xl transition-all">
+                        <Image className="w-28 aspect-video rounded-md shadow-small" alt="f" width={200} height={140} src={'https://buckettest.storage.c2.liara.space/CoursesImages/2fPFPH5AXF6BJPRPWW0Q-Working%20with%20Files%20in%20Python.png'} />
+                        <h3 className="text-lg font-bold">آموزش برنامه نویسی فرانت</h3>
+                    </div>
+                    <div className="p-3 flex items-center gap-4 hover:shadow-medium cursor-pointer rounded-xl transition-all">
+                        <Image className="w-28 aspect-video rounded-md shadow-small" alt="f" width={200} height={140} src={'https://buckettest.storage.c2.liara.space/CoursesImages/2fPFPH5AXF6BJPRPWW0Q-Working%20with%20Files%20in%20Python.png'} />
+                        <h3 className="text-lg font-bold">آموزش برنامه نویسی فرانت</h3>
+                    </div>
+                    <div className="p-3 flex items-center gap-4 hover:shadow-medium cursor-pointer rounded-xl transition-all">
+                        <Image className="w-28 aspect-video rounded-md shadow-small" alt="f" width={200} height={140} src={'https://buckettest.storage.c2.liara.space/CoursesImages/2fPFPH5AXF6BJPRPWW0Q-Working%20with%20Files%20in%20Python.png'} />
+                        <h3 className="text-lg font-bold">آموزش برنامه نویسی فرانت</h3>
+                    </div>
+                    <div className="p-3 flex items-center gap-4 hover:shadow-medium cursor-pointer rounded-xl transition-all">
+                        <Image className="w-28 aspect-video rounded-md shadow-small" alt="f" width={200} height={140} src={'https://buckettest.storage.c2.liara.space/CoursesImages/2fPFPH5AXF6BJPRPWW0Q-Working%20with%20Files%20in%20Python.png'} />
+                        <h3 className="text-lg font-bold">آموزش برنامه نویسی فرانت</h3>
+                    </div>
+                    <div className="p-3 flex items-center gap-4 hover:shadow-medium cursor-pointer rounded-xl transition-all">
+                        <Image className="w-28 aspect-video rounded-md shadow-small" alt="f" width={200} height={140} src={'https://buckettest.storage.c2.liara.space/CoursesImages/2fPFPH5AXF6BJPRPWW0Q-Working%20with%20Files%20in%20Python.png'} />
+                        <h3 className="text-lg font-bold">آموزش برنامه نویسی فرانت</h3>
+                    </div>
+                    <div className="p-3 flex items-center gap-4 hover:shadow-medium cursor-pointer rounded-xl transition-all">
+                        <Image className="w-28 aspect-video rounded-md shadow-small" alt="f" width={200} height={140} src={'https://buckettest.storage.c2.liara.space/CoursesImages/2fPFPH5AXF6BJPRPWW0Q-Working%20with%20Files%20in%20Python.png'} />
+                        <h3 className="text-lg font-bold">آموزش برنامه نویسی فرانت</h3>
+                    </div>
+                    <div className="p-3 flex items-center gap-4 hover:shadow-medium cursor-pointer rounded-xl transition-all">
+                        <Image className="w-28 aspect-video rounded-md shadow-small" alt="f" width={200} height={140} src={'https://buckettest.storage.c2.liara.space/CoursesImages/2fPFPH5AXF6BJPRPWW0Q-Working%20with%20Files%20in%20Python.png'} />
+                        <h3 className="text-lg font-bold">آموزش برنامه نویسی فرانت</h3>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     );
 }
 
 function CategoriesPosts() {
     return (
-        <section>
-            
+        <section className="w-full">
+            <div className="w-full">
+                <div className="w-full flex justify-center">
+                    <Tabs classNames={{ tabWrapper: 'w-full', base: 'flex justify-center' }} className="w-full" style={{ color: 'red' }} radius="full" size="lg" aria-label="Options" isVertical={false} color="secondary" variant="bordered">
+
+                        <Tab className="w-full" key="photos" title="همه">
+                            <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4">
+                                <BlogPosts />
+                                <BlogPosts />
+                                <BlogPosts />
+                                <BlogPosts />
+
+                            </div>
+                        </Tab>
+
+                        <Tab className="w-full" key="music" title="برنامه نویسی">
+                            <div className="w-full">
+                                f2
+                            </div>
+                        </Tab>
+
+                        <Tab className="w-full" key="videos" title="پایتون">
+                            <div className="w-full">
+                                f3
+                            </div>
+                        </Tab>
+
+                    </Tabs>
+
+                </div>
+                <div className="mt-16 w-full flex justify-center">
+                    <Button color="secondary" variant="shadow" radius="md" size={'lg'}>
+                        مشاهده‌ی بیشتر
+                    </Button>
+                </div>
+            </div>
         </section>
     );
 }
 
-
+function BlogPosts() {
+    return (
+        <div className="w-full shadow-medium rounded-xl bg-white dark:bg-black/40 backdrop-blur-sm">
+            <div className="p-4">
+                <Link href={`/courses/$1`} className="overflow-hidden h-[14rem] md:h-[12rem] md:aspect-video">
+                    <Image className="w-full h-full object-center object-cover hover:scale-110 hover:scale-y-[1.15] transition-transform rounded-xl "
+                        width={450} height={300} alt={';;'} src={'https://buckettest.storage.c2.liara.space/CoursesImages/2fPFPH5AXF6BJPRPWW0Q-Working%20with%20Files%20in%20Python.png'} />
+                </Link>
+                <div className="mt-8">
+                    <h5 className="font-semibold">تمامی اخبار و شایعات Samsung S25 Edge</h5>
+                    <p className="mt-4 leading-6 text-xs" style={{ wordSpacing: '0.15rem' }}>
+                        ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و
+                    </p>
+                </div>
+                <div className="mt-4 flex items-center gap-4">
+                    <div className="flex items-center gap-1">
+                        <FaRegComment />
+                        <span className="text-sm">{toPersianNumber(12)}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                        <LuCalendarDays />
+                        <span className="text-sm">{toPersianNumber(12)} پیش</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
 
 export {
     VirtualInfo,
