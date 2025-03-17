@@ -1,7 +1,7 @@
 
 import MainSlider from '@/src/components/blog/home/MainSlider';
 import FeaturedPosts from '@/src/components/blog/home/FeaturedPosts';
-import { VirtualInfo, FeaturedSidebar, NewSteler,ReceentPosts,CategoriesSidebar, CourseSlider } from '@/src/components/blog/home/Components';
+import { VirtualInfo, FeaturedSidebar, NewSteler,ReceentPosts,CategoriesSidebar, CourseSlider, CategoriesPosts } from '@/src/components/blog/home/Components';
 
 export default function Home() {
 
@@ -20,6 +20,10 @@ export default function Home() {
 
             <div className='mt-36'>
                 <h1 className='text-2xl md:text-3xl lg:text-4xl font-semibold text-center'>جدیدترین مقالات ویرچوال لرن</h1>
+            </div>
+
+            <div className='mt-16'>
+                <CategoriesPosts/>
             </div>
 
             <div className='mt-10 lg:mt-20 w-full flex flex-col lg:flex-row gap-6'>

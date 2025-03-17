@@ -48,6 +48,35 @@ function VirtualInfo() {
     );
 }
 
+function WhatIsVirtualLearn() {
+
+    return (
+        <div className="w-full flex flex-col items-center justify-center">
+            <section className="w-full mt-40 max-w-7xl px-4 md:px-8 2xl:px-2 flex flex-col items-center justify-center ">
+                <div className="w-full rounded-2xl shadow-medium p-8 py-14 bg-white dark:bg-black/50">
+                    <div className="flex items-center gap-10 relative">
+                        <Image priority alt="لوگوی ویرچوال لرن، پلتفرم آموزش برنامه‌نویسی" className="w-36 h-36" height={400} width={400}
+                            src={process.env.NEXT_PUBLIC_IMAGE_BASE_URL + "logo-main.png"} />
+                        <span className=" dark:bg-[rgba(21,130,255,0.10)] absolute  right-1 w-10 h-10 background -z-30" />
+
+                        <div className="">
+                            <h2 className="text-2xl lg:text-3xl font-semibold">ویرچوال لرن</h2>
+                            <p className="mt-6 leading-9 font-medium" style={{wordSpacing:'0.2rem'}}>
+                                ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و
+                                ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و
+                                ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و
+               
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+        </div>
+    );
+}
+
 function FeaturedSidebar() {
     const [state, setState] = useState(1);
     return (
@@ -274,7 +303,7 @@ function CategoriesSidebar() {
 
                     <Link href={`/blog/categories/1`} className="w-full flex items-center justify-between gap-4 ">
                         <div className="flex items-center gap-2">
-                            <span className="p-1 rounded-sm bg-primary-400 "><MdEmail size={20} className='text-white'/></span>
+                            <span className="p-1 rounded-sm bg-primary-400 "><MdEmail size={20} className='text-white' /></span>
                             <span>برنامه نویسی</span>
                         </div>
                         <span className="flex items-center justify-center rounded-full bg-primary-400 text-sm min-w-6 min-h-6 text-white">1</span>
@@ -290,25 +319,34 @@ function CategoriesSidebar() {
 
 function CourseSlider() {
     return (
-         
-            <Swiper pagination={true} modules={[Pagination]} 
-                className="mySwiper w-full px-2 h-[15rem] md:h-[20rem] lg:h-[25rem] rounded-2xl lg:rounded-3xl">
-                <SwiperSlide className='w-full overflow-hidden relative rounded-2xl lg:rounded-3xl'>
-                    <Image src={'https://buckettest.storage.c2.liara.space/images/academy19.png'} className='w-full h-full shadow-large' alt='aa' width={1000} height={600} />
-                    <div className='z-50 absolute bottom-0 p-4 w-full flex items-center justify-start backdrop-blur-[1px] bg-[#ffffffb7]/ dark:bg-[#2020204d]'>
-                        <p className='text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white ps-1 md:ps-4 pb-4 lg:pb-6'>برنامه‌نویسی چیست و از کجا شروع کنیم؟</p>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide className='w-full overflow-hidden relative rounded-2xl lg:rounded-3xl'>
-                    <Image src={'https://buckettest.storage.c2.liara.space/images/academy19.png'} className='w-full h-full shadow-large' alt='aa' width={1000} height={600} />
-                    <div className='z-50 absolute bottom-0 p-4 w-full flex items-center justify-start backdrop-blur-[1px] bg-[#ffffffb7]/ dark:bg-[#2020204d]'>
-                        <p className='text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white ps-1 md:ps-4 pb-4 lg:pb-6'>برنامه‌نویسی چیست و از کجا شروع کنیم؟</p>
-                    </div>
-                </SwiperSlide>
-            </Swiper>
-        
+
+        <Swiper pagination={true} modules={[Pagination]}
+            className="mySwiper w-full px-2 h-[15rem] md:h-[20rem] lg:h-[25rem] rounded-2xl lg:rounded-3xl">
+            <SwiperSlide className='w-full overflow-hidden relative rounded-2xl lg:rounded-3xl'>
+                <Image src={'https://buckettest.storage.c2.liara.space/images/academy19.png'} className='w-full h-full shadow-large' alt='aa' width={1000} height={600} />
+                <div className='z-50 absolute bottom-0 p-4 w-full flex items-center justify-start backdrop-blur-[1px] bg-[#ffffffb7]/ dark:bg-[#2020204d]'>
+                    <p className='text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white ps-1 md:ps-4 pb-4 lg:pb-6'>برنامه‌نویسی چیست و از کجا شروع کنیم؟</p>
+                </div>
+            </SwiperSlide>
+            <SwiperSlide className='w-full overflow-hidden relative rounded-2xl lg:rounded-3xl'>
+                <Image src={'https://buckettest.storage.c2.liara.space/images/academy19.png'} className='w-full h-full shadow-large' alt='aa' width={1000} height={600} />
+                <div className='z-50 absolute bottom-0 p-4 w-full flex items-center justify-start backdrop-blur-[1px] bg-[#ffffffb7]/ dark:bg-[#2020204d]'>
+                    <p className='text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white ps-1 md:ps-4 pb-4 lg:pb-6'>برنامه‌نویسی چیست و از کجا شروع کنیم؟</p>
+                </div>
+            </SwiperSlide>
+        </Swiper>
+
     );
 }
+
+function CategoriesPosts() {
+    return (
+        <section>
+            
+        </section>
+    );
+}
+
 
 
 export {
@@ -317,5 +355,7 @@ export {
     NewSteler,
     ReceentPosts,
     CategoriesSidebar,
-    CourseSlider
+    CourseSlider,
+    WhatIsVirtualLearn,
+    CategoriesPosts
 }
