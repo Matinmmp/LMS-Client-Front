@@ -30,6 +30,7 @@ export default function CategoriesPage(s: any) {
                 </div>
             </div>
 
+            <div className="gap-10 relative"><span className=" dark:bg-[rgba(21,130,255,0.10)] absolute  right-1 w-10 h-10 background -z-30" /></div>
 
         </section>
     )

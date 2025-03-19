@@ -1,11 +1,13 @@
 
 import MainSlider from '@/src/components/blog/home/MainSlider';
 import FeaturedPosts from '@/src/components/blog/home/FeaturedPosts';
-import { VirtualInfo, FeaturedSidebar, NewSteler,ReceentPosts,CategoriesSidebar } from '@/src/components/blog/home/Components';
+import { VirtualInfo, FeaturedSidebar, NewSteler,ReceentPosts,CategoriesSidebar,WhatIsVirtualLearn } from '@/src/components/blog/home/Components';
 
 export default function Home() {
 
-    return (<section className=" flex flex-col items-center justify-center  " >
+    return (
+    <>
+    <section className=" flex flex-col items-center justify-center  " >
 
         <div className="w-full max-w-7xl px-4 md:px-8 2xl:px-2 flex flex-col items-center justify-center ">
 
@@ -36,6 +38,9 @@ export default function Home() {
             </div>
         </div>
 
-    </section>)
+    </section>
+    <WhatIsVirtualLearn />
+    </>
+    )
 
 }

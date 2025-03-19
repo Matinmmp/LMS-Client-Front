@@ -51,6 +51,7 @@ function VirtualInfo() {
     );
 }
 
+
 function WhatIsVirtualLearn() {
 
     return (

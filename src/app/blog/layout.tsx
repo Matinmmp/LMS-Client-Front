@@ -25,7 +25,7 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
                 </div>
                 <BlogHeader />
                 {children}
-                <WhatIsVirtualLearn />
+                
                 <div className="mt-24"></div>
                 <Footer />
             </div>
