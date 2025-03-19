@@ -331,7 +331,7 @@ function CourseSlider() {
                 <SwiperSlide className='w-full overflow-hidden relative rounded-2xl '>
                     <Image src={'https://buckettest.storage.c2.liara.space/CoursesImages/2fPFPH5AXF6BJPRPWW0Q-Working%20with%20Files%20in%20Python.png'} className='w-full h-full shadow-large' alt='aa' width={1000} height={600} />
                     <div className='z-50 absolute bottom-0 p-4 w-full flex items-center justify-start backdrop-blur-[1px] bg-[#ffffffb7]/ dark:bg-[#2020204d]'>
-                        <p className='text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white ps-1 md:ps-4 pb-4 lg:pb-6'>برنامه‌نویسی چیست و از کجا شروع کنیم؟</p>
+                        <p className='text-xl md:text-xl lg:text-2xl xl:text-3xl font-bold text-white ps-1 md:ps-4 pb-4 lg:pb-6'>برنامه‌نویسی چیست و از کجا شروع کنیم؟</p>
                     </div>
                 </SwiperSlide>
 
@@ -396,10 +396,10 @@ function CategoriesPosts() {
                             </div>
                         }>
                             <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4">
-                                <BlogPosts />
-                                <BlogPosts />
-                                <BlogPosts />
-                                <BlogPosts />
+                                <BlogPost />
+                                <BlogPost />
+                                <BlogPost />
+                                <BlogPost />
 
                             </div>
                         </Tab>
@@ -429,9 +429,9 @@ function CategoriesPosts() {
     );
 }
 
-function BlogPosts() {
+function BlogPost() {
     return (
-        <div className="w-full shadow-medium rounded-xl bg-white dark:bg-black/40 backdrop-blur-sm">
+        <div className="w-full shadow-medium rounded-xl bg-white dark:bg-black/30 backdrop-blur-sm">
             <div className="p-4">
                 <Link href={`/courses/$1`} className="overflow-hidden h-[14rem] md:h-[12rem] md:aspect-video">
                     <Image className="w-full h-full object-center object-cover hover:scale-110 hover:scale-y-[1.15] transition-transform rounded-xl "
@@ -466,5 +466,6 @@ export {
     CategoriesSidebar,
     CourseSlider,
     WhatIsVirtualLearn,
-    CategoriesPosts
+    CategoriesPosts,
+    BlogPost
 }

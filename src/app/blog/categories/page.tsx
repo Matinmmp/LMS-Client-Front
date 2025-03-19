@@ -1,9 +1,6 @@
+import { CourseSlider, CategoriesPosts } from '@/src/components/blog/home/Components';
 
-import MainSlider from '@/src/components/blog/home/MainSlider';
-import FeaturedPosts from '@/src/components/blog/home/FeaturedPosts';
-import { VirtualInfo, FeaturedSidebar, NewSteler, ReceentPosts, CategoriesSidebar, CourseSlider, CategoriesPosts } from '@/src/components/blog/home/Components';
-
-export default function Home() {
+export default function CategoriesPage() {
 
     return (<section className=" flex flex-col items-center justify-center  " >
 
