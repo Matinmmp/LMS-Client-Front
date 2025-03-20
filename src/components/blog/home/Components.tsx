@@ -57,7 +57,7 @@ function WhatIsVirtualLearn() {
     return (
         <div className="w-full flex flex-col items-center justify-center">
             <section className="w-full mt-40 max-w-7xl px-4 md:px-8 2xl:px-2 flex flex-col items-center justify-center ">
-                <div className="w-full rounded-2xl shadow-medium p-8 py-14 bg-white dark:bg-black/50">
+                <div className="w-full rounded-2xl shadow-medium p-8 py-14 bg-white dark:bg-black/40">
                     <div className="flex items-center gap-10 relative">
                         <Image priority alt="لوگوی ویرچوال لرن، پلتفرم آموزش برنامه‌نویسی" className="w-36 h-36" height={400} width={400}
                             src={process.env.NEXT_PUBLIC_IMAGE_BASE_URL + "logo-main.png"} />
@@ -345,7 +345,7 @@ function CourseSlider() {
 
             </Swiper>
 
-            <div className="w-full h-full max-h-[25rem] overflow-auto lg:w-1/3 rounded-2xl shadow-medium bg-white dark:bg-black/50">
+            <div className="w-full h-full max-h-[25rem] overflow-auto lg:w-1/3 rounded-2xl shadow-medium bg-white dark:bg-black/40">
                 <div className="h-full p-3 flex flex-col gap-1">
                     <div className="p-3 flex items-center gap-4 hover:shadow-medium cursor-pointer rounded-xl transition-all">
                         <Image className="w-28 aspect-video rounded-md shadow-small" alt="f" width={200} height={140} src={'https://buckettest.storage.c2.liara.space/CoursesImages/2fPFPH5AXF6BJPRPWW0Q-Working%20with%20Files%20in%20Python.png'} />
