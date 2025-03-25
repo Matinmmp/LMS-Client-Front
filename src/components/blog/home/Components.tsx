@@ -212,88 +212,7 @@ function NewSteler() {
     );
 }
 
-function ReceentPosts() {
 
-    return (
-        <section className="w-full relative">
-            <h2 className="text-2xl lg:text-3xl text-right font-semibold underline decoration-secondary-500
-                decoration-wavy decoration-[2px] underline-offset-[1rem] lg:underline-offset-[1.2rem]">پست‌های اخیر</h2>
-
-            <div className="mt-10 w-full p-4 pb-6 rounded-xl border-1 border-secondary-500 shadow-medium relative bg-white dark:bg-transparent">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-10">
-
-                    <div className="w-full flex flex-col">
-                        <Image src={'https://buckettest.storage.c2.liara.space/images/academy19.png'} alt="1" width={500} height={300}
-                            className="w-full rounded-md aspect-video object-cover object-center shadow-medium" />
-                        <h3 className="mt-3 text-xl lg:text-2xl font-medium hover:text-secondary-500 cursor-pointer">پست ویژه‌ی اول</h3>
-                        <div className="mt-4 flex items-center gap-4 text-[#555555] dark:text-gray-200">
-                            <div className="flex items-center gap-2">
-                                <FaUser size={14} />
-                                <span className="text-xs font-medium">ویرچوال لرن</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <LuCalendarDays size={14} />
-                                <span className="text-xs font-medium">ویرچوال لرن</span>
-                            </div>
-
-                        </div>
-                        <p className='mt-4 leading-7 text-[#555555] dark:text-gray-200'>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می با نرم افزارها شناخت بیشتری   </p>
-                        <div className='mt-5'>
-                            <Button variant="shadow" color="secondary" radius="full" className="font-bold">مطالعه‌ی بیشتر</Button>
-                        </div>
-                    </div>
-
-                    <div className="w-full flex flex-col">
-                        <Image src={'https://buckettest.storage.c2.liara.space/images/academy19.png'} alt="1" width={500} height={300}
-                            className="w-full rounded-md aspect-video object-cover object-center shadow-medium" />
-                        <h3 className="mt-3 text-xl lg:text-2xl font-medium hover:text-secondary-500 cursor-pointer">پست ویژه‌ی اول</h3>
-                        <div className="mt-4 flex items-center gap-4 text-[#555555] dark:text-gray-200">
-                            <div className="flex items-center gap-2">
-                                <FaUser size={14} />
-                                <span className="text-xs font-medium">ویرچوال لرن</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <LuCalendarDays size={14} />
-                                <span className="text-xs font-medium">ویرچوال لرن</span>
-                            </div>
-
-                        </div>
-                        <p className='mt-4 leading-7 text-[#555555] dark:text-gray-200'>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می با نرم افزارها شناخت بیشتری   </p>
-                        <div className='mt-5'>
-                            <Button variant="shadow" color="secondary" radius="full" className="font-bold">مطالعه‌ی بیشتر</Button>
-                        </div>
-                    </div>
-
-                    <div className="w-full flex flex-col">
-                        <Image src={'https://buckettest.storage.c2.liara.space/images/academy19.png'} alt="1" width={500} height={300}
-                            className="w-full rounded-md aspect-video object-cover object-center shadow-medium" />
-                        <h3 className="mt-3 text-xl lg:text-2xl font-medium hover:text-secondary-500 cursor-pointer">پست ویژه‌ی اول</h3>
-                        <div className="mt-4 flex items-center gap-4 text-[#555555] dark:text-gray-200">
-                            <div className="flex items-center gap-2">
-                                <FaUser size={14} />
-                                <span className="text-xs font-medium">ویرچوال لرن</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <LuCalendarDays size={14} />
-                                <span className="text-xs font-medium">ویرچوال لرن</span>
-                            </div>
-
-                        </div>
-                        <p className='mt-4 leading-7 text-[#555555] dark:text-gray-200'>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می با نرم افزارها شناخت بیشتری   </p>
-                        <div className='mt-5'>
-                            <Button variant="shadow" color="secondary" radius="full" className="font-bold">مطالعه‌ی بیشتر</Button>
-                        </div>
-                    </div>
-
-
-                </div>
-                <div className="w-full mt-20 flex justify-center">
-                    <Button variant="shadow" color="secondary" size="lg" className="font-bold">مشاهده‌ی همه</Button>
-                </div>
-            </div>
-        </section>
-    );
-}
 
 function CategoriesSidebar() {
 
@@ -463,7 +382,6 @@ export {
     VirtualInfo,
     FeaturedSidebar,
     NewSteler,
-    ReceentPosts,
     CategoriesSidebar,
     CourseSlider,
     WhatIsVirtualLearn,

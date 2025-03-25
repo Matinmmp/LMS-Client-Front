@@ -66,11 +66,11 @@ export default function ProfilePage() {
                                                         return (
                                                             <TableRow key={index} className="mt-6">
                                                                 <TableCell className="flex justify-center text-center">
-                                                                    <Avatar alt={item?.name} className="h-16 w-20 shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="sm" isBordered color="secondary" src={item?.thumbnail?.imageUrl} />
+                                                                    <Avatar alt={item?.faName ? item?.faName:item?.name} className="h-16 w-20 shadow-[0_0_15px_0_#42C0F4]" size="lg" radius="sm" isBordered color="secondary" src={item?.thumbnail?.imageUrl} />
                                                                 </TableCell>
                                                                 <TableCell className="text-center">
                                                                     <Link href={`/courses/${encodeTitle(item?.urlName)}`} className="font-semibold hover:text-secondary-400 transition-all text-nowrap">
-                                                                        {item?.name}
+                                                                    {item?.faName ? item?.faName:item?.name}
                                                                     </Link>
                                                                 </TableCell>
                                                                 <TableCell className="text-base font-medium text-center">{formatDate(item.updatedAt)}</TableCell>

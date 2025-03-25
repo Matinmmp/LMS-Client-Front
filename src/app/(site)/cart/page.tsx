@@ -34,7 +34,7 @@ export default function CartPage() {
                 showToast({ message: res?.message, type: 'success' });
                 dispatch(deleteCourses({ courseIds }))
             }
-            if(!res?.isFree){
+            if (!res?.isFree) {
                 window.location.replace(res?.url)
             }
         }
@@ -110,7 +110,7 @@ export default function CartPage() {
                                         <IoMdCart className="text-2xl lg:text-3xl text-white" />
                                         <span className="md:text-lg lg:text-xl font-bold text-white">سبد خرید</span>
                                     </div>
-                                    <div className="px-4 flex flex-col bg-white dark:bg-[#131D35] ">
+                                    <div className="px-4 flex flex-row-reverse flex-col bg-white dark:bg-[#131D35] ">
                                         {
                                             !cartCourses.isLoading && cartCourses.isSuccess && courseIds?.length &&
 
@@ -131,15 +131,15 @@ export default function CartPage() {
                                                         : originalPrice; // قیمت پس از اعمال تخفیف (اگر معتبر بود)
 
                                                     return (
-                                                        <div dir='ltr' key={index} className={`py-4 flex items-start sm2:items-center justify-between gap-2 ${index < cartCourses?.data?.courses?.length - 1 ? 'border-b-1' : ''} border-b-primary-200 dark:border-b-primary-900`}>
+                                                        <div key={index} className={`py-4 flex flex-row-reverse items-start sm2:items-center justify-between gap-2 ${index < cartCourses?.data?.courses?.length - 1 ? 'border-b-1' : ''} border-b-primary-200 dark:border-b-primary-900`}>
                                                             <Link href={`/courses/${link}`} className="flex flex-col sm2:flex-row gap-3">
 
                                                                 <div className=" flex justify-center sm2:justify-start gap-2">
-                                                                    <Image src={course?.thumbnail?.imageUrl} width={146} height={81} alt={course.name} className="w-72 aspect-video sm2:w-40 rounded-xl shadow-small" />
+                                                                    <Image src={course?.thumbnail?.imageUrl} width={146} height={81} alt={course?.faName} className="w-72 aspect-video sm2:w-40 rounded-xl shadow-small" />
                                                                 </div>
 
                                                                 <div className="mt-2 sm2:mt-0 flex flex-col items-center sm2:items-start gap-2 sm2:py-3 justify-between">
-                                                                    <span className='text-left lg:text-lg font-medium dark:text-white' dir="ltr">{course.name}</span>
+                                                                    <span className=' lg:text-lg font-medium dark:text-white'>{course?.faName}</span>
 
                                                                     {isFree || isFullyDiscounted ? (
                                                                         <div className="mt-2 sm2:mt-0 flex items-center gap-2">

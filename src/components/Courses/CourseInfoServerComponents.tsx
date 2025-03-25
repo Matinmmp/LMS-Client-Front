@@ -30,8 +30,8 @@ export async function RelatedCourse({ name }: { name: string }) {
                                 return (
                                     <div key={index} className="h-[4.4rem] p-2 flex items-center justify-between bg-primary-50 rounded-xl shadow-small border-1 border-primary-400">
                                         <Link href={`/courses/${link}`} className="flex items-center gap-4 ">
-                                            <Image src={item.thumbnail.imageUrl} width={160} height={90} alt={item?.name} className="w-24 h-[3.375rem] rounded-lg shadow-small" />
-                                            <span dir="ltr" className="font-semibold" >{item.name}</span>
+                                            <Image src={item.thumbnail.imageUrl} width={160} height={90} alt={item.faName} className="w-24 h-[3.375rem] rounded-lg shadow-small" />
+                                            <span dir="ltr" className="font-semibold" >{item.faName}</span>
                                         </Link>
 
                                         <Link href={`/courses/${link}`} className="flex items-center">

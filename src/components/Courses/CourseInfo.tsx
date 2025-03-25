@@ -129,11 +129,11 @@ export default async function CourseInfo({ data, isPurchased, userRate }: Props)
 
                         <div className="h-full flex flex-col ">
 
-                            <h1 dir="ltr" className='mt-4 lg:mt-0 text-secondary-500 font-bold text-xl md:text-2xl 2xl:text-[2rem] md:leading-10'>
-                                {course?.name}
+                            <h1  className='mt-4 lg:mt-0 text-secondary-500 font-bold text-xl md:text-2xl 2xl:text-[2rem] md:leading-10'>
+                                {course?.faName}
                             </h1>
 
-                            <h2 className="mt-6 dark:text-[#ddeefd] text-gray-900 font-semibold md:text-lg">{course?.faName}</h2>
+                            <h2 dir="ltr" className="mt-6 dark:text-[#ddeefd] text-gray-900 font-semibold md:text-lg">{course?.name}</h2>
                             <p className="mt-1 font-light dark:text-[#ddeefd] text-gray-900 overflow-hidden text-ellipsis leading-7 line-clamp-4 lg:line-clamp-3 lg:tracking-wider">
                                 {course?.description}
                             </p>

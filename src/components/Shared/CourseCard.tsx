@@ -28,6 +28,7 @@ type CardProps = {
         level: string,
         description: string,
         name: string,
+        faName: string,
         teacher: {
             teacherEngName: string,
             teacherId: string,
@@ -72,17 +73,17 @@ export const CourseCard = ({ data }: CardProps) => {
         dark:hover:shadow-[0px_0px_8px_0px_#2a5a6ec5,_0px_2px_20px_0px_#2a5a6ec5,_0px_0px_1px_0px_#2a5a6ec5]
         dark:border-1 dark:border-primary-400 bg-white dark:bg-[#131814]/30 dark:backdrop-blur-md dark:backdrop-saturate-150 rounded-md overflow-hidden  ">
 
-            {(hasDiscount && !discountExpired)?
-            <span className="absolute bg-danger-500 text-white text-lg font-semibold px-3 py-1 rounded-tr-md rounded-bl-md z-50">
-                {toPersianNumber(data?.discount?.percent)}٪
-            </span> :''
+            {(hasDiscount && !discountExpired) ?
+                <span className="absolute bg-danger-500 text-white text-lg font-semibold px-3 py-1 rounded-tr-md rounded-bl-md z-50">
+                    {toPersianNumber(data?.discount?.percent)}٪
+                </span> : ''
             }
 
             <div className="w-full h-full flex flex-col">
 
                 <Link href={`/courses/${link}`} className="p-2 overflow-hidden h-[14rem] md:h-[12rem] md:aspect-video">
                     <Image className="w-full h-full object-center object-cover hover:scale-110 transition-transform rounded-md "
-                        width={450} height={300} alt={`${data?.teacher?.teacherEngName}، مدرس دوره ${data?.name} در ویرچوال لرن`} src={data?.thumbnail?.imageUrl}/>
+                        width={450} height={300} alt={`${data?.teacher?.teacherEngName}، مدرس دوره ${data?.name} در ویرچوال لرن`} src={data?.thumbnail?.imageUrl} />
                 </Link>
 
                 <div className="w-full h-3/5">
@@ -100,7 +101,7 @@ export const CourseCard = ({ data }: CardProps) => {
                         </div>
 
                         <Link href={`/courses/${link}`} className="h-16">
-                            <h4 dir="ltr" className="mt-3 px-3 text-[1.01rem]  font-semibold hover:text-primary-400 transition-all">{data.name}</h4>
+                            <h4 className="mt-3 px-3 text-[1.01rem]  font-semibold hover:text-primary-400 transition-all">{data?.faName}</h4>
                         </Link>
 
                         <div className=" px-3 mt-3 flex items-center gap-4">
@@ -120,7 +121,7 @@ export const CourseCard = ({ data }: CardProps) => {
                             <div className="flex flex-col">
                                 <div className="flex items-center gap-1">
                                     <SiHtmlacademy size={16} className="text-primary-400" />
-                                    <p  className="text-xs font-semibold text-gray-500 dark:text-gray-300">{data.academy.academyEngName}</p>
+                                    <p className="text-xs font-semibold text-gray-500 dark:text-gray-300">{data.academy.academyEngName}</p>
                                 </div>
                                 <div className="mt-1 flex items-center gap-1">
                                     <WiTime3 size={16} className="text-primary-400" />
