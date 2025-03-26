@@ -156,6 +156,47 @@ const decodeTitle = (title: string) => {
     }
 }
 
+const getTimeAgo = (dateString: string): string => {
+    const now = new Date();
+    const inputDate = new Date(dateString);
+    const diffMs = now.getTime() - inputDate.getTime();
+
+    const diffMinutes = Math.floor(diffMs / (1000 * 60));
+    const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    const diffWeeks = Math.floor(diffDays / 7);
+    const diffMonths = Math.floor(diffDays / 30);
+    const diffYears = Math.floor(diffDays / 365);
+
+    if (diffMinutes < 60) {
+        return `${diffMinutes} دقیقه قبل`;
+    }
+    if (diffHours < 24) {
+        return `${diffHours} ساعت قبل`;
+    }
+    if (diffDays < 7) {
+        return `${diffDays} روز قبل`;
+    }
+    if (diffWeeks === 1) {
+        return "هفته قبل";
+    }
+    if (diffWeeks < 4) {
+        return `${diffWeeks} هفته قبل`;
+    }
+    if (diffMonths === 1) {
+        return "ماه قبل";
+    }
+    if (diffMonths < 12) {
+        return `${diffMonths} ماه قبل`;
+    }
+    if (diffYears === 1) {
+        return "سال قبل";
+    }
+    return `${diffYears} سال قبل`;
+};
+
+ 
+
 export {
     decodeTitle,
     encodeTitle,
@@ -168,5 +209,6 @@ export {
     encodeToShortCode,
     hoursAndMinutesString,
     secondsToTimeString2,
-    convertToEnglishNumbers
+    convertToEnglishNumbers,
+    getTimeAgo
 }

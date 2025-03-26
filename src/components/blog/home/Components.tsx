@@ -81,8 +81,9 @@ function WhatIsVirtualLearn() {
     );
 }
 
-function FeaturedSidebar() {
+function FeaturedSidebar({ oldestBlogs, popularBlogs }: { oldestBlogs: any, popularBlogs: any }) {
     const [state, setState] = useState(1);
+
     return (
         <section className="w-full relative">
             <div className="w-full p-4 pe-3 rounded-xl border-1 border-secondary-500 shadow-medium bg-white dark:bg-transparent">
@@ -92,80 +93,50 @@ function FeaturedSidebar() {
                 <div className='mt-10 flex justify-center gap-3'>
                     <Button onPress={() => setState(1)} variant={state ? 'shadow' : 'bordered'} color="secondary" radius="full" className="font-bold" size="lg">محبوب‌ها</Button>
                     <Button onPress={() => setState(0)} variant={!state ? 'shadow' : 'bordered'} color="secondary" radius="full" className="font-bold" size="lg">جدید‌ها</Button>
-
                 </div>
+
+
                 <div className='mt-12'>
-                    <div className="mb-4 flex items-center gap-4 pb-6 border-b border-border border-secondary-500">
-                        <Avatar className="w-20 h-20" isBordered size={'lg'} color="secondary" radius="full" src="https://buckettest.storage.c2.liara.space/images/academy19.png" />
+                    {
+                        state ?
+                            popularBlogs?.map((blog: any, index: number) =>
+                                <div className="mb-4 flex items-center gap-4 pb-6 border-b border-border border-secondary-500">
+                                    <Avatar className="w-20 h-20" isBordered size={'lg'} color="secondary" radius="full" src={blog?.thumbnail?.imageUrl} />
 
-                        <div className='mb-3'>
-                            <h3 className="text-lg font-medium mb-2">
-                                <a className="block hover:text-secondary-500">یه بلاگ خیلی خوب</a>
-                            </h3>
-                            <div className="flex items-center gap-2">
-                                <LuCalendarDays size={14} />
-                                <span className="text-xs font-medium">ویرچوال لرن</span>
-                            </div>
-                        </div>
+                                    <div className='mb-3'>
+                                        <h3 className="text-lg font-medium mb-2 block hover:text-secondary-500">
+                                            {blog?.title}
+                                        </h3>
+                                        <div className="flex items-center gap-2">
+                                            <LuCalendarDays size={14} />
+                                            <span className="text-xs font-medium">ویرچوال لرن</span>
+                                        </div>
+                                    </div>
 
-                    </div>
-                    <div className="mb-4 flex items-center gap-4 pb-6 border-b border-border border-secondary-500">
-                        <Avatar className="w-20 h-20" isBordered size={'lg'} color="secondary" radius="full" src="https://buckettest.storage.c2.liara.space/images/academy19.png" />
+                                </div>
+                            )
+                            :
+                            oldestBlogs?.map((blog: any, index: number) =>
+                                <div className="mb-4 flex items-center gap-4 pb-6 border-b border-border border-secondary-500">
+                                    <Avatar className="w-20 h-20" isBordered size={'lg'} color="secondary" radius="full" src={blog?.thumbnail?.imageUrl} />
 
-                        <div className='mb-3'>
-                            <h3 className="text-lg font-medium mb-2">
-                                <a className="block hover:text-secondary-500">یه بلاگ خیلی خوب</a>
-                            </h3>
-                            <div className="flex items-center gap-2">
-                                <LuCalendarDays size={14} />
-                                <span className="text-xs font-medium">ویرچوال لرن</span>
-                            </div>
-                        </div>
+                                    <div className='mb-3'>
+                                        <h3 className="text-lg font-medium mb-2 block hover:text-secondary-500">
+                                            {blog?.title}
+                                        </h3>
+                                        <div className="flex items-center gap-2">
+                                            <LuCalendarDays size={14} />
+                                            <span className="text-xs font-medium">ویرچوال لرن</span>
+                                        </div>
+                                    </div>
 
-                    </div>
-                    <div className="mb-4 flex items-center gap-4 pb-6 border-b border-border border-secondary-500">
-                        <Avatar className="w-20 h-20" isBordered size={'lg'} color="secondary" radius="full" src="https://buckettest.storage.c2.liara.space/images/academy19.png" />
+                                </div>
+                            )
+                    }
 
-                        <div className='mb-3'>
-                            <h3 className="text-lg font-medium mb-2">
-                                <a className="block hover:text-secondary-500">یه بلاگ خیلی خوب</a>
-                            </h3>
-                            <div className="flex items-center gap-2">
-                                <LuCalendarDays size={14} />
-                                <span className="text-xs font-medium">ویرچوال لرن</span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div className="mb-4 flex items-center gap-4 pb-6 border-b border-border border-secondary-500">
-                        <Avatar className="w-20 h-20" isBordered size={'lg'} color="secondary" radius="full" src="https://buckettest.storage.c2.liara.space/images/academy19.png" />
-
-                        <div className='mb-3'>
-                            <h3 className="text-lg font-medium mb-2">
-                                <a className="block hover:text-secondary-500">یه بلاگ خیلی خوب</a>
-                            </h3>
-                            <div className="flex items-center gap-2">
-                                <LuCalendarDays size={14} />
-                                <span className="text-xs font-medium">ویرچوال لرن</span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div className="mb-4 flex items-center gap-4 pb-6 border-b border-border border-secondary-500">
-                        <Avatar className="w-20 h-20" isBordered size={'lg'} color="secondary" radius="full" src="https://buckettest.storage.c2.liara.space/images/academy19.png" />
-
-                        <div className='mb-3'>
-                            <h3 className="text-lg font-medium mb-2">
-                                <a className="block hover:text-secondary-500">یه بلاگ خیلی خوب</a>
-                            </h3>
-                            <div className="flex items-center gap-2">
-                                <LuCalendarDays size={14} />
-                                <span className="text-xs font-medium">ویرچوال لرن</span>
-                            </div>
-                        </div>
-
-                    </div>
                 </div>
+
+
 
             </div>
         </section>

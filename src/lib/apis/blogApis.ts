@@ -69,6 +69,8 @@ export const getLatestBlogs = async () => {
     }
 }
 
+
+
 export const getRelatedBlogsByCourseName = async (name:string) => {
     try {
         const data = await customFetch(`/getRelatedBlogsByCourseName/${name}`, {
