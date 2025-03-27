@@ -19,6 +19,7 @@ import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import { FaRegComment } from "react-icons/fa6";
 import { toPersianNumber } from "@/src/utils/functions";
+import { blogCategories } from "@/src/config/site";
 
 function VirtualInfo() {
     const { theme } = useTheme();
@@ -194,14 +195,19 @@ function CategoriesSidebar() {
                 <p className="text-lg text-right font-semibold ">دسته‌بندی‌ها</p>
 
                 <div className="w-full mt-10 flex flex-col gap-4">
+                    {
+                        blogCategories?.map((cat, index) =>
+                            <Link key={index} href={`/blog/categories/${cat?.slug}`} className="w-full flex items-center justify-between gap-4 ">
+                                <div className="flex items-center gap-2">
+                                    <span className="p-1 rounded-sm bg-primary-400 "><Image width={24} height={24} alt={cat?.name} src={cat?.imageUrl}/></span>
+                                    <span>{cat?.name}</span>
+                                </div>
+                                
+                                <span className="flex items-center justify-center rounded-full bg-primary-400 text-sm min-w-6 min-h-6 text-white">{cat?.totalBlogs}</span>
+                            </Link>
+                        )
+                    }
 
-                    <Link href={`/blog/categories/1`} className="w-full flex items-center justify-between gap-4 ">
-                        <div className="flex items-center gap-2">
-                            <span className="p-1 rounded-sm bg-primary-400 "><MdEmail size={20} className='text-white' /></span>
-                            <span>برنامه نویسی</span>
-                        </div>
-                        <span className="flex items-center justify-center rounded-full bg-primary-400 text-sm min-w-6 min-h-6 text-white">1</span>
-                    </Link>
 
 
                 </div>
