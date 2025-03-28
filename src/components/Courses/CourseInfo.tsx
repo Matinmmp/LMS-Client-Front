@@ -1,7 +1,6 @@
 import { encodeTitle, formatDate, numberSeparator, secondsToTimeString, toPersianNumber } from "@/src/utils/functions";
 import React from "react";
 import DiscountCounter from "./Discount";
-import '@vidstack/react/player/styles/base.css';
 import Image from "next/image";
 import { PiStudentBold } from "react-icons/pi";
 import { HiOutlineInformationCircle } from "react-icons/hi";

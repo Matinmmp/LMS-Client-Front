@@ -69,6 +69,39 @@ export const getLatestBlogs = async () => {
     }
 }
 
+export const getBlogsByCategories = async () => {
+    try {
+        const data = await customFetch(`/getBlogsByCategories`, {
+            method: 'GET',
+            //  next: { revalidate: 3600 }
+            cache: 'no-cache',
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }
+        );
+        return await data;
+    } catch (error) {
+        return error
+    }
+}
+
+export const getBlogsByCategory = async ({slug}:{slug:string}) => {
+    try {
+        const data = await customFetch(`/getBlogsByCategory/${slug}`, {
+            method: 'GET',
+            //  next: { revalidate: 3600 }
+            cache: 'no-cache',
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }
+        );
+        return await data;
+    } catch (error) {
+        return error
+    }
+}
 
 
 export const getRelatedBlogsByCourseName = async (name:string) => {

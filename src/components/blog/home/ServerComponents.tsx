@@ -1,4 +1,3 @@
-
 import { FaUser } from "react-icons/fa";
 import Image from "next/image";
 import { LuCalendarDays } from "react-icons/lu";
@@ -67,7 +66,6 @@ function FeaturedPosts({ blogs }: { blogs: any }) {
     );
 }
 
-
 function ReceentPosts({ blogs }: { blogs: any }) {
 
     return (
@@ -114,7 +112,10 @@ function ReceentPosts({ blogs }: { blogs: any }) {
     );
 }
 
+
+
 export {
     FeaturedPosts,
-    ReceentPosts
+    ReceentPosts,
+    
 }
