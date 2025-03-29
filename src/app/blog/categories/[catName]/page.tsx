@@ -14,7 +14,7 @@ export default async function CategoriesPage(s: any) {
         getBlogsByCategory({ slug: s?.params?.catName }),
     ]);
 
-    console.log('adsfadfadfs', data2)
+ 
     return (
         <section className="w-full flex flex-col items-center justify-center  " >
 
@@ -23,7 +23,7 @@ export default async function CategoriesPage(s: any) {
                     {data1?.value?.courses && <CourseSlider courses={data1?.value?.courses} />}
                 </div>
                 <div className="mt-36 w-full flex flex-col lg:flex-row gap-4">
-                    <div className='w-full lg:w-[70%] border-1 border-secondary-500 bg-white dark:bg-black/30 backdrop-blur-sm rounded-2xl shadow-medium'>
+                    <div className='w-full lg:w-[70%] border-1 border-secondary-500 bg-white dark:bg-black/5 backdrop-blur-sm rounded-2xl shadow-medium'>
 
                         <div className='p-4 lg:p-8'>
                             {data2?.value?.name ? <h1 className='text-xl lg:text-2xl xl:text-3xl font-medium'>{data2?.value?.name}</h1> : ''}

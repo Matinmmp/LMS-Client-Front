@@ -80,7 +80,7 @@ export default async function CourseSearch(p: any) {
 
 
                 <div className="-mt-32 pt-36 lg:pt-48 pb-12 lg:pb-20 w-full flex items-center justify-center 
-        dark:bg-gradient-to-b  dark:from-primary-50 dark:to-transparent backdrop-blur-md">
+                    dark:bg-gradient-to-b  dark:from-primary-50 dark:to-transparent backdrop-blur-md">
 
                     <Hero />
                 </div>
@@ -95,7 +95,7 @@ export default async function CourseSearch(p: any) {
                     </Blogs>
                 </div>
             </section>
-<div className="gap-10 relative"><span className=" dark:bg-[rgba(21,130,255,0.10)] absolute  right-1 w-10 h-10 background -z-30" /></div>
+            <div className="gap-10 relative"><span className=" dark:bg-[rgba(21,130,255,0.10)] absolute  right-1 w-10 h-10 background -z-30" /></div>
 
         </>
 
@@ -104,7 +104,7 @@ export default async function CourseSearch(p: any) {
 
 const Loading = () => {
     return <div className="mt-8 flex flex-col items-center gap-6">
-        <p className='text-lg md:text-xl lg:text-2xl text-primary-400 font-semibold'>درحال دریافت دوره‌ها...</p>
+        <p className='text-lg md:text-xl lg:text-2xl text-primary-400 font-semibold'>درحال دریافت بلاگ‌ها...</p>
         <Spinner color="primary" size="lg"
             classNames={{
                 circle1: 'w-12 h-12 md:w-16 md:h-16 border-[4px]',

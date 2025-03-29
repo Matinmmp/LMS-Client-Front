@@ -62,7 +62,7 @@ export function CourseSlider({ courses }: { courses: any }) {
 
             </Swiper>
 
-            <div className="w-full h-full max-h-[25rem] overflow-auto lg:w-1/3 rounded-2xl shadow-medium bg-white dark:bg-black/40">
+            <div className="w-full h-full max-h-[25rem] overflow-auto lg:w-1/3 rounded-2xl shadow-medium bg-white dark:bg-black/20">
                 <div className="h-full p-3 flex flex-col gap-1">
                     {
                         courses?.map((course: any, index: number) => {

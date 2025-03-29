@@ -291,13 +291,13 @@ function CategoriesPosts({ blogs }: { blogs: any }) {
 }
 
 function BlogPost({ blog }: { blog: any }) {
-    console.log(blog)
+   
     return (
-        <div className="w-full shadow-medium rounded-xl bg-white dark:bg-black/30 backdrop-blur-sm">
+        <div className="w-full shadow-medium rounded-xl bg-white dark:bg-black/20 backdrop-blur-sm">
             <div className="p-4">
                 <Link href={`/blogs/${blog?.slug}`} className="overflow-hidden h-[14rem] md:h-[12rem] md:aspect-video">
                     <Image
-                        className="w-full h-full object-center object-cover hover:scale-110 hover:scale-y-[1.15] transition-transform rounded-xl"
+                        className="w-full h-full max-h-40 object-center object-cover hover:scale-110 hover:scale-y-[1.15] transition-transform rounded-xl"
                         width={450}
                         height={300}
                         alt={blog.title}

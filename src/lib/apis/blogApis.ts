@@ -118,3 +118,19 @@ export const getRelatedBlogsByCourseName = async (name:string) => {
     }
 }
 
+
+export const searchBlogs = async (search: any) => {
+    try {
+        const data = await customFetch(`/searchBlogs`, {
+            method: 'POST',
+            cache: 'no-store',
+            body: JSON.stringify(search),
+            headers: { 'Content-Type': 'application/json' },
+        }
+        );
+        return await data;
+    } catch (error) {
+        return error
+    }
+}
+

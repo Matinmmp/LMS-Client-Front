@@ -4,7 +4,7 @@ import { Input } from "@nextui-org/input";
 import { Select, SelectItem } from "@nextui-org/select";
 import { motion } from 'framer-motion';
 import { IoIosArrowBack } from "react-icons/io";
-import { navObject } from "@/src/config/site";
+import { blogCategories, navObject } from "@/src/config/site";
 import { buildCategoryTree } from "@/src/utils/categorySorter";
 import { Checkbox } from "@nextui-org/checkbox";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -19,15 +19,11 @@ const categories = buildCategoryTree(navObject.categoryObject.categoryList, null
 
 const Blogs = ({ children }: Props) => {
 
-
     const searchParams = useSearchParams();
     const path = usePathname();
     const router = useRouter();
 
     const queryParams = new URLSearchParams(Array.from(searchParams!.entries()))
-
-    let priceT = searchParams!.get('price') || '1';
-    if (!["1", "2", "3", "4"].includes(priceT)) priceT = "1";
 
     let order = searchParams!.get('order') || '1'
     if (!["1", "2", "3", "4", "5", "6"].includes(order)) order = "1";
@@ -43,15 +39,13 @@ const Blogs = ({ children }: Props) => {
     const selectOptions = [
         { key: '1', label: 'جدید‌ترین' },
         { key: '2', label: 'قدیمی‌ترین' },
-        { key: '3', label: 'تمام شده' },
-        { key: '4', label: 'درحال برگزاری' },
         { key: '5', label: 'محبوبترین' },
-        { key: '6', label: 'پرفروش ترین' },
+        { key: '6', label: 'پرلایک‌ترین' },
     ];
 
 
     const handleCategorySelect = (categoryName: string) => {
-        const category: any = navObject.categoryObject.categoryList.find((item: any) => item.name === categoryName);
+        const category: any = blogCategories.find((item: any) => item.name === categoryName);
 
         if (!selectedCategories.includes(category.name))
             setSelectedCategories((selectedCategories) => [...selectedCategories, categoryName])
@@ -105,7 +99,7 @@ const Blogs = ({ children }: Props) => {
             <div className="flex items-center flex-wrap md:flex-nowrap gap-4 py-6 px-4 shadow-medium rounded-lg 
                 bg-[#ffffffbf] dark:bg-[#131d35] dark:backdrop-blur-md ">
 
-                <Input placeholder="نام دوره را وارد کنید" size="lg" radius="sm" variant="bordered" color="primary" onKeyDown={handleKeyDown}
+                <Input placeholder="عنوام بلاگ را وارد کنید" size="lg" radius="sm" variant="bordered" color="primary" onKeyDown={handleKeyDown}
                     endContent={<IoSearch size={24} className="cursor-pointer" onClick={handleSearch} />}
                     onChange={(e) => setSearchText(e.target.value)} value={searchText} dir={'rtl'}
                 />
@@ -131,9 +125,17 @@ const Blogs = ({ children }: Props) => {
                     <div className="w-full bg-[#ffffffbf] dark:bg-[#131d35] dark:backdrop-blur-md shadow-medium rounded-lg">
                         <Acordian open={open4} title="فیلتر دسته بندی" setOpen={setOpen4} initialHeight={'auto'} closeInMobile={true}>
                             <div className="w-full flex flex-col gap-3">
-                                {renderCategories(
-                                    { categories: categories[0]?.subCategories, selectedCategories: selectedCategories, level: 0, handleCategorySelect: handleCategorySelect }
-                                )}
+                                {
+                                    blogCategories.map((category, index) =>
+                                        <div key={index} className="mt-1">
+                                            <Checkbox isSelected={selectedCategories.includes(category.name)} onValueChange={() => handleCategorySelect(category.name)}
+                                                defaultSelected radius="sm" size="lg" >
+                                                {category.name}
+                                            </Checkbox>
+
+                                        </div>)
+                                }
+
                             </div>
                         </Acordian>
                     </div>
