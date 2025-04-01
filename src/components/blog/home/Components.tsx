@@ -35,7 +35,7 @@ function VirtualInfo() {
                             Virtual Learn
                         </Link>
                     </div>
-                    <p className='mt-2 leading-7 text-[#555555] dark:text-gray-200 text-center'>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و    </p>
+                    <p className='mt-2 leading-7 text-[#555555] dark:text-gray-200 text-center'>بلاگ Virtual Learn جایی است که جدیدترین مقالات در حوزه برنامه‌نویسی، توسعه وب، هوش مصنوعی و دنیای فناوری را می‌یابید. محتوای تخصصی و کاربردی برای ارتقای دانش شما! 🚀</p>
 
 
                     <div className="mt-4 flex items-center gap-4 ">
@@ -64,10 +64,9 @@ function WhatIsVirtualLearn() {
                         <div className="">
                             <h2 className="text-2xl lg:text-3xl font-semibold">ویرچوال لرن</h2>
                             <p className="mt-6 leading-9 font-medium" style={{ wordSpacing: '0.2rem' }}>
-                                ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و
-                                ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و
-                                ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و
+                                Virtual Learn پلتفرمی پیشرو در ارائه دوره‌های آموزشی برنامه‌نویسی و توسعه وب از بهترین آکادمی‌های جهان، با زیرنویس فارسی تولید شده توسط هوش مصنوعی است. اما یادگیری فقط محدود به دوره‌ها نیست! در بخش بلاگ Virtual Learn می‌توانید جدیدترین مقالات آموزشی و تحلیلی را در موضوعات متنوعی مانند هوش مصنوعی، توسعه وب، برنامه‌نویسی فرانت‌اند و بک‌اند، امنیت سایبری، دیتابیس، فریمورک‌های مدرن و فناوری‌های روز دنبال کنید.
 
+                                ما در اینجا تلاش می‌کنیم تا با ارائه راهنماهای جامع، آموزش‌های پروژه‌محور، مقایسه ابزارهای توسعه و جدیدترین اخبار دنیای تکنولوژی، مسیر یادگیری شما را هموارتر کنیم. اگر به بهترین منابع آموزشی و مقالات عمیق و کاربردی علاقه‌مند هستید، بلاگ Virtual Learn همان جایی است که به دنبال آن می‌گردید! 🚀
                             </p>
                         </div>
                     </div>
@@ -98,7 +97,7 @@ function FeaturedSidebar({ oldestBlogs, popularBlogs }: { oldestBlogs: any, popu
                     {
                         state ?
                             popularBlogs?.map((blog: any, index: number) =>
-                                <div className="mb-4 flex items-center gap-4 pb-6 border-b border-border border-secondary-500">
+                                <div key={index} className="mb-4 flex items-center gap-4 pb-6 border-b border-border border-secondary-500">
                                     <Avatar className="w-20 h-20" isBordered size={'lg'} color="secondary" radius="full" src={blog?.thumbnail?.imageUrl} />
 
                                     <div className='mb-3'>
@@ -194,10 +193,10 @@ function CategoriesSidebar() {
                         blogCategories?.map((cat, index) =>
                             <Link key={index} href={`/blog/categories/${cat?.slug}`} className="w-full flex items-center justify-between gap-4 ">
                                 <div className="flex items-center gap-2">
-                                    <span className="p-1 rounded-sm bg-primary-400 "><Image width={24} height={24} alt={cat?.name} src={cat?.imageUrl}/></span>
+                                    <span className="p-1 rounded-sm bg-primary-400 "><Image width={24} height={24} alt={cat?.name} src={cat?.imageUrl} /></span>
                                     <span>{cat?.name}</span>
                                 </div>
-                                
+
                                 <span className="flex items-center justify-center rounded-full bg-primary-400 text-sm min-w-6 min-h-6 text-white">{cat?.totalBlogs}</span>
                             </Link>
                         )
@@ -219,7 +218,7 @@ function CategoriesPosts({ blogs }: { blogs: any }) {
     // استخراج دسته‌بندی‌ها و ادغام همه بلاگ‌ها در یک لیست
     const categories = Object.entries(blogs);
     const allBlogs = categories?.flatMap(([_, category]: any) => category?.blogs);
-    
+
     return (
         <section className="w-full">
             <div className="w-full flex justify-center">
@@ -247,7 +246,7 @@ function CategoriesPosts({ blogs }: { blogs: any }) {
                         }
                     >
                         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                            {allBlogs?.map((blog: any,index:number) => (
+                            {allBlogs?.map((blog: any, index: number) => (
                                 <BlogPost key={index} blog={blog} />
                             ))}
                         </div>
@@ -269,7 +268,7 @@ function CategoriesPosts({ blogs }: { blogs: any }) {
                         >
                             <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                 {categoryData?.blogs.length > 0 ? (
-                                    categoryData?.blogs.map((blog: any,index:number) => (
+                                    categoryData?.blogs.map((blog: any, index: number) => (
                                         <BlogPost key={index} blog={blog} />
                                     ))
                                 ) : (
@@ -291,7 +290,7 @@ function CategoriesPosts({ blogs }: { blogs: any }) {
 }
 
 function BlogPost({ blog }: { blog: any }) {
-   
+
     return (
         <div className="w-full shadow-medium rounded-xl bg-white dark:bg-black/20 backdrop-blur-sm">
             <div className="p-4">

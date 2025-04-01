@@ -50,7 +50,7 @@ export function CourseSlider({ courses }: { courses: any }) {
                                         alt={`${course?.teacher?.teacherEngName}، مدرس دوره ${course?.name} در ویرچوال لرن`} src={course?.thumbnail?.imageUrl}
                                         className='w-full h-full shadow-large' width={1000} height={600} />
                                     <div className='z-50 absolute bottom-0 p-4 w-full flex items-center justify-start backdrop-blur-[1px] bg-[#ffffffb7]/ dark:bg-[#2020204d]'>
-                                        <h6 className='text-xl md:text-xl lg:text-2xl xl:text-3xl font-bold text-white ps-1 md:ps-4 pb-4 lg:pb-6'>{course?.faName}</h6>
+                                        <h6  className='text-xl md:text-xl lg:text-2xl xl:text-3xl font-bold text-white ps-1 md:ps-4 pb-4 lg:pb-6'>{course?.faName}</h6>
                                     </div>
                                 </Link>
                             </SwiperSlide>
@@ -72,7 +72,7 @@ export function CourseSlider({ courses }: { courses: any }) {
                                 <Link key={index} href={`/courses/${link}`} className="p-3 flex items-center gap-4 hover:shadow-medium cursor-pointer rounded-xl transition-all">
                                     <Image className="w-28 aspect-video rounded-md shadow-small" width={200} height={140}
                                         alt={''} src={course?.thumbnail?.imageUrl} />
-                                    <h6 className="text-lg font-bold">{course?.faName}</h6>
+                                    <h6 className="text-lg font-medium" >{course?.faName}</h6>
                                 </Link>
                             )
                         }

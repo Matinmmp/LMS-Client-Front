@@ -4,6 +4,44 @@ import { FeaturedPosts, ReceentPosts } from '@/src/components/blog/home/ServerCo
 import { VirtualInfo, FeaturedSidebar, NewSteler, CategoriesSidebar, WhatIsVirtualLearn } from '@/src/components/blog/home/Components';
 import { getBlogsInSlider, getLatestBlogs, getOldestAndPopularBlogs, getSpecialBlogs } from '@/src/lib/apis/blogApis';
 
+
+const schema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "بلاگ Virtual Learn | جدیدترین مقالات آموزش برنامه‌نویسی",
+    "url": "https://www.vc-virtual-learn.com/blog",
+    "description": "در بلاگ Virtual Learn مقالات تخصصی درباره برنامه‌نویسی، توسعه وب، هوش مصنوعی، فریمورک‌های مدرن و فناوری‌های جدید را بخوانید. جدیدترین آموزش‌ها و نکات کاربردی را دنبال کنید.",
+    "keywords": "بلاگ برنامه‌نویسی, آموزش برنامه‌نویسی, مقالات برنامه‌نویسی, توسعه وب, یادگیری کدنویسی, فریمورک‌های برنامه‌نویسی",
+    "inLanguage": "fa",
+    "alternateName": "بلاگ Virtual Learn | جدیدترین مقالات آموزش برنامه‌نویسی",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.vc-virtual-learn.com/blog/blogs?searchText={search_term_string}",
+        "query-input": "required name=search_term_string"
+    },
+    "sameAs": [
+        "https://www.instagram.com/virtual_learn",
+        "https://t.me/VC_Virtual_Learn"
+    ],
+    "publisher": {
+        "@type": "Organization",
+        "name": "Virtual Learn",
+        "url": "https://www.vc-virtual-learn.com/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}logo-main.png`,
+            "width": 512,
+            "height": 512
+        }
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.vc-virtual-learn.com/blog"
+    }
+}
+
+
+
 export default async function Home() {
     let data1: any
     let data2: any
@@ -16,14 +54,31 @@ export default async function Home() {
         getOldestAndPopularBlogs()
     ]);
 
-    console.log("ddddddddddddddddddddddddddddddddddddddddddddddddddd",data1)
+
 
 
 
     return (
         <>
-            <section className=" flex flex-col items-center justify-center  " >
+            <title>بلاگ Virtual Learn | جدیدترین مقالات آموزش برنامه‌نویسی</title>
+            <meta name="description" content="جدیدترین مقالات آموزشی درباره برنامه‌نویسی، توسعه وب، هوش مصنوعی و فریمورک‌های محبوب. در بلاگ Virtual Learn مطالب تخصصی و نکات مهم دنیای کدنویسی را بخوانید." />
+            <meta name="robots" content="index, follow" />
+            <meta name="keywords" content="بلاگ برنامه‌نویسی, آموزش کدنویسی, مقالات برنامه‌نویسی, توسعه وب, جاوا اسکریپت, پایتون, هوش مصنوعی, فریمورک‌های برنامه‌نویسی" />
 
+            <meta property="og:title" content="بلاگ Virtual Learn | جدیدترین مقالات آموزش برنامه‌نویسی" />
+            <meta property="og:description" content="مطالب تخصصی درباره توسعه وب، زبان‌های برنامه‌نویسی و فریمورک‌های مدرن را در بلاگ Virtual Learn دنبال کنید. جدیدترین مقالات و آموزش‌ها برای برنامه‌نویسان!" />
+            <meta property="og:url" content="https://www.vc-virtual-learn.com/blog" />
+            <meta property="og:image" content="${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}blog-hero.svg" />
+
+            <meta name="twitter:title" content="بلاگ Virtual Learn | جدیدترین مقالات آموزش برنامه‌نویسی" />
+            <meta name="twitter:description" content="بهترین مقالات آموزشی درباره برنامه‌نویسی، جاوا اسکریپت، پایتون، هوش مصنوعی و توسعه وب را در بلاگ Virtual Learn مطالعه کنید." />
+            <meta name="twitter:image" content="${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}blog-hero.svg" />
+            <meta name="revisit-after" content="5 days" />
+
+            <link rel="canonical" href="https://www.vc-virtual-learn.com/blog" />
+
+            <section className=" flex flex-col items-center justify-center  " >
+            <h1 className='hidden'>بلاگ Virtual Learn | جدیدترین مقالات آموزش برنامه‌نویسی</h1>
                 <div className="w-full max-w-7xl px-4 md:px-8 2xl:px-2 flex flex-col items-center justify-center ">
 
 

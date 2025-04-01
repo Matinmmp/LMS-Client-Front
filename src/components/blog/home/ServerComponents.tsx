@@ -105,7 +105,7 @@ function ReceentPosts({ blogs }: { blogs: any }) {
 
                 </div>
                 <div className="w-full mt-20 flex justify-center">
-                    <Button variant="shadow" color="secondary" size="lg" className="font-bold">مشاهده‌ی همه</Button>
+                    <Button  variant="shadow" color="secondary" size="lg" className="font-bold">مشاهده‌ی همه</Button>
                 </div>
             </div>
         </section>
