@@ -1,5 +1,5 @@
 import CourseInfo from "@/src/components/Courses/CourseInfo";
-import { getAllCourseUrlNames, getCourseByName, } from "@/src/lib/apis/courseApis";
+import { getAllCourseUrlNames, getCourseByName, recordCourseView, } from "@/src/lib/apis/courseApis";
 import { decodeTitle, encodeTitle, secondsToTimeString } from "@/src/utils/functions";
 import { cookies } from 'next/headers'
 import { notFound } from "next/navigation";
@@ -41,7 +41,7 @@ export default async function CourseDetail({ params: { courseName } }: Props) {
         notFound();
 
     if (data && data.success) {
-
+        recordCourseView(data?.courseData?.course?._id)
         const schema: any = {
             "@context": "https://schema.org",
             "@type": "Course",
@@ -96,7 +96,7 @@ export default async function CourseDetail({ params: { courseName } }: Props) {
                 "bestRating": "5"
             };
         }
- 
+
         const course = data?.courseData?.course;
 
         // بررسی معتبر بودن تخفیف

@@ -219,11 +219,11 @@ function CategoriesPosts({ blogs }: { blogs: any }) {
     // استخراج دسته‌بندی‌ها و ادغام همه بلاگ‌ها در یک لیست
     const categories = Object.entries(blogs);
     const allBlogs = categories?.flatMap(([_, category]: any) => category?.blogs);
-    console.log(categories.find((item)=>item[0] === sel))
+
     let url = `blogs`
     if(categories.find((item)=>item[0] === sel)){
         const obj:any =categories.find((item)=>item[0] === sel)
-        url=`blogs?category=${obj[1]?.name}`
+        url=`categories/${obj[1]?.slug}`
     }
 
     return (

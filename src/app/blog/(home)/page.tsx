@@ -3,6 +3,7 @@ import MainSlider from '@/src/components/blog/home/MainSlider';
 import { FeaturedPosts, ReceentPosts } from '@/src/components/blog/home/ServerComponents';
 import { VirtualInfo, FeaturedSidebar, NewSteler, CategoriesSidebar, WhatIsVirtualLearn } from '@/src/components/blog/home/Components';
 import { getBlogsInSlider, getLatestBlogs, getOldestAndPopularBlogs, getSpecialBlogs } from '@/src/lib/apis/blogApis';
+import Script from 'next/script';
 
 
 const schema = {
@@ -77,8 +78,10 @@ export default async function Home() {
 
             <link rel="canonical" href="https://www.vc-virtual-learn.com/blog" />
 
-            <section className=" flex flex-col items-center justify-center  " >
-            <h1 className='hidden'>بلاگ Virtual Learn | جدیدترین مقالات آموزش برنامه‌نویسی</h1>
+            <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+            <section className=" flex flex-col items-center justify-center" >
+
+                <h1 className='hidden'>بلاگ Virtual Learn | جدیدترین مقالات آموزش برنامه‌نویسی</h1>
                 <div className="w-full max-w-7xl px-4 md:px-8 2xl:px-2 flex flex-col items-center justify-center ">
 
 

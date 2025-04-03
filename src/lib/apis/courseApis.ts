@@ -95,3 +95,14 @@ export const rateCourse = async ({ courseId, rating }: { courseId: string, ratin
     return await data;
 
 }
+
+export const recordCourseView = async ({ courseId }: { courseId: string,}) => {
+
+    const data = await customFetch(`/recordCourseView/${courseId}`, {
+        method: 'Post',
+        headers: { 'Content-Type': 'application/json' },
+    }
+    );
+    return await data;
+
+}

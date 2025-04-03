@@ -2,6 +2,7 @@ import { CategoriesPosts, WhatIsVirtualLearn } from '@/src/components/blog/home/
 import { CourseSlider } from '@/src/components/blog/home/MainSlider';
 import { getBlogsByCategories } from '@/src/lib/apis/blogApis';
 import { getHomeLastCourses } from '@/src/lib/apis/homeApis';
+import Script from 'next/script';
 
 
 const schema: any = {
@@ -44,7 +45,7 @@ export default async function CategoriesPage() {
 
     if (data2?.value?.data) {
         const categories = Object.entries(data2?.value?.data);
-        
+
         if (schema.hasPart && schema.hasPart[0]) {
             categories?.map(([categoryKey, categoryData]: any) => {
                 return {
@@ -80,6 +81,7 @@ export default async function CategoriesPage() {
                 <meta name="twitter:image" content={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}blog-categories-banner.jpg`} />
 
                 <link rel="canonical" href="https://www.vc-virtual-learn.com/blog/categories" />
+                <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
                 <div className="background z-[-1] !absolute">
                     <span className=" dark:bg-[#1582ff37] " />
