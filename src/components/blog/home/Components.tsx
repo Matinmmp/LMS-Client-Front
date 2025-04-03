@@ -20,7 +20,7 @@ import { blogCategories } from "@/src/config/site";
 
 function VirtualInfo() {
     const { theme } = useTheme();
-
+ 
     return (
         <section className="lg:mt-16  w-full relative">
 
@@ -40,8 +40,8 @@ function VirtualInfo() {
 
                     <div className="mt-4 flex items-center gap-4 ">
                         <Link href={'/'}><IoLogoLinkedin size={24} className="text-secondary-500" /></Link>
-                        <Link href={'/'}><FaSquareInstagram size={24} className="text-secondary-500" /></Link>
-                        <Link href={'/'}><FaTelegram size={24} className="text-secondary-500" /></Link>
+                        <Link href="https://www.instagram.com/vc_virtual_learn"><FaSquareInstagram size={24} className="text-secondary-500" /></Link>
+                        <Link href="https://t.me/VC_Virtual_Learn" ><FaTelegram size={24} className="text-secondary-500" /></Link>
                     </div>
                 </div>
             </div>
@@ -213,11 +213,18 @@ function CategoriesSidebar() {
 
 
 function CategoriesPosts({ blogs }: { blogs: any }) {
+    const [sel,setSel] = useState<any>(null)
     if (!blogs) return null;
-
+    
     // استخراج دسته‌بندی‌ها و ادغام همه بلاگ‌ها در یک لیست
     const categories = Object.entries(blogs);
     const allBlogs = categories?.flatMap(([_, category]: any) => category?.blogs);
+    console.log(categories.find((item)=>item[0] === sel))
+    let url = `blogs`
+    if(categories.find((item)=>item[0] === sel)){
+        const obj:any =categories.find((item)=>item[0] === sel)
+        url=`blogs?category=${obj[1]?.name}`
+    }
 
     return (
         <section className="w-full">
@@ -231,6 +238,8 @@ function CategoriesPosts({ blogs }: { blogs: any }) {
                     isVertical={false}
                     color="secondary"
                     variant="underlined"
+                    onSelectionChange={setSel}
+                    
                 >
                     {/* تب 'همه' شامل تمام بلاگ‌ها */}
                     <Tab
@@ -281,7 +290,7 @@ function CategoriesPosts({ blogs }: { blogs: any }) {
             </div>
 
             <div className="mt-16 w-full flex justify-center">
-                <Button color="secondary" variant="shadow" radius="md" size="lg">
+                <Button href={url} as={Link} color="secondary" variant="shadow" radius="md" size="lg">
                     مشاهده‌ی بیشتر
                 </Button>
             </div>

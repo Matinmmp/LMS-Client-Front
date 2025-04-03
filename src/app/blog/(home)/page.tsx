@@ -68,11 +68,11 @@ export default async function Home() {
             <meta property="og:title" content="بلاگ Virtual Learn | جدیدترین مقالات آموزش برنامه‌نویسی" />
             <meta property="og:description" content="مطالب تخصصی درباره توسعه وب، زبان‌های برنامه‌نویسی و فریمورک‌های مدرن را در بلاگ Virtual Learn دنبال کنید. جدیدترین مقالات و آموزش‌ها برای برنامه‌نویسان!" />
             <meta property="og:url" content="https://www.vc-virtual-learn.com/blog" />
-            <meta property="og:image" content="${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}blog-hero.svg" />
+            <meta property="og:image" content={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}blog-hero.jpg`} />
 
             <meta name="twitter:title" content="بلاگ Virtual Learn | جدیدترین مقالات آموزش برنامه‌نویسی" />
             <meta name="twitter:description" content="بهترین مقالات آموزشی درباره برنامه‌نویسی، جاوا اسکریپت، پایتون، هوش مصنوعی و توسعه وب را در بلاگ Virtual Learn مطالعه کنید." />
-            <meta name="twitter:image" content="${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}blog-hero.svg" />
+            <meta name="twitter:image" content={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}blog-hero.jpg`} />
             <meta name="revisit-after" content="5 days" />
 
             <link rel="canonical" href="https://www.vc-virtual-learn.com/blog" />
