@@ -5,38 +5,6 @@ import Courses from "@/src/components/Courses/Courses";
 import { Spinner } from "@nextui-org/spinner";
 import Script from "next/script";
 
-const schema = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "دوره‌های آموزشی | Virtual Learn",
-    "url": "https://www.vc-virtual-learn.com/courses/search",
-    "description": "در این صفحه می‌توانید دوره‌های برنامه‌نویسی مختلف را جستجو کرده و با مقایسه آن‌ها، بهترین گزینه را انتخاب کنید. Virtual Learn انتخاب شما برای یادگیری برنامه‌نویسی به زبان فارسی است.",
-    "inLanguage": "fa",
-    "isPartOf": {
-        "@type": "WebSite",
-        "name": "ویرچوال لرن",
-        "url": "https://www.vc-virtual-learn.com"
-    },
-    "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://www.vc-virtual-learn.com/courses/search?searchText={search_term_string}",
-        "query-input": "required name=search_term_string"
-    },
-    // "image": "https://www.vc-virtual-learn.com/assets/courses-search-banner.png",//بعدا درستش کن
-    "publisher": {
-        "@type": "Organization",
-        "name": "Virtual Learn",
-        "url": "https://www.vc-virtual-learn.com",
-        "logo": {
-            "@type": "ImageObject",
-            "url": `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}logo-main.png`,
-            "width": 512,
-            "height": 512
-        }
-    }
-}
-
-
 
 export default async function CourseSearch(p: any) {
 
@@ -53,6 +21,24 @@ export default async function CourseSearch(p: any) {
     if (params.order) object.order = params.order;
     if (params.page) object.page = params.page;
 
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "SearchResultsPage",
+        "name": "جستجوی دوره‌های آموزشی | Virtual Learn",
+        "url": "https://www.vc-virtual-learn.com/courses",
+        "description": "در این صفحه می‌توانید دوره‌های برنامه‌نویسی مختلف را جستجو کرده و با مقایسه آن‌ها، بهترین گزینه را انتخاب کنید. Virtual Learn انتخاب شما برای یادگیری برنامه‌نویسی به زبان فارسی است.",
+        "inLanguage": "fa",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "Virtual Learn",
+            "url": "https://www.vc-virtual-learn.com"
+        },
+        "mainEntity": {
+            "@type": "SearchAction",
+            "target": `https://www.vc-virtual-learn.com/courses?searchText=${params.searchText}`,
+            "query-input": "required name=searchText"
+        }
+    }
 
     if (params.category) {
         if (Array.isArray(params.category)) object.categories = params.category

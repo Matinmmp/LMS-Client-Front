@@ -36,7 +36,7 @@ const schema = {
     "potentialAction": {
         "@type": "SearchAction",
         "target": "https://www.vc-virtual-learn.com/courses?searchText={search_term_string}",
-        "query-input": "required name=search_term_string"
+        "query-input": "required searchText=search_term_string"
     }
 };
 

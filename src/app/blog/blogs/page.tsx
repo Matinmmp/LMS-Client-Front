@@ -5,37 +5,6 @@ import Script from "next/script";
 import Blogs from "@/src/components/blog/Blogs";
 import BlogsList from "@/src/components/blog/BlogsList";
 
-const schema = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "دوره‌های آموزشی | Virtual Learn",
-    "url": "https://www.vc-virtual-learn.com/courses/search",
-    "description": "در این صفحه می‌توانید دوره‌های برنامه‌نویسی مختلف را جستجو کرده و با مقایسه آن‌ها، بهترین گزینه را انتخاب کنید. Virtual Learn انتخاب شما برای یادگیری برنامه‌نویسی به زبان فارسی است.",
-    "inLanguage": "fa",
-    "isPartOf": {
-        "@type": "WebSite",
-        "name": "ویرچوال لرن",
-        "url": "https://www.vc-virtual-learn.com"
-    },
-    "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://www.vc-virtual-learn.com/courses/search?searchText={search_term_string}",
-        "query-input": "required name=search_term_string"
-    },
-    // "image": "https://www.vc-virtual-learn.com/assets/courses-search-banner.png",//بعدا درستش کن
-    "publisher": {
-        "@type": "Organization",
-        "name": "Virtual Learn",
-        "url": "https://www.vc-virtual-learn.com",
-        "logo": {
-            "@type": "ImageObject",
-            "url": `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}logo-main.png`,
-            "width": 512,
-            "height": 512
-        }
-    }
-}
-
 
 export default async function CourseSearch(p: any) {
     const params = p.searchParams;
@@ -44,10 +13,31 @@ export default async function CourseSearch(p: any) {
     let object: Record<string, any> = {
         page: '1'
     };
-
+    let text = 'همه'
+    if(params.searchText)
+        text = params.searchText
     if (params.searchText) object.searchText = params.searchText;
     if (params.order) object.order = params.order;
     if (params.page) object.page = params.page;
+
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "SearchResultsPage",
+        "name": `نتایج جستجوی ${text} در بلاگ Virtual Learn`,
+        "url": `https://www.vc-virtual-learn.com/blog/blogs?searchText=${text}`,
+        "description": `نتایج جستجو برای ${text} در بلاگ Virtual Learn. مقالات فارسی در زمینه‌ی برنامه‌نویسی، توسعه نرم‌افزار، طراحی وب، هوش مصنوعی و دیگر موضوعات مرتبط.`,
+        "inLanguage": "fa",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "Virtual Learn",
+            "url": "https://www.vc-virtual-learn.com"
+        },
+        "mainEntity": {
+            "@type": "SearchAction",
+            "query": `${text}`,
+            "query-input": "required name=searchTerm"
+        }
+    }
 
 
     if (params.category) {
@@ -58,23 +48,22 @@ export default async function CourseSearch(p: any) {
     return (
 
         <>
-            <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-            <title>دوره‌های آموزشی | Virtual Learn</title>
-            <meta name="description" content="در این صفحه می‌توانید دوره‌های برنامه‌نویسی مختلف را جستجو کرده و با مقایسه آن‌ها، بهترین گزینه را انتخاب کنید. Virtual Learn انتخاب شما برای یادگیری برنامه‌نویسی به زبان فارسی است." />
-            <meta name="keywords" content="جستجوی دوره‌های برنامه‌نویسی, دوره‌های فارسی, آموزش آنلاین, دوره‌های ترجمه‌شده, Virtual Learn" />
+            <title>{`نتایج جستجوی ${text} | بلاگ Virtual Learn`}</title>
+            <meta name="description" content={`نتایج جستجوی ${text} در بلاگ Virtual Learn. مقالات آموزشی فارسی درباره ${text}، برنامه‌نویسی، توسعه نرم‌افزار، و تکنولوژی‌های روز.`} />
             <meta name="robots" content="index, follow" />
-            <meta name="revisit-after" content="5 days" />
+            <meta name="keywords" content={`${text}, مقالات ${text}, آموزش ${text}, بلاگ برنامه‌نویسی, Virtual Learn`} />
 
-            <meta property="og:title" content="دوره‌های آموزشی | Virtual Learn" />
-            <meta property="og:description" content="در این صفحه می‌توانید دوره‌های برنامه‌نویسی مختلف را جستجو کرده و با مقایسه آن‌ها، بهترین گزینه را انتخاب کنید. Virtual Learn انتخاب شما برای یادگیری برنامه‌نویسی به زبان فارسی است." />
-            <meta property="og:url" content="https://www.vc-virtual-learn.com/courses" />
+            <meta property="og:title" content={`نتایج جستجوی ${text} | بلاگ Virtual Learn`} />
+            <meta property="og:description" content={`جستجو برای ${text} در بلاگ Virtual Learn. مقالاتی با محتوای آموزشی و تخصصی در زمینه‌ی {searchTerm}.`} />
+            <meta property="og:url" content={`https://www.vc-virtual-learn.com/blog/blogs?searchText=${text}`} />
 
+            <meta name="twitter:title" content={`نتایج جستجوی ${text} | بلاگ Virtual Learn`} />
+            <meta name="twitter:description" content={`نتایج مرتبط با ${text} در بلاگ Virtual Learn. آموزش‌های ترجمه‌شده فارسی از بهترین منابع دنیا.`} />
+ 
+            <link rel="canonical" href={`https://www.vc-virtual-learn.com/blog/blogs?searchText=${text}`} />
 
-            <meta name="twitter:title" content="دوره‌های آموزشی | Virtual Learn" />
-            <meta name="twitter:description" content="در این صفحه می‌توانید دوره‌های برنامه‌نویسی مختلف را جستجو کرده و با مقایسه آن‌ها، بهترین گزینه را انتخاب کنید. Virtual Learn انتخاب شما برای یادگیری برنامه‌نویسی به زبان فارسی است." />
-
-            <link rel="canonical" href="https://www.vc-virtual-learn.com/courses" />
+            <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
             <section className=" flex flex-col items-center justify-center  " >
 
@@ -83,6 +72,7 @@ export default async function CourseSearch(p: any) {
                     dark:bg-gradient-to-b  dark:from-primary-50 dark:to-transparent backdrop-blur-md">
 
                     <Hero />
+               
                 </div>
 
                 <div className="w-full max-w-7xl px-4 md:px-8 2xl:px-2 flex flex-col items-center justify-center ">

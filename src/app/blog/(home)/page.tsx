@@ -15,11 +15,6 @@ const schema = {
     "keywords": "بلاگ برنامه‌نویسی, آموزش برنامه‌نویسی, مقالات برنامه‌نویسی, توسعه وب, یادگیری کدنویسی, فریمورک‌های برنامه‌نویسی",
     "inLanguage": "fa",
     "alternateName": "بلاگ Virtual Learn | جدیدترین مقالات آموزش برنامه‌نویسی",
-    "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://www.vc-virtual-learn.com/blog/blogs?searchText={search_term_string}",
-        "query-input": "required name=search_term_string"
-    },
     "sameAs": [
         "https://www.instagram.com/virtual_learn",
         "https://t.me/VC_Virtual_Learn"
