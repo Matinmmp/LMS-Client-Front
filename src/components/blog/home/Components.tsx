@@ -13,10 +13,9 @@ import { Tabs, Tab } from "@heroui/tabs";
 import { Input } from "@nextui-org/input";
 import { MdEmail } from "react-icons/md";
 import { useState } from "react";
-
-import { FaRegComment } from "react-icons/fa6";
-import { getTimeAgo, toPersianNumber } from "@/src/utils/functions";
+import {  toPersianNumber } from "@/src/utils/functions";
 import { blogCategories } from "@/src/config/site";
+import { BlogPost } from "./ServerComponents";
 
 function VirtualInfo() {
     const { theme } = useTheme();
@@ -298,40 +297,7 @@ function CategoriesPosts({ blogs }: { blogs: any }) {
     );
 }
 
-function BlogPost({ blog }: { blog: any }) {
 
-    return (
-        <div className="w-full shadow-medium rounded-xl bg-white dark:bg-black/20 backdrop-blur-sm">
-            <div className="p-4">
-                <Link href={`/blogs/${blog?.slug}`} className="overflow-hidden h-[14rem] md:h-[12rem] md:aspect-video">
-                    <Image
-                        className="w-full h-full max-h-40 object-center object-cover hover:scale-110 hover:scale-y-[1.15] transition-transform rounded-xl"
-                        width={450}
-                        height={300}
-                        alt={blog.title}
-                        src={blog?.thumbnail?.imageUrl}
-                    />
-                </Link>
-                <div className="mt-8">
-                    <h5 className="font-semibold">{blog?.title}</h5>
-                    <p className="mt-4 leading-6 text-xs" style={{ wordSpacing: "0.15rem" }}>
-                        {blog?.description}
-                    </p>
-                </div>
-                <div className="mt-4 flex items-center gap-4">
-                    <div className="flex items-center gap-1">
-                        <FaRegComment />
-                        <span className="text-sm">{toPersianNumber(blog?.comments)}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                        <LuCalendarDays />
-                        <span className="text-sm">{getTimeAgo(blog?.publishDate)} پیش</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-}
 
 export {
     VirtualInfo,
@@ -340,5 +306,5 @@ export {
     CategoriesSidebar,
     WhatIsVirtualLearn,
     CategoriesPosts,
-    BlogPost
+    
 }

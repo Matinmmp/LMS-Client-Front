@@ -18,16 +18,8 @@ type Props = {
     params: { blogName: string }
 };
 
-export default async function CourseDetail({ params: { blogName } }: Props) {
-    const cookieStore = await cookies();
-    const refresh_token = cookieStore.get('refresh_token');
-    const access_token = cookieStore.get('access_token');
-
-    console.log('asdfadfs');
-    const name = await decodeURIComponent(decodeTitle(blogName));
-
-    const data: any = await getCourseByName(name, refresh_token?.value, access_token?.value)
-
+export default async function BlogDetail({ params: { blogName } }: Props) {
+  
 
     // if (data && data?.message === 'دوره‌ای با این نام یافت نشد')
     //     notFound();
@@ -92,7 +84,7 @@ export default async function CourseDetail({ params: { blogName } }: Props) {
     return (
         <>
             <section className=" flex flex-col items-center justify-center" >
-                <meta property="og:image" content={data?.courseData?.course?.thumbnail?.imageUrl} />
+                {/* <meta property="og:image" content={data?.courseData?.course?.thumbnail?.imageUrl} />
                 <title>{data?.courseData?.course?.seoMeta?.title ? data?.courseData?.course?.seoMeta?.title : data?.courseData?.course?.name}</title>
                 <meta name="description" content={data?.courseData?.course?.seoMeta?.description} />
                 <meta name="keywords" content={data?.courseData?.course?.seoMeta?.keywords} />
@@ -105,14 +97,14 @@ export default async function CourseDetail({ params: { blogName } }: Props) {
                 <meta property="og:image" content={data?.courseData?.course?.thumbnail?.imageUrl} />
 
                 <meta name="twitter:title" content={data?.courseData?.course?.seoMeta?.title ? data?.courseData?.course?.seoMeta?.title : data?.courseData?.course?.name} />
-                <meta name="twitter:description" content={data?.courseData?.course?.seoMeta?.description} />
+                <meta name="twitter:description" content={data?.courseData?.course?.seoMeta?.description} /> */}
 
                 {/* بعدا عکسو بذار */}
-                <meta name="twitter:image" content={data?.courseData?.course?.thumbnail?.imageUrl} />
+                {/* <meta name="twitter:image" content={data?.courseData?.course?.thumbnail?.imageUrl} />
 
-                <link rel="canonical" href={`https://www.vc-virtual-learn.com/courses/${blogName}`} />
+                <link rel="canonical" href={`https://www.vc-virtual-learn.com/courses/${blogName}`} /> */}
 
-                <BlogInfo blogName={name} />
+                <BlogInfo blogName={'l'} />
 
                 {/* <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} /> */}
 

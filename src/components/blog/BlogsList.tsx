@@ -2,7 +2,8 @@ import { MdOutlineArticle } from "react-icons/md";
 import { CoursePagination } from "./Blogs";
 import { Problem } from "../Shared/Problem";
 import { searchBlogs } from "@/src/lib/apis/blogApis";
-import { BlogPost } from "./home/Components";
+import { BlogPost } from "./home/ServerComponents";
+ 
 
 type Props = {
     object: any,

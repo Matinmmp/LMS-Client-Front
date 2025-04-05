@@ -14,6 +14,15 @@ export default async function BlogInfo({ blogName }: { blogName: string }) {
                     <div className="w-full lg:w-[75%] rounded-xl shadow-large backdrop-blur-3xl bg-white dark:bg-transparent">
                         <div className="p-4 md:p-6 lg:p-8">
                             <h1 className="text-xl md:text-2xl lg:text-3xl font-semibold text-[#3E4247] dark:text-white">آموزش تغییر فونت اینستاگرام</h1>
+                             
+                             {
+                                `# Welcome to StackEdit!
+
+                                Hi! I'm your first Markdown file in **StackEdit**. If you want to learn about StackEdit, you can read me. If you want to play with Markdown, you can edit me. Once you have finished with me, you can create new files by opening the **file explorer** on the left corner of the navigation bar.
+                                
+                                
+                                # Files`
+                             }
                         </div>
                     </div>
                     <div className="w-full lg:w-[25%] ">

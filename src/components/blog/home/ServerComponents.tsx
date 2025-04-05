@@ -1,9 +1,9 @@
-import { FaUser } from "react-icons/fa";
+import { FaRegComment, FaUser } from "react-icons/fa";
 import Image from "next/image";
 import { LuCalendarDays } from "react-icons/lu";
 import { Button } from "@nextui-org/button";
 import Link from "next/link";
-import { getTimeAgo } from "@/src/utils/functions";
+import { getTimeAgo, toPersianNumber } from "@/src/utils/functions";
 
 function FeaturedPosts({ blogs }: { blogs: any }) {
     return (
@@ -112,10 +112,43 @@ function ReceentPosts({ blogs }: { blogs: any }) {
     );
 }
 
+function BlogPost({ blog }: { blog: any }) {
 
+    return (
+        <div className="w-full shadow-medium rounded-xl bg-white dark:bg-black/20 backdrop-blur-sm">
+            <div className="p-4">
+                <Link href={`/blog/blogs/${blog?.slug}`} className="overflow-hidden h-[14rem] md:h-[12rem] md:aspect-video">
+                    <Image
+                        className="w-full h-full max-h-40 object-center object-cover hover:scale-110 hover:scale-y-[1.15] transition-transform rounded-xl"
+                        width={450}
+                        height={300}
+                        alt={blog.title}
+                        src={blog?.thumbnail?.imageUrl}
+                    />
+                </Link>
+                <div className="mt-8">
+                    <Link href={`/blog/blogs/${blog?.slug}`}><h5 className="font-semibold">{blog?.title}</h5></Link>
+                    <p className="mt-4 leading-6 text-xs" style={{ wordSpacing: "0.15rem" }}>
+                        {blog?.description}
+                    </p>
+                </div>
+                <div className="mt-4 flex items-center gap-4">
+                    <div className="flex items-center gap-1">
+                        <FaRegComment />
+                        <span className="text-sm">{toPersianNumber(blog?.comments)}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                        <LuCalendarDays />
+                        <span className="text-sm">{getTimeAgo(blog?.publishDate)} پیش</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
 
 export {
     FeaturedPosts,
     ReceentPosts,
-    
+    BlogPost
 }
