@@ -134,3 +134,19 @@ export const searchBlogs = async (search: any) => {
     }
 }
 
+export const getBlogBySlug = async (slug: string) => {
+    try {
+        const data = await customFetch(`/getBlogBySlug/${slug}`, {
+            method: 'GET',
+            //  next: { revalidate: 3600 }
+            cache: 'no-cache',
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }
+        );
+        return await data;
+    } catch (error) {
+        return error
+    }
+}

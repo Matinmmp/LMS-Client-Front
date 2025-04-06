@@ -49,6 +49,7 @@
 		"framer-motion": "^12.5.0",
 		"fuse.js": "^7.0.0",
 		"js-cookie": "^3.0.5",
+		"moment-jalaali": "^0.10.4",
 		"next": "14.2.4",
 		"next-themes": "^0.2.1",
 		"nextjs-toploader": "^3.7.15",
@@ -68,6 +69,7 @@
 	"devDependencies": {
 		"@react-types/shared": "3.25.0",
 		"@types/js-cookie": "^3.0.6",
+		"@types/moment-jalaali": "^0.7.9",
 		"@types/node": "20.5.7",
 		"@types/react": "18.3.3",
 		"@types/react-dom": "18.3.0",

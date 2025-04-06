@@ -1,6 +1,7 @@
+import moment  from 'moment-jalaali'
+
 var persianNumbers = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g,];
 var arabicNumbers = [/٠/g, /١/g, /٢/g, /٣/g, /٤/g, /٥/g, /٦/g, /٧/g, /٨/g, /٩/g];
-
 const convertToEnglishNumbers = (input: string): string => {
     // تعریف نقشه اعداد فارسی به انگلیسی
     const persianToEnglishMap: { [key: string]: string } = {
@@ -100,7 +101,7 @@ const formatDate = (date: string) => {
 
         return persianDate;
     } catch (error: any) {
-        
+
         return '';
     }
 }
@@ -129,7 +130,7 @@ const formatDate2 = (date: string) => {
     }
 };
 
-function encodeToShortCode(text:string) {
+function encodeToShortCode(text: string) {
     // محاسبه هش ساده با استفاده از کدهای کاراکتر
     let hash = 0;
     for (let i = 0; i < text.length; i++) {
@@ -164,6 +165,7 @@ const getTimeAgo = (dateString: string): string => {
     const diffMinutes = Math.floor(diffMs / (1000 * 60));
     const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
     const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+   
     const diffWeeks = Math.floor(diffDays / 7);
     const diffMonths = Math.floor(diffDays / 30);
     const diffYears = Math.floor(diffDays / 365);
@@ -195,7 +197,17 @@ const getTimeAgo = (dateString: string): string => {
     return `${diffYears} سال قبل`;
 };
 
- 
+
+function secondsToMinutes(seconds:any) {
+    const mins = Math.floor(seconds / 60);
+    return `${mins}`;
+}
+
+
+function formatJalaliDate(isoDateStr: string): string {
+  moment.loadPersian({ dialect: 'persian-modern', usePersianDigits: true });
+  return moment(isoDateStr).format('dddd jD jMMMM jYYYY - HH:mm');
+}
 
 export {
     decodeTitle,
@@ -210,5 +222,7 @@ export {
     hoursAndMinutesString,
     secondsToTimeString2,
     convertToEnglishNumbers,
-    getTimeAgo
+    getTimeAgo,
+    formatJalaliDate,
+    secondsToMinutes
 }

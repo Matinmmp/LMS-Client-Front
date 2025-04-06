@@ -1,6 +1,7 @@
 import BlogInfo from "@/src/components/blog/BlogInfo";
+import { getBlogBySlug } from "@/src/lib/apis/blogApis";
 import { getCourseByName, } from "@/src/lib/apis/courseApis";
-import { decodeTitle } from "@/src/utils/functions";
+import { decodeTitle, secondsToTimeString } from "@/src/utils/functions";
 import { cookies } from 'next/headers'
 import { notFound } from "next/navigation";
 import Script from "next/script";
@@ -19,92 +20,73 @@ type Props = {
 };
 
 export default async function BlogDetail({ params: { blogName } }: Props) {
-  
+    
+    const data:any = await getBlogBySlug(blogName)
+    console.log(data)
 
-    // if (data && data?.message === 'دوره‌ای با این نام یافت نشد')
-    //     notFound();
+    if (data && data?.message === "بلاگ مورد نظر یافت نشد")
+        notFound();
 
-    // if (data && data.success) {
+    if (data && data.success) {
+    const blog = data?.blog;
+    const schema: any = {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": data?.courseData?.course?.seoMeta?.title || data?.courseData?.course?.name,
+        "description": data?.courseData?.course?.seoMeta?.description,
+        "provider": {
+            "@type": "Organization",
+            "name": "Virtual Learn",
+            "url": "https://www.vc-virtual-learn.com"
+        },
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "ویرچوال لرن",
+            "url": "https://www.vc-virtual-learn.com"
+        },
+        "hasCourseInstance": {
+            "@type": "CourseInstance",
+            "name": data?.courseData?.course?.name,
+            "courseMode": "Online",
+            "startDate": data?.courseData?.course?.createDate,
+            "endDate": data?.courseData?.course?.endDate,
+            "courseWorkload": "PT2H", // 2 ساعت در هفته به فرمت ISO 8601
+            "courseSchedule": "Flexible", // برای جلوگیری از خطا اضافه شده
+       
 
-    // const schema: any = {
-    //     "@context": "https://schema.org",
-    //     "@type": "Course",
-    //     "name": data?.courseData?.course?.seoMeta?.title || data?.courseData?.course?.name,
-    //     "description": data?.courseData?.course?.seoMeta?.description,
-    //     "provider": {
-    //         "@type": "Organization",
-    //         "name": "Virtual Learn",
-    //         "url": "https://www.vc-virtual-learn.com"
-    //     },
-    //     "isPartOf": {
-    //         "@type": "WebSite",
-    //         "name": "ویرچوال لرن",
-    //         "url": "https://www.vc-virtual-learn.com"
-    //     },
-    //     "hasCourseInstance": {
-    //         "@type": "CourseInstance",
-    //         "name": data?.courseData?.course?.name,
-    //         "courseMode": "Online",
-    //         "startDate": data?.courseData?.course?.createDate,
-    //         "endDate": data?.courseData?.course?.endDate,
-    //         "courseWorkload": "PT2H", // 2 ساعت در هفته به فرمت ISO 8601
-    //         "courseSchedule": "Flexible", // برای جلوگیری از خطا اضافه شده
-    //         "instructor": {
-    //             "@type": "Person",
-    //             "name": data?.courseData?.teacher?.engName,
-    //             "url": `https://www.vc-virtual-learn.com/teachers/${encodeTitle(data?.courseData?.teacher?.engName)}`
-    //         },
-    //         "location": {
-    //             "@type": "VirtualLocation",
-    //             "url": `https://www.vc-virtual-learn.com/courses/${encodeTitle(data?.courseData?.course?.urlName)}`
-    //         }
-    //     },
-    //     "image": data?.courseData?.course?.thumbnail?.imageUrl,
-    //     "duration": secondsToTimeString(data?.courseData?.course?.courseLength),
-    //     "offers": {
-    //         "@type": "Offer",
-    //         "price": data?.courseData?.course?.price,
-    //         "priceCurrency": "IRR",
-    //         "availability": "InStock",
-    //         "category": data?.courseData?.course?.category || "Programming",
-    //         "url": `https://www.vc-virtual-learn.com/courses/${encodeTitle(data?.courseData?.course?.urlName)}`
-    //     }
-    // };
-
-    // // اضافه کردن امتیاز دوره در صورت وجود
-    // if (data?.courseData?.course?.rating && data?.courseData?.course?.ratingNumber) {
-    //     schema.aggregateRating = {
-    //         "@type": "AggregateRating",
-    //         "ratingValue": data?.courseData?.course?.rating.toString(),
-    //         "reviewCount": data?.courseData?.course?.ratingNumber.toString(),
-    //         "bestRating": "5"
-    //     };
-    // }
+            "aggregateRating":{
+                "@type": "AggregateRating",
+                "ratingValue": 4.7,
+                "reviewCount": 134,
+                "bestRating": "5"
+            }
+        },
+    };
 
     return (
         <>
             <section className=" flex flex-col items-center justify-center" >
-                {/* <meta property="og:image" content={data?.courseData?.course?.thumbnail?.imageUrl} />
-                <title>{data?.courseData?.course?.seoMeta?.title ? data?.courseData?.course?.seoMeta?.title : data?.courseData?.course?.name}</title>
-                <meta name="description" content={data?.courseData?.course?.seoMeta?.description} />
-                <meta name="keywords" content={data?.courseData?.course?.seoMeta?.keywords} />
+                <meta property="og:image" content={blog?.thumbnail?.imageUrl} />
+                <title>{blog?.seoMeta?.title ? blog?.seoMeta?.title : blog?.name}</title>
+                <meta name="description" content={blog?.seoMeta?.description} />
+                <meta name="keywords" content={blog?.seoMeta?.keywords} />
                 <meta name="robots" content="index, follow" />
                 <meta name="revisit-after" content="5 days" />
 
-                <meta property="og:title" content={data?.courseData?.course?.seoMeta?.title ? data?.courseData?.course?.seoMeta?.title : data?.courseData?.course?.name} />
-                <meta property="og:description" content={data?.courseData?.course?.seoMeta?.description} />
+                <meta property="og:title" content={blog?.seoMeta?.title ? blog?.seoMeta?.title : blog?.name} />
+                <meta property="og:description" content={blog?.seoMeta?.description} />
                 <meta property="og:url" content={`https://www.vc-virtual-learn.com/courses/${blogName}`} />
-                <meta property="og:image" content={data?.courseData?.course?.thumbnail?.imageUrl} />
+                <meta property="og:image" content={blog?.thumbnail?.imageUrl} />
 
-                <meta name="twitter:title" content={data?.courseData?.course?.seoMeta?.title ? data?.courseData?.course?.seoMeta?.title : data?.courseData?.course?.name} />
-                <meta name="twitter:description" content={data?.courseData?.course?.seoMeta?.description} /> */}
+                <meta name="twitter:title" content={blog?.seoMeta?.title ? blog?.seoMeta?.title : data?.blog?.name} />
+                <meta name="twitter:description" content={blog?.seoMeta?.description} />
 
                 {/* بعدا عکسو بذار */}
-                {/* <meta name="twitter:image" content={data?.courseData?.course?.thumbnail?.imageUrl} />
+                <meta name="twitter:image" content={blog?.thumbnail?.imageUrl} />
 
-                <link rel="canonical" href={`https://www.vc-virtual-learn.com/courses/${blogName}`} /> */}
+                <link rel="canonical" href={`https://www.vc-virtual-learn.com/courses/${blogName}`} />
 
-                <BlogInfo blogName={'l'} />
+                <BlogInfo data={blog} />
 
                 {/* <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} /> */}
 
@@ -113,4 +95,5 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
         </>
     );
     // }
+}
 }
