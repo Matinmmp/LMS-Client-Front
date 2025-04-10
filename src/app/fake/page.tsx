@@ -1,9 +1,12 @@
 import BlogInfo from "@/src/components/blog/BlogInfo";
 import { CategoriesSidebar } from "@/src/components/blog/home/Components";
+import Code from "@/src/components/Shared/Code";
 import { formatJalaliDate, secondsToMinutes, toPersianNumber } from "@/src/utils/functions";
+import { Button } from "@nextui-org/button";
 import Image from "next/image";
-
-
+import Link from "next/link";
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { a11yDark, a11yLight } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 
 type Props = {
     params: { blogName: string }
@@ -12,19 +15,21 @@ type Props = {
 export default async function BlogDetail({ params: { blogName } }: Props) {
 
 
+
+
     return (
         <>
 
             <section className=" flex flex-col items-center justify-center" >
 
-                <div className="w-full max-w-[1400px] px-4 md:px-8 2xl:px-2 flex items-center justify-center ">
+                <div className="w-full max-w-[1400px] md:px-8 2xl:px-2 flex items-center justify-center ">
                     <div className="w-full flex flex-col gap-2 ">
-                        <div className="w-full">
-                            <Image className="w-full rounded-2xl lg:rounded-3xl shadow-medium"
+                        <div className="w-full px-4 md:px-0">
+                            <Image className="mt-16 lg:mt-0 w-full rounded-2xl lg:rounded-3xl shadow-medium"
                                 width={1000} height={700} alt="" src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}academy19.png`} />
                         </div>
-                        <div className="w-full flex flex-col lg:flex-row gap-6 py-10">
-                            <div className="w-full lg:w-[75%] rounded-xl shadow-large backdrop-blur-3xl bg-white dark:bg-transparent">
+                        <div className="w-full flex flex-col lg:flex-row gap-6 py-4 lg:py-10">
+                            <div className="w-full lg:w-[75%] md:rounded-xl md:shadow-large backdrop-blur-3xl bg-white dark:bg-transparent">
                                 <div className="p-4 md:p-6 lg:p-8">
                                     <div className="flex itmes-center gap-6 text-[#3E4247] dark:text-white text-xs">
 
@@ -34,8 +39,8 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
 
                                     <article>
 
-                                        <h1 id="main-title" className="text-[#3E4247] dark:text-white text-[28px] md:text-[32px] lg:text-[36px] font-bold leading-[1.4] mt-[40px] mb-[20px] md:mb-[25px] lg:mb-[30px]">
-                                            وب و اینترنت چیست؟ راهنمای کامل ۰ تا ۱۰۰ + تاریخچه و آینده (ویژه ایران ۱۴۰۳)
+                                        <h1 id="main-title" className="text-[#3E4247] dark:text-white text-[20px] md:text-[28px] lg:text-[32px] font-bold leading-[1.4] mt-[40px] mb-[20px] md:mb-[25px] lg:mb-[30px]">
+                                            وب و اینترنت چیست؟ راهنمای کامل ۰ تا ۱۰۰ + تاریخچه و آینده
                                         </h1>
 
                                         <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify mt-[15px] md:mt-[18px] lg:mt-[20px] mb-[15px] md:mb-[18px] lg:mb-[20px]">
@@ -45,14 +50,14 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                             در این راهنمای جامع و استراتژیک که با تمرکز بر <strong className="font-semibold">مخاطب ایرانی</strong> و نیازهای <strong className="font-semibold">بازار کار تکنولوژی ایران</strong> تهیه شده، سفری عمیق به دنیای اینترنت و وب خواهیم داشت. از تعاریف بنیادین و تاریخچه شگفت‌انگیز آن‌ها گرفته تا اجزای سازنده، تکامل وب (وب ۱، ۲ و ۳)، آینده پیش رو و مهم‌تر از همه، چرایی اهمیت این دانش برای مسیر شغلی شما در ایران. در پایان این مقاله، دید روشنی نسبت به اینترنت، وب، و نقشه راه یادگیری فناوری‌های مرتبط در <strong className="font-semibold">Virtual Learn</strong> خواهید داشت.
                                         </p>
 
-                                        <div className="bg-primary-100/60 dark:bg-gray-800 border-l-4 border-primary-500 dark:border-primary-400 p-5 rounded-lg my-[25px] md:my-[30px] lg:my-[35px] shadow-sm">
+                                        <div className="bg-primary-100/60 dark:bg-gray-800 border-l-4 border-primary-500 dark:border-primary-400 py-5 px-2 lg:p-5 rounded-lg my-[35px] md:my-[40px] lg:my-[45px] shadow-medium">
                                             <strong className="block mb-3 text-lg font-semibold text-gray-900 dark:text-white">آنچه در این راهنمای جامع می‌خوانید:</strong>
-                                            <ul className="list-disc list-outside pl-5 space-y-2 text-gray-800 dark:text-gray-200">
+                                            <ul className="mt-6 ps-2 md:ps-4 lg:pl-5 space-y-3 text-gray-800 dark:text-gray-200 text-sm md:text-base">
                                                 <li><a href="#internet-superhighway" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۱. اینترنت: شاهراه اطلاعاتی جهان (زیرساخت ارتباطی)</a></li>
                                                 <li><a href="#web-ocean-of-content" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۲. وب (World Wide Web): اقیانوس محتوا روی اینترنت</a></li>
                                                 <li>
                                                     <a href="#history-internet-web" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۳. سفری در زمان: تاریخچه شگفت‌انگیز اینترنت و وب</a>
-                                                    <ul className="list-['-_'] list-outside pl-4 mt-1 space-y-1 text-sm">
+                                                    <ul className="ps-4  list-['-_'] list-outside pl-4 mt-1 space-y-1 text-xs md:text-sm">
                                                         <li><a href="#internet-history" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">ریشه‌های اینترنت: از جنگ سرد تا ARPANET</a></li>
                                                         <li><a href="#web-history" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">تولد وب: ایده درخشان تیم برنرز-لی</a></li>
                                                         <li><a href="#web-growth-milestones" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">رشد انفجاری و نقاط عطف کلیدی</a></li>
@@ -60,7 +65,7 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                                 </li>
                                                 <li>
                                                     <a href="#web-building-blocks" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۴. اجزای سازنده وب: بلوک‌های بنیادین دنیای آنلاین</a>
-                                                    <ul className="list-['-_'] list-outside pl-4 mt-1 space-y-1 text-sm">
+                                                    <ul className="ps-4  list-['-_'] list-outside pl-4 mt-1 space-y-1 text-xs md:text-sm">
                                                         <li><a href="#html-structure" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">HTML: اسکلت و ساختار محتوا</a></li>
                                                         <li><a href="#css-styling" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">CSS: طراح ظاهر و استایل وب‌سایت‌ها</a></li>
                                                         <li><a href="#javascript-interactivity" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">JavaScript: مغز متفکر و پویای وب</a></li>
@@ -75,7 +80,7 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                             </ul>
                                         </div>
 
-                                        <h2 id="internet-superhighway" className="text-gray-900 dark:text-white text-[22px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
+                                        <h2 id="internet-superhighway" className="text-gray-900 dark:text-white text-[20px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
                                             ۱. اینترنت: شاهراه اطلاعاتی جهان (زیرساخت ارتباطی)
                                         </h2>
 
@@ -86,7 +91,7 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                             مهم‌ترین نکته این است که اینترنت <strong className="font-semibold">زیرساخت فیزیکی و پروتکلی</strong> است که ارتباط را ممکن می‌سازد. پروتکل‌های اصلی اینترنت مانند <strong className="font-semibold">TCP/IP (Transmission Control Protocol/Internet Protocol)</strong>، قوانین و استانداردهایی هستند که نحوه آدرس‌دهی دستگاه‌ها (IP Address) و چگونگی تقسیم، ارسال و دریافت مطمئن داده‌ها را تعریف می‌کنند. اینترنت به خودی خود محتوا ندارد؛ بلکه بستری است برای جریان یافتن اطلاعات و اجرای سرویس‌های مختلف.
                                         </p>
 
-                                        <ul className="list-disc list-outside pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-2 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                        <ul className="list-disc ps-4 my-[15px] md:my-[18px] lg:my-[20px] space-y-2 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] leading-6">
                                             <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">
                                                 <strong className="font-semibold">اجزای کلیدی اینترنت:</strong> زیرساخت‌های فیزیکی (کابل‌ها، ماهواره‌ها)، روترها، سرورها، پروتکل‌ها (TCP/IP)، سیستم نام دامنه (DNS).
                                             </li>
@@ -99,28 +104,17 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                         </ul>
 
                                         <div className="my-[25px] md:my-[30px] lg:my-[35px] flex flex-col items-center group">
-                                            [IMAGE PLACEHOLDER]
-                                            {/*
-         <img
-             src="/images/internet-infrastructure-analogy.jpg" // Replace with actual URL
-             alt="اینفوگرافیک نمایش دهنده زیرساخت اینترنت به عنوان شاهراه جهانی با کابل‌های زیردریایی، ماهواره‌ها و سرورها که کامپیوترها را به هم متصل می‌کند."
-             width="768"
-             height="432"
-             loading="lazy"
-             className="rounded-lg shadow-xl max-w-full h-auto border border-gray-200 dark:border-gray-700 group-hover:opacity-95 transition-opacity duration-300"
-         />
-     */}
+
+                                            <Image width="768" height="432" className="shadow-medium rounded-xl"
+                                                loading="lazy" alt="اینفوگرافیک نمایش دهنده زیرساخت اینترنت به عنوان شاهراه جهانی با کابل‌های زیردریایی، ماهواره‌ها و سرورها که کامپیوترها را به هم متصل می‌کند."
+                                                src={`${process.env.NEXT_PUBLIC_BLOG_IMAGE_BASE_URL}925bd0f5-0b87-4b42-8613-7a041c108f4a%20.jpg`} />
+
+
                                             <figcaption className="text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic w-full max-w-prose">زیرساخت پیچیده اما حیاتی اینترنت که ارتباط جهانی ما را ممکن می‌سازد.</figcaption>
                                         </div>
 
-                                        ---
-                                        [Image Prompt Suggestion]: A clean and modern flat design infographic illustrating the global internet infrastructure. Show interconnected continents with lines representing submarine cables, satellites orbiting the earth, data centers (servers), and connecting lines to diverse devices (laptops, phones, routers). Use a blue (#0065D9) and teal (#079CED) color scheme primarily. Keep text minimal or absent in the image. Aspect ratio 16:9.
-                                        [Suggested Alt Text]: اینفوگرافیک نمایش دهنده زیرساخت اینترنت به عنوان شاهراه جهانی با کابل‌های زیردریایی، ماهواره‌ها و سرورها که کامپیوترها را به هم متصل می‌کند.
-                                        [Suggested Dimensions]: 16:9 (e.g., 1280x720)
-                                        ---
 
-
-                                        <h2 id="web-ocean-of-content" className="text-gray-900 dark:text-white text-[22px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
+                                        <h2 id="web-ocean-of-content" className="text-gray-900 dark:text-white text-[20px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
                                             ۲. وب (World Wide Web): اقیانوس محتوا روی اینترنت
                                         </h2>
 
@@ -132,7 +126,7 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                         </p>
 
                                         <div className="overflow-x-auto my-[25px] md:my-[30px] lg:my-[35px] shadow-lg rounded-lg border border-gray-300 dark:border-gray-700">
-                                            <table className="w-full text-left text-[14px] md:text-[15px]">
+                                            <table className="w-full text-[14px] md:text-[15px]">
                                                 <caption className="caption-bottom text-sm text-gray-600 dark:text-gray-400 p-3 bg-gray-50 dark:bg-gray-800">جدول مقایسه کلیدی اینترنت و وب</caption>
                                                 <thead className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-100 uppercase text-xs tracking-wider">
                                                     <tr>
@@ -172,7 +166,7 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                         </div>
 
                                         <div className="flex items-start border-l-4 border-success-500 dark:border-success-400 bg-success-100/60 dark:bg-gray-800 p-4 rounded-md my-[20px] md:my-[22px] lg:my-[25px] shadow-sm">
-                                            <span className="text-xl mr-3 text-success-600 dark:text-success-300 mt-1">💡</span>
+                                            <span className="text-xl  text-success-600 dark:text-success-300 mt-1">💡</span>
                                             <div>
                                                 <strong className="font-semibold text-success-800 dark:text-success-200">نکته کلیدی:</strong>
                                                 <p className="text-success-700 dark:text-success-200/90 mt-1 text-[15px] md:text-[16px] leading-relaxed">
@@ -181,7 +175,7 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                             </div>
                                         </div>
 
-                                        <h2 id="history-internet-web" className="text-gray-900 dark:text-white text-[22px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
+                                        <h2 id="history-internet-web" className="text-gray-900 dark:text-white text-[20px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
                                             ۳. سفری در زمان: تاریخچه شگفت‌انگیز اینترنت و وب
                                         </h2>
 
@@ -195,7 +189,7 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                         <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
                                             ایده اولیه شبکه‌ای مقاوم که حتی در صورت حمله اتمی بتواند به کار خود ادامه دهد، در دوران جنگ سرد شکل گرفت. وزارت دفاع ایالات متحده از طریق آژانس پروژه‌های تحقیقاتی پیشرفته خود (ARPA، بعدها DARPA) پروژه‌ای به نام <strong className="font-semibold">ARPANET</strong> را در سال <strong className="font-semibold">۱۹۶۹</strong> کلید زد. این شبکه کوچک اولیه، چهار دانشگاه در آمریکا را به هم متصل کرد و پایه‌های اصلی اینترنت مدرن، از جمله مفهوم <strong className="font-semibold">Packet Switching</strong> (تقسیم داده‌ها به بسته‌های کوچک برای ارسال) را بنا نهاد.
                                         </p>
-                                        <ul className="list-disc list-outside pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-2 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                        <ul className="list-disc ps-4 my-[15px] md:my-[18px] lg:my-[20px] space-y-2 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
                                             <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">دهه ۱۹۷۰: توسعه پروتکل‌های کلیدی TCP و IP توسط <strong className="font-semibold">وینت سرف (Vint Cerf)</strong> و <strong className="font-semibold">باب کان (Bob Kahn)</strong> که به "پدران اینترنت" معروفند.</li>
                                             <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">دهه ۱۹۸۰: گسترش شبکه‌های دانشگاهی و تحقیقاتی، ایجاد <strong className="font-semibold">سیستم نام دامنه (DNS)</strong> برای تبدیل نام‌های دامنه قابل خواندن (مثل virtual-learn.com) به آدرس‌های IP عددی.</li>
                                         </ul>
@@ -206,7 +200,7 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                         <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
                                             در سال <strong className="font-semibold">۱۹۸۹</strong>، <strong className="font-semibold">تیم برنرز-لی (Tim Berners-Lee)</strong>، دانشمند بریتانیایی در مرکز تحقیقات هسته‌ای اروپا (CERN)، سیستمی را برای به اشتراک‌گذاری و مدیریت آسان اطلاعات بین محققان پیشنهاد داد. او سه فناوری بنیادین را اختراع یا استانداردسازی کرد که وب جهانی را شکل دادند:
                                         </p>
-                                        <ol className="list-decimal list-outside pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-2 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                        <ol className="list-decimal ps-4 pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-2 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
                                             <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">HTML (HyperText Markup Language):</strong> زبانی برای ساختاردهی و نمایش محتوای صفحات وب.</li>
                                             <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">URL (Uniform Resource Locator):</strong> آدرس منحصر به فرد برای هر منبع در وب.</li>
                                             <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">HTTP (HyperText Transfer Protocol):</strong> پروتکلی برای درخواست و انتقال صفحات وب بین سرور و مرورگر.</li>
@@ -226,7 +220,7 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                             رشد انفجاری و نقاط عطف کلیدی
                                         </h3>
 
-                                        <ul className="list-disc list-outside pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-2 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                        <ul className="list-disc ps-4 my-[15px] md:my-[18px] lg:my-[20px] space-y-2 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
                                             <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">۱۹۹۳:</strong> انتشار مرورگر <strong className="font-semibold">Mosaic</strong>، اولین مرورگری که متن و تصویر را در یک صفحه نمایش می‌داد و استفاده از وب را برای عموم آسان کرد.</li>
                                             <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">اواسط دهه ۱۹۹۰:</strong> "جنگ مرورگرها" بین <strong className="font-semibold">Netscape Navigator</strong> و <strong className="font-semibold">Internet Explorer</strong> مایکروسافت، که منجر به نوآوری‌های سریع (مانند معرفی <strong className="font-semibold">JavaScript</strong> توسط Netscape) شد.</li>
                                             <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">اواخر دهه ۱۹۹۰ - اوایل ۲۰۰۰:</strong> <strong className="font-semibold">حباب دات-کام (Dot-com Bubble)</strong>؛ شور و هیجان زیاد و سرمایه‌گذاری‌های کلان در شرکت‌های اینترنتی، که با ترکیدن حباب و ورشکستگی بسیاری همراه بود، اما زیرساخت‌ها را تقویت کرد.</li>
@@ -235,27 +229,14 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                         </ul>
 
                                         <div className="my-[25px] md:my-[30px] lg:my-[35px] flex flex-col items-center group">
-                                            [IMAGE PLACEHOLDER]
-                                            {/*
-         <img
-             src="/images/web-history-timeline.jpg" // Replace with actual URL
-             alt="تایم‌لاین تصویری تاریخچه وب از ۱۹۸۹ (اختراع وب توسط تیم برنرز-لی) تا امروز شامل نقاط عطف مهم مثل مرورگر موزاییک، جنگ مرورگرها، وب ۲.۰ و انقلاب موبایل."
-             width="768"
-             height="300"
-             loading="lazy"
-             className="rounded-lg shadow-xl max-w-full h-auto border border-gray-200 dark:border-gray-700 group-hover:opacity-95 transition-opacity duration-300"
-         />
-     */}
+
+                                            <Image width="768" height="300" className="shadow-medium rounded-xl"
+                                                loading="lazy" alt="تایم‌لاین تصویری تاریخچه وب از ۱۹۸۹ (اختراع وب توسط تیم برنرز-لی) تا امروز شامل نقاط عطف مهم مثل مرورگر موزاییک، جنگ مرورگرها، وب ۲.۰ و انقلاب موبایل."
+                                                src={`${process.env.NEXT_PUBLIC_BLOG_IMAGE_BASE_URL}8b18ced0-3d88-435a-94ef-829347b4cd634.PNG`} />
                                             <figcaption className="text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic w-full max-w-prose">گاه‌شمار تکامل وب: از ایده‌ای ساده تا پلتفرم جهانی امروز.</figcaption>
                                         </div>
-                                        ---
-                                        [Image Prompt Suggestion]: A horizontal timeline graphic illustrating the history of the World Wide Web. Start with Tim Berners-Lee inventing the Web (1989), then show milestones like the Mosaic browser (1993), Browser Wars (mid-90s), Dot-com Bubble (late 90s/early 00s), Web 2.0 (mid-00s), Mobile Web (late 00s/10s), and hint at Web 3.0 (present). Use icons and simple visuals for each milestone. Maintain Virtual Learn's color palette (blues, teals). Aspect ratio ~2.5:1 (wide banner style).
-                                        [Suggested Alt Text]: تایم‌لاین تصویری تاریخچه وب از ۱۹۸۹ (اختراع وب توسط تیم برنرز-لی) تا امروز شامل نقاط عطف مهم مثل مرورگر موزاییک، جنگ مرورگرها، وب ۲.۰ و انقلاب موبایل.
-                                        [Suggested Dimensions]: Wide (e.g., 1200x480)
-                                        ---
 
-
-                                        <h2 id="web-building-blocks" className="text-gray-900 dark:text-white text-[22px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
+                                        <h2 id="web-building-blocks" className="text-gray-900 dark:text-white text-[20px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
                                             ۴. اجزای سازنده وب: بلوک‌های بنیادین دنیای آنلاین
                                         </h2>
 
@@ -274,10 +255,10 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
 
                                         <div className="my-[20px] md:my-[22px] lg:my-[25px]">
                                             <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">مثال ساده‌ای از کد HTML برای نمایش یک عنوان و یک پاراگراف:</p>
-                                            <div className="bg-[#2d2d2d] dark:bg-gray-800 rounded-md overflow-x-auto text-[14px] leading-[1.6] shadow-lg relative group">
-                                                <pre className="p-4">
-                                                    <code className="language-html block text-[#f8f8f2] dark:text-gray-200 font-mono whitespace-pre">
-                                                        {`<!DOCTYPE html>
+
+
+                                            <Code lang="html" >
+                                                {`<!DOCTYPE html>
 <html>
 <head>
   <title>صفحه نمونه</title>
@@ -287,9 +268,9 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
   <p>این یک پاراگراف نمونه با استفاده از HTML است.</p>
 </body>
 </html>`}
-                                                    </code>
-                                                </pre>
-                                            </div>
+                                            </Code>
+
+
                                             <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">مرورگر این کد را تفسیر کرده و محتوا را با ساختار مشخص نمایش می‌دهد.</p>
                                         </div>
 
@@ -312,17 +293,13 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
 
                                         <div className="my-[20px] md:my-[22px] lg:my-[25px]">
                                             <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">مثال ساده CSS برای تغییر رنگ و فونت عنوان H1 در مثال قبلی:</p>
-                                            <div className="bg-[#2d2d2d] dark:bg-gray-800 rounded-md overflow-x-auto text-[14px] leading-[1.6] shadow-lg relative group">
-                                                <pre className="p-4">
-                                                    <code className="language-css block text-[#f8f8f2] dark:text-gray-200 font-mono whitespace-pre">
-                                                        {`h1 {
+                                            <Code lang="css">
+                                                {`h1 {
   color: #0065D9; /* رنگ آبی Virtual Learn */
   font-family: 'Vazirmatn', sans-serif; /* استفاده از فونت فارسی مناسب */
   text-align: center;
 }`}
-                                                    </code>
-                                                </pre>
-                                            </div>
+                                            </Code>
                                             <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">این کد، تمام تگ‌های H1 در صفحه را به رنگ آبی و با فونت وزیرمتن نمایش می‌دهد و متن آن را وسط‌چین می‌کند.</p>
                                         </div>
 
@@ -334,7 +311,7 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                             <p className="text-primary-700 dark:text-primary-300 mb-4 leading-relaxed text-[15px] md:text-[16px]">
                                                 حالا که با نقش حیاتی HTML و CSS آشنا شدید، آماده‌اید این مهارت‌های بنیادین را به صورت عملی و پروژه‌محور یاد بگیرید؟ <a href="https://vc-virtual-learn.com/courses/Build-Responsive-Real-World-Websites-with-HTML-and-CSS-Jonas-Schmedtmann" target="_blank" rel="noopener noreferrer" className="text-primary-600 dark:text-primary-300 font-bold hover:underline decoration-wavy decoration-2 underline-offset-4">دوره "آموزش HTML & CSS ساخت سایت واکنشگرا" از Jonas Schmedtmann در Virtual Learn</a> با زیرنویس دقیق فارسی، بهترین مسیر برای ساخت وب‌سایت‌های مدرن و حرفه‌ای است.
                                             </p>
-                                            <a href="https://vc-virtual-learn.com/courses/Build-Responsive-Real-World-Websites-with-HTML-and-CSS-Jonas-Schmedtmann" target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-2 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg shadow-md transition duration-200 transform hover:-translate-y-1">مشاهده جزئیات دوره HTML و CSS</a>
+                                            <Button className="mt-4" as={Link} size="lg" variant="shadow" color="secondary" href="https://vc-virtual-learn.com/courses/Build-Responsive-Real-World-Websites-with-HTML-and-CSS-Jonas-Schmedtmann" target="_blank" rel="noopener noreferrer">مشاهده جزئیات دوره HTML و CSS</Button>
                                         </div>
 
 
@@ -347,10 +324,8 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
 
                                         <div className="my-[20px] md:my-[22px] lg:my-[25px]">
                                             <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">مثال ساده جاوا اسکریپت برای تغییر متن یک پاراگراف با کلیک روی یک دکمه:</p>
-                                            <div className="bg-[#2d2d2d] dark:bg-gray-800 rounded-md overflow-x-auto text-[14px] leading-[1.6] shadow-lg relative group">
-                                                <pre className="p-4">
-                                                    <code className="language-jsx block text-[#f8f8f2] dark:text-gray-200 font-mono whitespace-pre">
-                                                        {`// ابتدا در HTML:
+                                            <Code lang="javascript">
+                                                {`// ابتدا در HTML:
 // <p id="myParagraph">این متن اولیه است.</p>
 // <button id="myButton">تغییر متن</button>
 
@@ -361,14 +336,12 @@ const button = document.getElementById('myButton');
 button.addEventListener('click', function() {
   paragraph.textContent = 'متن با جاوا اسکریپت تغییر کرد!';
 });`}
-                                                    </code>
-                                                </pre>
-                                            </div>
+                                            </Code>
                                             <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">با کلیک روی دکمه، متن داخل پاراگراف با شناسه 'myParagraph' تغییر می‌کند.</p>
                                         </div>
 
                                         <div className="flex items-start border-l-4 border-warning-500 dark:border-warning-400 bg-warning-100/60 dark:bg-gray-800 p-4 rounded-md my-[20px] md:my-[22px] lg:my-[25px] shadow-sm">
-                                            <span className="text-xl mr-3 text-warning-600 dark:text-warning-300 mt-1">⚠️</span>
+                                            <span className="text-xl text-warning-600 dark:text-warning-300 mt-1">⚠️</span>
                                             <div>
                                                 <strong className="font-semibold text-warning-800 dark:text-warning-200">توجه مهم:</strong>
                                                 <p className="text-warning-700 dark:text-warning-200/90 mt-1 text-[15px] md:text-[16px] leading-relaxed">
@@ -385,11 +358,13 @@ button.addEventListener('click', function() {
                                             <p className="text-primary-700 dark:text-primary-300 mb-4 leading-relaxed text-[15px] md:text-[16px]">
                                                 جاوا اسکریپت دروازه ورود به دنیای توسعه وب مدرن، فریم‌ورک‌های محبوب مانند React و Vue، و حتی توسعه بک‌اند است. <a href="https://vc-virtual-learn.com/courses/The-Complete-JavaScript-Course-2025-From-Zero-to-Expert-Jonas-Schmedtmann" target="_blank" rel="noopener noreferrer" className="text-primary-600 dark:text-primary-300 font-bold hover:underline decoration-wavy decoration-2 underline-offset-4">"دوره کامل جاوا اسکریپت ۲۰۲۵: از صفر تا متخصص!" از Jonas Schmedtmann در Virtual Learn</a>، با پروژه‌ها، چالش‌ها و پوشش کامل مفاهیم تئوری و عملی، شما را برای تبدیل شدن به یک متخصص جاوا اسکریپت آماده می‌کند. (همراه با زیرنویس دقیق فارسی!)
                                             </p>
-                                            <a href="https://vc-virtual-learn.com/courses/The-Complete-JavaScript-Course-2025-From-Zero-to-Expert-Jonas-Schmedtmann" target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-2 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg shadow-md transition duration-200 transform hover:-translate-y-1">جزئیات دوره جامع JavaScript</a>
+                                            <Button className="mt-4" as={Link} size="lg" variant="shadow" color="secondary" href="https://vc-virtual-learn.com/courses/The-Complete-JavaScript-Course-2025-From-Zero-to-Expert-Jonas-Schmedtmann" target="_blank" rel="noopener noreferrer">جزئیات دوره جامع JavaScript</Button>
+
+
                                         </div>
 
 
-                                        <h2 id="web-evolution" className="text-gray-900 dark:text-white text-[22px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
+                                        <h2 id="web-evolution" className="text-gray-900 dark:text-white text-[20px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
                                             ۵. تکامل وب: از صفحات ثابت تا دنیای هوشمند (Web 1.0, 2.0, 3.0)
                                         </h2>
 
@@ -429,14 +404,14 @@ button.addEventListener('click', function() {
                                             </div>
                                         </div>
 
-                                        <h2 id="future-internet-web" className="text-gray-900 dark:text-white text-[22px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
+                                        <h2 id="future-internet-web" className="text-gray-900 dark:text-white text-[20px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
                                             ۶. آینده وب و اینترنت: چه چیزی در انتظار ماست؟
                                         </h2>
 
                                         <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
                                             دنیای وب و اینترنت دائماً در حال تحول است. پیش‌بینی دقیق آینده دشوار است، اما برخی روندها و فناوری‌های کلیدی به وضوح مسیر پیش رو را نشان می‌دهند:
                                         </p>
-                                        <ul className="list-disc list-outside pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-3 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                        <ul className="list-disc ps-4 my-[15px] md:my-[18px] lg:my-[20px] space-y-3 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
                                             <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">
                                                 <strong className="font-semibold">اینترنت اشیاء (Internet of Things - IoT):</strong> اتصال میلیاردها دستگاه روزمره (از لوازم خانگی گرفته تا سنسورهای صنعتی) به اینترنت، که منجر به جمع‌آوری حجم عظیمی از داده و ایجاد خدمات هوشمند جدید می‌شود. این روند چالش‌ها و فرصت‌های زیادی در ایران، به‌ویژه در بخش‌های کشاورزی هوشمند، صنعت و مدیریت شهری ایجاد می‌کند.
                                             </li>
@@ -470,7 +445,7 @@ button.addEventListener('click', function() {
                                         </p>
 
 
-                                        <ol className="list-decimal list-outside pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-3 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                        <ol className="list-decimal ps-4 my-[15px] md:my-[18px] lg:my-[20px] space-y-3 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
                                             <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">
                                                 <strong className="font-semibold">پایه و اساس مشاغل تکنولوژی:</strong> تقریباً تمام مشاغل حوزه فناوری اطلاعات و ارتباطات، از <strong className="font-semibold">توسعه‌دهنده وب و موبایل</strong> گرفته تا <strong className="font-semibold">متخصص داده، کارشناس امنیت، مدیر محصول دیجیتال و بازاریاب دیجیتال</strong>، نیازمند درک عمیقی از نحوه کارکرد اینترنت و وب هستند. بازار کار این حوزه‌ها در ایران، علیرغم چالش‌ها، همچنان رو به رشد و نیازمند نیروی متخصص است.
                                             </li>
@@ -490,33 +465,24 @@ button.addEventListener('click', function() {
 
 
                                         <div className="my-[25px] md:my-[30px] lg:my-[35px] flex flex-col items-center group">
-                                            [IMAGE PLACEHOLDER]
-                                            {/*
-         <img
-             src="/images/iran-tech-career-opportunities.jpg" // Replace with actual URL
-             alt="اینفوگرافیک نمایش دهنده فرصت‌های شغلی متنوع در حوزه تکنولوژی در ایران که به درک وب و اینترنت وابسته اند، مانند برنامه‌نویسی وب، دیجیتال مارکتینگ، تحلیل داده و امنیت سایبری با آیکون‌های مرتبط."
-             width="768"
-             height="432"
-             loading="lazy"
-             className="rounded-lg shadow-xl max-w-full h-auto border border-gray-200 dark:border-gray-700 group-hover:opacity-95 transition-opacity duration-300"
-         />
-     */}
+
+                                            <Image width="500" height="500" className="shadow-medium rounded-xl"
+                                                loading="lazy" alt="اینفوگرافیک نمایش دهنده فرصت‌های شغلی متنوع در حوزه تکنولوژی در ایران که به درک وب و اینترنت وابسته اند، مانند برنامه‌نویسی وب، دیجیتال مارکتینگ، تحلیل داده و امنیت سایبری با آیکون‌های مرتبط."
+                                                src={`${process.env.NEXT_PUBLIC_BLOG_IMAGE_BASE_URL}54-default.webp`} />
+
+
                                             <figcaption className="text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic w-full max-w-prose">درک وب و اینترنت، کلید ورود به مشاغل پرتقاضا و آینده‌دار در اکوسیستم فناوری ایران.</figcaption>
                                         </div>
-                                        ---
-                                        [Image Prompt Suggestion]: An infographic aimed at an Iranian audience, showcasing various tech career paths stemming from understanding the web & internet. Use icons representing web development (code bracket), data analysis (chart), digital marketing (megaphone/graph), cybersecurity (shield), UI/UX design (wireframe). Place these around a central stylized map or icon of Iran. Use Virtual Learn's color palette with Farsi labels (optional, can be added later). Aspect ratio 16:9.
-                                        [Suggested Alt Text]: اینفوگرافیک نمایش دهنده فرصت‌های شغلی متنوع در حوزه تکنولوژی در ایران که به درک وب و اینترنت وابسته اند، مانند برنامه‌نویسی وب، دیجیتال مارکتینگ، تحلیل داده و امنیت سایبری با آیکون‌های مرتبط.
-                                        [Suggested Dimensions]: 16:9 (e.g., 1280x720)
-                                        ---
 
-                                        <h2 id="how-to-start-web-journey" className="text-gray-900 dark:text-white text-[22px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
+
+                                        <h2 id="how-to-start-web-journey" className="text-gray-900 dark:text-white text-[20px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
                                             ۸. چگونه سفر خود را در دنیای وب آغاز کنیم؟
                                         </h2>
 
                                         <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
                                             اگر با خواندن این مقاله به دنیای وب و توسعه آن علاقه‌مند شده‌اید، مسیر یادگیری مشخصی پیش روی شماست. نگران نباشید، همه متخصصان امروزی از همین نقطه شروع کرده‌اند!
                                         </p>
-                                        <ol className="list-decimal list-outside pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-3 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                        <ol className="list-decimal ps-4 my-[15px] md:my-[18px] lg:my-[20px] space-y-3 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
                                             <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">
                                                 <strong className="font-semibold">یادگیری مبانی (HTML & CSS):</strong> همانطور که گفتیم، این دو زبان پایه و اساس ساخت صفحات وب هستند. تسلط بر ساختاردهی با HTML و استایل‌دهی با CSS اولین قدم ضروری است. دوره‌هایی مانند <a href="https://vc-virtual-learn.com/courses/Build-Responsive-Real-World-Websites-with-HTML-and-CSS-Jonas-Schmedtmann" className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium hover:underline underline-offset-2 decoration-dotted">دوره HTML & CSS در Virtual Learn</a> نقطه شروع عالی است.
                                             </li>
@@ -525,7 +491,7 @@ button.addEventListener('click', function() {
                                             </li>
                                             <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">
                                                 <strong className="font-semibold">انتخاب مسیر تخصصی:</strong> پس از یادگیری مبانی، می‌توانید مسیر خود را مشخص کنید:
-                                                <ul className="list-['-_'] list-outside pl-4 mt-2 space-y-1 text-sm">
+                                                <ul className="list-['-_']  pl-s mt-2 space-y-1 text-sm">
                                                     <li><strong className="font-semibold">فرانت‌اند (Front-End):</strong> تمرکز بر رابط کاربری و تجربه کاربر، یادگیری فریم‌ورک‌های محبوب JavaScript مانند React, Vue, یا Angular.</li>
                                                     <li><strong className="font-semibold">بک‌اند (Back-End):</strong> تمرکز بر منطق سمت سرور، پایگاه داده و APIها. زبان‌هایی مانند Node.js (JavaScript), Python, Java, PHP, Ruby یا Go در این حوزه پرکاربردند.</li>
                                                     <li><strong className="font-semibold">فول‌استک (Full-Stack):</strong> تسلط بر هر دو حوزه فرانت‌اند و بک‌اند.</li>
@@ -542,11 +508,11 @@ button.addEventListener('click', function() {
                                             </li>
                                         </ol>
 
-                                        <h2 id="faq" className="text-gray-900 dark:text-white text-[22px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[20px] md:mb-[25px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">🤔 پرسش‌های متداول درباره وب و اینترنت</h2>
+                                        <h2 id="faq" className="text-gray-900 dark:text-white text-[20px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[20px] md:mb-[25px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">🤔 پرسش‌های متداول درباره وب و اینترنت</h2>
                                         <div className="space-y-6 divide-y divide-gray-200 dark:divide-gray-700">
                                             <div className="pt-6">
                                                 <dt>
-                                                    <button className="flex items-center justify-between w-full text-left group">
+                                                    <button className="flex items-center justify-between w-full text-right group">
                                                         <strong className="font-semibold text-gray-800 dark:text-gray-100 text-lg group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">۱. بالاخره فرق اصلی اینترنت و وب چیست به زبان ساده؟</strong>
                                                     </button>
                                                 </dt>
@@ -558,7 +524,7 @@ button.addEventListener('click', function() {
                                             </div>
                                             <div className="pt-6">
                                                 <dt>
-                                                    <button className="flex items-center justify-between w-full text-left group">
+                                                    <button className="flex items-center justify-between w-full text-right group">
                                                         <strong className="font-semibold text-gray-800 dark:text-gray-100 text-lg group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">۲. آیا برای شروع برنامه نویسی وب حتماً باید ریاضیات قوی داشت؟</strong>
                                                     </button>
                                                 </dt>
@@ -570,7 +536,7 @@ button.addEventListener('click', function() {
                                             </div>
                                             <div className="pt-6">
                                                 <dt>
-                                                    <button className="flex items-center justify-between w-full text-left group">
+                                                    <button className="flex items-center justify-between w-full text-right group">
                                                         <strong className="font-semibold text-gray-800 dark:text-gray-100 text-lg group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">۳. یادگیری زبان انگلیسی چقدر برای موفقیت در برنامه‌نویسی وب در ایران ضروری است؟</strong>
                                                     </button>
                                                 </dt>
@@ -582,7 +548,7 @@ button.addEventListener('click', function() {
                                             </div>
                                             <div className="pt-6">
                                                 <dt>
-                                                    <button className="flex items-center justify-between w-full text-left group">
+                                                    <button className="flex items-center justify-between w-full text-right group">
                                                         <strong className="font-semibold text-gray-800 dark:text-gray-100 text-lg group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">۴. آینده شغلی توسعه وب در ایران چگونه است؟ آیا بازار اشباع شده؟</strong>
                                                     </button>
                                                 </dt>
@@ -595,7 +561,7 @@ button.addEventListener('click', function() {
                                         </div>
 
 
-                                        <h2 id="conclusion" className="text-gray-900 dark:text-white text-[22px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">جمع‌بندی: راهنمای شما برای پیمایش در دنیای وب و اینترنت در ایران</h2>
+                                        <h2 id="conclusion" className="text-gray-900 dark:text-white text-[20px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">جمع‌بندی: راهنمای شما برای پیمایش در دنیای وب و اینترنت در ایران</h2>
                                         <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
                                             در این راهنمای جامع، سفری داشتیم از تعریف <strong className="font-semibold">اینترنت به عنوان زیرساخت</strong> تا شناخت <strong className="font-semibold">وب به عنوان اقیانوس محتوا</strong>. تاریخچه پرماجرای آن‌ها را مرور کردیم، با <strong className="font-semibold">بلوک‌های سازنده وب (HTML, CSS, JavaScript)</strong> آشنا شدیم، نگاهی به تکامل وب از ۱.۰ تا ۳.۰ انداختیم و روندهای آینده را بررسی کردیم. مهم‌تر از همه، دیدیم که چرا درک این مفاهیم برای <strong className="font-semibold">مسیر شغلی و پیشرفت شما در اکوسیستم فناوری ایران</strong> حیاتی است. دیگر تفاوت وب و اینترنت برای شما مبهم نیست و می‌دانید که تسلط بر فناوری‌های وب، دریچه‌ای به سوی فرصت‌های بی‌شمار است.
                                         </p>
@@ -603,28 +569,28 @@ button.addEventListener('click', function() {
                                             آینده دیجیتال به سرعت در حال شکل‌گیری است و ایران نیز بخشی از این تحول جهانی است. با برداشتن قدم‌های درست در مسیر یادگیری، شما هم می‌توانید نقش موثری در این آینده ایفا کنید. به یاد داشته باشید، یادگیری مستمر و دسترسی به منابع آموزشی باکیفیت مانند دوره‌های ارائه شده در <strong className="font-semibold">Virtual Learn</strong>، کلید موفقیت شما در این سفر هیجان‌انگیز خواهد بود.
                                         </p>
 
-                                        <div className="mt-[30px] md:mt-[40px] lg:mt-[50px] space-y-8 bg-gradient-to-b from-gray-50 to-primary-100/30 dark:from-gray-900 dark:to-gray-800/50 p-6 md:p-8 rounded-lg border border-gray-200 dark:border-gray-700 text-center shadow-inner">
+                                        <div className="mt-[30px] md:mt-[40px] lg:mt-[50px] space-y-8 bg-gradient-to-b from-gray-50 to-primary-100/30 dark:from-gray-900 dark:to-gray-800/50 p-4 py-8 md:p-8 rounded-lg border border-gray-200 dark:border-gray-700 text-center shadow-inner">
 
                                             {/* بخش اول: دعوت به تعامل */}
                                             <div className="">
                                                 <h3 className="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white mb-3">💬 نوبت شماست! به بحث بپیوندید</h3>
-                                                <p className="text-gray-800 dark:text-gray-200 text-lg leading-relaxed">
+                                                <p className="text-gray-800 dark:text-gray-200 leading-relaxed">
                                                     تجربه شما با یادگیری مفاهیم وب و اینترنت چه بوده است؟ کدام بخش این مقاله برایتان تازگی داشت یا مفیدتر بود؟ آیا چالشی در مسیر یادگیری برنامه‌نویسی وب در ایران داشته‌اید؟ نظرات، سوالات و تجربیات ارزشمندتان را در بخش کامنت‌ها با ما و جامعه برنامه‌نویسان ایرانی به اشتراک بگذارید! 👇
                                                 </p>
                                             </div>
 
                                             {/* جداکننده بصری */}
-                                            <hr className="border-gray-300 dark:border-gray-600 w-1/2 mx-auto" />
+                                            <hr className="border-gray-300 dark:border-gray-600 w-full md:w-1/2 mx-auto" />
 
                                             {/* بخش دوم: معرفی دوره اصلی مرتبط (JS Course as primary) */}
-                                            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-primary-300 dark:border-primary-700 transform transition hover:scale-[1.03] duration-300">
+                                            <div className="bg-white dark:bg-gray-800 px-2 py-4 md:p-6 rounded-lg shadow-lg border border-primary-300 dark:border-primary-700 transform transition hover:scale-[1.03] duration-300">
                                                 <h4 className="text-xl md:text-2xl font-bold text-primary-700 dark:text-primary-300 mb-4 flex items-center justify-center">
-                                                    <span className="text-3xl mr-3">🎓</span> آماده‌اید در برنامه‌نویسی وب متخصص شوید؟
+                                                    <span className="text-3xl">🎓</span> آماده‌اید در برنامه‌نویسی وب متخصص شوید؟
                                                 </h4>
-                                                <p className="text-gray-800 dark:text-gray-200 text-lg leading-relaxed mb-5 font-medium">
+                                                <p className="mt-4 text-gray-800 dark:text-gray-200 leading-relaxed mb-5">
                                                     یادگیری عمیق <strong className="font-semibold">JavaScript</strong>، زبان قدرتمند وب، کلید ورود شما به دنیای توسعه وب مدرن و پردرآمد است. <a href="https://vc-virtual-learn.com/courses/The-Complete-JavaScript-Course-2025-From-Zero-to-Expert-Jonas-Schmedtmann" target="_blank" rel="noopener noreferrer" className="text-primary-600 dark:text-primary-300 font-bold hover:underline decoration-wavy decoration-2 underline-offset-4">دوره تخصصی و پروژه‌محور "دوره کامل جاوا اسکریپت ۲۰۲۵: از صفر تا متخصص!" در Virtual Learn</a>، با زیرنویس هوشمند و دقیق فارسی، کامل‌ترین مسیر یادگیری برای شماست تا دانش خود را به سطح بعدی ارتقا دهید و در بازار کار ایران بدرخشید.
                                                 </p>
-                                                <a href="https://vc-virtual-learn.com/courses/The-Complete-JavaScript-Course-2025-From-Zero-to-Expert-Jonas-Schmedtmann" target="_blank" rel="noopener noreferrer" className="inline-block px-8 py-3 bg-primary-500 hover:bg-primary-600 dark:hover:bg-primary-700 text-white text-lg font-semibold rounded-lg shadow-lg transition duration-300 transform hover:scale-105 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800">همین حالا یادگیری JavaScript را شروع کنید!</a>
+                                                <Button className="text-wrap" as={Link} variant="shadow" size="lg" color="secondary" href="https://vc-virtual-learn.com/courses/The-Complete-JavaScript-Course-2025-From-Zero-to-Expert-Jonas-Schmedtmann" target="_blank" rel="noopener noreferrer">همین حالا یادگیری JavaScript را شروع کنید!</Button>
                                             </div>
 
                                         </div>
@@ -632,13 +598,11 @@ button.addEventListener('click', function() {
 
                                     </article>
 
-                                    <div className="mt-10">
 
-                                    </div>
 
                                 </div>
                             </div>
-                            <div className="w-full lg:w-[25%] ">
+                            <div className="w-full lg:w-[25%] px-4 md:p-0">
                                 <CategoriesSidebar />
                             </div>
                         </div>
