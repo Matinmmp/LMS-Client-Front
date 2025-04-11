@@ -13,13 +13,13 @@ import { Tabs, Tab } from "@heroui/tabs";
 import { Input } from "@nextui-org/input";
 import { MdEmail } from "react-icons/md";
 import { useState } from "react";
-import {  toPersianNumber } from "@/src/utils/functions";
+import { toPersianNumber } from "@/src/utils/functions";
 import { blogCategories } from "@/src/config/site";
 import { BlogPost } from "./ServerComponents";
 
 function VirtualInfo() {
     const { theme } = useTheme();
- 
+
     return (
         <section className="lg:mt-16  w-full relative">
 
@@ -48,35 +48,6 @@ function VirtualInfo() {
     );
 }
 
-
-function WhatIsVirtualLearn() {
-
-    return (
-        <div className="w-full flex flex-col items-center justify-center">
-            <section className="w-full mt-40 max-w-7xl px-4 md:px-8 2xl:px-2 flex flex-col items-center justify-center ">
-                <div className="w-full rounded-2xl shadow-medium p-8 py-14 bg-white dark:bg-black/40">
-                    <div className="flex items-center gap-10 relative">
-                        <Image priority alt="لوگوی ویرچوال لرن، پلتفرم آموزش برنامه‌نویسی" className="w-36 h-36" height={400} width={400}
-                            src={process.env.NEXT_PUBLIC_IMAGE_BASE_URL + "logo-main.png"} />
-                        <span className=" dark:bg-[rgba(21,130,255,0.10)] absolute  right-1 w-10 h-10 background -z-30" />
-
-                        <div className="">
-                            <h2 className="text-2xl lg:text-3xl font-semibold">ویرچوال لرن</h2>
-                            <p className="mt-6 leading-9 font-medium" style={{ wordSpacing: '0.2rem' }}>
-                                Virtual Learn پلتفرمی پیشرو در ارائه دوره‌های آموزشی برنامه‌نویسی و توسعه وب از بهترین آکادمی‌های جهان، با زیرنویس فارسی تولید شده توسط هوش مصنوعی است. اما یادگیری فقط محدود به دوره‌ها نیست! در بخش بلاگ Virtual Learn می‌توانید جدیدترین مقالات آموزشی و تحلیلی را در موضوعات متنوعی مانند هوش مصنوعی، توسعه وب، برنامه‌نویسی فرانت‌اند و بک‌اند، امنیت سایبری، دیتابیس، فریمورک‌های مدرن و فناوری‌های روز دنبال کنید.
-
-                                ما در اینجا تلاش می‌کنیم تا با ارائه راهنماهای جامع، آموزش‌های پروژه‌محور، مقایسه ابزارهای توسعه و جدیدترین اخبار دنیای تکنولوژی، مسیر یادگیری شما را هموارتر کنیم. اگر به بهترین منابع آموزشی و مقالات عمیق و کاربردی علاقه‌مند هستید، بلاگ Virtual Learn همان جایی است که به دنبال آن می‌گردید! 🚀
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-
-            </section>
-        </div>
-    );
-}
-
 function FeaturedSidebar({ oldestBlogs, popularBlogs }: { oldestBlogs: any, popularBlogs: any }) {
     const [state, setState] = useState(1);
 
@@ -100,7 +71,7 @@ function FeaturedSidebar({ oldestBlogs, popularBlogs }: { oldestBlogs: any, popu
                                     <Avatar className="min-w-20 max-w-20 h-20" isBordered size={'lg'} color="secondary" radius="full" src={blog?.thumbnail?.imageUrl} />
 
                                     <div className='mb-3'>
-                                        <h3 className="text-lg font-medium mb-2 block hover:text-secondary-500">
+                                        <h3 className="font-medium mb-2 block hover:text-secondary-500">
                                             {blog?.title}
                                         </h3>
                                         <div className="flex items-center gap-2">
@@ -117,7 +88,7 @@ function FeaturedSidebar({ oldestBlogs, popularBlogs }: { oldestBlogs: any, popu
                                     <Avatar className="w-20 h-20" isBordered size={'lg'} color="secondary" radius="full" src={blog?.thumbnail?.imageUrl} />
 
                                     <div className='mb-3'>
-                                        <h3 className="text-lg font-medium mb-2 block hover:text-secondary-500">
+                                        <h3 className="font-medium mb-2 block hover:text-secondary-500">
                                             {blog?.title}
                                         </h3>
                                         <div className="flex items-center gap-2">
@@ -179,50 +150,28 @@ function NewSteler() {
     );
 }
 
-function CategoriesSidebar() {
-
-    return (
-        <section className="w-full relative">
-
-            <div className="w-full p-4 pb-6 rounded-xl border-1 border-secondary-500 shadow-medium relative bg-white dark:bg-transparent">
-                <p className="text-lg text-right font-semibold ">دسته‌بندی‌ها</p>
-
-                <div className="w-full mt-10 flex flex-col gap-4">
-                    {
-                        blogCategories?.map((cat, index) =>
-                            <Link key={index} href={`/blog/categories/${cat?.slug}`} className="w-full flex items-center justify-between gap-4 ">
-                                <div className="flex items-center gap-2">
-                                    <span className="p-1 rounded-sm bg-primary-400 "><Image width={24} height={24} alt={cat?.name} src={cat?.imageUrl} /></span>
-                                    <span>{cat?.name}</span>
-                                </div>
-
-                                <span className="flex items-center justify-center rounded-full bg-primary-400 text-sm min-w-6 min-h-6 text-white">{toPersianNumber(cat?.totalBlogs)}</span>
-                            </Link>
-                        )
-                    }
-
-
-
-                </div>
-
-            </div>
-        </section>
-    );
-}
-
-
 function CategoriesPosts({ blogs }: { blogs: any }) {
-    const [sel,setSel] = useState<any>(null)
+    const [sel, setSel] = useState<any>(null)
     if (!blogs) return null;
-    
+
     // استخراج دسته‌بندی‌ها و ادغام همه بلاگ‌ها در یک لیست
     const categories = Object.entries(blogs);
-    const allBlogs = categories?.flatMap(([_, category]: any) => category?.blogs);
+
+    const uniqueBlogsMap = new Map();
+    categories?.forEach(([_, category]: any) => {
+        category?.blogs?.forEach((blog: any) => {
+            if (!uniqueBlogsMap.has(blog._id)) {
+                uniqueBlogsMap.set(blog._id, blog);
+            }
+        });
+    });
+    const allBlogs = Array.from(uniqueBlogsMap.values());
+   
 
     let url = `blogs`
-    if(categories.find((item)=>item[0] === sel)){
-        const obj:any =categories.find((item)=>item[0] === sel)
-        url=`categories/${obj[1]?.slug}`
+    if (categories.find((item) => item[0] === sel)) {
+        const obj: any = categories.find((item) => item[0] === sel)
+        url = `categories/${obj[1]?.slug}`
     }
 
     return (
@@ -238,7 +187,7 @@ function CategoriesPosts({ blogs }: { blogs: any }) {
                     color="secondary"
                     variant="underlined"
                     onSelectionChange={setSel}
-                    
+
                 >
                     {/* تب 'همه' شامل تمام بلاگ‌ها */}
                     <Tab
@@ -298,13 +247,11 @@ function CategoriesPosts({ blogs }: { blogs: any }) {
 }
 
 
-
 export {
     VirtualInfo,
     FeaturedSidebar,
     NewSteler,
-    CategoriesSidebar,
-    WhatIsVirtualLearn,
+
     CategoriesPosts,
-    
+
 }

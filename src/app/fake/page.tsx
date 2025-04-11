@@ -1,6 +1,5 @@
 
-import { CategoriesSidebar } from "@/src/components/blog/home/Components";
-import Code from "@/src/components/Shared/Code";
+import { CategoriesSidebar } from "@/src/components/blog/home/ServerComponents";
 import { formatJalaliDate, secondsToMinutes, toPersianNumber } from "@/src/utils/functions";
 import { Button } from "@nextui-org/button";
 import Image from "next/image";
@@ -12,8 +11,6 @@ type Props = {
 };
 
 export default async function BlogDetail({ params: { blogName } }: Props) {
-
-
 
 
     return (
@@ -52,31 +49,31 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
 
                                         <div className="bg-primary-100/60 dark:bg-gray-800 border-l-4 border-primary-500 dark:border-primary-400 py-5 px-2 lg:p-5 rounded-lg my-[35px] md:my-[40px] lg:my-[45px] shadow-medium">
                                             <strong className="block mb-3 text-lg font-semibold text-gray-900 dark:text-white">آنچه در این راهنمای جامع و عمیق می‌خوانید:</strong>
-                                            <ul className="list-disc list-outside pl-5 space-y-2 text-gray-800 dark:text-gray-200">
+                                            <ul className="mt-6 ps-2 md:ps-4 lg:pl-5 space-y-3 text-gray-800 dark:text-gray-200 text-sm md:text-base">
                                                 <li><a href="#analogy-computer-as-advanced-factory" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۱. تشبیه به‌روزشده: کامپیوتر به مثابه یک کارخانه هوشمند!</a></li>
                                                 <li>
                                                     <a href="#cpu-the-brain-deep-dive" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۲. پردازنده (CPU): نگاهی عمیق‌تر به خط تولید هوشمند</a>
-                                                    <ul className="list-['-_'] list-outside pl-4 mt-1 space-y-1">
+                                                    <ul className="list-['-_'] ps-4 mt-1 space-y-1">
                                                         <li><a href="#cpu-core-concepts-expanded" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">مفاهیم بنیادی پردازنده</a></li>
                                                         <li><a href="#cpu-pipeline-fetch-decode-execute-cycle" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">خط لوله (Pipeline) و چرخه کاری CPU</a></li>
                                                     </ul>
                                                 </li>
                                                 <li>
                                                     <a href="#ram-the-workbench-deep-dive" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۳. حافظه RAM: میز کار فوق سریع، اما فراموشکار!</a>
-                                                    <ul className="list-['-_'] list-outside pl-4 mt-1 space-y-1">
+                                                    <ul className="list-['-_'] ps-4 mt-1 space-y-1">
                                                         <li><a href="#ram-characteristics-expanded" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">ویژگی‌های کلیدی RAM و تاثیر آن‌ها</a></li>
                                                     </ul>
                                                 </li>
                                                 <li>
                                                     <a href="#storage-the-warehouse-deep-dive" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۴. حافظه ذخیره‌سازی: انبار دائمی، کندتر اما ماندگار</a>
-                                                    <ul className="list-['-_'] list-outside pl-4 mt-1 space-y-1">
+                                                    <ul className="list-['-_'] ps-4 mt-1 space-y-1">
                                                         <li><a href="#hdd-vs-ssd-expanded" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">نبرد انبارها: HDD در مقابل SSD</a></li>
                                                         <li><a href="#ssd-types-sata-nvme" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">انواع SSD: فراتر از سرعت پایه</a></li>
                                                     </ul>
                                                 </li>
                                                 <li>
                                                     <a href="#motherboard-and-buses" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۵. مادِربُرد و گذرگاه‌ها: ستون فقرات و شاهراه‌های ارتباطی</a>
-                                                    <ul className="list-['-_'] list-outside pl-4 mt-1 space-y-1">
+                                                    <ul className="list-['-_'] ps-4 mt-1 space-y-1">
                                                         <li><a href="#motherboard-components" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">اجزای کلیدی روی مادربورد</a></li>
                                                         <li><a href="#buses-data-highways" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">گذرگاه‌ها (Buses): شاهراه‌های انتقال داده</a></li>
                                                     </ul>
@@ -84,7 +81,7 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                                 <li><a href="#input-output-io" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۶. دستگاه‌های ورودی/خروجی (I/O): دروازه‌های ارتباط با دنیای بیرون</a></li>
                                                 <li>
                                                     <a href="#operating-system-the-conductor" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۷. سیستم‌عامل (OS): رهبر ارکستر و مدیر منابع</a>
-                                                    <ul className="list-['-_'] list-outside pl-4 mt-1 space-y-1">
+                                                    <ul className="list-['-_'] ps-4 mt-1 space-y-1">
                                                         <li><a href="#os-kernel-userspace" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">هسته (Kernel) و فضای کاربری (User Space)</a></li>
                                                         <li><a href="#os-key-functions-revisited" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">مروری بر وظایف اصلی OS</a></li>
                                                     </ul>
@@ -118,24 +115,14 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                         </p>
 
                                         <div className="my-[25px] md:my-[30px] lg:my-[35px] flex flex-col items-center group">
-                                            [IMAGE PLACEHOLDER]
-                                            {/*
-         <img
-             src="/images/blog/computer-factory-analogy.png"
-             alt="اینفوگرافیک کامپیوتر به مثابه کارخانه هوشمند: پردازنده (خط تولید)، رم (میز مونتاژ)، حافظه (انبار)، OS (مدیر تولید)، مادربورد (کف کارخانه)"
-             width="800"
-             height="450"
-             loading="lazy"
-             className="rounded-lg shadow-xl max-w-full h-auto border border-gray-200 dark:border-gray-700 group-hover:opacity-95 transition-opacity duration-300"
-         />
-     */}
+
+
+                                            <Image width="768" height="432" className="shadow-medium rounded-xl"
+                                                loading="lazy" alt="اینفوگرافیک کامپیوتر به مثابه کارخانه هوشمند: پردازنده (خط تولید)، رم (میز مونتاژ)، حافظه (انبار)، OS (مدیر تولید)، مادربورد (کف کارخانه) - تشبیه تصویری عملکرد کامپیوتر."
+                                                src={`${process.env.NEXT_PUBLIC_BLOG_IMAGE_BASE_URL}4321413241324341234.jpg`} />
+
                                             <figcaption className="text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic w-full max-w-prose">کامپیوتر شما مانند یک کارخانه هوشمند با بخش‌های مختلف و هماهنگ عمل می‌کند.</figcaption>
                                         </div>
-                                        ---
-                                        [Image Prompt Suggestion]: A detailed flat design infographic illustrating a modern factory floor. Show a central high-tech production line (CPU) with robotic arms, a large, accessible assembly table nearby (RAM), a large automated warehouse in the background (Storage) with robots, and a manager in a control room overlooking everything (OS). Show conveyor belts (Buses) connecting these areas on the factory floor layout (Motherboard). Label key areas in Farsi (پردازنده, رم, حافظه, سیستم عامل, مادربورد). Use Virtual Learn's blue (#0065D9) and cyan (#079CED) colors predominantly. Aspect ratio 16:9.
-                                        [Suggested Alt Text]: اینفوگرافیک کامپیوتر به مثابه کارخانه هوشمند: پردازنده (خط تولید)، رم (میز مونتاژ)، حافظه (انبار)، OS (مدیر تولید)، مادربورد (کف کارخانه) - تشبیه تصویری عملکرد کامپیوتر.
-                                        [Suggested Dimensions]: 16:9 (e.g., 1280x720 or wider like 1920x1080)
-                                        ---
 
                                         <h2 id="cpu-the-brain-deep-dive" className="text-gray-900 dark:text-white text-[20px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
                                             ۲. پردازنده (CPU): نگاهی عمیق‌تر به خط تولید هوشمند
@@ -157,24 +144,14 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                         </ul>
 
                                         <div className="my-[25px] md:my-[30px] lg:my-[35px] flex flex-col items-center group">
-                                            [IMAGE PLACEHOLDER]
-                                            {/*
-         <img
-             src="/images/blog/cpu-cores-cache-diagram.png"
-             alt="دیاگرام ساختار داخلی CPU مدرن با نمایش هسته‌ها، و سطوح کش L1, L2, L3"
-             width="768"
-             height="432"
-             loading="lazy"
-             className="rounded-lg shadow-xl max-w-full h-auto border border-gray-200 dark:border-gray-700 group-hover:opacity-95 transition-opacity duration-300"
-         />
-     */}
+
+                                            <Image width="768" height="432" className="shadow-medium rounded-xl"
+                                                loading="lazy" alt="دیاگرام ساختار داخلی CPU مدرن با نمایش هسته‌ها، و سطوح کش L1, L2, L3"
+                                                src={`${process.env.NEXT_PUBLIC_BLOG_IMAGE_BASE_URL}sisoog_cpu_structure.png`} />
+
                                             <figcaption className="text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic w-full max-w-prose">نمایی ساده از معماری یک CPU چند هسته‌ای با سطوح مختلف حافظه نهان (Cache).</figcaption>
                                         </div>
-                                        ---
-                                        [Image Prompt Suggestion]: A schematic diagram of a modern multi-core CPU architecture. Clearly show 4 or 6 core blocks. Each core should have its own small L1 Cache box (Instruction & Data). Show slightly larger L2 Cache boxes associated with each core (or pairs of cores). Show a large L3 Cache box shared among all cores. Use clear labels (Core, L1$, L2$, L3$). Use simple geometric shapes and connecting lines. Minimalist style with Virtual Learn's blue color highlights. Aspect ratio 16:9.
-                                        [Suggested Alt Text]: دیاگرام ساختار داخلی CPU مدرن با نمایش هسته‌ها (Cores)، و سطوح کش L1, L2, L3 برای بهبود سرعت دسترسی به داده.
-                                        [Suggested Dimensions]: 16:9 (e.g., 1280x720)
-                                        ---
+
 
                                         <h3 id="cpu-pipeline-fetch-decode-execute-cycle" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
                                             خط لوله (Pipeline) و چرخه کاری CPU
@@ -198,24 +175,13 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                         </ol>
 
                                         <div className="my-[25px] md:my-[30px] lg:my-[35px] flex flex-col items-center group">
-                                            [IMAGE PLACEHOLDER]
-                                            {/*
-         <img
-             src="/images/blog/cpu-pipeline-diagram.png"
-             alt="دیاگرام ساده نمایش خط لوله (Pipeline) پردازنده با مراحل واکشی، رمزگشایی، اجرا برای چندین دستور همزمان"
-             width="768"
-             height="250"
-             loading="lazy"
-             className="rounded-lg shadow-xl max-w-full h-auto border border-gray-200 dark:border-gray-700 group-hover:opacity-95 transition-opacity duration-300"
-         />
-     */}
+
+                                            <Image width="768" height="432" className="shadow-medium rounded-xl"
+                                                loading="lazy" alt="دیاگرام ساده نمایش خط لوله (Pipeline) پردازنده با مراحل واکشی، رمزگشایی، اجرا برای چندین دستور همزمان"
+                                                src={`${process.env.NEXT_PUBLIC_BLOG_IMAGE_BASE_URL}M6my9.jpg`} />
+
                                             <figcaption className="text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic w-full max-w-prose">خط لوله (Pipelining) به CPU اجازه می‌دهد مراحل مختلف چندین دستور را همزمان پیش ببرد.</figcaption>
                                         </div>
-                                        ---
-                                        [Image Prompt Suggestion]: A simple horizontal diagram illustrating CPU pipelining. Show time moving from left to right across the top. Below, show 3-4 instructions (Instruction 1, Instruction 2, etc.). For each instruction, show sequential blocks representing Fetch, Decode, Execute, Writeback stages. Crucially, show these stages overlapping in time for consecutive instructions. For example, while Instruction 2 is in Decode, Instruction 1 is in Execute. Use distinct colors for each stage. Aspect ratio approx 3:1 or 16:9, emphasizing the timeline.
-                                        [Suggested Alt Text]: دیاگرام ساده نمایش خط لوله (Pipeline) پردازنده با مراحل واکشی (Fetch)، رمزگشایی (Decode)، اجرا (Execute) برای چندین دستور به صورت همپوشان و همزمان.
-                                        [Suggested Dimensions]: Wide aspect ratio like 3:1 (e.g., 1200x400) or 16:9 (e.g., 1280x720)
-                                        ---
 
                                         <div className="flex items-start border-l-4 border-success-500 dark:border-success-400 bg-success-100/60 dark:bg-gray-800 p-4 rounded-md my-[20px] md:my-[22px] lg:my-[25px] shadow-sm">
                                             <span className="text-xl text-success-600 dark:text-success-300 mt-1">💡</span>
@@ -234,24 +200,15 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                         </p>
 
                                         <div className="my-[25px] md:my-[30px] lg:my-[35px] flex flex-col items-center group">
-                                            [IMAGE PLACEHOLDER]
-                                            {/*
-         <img
-             src="/images/blog/ram-modules-photo.jpg"
-             alt="تصویر ماژول‌های حافظه رم (RAM) نوع DDR4 یا DDR5 که روی مادربورد نصب می‌شوند"
-             width="768"
-             height="432"
-             loading="lazy"
-             className="rounded-lg shadow-xl max-w-full h-auto border border-gray-200 dark:border-gray-700 group-hover:opacity-95 transition-opacity duration-300"
-         />
-     */}
+
+
+
+                                            <Image width="768" height="432" className="shadow-medium rounded-xl"
+                                                loading="lazy" alt="تصویر ماژول‌های حافظه رم (RAM) نوع DDR4 یا DDR5 که روی مادربورد نصب می‌شوند"
+                                                src={`${process.env.NEXT_PUBLIC_BLOG_IMAGE_BASE_URL}Installed-RAM-How-To-Install-RAM-In-a-Windows-PC.jpg`} />
+
                                             <figcaption className="text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic w-full max-w-prose">ماژول‌های RAM: حافظه فعال و سریع سیستم شما.</figcaption>
                                         </div>
-                                        ---
-                                        [Image Prompt Suggestion]: A clear photograph of two or four RAM modules (sticks) installed in the RAM slots of a computer motherboard. Focus on the RAM sticks themselves, showing the chips and connectors. Use good lighting and a shallow depth of field. Standard 16:9 aspect ratio.
-                                        [Suggested Alt Text]: تصویر ماژول‌های حافظه رم (RAM) نوع DDR4 یا DDR5 که روی اسلات‌های مادربورد برای دسترسی سریع CPU نصب می‌شوند.
-                                        [Suggested Dimensions]: 16:9 (e.g., 1280x720)
-                                        ---
 
                                         <h3 id="ram-characteristics-expanded" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
                                             ویژگی‌های کلیدی RAM و تاثیر آن‌ها:
@@ -266,24 +223,14 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
 
 
                                         <div className="my-[25px] md:my-[30px] lg:my-[35px] flex flex-col items-center group">
-                                            [IMAGE PLACEHOLDER]
-                                            {/*
-         <img
-             src="/images/blog/ram-dual-channel-diagram.png"
-             alt="دیاگرام مقایسه عملکرد تک کاناله و دو کاناله حافظه رم با نمایش پهنای باند بیشتر در حالت دو کاناله"
-             width="768"
-             height="300"
-             loading="lazy"
-             className="rounded-lg shadow-xl max-w-full h-auto border border-gray-200 dark:border-gray-700 group-hover:opacity-95 transition-opacity duration-300"
-         />
-     */}
+
+
+                                            <Image width="768" height="432" className="shadow-medium rounded-xl"
+                                                loading="lazy" alt="دیاگرام مقایسه عملکرد تک کاناله و دو کاناله حافظه رم با نمایش پهنای باند بیشتر در حالت دو کاناله"
+                                                src={`${process.env.NEXT_PUBLIC_BLOG_IMAGE_BASE_URL}99657657488w.jpg`} />
+
                                             <figcaption className="text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic w-full max-w-prose">استفاده از حالت دو کاناله (Dual Channel) با نصب صحیح ماژول‌های RAM، پهنای باند حافظه را افزایش می‌دهد.</figcaption>
                                         </div>
-                                        ---
-                                        [Image Prompt Suggestion]: A simple comparison diagram showing Single Channel vs Dual Channel RAM performance. On the left (Single Channel), show one arrow representing data flow from the CPU/Memory Controller to a single RAM module (labeled '64-bit bandwidth'). On the right (Dual Channel), show two parallel arrows going to two separate RAM modules (labeled '128-bit bandwidth'). Use clear visual distinction and labels. Aspect ratio ~16:7 or 16:9.
-                                        [Suggested Alt Text]: دیاگرام مقایسه عملکرد تک کاناله (Single Channel) و دو کاناله (Dual Channel) حافظه رم، نمایش افزایش پهنای باند داده با استفاده از دو کانال موازی.
-                                        [Suggested Dimensions]: Wide aspect ratio like 16:7 (e.g., 1280x560) or standard 16:9.
-                                        ---
 
                                         <div className="flex items-start border-l-4 border-warning-500 dark:border-warning-400 bg-warning-100/60 dark:bg-gray-800 p-4 rounded-md my-[20px] md:my-[22px] lg:my-[25px] shadow-sm">
                                             <span className="text-xl text-warning-600 dark:text-warning-300 mt-1">⚠️</span>
@@ -322,25 +269,13 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
 
 
                                         <div className="my-[25px] md:my-[30px] lg:my-[35px] flex flex-col items-center group">
-                                            [IMAGE PLACEHOLDER]
-                                            {/*
-         <img
-             src="/images/blog/hdd-vs-ssd-internals.jpg"
-             alt="مقایسه تصویری داخل هارد دیسک (HDD) با دیسک چرخان و هد، و داخل SSD با تراشه‌های حافظه فلش"
-             width="768"
-             height="432"
-             loading="lazy"
-             className="rounded-lg shadow-xl max-w-full h-auto border border-gray-200 dark:border-gray-700 group-hover:opacity-95 transition-opacity duration-300"
-         />
-     */}
+                                            <Image width="768" height="432" className="shadow-medium rounded-xl"
+                                                loading="lazy"
+                                                alt="مقایسه تصویری داخل هارد دیسک (HDD) با دیسک چرخان و هد، و داخل SSD با تراشه‌های حافظه فلش"
+                                                src={`${process.env.NEXT_PUBLIC_BLOG_IMAGE_BASE_URL}hdd%20vs%20ssd.jpg`} />
+
                                             <figcaption className="text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic w-full max-w-prose">مقایسه اجزای داخلی: حرکت مکانیکی در HDD در مقابل تراشه‌های ثابت در SSD.</figcaption>
                                         </div>
-                                        ---
-                                        [Image Prompt Suggestion]: A side-by-side comparison image. Left side: An open Hard Disk Drive (HDD) clearly showing the spinning platters and the read/write head actuator arm. Right side: An open Solid State Drive (SSD) showing the circuit board with NAND flash memory chips and the controller chip. Use labels "HDD Internals" and "SSD Internals". Clear, well-lit photograph or realistic render. Aspect ratio 16:9.
-                                        [Suggested Alt Text]: مقایسه تصویری داخل هارد دیسک (HDD) با دیسک چرخان مغناطیسی و هد متحرک، و داخل درایو حالت جامد (SSD) با تراشه‌های حافظه فلش NAND ثابت و کنترلر.
-                                        [Suggested Dimensions]: 16:9 (e.g., 1280x720)
-                                        ---
-
 
                                         <h3 id="ssd-types-sata-nvme" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
                                             انواع SSD: فراتر از سرعت پایه
@@ -364,24 +299,15 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                         </ul>
 
                                         <div className="my-[25px] md:my-[30px] lg:my-[35px] flex flex-col items-center group">
-                                            [IMAGE PLACEHOLDER]
-                                            {/*
-         <img
-             src="/images/blog/m2-nvme-ssd-photo.jpg"
-             alt="تصویر یک حافظه SSD از نوع M.2 NVMe که بسیار کوچک و سریع است"
-             width="768"
-             height="300"
-             loading="lazy"
-             className="rounded-lg shadow-xl max-w-full h-auto border border-gray-200 dark:border-gray-700 group-hover:opacity-95 transition-opacity duration-300"
-         />
-     */}
+
+                                            <Image width="768" height="300" className="shadow-medium rounded-xl"
+                                                loading="lazy"
+                                                alt="تصویر یک حافظه SSD از نوع M.2 NVMe که بسیار کوچک و سریع است"
+                                                src={`${process.env.NEXT_PUBLIC_BLOG_IMAGE_BASE_URL}130827-micron-ssd-2400-1.jpg`} />
+
                                             <figcaption className="text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic w-full max-w-prose">SSD از نوع M.2 NVMe: کوچک، بدون کابل و بسیار سریع.</figcaption>
                                         </div>
-                                        ---
-                                        [Image Prompt Suggestion]: A clear photograph of an M.2 NVMe SSD module. Show it slightly angled to display the connector pins and the flash memory chips on the small PCB. Place it on a clean, neutral background. Good lighting. Aspect ratio suitable for its shape, maybe 16:7 or 16:9.
-                                        [Suggested Alt Text]: تصویر یک حافظه SSD از نوع M.2 NVMe که مستقیماً روی مادربورد نصب شده و از طریق رابط PCIe سرعت بسیار بالایی ارائه می‌دهد.
-                                        [Suggested Dimensions]: Wide aspect ratio like 16:7 (e.g., 1280x560) or standard 16:9.
-                                        ---
+
 
 
                                         <div className="flex items-start border-l-4 border-info-500 dark:border-info-400 bg-info-100/60 dark:bg-gray-800 p-4 rounded-md my-[20px] md:my-[22px] lg:my-[25px] shadow-sm">
@@ -415,24 +341,14 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                         </ul>
 
                                         <div className="my-[25px] md:my-[30px] lg:my-[35px] flex flex-col items-center group">
-                                            [IMAGE PLACEHOLDER]
-                                            {/*
-         <img
-             src="/images/blog/motherboard-components-labeled.jpg"
-             alt="تصویر یک مادربورد کامپیوتر با برچسب‌گذاری اجزای کلیدی مانند سوکت CPU، اسلات رم، اسلات PCIe، چیپست، پورت‌های SATA و M.2"
-             width="800"
-             height="600"
-             loading="lazy"
-             className="rounded-lg shadow-xl max-w-full h-auto border border-gray-200 dark:border-gray-700 group-hover:opacity-95 transition-opacity duration-300"
-         />
-     */}
+
+                                            <Image width="800" height="600" className="shadow-medium rounded-xl"
+                                                loading="lazy"
+                                                alt="تصویر یک مادربورد کامپیوتر با برچسب‌گذاری اجزای کلیدی مانند سوکت CPU، اسلات رم، اسلات PCIe، چیپست، پورت‌های SATA و M.2"
+                                                src={`${process.env.NEXT_PUBLIC_BLOG_IMAGE_BASE_URL}42348984192341.webp`} />
+
                                             <figcaption className="text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic w-full max-w-prose">نمایی از یک مادربورد و اجزای اصلی آن که همه قطعات را به هم متصل می‌کند.</figcaption>
                                         </div>
-                                        ---
-                                        [Image Prompt Suggestion]: A top-down photograph of a modern computer motherboard (ATX form factor). Use clear callout lines and labels (in Farsi if possible, otherwise English) pointing to key components: CPU Socket, RAM Slots, PCIe x16 slot (for GPU), PCIe x1/x4 slots, M.2 Slot, Chipset (often under a heatsink), SATA Ports, Rear I/O Panel (showing USB, Ethernet, Audio ports), Power Connectors (24-pin ATX & 8-pin CPU). Good, even lighting. Aspect ratio 4:3 or 16:9.
-                                        [Suggested Alt Text]: تصویر یک مادربورد کامپیوتر با برچسب‌گذاری اجزای کلیدی: سوکت CPU، اسلات‌های RAM، اسلات‌های PCIe، چیپست، کانکتورهای SATA و M.2، و پورت‌های پنل پشتی.
-                                        [Suggested Dimensions]: 4:3 (e.g., 1024x768) or 16:9 (e.g., 1280x720).
-                                        ---
 
 
                                         <h3 id="buses-data-highways" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
@@ -468,24 +384,15 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                         </p>
 
                                         <div className="my-[25px] md:my-[30px] lg:my-[35px] flex flex-col items-center group">
-                                            [IMAGE PLACEHOLDER]
-                                            {/*
-         <img
-             src="/images/blog/io-devices-connection.png"
-             alt="دیاگرام ساده نمایش اتصال دستگاه‌های ورودی/خروجی مختلف (کیبورد، ماوس، مانیتور، شبکه) به کامپیوتر از طریق پورت‌ها و سیستم‌عامل"
-             width="768"
-             height="432"
-             loading="lazy"
-             className="rounded-lg shadow-xl max-w-full h-auto border border-gray-200 dark:border-gray-700 group-hover:opacity-95 transition-opacity duration-300"
-         />
-     */}
+
+
+                                            <Image width="768" height="432" className="shadow-medium rounded-xl"
+                                                loading="lazy"
+                                                alt="دیاگرام ساده نمایش اتصال دستگاه‌های ورودی/خروجی مختلف (کیبورد، ماوس، مانیتور، شبکه) به کامپیوتر از طریق پورت‌ها و سیستم‌عامل"
+                                                src={`${process.env.NEXT_PUBLIC_BLOG_IMAGE_BASE_URL}io-devices-cpu-3-638.jpg`} />
+
                                             <figcaption className="text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic w-full max-w-prose">دستگاه‌های I/O از طریق پورت‌ها و با مدیریت سیستم‌عامل با کامپیوتر ارتباط برقرار می‌کنند.</figcaption>
                                         </div>
-                                        ---
-                                        [Image Prompt Suggestion]: A simple block diagram showing a central "Computer (CPU, RAM, OS)" box. Around it, show various I/O device icons (Keyboard, Mouse, Monitor, Printer, Network/Internet Cloud, Speaker). Draw arrows indicating data flow direction (Input arrows pointing towards the computer box, Output arrows pointing away, Bidirectional arrows for network/touchscreen). Show connection lines going towards generic "Ports (USB, HDMI, etc.)" on the edge of the computer box. Keep it clean and easy to understand. Use standard icons. Aspect ratio 16:9.
-                                        [Suggested Alt Text]: دیاگرام ساده نمایش اتصال دستگاه‌های ورودی/خروجی (کیبورد، ماوس، مانیتور، شبکه) به کامپیوتر از طریق پورت‌ها. فلش‌ها جهت جریان داده (ورودی یا خروجی) را نشان می‌دهند.
-                                        [Suggested Dimensions]: 16:9 (e.g., 1280x720)
-                                        ---
 
 
                                         <h2 id="operating-system-the-conductor" className="text-gray-900 dark:text-white text-[20px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
@@ -507,25 +414,14 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                         </ul>
 
                                         <div className="my-[25px] md:my-[30px] lg:my-[35px] flex flex-col items-center group">
-                                            [IMAGE PLACEHOLDER]
-                                            {/*
-         <img
-             src="/images/blog/os-kernel-userspace-diagram.png"
-             alt="دیاگرام ساده نمایش لایه‌های سیستم‌عامل: سخت‌افزار در پایین، هسته (Kernel) در وسط، و فضای کاربری (User Space) با برنامه‌ها در بالا"
-             width="768"
-             height="432"
-             loading="lazy"
-             className="rounded-lg shadow-xl max-w-full h-auto border border-gray-200 dark:border-gray-700 group-hover:opacity-95 transition-opacity duration-300"
-         />
-     */}
+
+                                            <Image width="768" height="432" className="shadow-medium rounded-xl"
+                                                loading="lazy"
+                                                alt="دیاگرام ساده نمایش لایه‌های سیستم‌عامل: سخت‌افزار در پایین، هسته (Kernel) در وسط، و فضای کاربری (User Space) با برنامه‌ها در بالا"
+                                                src={`${process.env.NEXT_PUBLIC_BLOG_IMAGE_BASE_URL}multikernel-farsi-67dab999ba5b66cc08ce9e16.jpg`} />
+
                                             <figcaption className="text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic w-full max-w-prose">تفکیک سیستم‌عامل به هسته (Kernel) برای دسترسی به سخت‌افزار و فضای کاربری (User Space) برای برنامه‌ها.</figcaption>
                                         </div>
-                                        ---
-                                        [Image Prompt Suggestion]: A layered diagram illustrating OS architecture. Bottom layer: "Hardware" (icons for CPU, RAM, Disk, Network). Middle layer: "Kernel" (labeled clearly), acting as an interface. Top layer: "User Space" containing boxes/icons for "Applications" (Browser, Editor, etc.) and "System Utilities" (Shell, File Manager). Show clear boundaries and arrows representing System Calls going from User Space down to the Kernel, and the Kernel interacting with Hardware. Keep the design clean and structured. Aspect ratio 16:9 or 4:3.
-                                        [Suggested Alt Text]: دیاگرام ساده نمایش لایه‌های معماری سیستم‌عامل: سخت‌افزار (Hardware) در پایین، هسته (Kernel) به عنوان رابط در وسط، و فضای کاربری (User Space) حاوی برنامه‌ها و ابزارها در بالا، با نمایش مسیر فراخوانی‌های سیستمی (System Calls).
-                                        [Suggested Dimensions]: 16:9 (e.g., 1280x720) or 4:3 (e.g., 1024x768).
-                                        ---
-
 
                                         <h3 id="os-key-functions-revisited" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
                                             مروری بر وظایف اصلی OS:
@@ -584,24 +480,16 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                         </p>
 
                                         <div className="my-[25px] md:my-[30px] lg:my-[35px] flex flex-col items-center group">
-                                            [IMAGE PLACEHOLDER]
-                                            {/*
-         <img
-             src="/images/blog/computer-data-flow-diagram.png"
-             alt="دیاگرام کلی جریان داده در کامپیوتر بین CPU، RAM، حافظه ذخیره‌سازی، و دستگاه‌های ورودی/خروجی با نقش محوری مادربورد و OS"
-             width="800"
-             height="500"
-             loading="lazy"
-             className="rounded-lg shadow-xl max-w-full h-auto border border-gray-200 dark:border-gray-700 group-hover:opacity-95 transition-opacity duration-300"
-         />
-     */}
+
+
+                                            <Image width="600" height="600" className="shadow-medium rounded-xl h-full"
+                                                loading="lazy"
+                                                alt="دیاگرام کلی جریان داده در کامپیوتر بین CPU، حافظه نهان (Cache)، RAM، حافظه ذخیره‌سازی (Storage)، و دستگاه‌های ورودی/خروجی (I/O)، با نقش ارتباطی مادربورد/گذرگاه‌ها و مدیریت سیستم‌عامل."
+                                                src={`${process.env.NEXT_PUBLIC_BLOG_IMAGE_BASE_URL}components-of-operating-system.png`} />
+
                                             <figcaption className="text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic w-full max-w-prose">نمایی کلی از جریان داده بین اجزای اصلی کامپیوتر تحت مدیریت سیستم‌عامل.</figcaption>
                                         </div>
-                                        {/* ---
-                                        [Image Prompt Suggestion]: A high-level data flow diagram for a computer system. Show a central CPU block connected with thick, bidirectional arrows to a RAM block and CPU Cache blocks. Show RAM connected with a thinner arrow to a Storage block (SSD/HDD). Show the CPU also interacting with an OS/Kernel block, which in turn connects to I/O Devices (Input & Output groups) and the Network Interface. Indicate the Motherboard/Buses as the underlying connection fabric, perhaps with a subtle background pattern or framing lines. Use Virtual Learn's colors to highlight key data paths (e.g., CPU<->RAM). Keep text labels minimal and clear. Aspect ratio 16:9.
-                                        [Suggested Alt Text]: دیاگرام کلی جریان داده در کامپیوتر بین CPU، حافظه نهان (Cache)، RAM، حافظه ذخیره‌سازی (Storage)، و دستگاه‌های ورودی/خروجی (I/O)، با نقش ارتباطی مادربورد/گذرگاه‌ها و مدیریت سیستم‌عامل.
-                                        [Suggested Dimensions]: 16:9 (e.g., 1280x720).
-                                        --- */}
+
 
                                         <div className="border-t-4 border-b-4 border-primary-500 dark:border-primary-400 bg-gradient-to-r from-primary-100/50 to-blue-100/50 dark:from-gray-800 dark:to-gray-800/80 p-5 rounded-lg my-[30px] md:my-[35px] lg:my-[40px] shadow-lg text-center transition-transform duration-300 hover:scale-[1.02]">
                                             <h3 className="text-xl font-semibold text-primary-800 dark:text-primary-200 mb-3 flex items-center justify-center">
@@ -611,9 +499,8 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                                 حالا که تصویر کامل‌تری از <strong className="font-semibold">ارکستر هماهنگ اجزای کامپیوتر</strong> دارید، آیا مشتاق یادگیری عمیق‌تر <strong className="font-semibold">مفاهیم معماری کامپیوتر، سیستم‌عامل، یا شبکه‌های کامپیوتری</strong> هستید؟ <strong className="font-bold">دوره های آموزشی تخصصی Virtual Learn که به زودی با زیرنویس هوشمند فارسی ارائه خواهند شد [لینک آینده دوره]</strong>، فرصتی عالی برای تبدیل این دانش تئوری به مهارت عملی و درک عمیق‌تری است که در مصاحبه‌های شغلی و پروژه‌های واقعی در ایران به کارتان خواهد آمد. منتظر دوره‌های مرتبط در آینده نزدیک باشید!
                                             </p>
                                             {/* <a href="[لینک صفحه همه دوره‌ها یا دسته مرتبط]" target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-2 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg shadow-md transition duration-200 transform hover:-translate-y-1">مشاهده کاتالوگ دوره‌ها (به‌زودی!)</a> */}
-                                            <button disabled className="inline-block px-6 py-2 bg-primary-300 dark:bg-primary-700 text-white font-semibold rounded-lg shadow-md cursor-not-allowed opacity-70">
-                                                دوره‌ها به زودی فعال می‌شوند!
-                                            </button>
+                                            <Button isDisabled className="mt-4" as={Link} size="lg" variant="shadow" color="secondary" href="https://vc-virtual-learn.com/courses/Build-Responsive-Real-World-Websites-with-HTML-and-CSS-Jonas-Schmedtmann" target="_blank" rel="noopener noreferrer">دوره‌ها به زودی فعال می‌شوند!</Button>
+
                                             <p className="text-xs text-primary-600 dark:text-primary-400 mt-2"> (اطلاعات دقیق دوره‌ها به محض فعال شدن، جایگزین خواهد شد)</p>
                                         </div>
 
@@ -746,9 +633,9 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                                 <p className="text-gray-800 dark:text-gray-200 text-lg leading-relaxed mb-5 font-medium">
                                                     این مقاله مقدمه‌ای عمیق بود. برای <strong className="font-bold text-primary-600 dark:text-primary-300 hover:underline decoration-wavy decoration-2 underline-offset-4">تسلط کامل بر مفاهیم علوم کامپیوتر، معماری سیستم، و نحوه عملکرد سیستم‌عامل‌ها</strong>، منتظر <strong className="font-bold text-primary-600 dark:text-primary-300">دوره‌های تخصصی و پروژه‌محور Virtual Learn</strong> باشید! [لینک آینده به صفحه یا دسته دوره‌های علوم پایه] این دوره‌ها با زیرنویس دقیق فارسی، به شما کمک می‌کنند تا فونداسیون فنی خود را مستحکم کرده و برای چالش‌های پیچیده‌تر در بازار کار ایران آماده شوید.
                                                 </p>
-                                                <button disabled className="inline-block px-8 py-3 bg-primary-300 dark:bg-primary-700 text-white text-lg font-semibold rounded-lg shadow-lg cursor-not-allowed opacity-70 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800">
-                                                    منتظر دوره‌های علوم پایه باشید!
-                                                </button>
+                                                <Button isDisabled className="mt-4" as={Link} size="lg" variant="shadow" color="secondary" href="https://vc-virtual-learn.com/courses/Build-Responsive-Real-World-Websites-with-HTML-and-CSS-Jonas-Schmedtmann" target="_blank" rel="noopener noreferrer">منتظر دوره‌های علوم پایه باشید!</Button>
+
+
                                                 <p className="text-xs text-primary-600 dark:text-primary-400 mt-2">(ما شما را از زمان انتشار این دوره‌ها مطلع خواهیم کرد!)</p>
                                             </div>
 

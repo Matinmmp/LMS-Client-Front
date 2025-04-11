@@ -1,5 +1,6 @@
-import { CategoriesPosts, WhatIsVirtualLearn } from '@/src/components/blog/home/Components';
+import { CategoriesPosts } from '@/src/components/blog/home/Components';
 import { CourseSlider } from '@/src/components/blog/home/MainSlider';
+import { WhatIsVirtualLearn } from '@/src/components/blog/home/ServerComponents';
 import { getBlogsByCategories } from '@/src/lib/apis/blogApis';
 import { getHomeLastCourses } from '@/src/lib/apis/homeApis';
 import Script from 'next/script';

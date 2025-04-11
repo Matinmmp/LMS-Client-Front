@@ -1,8 +1,5 @@
 import BlogInfo from "@/src/components/blog/BlogInfo";
 import { getBlogBySlug } from "@/src/lib/apis/blogApis";
-import { getCourseByName, } from "@/src/lib/apis/courseApis";
-import { decodeTitle, secondsToTimeString } from "@/src/utils/functions";
-import { cookies } from 'next/headers'
 import { notFound } from "next/navigation";
 import Script from "next/script";
 

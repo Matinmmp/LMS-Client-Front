@@ -1,6 +1,6 @@
-import { CategoriesSidebar } from '@/src/components/blog/home/Components';
+
 import { CourseSlider } from '@/src/components/blog/home/MainSlider';
-import { BlogPost } from '@/src/components/blog/home/ServerComponents';
+import { BlogPost, CategoriesSidebar } from '@/src/components/blog/home/ServerComponents';
 import { getBlogsByCategories, getBlogsByCategory } from '@/src/lib/apis/blogApis';
 import { getHomeLastCourses } from '@/src/lib/apis/homeApis';
 import Script from 'next/script';

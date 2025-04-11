@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { CategoriesSidebar } from "./home/Components";
-import { formatJalaliDate, secondsToMinutes, secondsToTimeString2, toPersianNumber } from "@/src/utils/functions";
+
+import { formatJalaliDate, secondsToMinutes, toPersianNumber } from "@/src/utils/functions";
+import { CategoriesSidebar } from "./home/ServerComponents";
 
 export default async function BlogInfo({ data }: { data: any }) {
 

@@ -102,6 +102,12 @@ export const blogCategories = [
     "name": "مبانی و مفاهیم پایه",
     "slug": "basic-computer-fundamentals-and-concepts",
     "imageUrl": "https://images.vc-virtual-learn.com/CategoryImages/1744218884297-basic-computer-fundamentals-and-concepts.png",
+    "totalBlogs": 2
+    },
+    {
+    "name": "سخت افزار",
+    "slug": "hardware",
+    "imageUrl": "https://images.vc-virtual-learn.com/CategoryImages/1744388262878-hardware.png",
     "totalBlogs": 1
     }
     ]
