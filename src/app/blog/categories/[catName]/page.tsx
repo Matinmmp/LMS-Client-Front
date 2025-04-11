@@ -1,5 +1,6 @@
-import { BlogPost, CategoriesSidebar } from '@/src/components/blog/home/Components';
+import { CategoriesSidebar } from '@/src/components/blog/home/Components';
 import { CourseSlider } from '@/src/components/blog/home/MainSlider';
+import { BlogPost } from '@/src/components/blog/home/ServerComponents';
 import { getBlogsByCategories, getBlogsByCategory } from '@/src/lib/apis/blogApis';
 import { getHomeLastCourses } from '@/src/lib/apis/homeApis';
 import Script from 'next/script';
@@ -19,6 +20,7 @@ export default async function CategoriesPage(s: any) {
         getHomeLastCourses(),
         getBlogsByCategory({ slug: s?.params?.catName }),
     ]);
+
     let schema: any
     if (data2?.value) {
         schema = {

@@ -139,7 +139,7 @@ function BlogPost({ blog }: { blog: any }) {
                     </div>
                     <div className="flex items-center gap-1">
                         <LuCalendarDays />
-                        <span className="text-sm">{getTimeAgo(blog?.publishDate)} پیش</span>
+                        <span className="text-sm">{getTimeAgo(blog?.publishDate)}</span>
                     </div>
                 </div>
             </div>

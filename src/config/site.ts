@@ -99,21 +99,9 @@ export const navObject = {
 
 export const blogCategories = [
     {
-        "name": "cat1",
-        "slug": "cat-1",
-        "imageUrl": "https://images.vc-virtual-learn.com/CategoryImages/1742656757939-cat-1.png",
-        "totalBlogs": 1
-    },
-    {
-        "name": "cat2",
-        "slug": "cat-2",
-        "imageUrl": "https://images.vc-virtual-learn.com/CategoryImages/1742743661625-cat-2.png",
-        "totalBlogs": 1
-    },
-    {
-        "name": "cat3",
-        "slug": "cat-3",
-        "imageUrl": "https://images.vc-virtual-learn.com/CategoryImages/1743089400522-cat-3.png",
-        "totalBlogs": 0
+    "name": "مبانی و مفاهیم پایه",
+    "slug": "basic-computer-fundamentals-and-concepts",
+    "imageUrl": "https://images.vc-virtual-learn.com/CategoryImages/1744218884297-basic-computer-fundamentals-and-concepts.png",
+    "totalBlogs": 1
     }
-]
+    ]

@@ -1,12 +1,11 @@
-import BlogInfo from "@/src/components/blog/BlogInfo";
+
 import { CategoriesSidebar } from "@/src/components/blog/home/Components";
 import Code from "@/src/components/Shared/Code";
 import { formatJalaliDate, secondsToMinutes, toPersianNumber } from "@/src/utils/functions";
 import { Button } from "@nextui-org/button";
 import Image from "next/image";
 import Link from "next/link";
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { a11yDark, a11yLight } from "react-syntax-highlighter/dist/cjs/styles/hljs";
+
 
 type Props = {
     params: { blogName: string }
@@ -19,6 +18,7 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
 
     return (
         <>
+            <meta name="robots" content="index, follow" />
 
             <section className=" flex flex-col items-center justify-center" >
 
@@ -37,17 +37,735 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
 
                                     </div>
 
+
                                     <article>
+                                        <h1 id="main-title" className="text-[#3E4247] dark:text-white text-[20px] md:text-[28px] lg:text-[32px] font-bold leading-[1.4] mt-[40px] mb-[20px] md:mb-[25px] lg:mb-[30px]">
+                                            کامپیوترها چگونه کار می‌کنند؟ سفری عمیق به قلب تپنده تکنولوژی (پردازنده، حافظه، سیستم‌عامل و فراتر از آن)
+                                        </h1>
+
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify mt-[15px] md:mt-[18px] lg:mt-[20px] mb-[15px] md:mb-[18px] lg:mb-[20px]">
+                                            تا حالا شده وسط کد زدن، وقتی سیستم‌تون کند میشه یا با یه باگ عجیب روبرو می‌شید، با خودتون فکر کنید پشت این صفحه نمایش و کیبورد، <em className="italic">واقعاً</em> چه اتفاقی می‌افته؟ چطور کلیک کردن روی یه آیکون، دنیایی از محاسبات رو به راه می‌ندازه؟ به عنوان یک <strong className="font-semibold">برنامه‌نویس یا دانشجوی علاقه‌مند به تکنولوژی در ایران</strong>، شاید فکر کنید جزئیات کارکرد پردازنده (CPU)، تفاوت انواع حافظه، یا لایه‌های پیچیده سیستم‌عامل، ربطی به کدنویسی روزمره شما با پایتون، جاوااسکریپت یا #C نداره. اما حقیقت اینه که <strong className="font-semibold">درک عمیق‌تر از فونداسیون کامپیوترها</strong>، مثل داشتن نقشه گنجه؛ به شما کمک می‌کنه کدهای کارآمدتر بنویسید، مشکلات رو سریع‌تر حل کنید، و حتی در انتخاب سخت‌افزار مناسب برای کار یا پروژه‌هاتون در <strong className="font-semibold">بازار ایران</strong>، تصمیم‌های هوشمندانه‌تری بگیرید.
+                                        </p>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
+                                            این مقاله، یک <strong className="font-semibold">راهنمای جامع و عمیق</strong> برای باز کردن این جعبه سیاه است. ما فراتر از توضیحات سطحی می‌ریم و با زبانی ساده اما دقیق، سفری به دنیای شگفت‌انگیز <strong className="font-semibold">نحوه کارکرد کامپیوترها</strong> خواهیم داشت. از مغز متفکر یعنی <strong className="font-semibold">پردازنده (CPU)</strong> و حافظه‌های سریع و کند (<strong className="font-semibold">RAM و Storage</strong>) گرفته تا رهبر ارکستر یعنی <strong className="font-semibold">سیستم‌عامل (OS)</strong>، و حتی نگاهی به <strong className="font-semibold">مادربورد، گذرگاه‌ها (Buses)، دستگاه‌های ورودی/خروجی (I/O)</strong> و کدهای اولیه‌ای که سیستم رو بیدار می‌کنن (<strong className="font-semibold">BIOS/UEFI</strong>)، همه رو بررسی می‌کنیم. این مقاله فقط یک درس تئوری نیست؛ بلکه یک سرمایه‌گذاری روی دانش بنیادی شماست تا به یک متخصص تکنولوژی توانمندتر در اکوسیستم ایران تبدیل بشید. در این سفر با ما همراه باشید!
+                                        </p>
+
+                                        <div className="bg-primary-100/60 dark:bg-gray-800 border-l-4 border-primary-500 dark:border-primary-400 py-5 px-2 lg:p-5 rounded-lg my-[35px] md:my-[40px] lg:my-[45px] shadow-medium">
+                                            <strong className="block mb-3 text-lg font-semibold text-gray-900 dark:text-white">آنچه در این راهنمای جامع و عمیق می‌خوانید:</strong>
+                                            <ul className="list-disc list-outside pl-5 space-y-2 text-gray-800 dark:text-gray-200">
+                                                <li><a href="#analogy-computer-as-advanced-factory" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۱. تشبیه به‌روزشده: کامپیوتر به مثابه یک کارخانه هوشمند!</a></li>
+                                                <li>
+                                                    <a href="#cpu-the-brain-deep-dive" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۲. پردازنده (CPU): نگاهی عمیق‌تر به خط تولید هوشمند</a>
+                                                    <ul className="list-['-_'] list-outside pl-4 mt-1 space-y-1">
+                                                        <li><a href="#cpu-core-concepts-expanded" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">مفاهیم بنیادی پردازنده</a></li>
+                                                        <li><a href="#cpu-pipeline-fetch-decode-execute-cycle" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">خط لوله (Pipeline) و چرخه کاری CPU</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a href="#ram-the-workbench-deep-dive" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۳. حافظه RAM: میز کار فوق سریع، اما فراموشکار!</a>
+                                                    <ul className="list-['-_'] list-outside pl-4 mt-1 space-y-1">
+                                                        <li><a href="#ram-characteristics-expanded" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">ویژگی‌های کلیدی RAM و تاثیر آن‌ها</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a href="#storage-the-warehouse-deep-dive" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۴. حافظه ذخیره‌سازی: انبار دائمی، کندتر اما ماندگار</a>
+                                                    <ul className="list-['-_'] list-outside pl-4 mt-1 space-y-1">
+                                                        <li><a href="#hdd-vs-ssd-expanded" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">نبرد انبارها: HDD در مقابل SSD</a></li>
+                                                        <li><a href="#ssd-types-sata-nvme" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">انواع SSD: فراتر از سرعت پایه</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a href="#motherboard-and-buses" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۵. مادِربُرد و گذرگاه‌ها: ستون فقرات و شاهراه‌های ارتباطی</a>
+                                                    <ul className="list-['-_'] list-outside pl-4 mt-1 space-y-1">
+                                                        <li><a href="#motherboard-components" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">اجزای کلیدی روی مادربورد</a></li>
+                                                        <li><a href="#buses-data-highways" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">گذرگاه‌ها (Buses): شاهراه‌های انتقال داده</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="#input-output-io" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۶. دستگاه‌های ورودی/خروجی (I/O): دروازه‌های ارتباط با دنیای بیرون</a></li>
+                                                <li>
+                                                    <a href="#operating-system-the-conductor" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۷. سیستم‌عامل (OS): رهبر ارکستر و مدیر منابع</a>
+                                                    <ul className="list-['-_'] list-outside pl-4 mt-1 space-y-1">
+                                                        <li><a href="#os-kernel-userspace" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">هسته (Kernel) و فضای کاربری (User Space)</a></li>
+                                                        <li><a href="#os-key-functions-revisited" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">مروری بر وظایف اصلی OS</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="#firmware-bios-uefi" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۸. فِرم‌وِر (Firmware): نگهبان دروازه و بیدارکننده سیستم</a></li>
+                                                <li><a href="#how-it-all-works-together-revisited" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۹. ارکستر کامل: یک سناریوی پیچیده‌تر (باز کردن یک صفحه وب)</a></li>
+                                                <li><a href="#why-it-matters-for-iranian-devs-revisited" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۱۰. فراتر از کد: چرا این دانش برای شما در ایران ضروری است؟</a></li>
+                                                <li><a href="#faq" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">پرسش‌های متداول پیشرفته‌تر</a></li>
+                                                <li><a href="#conclusion" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">جمع‌بندی نهایی: از جعبه سیاه تا جعبه ابزار</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <h2 id="analogy-computer-as-advanced-factory" className="text-gray-900 dark:text-white text-[20px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
+                                            ۱. تشبیه به‌روزشده: کامپیوتر به مثابه یک کارخانه هوشمند!
+                                        </h2>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
+                                            برای درک بهتر این اکوسیستم پیچیده، بیایید تشبیه کارگاه قبلی رو کمی به‌روز و پیشرفته‌تر کنیم. کامپیوتر شما مثل یک کارخانه مدرن و هوشمند کار می‌کنه:
+                                        </p>
+                                        <ul className="list-disc ps-2 md:ps-4 md:pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-3 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                            <li className="mb-[8px] md:mb-[10px] lg:mb-[12px]"><strong className="font-semibold text-primary-700 dark:text-primary-300">پردازنده (CPU):</strong> <strong className="font-semibold">خط تولید اصلی و فوق هوشمند کارخانه</strong>؛ جایی که مواد اولیه (داده‌ها) طبق دستورالعمل‌های دقیق (کد برنامه) پردازش و به محصولات نهایی (نتایج) تبدیل می‌شوند. سرعت خط تولید (کلاک اسپید) و تعداد خطوط موازی (هسته‌ها) ظرفیت تولید کارخانه رو مشخص می‌کنه.</li>
+                                            <li className="mb-[8px] md:mb-[10px] lg:mb-[12px]"><strong className="font-semibold text-secondary-700 dark:text-secondary-300">حافظه رم (RAM):</strong> <strong className="font-semibold">میز مونتاژ بزرگ و در دسترس کنار خط تولید</strong>. مواد اولیه و قطعاتی که <em className="italic">همین الان</em> روی آن‌ها کار می‌شود، اینجا قرار می‌گیرند تا خط تولید معطل نشود. سرعت دسترسی به این میز فوق‌العاده بالاست، اما فضای آن محدود و موقتی است (با خاموشی کارخانه، میز خالی می‌شود).</li>
+                                            <li className="mb-[8px] md:mb-[10px] lg:mb-[12px]"><strong className="font-semibold text-success-700 dark:text-success-300">حافظه ذخیره‌سازی (HDD/SSD):</strong> <strong className="font-semibold">انبار مرکزی و بایگانی دائمی کارخانه</strong>. همه مواد اولیه، نقشه‌ها، ابزارها، و محصولات نهایی اینجا نگهداری می‌شوند. SSD مثل انبار مدرن با ربات‌های حمل سریع و قفسه‌های هوشمنده، در حالی که HDD مثل انبار سنتی با دسترسی کندتره.</li>
+                                            <li className="mb-[8px] md:mb-[10px] lg:mb-[12px]"><strong className="font-semibold text-info-700 dark:text-info-300">مادِربُرد (Motherboard):</strong> <strong className="font-semibold">شاسی و زیرساخت اصلی کف کارخانه</strong>؛ صفحه‌ای که تمام بخش‌های مختلف (خط تولید، میز مونتاژ، انبار، دفاتر اداری) رو به هم وصل می‌کنه.</li>
+                                            <li className="mb-[8px] md:mb-[10px] lg:mb-[12px]"><strong className="font-semibold text-indigo-700 dark:text-indigo-300">گذرگاه‌ها (Buses):</strong> <strong className="font-semibold">نقاله و سیستم حمل‌ونقل داخلی کارخانه</strong> (مثل PCIe) که داده‌ها رو بین بخش‌های مختلف (مثل خط تولید و میز مونتاژ، یا انبار و خط تولید) با سرعت‌های متفاوت جابجا می‌کنند.</li>
+                                            <li className="mb-[8px] md:mb-[10px] lg:mb-[12px]"><strong className="font-semibold text-warning-700 dark:text-warning-300">سیستم‌عامل (OS):</strong> <strong className="font-semibold">مدیر تولید و برنامه‌ریزی کارخانه</strong>؛ مسئول هماهنگی بین تمام بخش‌ها، تخصیص منابع (زمان خط تولید، فضای میز مونتاژ)، مدیریت ورود و خروج مواد و محصولات (I/O)، و ارتباط با شما (مدیرعامل یا کاربر) از طریق دفتر کارش (رابط کاربری).</li>
+                                            <li className="mb-[8px] md:mb-[10px] lg:mb-[12px]"><strong className="font-semibold text-pink-700 dark:text-pink-300">دستگاه‌های ورودی/خروجی (I/O):</strong> <strong className="font-semibold">درب‌های ورودی و خروجی، تلفن‌ها، و نمایشگرهای کارخانه</strong>؛ راه‌های ارتباطی با دنیای بیرون (کیبورد، ماوس، مانیتور، پرینتر، شبکه).</li>
+                                            <li className="mb-[8px] md:mb-[10px] lg:mb-[12px]"><strong className="font-semibold text-gray-600 dark:text-gray-400">فِرم‌وِر (BIOS/UEFI):</strong> <strong className="font-semibold">نگهبان و مسئول راه‌اندازی اولیه کارخانه</strong>؛ اولین سیستمی که موقع باز کردن درب کارخانه (روشن کردن کامپیوتر) فعال می‌شه، برق و تجهیزات اولیه رو چک می‌کنه و مدیر تولید (OS) رو خبر می‌کنه تا کارش رو شروع کنه.</li>
+                                        </ul>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
+                                            حالا که تصویر کلی واضح‌تر شد، بیایید هر کدام از این بخش‌های کارخانه هوشمند را با دقت بیشتری بررسی کنیم.
+                                        </p>
+
+                                        <div className="my-[25px] md:my-[30px] lg:my-[35px] flex flex-col items-center group">
+                                            [IMAGE PLACEHOLDER]
+                                            {/*
+         <img
+             src="/images/blog/computer-factory-analogy.png"
+             alt="اینفوگرافیک کامپیوتر به مثابه کارخانه هوشمند: پردازنده (خط تولید)، رم (میز مونتاژ)، حافظه (انبار)، OS (مدیر تولید)، مادربورد (کف کارخانه)"
+             width="800"
+             height="450"
+             loading="lazy"
+             className="rounded-lg shadow-xl max-w-full h-auto border border-gray-200 dark:border-gray-700 group-hover:opacity-95 transition-opacity duration-300"
+         />
+     */}
+                                            <figcaption className="text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic w-full max-w-prose">کامپیوتر شما مانند یک کارخانه هوشمند با بخش‌های مختلف و هماهنگ عمل می‌کند.</figcaption>
+                                        </div>
+                                        ---
+                                        [Image Prompt Suggestion]: A detailed flat design infographic illustrating a modern factory floor. Show a central high-tech production line (CPU) with robotic arms, a large, accessible assembly table nearby (RAM), a large automated warehouse in the background (Storage) with robots, and a manager in a control room overlooking everything (OS). Show conveyor belts (Buses) connecting these areas on the factory floor layout (Motherboard). Label key areas in Farsi (پردازنده, رم, حافظه, سیستم عامل, مادربورد). Use Virtual Learn's blue (#0065D9) and cyan (#079CED) colors predominantly. Aspect ratio 16:9.
+                                        [Suggested Alt Text]: اینفوگرافیک کامپیوتر به مثابه کارخانه هوشمند: پردازنده (خط تولید)، رم (میز مونتاژ)، حافظه (انبار)، OS (مدیر تولید)، مادربورد (کف کارخانه) - تشبیه تصویری عملکرد کامپیوتر.
+                                        [Suggested Dimensions]: 16:9 (e.g., 1280x720 or wider like 1920x1080)
+                                        ---
+
+                                        <h2 id="cpu-the-brain-deep-dive" className="text-gray-900 dark:text-white text-[20px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
+                                            ۲. پردازنده (CPU): نگاهی عمیق‌تر به خط تولید هوشمند
+                                        </h2>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
+                                            CPU یا واحد پردازش مرکزی، قلب تپنده و مغز متفکر کامپیوتر است. همه چیز حول محور توانایی CPU در اجرای دستورالعمل‌ها می‌چرخد. بیایید نگاهی دقیق‌تر به اجزا و مفاهیم کلیدی آن بیندازیم:
+                                        </p>
+
+                                        <h3 id="cpu-core-concepts-expanded" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
+                                            مفاهیم بنیادی پردازنده:
+                                        </h3>
+                                        <ul className="list-disc ps-2 md:ps-4 md:pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-3 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                            <li className="mb-[8px] md:mb-[10px]"><strong className="font-semibold">کلاک اسپید (Clock Speed - GHz):</strong> سرعت تیک‌تاک ساعت داخلی CPU. هر تیک (چرخه) فرصتی برای انجام یک عملیات پایه است. عدد بالاتر (مثلاً 4.0GHz) یعنی تیک‌تاک سریع‌تر و پتانسیل پردازش سریع‌تر دستورات <strong className="font-semibold">به صورت متوالی</strong>.</li>
+                                            <li className="mb-[8px] md:mb-[10px]"><strong className="font-semibold">هسته‌ها (Cores):</strong> تعداد خطوط تولید مستقل در کارخانه CPU. یک CPU چهار هسته‌ای می‌تواند <strong className="font-semibold">چهار رشته دستورالعمل را واقعاً به صورت همزمان</strong> پردازش کند. این برای چندوظیفگی (مثلاً اجرای همزمان مرورگر، کد ادیتور، و موزیک پلیر) و پردازش موازی (مثل کامپایل کد یا رندر ویدیو) حیاتی است.</li>
+                                            <li className="mb-[8px] md:mb-[10px]"><strong className="font-semibold">رشته‌ها (Threads):</strong> با تکنیک‌هایی مثل Hyper-Threading (اینتل) یا SMT (AMD)، هر هسته فیزیکی می‌تواند <strong className="font-semibold">وانمود کند که دو هسته منطقی</strong> است و دو رشته دستورالعمل را مدیریت کند. این کارایی را بهبود می‌دهد اما به اندازه داشتن هسته‌های فیزیکی بیشتر، قدرتمند نیست. یک CPU ۸ هسته‌ای/۱۶ رشته‌ای، ۱۶ کار را می‌تواند مدیریت کند.</li>
+                                            <li className="mb-[8px] md:mb-[10px]"><strong className="font-semibold">حافظه نهان (Cache - L1, L2, L3):</strong> حافظه‌های بسیار کوچک و فوق‌العاده سریع که <strong className="font-semibold">روی خود تراشه CPU</strong> قرار دارند. CPU داده‌ها و دستوراتی که فکر می‌کند به زودی لازم خواهد داشت را در کش کپی می‌کند تا مجبور نباشد منتظر RAM بماند (که نسبت به کش بسیار کندتر است!). L1 سریع‌ترین و کوچک‌ترین (چسبیده به هسته)، L2 کمی کندتر و بزرگ‌تر، و L3 کندترین اما بزرگ‌ترین کش است که بین همه هسته‌ها مشترک است. <strong className="font-semibold">حجم و سرعت کش، به خصوص L3، تأثیر زیادی بر عملکرد واقعی</strong> دارد، مخصوصاً در بازی‌ها و نرم‌افزارهای سنگین.</li>
+                                            <li className="mb-[8px] md:mb-[10px]"><strong className="font-semibold">معماری مجموعه دستورالعمل (Instruction Set Architecture - ISA):</strong> زبان پایه‌ای که CPU می‌فهمد. <strong className="font-semibold">x86 (و x86-64 یا AMD64)</strong> معماری رایج در اکثر کامپیوترهای دسکتاپ و لپ‌تاپ‌ها (ساخته شده توسط اینتل و AMD) است. <strong className="font-semibold">ARM</strong> معماری غالب در گوشی‌های هوشمند و تبلت‌هاست و به دلیل بهره‌وری انرژی بالا، در لپ‌تاپ‌ها (مانند مک‌بوک‌های اپل سیلیکون) نیز محبوبیت پیدا کرده است. نوع ISA بر سازگاری نرم‌افزارها تأثیر می‌گذارد.</li>
+                                            <li className="mb-[8px] md:mb-[10px]"><strong className="font-semibold">توان طراحی حرارتی (TDP - Thermal Design Power):</strong> معیاری از حداکثر گرمایی که CPU در بار کاری معمول تولید می‌کند (با وات اندازه‌گیری می‌شود). TDP بالاتر معمولاً به معنی <strong className="font-semibold">پتانسیل عملکرد بالاتر</strong> است، اما به <strong className="font-semibold">سیستم خنک‌کننده قوی‌تر</strong> و مصرف برق بیشتر نیاز دارد. این نکته در لپ‌تاپ‌ها اهمیت ویژه‌ای دارد.</li>
+                                        </ul>
+
+                                        <div className="my-[25px] md:my-[30px] lg:my-[35px] flex flex-col items-center group">
+                                            [IMAGE PLACEHOLDER]
+                                            {/*
+         <img
+             src="/images/blog/cpu-cores-cache-diagram.png"
+             alt="دیاگرام ساختار داخلی CPU مدرن با نمایش هسته‌ها، و سطوح کش L1, L2, L3"
+             width="768"
+             height="432"
+             loading="lazy"
+             className="rounded-lg shadow-xl max-w-full h-auto border border-gray-200 dark:border-gray-700 group-hover:opacity-95 transition-opacity duration-300"
+         />
+     */}
+                                            <figcaption className="text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic w-full max-w-prose">نمایی ساده از معماری یک CPU چند هسته‌ای با سطوح مختلف حافظه نهان (Cache).</figcaption>
+                                        </div>
+                                        ---
+                                        [Image Prompt Suggestion]: A schematic diagram of a modern multi-core CPU architecture. Clearly show 4 or 6 core blocks. Each core should have its own small L1 Cache box (Instruction & Data). Show slightly larger L2 Cache boxes associated with each core (or pairs of cores). Show a large L3 Cache box shared among all cores. Use clear labels (Core, L1$, L2$, L3$). Use simple geometric shapes and connecting lines. Minimalist style with Virtual Learn's blue color highlights. Aspect ratio 16:9.
+                                        [Suggested Alt Text]: دیاگرام ساختار داخلی CPU مدرن با نمایش هسته‌ها (Cores)، و سطوح کش L1, L2, L3 برای بهبود سرعت دسترسی به داده.
+                                        [Suggested Dimensions]: 16:9 (e.g., 1280x720)
+                                        ---
+
+                                        <h3 id="cpu-pipeline-fetch-decode-execute-cycle" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
+                                            خط لوله (Pipeline) و چرخه کاری CPU
+                                        </h3>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
+                                            CPUها برای افزایش کارایی از تکنیکی به نام <strong className="font-semibold">خط لوله (Pipelining)</strong> استفاده می‌کنند. به جای اینکه منتظر بمانند تا یک دستور کاملاً تمام شود و بعد سراغ بعدی بروند، مراحل مختلف چرخه کاری (واکشی، رمزگشایی، اجرا، نوشتن) را برای دستورات مختلف <strong className="font-semibold">به صورت همپوشان</strong> انجام می‌دهند. مثل خط مونتاژ در کارخانه که هر ایستگاه روی یک محصول متفاوت کار می‌کند. چرخه اصلی کاری هر دستور (بدون Pipeline) این‌گونه است:
+                                        </p>
+                                        <ol className="list-decimal list-outside pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-2 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">
+                                                <strong className="font-semibold">واکشی (Fetch):</strong> آوردن دستور بعدی از حافظه (کش یا RAM).
+                                            </li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">
+                                                <strong className="font-semibold">رمزگشایی (Decode):</strong> فهمیدن اینکه دستور چه می‌خواهد (مثلاً جمع، پرش، بارگذاری داده).
+                                            </li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">
+                                                <strong className="font-semibold">اجرا (Execute):</strong> انجام عملیات توسط واحد محاسبه و منطق (ALU).
+                                            </li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">
+                                                <strong className="font-semibold">نوشتن (Write-back):</strong> ذخیره نتیجه در رجیسترها یا حافظه.
+                                            </li>
+                                        </ol>
+
+                                        <div className="my-[25px] md:my-[30px] lg:my-[35px] flex flex-col items-center group">
+                                            [IMAGE PLACEHOLDER]
+                                            {/*
+         <img
+             src="/images/blog/cpu-pipeline-diagram.png"
+             alt="دیاگرام ساده نمایش خط لوله (Pipeline) پردازنده با مراحل واکشی، رمزگشایی، اجرا برای چندین دستور همزمان"
+             width="768"
+             height="250"
+             loading="lazy"
+             className="rounded-lg shadow-xl max-w-full h-auto border border-gray-200 dark:border-gray-700 group-hover:opacity-95 transition-opacity duration-300"
+         />
+     */}
+                                            <figcaption className="text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic w-full max-w-prose">خط لوله (Pipelining) به CPU اجازه می‌دهد مراحل مختلف چندین دستور را همزمان پیش ببرد.</figcaption>
+                                        </div>
+                                        ---
+                                        [Image Prompt Suggestion]: A simple horizontal diagram illustrating CPU pipelining. Show time moving from left to right across the top. Below, show 3-4 instructions (Instruction 1, Instruction 2, etc.). For each instruction, show sequential blocks representing Fetch, Decode, Execute, Writeback stages. Crucially, show these stages overlapping in time for consecutive instructions. For example, while Instruction 2 is in Decode, Instruction 1 is in Execute. Use distinct colors for each stage. Aspect ratio approx 3:1 or 16:9, emphasizing the timeline.
+                                        [Suggested Alt Text]: دیاگرام ساده نمایش خط لوله (Pipeline) پردازنده با مراحل واکشی (Fetch)، رمزگشایی (Decode)، اجرا (Execute) برای چندین دستور به صورت همپوشان و همزمان.
+                                        [Suggested Dimensions]: Wide aspect ratio like 3:1 (e.g., 1200x400) or 16:9 (e.g., 1280x720)
+                                        ---
+
+                                        <div className="flex items-start border-l-4 border-success-500 dark:border-success-400 bg-success-100/60 dark:bg-gray-800 p-4 rounded-md my-[20px] md:my-[22px] lg:my-[25px] shadow-sm">
+                                            <span className="text-xl text-success-600 dark:text-success-300 mt-1">💡</span>
+                                            <div>
+                                                <strong className="font-semibold text-success-800 dark:text-success-200">نکته برای برنامه‌نویسان ایرانی:</strong>
+                                                <p className="text-success-700 dark:text-success-200/90 mt-1 text-[15px] md:text-[16px] leading-relaxed">درک مفاهیمی مثل هسته‌ها و رشته‌ها به شما کمک می‌کند تا هنگام کار با <strong className="font-semibold">کتابخانه‌های پردازش موازی (Parallel Processing)</strong> در پایتون (مثل `multiprocessing` یا `concurrent.futures`) یا استفاده از Goroutines در Go یا Async/Await در جاوااسکریپت/#C، دید بهتری نسبت به نحوه اجرای کدهایتان و بهره‌گیری از تمام قدرت CPU سیستم خود یا سرورهایتان داشته باشید. انتخاب درست بین پردازش موازی واقعی (با هسته‌ها) و همروندی (Concurrency) می‌تواند تاثیر زیادی بر عملکرد اپلیکیشن‌های شما بگذارد.</p>
+                                            </div>
+                                        </div>
+
+
+                                        <h2 id="ram-the-workbench-deep-dive" className="text-gray-900 dark:text-white text-[20px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
+                                            ۳. حافظه RAM: میز کار فوق سریع، اما فراموشکار!
+                                        </h2>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
+                                            حافظه دسترسی تصادفی (RAM)، فضای کاری فعال و بسیار سریع کامپیوتر است. هر برنامه یا داده‌ای که CPU در حال کار با آن است، باید ابتدا در RAM بارگذاری شود. سرعت بالا مزیت بزرگ RAM است، اما <strong className="font-semibold">فرّار بودن (Volatile)</strong> پاشنه آشیل آن است؛ با قطع برق، همه چیز پاک می‌شود!
+                                        </p>
+
+                                        <div className="my-[25px] md:my-[30px] lg:my-[35px] flex flex-col items-center group">
+                                            [IMAGE PLACEHOLDER]
+                                            {/*
+         <img
+             src="/images/blog/ram-modules-photo.jpg"
+             alt="تصویر ماژول‌های حافظه رم (RAM) نوع DDR4 یا DDR5 که روی مادربورد نصب می‌شوند"
+             width="768"
+             height="432"
+             loading="lazy"
+             className="rounded-lg shadow-xl max-w-full h-auto border border-gray-200 dark:border-gray-700 group-hover:opacity-95 transition-opacity duration-300"
+         />
+     */}
+                                            <figcaption className="text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic w-full max-w-prose">ماژول‌های RAM: حافظه فعال و سریع سیستم شما.</figcaption>
+                                        </div>
+                                        ---
+                                        [Image Prompt Suggestion]: A clear photograph of two or four RAM modules (sticks) installed in the RAM slots of a computer motherboard. Focus on the RAM sticks themselves, showing the chips and connectors. Use good lighting and a shallow depth of field. Standard 16:9 aspect ratio.
+                                        [Suggested Alt Text]: تصویر ماژول‌های حافظه رم (RAM) نوع DDR4 یا DDR5 که روی اسلات‌های مادربورد برای دسترسی سریع CPU نصب می‌شوند.
+                                        [Suggested Dimensions]: 16:9 (e.g., 1280x720)
+                                        ---
+
+                                        <h3 id="ram-characteristics-expanded" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
+                                            ویژگی‌های کلیدی RAM و تاثیر آن‌ها:
+                                        </h3>
+                                        <ul className="list-disc ps-2 md:ps-4 md:pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-3 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                            <li className="mb-[8px] md:mb-[10px]"><strong className="font-semibold">ظرفیت (Capacity - GB):</strong> مقدار فضایی که برای نگهداری برنامه‌ها و داده‌های فعال دارید. <strong className="font-semibold">کمبود RAM بزرگترین گلوگاه عملکردی در بسیاری از سیستم‌هاست</strong>، چون سیستم‌عامل مجبور به استفاده از <strong className="font-semibold">حافظه مجازی (Swap/Page file)</strong> روی حافظه ذخیره‌سازی (SSD/HDD) بسیار کندتر می‌شود. در ایران، برای توسعه‌دهندگان، ۱۶GB حداقل قابل قبول و <strong className="font-semibold">۳۲GB یا بیشتر برای کارهای سنگین‌تر (مثل ماشین مجازی، Docker، توسعه اندروید)</strong> به شدت توصیه می‌شود.</li>
+                                            <li className="mb-[8px] md:mb-[10px]"><strong className="font-semibold">سرعت/فرکانس (Speed/Frequency - MHz):</strong> سرعت انتقال داده بین RAM و کنترلر حافظه (معمولاً در CPU). فرکانس بالاتر (مثلاً 3200MHz یا 5600MHz) به معنی پهنای باند بیشتر و <strong className="font-semibold">کاهش زمان انتظار CPU</strong> است. تاثیر آن در برخی کاربردها مثل بازی یا کار با داده‌های حجیم محسوس‌تر است.</li>
+                                            <li className="mb-[8px] md:mb-[10px]"><strong className="font-semibold">نوع (Type - DDR):</strong> استاندارد انتقال داده. DDR4 رایج‌ترین در بازار ایران است، اما DDR5 با سرعت و پهنای باند بیشتر در سیستم‌های جدید در حال فراگیر شدن است. <strong className="font-semibold">مادربورد و CPU باید با نسل DDR مورد نظر سازگار باشند.</strong></li>
+                                            <li className="mb-[8px] md:mb-[10px]"><strong className="font-semibold">زمان‌بندی/تاخیر (Timings/Latency - CL):</strong> معیاری از تاخیر پاسخ‌دهی RAM به درخواست‌ها (مثلاً CL16 در مقابل CL22). <strong className="font-semibold">عدد CL پایین‌تر بهتر (سریع‌تر)</strong> است، اما تاثیر آن معمولاً کمتر از ظرفیت و فرکانس کلی است.</li>
+                                            <li className="mb-[8px] md:mb-[10px]"><strong className="font-semibold">کانال‌ها (Channels - Dual/Quad):</strong> اکثر مادربوردهای مدرن از حالت دو کاناله (Dual Channel) پشتیبانی می‌کنند. با نصب دو ماژول RAM یکسان در اسلات‌های صحیح (که معمولاً در دفترچه مادربورد مشخص شده)، <strong className="font-semibold">پهنای باند حافظه تقریباً دو برابر می‌شود</strong> که تاثیر محسوسی بر عملکرد، به‌ویژه در گرافیک مجتمع (iGPU) و برخی پردازش‌ها دارد. برخی سیستم‌های رده‌بالا از Quad Channel هم پشتیبانی می‌کنند.</li>
+                                        </ul>
+
+
+                                        <div className="my-[25px] md:my-[30px] lg:my-[35px] flex flex-col items-center group">
+                                            [IMAGE PLACEHOLDER]
+                                            {/*
+         <img
+             src="/images/blog/ram-dual-channel-diagram.png"
+             alt="دیاگرام مقایسه عملکرد تک کاناله و دو کاناله حافظه رم با نمایش پهنای باند بیشتر در حالت دو کاناله"
+             width="768"
+             height="300"
+             loading="lazy"
+             className="rounded-lg shadow-xl max-w-full h-auto border border-gray-200 dark:border-gray-700 group-hover:opacity-95 transition-opacity duration-300"
+         />
+     */}
+                                            <figcaption className="text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic w-full max-w-prose">استفاده از حالت دو کاناله (Dual Channel) با نصب صحیح ماژول‌های RAM، پهنای باند حافظه را افزایش می‌دهد.</figcaption>
+                                        </div>
+                                        ---
+                                        [Image Prompt Suggestion]: A simple comparison diagram showing Single Channel vs Dual Channel RAM performance. On the left (Single Channel), show one arrow representing data flow from the CPU/Memory Controller to a single RAM module (labeled '64-bit bandwidth'). On the right (Dual Channel), show two parallel arrows going to two separate RAM modules (labeled '128-bit bandwidth'). Use clear visual distinction and labels. Aspect ratio ~16:7 or 16:9.
+                                        [Suggested Alt Text]: دیاگرام مقایسه عملکرد تک کاناله (Single Channel) و دو کاناله (Dual Channel) حافظه رم، نمایش افزایش پهنای باند داده با استفاده از دو کانال موازی.
+                                        [Suggested Dimensions]: Wide aspect ratio like 16:7 (e.g., 1280x560) or standard 16:9.
+                                        ---
+
+                                        <div className="flex items-start border-l-4 border-warning-500 dark:border-warning-400 bg-warning-100/60 dark:bg-gray-800 p-4 rounded-md my-[20px] md:my-[22px] lg:my-[25px] shadow-sm">
+                                            <span className="text-xl text-warning-600 dark:text-warning-300 mt-1">⚠️</span>
+                                            <div>
+                                                <strong className="font-semibold text-warning-800 dark:text-warning-200">چالش مدیریت حافظه برای برنامه‌نویسان:</strong>
+                                                <p className="text-warning-700 dark:text-warning-200/90 mt-1 text-[15px] md:text-[16px] leading-relaxed">حتی در زبان‌های با مدیریت حافظه خودکار (مثل جاوا، پایتون، جاوااسکریپت با Garbage Collector)، <strong className="font-semibold">نشت حافظه (Memory Leak)</strong> یک مشکل رایج است؛ یعنی برنامه شما به تدریج RAM بیشتری را اشغال می‌کند و آن را آزاد نمی‌کند. درک نحوه تخصیص و آزادسازی حافظه در زبان و پلتفرم‌تان، و استفاده از ابزارهای <strong className="font-semibold">پروفایلینگ حافظه (Memory Profiling)</strong> به شما کمک می‌کند تا این مشکلات را که می‌توانند باعث کندی شدید یا کرش برنامه شوند، شناسایی و رفع کنید. در زبان‌هایی مثل C/C++ که مدیریت حافظه دستی است، این چالش‌ها به مراتب بیشترند.</p>
+                                            </div>
+                                        </div>
+
+                                        <h2 id="storage-the-warehouse-deep-dive" className="text-gray-900 dark:text-white text-[20px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
+                                            ۴. حافظه ذخیره‌سازی: انبار دائمی، کندتر اما ماندگار
+                                        </h2>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
+                                            اینجا جایی است که سیستم‌عامل، برنامه‌ها، فایل‌های پروژه، عکس‌ها و همه اطلاعات شما به صورت <strong className="font-semibold">غیرفرّار (Non-volatile)</strong> ذخیره می‌شوند. تفاوت اصلی در تکنولوژی و سرعت بین HDD و SSD است:
+                                        </p>
+
+                                        <h3 id="hdd-vs-ssd-expanded" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
+                                            نبرد انبارها: HDD در مقابل SSD
+                                        </h3>
+                                        <ul className="list-disc ps-2 md:ps-4 md:pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-3 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                            <li className="mb-[8px] md:mb-[10px]">
+                                                <strong className="font-semibold">هارد دیسک درایو (HDD):</strong> تکنولوژی قدیمی‌تر مبتنی بر <strong className="font-semibold">دیسک‌های مغناطیسی چرخان (Platters) و هد خواندن/نوشتن متحرک</strong>.
+                                                <ul className="list-['-_'] list-outside pl-4 mt-2 space-y-1 text-sm">
+                                                    <li>مزایا: <strong className="font-semibold text-primary-600 dark:text-primary-400">ظرفیت بسیار بالا با قیمت بسیار پایین</strong> به ازای هر گیگابایت. ایده‌آل برای آرشیو فایل‌های حجیم در ایران که قیمت اهمیت دارد.</li>
+                                                    <li>معایب: <strong className="font-semibold text-danger-600 dark:text-danger-400">سرعت بسیار پایین</strong> (به‌ویژه در دسترسی تصادفی به فایل‌های کوچک)، تاخیر بالا به دلیل حرکت فیزیکی هد، حساسیت به ضربه، صدا، مصرف انرژی بیشتر.</li>
+                                                </ul>
+                                            </li>
+                                            <li className="mb-[8px] md:mb-[10px]">
+                                                <strong className="font-semibold">درایو حالت جامد (SSD):</strong> تکنولوژی جدیدتر مبتنی بر <strong className="font-semibold">تراشه‌های حافظه فلش NAND</strong> بدون هیچ قطعه متحرکی.
+                                                <ul className="list-['-_'] list-outside pl-4 mt-2 space-y-1 text-sm">
+                                                    <li>مزایا: <strong className="font-semibold text-success-600 dark:text-success-400">سرعت خواندن/نوشتن فوق‌العاده بالا</strong> (به‌ویژه NVMe)، زمان دسترسی تقریباً آنی، <strong className="font-semibold">تأثیر شگرف بر سرعت بوت شدن سیستم‌عامل، بارگذاری برنامه‌ها و فایل‌ها</strong>، مقاومت فیزیکی بالا، بی‌صدا، مصرف انرژی کمتر.</li>
+                                                    <li>معایب: <strong className="font-semibold">قیمت بالاتر</strong> به ازای هر گیگابایت نسبت به HDD (اگرچه این شکاف در حال کاهش است). طول عمر محدودتر بر اساس تعداد چرخه نوشتن (TBW - Terabytes Written)، اما برای کاربران عادی و اکثر توسعه‌دهندگان معمولاً سال‌ها طول می‌کشد تا به این حد برسند.</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+
+
+                                        <div className="my-[25px] md:my-[30px] lg:my-[35px] flex flex-col items-center group">
+                                            [IMAGE PLACEHOLDER]
+                                            {/*
+         <img
+             src="/images/blog/hdd-vs-ssd-internals.jpg"
+             alt="مقایسه تصویری داخل هارد دیسک (HDD) با دیسک چرخان و هد، و داخل SSD با تراشه‌های حافظه فلش"
+             width="768"
+             height="432"
+             loading="lazy"
+             className="rounded-lg shadow-xl max-w-full h-auto border border-gray-200 dark:border-gray-700 group-hover:opacity-95 transition-opacity duration-300"
+         />
+     */}
+                                            <figcaption className="text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic w-full max-w-prose">مقایسه اجزای داخلی: حرکت مکانیکی در HDD در مقابل تراشه‌های ثابت در SSD.</figcaption>
+                                        </div>
+                                        ---
+                                        [Image Prompt Suggestion]: A side-by-side comparison image. Left side: An open Hard Disk Drive (HDD) clearly showing the spinning platters and the read/write head actuator arm. Right side: An open Solid State Drive (SSD) showing the circuit board with NAND flash memory chips and the controller chip. Use labels "HDD Internals" and "SSD Internals". Clear, well-lit photograph or realistic render. Aspect ratio 16:9.
+                                        [Suggested Alt Text]: مقایسه تصویری داخل هارد دیسک (HDD) با دیسک چرخان مغناطیسی و هد متحرک، و داخل درایو حالت جامد (SSD) با تراشه‌های حافظه فلش NAND ثابت و کنترلر.
+                                        [Suggested Dimensions]: 16:9 (e.g., 1280x720)
+                                        ---
+
+
+                                        <h3 id="ssd-types-sata-nvme" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
+                                            انواع SSD: فراتر از سرعت پایه
+                                        </h3>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
+                                            همه SSDها یکسان نیستند. دو عامل اصلی تفاوت ایجاد می‌کنند:
+                                        </p>
+                                        <ul className="list-disc ps-2 md:ps-4 md:pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-2 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">رابط اتصال (Interface):</strong>
+                                                <ul className="list-['-_'] list-outside pl-4 mt-1 space-y-1 text-sm">
+                                                    <li><strong className="font-semibold">SATA III:</strong> رایج‌ترین رابط که در HDDها هم استفاده می‌شود. سرعت آن به حدود 550-600 مگابایت بر ثانیه محدود است. SSDهای SATA (معمولاً در فرم فاکتور 2.5 اینچی) هنوز هم بسیار سریع‌تر از HDDها هستند و گزینه خوبی برای ارتقای سیستم‌های قدیمی‌تر یا به عنوان حافظه دوم در کنار NVMe محسوب می‌شوند.</li>
+                                                    <li><strong className="font-semibold text-success-600 dark:text-success-400">NVMe (Non-Volatile Memory Express):</strong> پروتکلی که به SSDها اجازه می‌دهد مستقیماً از طریق <strong className="font-semibold">گذرگاه پرسرعت PCIe (مانند کارت گرافیک)</strong> با CPU ارتباط برقرار کنند. سرعت NVMe SSDها می‌تواند به <strong className="font-semibold">چندین گیگابایت بر ثانیه (۳۰۰۰ تا ۷۰۰۰+ مگابایت بر ثانیه)</strong> برسد که <strong className="font-semibold">۵ تا ۱۲ برابر سریع‌تر از SATA SSD</strong> است. این تفاوت در کپی کردن فایل‌های بسیار حجیم، کار با پروژه‌های بزرگ و زمان بارگذاری برخی برنامه‌ها و بازی‌ها مشهود است.</li>
+                                                </ul>
+                                            </li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">فرم فاکتور (Form Factor):</strong>
+                                                <ul className="list-['-_'] list-outside pl-4 mt-1 space-y-1 text-sm">
+                                                    <li><strong className="font-semibold">2.5 اینچی:</strong> شبیه به لپ‌تاپ HDD، معمولاً از رابط SATA استفاده می‌کند.</li>
+                                                    <li><strong className="font-semibold">M.2:</strong> یک اسلات کوچک و باریک مستقیماً روی مادربورد. M.2 SSDها می‌توانند از رابط SATA یا <strong className="font-semibold text-success-600 dark:text-success-400">NVMe</strong> استفاده کنند. اکثر SSDهای NVMe امروزی از فرم فاکتور M.2 استفاده می‌کنند. حتماً مشخصات مادربورد خود را چک کنید که از کدام نوع M.2 (SATA یا NVMe) و چه طولی پشتیبانی می‌کند.</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+
+                                        <div className="my-[25px] md:my-[30px] lg:my-[35px] flex flex-col items-center group">
+                                            [IMAGE PLACEHOLDER]
+                                            {/*
+         <img
+             src="/images/blog/m2-nvme-ssd-photo.jpg"
+             alt="تصویر یک حافظه SSD از نوع M.2 NVMe که بسیار کوچک و سریع است"
+             width="768"
+             height="300"
+             loading="lazy"
+             className="rounded-lg shadow-xl max-w-full h-auto border border-gray-200 dark:border-gray-700 group-hover:opacity-95 transition-opacity duration-300"
+         />
+     */}
+                                            <figcaption className="text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic w-full max-w-prose">SSD از نوع M.2 NVMe: کوچک، بدون کابل و بسیار سریع.</figcaption>
+                                        </div>
+                                        ---
+                                        [Image Prompt Suggestion]: A clear photograph of an M.2 NVMe SSD module. Show it slightly angled to display the connector pins and the flash memory chips on the small PCB. Place it on a clean, neutral background. Good lighting. Aspect ratio suitable for its shape, maybe 16:7 or 16:9.
+                                        [Suggested Alt Text]: تصویر یک حافظه SSD از نوع M.2 NVMe که مستقیماً روی مادربورد نصب شده و از طریق رابط PCIe سرعت بسیار بالایی ارائه می‌دهد.
+                                        [Suggested Dimensions]: Wide aspect ratio like 16:7 (e.g., 1280x560) or standard 16:9.
+                                        ---
+
+
+                                        <div className="flex items-start border-l-4 border-info-500 dark:border-info-400 bg-info-100/60 dark:bg-gray-800 p-4 rounded-md my-[20px] md:my-[22px] lg:my-[25px] shadow-sm">
+                                            <span className="text-xl text-info-600 dark:text-info-300 mt-1">ℹ️</span>
+                                            <div>
+                                                <strong className="font-semibold text-info-800 dark:text-info-200">سلسله مراتب حافظه (Memory Hierarchy):</strong>
+                                                <p className="text-info-700 dark:text-info-200/90 mt-1 text-[15px] md:text-[16px] leading-relaxed">کامپیوترها از ترکیبی از حافظه‌های مختلف با سرعت‌ها و هزینه‌های متفاوت استفاده می‌کنند. این سلسله مراتب معمولاً به این صورت است (از سریع‌ترین/گران‌ترین/کوچک‌ترین به کندترین/ارزان‌ترین/بزرگ‌ترین): <strong className="font-semibold">1. رجیسترهای CPU → 2. کش CPU (L1-L3) → 3. حافظه RAM → 4. حافظه SSD → 5. حافظه HDD → 6. حافظه شبکه/Cloud</strong>. هدف این است که داده‌های پراستفاده تا حد امکان در سطوح بالاتر (سریع‌تر) نگهداری شوند تا عملکرد بهینه شود.</p>
+                                            </div>
+                                        </div>
+
+
+                                        <h2 id="motherboard-and-buses" className="text-gray-900 dark:text-white text-[20px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
+                                            ۵. مادِربُرد و گذرگاه‌ها: ستون فقرات و شاهراه‌های ارتباطی
+                                        </h2>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
+                                            مادربورد (Motherboard یا Mainboard) <strong className="font-semibold">صفحه مدار چاپی اصلی (PCB)</strong> است که تمام اجزای کلیدی کامپیوتر را به هم متصل کرده و به آن‌ها اجازه می‌دهد با یکدیگر ارتباط برقرار کنند. مثل ستون فقرات سیستم شما عمل می‌کند.
+                                        </p>
+
+                                        <h3 id="motherboard-components" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
+                                            اجزای کلیدی روی مادربورد:
+                                        </h3>
+                                        <ul className="list-disc ps-2 md:ps-4 md:pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-2 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">سوکت CPU (CPU Socket):</strong> محل نصب پردازنده. نوع سوکت باید با CPU شما سازگار باشد (مثلاً LGA 1700 برای اینتل یا AM5 برای AMD).</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">اسلات‌های رم (RAM Slots):</strong> محل نصب ماژول‌های حافظه RAM. تعداد و نوع (DDR4/DDR5) باید با RAM شما و مادربورد سازگار باشد.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">چیپست (Chipset):</strong> مجموعه‌ای از تراشه‌ها که ارتباط بین CPU، RAM، حافظه ذخیره‌سازی، و اسلات‌های توسعه را مدیریت می‌کنند. مدل چیپست (مثلاً B660, Z790 برای اینتل یا B650, X670 برای AMD) قابلیت‌های مادربورد (مثل تعداد پورت‌ها، پشتیبانی از اورکلاک) را تعیین می‌کند.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">اسلات‌های توسعه (Expansion Slots - PCIe):</strong> محل نصب کارت‌های اضافی مانند <strong className="font-semibold">کارت گرافیک (GPU)</strong>، کارت شبکه، کارت صدا، و همچنین برخی از SSDهای NVMe پرسرعت. رایج‌ترین نوع، PCIe (Peripheral Component Interconnect Express) در نسل‌های مختلف (3.0, 4.0, 5.0) و اندازه‌های مختلف (x16, x4, x1) است.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">کانکتورهای ذخیره‌سازی:</strong> شامل پورت‌های SATA برای اتصال HDD و SATA SSD، و اسلات‌های M.2 برای اتصال M.2 SSD (SATA یا NVMe).</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">پورت‌های ورودی/خروجی (I/O Ports):</strong> در پنل پشتی مادربورد قرار دارند و شامل پورت‌های USB، شبکه (Ethernet)، صدا، و خروجی‌های تصویر (HDMI/DisplayPort - اگر CPU گرافیک مجتمع داشته باشد) می‌شوند.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">کانکتور برق (Power Connectors):</strong> محل اتصال کابل‌های منبع تغذیه (PSU) برای تامین برق مادربورد و اجزای متصل به آن.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">تراشه BIOS/UEFI:</strong> حاوی فِرم‌وِر اولیه سیستم (در بخش بعدی توضیح داده می‌شود).</li>
+                                        </ul>
+
+                                        <div className="my-[25px] md:my-[30px] lg:my-[35px] flex flex-col items-center group">
+                                            [IMAGE PLACEHOLDER]
+                                            {/*
+         <img
+             src="/images/blog/motherboard-components-labeled.jpg"
+             alt="تصویر یک مادربورد کامپیوتر با برچسب‌گذاری اجزای کلیدی مانند سوکت CPU، اسلات رم، اسلات PCIe، چیپست، پورت‌های SATA و M.2"
+             width="800"
+             height="600"
+             loading="lazy"
+             className="rounded-lg shadow-xl max-w-full h-auto border border-gray-200 dark:border-gray-700 group-hover:opacity-95 transition-opacity duration-300"
+         />
+     */}
+                                            <figcaption className="text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic w-full max-w-prose">نمایی از یک مادربورد و اجزای اصلی آن که همه قطعات را به هم متصل می‌کند.</figcaption>
+                                        </div>
+                                        ---
+                                        [Image Prompt Suggestion]: A top-down photograph of a modern computer motherboard (ATX form factor). Use clear callout lines and labels (in Farsi if possible, otherwise English) pointing to key components: CPU Socket, RAM Slots, PCIe x16 slot (for GPU), PCIe x1/x4 slots, M.2 Slot, Chipset (often under a heatsink), SATA Ports, Rear I/O Panel (showing USB, Ethernet, Audio ports), Power Connectors (24-pin ATX & 8-pin CPU). Good, even lighting. Aspect ratio 4:3 or 16:9.
+                                        [Suggested Alt Text]: تصویر یک مادربورد کامپیوتر با برچسب‌گذاری اجزای کلیدی: سوکت CPU، اسلات‌های RAM، اسلات‌های PCIe، چیپست، کانکتورهای SATA و M.2، و پورت‌های پنل پشتی.
+                                        [Suggested Dimensions]: 4:3 (e.g., 1024x768) or 16:9 (e.g., 1280x720).
+                                        ---
+
+
+                                        <h3 id="buses-data-highways" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
+                                            گذرگاه‌ها (Buses): شاهراه‌های انتقال داده
+                                        </h3>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
+                                            گذرگاه‌ها مسیرهای الکترونیکی روی مادربورد هستند که به اجزای مختلف اجازه می‌دهند داده‌ها را با هم تبادل کنند. مانند جاده‌ها و شاهراه‌ها در یک شهر عمل می‌کنند. مهم‌ترین گذرگاه‌ها عبارتند از:
+                                        </p>
+                                        <ul className="list-disc ps-2 md:ps-4 md:pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-2 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">گذرگاه پردازنده (CPU Bus یا Front Side Bus - FSB در قدیم):</strong> اتصال بین CPU و چیپست یا کنترلر حافظه.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">گذرگاه حافظه (Memory Bus):</strong> اتصال بین CPU (یا کنترلر حافظه) و ماژول‌های RAM.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold text-success-600 dark:text-success-400">گذرگاه PCIe (PCI Express):</strong> گذرگاه سریال پرسرعت برای اتصال کارت گرافیک، NVMe SSD، کارت شبکه و سایر کارت‌های توسعه. سرعت آن به نسل (PCIe 3.0, 4.0, 5.0) و تعداد خطوط (Lanes - x1, x4, x8, x16) بستگی دارد. PCIe 4.0 x16 پهنای باند بسیار بالایی دارد.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">گذرگاه SATA:</strong> گذرگاه کندتر برای اتصال HDD و SATA SSD.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">گذرگاه USB (Universal Serial Bus):</strong> برای اتصال دستگاه‌های جانبی خارجی.</li>
+                                        </ul>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
+                                            سرعت و پهنای باند این گذرگاه‌ها می‌تواند بر عملکرد کلی سیستم، به خصوص در کارهای نیازمند انتقال حجم بالای داده، تاثیر بگذارد.
+                                        </p>
+
+                                        <h2 id="input-output-io" className="text-gray-900 dark:text-white text-[20px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
+                                            ۶. دستگاه‌های ورودی/خروجی (I/O): دروازه‌های ارتباط با دنیای بیرون
+                                        </h2>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
+                                            کامپیوتر برای اینکه مفید باشد، نیاز به تعامل با کاربر و دنیای خارج دارد. دستگاه‌های ورودی/خروجی (Input/Output - I/O) این ارتباط را ممکن می‌سازند. سیستم‌عامل نقش حیاتی در مدیریت این دستگاه‌ها از طریق <strong className="font-semibold">درایورها (Drivers)</strong> ایفا می‌کند. درایورها نرم‌افزارهای کوچکی هستند که به سیستم‌عامل یاد می‌دهند چگونه با یک قطعه سخت‌افزاری خاص صحبت کند.
+                                        </p>
+                                        <ul className="list-disc ps-2 md:ps-4 md:pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-2 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold text-indigo-700 dark:text-indigo-300">دستگاه‌های ورودی (Input):</strong> اطلاعات را به کامپیوتر وارد می‌کنند. مثال‌ها: <strong className="font-semibold">کیبورد، ماوس، وب‌کم، میکروفون، اسکنر</strong>.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold text-pink-700 dark:text-pink-300">دستگاه‌های خروجی (Output):</strong> اطلاعات را از کامپیوتر به کاربر یا دنیای خارج نمایش می‌دهند. مثال‌ها: <strong className="font-semibold">مانیتور، پرینتر، اسپیکرها، هدفون</strong>.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold text-teal-700 dark:text-teal-300">دستگاه‌های ورودی/خروجی (Input/Output):</strong> هم اطلاعات وارد و هم خارج می‌کنند. مثال‌ها: <strong className="font-semibold">صفحه لمسی (Touchscreen)، کارت شبکه (Network Card)، مودم، حافظه‌های خارجی (مثل فلش USB)</strong>.</li>
+                                        </ul>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
+                                            این دستگاه‌ها از طریق <strong className="font-semibold">پورت‌ها</strong> (مانند USB, HDMI, DisplayPort, Ethernet, Audio Jacks) که روی مادربورد یا کارت‌های توسعه قرار دارند، به سیستم متصل می‌شوند و داده‌ها از طریق گذرگاه‌های مربوطه منتقل می‌شوند.
+                                        </p>
+
+                                        <div className="my-[25px] md:my-[30px] lg:my-[35px] flex flex-col items-center group">
+                                            [IMAGE PLACEHOLDER]
+                                            {/*
+         <img
+             src="/images/blog/io-devices-connection.png"
+             alt="دیاگرام ساده نمایش اتصال دستگاه‌های ورودی/خروجی مختلف (کیبورد، ماوس، مانیتور، شبکه) به کامپیوتر از طریق پورت‌ها و سیستم‌عامل"
+             width="768"
+             height="432"
+             loading="lazy"
+             className="rounded-lg shadow-xl max-w-full h-auto border border-gray-200 dark:border-gray-700 group-hover:opacity-95 transition-opacity duration-300"
+         />
+     */}
+                                            <figcaption className="text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic w-full max-w-prose">دستگاه‌های I/O از طریق پورت‌ها و با مدیریت سیستم‌عامل با کامپیوتر ارتباط برقرار می‌کنند.</figcaption>
+                                        </div>
+                                        ---
+                                        [Image Prompt Suggestion]: A simple block diagram showing a central "Computer (CPU, RAM, OS)" box. Around it, show various I/O device icons (Keyboard, Mouse, Monitor, Printer, Network/Internet Cloud, Speaker). Draw arrows indicating data flow direction (Input arrows pointing towards the computer box, Output arrows pointing away, Bidirectional arrows for network/touchscreen). Show connection lines going towards generic "Ports (USB, HDMI, etc.)" on the edge of the computer box. Keep it clean and easy to understand. Use standard icons. Aspect ratio 16:9.
+                                        [Suggested Alt Text]: دیاگرام ساده نمایش اتصال دستگاه‌های ورودی/خروجی (کیبورد، ماوس، مانیتور، شبکه) به کامپیوتر از طریق پورت‌ها. فلش‌ها جهت جریان داده (ورودی یا خروجی) را نشان می‌دهند.
+                                        [Suggested Dimensions]: 16:9 (e.g., 1280x720)
+                                        ---
+
+
+                                        <h2 id="operating-system-the-conductor" className="text-gray-900 dark:text-white text-[20px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
+                                            ۷. سیستم‌عامل (OS): رهبر ارکستر و مدیر منابع
+                                        </h2>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
+                                            سیستم‌عامل (مانند Windows, macOS, Linux) <strong className="font-semibold">حیاتی‌ترین نرم‌افزار سیستم</strong> است که مانند یک رهبر ارکستر یا مدیر تولید کارخانه عمل می‌کند. وظیفه اصلی آن <strong className="font-semibold">مدیریت منابع سخت‌افزاری</strong> (CPU, RAM, Storage, I/O) و فراهم کردن یک <strong className="font-semibold">محیط اجرایی و رابط کاربری</strong> برای نرم‌افزارهای دیگر و کاربر است.
+                                        </p>
+
+                                        <h3 id="os-kernel-userspace" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
+                                            هسته (Kernel) و فضای کاربری (User Space)
+                                        </h3>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
+                                            سیستم‌عامل‌ها معمولاً دو لایه اصلی دارند:
+                                        </p>
+                                        <ul className="list-disc ps-2 md:ps-4 md:pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-2 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">هسته (Kernel):</strong> قلب تپنده سیستم‌عامل. مستقیماً با سخت‌افزار در ارتباط است و <strong className="font-semibold">وظایف سطح پایین مانند مدیریت پردازش‌ها، تخصیص حافظه، و کنترل دستگاه‌ها</strong> را انجام می‌دهد. کِرنِل در یک حالت محافظت‌شده (Privileged Mode) اجرا می‌شود تا از دستکاری ناخواسته توسط برنامه‌ها جلوگیری شود.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">فضای کاربری (User Space):</strong> جایی که برنامه‌های کاربردی (مرورگر، بازی، کد ادیتور) و ابزارهای سیستمی (مثل File Explorer یا ترمینال) اجرا می‌شوند. این برنامه‌ها دسترسی مستقیم به سخت‌افزار ندارند و برای انجام کارهای سطح پایین (مثل خواندن فایل یا ارسال داده به شبکه) باید از طریق <strong className="font-semibold">فراخوانی‌های سیستمی (System Calls)</strong> از کِرنِل درخواست کنند.</li>
+                                        </ul>
+
+                                        <div className="my-[25px] md:my-[30px] lg:my-[35px] flex flex-col items-center group">
+                                            [IMAGE PLACEHOLDER]
+                                            {/*
+         <img
+             src="/images/blog/os-kernel-userspace-diagram.png"
+             alt="دیاگرام ساده نمایش لایه‌های سیستم‌عامل: سخت‌افزار در پایین، هسته (Kernel) در وسط، و فضای کاربری (User Space) با برنامه‌ها در بالا"
+             width="768"
+             height="432"
+             loading="lazy"
+             className="rounded-lg shadow-xl max-w-full h-auto border border-gray-200 dark:border-gray-700 group-hover:opacity-95 transition-opacity duration-300"
+         />
+     */}
+                                            <figcaption className="text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic w-full max-w-prose">تفکیک سیستم‌عامل به هسته (Kernel) برای دسترسی به سخت‌افزار و فضای کاربری (User Space) برای برنامه‌ها.</figcaption>
+                                        </div>
+                                        ---
+                                        [Image Prompt Suggestion]: A layered diagram illustrating OS architecture. Bottom layer: "Hardware" (icons for CPU, RAM, Disk, Network). Middle layer: "Kernel" (labeled clearly), acting as an interface. Top layer: "User Space" containing boxes/icons for "Applications" (Browser, Editor, etc.) and "System Utilities" (Shell, File Manager). Show clear boundaries and arrows representing System Calls going from User Space down to the Kernel, and the Kernel interacting with Hardware. Keep the design clean and structured. Aspect ratio 16:9 or 4:3.
+                                        [Suggested Alt Text]: دیاگرام ساده نمایش لایه‌های معماری سیستم‌عامل: سخت‌افزار (Hardware) در پایین، هسته (Kernel) به عنوان رابط در وسط، و فضای کاربری (User Space) حاوی برنامه‌ها و ابزارها در بالا، با نمایش مسیر فراخوانی‌های سیستمی (System Calls).
+                                        [Suggested Dimensions]: 16:9 (e.g., 1280x720) or 4:3 (e.g., 1024x768).
+                                        ---
+
+
+                                        <h3 id="os-key-functions-revisited" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
+                                            مروری بر وظایف اصلی OS:
+                                        </h3>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
+                                            قبلاً به وظایف کلیدی اشاره کردیم، اما با درک عمیق‌تر، می‌توانیم آن‌ها را بهتر بفهمیم:
+                                        </p>
+                                        <ul className="list-disc ps-2 md:ps-4 md:pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-2 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">مدیریت فرایند (Process Management):</strong> ایجاد، زمان‌بندی (Scheduling)، و خاتمه دادن به فرایندها (نمونه‌های در حال اجرای برنامه‌ها). زمان‌بندی <strong className="font-semibold">پیشگیرانه (Preemptive)</strong> که در سیستم‌عامل‌های مدرن استفاده می‌شود، به OS اجازه می‌دهد کنترل CPU را به زور از یک فرایند بگیرد و به دیگری بدهد تا از انحصار منابع جلوگیری شود و پاسخ‌گویی سیستم حفظ گردد.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">مدیریت حافظه (Memory Management):</strong> تخصیص بخش‌هایی از RAM به هر فرایند، محافظت از فضای حافظه هر فرایند، و مدیریت <strong className="font-semibold">حافظه مجازی (Virtual Memory)</strong> که به هر فرایند یک فضای آدرس پیوسته و بزرگ‌تر از RAM فیزیکی می‌دهد و امکان Swap/Paging را فراهم می‌کند.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">مدیریت ذخیره‌سازی (Storage Management):</strong> شامل مدیریت <strong className="font-semibold">سیستم فایل (File System)</strong> (مثل NTFS, ext4, APFS) که نحوه سازماندهی و ذخیره فایل‌ها روی دیسک را مشخص می‌کند، و مدیریت خود دیسک‌ها (پارتیشن‌بندی، فرمت‌بندی).</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">مدیریت دستگاه‌ها (Device Management):</strong> شناسایی سخت‌افزار، بارگذاری <strong className="font-semibold">درایورهای</strong> مناسب، و فراهم کردن یک رابط استاندارد (از طریق فراخوانی‌های سیستمی) برای برنامه‌ها تا بتوانند از دستگاه‌های I/O استفاده کنند بدون اینکه نیاز باشد جزئیات سخت‌افزاری آن‌ها را بدانند.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">رابط کاربری (UI) و امنیت (Security):</strong> ارائه راه تعامل (GUI/CLI) و اجرای سیاست‌های امنیتی (مدیریت کاربران، مجوزها، فایروال).</li>
+                                        </ul>
+
+
+                                        <h2 id="firmware-bios-uefi" className="text-gray-900 dark:text-white text-[20px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
+                                            ۸. فِرم‌وِر (Firmware): نگهبان دروازه و بیدارکننده سیستم
+                                        </h2>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
+                                            قبل از اینکه سیستم‌عامل قدرتمند شما شروع به کار کند، یک نرم‌افزار سطح پایین‌تر به نام <strong className="font-semibold">فِرم‌وِر (Firmware)</strong> وجود دارد که روی یک تراشه خاص روی مادربورد ذخیره شده است. این اولین کدی است که هنگام روشن کردن کامپیوتر اجرا می‌شود.
+                                        </p>
+                                        <ul className="list-disc ps-2 md:ps-4 md:pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-2 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">BIOS (Basic Input/Output System):</strong> سیستم قدیمی‌تر فِرم‌وِر. وظیفه اصلی آن انجام تست اولیه سخت‌افزار هنگام بوت شدن (<strong className="font-semibold">POST - Power-On Self-Test</strong>) و سپس پیدا کردن و بارگذاری بوت‌لودر (Bootloader) سیستم‌عامل از روی دیسک است. BIOS محدودیت‌هایی در پشتیبانی از دیسک‌های بزرگ و رابط کاربری گرافیکی دارد.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold text-success-600 dark:text-success-400">UEFI (Unified Extensible Firmware Interface):</strong> جایگزین مدرن برای BIOS که در اکثر کامپیوترهای جدید استفاده می‌شود. UEFI مزایای زیادی دارد:
+                                                <ul className="list-['-_'] list-outside pl-4 mt-1 space-y-1 text-sm">
+                                                    <li>پشتیبانی از <strong className="font-semibold">دیسک‌های بسیار بزرگ</strong> (بیش از 2 ترابایت) با استفاده از GPT (GUID Partition Table).</li>
+                                                    <li><strong className="font-semibold">رابط کاربری گرافیکی</strong> و پشتیبانی از ماوس در تنظیمات فِرم‌وِر.</li>
+                                                    <li><strong className="font-semibold">بوت شدن سریع‌تر</strong>.</li>
+                                                    <li>ویژگی‌های امنیتی پیشرفته‌تر مانند <strong className="font-semibold">Secure Boot</strong> که از بارگذاری بوت‌لودرها یا درایورهای دستکاری‌شده جلوگیری می‌کند.</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
+                                            شما معمولاً با فشردن یک کلید خاص هنگام روشن شدن سیستم (مثل Del, F2, F10, F12 بسته به سازنده) می‌توانید وارد محیط تنظیمات BIOS/UEFI شوید تا ترتیب بوت، تنظیمات سخت‌افزاری، و گزینه‌های امنیتی را تغییر دهید.
+                                        </p>
+
+                                        <h2 id="how-it-all-works-together-revisited" className="text-gray-900 dark:text-white text-[20px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
+                                            ۹. ارکستر کامل: یک سناریوی پیچیده‌تر (باز کردن یک صفحه وب)
+                                        </h2>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
+                                            حالا بیایید تمام این قطعات را در کنار هم ببینیم و یک سناریوی کمی پیچیده‌تر، مثل باز کردن یک صفحه وب (مثلاً `vc-virtual-learn.com`) در مرورگر را دنبال کنیم:
+                                        </p>
+                                        <ol className="list-decimal list-outside pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-3 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                            <li className="mb-[8px] md:mb-[10px]"><strong className="font-semibold">روشن کردن سیستم:</strong> شما دکمه پاور را می‌زنید. <strong className="font-semibold text-gray-600 dark:text-gray-400">Firmware (UEFI/BIOS)</strong> فعال شده، POST را انجام می‌دهد، و <strong className="font-semibold text-warning-700 dark:text-warning-300">سیستم‌عامل (OS)</strong> را از <strong className="font-semibold text-success-700 dark:text-success-300">حافظه ذخیره‌سازی (SSD)</strong> بارگذاری و در <strong className="font-semibold text-secondary-700 dark:text-secondary-300">RAM</strong> قرار می‌دهد. OS کنترل را به دست می‌گیرد.</li>
+                                            <li className="mb-[8px] md:mb-[10px]"><strong className="font-semibold">اجرای مرورگر:</strong> شما روی آیکون مرورگر (مثلاً کروم) کلیک می‌کنید. <strong className="font-semibold text-warning-700 dark:text-warning-300">OS</strong> فایل اجرایی مرورگر را از <strong className="font-semibold text-success-700 dark:text-success-300">SSD</strong> در <strong className="font-semibold text-secondary-700 dark:text-secondary-300">RAM</strong> بارگذاری می‌کند. <strong className="font-semibold text-primary-700 dark:text-primary-300">CPU</strong> شروع به اجرای کدهای مرورگر می‌کند. پنجره مرورگر روی مانیتور (دستگاه <strong className="font-semibold text-pink-700 dark:text-pink-300">خروجی</strong>) ظاهر می‌شود.</li>
+                                            <li className="mb-[8px] md:mb-[10px]"><strong className="font-semibold">وارد کردن آدرس:</strong> شما آدرس `vc-virtual-learn.com` را در نوار آدرس تایپ می‌کنید (دستگاه <strong className="font-semibold text-indigo-700 dark:text-indigo-300">ورودی</strong> کیبورد). مرورگر (با اجرای کدها توسط <strong className="font-semibold text-primary-700 dark:text-primary-300">CPU</strong>) این ورودی را دریافت می‌کند.</li>
+                                            <li className="mb-[8px] md:mb-[10px]"><strong className="font-semibold">ترجمه آدرس (DNS):</strong> مرورگر از <strong className="font-semibold text-warning-700 dark:text-warning-300">OS</strong> می‌خواهد تا آدرس دامنه را به IP Address ترجمه کند. OS با استفاده از <strong className="font-semibold text-teal-700 dark:text-teal-300">کارت شبکه</strong> و تنظیمات DNS، این درخواست را به سرور DNS در اینترنت ارسال می‌کند و IP را دریافت می‌کند. (مقاله <a href="http://vc-virtual-learn.com/blog/blogs/what-is-internet-vs-web-complete-guide" className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium hover:underline underline-offset-2 decoration-dotted">وب و اینترنت چیست؟</a> جزئیات بیشتری دارد).</li>
+                                            <li className="mb-[8px] md:mb-[10px]"><strong className="font-semibold">ارسال درخواست HTTP:</strong> مرورگر یک درخواست HTTP GET برای آدرس IP سرور Virtual Learn می‌سازد. این درخواست از طریق <strong className="font-semibold text-warning-700 dark:text-warning-300">OS</strong> و <strong className="font-semibold text-teal-700 dark:text-teal-300">کارت شبکه</strong> به اینترنت فرستاده می‌شود.</li>
+                                            <li className="mb-[8px] md:mb-[10px]"><strong className="font-semibold">دریافت پاسخ:</strong> سرور پاسخ (حاوی کدهای HTML، CSS، و JavaScript صفحه) را ارسال می‌کند. این داده‌ها از طریق <strong className="font-semibold text-teal-700 dark:text-teal-300">کارت شبکه</strong> توسط <strong className="font-semibold text-warning-700 dark:text-warning-300">OS</strong> دریافت و به مرورگر تحویل داده می‌شوند. داده‌های دریافتی در <strong className="font-semibold text-secondary-700 dark:text-secondary-300">RAM</strong> ذخیره می‌شوند.</li>
+                                            <li className="mb-[8px] md:mb-[10px]"><strong className="font-semibold">پردازش و رندر صفحه:</strong> مرورگر (با کمک <strong className="font-semibold text-primary-700 dark:text-primary-300">CPU</strong> و احتمالاً <strong className="font-semibold">کارت گرافیک GPU</strong> برای بخش‌های گرافیکی) کدهای HTML, CSS, JS را پردازش کرده و صفحه وب را روی مانیتور (<strong className="font-semibold text-pink-700 dark:text-pink-300">خروجی</strong>) ترسیم (Render) می‌کند. ممکن است در حین رندر، درخواست‌های بیشتری برای دانلود تصاویر، فونت‌ها و اسکریپت‌های دیگر ارسال شود. تمام این پردازش‌ها از <strong className="font-semibold text-secondary-700 dark:text-secondary-300">RAM</strong> به عنوان فضای کاری استفاده می‌کنند.</li>
+                                            <li className="mb-[8px] md:mb-[10px]"><strong className="font-semibold">تعامل کاربر:</strong> شما روی لینک‌ها کلیک می‌کنید (ورودی <strong className="font-semibold text-indigo-700 dark:text-indigo-300">ماوس</strong>)، اسکرول می‌کنید، و این چرخه دریافت و پردازش برای صفحات یا بخش‌های جدید تکرار می‌شود.</li>
+                                        </ol>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
+                                            در تمام این مراحل، اجزای مختلف از طریق <strong className="font-semibold text-indigo-700 dark:text-indigo-300">گذرگاه‌ها (Buses)</strong> روی <strong className="font-semibold text-info-700 dark:text-info-300">مادربورد</strong> با هم در ارتباط هستند و <strong className="font-semibold text-warning-700 dark:text-warning-300">OS</strong> بر همه چیز نظارت دارد.
+                                        </p>
+
+                                        <div className="my-[25px] md:my-[30px] lg:my-[35px] flex flex-col items-center group">
+                                            [IMAGE PLACEHOLDER]
+                                            {/*
+         <img
+             src="/images/blog/computer-data-flow-diagram.png"
+             alt="دیاگرام کلی جریان داده در کامپیوتر بین CPU، RAM، حافظه ذخیره‌سازی، و دستگاه‌های ورودی/خروجی با نقش محوری مادربورد و OS"
+             width="800"
+             height="500"
+             loading="lazy"
+             className="rounded-lg shadow-xl max-w-full h-auto border border-gray-200 dark:border-gray-700 group-hover:opacity-95 transition-opacity duration-300"
+         />
+     */}
+                                            <figcaption className="text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic w-full max-w-prose">نمایی کلی از جریان داده بین اجزای اصلی کامپیوتر تحت مدیریت سیستم‌عامل.</figcaption>
+                                        </div>
+                                        {/* ---
+                                        [Image Prompt Suggestion]: A high-level data flow diagram for a computer system. Show a central CPU block connected with thick, bidirectional arrows to a RAM block and CPU Cache blocks. Show RAM connected with a thinner arrow to a Storage block (SSD/HDD). Show the CPU also interacting with an OS/Kernel block, which in turn connects to I/O Devices (Input & Output groups) and the Network Interface. Indicate the Motherboard/Buses as the underlying connection fabric, perhaps with a subtle background pattern or framing lines. Use Virtual Learn's colors to highlight key data paths (e.g., CPU<->RAM). Keep text labels minimal and clear. Aspect ratio 16:9.
+                                        [Suggested Alt Text]: دیاگرام کلی جریان داده در کامپیوتر بین CPU، حافظه نهان (Cache)، RAM، حافظه ذخیره‌سازی (Storage)، و دستگاه‌های ورودی/خروجی (I/O)، با نقش ارتباطی مادربورد/گذرگاه‌ها و مدیریت سیستم‌عامل.
+                                        [Suggested Dimensions]: 16:9 (e.g., 1280x720).
+                                        --- */}
+
+                                        <div className="border-t-4 border-b-4 border-primary-500 dark:border-primary-400 bg-gradient-to-r from-primary-100/50 to-blue-100/50 dark:from-gray-800 dark:to-gray-800/80 p-5 rounded-lg my-[30px] md:my-[35px] lg:my-[40px] shadow-lg text-center transition-transform duration-300 hover:scale-[1.02]">
+                                            <h3 className="text-xl font-semibold text-primary-800 dark:text-primary-200 mb-3 flex items-center justify-center">
+                                                <span className="text-2xl mr-2">🚀</span> از تئوری تا عمل: عمیق‌تر شدن در علوم کامپیوتر!
+                                            </h3>
+                                            <p className="text-primary-700 dark:text-primary-300 mb-4 leading-relaxed text-[15px] md:text-[16px]">
+                                                حالا که تصویر کامل‌تری از <strong className="font-semibold">ارکستر هماهنگ اجزای کامپیوتر</strong> دارید، آیا مشتاق یادگیری عمیق‌تر <strong className="font-semibold">مفاهیم معماری کامپیوتر، سیستم‌عامل، یا شبکه‌های کامپیوتری</strong> هستید؟ <strong className="font-bold">دوره های آموزشی تخصصی Virtual Learn که به زودی با زیرنویس هوشمند فارسی ارائه خواهند شد [لینک آینده دوره]</strong>، فرصتی عالی برای تبدیل این دانش تئوری به مهارت عملی و درک عمیق‌تری است که در مصاحبه‌های شغلی و پروژه‌های واقعی در ایران به کارتان خواهد آمد. منتظر دوره‌های مرتبط در آینده نزدیک باشید!
+                                            </p>
+                                            {/* <a href="[لینک صفحه همه دوره‌ها یا دسته مرتبط]" target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-2 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg shadow-md transition duration-200 transform hover:-translate-y-1">مشاهده کاتالوگ دوره‌ها (به‌زودی!)</a> */}
+                                            <button disabled className="inline-block px-6 py-2 bg-primary-300 dark:bg-primary-700 text-white font-semibold rounded-lg shadow-md cursor-not-allowed opacity-70">
+                                                دوره‌ها به زودی فعال می‌شوند!
+                                            </button>
+                                            <p className="text-xs text-primary-600 dark:text-primary-400 mt-2"> (اطلاعات دقیق دوره‌ها به محض فعال شدن، جایگزین خواهد شد)</p>
+                                        </div>
+
+
+                                        <h2 id="why-it-matters-for-iranian-devs-revisited" className="text-gray-900 dark:text-white text-[20px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
+                                            ۱۰. فراتر از کد: چرا این دانش برای شما در ایران ضروری است؟
+                                        </h2>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
+                                            دانستن اینکه کامپیوتر چگونه کار می‌کند، فقط اطلاعات عمومی نیست؛ بلکه مهارتی است که شما را به یک مهندس نرم‌افزار بهتر و کارآمدتر، به خصوص در شرایط خاص اکوسیستم ایران، تبدیل می‌کند:
+                                        </p>
+                                        <ul className="list-disc ps-2 md:ps-4 md:pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-3 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                            <li className="mb-[8px] md:mb-[10px]"><strong className="font-semibold">بهینه‌سازی برای واقعیت‌ها:</strong> در ایران، ممکن است همیشه به آخرین و قدرتمندترین سخت‌افزار دسترسی نداشته باشید (چه برای خودتان، چه برای کاربران نهایی یا سرورهایتان). درک اینکه <strong className="font-semibold">گلوگاه (Bottleneck)</strong> سیستم کجاست (CPU-bound? Memory-bound? I/O-bound?) به شما کمک می‌کند تا نرم‌افزاری بنویسید که حتی روی سیستم‌های متوسط هم عملکرد قابل قبولی داشته باشد.</li>
+                                            <li className="mb-[8px] md:mb-[10px]"><strong className="font-semibold">حل مشکلات پیچیده:</strong> باگ‌هایی که فقط روی سیستم‌های خاصی رخ می‌دهند، یا مشکلات عملکردی که دلیل واضحی ندارند، اغلب ریشه در <strong className="font-semibold">تداخل منابع، محدودیت‌های سیستم‌عامل، یا نحوه مدیریت حافظه و پردازش</strong> دارند. درک عمیق‌تر به شما قدرت تشخیص و حل این مشکلات را می‌دهد.</li>
+                                            <li className="mb-[8px] md:mb-[10px]"><strong className="font-semibold">انتخاب اقتصادی و هوشمندانه سخت‌افزار:</strong> هنگام خرید لپ‌تاپ یا پیشنهاد سرور برای یک پروژه در ایران، بودجه اغلب یک فاکتور کلیدی است. دانستن اینکه <strong className="font-semibold">آیا سرمایه‌گذاری روی RAM بیشتر اولویت دارد یا یک NVMe SSD سریع‌تر</strong>، یا اینکه آیا برای کاربرد شما CPU با هسته بیشتر مهم‌تر است یا کلاک اسپید بالاتر، به شما کمک می‌کند بهترین بازده را از هزینه خود بگیرید.</li>
+                                            <li className="mb-[8px] md:mb-[10px]"><strong className="font-semibold">درک عمیق ابزارهای مدرن:</strong> تکنولوژی‌هایی مانند <strong className="font-semibold">کانتینرسازی (Docker)، مجازی‌سازی (Virtualization)، و رایانش ابری (Cloud Computing)</strong> عمیقاً با مفاهیم سیستم‌عامل، مدیریت منابع و شبکه‌ها گره خورده‌اند. داشتن پایه قوی، کار با این ابزارهای حیاتی را بسیار آسان‌تر می‌کند.</li>
+                                            <li className="mb-[8px] md:mb-[10px]"><strong className="font-semibold">ارتقای شغلی و مصاحبه‌های فنی:</strong> در بسیاری از مصاحبه‌های فنی برای موقعیت‌های برنامه‌نویسی، به‌ویژه در شرکت‌های بزرگ‌تر یا برای نقش‌های سنیور، سوالاتی درباره <strong className="font-semibold">مفاهیم پایه علوم کامپیوتر، ساختار داده‌ها، الگوریتم‌ها، و نحوه کار سیستم‌عامل</strong> پرسیده می‌شود. نشان دادن درک عمیق در این زمینه‌ها می‌تواند شما را از دیگران متمایز کند.</li>
+                                            <li className="mb-[8px] md:mb-[10px]"><strong className="font-semibold">توانایی کار در لایه‌های مختلف (Full-stack Mentality):</strong> حتی اگر تخصص اصلی شما فرانت‌اند یا بک‌اند باشد، داشتن دید کلی نسبت به کل پشته تکنولوژی، از سخت‌افزار گرفته تا تجربه کاربری، به شما کمک می‌کند تا <strong className="font-semibold">راه‌حل‌های جامع‌تر و بهتری طراحی کنید</strong> و با اعضای دیگر تیم (DevOps, QA, Product) ارتباط مؤثرتری برقرار کنید.</li>
+                                        </ul>
+
+
+                                        <blockquote className="border-l-4 border-secondary-500 dark:border-secondary-400 bg-secondary-100/50 dark:bg-gray-800 p-4 my-[20px] md:my-[22px] lg:my-[25px] italic rounded-r-lg shadow">
+                                            <p className="text-secondary-800 dark:text-secondary-200 text-[15px] md:text-[16px] lg:text-[17px] leading-relaxed">
+                                                "جزئیات پیاده‌سازی تغییر می‌کنند. اصول پایدار می‌مانند. سرمایه‌گذاری روی درک اصول بنیادی، همیشه بازدهی بلندمدت دارد."
+                                            </p>
+                                            {/* <footer className="text-sm text-secondary-600 dark:text-secondary-400 mt-2 not-italic">- نقل قولی الهام‌بخش (مثلاً از یک دانشمند کامپیوتر)</footer> */}
+                                        </blockquote>
+
+
+                                        <h2 id="faq" className="text-gray-900 dark:text-white text-[22px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[20px] md:mb-[25px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">🤔 پرسش‌های متداول پیشرفته‌تر</h2>
+                                        <div className="space-y-6 divide-y divide-gray-200 dark:divide-gray-700">
+                                            {/* Existing FAQs - slightly refined maybe */}
+                                            <div className="pt-6">
+                                                <dt>
+                                                    <button className="flex items-center justify-between w-full text-left group">
+                                                        <strong className="font-semibold text-gray-800 dark:text-gray-100 text-lg group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">تفاوت اصلی بین پردازنده‌های 32 بیتی و 64 بیتی چیست و چرا اهمیت دارد؟</strong>
+                                                    </button>
+                                                </dt>
+                                                <dd className="mt-2 pr-0">
+                                                    <p className="text-gray-700 dark:text-gray-300 text-[15px] md:text-[16px] leading-relaxed">
+                                                        تفاوت اصلی در <strong className="font-semibold">میزان حافظه RAM است که می‌توانند مستقیماً آدرس‌دهی کنند</strong> و همچنین <strong className="font-semibold">اندازه داده‌هایی که می‌توانند در هر چرخه پردازش کنند</strong>. پردازنده‌های 32 بیتی حداکثر می‌توانند حدود 4 گیگابایت RAM را آدرس‌دهی کنند، در حالی که پردازنده‌های 64 بیتی می‌توانند مقادیر بسیار بسیار بیشتری RAM (تئوری ۱۶ اگزابایت!) را آدرس‌دهی کنند. امروزه تقریباً تمام CPUها و سیستم‌عامل‌های مدرن (ویندوز، مک، لینوکس) 64 بیتی هستند. استفاده از سیستم‌عامل و نرم‌افزار 64 بیتی روی پردازنده 64 بیتی به شما اجازه می‌دهد از <strong className="font-semibold">بیش از 4 گیگابایت RAM</strong> استفاده کنید و همچنین <strong className="font-semibold">برنامه‌هایی که برای معماری 64 بیتی بهینه‌سازی شده‌اند</strong>، ممکن است سریع‌تر اجرا شوند (به خصوص در محاسبات سنگین). در عمل، اگر بیش از ۴ گیگابایت RAM دارید، حتماً باید از سیستم‌عامل و نرم‌افزارهای 64 بیتی استفاده کنید.
+                                                    </p>
+                                                </dd>
+                                            </div>
+                                            <div className="pt-6">
+                                                <dt>
+                                                    <button className="flex items-center justify-between w-full text-left group">
+                                                        <strong className="font-semibold text-gray-800 dark:text-gray-100 text-lg group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">نقش کارت گرافیک (GPU) در این پازل چیست؟ آیا فقط برای بازی است؟</strong>
+                                                    </button>
+                                                </dt>
+                                                <dd className="mt-2 pr-0">
+                                                    <p className="text-gray-700 dark:text-gray-300 text-[15px] md:text-[16px] leading-relaxed">
+                                                        کارت گرافیک یا GPU (Graphics Processing Unit) یک <strong className="font-semibold">پردازنده تخصصی</strong> است که برای <strong className="font-semibold">پردازش موازی حجم عظیم داده‌ها</strong> طراحی شده است، کاری که در رندر کردن گرافیک‌های سه‌بعدی (بازی‌ها، نرم‌افزارهای مدل‌سازی) بسیار رایج است. GPUها هزاران هسته کوچکتر و ساده‌تر نسبت به CPU دارند. اما کاربرد GPU فراتر از بازی است. امروزه از قدرت پردازش موازی GPU در <strong className="font-semibold">یادگیری ماشین (Machine Learning)، محاسبات علمی، ویرایش ویدیو، شکستن رمزها، و حتی برخی پردازش‌های دیتابیس</strong> استفاده می‌شود (این حوزه به GPGPU یا General-Purpose computing on Graphics Processing Units معروف است). بسیاری از CPUها دارای گرافیک مجتمع (Integrated Graphics یا iGPU) هستند که برای کارهای روزمره و نمایش تصویر کافی است، اما برای کارهای سنگین گرافیکی یا محاسباتی، نیاز به کارت گرافیک اختصاصی (Dedicated GPU) خواهید داشت.
+                                                    </p>
+                                                </dd>
+                                            </div>
+                                            <div className="pt-6">
+                                                <dt>
+                                                    <button className="flex items-center justify-between w-full text-left group">
+                                                        <strong className="font-semibold text-gray-800 dark:text-gray-100 text-lg group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">اورکلاک کردن (Overclocking) CPU یا RAM چیست و آیا در ایران توصیه می‌شود؟</strong>
+                                                    </button>
+                                                </dt>
+                                                <dd className="mt-2 pr-0">
+                                                    <p className="text-gray-700 dark:text-gray-300 text-[15px] md:text-[16px] leading-relaxed">
+                                                        اورکلاک کردن به معنی <strong className="font-semibold">افزایش دستی فرکانس (کلاک اسپید) CPU یا RAM فراتر از مشخصات رسمی کارخانه</strong> است تا عملکرد بیشتری به دست آید. این کار معمولاً نیازمند مادربورد و CPU/RAM با قابلیت اورکلاک (مانند CPUهای سری K اینتل یا اکثر رایزن‌های AMD و چیپست‌های سری Z/X) و <strong className="font-semibold text-danger-600 dark:text-danger-400">سیستم خنک‌کننده بسیار قوی‌تر</strong> از حالت عادی است. اورکلاک کردن می‌تواند عملکرد را به طور قابل توجهی افزایش دهد، اما ریسک‌هایی هم دارد: <strong className="font-semibold">افزایش شدید گرما، ناپایداری سیستم (کرش کردن)، کاهش احتمالی طول عمر قطعات، و باطل شدن گارانتی</strong>. در ایران، با توجه به شرایط دمایی، کیفیت متغیر قطعات، و مسائل گارانتی، اورکلاک کردن <strong className="font-semibold">برای اکثر کاربران و توسعه‌دهندگان توصیه نمی‌شود</strong>، مگر اینکه دانش فنی بسیار بالایی داشته باشید، از خطرات آن آگاه باشید و قطعات مناسب و خنک‌کننده قدرتمند تهیه کنید. برای اکثر افراد، خرید قطعات کمی قوی‌تر، گزینه مطمئن‌تر و کم‌دردسرتری است.
+                                                    </p>
+                                                </dd>
+                                            </div>
+                                            <div className="pt-6">
+                                                <dt>
+                                                    <button className="flex items-center justify-between w-full text-left group">
+                                                        <strong className="font-semibold text-gray-800 dark:text-gray-100 text-lg group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">آیا همیشه RAM بیشتر به معنی سرعت بیشتر است؟</strong>
+                                                    </button>
+                                                </dt>
+                                                <dd className="mt-2 pr-0">
+                                                    <p className="text-gray-700 dark:text-gray-300 text-[15px] md:text-[16px] leading-relaxed">
+                                                        تا حد نیاز بله، فراتر از آن لزوماً خیر. افزایش RAM تا جایی که تمام برنامه‌ها و داده‌های فعال شما بدون نیاز به Swap در آن جا شوند، تاثیر چشمگیری بر سرعت و پاسخ‌گویی سیستم دارد. اما وقتی به اندازه کافی RAM دارید (مثلاً ۳۲ گیگابایت برای یک توسعه‌دهنده معمولی)، اضافه کردن ۳۲ گیگابایت دیگر احتمالاً تفاوت محسوسی در کارهای روزمره ایجاد نخواهد کرد (مگر اینکه با مجموعه داده‌های بسیار حجیم یا تعداد زیادی ماشین مجازی کار کنید). در این نقطه، <strong className="font-semibold">سرعت CPU (به‌ویژه تک‌هسته‌ای برای بسیاری کارها)، سرعت SSD (مخصوصا NVMe)، و حتی سرعت و تایمینگ خود RAM</strong> اهمیت بیشتری پیدا می‌کنند. تمرکز باید بر روی <strong className="font-semibold">داشتن RAM "کافی"</strong> باشد، نه لزوماً "بیشترین مقدار ممکن".
+                                                    </p>
+                                                </dd>
+                                            </div>
+                                            {/* Existing FAQ 2 refined */}
+                                            <div className="pt-6">
+                                                <dt>
+                                                    <button className="flex items-center justify-between w-full text-left group">
+                                                        <strong className="font-semibold text-gray-800 dark:text-gray-100 text-lg group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">بالاخره در بازار ایران، برای برنامه‌نویسی، Intel بهتر است یا AMD؟</strong>
+                                                    </button>
+                                                </dt>
+                                                <dd className="mt-2 pr-0">
+                                                    <div className="text-gray-700 dark:text-gray-300 text-[15px] md:text-[16px] leading-relaxed">
+                                                        این سوال پاسخ قطعی ندارد و به <strong className="font-semibold">بودجه، نوع کاری که انجام می‌دهید، و مدل‌های خاص موجود در بازار ایران در آن لحظه</strong> بستگی دارد. در سال‌های اخیر، هر دو شرکت پردازنده‌های فوق‌العاده‌ای عرضه کرده‌اند. به طور کلی:
+                                                        <ul className="list-['-_'] list-outside pl-4 mt-2 space-y-1 text-sm">
+                                                            <li><strong className="font-semibold">AMD Ryzen:</strong> اغلب <strong className="font-semibold">ارزش خرید بهتری در بخش چند هسته‌ای</strong> ارائه می‌دهند (هسته‌های بیشتر با قیمت کمتر یا برابر)، که برای کارهایی مثل کامپایل سنگین، مجازی‌سازی، رندرینگ و استریمینگ عالی است. مصرف انرژی و تولید گرمای آن‌ها نیز معمولاً بهینه‌تر است.</li>
+                                                            <li><strong className="font-semibold">Intel Core:</strong> ممکن است در برخی مدل‌ها <strong className="font-semibold">عملکرد تک‌هسته‌ای کمی بهتر</strong> داشته باشند (که برای برخی بازی‌ها و نرم‌افزارهای قدیمی‌تر مهم است) و پلتفرم‌هایشان گاهی پایدارتر یا با ویژگی‌های خاص (مثل Thunderbolt) همراه هستند. معماری هیبریدی آن‌ها (هسته‌های Performance و Efficient) نیز می‌تواند در مدیریت مصرف انرژی در لپ‌تاپ‌ها مؤثر باشد.</li>
+                                                        </ul>
+                                                        <strong className="font-semibold">توصیه عملی:</strong> نیازهای خود را مشخص کنید (آیا بیشتر چندوظیفگی سنگین دارید یا کارهای تک‌رشته‌ای؟)، بودجه‌تان را تعیین کنید، و سپس <strong className="font-semibold">بنچمارک‌ها و بررسی‌های مدل‌های خاص CPU در آن بازه قیمتی در ایران</strong> را برای کاربردهای مرتبط (مثل کامپایل کردن، اجرای IDE) مقایسه کنید. قیمت و در دسترس بودن مدل‌ها در بازار ایران نوسان دارد، پس تحقیق به‌روز ضروری است.
+                                                    </div>
+                                                </dd>
+                                            </div>
+                                        </div>
+
+
+                                        <h2 id="conclusion" className="text-gray-900 dark:text-white text-[22px] md:text-[26px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">جمع‌بندی نهایی: از جعبه سیاه تا جعبه ابزار</h2>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
+                                            سفر ما به دنیای درون کامپیوترها به پایان رسید. دیدیم که چگونه <strong className="font-semibold">CPU (خط تولید)، RAM (میز کار)، حافظه ذخیره‌سازی (انبار)، مادربورد (کف کارخانه)، گذرگاه‌ها (نقاله)، دستگاه‌های I/O (دروازه‌ها)، فِرم‌وِر (نگهبان) و سیستم‌عامل (مدیر تولید)</strong>، مانند یک اکوسیستم پیچیده و در عین حال هماهنگ، با هم کار می‌کنند تا دستورات ما را، از ساده‌ترین کلیک تا پیچیده‌ترین الگوریتم‌های برنامه‌نویسی، اجرا کنند. هدف این راهنمای عمیق، تبدیل "جعبه سیاه" کامپیوتر به یک "جعبه ابزار" قابل فهم برای شما بود.
+                                        </p>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
+                                            درک <strong className="font-semibold">نحوه کارکرد کامپیوترها در سطح سخت‌افزار و سیستم‌عامل</strong>، دیگر یک دانش صرفاً آکادمیک نیست؛ بلکه یک مزیت رقابتی واقعی برای هر برنامه‌نویس و متخصص تکنولوژی، به‌ویژه در <strong className="font-semibold">اکوسیستم پویای ایران</strong> است. این دانش به شما قدرت می‌دهد تا کدهای بهینه‌تر بنویسید، مشکلات را ریشه‌ای‌تر حل کنید، انتخاب‌های هوشمندانه‌تری داشته باشید، و با اطمینان بیشتری در مسیر حرفه‌ای خود قدم بردارید.
+                                        </p>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
+                                            امیدواریم این مقاله جامع، جرقه‌ای برای کنجکاوی بیشتر و یادگیری عمیق‌تر در شما ایجاد کرده باشد. دنیای کامپیوتر همواره در حال تحول است، اما اصول بنیادین آن، ستون‌های محکمی هستند که درک آن‌ها، شما را برای رویارویی با چالش‌ها و فرصت‌های آینده، مجهزتر خواهد کرد.
+                                        </p>
+
+                                        <div className="mt-[30px] md:mt-[40px] lg:mt-[50px] space-y-8 bg-gradient-to-b from-gray-50 to-primary-100/30 dark:from-gray-900 dark:to-gray-800/50 p-6 md:p-8 rounded-lg border border-gray-200 dark:border-gray-700 text-center shadow-inner">
+
+                                            {/* بخش اول: دعوت به تعامل */}
+                                            <div className="">
+                                                <h3 className="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white mb-3">💬 گفتگوی فنی: تجربیات شما چیست؟</h3>
+                                                <p className="text-gray-800 dark:text-gray-200 text-lg leading-relaxed">
+                                                    کدام بخش از این سفر عمیق برایتان تازگی داشت یا دیدگاه شما را تغییر داد؟ آیا تا به حال در پروژه‌های خود در ایران به محدودیت‌های سخت‌افزاری برخورد کرده‌اید و چگونه با آن کنار آمدید؟ درک کدام مفهوم (CPU, RAM, Storage, OS) به شما در حل یک مشکل فنی کمک کرده است؟ نظرات و تجربیات ارزشمندتان را با ما و دیگر خوانندگان Virtual Learn در میان بگذارید! 👇
+                                                </p>
+                                            </div>
+
+                                            {/* جداکننده بصری */}
+                                            <hr className="border-gray-300 dark:border-gray-600 w-1/2 mx-auto" />
+
+                                            {/* بخش دوم: معرفی دوره اصلی مرتبط (پلیس هولدر قوی‌تر) */}
+                                            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-primary-300 dark:border-primary-700 transform transition hover:scale-[1.03] duration-300">
+                                                <h4 className="text-xl md:text-2xl font-bold text-primary-700 dark:text-primary-300 mb-4 flex items-center justify-center">
+                                                    <span className="text-3xl mr-2">🎓</span> تبدیل دانش پایه به مهارت تخصصی!
+                                                </h4>
+                                                <p className="text-gray-800 dark:text-gray-200 text-lg leading-relaxed mb-5 font-medium">
+                                                    این مقاله مقدمه‌ای عمیق بود. برای <strong className="font-bold text-primary-600 dark:text-primary-300 hover:underline decoration-wavy decoration-2 underline-offset-4">تسلط کامل بر مفاهیم علوم کامپیوتر، معماری سیستم، و نحوه عملکرد سیستم‌عامل‌ها</strong>، منتظر <strong className="font-bold text-primary-600 dark:text-primary-300">دوره‌های تخصصی و پروژه‌محور Virtual Learn</strong> باشید! [لینک آینده به صفحه یا دسته دوره‌های علوم پایه] این دوره‌ها با زیرنویس دقیق فارسی، به شما کمک می‌کنند تا فونداسیون فنی خود را مستحکم کرده و برای چالش‌های پیچیده‌تر در بازار کار ایران آماده شوید.
+                                                </p>
+                                                <button disabled className="inline-block px-8 py-3 bg-primary-300 dark:bg-primary-700 text-white text-lg font-semibold rounded-lg shadow-lg cursor-not-allowed opacity-70 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800">
+                                                    منتظر دوره‌های علوم پایه باشید!
+                                                </button>
+                                                <p className="text-xs text-primary-600 dark:text-primary-400 mt-2">(ما شما را از زمان انتشار این دوره‌ها مطلع خواهیم کرد!)</p>
+                                            </div>
+
+                                        </div>
+                                    </article>
+
+                                    {/* <article>
 
                                         <h1 id="main-title" className="text-[#3E4247] dark:text-white text-[20px] md:text-[28px] lg:text-[32px] font-bold leading-[1.4] mt-[40px] mb-[20px] md:mb-[25px] lg:mb-[30px]">
-                                            وب و اینترنت چیست؟ راهنمای کامل ۰ تا ۱۰۰ + تاریخچه و آینده
+             
                                         </h1>
 
                                         <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify mt-[15px] md:mt-[18px] lg:mt-[20px] mb-[15px] md:mb-[18px] lg:mb-[20px]">
                                             حتماً شما هم کلمات <strong className="font-semibold">"اینترنت"</strong> و <strong className="font-semibold">"وب"</strong> را صدها بار شنیده‌اید و روزانه از آن‌ها استفاده می‌کنید. اما آیا تا به حال به عنوان یک <strong className="font-semibold">دانشجوی کنجکاو کامپیوتر</strong>، <strong className="font-semibold">برنامه‌نویس تازه‌کار در ایران</strong>، یا حتی فردی علاقه‌مند به دنیای دیجیتال، از خود پرسیده‌اید که این دو واقعاً چه هستند و چه تفاوتی با هم دارند؟ بسیاری این دو مفهوم را به جای هم به کار می‌برند، غافل از اینکه گرچه ارتباط تنگاتنگی دارند، یکی نیستند. درک عمیق این مفاهیم پایه، نه تنها دانش عمومی شما را بالا می‌برد، بلکه اولین قدم ضروری برای ورود به دنیای جذاب <strong className="font-semibold">برنامه‌نویسی وب</strong> و درک تکنولوژی‌هایی است که آینده ما را شکل می‌دهند.
                                         </p>
                                         <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
-                                            در این راهنمای جامع و استراتژیک که با تمرکز بر <strong className="font-semibold">مخاطب ایرانی</strong> و نیازهای <strong className="font-semibold">بازار کار تکنولوژی ایران</strong> تهیه شده، سفری عمیق به دنیای اینترنت و وب خواهیم داشت. از تعاریف بنیادین و تاریخچه شگفت‌انگیز آن‌ها گرفته تا اجزای سازنده، تکامل وب (وب ۱، ۲ و ۳)، آینده پیش رو و مهم‌تر از همه، چرایی اهمیت این دانش برای مسیر شغلی شما در ایران. در پایان این مقاله، دید روشنی نسبت به اینترنت، وب، و نقشه راه یادگیری فناوری‌های مرتبط در <strong className="font-semibold">Virtual Learn</strong> خواهید داشت.
+                                        <strong className="font-semibold">مخاطب ایرانی</strong> و نیازهای <strong className="font-semibold">بازار کار تکنولوژی ایران</strong> تهیه شده، سفری عمیق به دنیای اینترنت و وب خواهیم داشت. از تعاریف بنیادین و تاریخچه شگفت‌انگیز آن‌ها گرفته تا اجزای سازنده، تکامل وب (وب ۱، ۲ و ۳)، آینده پیش رو و مهم‌تر از همه، چرایی اهمیت این دانش برای مسیر شغلی شما در ایران. در پایان این مقاله، دید روشنی نسبت به اینترنت، وب، و نقشه راه یادگیری فناوری‌های مرتبط در <strong className="font-semibold">Virtual Learn</strong> خواهید داشت.
                                         </p>
 
                                         <div className="bg-primary-100/60 dark:bg-gray-800 border-l-4 border-primary-500 dark:border-primary-400 py-5 px-2 lg:p-5 rounded-lg my-[35px] md:my-[40px] lg:my-[45px] shadow-medium">
@@ -257,18 +975,7 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                             <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">مثال ساده‌ای از کد HTML برای نمایش یک عنوان و یک پاراگراف:</p>
 
 
-                                            <Code lang="html" >
-                                                {`<!DOCTYPE html>
-<html>
-<head>
-  <title>صفحه نمونه</title>
-</head>
-<body>
-  <h1 className="font-bold">به Virtual Learn خوش آمدید!</h1>
-  <p>این یک پاراگراف نمونه با استفاده از HTML است.</p>
-</body>
-</html>`}
-                                            </Code>
+                                         
 
 
                                             <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">مرورگر این کد را تفسیر کرده و محتوا را با ساختار مشخص نمایش می‌دهد.</p>
@@ -293,13 +1000,7 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
 
                                         <div className="my-[20px] md:my-[22px] lg:my-[25px]">
                                             <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">مثال ساده CSS برای تغییر رنگ و فونت عنوان H1 در مثال قبلی:</p>
-                                            <Code lang="css">
-                                                {`h1 {
-  color: #0065D9; /* رنگ آبی Virtual Learn */
-  font-family: 'Vazirmatn', sans-serif; /* استفاده از فونت فارسی مناسب */
-  text-align: center;
-}`}
-                                            </Code>
+                                          
                                             <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">این کد، تمام تگ‌های H1 در صفحه را به رنگ آبی و با فونت وزیرمتن نمایش می‌دهد و متن آن را وسط‌چین می‌کند.</p>
                                         </div>
 
@@ -324,19 +1025,7 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
 
                                         <div className="my-[20px] md:my-[22px] lg:my-[25px]">
                                             <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">مثال ساده جاوا اسکریپت برای تغییر متن یک پاراگراف با کلیک روی یک دکمه:</p>
-                                            <Code lang="javascript">
-                                                {`// ابتدا در HTML:
-// <p id="myParagraph">این متن اولیه است.</p>
-// <button id="myButton">تغییر متن</button>
-
-// سپس در JavaScript:
-const paragraph = document.getElementById('myParagraph');
-const button = document.getElementById('myButton');
-
-button.addEventListener('click', function() {
-  paragraph.textContent = 'متن با جاوا اسکریپت تغییر کرد!';
-});`}
-                                            </Code>
+                                      
                                             <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">با کلیک روی دکمه، متن داخل پاراگراف با شناسه 'myParagraph' تغییر می‌کند.</p>
                                         </div>
 
@@ -571,7 +1260,7 @@ button.addEventListener('click', function() {
 
                                         <div className="mt-[30px] md:mt-[40px] lg:mt-[50px] space-y-8 bg-gradient-to-b from-gray-50 to-primary-100/30 dark:from-gray-900 dark:to-gray-800/50 p-4 py-8 md:p-8 rounded-lg border border-gray-200 dark:border-gray-700 text-center shadow-inner">
 
-                                            {/* بخش اول: دعوت به تعامل */}
+                                           
                                             <div className="">
                                                 <h3 className="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white mb-3">💬 نوبت شماست! به بحث بپیوندید</h3>
                                                 <p className="text-gray-800 dark:text-gray-200 leading-relaxed">
@@ -579,10 +1268,10 @@ button.addEventListener('click', function() {
                                                 </p>
                                             </div>
 
-                                            {/* جداکننده بصری */}
+                               
                                             <hr className="border-gray-300 dark:border-gray-600 w-full md:w-1/2 mx-auto" />
 
-                                            {/* بخش دوم: معرفی دوره اصلی مرتبط (JS Course as primary) */}
+                                          
                                             <div className="bg-white dark:bg-gray-800 px-2 py-4 md:p-6 rounded-lg shadow-lg border border-primary-300 dark:border-primary-700 transform transition hover:scale-[1.03] duration-300">
                                                 <h4 className="text-xl md:text-2xl font-bold text-primary-700 dark:text-primary-300 mb-4 flex items-center justify-center">
                                                     <span className="text-3xl">🎓</span> آماده‌اید در برنامه‌نویسی وب متخصص شوید؟
@@ -595,8 +1284,9 @@ button.addEventListener('click', function() {
 
                                         </div>
 
+             
 
-                                    </article>
+                                    </article> */}
 
 
 
