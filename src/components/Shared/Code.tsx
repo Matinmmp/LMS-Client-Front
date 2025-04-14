@@ -10,7 +10,7 @@ const Code = ({ lang, children }: { lang: string, children: React.ReactNode }) =
     const theme = localStorage.getItem('theme')
     console.log(theme)
     return (
-        <SyntaxHighlighter showLineNumbers={true} wrapLines={true}  dir="ltr" language={lang} style={ theme !== 'light' ? a11yDark : atelierSulphurpoolLight}>
+        <SyntaxHighlighter  showLineNumbers={true} wrapLines={true}  dir="ltr" language={lang} style={ theme !== 'light' ? a11yDark : atelierSulphurpoolLight}>
             {`${children}`}
         </SyntaxHighlighter>
 
