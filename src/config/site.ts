@@ -109,5 +109,11 @@ export const blogCategories = [
     "slug": "hardware",
     "imageUrl": "https://images.vc-virtual-learn.com/CategoryImages/1744388262878-hardware.png",
     "totalBlogs": 1
+    },
+    {
+    "name": "برنامه نویسی",
+    "slug": "programming",
+    "imageUrl": "https://images.vc-virtual-learn.com/CategoryImages/1744652793393-programming.png",
+    "totalBlogs": 1
     }
     ]

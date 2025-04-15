@@ -1784,7 +1784,813 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
 
                                     </article>
 
+                                    <article>
 
+                                        <h1 id="main-title" className="text-[#3E4247] dark:text-white text-[20px] md:text-[28px] lg:text-[32px] font-bold leading-[1.4] mt-[40px] mb-[20px] md:mb-[25px] lg:mb-[30px]">
+                                            HTML و CSS: دروازه ورود به دنیای طراحی وب | راهنمای جامع برای شروع در ایران
+                                        </h1>
+
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify mt-[15px] md:mt-[18px] lg:mt-[20px] mb-[15px] md:mb-[18px] lg:mb-[20px]">
+                                            آیا تا به حال مجذوب زیبایی و کارایی وب‌سایت‌هایی شده‌اید که روزانه با آن‌ها سروکار دارید؟ آیا به عنوان یک <strong className="font-semibold">دانشجوی کامپیوتر علاقه‌مند به ورود به دنیای وب</strong> یا یک <strong className="font-semibold">توسعه‌دهنده جوان در ایران</strong>، به دنبال نقطه‌ شروعی محکم برای ساختن صفحات وب هستید؟ اگر رویای خلق تجربیات آنلاین جذاب را دارید، اولین و ضروری‌ترین قدم، یادگیری <strong className="font-semibold">HTML و CSS</strong> است. این دو زبان، ستون‌های اصلی و جدایی‌ناپذیر هر آن چیزی هستند که در دنیای وب می‌بینید و با آن تعامل دارید. در این راهنمای جامع، ما به طور عمیق به دنیای <strong className="font-semibold">HTML (زبان نشانه‌گذاری ابرمتنی)</strong> و <strong className="font-semibold">CSS (شیوه‌نامه آبشاری)</strong> سفر خواهیم کرد، از تاریخچه و مفاهیم بنیادین آن‌ها گرفته تا کاربردهای عملی، اهمیتشان در <strong className="font-semibold">بازار کار ایران</strong>، و چگونگی شروع یادگیری‌شان با منابع معتبر مانند دوره‌های <a href="https://vc-virtual-learn.com/" className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium hover:underline underline-offset-2 decoration-dotted">Virtual Learn</a>.
+                                        </p>
+
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            در این مقاله، با هم خواهیم آموخت:
+                                        </p>
+
+                                        <ul className="list-disc ps-2 md:ps-4 md:pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-2 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">HTML چیست و چگونه ساختار صفحات وب را تعریف می‌کند؟ (اسکلت وب)</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">CSS چیست و چگونه به صفحات وب ظاهر و زیبایی می‌بخشد؟ (لباس وب)</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">تاریخچه مختصر و تکامل این دو زبان بنیادین.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">چرا <strong className="font-semibold">یادگیری HTML و CSS</strong> برای هر توسعه‌دهنده وب، حتی در ایران، ضروری است؟</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">مفاهیم کلیدی و نمونه کدهای عملی برای شروع <strong className="font-semibold">کدنویسی HTML و CSS</strong>.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">معرفی منابع یادگیری و دوره‌های معتبر، مانند <strong className="font-semibold">دوره آموزش HTML & CSS ساخت سایت واکنشگرا در Virtual Learn</strong>.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">گام‌های بعدی پس از تسلط بر HTML و CSS (نگاهی به جاوا اسکریپت).</li>
+                                        </ul>
+
+                                        <div className="bg-primary-100/60 dark:bg-gray-800 border-l-4 border-primary-500 dark:border-primary-400 py-5 px-2 lg:p-5 rounded-lg my-[35px] md:my-[40px] lg:my-[45px] shadow-medium">
+                                            <strong className="block mb-3 text-lg font-semibold text-gray-900 dark:text-white">آنچه در این راهنمای جامع می‌خوانید:</strong>
+                                            <ul className="mt-2 list-disc ps-4 space-y-2 text-gray-800 dark:text-gray-200">
+                                                <li><a href="#what-is-html" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">🦴 HTML چیست؟ اسکلت‌بندی محتوای وب</a>
+                                                    <ul className="list-['-_'] ps-2 mt-1 space-y-1">
+                                                        <li><a href="#html-history" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">سفری کوتاه در زمان: از وب اولیه تا HTML5</a></li>
+                                                        <li><a href="#html-key-concepts" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">مفاهیم کلیدی در HTML: عناصر، تگ‌ها و صفات</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="#what-is-css" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">🎨 CSS چیست؟ آرایش و زیباسازی صفحات وب</a>
+                                                    <ul className="list-['-_'] ps-2 mt-1 space-y-1">
+                                                        <li><a href="#css-history" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">نگاهی به تکامل CSS: از استایل‌های ساده تا جادوی مدرن</a></li>
+                                                        <li><a href="#css-key-concepts" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">مفاهیم کلیدی در CSS: انتخابگرها، خصوصیات، مقادیر و آبشار</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="#html-css-together" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">🤝 HTML + CSS: زوج جدایی‌ناپذیر وب</a>
+                                                    <ul className="list-['-_'] ps-2 mt-1 space-y-1">
+                                                        <li><a href="#linking-css-html" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">روش‌های اتصال CSS به HTML</a></li>
+                                                        <li><a href="#semantic-html-importance" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">اهمیت HTML معنایی (Semantic HTML)</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="#why-learn-html-css-iran" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">🇮🇷 چرا یادگیری HTML و CSS در ایران یک ضرورت است؟</a>
+                                                    <ul className="list-['-_'] ps-2 mt-1 space-y-1">
+                                                        <li><a href="#foundation-web-dev" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۱. بنیاد و اساس تمام توسعه وب</a></li>
+                                                        <li><a href="#job-demand-iran-html-css" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۲. تقاضای بالا در بازار کار ایران</a></li>
+                                                        <li><a href="#gateway-advanced-frontend" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۳. دروازه‌ای به سوی تکنولوژی‌های پیشرفته فرانت‌اند</a></li>
+                                                        <li><a href="#freelancing-remote-html-css" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۴. فرصت‌های فریلنسری و دورکاری بین‌المللی</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="#getting-started-core-concepts-html-css" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">🛠️ شروع عملی: ابزارها و مفاهیم کلیدی بیشتر</a>
+                                                    <ul className="list-['-_'] ps-2 mt-1 space-y-1">
+                                                        <li><a href="#tools-needed" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۱. ابزارهای ضروری</a></li>
+                                                        <li><a href="#common-html-elements" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۲. آشنایی با عناصر رایج HTML</a></li>
+                                                        <li><a href="#common-css-properties" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۳. آشنایی با خصوصیات رایج CSS</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="#future-next-steps-html-css" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">🚀 آینده و گام‌های بعدی: از واکنش‌گرایی تا جاوا اسکریپت</a>
+                                                    <ul className="list-['-_'] ps-2 mt-1 space-y-1">
+                                                        <li><a href="#responsive-design-css" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۱. طراحی واکنش‌گرا (Responsive Design)</a></li>
+                                                        <li><a href="#css-frameworks-preprocessors" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۲. فریمورک‌ها و پیش‌پردازنده‌های CSS</a></li>
+                                                        <li><a href="#next-step-javascript" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۳. قدم حیاتی بعدی: جاوا اسکریپت (JavaScript)</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="#faq" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">🤔 پرسش‌های متداول درباره HTML و CSS در ایران</a></li>
+                                                <li><a href="#conclusion" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">جمع‌بندی: ساختن آینده وب، یک خط کد در هر زمان</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <h2 id="what-is-html" className="text-gray-900 dark:text-white text-[18px] md:text-[24px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
+                                            🦴 HTML چیست؟ اسکلت‌بندی محتوای وب
+                                        </h2>
+
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            <strong className="font-semibold">HTML</strong> مخفف <strong className="font-semibold">HyperText Markup Language</strong> (زبان نشانه‌گذاری ابرمتنی) است. برخلاف تصور رایج، HTML یک زبان برنامه‌نویسی نیست، بلکه یک <strong className="font-semibold">زبان نشانه‌گذاری (Markup Language)</strong> است. وظیفه اصلی HTML، تعریف <strong className="font-semibold">ساختار و معنای محتوای</strong> یک صفحه وب است. به عبارت ساده‌تر، HTML به مرورگر می‌گوید که هر بخش از محتوا چیست: این یک عنوان است، این یک پاراگراف، این یک تصویر، و این یک لینک.
+                                        </p>
+
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            فکر کنید صفحه وب مانند یک ساختمان است. HTML نقش <strong className="font-semibold">اسکلت و چارچوب</strong> این ساختمان را ایفا می‌کند؛ ستون‌ها، دیوارها، طبقات و اتاق‌ها را مشخص می‌کند، اما هنوز ظاهر نهایی و رنگ‌آمیزی را تعیین نمی‌کند. بدون HTML، مرورگر نمی‌تواند محتوای صفحه را به درستی درک و نمایش دهد.
+                                        </p>
+
+                                        <h3 id="html-history" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
+                                            سفری کوتاه در زمان: از وب اولیه تا HTML5
+                                        </h3>
+
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            HTML توسط <strong className="font-semibold">تیم برنرز-لی (Tim Berners-Lee)</strong>، مخترع وب جهان‌گستر (World Wide Web)، در اوایل دهه 1990 ابداع شد. نسخه‌های اولیه HTML بسیار ساده بودند و تنها امکانات محدودی برای تعریف عناوین، پاراگراف‌ها و لینک‌ها داشتند. با گسترش وب، نیاز به امکانات بیشتر احساس شد و کنسرسیوم وب جهان‌گستر (W3C) مسئولیت استانداردسازی HTML را بر عهده گرفت.
+                                        </p>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            {/* پس از نسخه‌های HTML 2.0, 3.2 و 4.01، تحول بزرگ بعدی با معرفی <strong className="font-semibold">HTML5</strong> در سال 2014 رخ داد. HTML5 قابلیت‌های جدید و هیجان‌انگیزی مانند پشتیبانی داخلی از ویدیو و صدا (`<video>`, `<audio>`)، عناصر معنایی جدید برای ساختار بهتر صفحه (`<header>`, `<footer>`, `<nav>`, `<article>`, `<section>`)، قابلیت کار آفلاین، و APIهای جدید برای تعامل بیشتر با مرورگر را معرفی کرد که انقلابی در توسعه وب ایجاد کرد. امروزه، HTML5 استاندارد فعلی و پایه تمام وب‌سایت‌های مدرن است. */}
+                                        </p>
+
+                                        <h3 id="html-key-concepts" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
+                                            مفاهیم کلیدی در HTML: عناصر، تگ‌ها و صفات
+                                        </h3>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            برای درک HTML، باید با چند مفهوم اصلی آشنا شوید:
+                                        </p>
+                                        <ul className="list-disc ps-2 md:ps-4 md:pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-2 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">عناصر (Elements):</strong> {"بلوک‌های سازنده اصلی یک صفحه HTML هستند. هر عنصر معمولاً از یک تگ باز، محتوا و یک تگ بسته تشکیل شده است (مانند `<p>این یک پاراگراف است.</p>`). برخی عناصر محتوا ندارند و به آن‌ها عناصر خالی (Empty Elements) می‌گویند (مانند `<br>` برای شکستن خط یا `<img>` برای تصویر)."}</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">تگ‌ها (Tags):</strong>{" از علامت‌های کوچکتر و بزرگتر (`< >`) برای نشانه‌گذاری شروع و پایان (معمولاً) یک عنصر استفاده می‌کنند. تگ باز نام عنصر را در بر می‌گیرد (`<p>`) و تگ بسته شامل یک اسلش قبل از نام عنصر است (`</p>`)."}</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">صفات (Attributes): </strong>
+                                                اطلاعات اضافی یا تنظیمات مربوط به یک عنصر را ارائه می‌دهند و
+                                                <em className="italic">همیشه</em>
+                                                {'در تگ باز قرار می‌گیرند. هر صفت معمولاً از یک نام و یک مقدار تشکیل شده است (مانند `href="https://example.com"` در تگ `<a>` برای تعیین آدرس لینک، یا `src="image.jpg"` در تگ `<img>` برای تعیین منبع تصویر). صفاتی مانند `class` و `id` برای استایل‌دهی با CSS و کار با جاوا اسکریپت بسیار مهم هستند.'}</li>
+                                        </ul>
+
+                                        <div className="my-[20px] md:my-[22px] lg:my-[25px]">
+                                            <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">نمونه کد یک ساختار پایه HTML5:</p>
+
+                                            <Code lang="html">
+
+                                                {`<!DOCTYPE html> <!-- نوع سند را مشخص می‌کند -->
+<html lang="fa"> <!-- عنصر ریشه، زبان صفحه فارسی است -->
+<head> <!-- شامل اطلاعات مربوط به صفحه (نه محتوای قابل مشاهده) -->
+<meta charset="UTF-8"> <!-- انکودینگ کاراکتر برای پشتیبانی از فارسی -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- تنظیمات نمایش در موبایل -->
+<title>صفحه نمونه من</title> <!-- عنوان صفحه در تب مرورگر -->
+<link rel="stylesheet" href="styles.css"> <!-- پیوند به فایل CSS خارجی -->
+</head>
+<body> <!-- محتوای اصلی و قابل مشاهده صفحه -->
+
+<header> <!-- بخش بالایی (هدر) صفحه -->
+<h1>به صفحه من خوش آمدید!</h1>
+</header>
+
+<nav> <!-- منوی ناوبری -->
+<ul>
+<li><a href="/">خانه</a></li>
+<li><a href="/about">درباره ما</a></li>
+</ul>
+</nav>
+
+<main> <!-- محتوای اصلی و منحصر به فرد صفحه -->
+<article>
+<h2>اولین مقاله من</h2>
+<p>این اولین پاراگراف مقاله است. <a href="https://vc-virtual-learn.com/" className="text-primary-500">Virtual Learn</a> یک پلتفرم عالی برای یادگیری است.</p>
+<img src="images/sample.jpg" alt="یک تصویر نمونه مرتبط با محتوا"> <!-- نمایش تصویر -->
+</article>
+</main>
+
+<footer> <!-- بخش پایینی (فوتر) صفحه -->
+<p>© ۱۴۰۳ - تمام حقوق محفوظ است.</p>
+</footer>
+
+</body>
+</html>`}
+                                            </Code>
+
+                                            <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">{"این ساختار شامل عناصر معنایی HTML5 مانند `<header>`, `<nav>`, `<main>`, `<article>`, و `<footer>` است که به درک بهتر ساختار صفحه توسط مرورگرها و موتورهای جستجو کمک می‌کند."}</p>
+                                        </div>
+
+                                        <div className="my-[25px] md:my-[30px] lg:my-[35px] flex flex-col items-center group">
+                                            <Image width="768" height="432" className="shadow-medium rounded-xl"
+                                                loading="lazy" alt="دیاگرام ساده نشان دهنده ساختار یک صفحه وب با عناصر اصلی HTML مانند header, nav, main, article, footer"
+                                                src={`${process.env.NEXT_PUBLIC_BLOG_IMAGE_BASE_URL}w9ADa.jpg`} />
+
+
+                                            <figcaption className="text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic w-full max-w-prose">HTML ساختار و استخوان‌بندی محتوای صفحه وب را با استفاده از عناصر معنایی مشخص می‌کند.</figcaption>
+                                        </div>
+
+                                        <h2 id="what-is-css" className="text-gray-900 dark:text-white text-[18px] md:text-[24px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
+                                            🎨 CSS چیست؟ آرایش و زیباسازی صفحات وب
+                                        </h2>
+
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            <strong className="font-semibold">CSS</strong> مخفف <strong className="font-semibold">Cascading Style Sheets</strong> (شیوه‌نامه‌های آبشاری) است. اگر HTML اسکلت صفحه وب باشد، CSS <strong className="font-semibold">لباس، رنگ‌آمیزی، و دکوراسیون</strong> آن است. وظیفه اصلی CSS، کنترل کامل <strong className="font-semibold">ظاهر و چیدمان (Layout)</strong> عناصر HTML است. با استفاده از CSS می‌توانید موارد زیر را تعیین کنید:
+                                        </p>
+                                        <ul className="list-disc ps-2 md:ps-4 md:pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-2 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">رنگ‌ها (متن، پس‌زمینه، حاشیه)</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">فونت‌ها (نوع، اندازه، ضخامت)</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">فاصله‌ها (حاشیه داخلی و خارجی عناصر - Padding & Margin)</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">چیدمان عناصر در صفحه (کنار هم، زیر هم، موقعیت دقیق)</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">واکنش‌گرایی (Responsive Design) برای نمایش مناسب در اندازه‌های مختلف صفحه (موبایل، تبلت، دسکتاپ)</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">انیمیشن‌ها و افکت‌های بصری</li>
+                                        </ul>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            مزیت بزرگ CSS، <strong className="font-semibold">جداسازی محتوا (HTML) از ظاهر (CSS)</strong> است. این کار باعث می‌شود کدها تمیزتر، مدیریت آن‌ها آسان‌تر، و تغییر ظاهر کلی وب‌سایت بدون دستکاری محتوا ممکن شود.
+                                        </p>
+
+                                        <h3 id="css-history" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
+                                            نگاهی به تکامل CSS: از استایل‌های ساده تا جادوی مدرن
+                                        </h3>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            CSS نیز مانند HTML توسط W3C توسعه و استانداردسازی شده است. اولین نسخه CSS (CSS1) در سال 1996 معرفی شد و قابلیت‌های پایه‌ای مانند تعیین فونت، رنگ و فاصله‌ها را ارائه می‌داد. CSS2 که در سال 1998 منتشر شد، امکانات بیشتری مانند موقعیت‌یابی عناصر (Positioning) و مفهوم انتخابگرهای پیشرفته‌تر را اضافه کرد.
+                                        </p>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            تحول بزرگ در دنیای CSS با <strong className="font-semibold">CSS3</strong> آغاز شد. CSS3 به صورت ماژولار توسعه یافت، به این معنی که قابلیت‌های جدید به تدریج و به صورت جداگانه معرفی و استاندارد شدند. این ماژول‌ها امکانات فوق‌العاده‌ای مانند:
+                                        </p>
+                                        <ul className="list-disc ps-2 md:ps-4 md:pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-2 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">انتخابگرهای پیشرفته‌تر (Advanced Selectors)</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">سایه‌ها (Shadows)</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">گوشه‌های گرد (Rounded Corners)</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">گرادیانت‌ها (Gradients)</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">ترنزیشن‌ها و انیمیشن‌ها (Transitions & Animations)</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">مدیا کوئری‌ها (Media Queries) برای طراحی واکنش‌گرا</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">سیستم‌های چیدمان قدرتمند مانند <strong className="font-semibold">Flexbox</strong> و <strong className="font-semibold">CSS Grid</strong></li>
+                                        </ul>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            را به دنیای طراحی وب اضافه کردند و امکان ساخت رابط‌های کاربری بسیار پیچیده و جذاب را فراهم نمودند. امروزه CSS همچنان در حال تکامل است و قابلیت‌های جدیدی مانند متغیرهای CSS (Custom Properties)، توابع رنگی جدید و انتخابگرهای باز هم پیشرفته‌تر به آن اضافه می‌شود.
+                                        </p>
+
+                                        <h3 id="css-key-concepts" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
+                                            مفاهیم کلیدی در CSS: انتخابگرها، خصوصیات، مقادیر و آبشار
+                                        </h3>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            برای کار با CSS، باید این مفاهیم را درک کنید:
+                                        </p>
+                                        <ul className="list-disc ps-2 md:ps-4 md:pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-2 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">قانون (Rule):</strong> یک واحد پایه در CSS که از یک انتخابگر و یک یا چند اعلان تشکیل شده است.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">انتخابگر (Selector):</strong> الگویی که مشخص می‌کند کدام عنصر(های) HTML باید استایل‌دهی شوند. انتخابگرها می‌توانند نام تگ (`p`), کلاس (`.my-class`), آی‌دی (`#my-id`), صفت (`[type="text"]`), یا ترکیبی از این‌ها باشند.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">اعلان (Declaration):</strong> از یک خصوصیت و یک مقدار تشکیل شده و درون آکولاد `{ }` قرار می‌گیرد. هر اعلان با `;` پایان می‌یابد.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">خصوصیت (Property):</strong> جنبه‌ای از ظاهر عنصر که می‌خواهید تغییر دهید (مانند `color`, `font-size`, `background-color`).</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">مقدار (Value):</strong> تنظیمات مشخصی که برای یک خصوصیت اعمال می‌کنید (مانند `red`, `16px`, `#0065D9`).</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">آبشار (Cascade):</strong> مهم‌ترین مفهوم در CSS! این سیستم تعیین می‌کند که اگر چندین قانون CSS برای یک عنصر تعریف شده باشد، کدام قانون اولویت دارد و در نهایت اعمال می‌شود. اولویت بر اساس مشخص بودن (Specificity) انتخابگر، ترتیب قوانین در کد، و استفاده از `!important` (که معمولاً باید از آن اجتناب کرد) تعیین می‌شود.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">مدل جعبه‌ای (Box Model):</strong> هر عنصر HTML در CSS به صورت یک جعبه مستطیلی در نظر گرفته می‌شود که شامل محتوا (Content)، لایه داخلی (Padding)، حاشیه (Border)، و لایه خارجی (Margin) است. درک Box Model برای کنترل دقیق چیدمان و فاصله‌گذاری حیاتی است.</li>
+                                        </ul>
+
+                                        <div className="my-[20px] md:my-[22px] lg:my-[25px]">
+                                            <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">نمونه کد CSS برای استایل‌دهی به عناصر HTML مثال قبل (ذخیره شده در فایل styles.css):</p>
+
+                                            <Code lang="css">
+
+                                                {`/* استایل‌های عمومی برای کل صفحه */
+body {
+font-family: 'Vazirmatn', sans-serif; /* استفاده از فونت فارسی مناسب */
+line-height: 1.6; /* فاصله خطوط برای خوانایی بهتر */
+color: #3E4247; /* رنگ متن پیش‌فرض برای حالت روشن */
+background-color: #fff; /* رنگ پس‌زمینه پیش‌فرض برای حالت روشن */
+margin: 0; /* حذف حاشیه پیش‌فرض مرورگر */
+padding: 0; /* حذف پدینگ پیش‌فرض مرورگر */
+}
+
+/* استایل برای هدر */
+header {
+background-color: #0065D9; /* رنگ پس‌زمینه آبی اصلی */
+color: #fff; /* رنگ متن سفید */
+padding: 20px;
+text-align: center;
+}
+
+/* استایل برای عنوان اصلی */
+h1 {
+font-size: 2em; /* اندازه فونت دو برابر حالت عادی */
+margin-bottom: 10px;
+}
+
+/* استایل برای پاراگراف‌ها */
+p {
+margin-bottom: 15px; /* فاصله از پایین */
+text-align: justify; /* تراز متن برای خوانایی بهتر در فارسی */
+}
+
+/* استایل برای لینک‌ها */
+a {
+color: #079CED; /* رنگ لینک آبی ثانویه */
+text-decoration: none; /* حذف خط زیر لینک */
+}
+
+a:hover {
+text-decoration: underline; /* نمایش خط زیر لینک هنگام هاور */
+color: #001C68; /* تغییر رنگ هنگام هاور */
+}
+
+/* استایل برای بخش اصلی محتوا */
+main {
+padding: 20px;
+max-width: 800px; /* حداکثر عرض محتوا برای خوانایی */
+margin: 20px auto; /* وسط‌چین کردن محتوا */
+}
+
+/* استایل برای تصاویر */
+img {
+max-width: 100%; /* تصویر بزرگتر از عرض والد نشود */
+height: auto; /* حفظ نسبت ابعاد تصویر */
+display: block; /* جلوگیری از فضای خالی زیر تصویر */
+margin: 15px 0; /* فاصله عمودی */
+border-radius: 8px; /* کمی گرد کردن گوشه‌ها */
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* افزودن سایه ملایم */
+}
+
+/* استایل برای فوتر */
+footer {
+background-color: #f1f1f1; /* رنگ پس‌زمینه خاکستری روشن */
+color: #555;
+text-align: center;
+padding: 15px;
+margin-top: 30px;
+font-size: 0.9em;
+}
+
+/* نمونه استایل برای حالت تیره (Dark Mode) - نیاز به فعال‌سازی با جاوا اسکریپت یا تنظیمات سیستم‌عامل */
+@media (prefers-color-scheme: dark) {
+body {
+color: #E5E7EB; /* رنگ متن روشن برای حالت تیره */
+background-color: #111827; /* رنگ پس‌زمینه تیره */
+}
+
+header {
+background-color: #001C68; /* آبی تیره‌تر */
+}
+
+a {
+color: #60a5fa; /* آبی روشن‌تر برای لینک‌ها */
+}
+
+a:hover {
+color: #93c5fd;
+}
+
+footer {
+background-color: #1f2937; /* خاکستری تیره‌تر */
+color: #9ca3af;
+}
+
+img {
+opacity: 0.85; /* کمی کاهش شفافیت تصاویر در حالت تیره */
+}
+}
+`}
+                                            </Code>
+
+                                            <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">این کد CSS ظاهر عناصر مختلف HTML را با تعیین رنگ، فونت، فاصله و چیدمان تغییر می‌دهد و حتی شامل یک بلوک اولیه برای استایل‌های حالت تیره است.</p>
+                                        </div>
+
+                                        <div className="my-[25px] md:my-[30px] lg:my-[35px] flex flex-col items-center group">
+
+                                            <Image width="600" height="400" className="shadow-medium rounded-xl"
+                                                loading="lazy" alt="تصویر شماتیک مدل جعبه‌ای CSS (Box Model) شامل Content, Padding, Border, Margin با برچسب‌های فارسی"
+                                                src={`${process.env.NEXT_PUBLIC_BLOG_IMAGE_BASE_URL}border-857857857.jpg`} />
+
+                                            <figcaption className="text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic w-full max-w-prose">مدل جعبه‌ای (Box Model) در CSS نحوه محاسبه فضا و حاشیه عناصر HTML را تعریف می‌کند.</figcaption>
+                                        </div>
+
+                                        <h2 id="html-css-together" className="text-gray-900 dark:text-white text-[18px] md:text-[24px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
+                                            🤝 HTML + CSS: زوج جدایی‌ناپذیر وب
+                                        </h2>
+
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            HTML و CSS به تنهایی ناقص هستند، اما در کنار هم، پایه و اساس تقریباً تمام وب‌سایت‌های جهان را تشکیل می‌دهند. HTML ساختار و معنا را فراهم می‌کند و CSS ظاهر و چیدمان را کنترل می‌کند. این همکاری چگونه اتفاق می‌افتد؟
+                                        </p>
+
+                                        <h3 id="linking-css-html" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
+                                            روش‌های اتصال CSS به HTML
+                                        </h3>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            سه روش اصلی برای اعمال استایل‌های CSS به عناصر HTML وجود دارد:
+                                        </p>
+
+
+                                        <ol className="list-decimal ps-4 my-[15px] md:my-[18px] lg:my-[20px] space-y-2 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">
+                                                <strong className="font-semibold">CSS خارجی (External CSS):</strong> <strong className="font-semibold text-success-700 dark:text-success-300">(روش پیشنهادی و بهترین روش)</strong>
+                                                {" . تمام استایل‌های CSS در یک یا چند فایل جداگانه با پسوند `.css` نوشته می‌شوند و سپس با استفاده از تگ `<link>` در بخش `<head>` فایل HTML به آن پیوند داده می‌شوند."}
+                                                <div className="my-[10px] md:my-[12px]">
+
+                                                    <Code lang="html">
+                                                        {`<head>
+                        <link rel="stylesheet" href="styles.css">
+                    </head>`}
+                                                    </Code>
+
+
+                                                </div>
+                                                <strong className="font-semibold">مزایا:</strong> جداسازی کامل کد، قابلیت استفاده مجدد استایل‌ها در صفحات مختلف، مدیریت و نگهداری آسان‌تر، بهبود عملکرد با کش شدن فایل CSS توسط مرورگر.
+                                            </li>
+
+                                            <li className="!mt-10 mb-[6px] md:mb-[8px] lg:mb-[10px]">
+                                                <strong className="font-semibold">CSS داخلی (Internal CSS):</strong> {"استایل‌ها مستقیماً درون تگ `<style>` در بخش `<head>` فایل HTML نوشته می‌شوند."}
+                                                <div className="my-[10px] md:my-[12px]">
+
+                                                    <Code lang="css">
+                                                        {`<head>
+<style>
+body {
+background-color: lightblue;
+}
+h1 {
+color: navy;
+}
+</style>
+</head>`}
+                                                    </Code>
+
+
+                                                </div>
+                                                <strong className="font-semibold">مزایا:</strong> مناسب برای استایل‌های خاص یک صفحه یا تست سریع. <strong className="font-semibold">معایب:</strong> عدم قابلیت استفاده مجدد در صفحات دیگر، ترکیب شدن ظاهر با ساختار.
+                                            </li>
+
+                                            <li className="!mt-10 mb-[6px] md:mb-[8px] lg:mb-[10px]">
+                                                <strong className="font-semibold">CSS درون‌خطی (Inline CSS):</strong> <strong className="font-semibold text-danger-700 dark:text-danger-300">(معمولاً توصیه نمی‌شود)</strong>. استایل‌ها مستقیماً به عنوان مقدار صفت `style` به یک عنصر HTML خاص اعمال می‌شوند.
+                                                <div className="my-[10px] md:my-[12px]">
+                                                    <div className="bg-[#2d2d2d] dark:bg-gray-800 rounded-md overflow-x-auto text-[14px] leading-[1.6] shadow-md relative group">
+                                                        <Code lang="html">
+                                                            {`<h1 style="color: blue; text-align: center;">این یک عنوان آبی وسط‌چین است</h1>`}
+                                                        </Code>
+
+                                                    </div>
+                                                </div>
+                                                <strong className="font-semibold">معایب:</strong> اولویت بسیار بالا (که مدیریت استایل‌ها را دشوار می‌کند)، عدم جداسازی ظاهر از ساختار، تکرار زیاد کد، دشواری در نگهداری. استفاده از آن فقط در موارد خاص (مانند ایمیل‌های HTML یا گاهی اوقات با جاوا اسکریپت) توجیه‌پذیر است.
+                                            </li>
+                                        </ol>
+
+                                        <div className="flex items-start border-l-4 border-success-500 dark:border-success-400 bg-success-100/60 dark:bg-gray-800 p-4 rounded-md my-[20px] md:my-[22px] lg:my-[25px] shadow-sm">
+                                            <span className="text-xl text-success-600 dark:text-success-300 mt-1">💡</span>
+                                            <div>
+                                                <strong className="font-semibold text-success-800 dark:text-success-200">بهترین روش (Best Practice):</strong>
+                                                <p className="text-success-700 dark:text-success-200/90 mt-1 text-[15px] md:text-[16px] leading-relaxed">همیشه سعی کنید از <strong className="font-semibold">CSS خارجی</strong> استفاده کنید. این کار باعث سازماندهی بهتر پروژه، قابلیت نگهداری بالاتر و عملکرد بهتر وب‌سایت شما می‌شود.</p>
+                                            </div>
+                                        </div>
+
+                                        <h3 id="semantic-html-importance" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
+                                            اهمیت HTML معنایی (Semantic HTML)
+                                        </h3>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            {" استفاده از تگ‌های HTML مناسب که معنای محتوای درون خود را به درستی توصیف می‌کنند (مانند `<nav>` برای منو، `<article>` برای یک پست وبلاگ، `<button>` برای دکمه، به جای استفاده صرف از `<div>` و `<span>` برای همه چیز) نه تنها به درک بهتر ساختار صفحه توسط مرورگرها و موتورهای جستجو کمک می‌کند "}(<strong className="font-semibold">بهبود سئو</strong>)، بلکه برای <strong className="font-semibold">دسترسی‌پذیری (Accessibility)</strong> وب‌سایت برای افراد دارای معلولیت (که از صفحه‌خوان‌ها استفاده می‌کنند) و همچنین برای نوشتن کدهای CSS تمیزتر و قابل فهم‌تر بسیار حیاتی است. سعی کنید همیشه از معنایی‌ترین تگ ممکن استفاده کنید.
+                                        </p>
+
+                                        <div className="border-t-4 border-b-4 border-primary-500 dark:border-primary-400 bg-gradient-to-r from-primary-100/50 to-blue-100/50 dark:from-gray-800 dark:to-gray-800/80 p-5 rounded-lg my-[30px] md:my-[35px] lg:my-[40px] shadow-lg text-center transition-transform duration-300 hover:scale-[1.02]">
+                                            <h3 className="text-xl font-semibold text-primary-800 dark:text-primary-200 mb-3 flex items-center justify-center">
+                                                <span className="text-2xl mr-2">🚀</span> قدم بعدی برای ساخت وب‌سایت‌های واقعی و زیبا!
+                                            </h3>
+                                            <p className="text-primary-700 dark:text-primary-300 mb-4 leading-relaxed text-[15px] md:text-[16px]">
+                                                حالا که با مبانی HTML و CSS و نحوه همکاری آن‌ها آشنا شدید، آماده‌اید این دانش را به سطح عملی برسانید و وب‌سایت‌های حرفه‌ای و واکنش‌گرا بسازید؟ <a href="https://vc-virtual-learn.com/courses/Build-Responsive-Real-World-Websites-with-HTML-and-CSS-Jonas-Schmedtmann" target="_blank" rel="noopener noreferrer" className="text-primary-600 dark:text-primary-300 font-bold hover:underline decoration-wavy decoration-2 underline-offset-4">دوره جامع و پروژه‌محور "آموزش HTML & CSS ساخت سایت واکنشگرا" از Jonas Schmedtmann در Virtual Learn</a> با زیرنویس دقیق فارسی، بهترین مسیر برای تبدیل شدن به یک طراح وب مسلط بر این دو تکنولوژی بنیادین است.
+                                            </p>
+                                            <Button as={Link} color="primary" variant="shadow" size="lg"
+                                                href="https://vc-virtual-learn.com/courses/Build-Responsive-Real-World-Websites-with-HTML-and-CSS-Jonas-Schmedtmann" target="_blank" rel="noopener noreferrer" className="mt-2 text-wrap">مشاهده جزئیات کامل دوره HTML/CSS</Button>
+                                        </div>
+
+                                        <h2 id="why-learn-html-css-iran" className="text-gray-900 dark:text-white text-[18px] md:text-[24px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
+                                            🇮🇷 چرا یادگیری HTML و CSS در ایران یک ضرورت است؟
+                                        </h2>
+
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            شاید بپرسید با وجود ابزارها و سیستم‌های مدیریت محتوا (CMS) مانند وردپرس، آیا هنوز هم یادگیری عمیق HTML و CSS ضروری است؟ پاسخ قاطعانه <strong className="font-semibold">بله</strong> است، به ویژه اگر قصد دارید به صورت حرفه‌ای در دنیای توسعه وب، چه در ایران و چه در سطح بین‌المللی، فعالیت کنید.
+                                        </p>
+
+                                        <h3 id="foundation-web-dev" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
+                                            ۱. بنیاد و اساس تمام توسعه وب
+                                        </h3>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            HTML و CSS الفبای وب هستند. فرقی نمی‌کند بخواهید یک توسعه‌دهنده <strong className="font-semibold">فرانت‌اند (Front-end)</strong> شوید و با فریمورک‌های مدرن جاوا اسکریپت مانند React, Vue یا Angular کار کنید، یا یک توسعه‌دهنده <strong className="font-semibold">بک‌اند (Back-end)</strong> باشید که نیاز به درک نحوه نمایش داده‌ها در مرورگر دارید، یا حتی یک توسعه‌دهنده <strong className="font-semibold">فول‌استک (Full-stack)</strong>. تسلط بر HTML و CSS پیش‌نیاز مطلق برای ورود به تمام این حوزه‌هاست. حتی توسعه‌دهندگان وردپرس که می‌خواهند قالب‌ها یا افزونه‌های سفارشی ایجاد کنند، نیاز به درک عمیق HTML و CSS دارند.
+                                        </p>
+
+                                        <h3 id="job-demand-iran-html-css" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
+                                            ۲. تقاضای بالا در بازار کار ایران
+                                        </h3>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            <strong className="font-semibold">بازار کار توسعه وب در ایران</strong> بسیار پویا و رو به رشد است. استارتاپ‌های نوآور، شرکت‌های بزرگ فناوری، آژانس‌های دیجیتال مارکتینگ و حتی کسب‌وکارهای سنتی که به دنبال حضور آنلاین قوی هستند، همگی به متخصصانی نیاز دارند که بتوانند وب‌سایت‌ها و وب‌اپلیکیشن‌های جذاب، کاربرپسند و واکنش‌گرا طراحی و پیاده‌سازی کنند. موقعیت‌های شغلی مانند:
+                                        </p>
+                                        <ul className="list-disc ps-2 md:ps-4 md:pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-2 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">Front-end Developer (Junior/Mid/Senior)</strong></li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">UI Developer</strong></li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">Web Designer (با مهارت کدنویسی)</strong></li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">WordPress Developer (مسلط به سفارشی‌سازی)</strong></li>
+                                        </ul>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            همگی نیازمند تسلط قوی بر HTML و CSS هستند. حتی برای بسیاری از موقعیت‌های <strong className="font-semibold">کارآموزی فرانت‌اند در ایران</strong>، داشتن دانش پایه HTML و CSS یک الزام است.
+                                        </p>
+
+                                        <h3 id="gateway-advanced-frontend" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
+                                            ۳. دروازه‌ای به سوی تکنولوژی‌های پیشرفته فرانت‌اند
+                                        </h3>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            دنیای فرانت‌اند مدرن حول محور <strong className="font-semibold">جاوا اسکریپت (JavaScript)</strong> و فریمورک‌ها و کتابخانه‌های قدرتمند آن مانند <strong className="font-semibold">React</strong>, <strong className="font-semibold">Vue</strong>, و <strong className="font-semibold">Angular</strong> می‌چرخد. اما تمام این ابزارها در نهایت کدهای HTML و CSS تولید می‌کنند تا توسط مرورگر نمایش داده شوند. بدون درک عمیق از نحوه کار HTML و CSS، استفاده مؤثر از این ابزارهای پیشرفته و اشکال‌زدایی (Debug) کدهای تولید شده توسط آن‌ها بسیار دشوار خواهد بود. HTML و CSS پایه‌ای هستند که این ساختمان‌های پیشرفته روی آن بنا می‌شوند.
+                                        </p>
+
+                                        <div className="flex items-start border-l-4 border-secondary-500 dark:border-secondary-400 bg-secondary-100/60 dark:bg-gray-800 p-4 rounded-md my-[20px] md:my-[22px] lg:my-[25px] shadow-sm">
+                                            <span className="text-xl text-secondary-600 dark:text-secondary-300 mt-1">ℹ️</span>
+                                            <div>
+                                                <strong className="font-semibold text-secondary-800 dark:text-secondary-200">ارتباط با جاوا اسکریپت:</strong>
+                                                <p className="text-secondary-700 dark:text-secondary-200/90 mt-1 text-[15px] md:text-[16px] leading-relaxed">جاوا اسکریپت به شما امکان می‌دهد تا عناصر HTML و استایل‌های CSS را به صورت پویا تغییر دهید و تعامل کاربر را مدیریت کنید. این سه تکنولوژی (HTML, CSS, JavaScript) سه‌گانه مقدس توسعه فرانت‌اند هستند. در بخش‌های بعدی به جاوا اسکریپت اشاره خواهیم کرد و می‌توانید با <a href="https://vc-virtual-learn.com/courses/The-Complete-JavaScript-Course-2025-From-Zero-to-Expert-Jonas-Schmedtmann" target="_blank" rel="noopener noreferrer" className="text-secondary-600 dark:text-secondary-300 font-bold hover:underline">دوره کامل جاوا اسکریپت در Virtual Learn</a>، این مهارت حیاتی را نیز بیاموزید.</p>
+                                            </div>
+                                        </div>
+
+                                        <h3 id="freelancing-remote-html-css" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
+                                            ۴. فرصت‌های فریلنسری و دورکاری بین‌المللی
+                                        </h3>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            مهارت در HTML و CSS، به خصوص در ترکیب با طراحی واکنش‌گرا و شاید کمی جاوا اسکریپت پایه، در بازار جهانی فریلنسینگ تقاضای زیادی دارد. بسیاری از کسب‌وکارهای کوچک و متوسط در سراسر دنیا به دنبال افرادی هستند که بتوانند وب‌سایت‌های ساده یا لندینگ‌پیج‌های (Landing Pages) جذاب برای آن‌ها طراحی کنند. این می‌تواند یک فرصت عالی برای <strong className="font-semibold">کسب درآمد ارزی</strong> برای توسعه‌دهندگان ایرانی باشد، هرچند چالش‌هایی مانند رقابت و مسائل مربوط به پرداخت‌های بین‌المللی نیز وجود دارد.
+                                        </p>
+
+
+                                        <h2 id="getting-started-core-concepts-html-css" className="text-gray-900 dark:text-white text-[18px] md:text-[24px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
+                                            🛠️ شروع عملی: ابزارها و مفاهیم کلیدی بیشتر
+                                        </h2>
+
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            برای شروع کدنویسی HTML و CSS، نیاز به ابزارهای پیچیده‌ای ندارید. کافیست یک ویرایشگر متن و یک مرورگر وب داشته باشید.
+                                        </p>
+
+                                        <h3 id="tools-needed" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
+                                            ۱. ابزارهای ضروری
+                                        </h3>
+                                        <ul className="list-disc ps-2 md:ps-4 md:pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-2 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">ویرایشگر کد (Code Editor):</strong> اگرچه می‌توانید با Notepad ساده هم کد بزنید، اما استفاده از یک ویرایشگر کد مدرن کار شما را بسیار راحت‌تر می‌کند. این ویرایشگرها قابلیت‌هایی مانند هایلایت کردن سینتکس (Syntax Highlighting)، تکمیل خودکار کد (Autocomplete)، و مدیریت فایل‌ها را ارائه می‌دهند. گزینه‌های محبوب و رایگان عبارتند از:
+                                                <ul className="list-['-_'] ps-2 mt-1 space-y-1">
+                                                    <li><strong className="font-semibold">Visual Studio Code (VS Code):</strong> انتخاب اول بسیاری از توسعه‌دهندگان در سراسر جهان و ایران. بسیار قدرتمند، انعطاف‌پذیر و با افزونه‌های فراوان.</li>
+                                                    <li>Sublime Text: سبک و سریع.</li>
+                                                    <li>Atom: ویرایشگر مدرن دیگری از گیت‌هاب.</li>
+                                                    <li>Brackets: با تمرکز بر توسعه وب و پیش‌نمایش زنده.</li>
+                                                </ul>
+                                            </li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">مرورگر وب (Web Browser):</strong> برای مشاهده نتیجه کدهای HTML و CSS خود به یک مرورگر نیاز دارید. مرورگرهای مدرن مانند Google Chrome, Mozilla Firefox, Microsoft Edge همگی ابزارهای توسعه‌دهنده (Developer Tools) قدرتمندی دارند که برای بررسی ساختار HTML، استایل‌های CSS و اشکال‌زدایی بسیار مفید هستند.
+                                                <div className="flex items-start border-l-4 border-success-500 dark:border-success-400 bg-success-100/60 dark:bg-gray-800 p-3 rounded-md my-[10px] shadow-sm">
+                                                    <span className="text-lg text-success-600 dark:text-success-300 mt-1 mr-2">💡</span>
+                                                    <div>
+                                                        <strong className="font-semibold text-success-800 dark:text-success-200">نکته حرفه‌ای:</strong>
+                                                        <p className="text-success-700 dark:text-success-200/90 mt-1 text-[14px] md:text-[15px] leading-relaxed">یاد بگیرید چگونه از <strong className="font-semibold">Developer Tools</strong> مرورگر خود (معمولاً با زدن کلید F12 یا راست‌کلیک و انتخاب Inspect/Inspect Element) استفاده کنید. این ابزار بهترین دوست شما در مسیر یادگیری و توسعه وب خواهد بود!</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                        <h3 id="common-html-elements" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
+                                            ۲. آشنایی با عناصر رایج HTML
+                                        </h3>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            علاوه بر عناصر ساختاری که در مثال قبل دیدید، با این عناصر پرکاربرد نیز آشنا شوید:
+                                        </p>
+                                        <div className="overflow-x-auto my-[25px] md:my-[30px] lg:my-[35px] shadow-lg rounded-lg border border-gray-300 dark:border-gray-700">
+                                            <table className="w-full  text-[14px] md:text-[15px]">
+                                                <caption className="caption-bottom text-sm text-gray-600 dark:text-gray-400 p-3 bg-gray-50 dark:bg-gray-800">برخی از عناصر پرکاربرد HTML</caption>
+                                                <thead className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-100 uppercase text-xs tracking-wider">
+                                                    <tr>
+                                                        <th scope="col" className="p-3 font-semibold">تگ</th>
+                                                        <th scope="col" className="p-3 font-semibold">کاربرد اصلی</th>
+                                                        <th scope="col" className="p-3 font-semibold">مثال</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
+                                                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors duration-150">
+                                                        <td className="p-3 font-medium text-gray-900 dark:text-gray-100 font-mono">{`<h1> تا <h6>`}</td>
+                                                        <td className="p-3 text-gray-700 dark:text-gray-300">تعریف عناوین با سطوح اهمیت مختلف (H1 مهم‌ترین)</td>
+                                                        <td className="p-3 text-gray-700 dark:text-gray-300 font-mono">{`<h2>زیر عنوان</h2>`}</td>
+                                                    </tr>
+                                                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors duration-150">
+                                                        <td className="p-3 font-medium text-gray-900 dark:text-gray-100 font-mono">{`<p>`}</td>
+                                                        <td className="p-3 text-gray-700 dark:text-gray-300">تعریف پاراگراف متن</td>
+                                                        <td className="p-3 text-gray-700 dark:text-gray-300 font-mono">{`<p>متن پاراگراف...</p>`}</td>
+                                                    </tr>
+                                                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors duration-150">
+                                                        <td className="p-3 font-medium text-gray-900 dark:text-gray-100 font-mono">{`<a>`}</td>
+                                                        <td className="p-3 text-gray-700 dark:text-gray-300">ایجاد لینک (Hyperlink)</td>
+                                                        <td className="p-3 text-gray-700 dark:text-gray-300 font-mono">{`<a href="...">متن لینک</a>`}</td>
+                                                    </tr>
+                                                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors duration-150">
+                                                        <td className="p-3 font-medium text-gray-900 dark:text-gray-100 font-mono">{`<img>`}</td>
+                                                        <td className="p-3 text-gray-700 dark:text-gray-300">نمایش تصویر (عنصر خالی)</td>
+                                                        <td className="p-3 text-gray-700 dark:text-gray-300 font-mono">{`<img src="..." alt="...">`}</td>
+                                                    </tr>
+                                                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors duration-150">
+                                                        <td className="p-3 font-medium text-gray-900 dark:text-gray-100 font-mono">{`<ul>`}</td>
+                                                        <td className="p-3 text-gray-700 dark:text-gray-300">لیست نامرتب (Unordered List - با بولت پوینت)</td>
+                                                        <td className="p-3 text-gray-700 dark:text-gray-300 font-mono">{`<ul><li>آیتم ۱</li></ul>`}</td>
+                                                    </tr>
+                                                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors duration-150">
+                                                        <td className="p-3 font-medium text-gray-900 dark:text-gray-100 font-mono">{`<ol>`}</td>
+                                                        <td className="p-3 text-gray-700 dark:text-gray-300">لیست مرتب (Ordered List - با شماره)</td>
+                                                        <td className="p-3 text-gray-700 dark:text-gray-300 font-mono">{`<ol><li>آیتم ۱</li></ol>`}</td>
+                                                    </tr>
+                                                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors duration-150">
+                                                        <td className="p-3 font-medium text-gray-900 dark:text-gray-100 font-mono">{`<li>`}</td>
+                                                        <td className="p-3 text-gray-700 dark:text-gray-300">{">آیتم لیست (هم در `<ul>` و هم در `<ol>`)"}</td>
+                                                        <td className="p-3 text-gray-700 dark:text-gray-300 font-mono">{`<li>متن آیتم</li>`}</td>
+                                                    </tr>
+                                                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors duration-150">
+                                                        <td className="p-3 font-medium text-gray-900 dark:text-gray-100 font-mono">{`<div>`}</td>
+                                                        <td className="p-3 text-gray-700 dark:text-gray-300">عنصر ظرف (Container) عمومی برای گروه‌بندی (Block-level)</td>
+                                                        <td className="p-3 text-gray-700 dark:text-gray-300 font-mono">{`<div>محتوا...</div>`}</td>
+                                                    </tr>
+                                                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors duration-150">
+                                                        <td className="p-3 font-medium text-gray-900 dark:text-gray-100 font-mono">{`<span>`}</td>
+                                                        <td className="p-3 text-gray-700 dark:text-gray-300">عنصر ظرف عمومی برای استایل‌دهی بخشی از متن (Inline-level)</td>
+                                                        <td className="p-3 text-gray-700 dark:text-gray-300 font-mono">{`متن <span style="...">بخشی</span> دیگر`}</td>
+                                                    </tr>
+                                                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors duration-150">
+                                                        <td className="p-3 font-medium text-gray-900 dark:text-gray-100 font-mono">{`<form>`}</td>
+                                                        <td className="p-3 text-gray-700 dark:text-gray-300">ایجاد فرم برای دریافت ورودی از کاربر</td>
+                                                        <td className="p-3 text-gray-700 dark:text-gray-300 font-mono">{`<form>...</form>`}</td>
+                                                    </tr>
+                                                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors duration-150">
+                                                        <td className="p-3 font-medium text-gray-900 dark:text-gray-100 font-mono">{`<input>`}</td>
+                                                        <td className="p-3 text-gray-700 dark:text-gray-300">فیلد ورودی در فرم (متن، رمز عبور، دکمه رادیویی، چک‌باکس و...)</td>
+                                                        <td className="p-3 text-gray-700 dark:text-gray-300 font-mono">{`<input type="text">`}</td>
+                                                    </tr>
+                                                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors duration-150">
+                                                        <td className="p-3 font-medium text-gray-900 dark:text-gray-100 font-mono">{`<button>`}</td>
+                                                        <td className="p-3 text-gray-700 dark:text-gray-300">ایجاد دکمه قابل کلیک</td>
+                                                        <td className="p-3 text-gray-700 dark:text-gray-300 font-mono">{`<button>کلیک کنید</button>`}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <h3 id="common-css-properties" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
+                                            ۳. آشنایی با خصوصیات رایج CSS
+                                        </h3>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            دنیای CSS بسیار گسترده است، اما این خصوصیات پایه‌ای را در ابتدای کار حتماً یاد بگیرید:
+                                        </p>
+                                        <ul className="list-disc ps-2 md:ps-4 md:pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-2 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">`color`</strong>: رنگ متن</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">`background-color`</strong>: رنگ پس‌زمینه</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">`font-family`</strong>: نوع فونت</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">`font-size`</strong>: اندازه فونت</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">`font-weight`</strong>: ضخامت فونت (e.g., `bold`, `normal`, `400`, `700`)</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">`text-align`</strong>: تراز افقی متن (`left`, `right`, `center`, `justify`)</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">`margin`</strong>: فاصله خارجی عنصر از عناصر دیگر</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">`padding`</strong>: فاصله داخلی محتوای عنصر از حاشیه آن</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">`border`</strong>: حاشیه دور عنصر (ضخامت، نوع خط، رنگ)</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">`width`</strong> / <strong className="font-semibold">`height`</strong>: عرض و ارتفاع عنصر</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">`display`</strong>: نحوه نمایش عنصر و تعامل آن با عناصر دیگر (`block`, `inline`, `inline-block`, `flex`, `grid`, `none`) - بسیار مهم برای چیدمان.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">`position`</strong>: نحوه موقعیت‌یابی عنصر (`static`, `relative`, `absolute`, `fixed`, `sticky`) - مهم برای چیدمان‌های پیچیده.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">`list-style`</strong>: استایل آیتم‌های لیست (نوع بولت یا شماره)</li>
+                                        </ul>
+
+
+                                        <h2 id="future-next-steps-html-css" className="text-gray-900 dark:text-white text-[18px] md:text-[24px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">
+                                            🚀 آینده و گام‌های بعدی: از واکنش‌گرایی تا جاوا اسکریپت
+                                        </h2>
+
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            تسلط بر مبانی HTML و CSS تازه اول راه است. دنیای توسعه وب دائماً در حال تحول است و مفاهیم و تکنیک‌های پیشرفته‌تری وجود دارند که باید بیاموزید تا بتوانید وب‌سایت‌های مدرن و کارآمد بسازید.
+                                        </p>
+
+                                        <h3 id="responsive-design-css" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
+                                            ۱. طراحی واکنش‌گرا (Responsive Design)
+                                        </h3>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            امروزه کاربران با دستگاه‌های مختلفی (موبایل، تبلت، لپ‌تاپ، دسکتاپ) به وب‌سایت‌ها دسترسی دارند. <strong className="font-semibold">طراحی واکنش‌گرا</strong> به این معنی است که وب‌سایت شما باید بتواند ظاهر و چیدمان خود را به طور خودکار با اندازه صفحه نمایش دستگاه کاربر تطبیق دهد تا بهترین تجربه کاربری ممکن را فراهم کند. این کار عمدتاً با استفاده از تکنیک‌های CSS مانند:
+                                        </p>
+                                        <ul className="list-disc ps-2 md:ps-4 md:pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-2 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">Media Queries:</strong> اعمال استایل‌های مختلف بر اساس ویژگی‌های دستگاه (مانند عرض صفحه).</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">Flexbox & CSS Grid:</strong> سیستم‌های چیدمان قدرتمند CSS که ساخت  طراحی‌‌‌های انعطاف‌پذیر را بسیار آسان‌تر می‌کنند.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">واحدهای نسبی (Relative Units):</strong> استفاده از واحدهایی مانند درصد (`%`)، `vw` (viewport width)، `vh` (viewport height)، `em` و `rem` به جای واحدهای ثابت مانند پیکسل (`px`).</li>
+                                        </ul>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            یادگیری طراحی واکنش‌گرا برای هر توسعه‌دهنده وب مدرن <strong className="font-semibold">کاملاً ضروری</strong> است. <a href="https://vc-virtual-learn.com/courses/Build-Responsive-Real-World-Websites-with-HTML-and-CSS-Jonas-Schmedtmann" className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium hover:underline underline-offset-2 decoration-dotted">دوره HTML/CSS در Virtual Learn</a> تمرکز ویژه‌ای بر این مبحث دارد.
+                                        </p>
+
+                                        <div className="my-[25px] md:my-[30px] lg:my-[35px] flex flex-col items-center group">
+                                            <Image width="600" height="400" className="shadow-medium rounded-xl"
+                                                loading="lazy" alt="تصویر نشان دهنده یک وب سایت که به صورت واکنشگرا در سه دستگاه موبایل، تبلت و دسکتاپ نمایش داده شده است"
+                                                src={`${process.env.NEXT_PUBLIC_BLOG_IMAGE_BASE_URL}Breakpoints412345999.png`} />
+
+
+                                            <figcaption className="text-center text-sm text-gray-600 dark:text-gray-400 mt-3 italic w-full max-w-prose">طراحی واکنش‌گرا تضمین می‌کند که وب‌سایت شما در همه دستگاه‌ها عالی به نظر برسد و کار کند.</figcaption>
+                                        </div>
+
+                                        <h3 id="css-frameworks-preprocessors" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
+                                            ۲. فریمورک‌ها و پیش‌پردازنده‌های CSS
+                                        </h3>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            برای سرعت بخشیدن به توسعه و ایجاد استایل‌های منسجم، ابزارهای کمکی وجود دارند:
+                                        </p>
+                                        <ul className="list-disc ps-2 md:ps-4 md:pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-2 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">فریمورک‌های CSS (CSS Frameworks):</strong> مجموعه‌ای از کلاس‌ها و کامپوننت‌های CSS از پیش آماده که می‌توانید برای ساخت سریع رابط کاربری از آن‌ها استفاده کنید. معروف‌ترین‌ها عبارتند از <strong className="font-semibold">Bootstrap</strong> و <strong className="font-semibold">Tailwind CSS</strong> (که در Virtual Learn از آن استفاده می‌کنیم!). این فریمورک‌ها می‌توانند سرعت توسعه را به شدت افزایش دهند، اما مهم است که قبل از استفاده از آن‌ها، <strong className="font-semibold">مبانی CSS</strong> را به خوبی درک کرده باشید.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]"><strong className="font-semibold">پیش‌پردازنده‌های CSS (CSS Preprocessors):</strong> ابزارهایی مانند <strong className="font-semibold">Sass (SCSS)</strong> و <strong className="font-semibold">Less</strong> که قابلیت‌های برنامه‌نویسی مانند متغیرها، توابع، Mixinها و Nesting را به CSS اضافه می‌کنند و نوشتن کدهای CSS پیچیده و قابل نگهداری را آسان‌تر می‌سازند. کدهای نوشته شده با پیش‌پردازنده‌ها در نهایت به CSS استاندارد کامپایل می‌شوند.</li>
+                                        </ul>
+
+                                        <div className="flex items-start border-l-4 border-warning-500 dark:border-warning-400 bg-warning-100/60 dark:bg-gray-800 p-4 rounded-md my-[20px] md:my-[22px] lg:my-[25px] shadow-sm">
+                                            <span className="text-xl text-warning-600 dark:text-warning-300 mt-1">⚠️</span>
+                                            <div>
+                                                <strong className="font-semibold text-warning-800 dark:text-warning-200">توجه مهم:</strong>
+                                                <p className="text-warning-700 dark:text-warning-200/90 mt-1 text-[15px] md:text-[16px] leading-relaxed">قبل از پریدن به سمت فریمورک‌ها و پیش‌پردازنده‌ها، حتماً زمان کافی برای یادگیری و <strong className="font-semibold">تسلط بر CSS خالص (Vanilla CSS)</strong> صرف کنید. درک عمیق مبانی، شما را به توسعه‌دهنده بهتری تبدیل می‌کند و به شما کمک می‌کند تا از این ابزارها به شکل مؤثرتری استفاده کنید.</p>
+                                            </div>
+                                        </div>
+
+                                        <h3 id="next-step-javascript" className="text-gray-900 dark:text-white text-[18px] md:text-[20px] lg:text-[22px] font-semibold leading-[1.5] mt-[30px] md:mt-[35px] lg:mt-[40px] mb-[10px] md:mb-[12px] lg:mb-[15px]">
+                                            ۳. قدم حیاتی بعدی: جاوا اسکریپت (JavaScript)
+                                        </h3>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            HTML ساختار را می‌دهد و CSS ظاهر را. اما برای افزودن <strong className="font-semibold">تعامل (Interactivity)</strong>، پویایی و هوشمندی به وب‌سایت‌ها، به ضلع سوم مثلث توسعه فرانت‌اند نیاز دارید: <strong className="font-semibold">جاوا اسکریپت (JavaScript / JS)</strong>.
+                                        </p>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            با جاوا اسکریپت می‌توانید:
+                                        </p>
+                                        <ul className="list-disc ps-2 md:ps-4 md:pl-5 my-[15px] md:my-[18px] lg:my-[20px] space-y-2 text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px]">
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">محتوای HTML و استایل‌های CSS را پس از بارگذاری صفحه تغییر دهید.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">به رویدادهای کاربر (کلیک، حرکت موس، فشردن کلید) واکنش نشان دهید.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">فرم‌ها را اعتبارسنجی کنید.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">با سرور ارتباط برقرار کنید و داده‌ها را بدون بارگذاری مجدد صفحه (AJAX) دریافت یا ارسال کنید.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">انیمیشن‌های پیچیده ایجاد کنید.</li>
+                                            <li className="mb-[6px] md:mb-[8px] lg:mb-[10px]">و با استفاده از فریمورک‌های JS، وب‌اپلیکیشن‌های تک‌صفحه‌ای (Single Page Applications - SPAs) قدرتمند بسازید.</li>
+                                        </ul>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            پس از تسلط نسبی بر HTML و CSS، <strong className="font-semibold">یادگیری جاوا اسکریپت</strong> گام منطقی و ضروری بعدی برای هر کسی است که می‌خواهد به یک توسعه‌دهنده فرانت‌اند کامل تبدیل شود.
+                                        </p>
+
+                                        <div className="border-t-4 border-b-4 border-secondary-500 dark:border-secondary-400 bg-gradient-to-r from-secondary-100/50 to-blue-100/50 dark:from-gray-800 dark:to-gray-800/80 p-5 rounded-lg my-[30px] md:my-[35px] lg:my-[40px] shadow-lg text-center transition-transform duration-300 hover:scale-[1.02]">
+                                            <h3 className="text-xl font-semibold text-secondary-800 dark:text-secondary-200 mb-3 flex items-center justify-center">
+                                                <span className="text-2xl mr-2">⚡</span> آماده‌اید وب‌سایت‌هایتان را پویا و تعاملی کنید؟
+                                            </h3>
+                                            <p className="text-secondary-700 dark:text-secondary-300 mb-4 leading-relaxed text-[15px] md:text-[16px]">
+                                                اکنون که پایه‌های HTML و CSS را درک کرده‌اید، نوبت به افزودن قدرت جاوا اسکریپت است! <a href="https://vc-virtual-learn.com/courses/The-Complete-JavaScript-Course-2025-From-Zero-to-Expert-Jonas-Schmedtmann" target="_blank" rel="noopener noreferrer" className="text-secondary-600 dark:text-secondary-300 font-bold hover:underline decoration-wavy decoration-2 underline-offset-4">دوره کامل جاوا اسکریپت ۲۰۲۵: از صفر تا متخصص! در Virtual Learn</a>، شما را با تمام جنبه‌های این زبان حیاتی، از مبانی تا مفاهیم پیشرفته و پروژه‌های واقعی، آشنا می‌کند.
+                                            </p>
+                                            <Button as={Link} color="primary" variant="shadow" size="lg"
+                                                href="https://vc-virtual-learn.com/courses/The-Complete-JavaScript-Course-2025-From-Zero-to-Expert-Jonas-Schmedtmann" target="_blank" rel="noopener noreferrer" className="mt-2 text-wrap">مشاهده جزئیات دوره جاوا اسکریپت</Button>
+
+
+                                        </div>
+
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:my-[20px]">
+                                            برای درک بهتر جایگاه HTML و CSS در اکوسیستم بزرگتر وب، پیشنهاد می‌کنیم مقاله <a href="https://vc-virtual-learn.com/blog/blogs/what-is-internet-vs-web-complete-guide" className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium hover:underline underline-offset-2 decoration-dotted">وب و اینترنت چیست؟ راهنمای کامل ۰ تا ۱۰۰</a> را نیز مطالعه کنید.
+                                        </p>
+
+                                        <h2 id="faq" className="text-gray-900 dark:text-white text-[18px] md:text-[24px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[20px] md:mb-[25px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">🤔 پرسش‌های متداول درباره HTML و CSS در ایران</h2>
+                                        <div className="space-y-6 divide-y divide-gray-200 dark:divide-gray-700">
+                                            <div className="pt-6">
+                                                <dt>
+                                                    <button className="flex items-center justify-between w-full text-left group">
+                                                        <strong className="font-semibold text-gray-800 dark:text-gray-100 text-lg group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">آیا یادگیری HTML و CSS به تنهایی برای پیدا کردن شغل در ایران کافی است؟</strong>
+                                                    </button>
+                                                </dt>
+                                                <dd className="mt-2 pr-0">
+                                                    <p className="text-gray-700 dark:text-gray-300 text-[15px] md:text-[16px] leading-relaxed">HTML و CSS پایه‌های ضروری هستند، اما برای اکثر موقعیت‌های شغلی توسعه فرانت‌اند در ایران، دانش جاوا اسکریپت و حداقل آشنایی با یکی از فریمورک‌های رایج (مانند React یا Vue) نیز لازم است. با این حال، تسلط قوی بر HTML/CSS و طراحی واکنش‌گرا می‌تواند برای موقعیت‌های جونیور یا کارآموزی و همچنین نقش‌های مرتبط با طراحی UI/UX یا کار با سیستم‌های مدیریت محتوا مانند وردپرس کافی باشد یا مزیت بزرگی محسوب شود.</p>
+                                                </dd>
+                                            </div>
+                                            <div className="pt-6">
+                                                <dt>
+                                                    <button className="flex items-center justify-between w-full text-left group">
+                                                        <strong className="font-semibold text-gray-800 dark:text-gray-100 text-lg group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">چقدر زمان لازم است تا HTML و CSS را در حد قابل قبول یاد بگیرم؟</strong>
+                                                    </button>
+                                                </dt>
+                                                <dd className="mt-2 pr-0">
+                                                    <p className="text-gray-700 dark:text-gray-300 text-[15px] md:text-[16px] leading-relaxed">مبانی HTML و CSS را می‌توان نسبتاً سریع (در چند هفته) یاد گرفت. اما رسیدن به تسلط، به خصوص در مفاهیم پیشرفته CSS مانند Flexbox، Grid و طراحی واکنش‌گرا، نیازمند تمرین مداوم و ساخت پروژه‌های عملی است که ممکن است چند ماه طول بکشد. سرعت یادگیری به زمان مطالعه، کیفیت منابع و میزان تمرین شما بستگی دارد.</p>
+                                                </dd>
+                                            </div>
+                                            <div className="pt-6">
+                                                <dt>
+                                                    <button className="flex items-center justify-between w-full text-left group">
+                                                        <strong className="font-semibold text-gray-800 dark:text-gray-100 text-lg group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">بهترین راه برای تمرین HTML و CSS چیست؟</strong>
+                                                    </button>
+                                                </dt>
+                                                <dd className="mt-2 pr-0">
+                                                    <div className="text-gray-700 dark:text-gray-300 text-[15px] md:text-[16px] leading-relaxed">بهترین راه، ساختن پروژه است!
+                                                        <ul className="list-disc list-inside mt-2 space-y-1">
+                                                            <li>سعی کنید وب‌سایت‌های ساده یا بخش‌هایی از وب‌سایت‌های معروف را <strong className="font-semibold">شبیه‌سازی (Clone)</strong> کنید.</li>
+                                                            <li>برای خودتان <strong className="font-semibold">پروژه‌های کوچک شخصی</strong> تعریف کنید (مثلاً یک صفحه رزومه آنلاین، یک گالری عکس، یک صفحه معرفی محصول).</li>
+                                                            <li>از پلتفرم‌های <strong className="font-semibold">چالش کدنویسی</strong> مانند Frontend Mentor استفاده کنید.</li>
+                                                            <li>در <strong className="font-semibold">دوره‌های پروژه‌محور</strong> مانند دوره <a href='https://vc-virtual-learn.com/courses/Build-Responsive-Real-World-Websites-with-HTML-and-CSS-Jonas-Schmedtmann' className='text-primary-600 dark:text-primary-400 hover:underline'>HTML & CSS در Virtual Learn</a> شرکت کنید که شما را قدم به قدم در ساخت پروژه‌های واقعی راهنمایی می‌کنند.</li>
+                                                        </ul>
+                                                    </div>
+                                                </dd>
+                                            </div>
+                                            <div className="pt-6">
+                                                <dt>
+                                                    <button className="flex items-center justify-between w-full text-left group">
+                                                        <strong className="font-semibold text-gray-800 dark:text-gray-100 text-lg group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">آیا باید اول CSS را کامل یاد بگیرم بعد سراغ فریمورک‌هایی مثل Tailwind یا Bootstrap بروم؟</strong>
+                                                    </button>
+                                                </dt>
+                                                <dd className="mt-2 pr-0">
+                                                    <p className="text-gray-700 dark:text-gray-300 text-[15px] md:text-[16px] leading-relaxed">بله، قویاً توصیه می‌شود که قبل از استفاده از فریمورک‌ها، درک خوبی از مفاهیم اصلی CSS (انتخابگرها، Box Model، Flexbox، Grid، Cascade، Specificity) پیدا کنید. فریمورک‌ها ابزارهای قدرتمندی هستند، اما اگر ندانید در پس‌زمینه چه اتفاقی می‌افتد، استفاده مؤثر از آن‌ها و رفع اشکالات احتمالی دشوار خواهد بود. تسلط بر CSS خالص شما را به توسعه‌دهنده منعطف‌تر و توانمندتری تبدیل می‌کند.</p>
+                                                </dd>
+                                            </div>
+                                            <div className="pt-6">
+                                                <dt>
+                                                    <button className="flex items-center justify-between w-full text-left group">
+                                                        <strong className="font-semibold text-gray-800 dark:text-gray-100 text-lg group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">دوره HTML/CSS در Virtual Learn چه فرقی با آموزش‌های رایگان دارد؟</strong>
+                                                    </button>
+                                                </dt>
+                                                <dd className="mt-2 pr-0">
+                                                    <p className="text-gray-700 dark:text-gray-300 text-[15px] md:text-[16px] leading-relaxed">دوره "آموزش HTML & CSS ساخت سایت واکنشگرا" در Virtual Learn یک دوره جامع، ساختاریافته و پروژه‌محور از یکی از بهترین مدرسان بین‌المللی (Jonas Schmedtmann) است که با <strong className="font-semibold">زیرنویس دقیق فارسی</strong> ارائه می‌شود. این دوره شما را از صفر مطلق تا ساخت وب‌سایت‌های پیچیده و مدرن هدایت می‌کند و روی بهترین روش‌ها (Best Practices) و مفاهیم کلیدی مانند Flexbox، Grid و طراحی واکنش‌گرا تمرکز دارد. در حالی که منابع رایگان می‌توانند مفید باشند، این دوره یک مسیر یادگیری کامل و عمیق با پشتیبانی بصری و پروژه‌های عملی ارائه می‌دهد که برای یادگیری اصولی و رسیدن به سطح حرفه‌ای بسیار مؤثرتر است.</p>
+                                                </dd>
+                                            </div>
+                                        </div>
+
+                                        <h2 id="conclusion" className="text-gray-900 dark:text-white text-[18px] md:text-[24px] lg:text-[28px] font-semibold leading-[1.5] mt-[40px] md:mt-[45px] lg:mt-[50px] mb-[15px] md:mb-[18px] lg:mb-[20px] border-b-2 border-primary-200 dark:border-primary-800 pb-2">جمع‌بندی: ساختن آینده وب، یک خط کد در هر زمان</h2>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
+                                            در این راهنمای جامع، به قلب تپنده وب مدرن سفر کردیم و با دو یار جدایی‌ناپذیر آن، <strong className="font-semibold">HTML و CSS</strong>، آشنا شدیم. دیدیم که چگونه HTML ساختار و معنای محتوا را تعریف می‌کند (اسکلت) و چگونه CSS به آن جان و زیبایی می‌بخشد (لباس و آرایش). بررسی کردیم که چرا یادگیری این دو زبان، نه تنها یک مهارت پایه، بلکه یک <strong className="font-semibold">ضرورت مطلق</strong> برای ورود به دنیای توسعه وب و بهره‌مندی از فرصت‌های شغلی فراوان در <strong className="font-semibold">بازار کار ایران</strong> است.
+                                        </p>
+                                        <p className="text-gray-800 dark:text-gray-200 text-[15px] md:text-[16px] lg:text-[17px] font-normal leading-[1.8] text-justify my-[15px] md:my-[18px] lg:mb-[20px]">
+                                            از مفاهیم کلیدی و نمونه کدها گرفته تا اهمیت طراحی واکنش‌گرا و نگاهی به گام‌های بعدی مانند جاوا اسکریپت، تلاش کردیم تا یک نقشه راه روشن برای شما ترسیم کنیم. به یاد داشته باشید، دنیای <strong className="font-semibold">طراحی و توسعه وب</strong> دنیایی پویا و همواره در حال تغییر است، اما HTML و CSS همچنان پایه‌های استوار آن باقی خواهند ماند. یادگیری مستمر، تمرین مداوم و ساخت پروژه‌های واقعی، کلید شما برای گشودن درهای این دنیای هیجان‌انگیز است. Virtual Learn اینجاست تا در این مسیر، با ارائه بهترین آموزش‌های روز دنیا و زیرنویس فارسی، همراه شما باشد.
+                                        </p>
+
+                                        <div className="mt-[30px] md:mt-[40px] lg:mt-[50px] space-y-8 bg-gradient-to-b from-gray-50 to-primary-100/30 dark:from-gray-900 dark:to-gray-800/50 p-6 md:p-8 rounded-lg border border-gray-200 dark:border-gray-700 text-center shadow-inner">
+
+
+                                            <div className="">
+                                                <h3 className="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white mb-3">💬 نوبت شماست! به بحث بپیوندید</h3>
+                                                <p className="text-gray-800 dark:text-gray-200 text-lg leading-relaxed">
+                                                    تجربه شما با <strong className="font-semibold">یادگیری HTML و CSS</strong> چه بوده است؟ آیا در حال حاضر از این مهارت‌ها در پروژه‌های خود در ایران استفاده می‌کنید؟ کدام بخش این راهنما برایتان مفیدتر بود؟ نظرات، سوالات و تجربیات ارزشمندتان را در بخش کامنت‌ها با ما و دیگر علاقه‌مندان به دنیای وب به اشتراک بگذارید! 👇
+                                                </p>
+                                            </div>
+
+
+                                            <hr className="border-gray-300 dark:border-gray-600 w-1/2 mx-auto" />
+
+
+                                            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-primary-300 dark:border-primary-700 transform transition hover:scale-[1.03] duration-300">
+                                                <h4 className="text-xl md:text-2xl font-bold text-primary-700 dark:text-primary-300 mb-4 flex items-center justify-center">
+                                                    <span className="text-3xl ml-2">🎓</span> آماده‌اید وب‌سایت‌های حرفه‌ای و واکنش‌گرا بسازید؟
+                                                </h4>
+                                                <p className="text-gray-800 dark:text-gray-200 text-lg leading-relaxed mb-5 font-medium">
+                                                    <a href="https://vc-virtual-learn.com/courses/Build-Responsive-Real-World-Websites-with-HTML-and-CSS-Jonas-Schmedtmann" target="_blank" rel="noopener noreferrer" className="text-primary-600 dark:text-primary-300 font-bold hover:underline decoration-wavy decoration-2 underline-offset-4">دوره تخصصی و پروژه‌محور "آموزش HTML & CSS ساخت سایت واکنشگرا" در Virtual Learn</a>، با زیرنویس هوشمند و دقیق فارسی، کامل‌ترین مسیر یادگیری برای تسلط بر پایه‌های وب و درخشش در بازار کار ایران است.
+                                                </p>
+                                                <a href="https://vc-virtual-learn.com/courses/Build-Responsive-Real-World-Websites-with-HTML-and-CSS-Jonas-Schmedtmann" target="_blank" rel="noopener noreferrer" className="inline-block px-8 py-3 bg-primary-500 hover:bg-primary-600 dark:hover:bg-primary-700 text-white text-lg font-semibold rounded-lg shadow-lg transition duration-300 transform hover:scale-105 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800">شروع یادگیری ساخت وب‌سایت‌های مدرن!</a>
+                                            </div>
+
+                                        </div>
+
+                                    </article>
 
                                 </div>
                             </div>
