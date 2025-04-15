@@ -67,7 +67,7 @@ function FeaturedSidebar({ oldestBlogs, popularBlogs }: { oldestBlogs: any, popu
                     {
                         state ?
                             popularBlogs?.map((blog: any, index: number) =>
-                                <div key={index} className="mb-4 flex items-center gap-4 pb-6 border-b border-border border-secondary-500">
+                                <Link href={`blog/blogs/${blog?.slug}`} key={index} className="mb-4 flex items-center gap-4 pb-6 border-b border-border border-secondary-500">
                                     <Avatar className="min-w-20 max-w-20 h-20" isBordered size={'lg'} color="secondary" radius="full" src={blog?.thumbnail?.imageUrl} />
 
                                     <div className='mb-3'>
@@ -80,11 +80,11 @@ function FeaturedSidebar({ oldestBlogs, popularBlogs }: { oldestBlogs: any, popu
                                         </div>
                                     </div>
 
-                                </div>
+                                </Link>
                             )
                             :
                             oldestBlogs?.map((blog: any, index: number) =>
-                                <div className="mb-4 flex items-center gap-4 pb-6 border-b border-border border-secondary-500">
+                                <Link key={index} href={`blog/blogs/${blog?.slug}`} className="mb-4 flex items-center gap-4 pb-6 border-b border-border border-secondary-500">
                                     <Avatar className="w-20 h-20" isBordered size={'lg'} color="secondary" radius="full" src={blog?.thumbnail?.imageUrl} />
 
                                     <div className='mb-3'>
@@ -97,7 +97,7 @@ function FeaturedSidebar({ oldestBlogs, popularBlogs }: { oldestBlogs: any, popu
                                         </div>
                                     </div>
 
-                                </div>
+                                </Link>
                             )
                     }
 

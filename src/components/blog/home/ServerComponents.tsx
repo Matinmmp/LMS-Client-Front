@@ -16,7 +16,7 @@ function FeaturedPosts({ blogs }: { blogs: any }) {
                 <div className="flex flex-col md:flex-row gap-6">
 
                     <div className="w-full md:w-1/2">
-                        <Link href={`/blogs/${blogs[0]?.slug}`} className="w-full flex flex-col">
+                        <Link href={`blog/blogs/${blogs[0]?.slug}`} className="w-full flex flex-col">
                             <Image src={blogs[0]?.thumbnail?.imageUrl} alt="1" width={500} height={300}
                                 className="w-full rounded-md aspect-video object-cover object-center shadow-medium" />
 
@@ -79,7 +79,7 @@ function ReceentPosts({ blogs }: { blogs: any }) {
 
                     {
                         blogs?.map((blog: any, index: number) =>
-                            <Link key={index} href={`/blogs/${blog?.slug}`} className="w-full flex flex-col">
+                            <Link key={index} href={`blog/blogs/${blog?.slug}`} className="w-full flex flex-col">
                                 <Image src={blog?.thumbnail?.imageUrl} alt="1" width={500} height={300}
                                     className="w-full rounded-md aspect-video object-cover object-center shadow-medium" />
                                 <h3 className="mt-3 text-xl  font-medium hover:text-secondary-500 cursor-pointer">
@@ -154,7 +154,7 @@ function WhatIsVirtualLearn() {
         <div className="w-full flex flex-col items-center justify-center">
             <section className="w-full mt-40 max-w-7xl px-4 md:px-8 2xl:px-2 flex flex-col items-center justify-center ">
                 <div className="w-full rounded-2xl shadow-medium p-8 py-14 bg-white dark:bg-black/40">
-                    <div className="flex items-center gap-10 relative">
+                    <div className="flex flex-col md:flex-row items-center gap-10 relative">
                         <Image priority alt="لوگوی ویرچوال لرن، پلتفرم آموزش برنامه‌نویسی" className="w-36 h-36" height={400} width={400}
                             src={process.env.NEXT_PUBLIC_IMAGE_BASE_URL + "logo-main.png"} />
                         <span className=" dark:bg-[rgba(21,130,255,0.10)] absolute  right-1 w-10 h-10 background -z-30" />
