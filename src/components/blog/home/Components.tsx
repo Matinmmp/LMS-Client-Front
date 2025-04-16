@@ -85,7 +85,7 @@ function FeaturedSidebar({ oldestBlogs, popularBlogs }: { oldestBlogs: any, popu
                             :
                             oldestBlogs?.map((blog: any, index: number) =>
                                 <Link key={index} href={`blog/blogs/${blog?.slug}`} className="mb-4 flex items-center gap-4 pb-6 border-b border-border border-secondary-500">
-                                    <Avatar className="w-20 h-20" isBordered size={'lg'} color="secondary" radius="full" src={blog?.thumbnail?.imageUrl} />
+                                    <Avatar className="min-w-20 max-w-20 h-20" isBordered size={'lg'} color="secondary" radius="full" src={blog?.thumbnail?.imageUrl} />
 
                                     <div className='mb-3'>
                                         <h3 className="font-medium mb-2 block hover:text-secondary-500">
