@@ -96,7 +96,7 @@ export const rateCourse = async ({ courseId, rating }: { courseId: string, ratin
 
 }
 
-export const recordCourseView = async ({ courseId }: { courseId: string,}) => {
+export const recordCourseView = async ( courseId: string) => {
     
     const data = await customFetch(`/recordCourseView/${courseId}`, {
         method: 'Get',

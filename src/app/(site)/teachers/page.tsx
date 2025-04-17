@@ -68,7 +68,7 @@ export default async function Home() {
 
             return s
         })
-        console.log(items);
+     
         schema.mainEntity.itemListElement = items;
 
         return (

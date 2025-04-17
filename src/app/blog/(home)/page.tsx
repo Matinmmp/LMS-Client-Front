@@ -2,7 +2,7 @@
 import MainSlider from '@/src/components/blog/home/MainSlider';
 import { CategoriesSidebar, FeaturedPosts, ReceentPosts, WhatIsVirtualLearn } from '@/src/components/blog/home/ServerComponents';
 import { VirtualInfo, FeaturedSidebar, NewSteler } from '@/src/components/blog/home/Components';
-import { getBlogsInSlider, getLatestBlogs, getOldestAndPopularBlogs, getSpecialBlogs } from '@/src/lib/apis/blogApis';
+import {getBlogsInSlider, getLatestBlogs, getOldestAndPopularBlogs, getSpecialBlogs } from '@/src/lib/apis/blogApis';
 import Script from 'next/script';
 
 
@@ -49,7 +49,6 @@ export default async function Home() {
         getLatestBlogs(),
         getOldestAndPopularBlogs()
     ]);
-
 
 
 

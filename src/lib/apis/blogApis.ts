@@ -86,7 +86,7 @@ export const getBlogsByCategories = async () => {
     }
 }
 
-export const getBlogsByCategory = async ({slug}:{slug:string}) => {
+export const getBlogsByCategory = async ({ slug }: { slug: string }) => {
     try {
         const data = await customFetch(`/getBlogsByCategory/${slug}`, {
             method: 'GET',
@@ -104,7 +104,7 @@ export const getBlogsByCategory = async ({slug}:{slug:string}) => {
 }
 
 
-export const getRelatedBlogsByCourseName = async (name:string) => {
+export const getRelatedBlogsByCourseName = async (name: string) => {
     try {
         const data = await customFetch(`/getRelatedBlogsByCourseName/${name}`, {
             method: 'GET',
@@ -149,4 +149,32 @@ export const getBlogBySlug = async (slug: string) => {
     } catch (error) {
         return error
     }
+}
+
+export const getAllBlogSlugs = async () => {
+    try {
+        const data = await customFetch(`/getAllBlogSlugs`, {
+            method: 'GET',
+            next: { revalidate: 86400 },
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }
+        );
+        return await data;
+    } catch (error) {
+        return error
+    }
+}
+
+export const recordBlogView = async ( blogId: string) => {
+    
+    const data = await customFetch(`/recordBlogView/${blogId}`, {
+        method: 'Get',
+        headers: { 'Content-Type': 'application/json' },
+    }
+    );
+ 
+    return await data;
+
 }

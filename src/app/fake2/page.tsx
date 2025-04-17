@@ -1,7 +1,7 @@
 
-import { CategoriesSidebar } from "@/src/components/blog/home/ServerComponents";
+'use client'
 import Code from "@/src/components/Shared/Code";
-import { formatJalaliDate, secondsToMinutes, toPersianNumber } from "@/src/utils/functions";
+import {  secondsToMinutes, toPersianNumber } from "@/src/utils/functions";
 import { Button } from "@nextui-org/button";
 import Image from "next/image";
 import Link from "next/link";
@@ -642,7 +642,6 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                         </div>
 
                                     </article>
-
 
                                     <article>
                                         <h1 id="main-title" className="text-[#3E4247] dark:text-white text-[20px] md:text-[28px] lg:text-[32px] font-bold leading-[1.4] mt-[40px] mb-[20px] md:mb-[25px] lg:mb-[30px]">
@@ -2592,7 +2591,6 @@ color: navy;
 
                                     </article>
 
-
                                     <article>
 
                                         <h1 id="main-title" className="text-[#3E4247] dark:text-white text-[20px] md:text-[28px] lg:text-[32px] font-bold leading-[1.4] mt-[40px] mb-[20px] md:mb-[25px] lg:mb-[30px]">
@@ -3190,7 +3188,6 @@ color: navy;
                                 </div>
                             </div>
                             <div className="w-full lg:w-[25%] px-4 md:p-0">
-                                <CategoriesSidebar />
                             </div>
                         </div>
                     </div>

@@ -7,7 +7,7 @@ export default function robots():MetadataRoute.Robots{
             {
                 userAgent:'*',
                 allow:'/',
-                disallow:['/profile','/profile/*','/error','https://courses.vc-virtual-learn.com'],
+                disallow:['/profile','/profile/*','/error','https://courses.vc-virtual-learn.com','/fake2'],
                 // disallow:['/','/*'],
 
             }

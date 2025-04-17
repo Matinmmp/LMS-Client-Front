@@ -66,7 +66,7 @@ const Courses = ({ children }: Props) => {
 
     const handleAcademySelect = (academyName: string) => {
         const academy: any = academiesList.find((item: any) => item.engName === academyName);
-        console.log(academyName);
+   
         if (!selectedAcadmies.includes(academy.engName))
             setSelectedAcadmies((selectedAcadmies) => [...selectedAcadmies, academyName])
         else

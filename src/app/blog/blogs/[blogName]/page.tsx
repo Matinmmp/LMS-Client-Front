@@ -1,16 +1,17 @@
 import BlogInfo from "@/src/components/blog/BlogInfo";
-import { getBlogBySlug } from "@/src/lib/apis/blogApis";
+import { getAllBlogSlugs, getBlogBySlug, recordBlogView } from "@/src/lib/apis/blogApis";
 import { notFound } from "next/navigation";
 import Script from "next/script";
 
-// export async function generateStaticParams() {
-//     const coursUrlNames: any = await getAllCourseUrlNames();
+export async function generateStaticParams() {
 
+    const list: any = await getAllBlogSlugs()
 
-//     return coursUrlNames?.coursUrlNames?.map((course: { urlName: string }) => ({
-//         courseName: encodeURIComponent(encodeTitle(course?.urlName)),
-//     })) || [];
-// }
+    return list?.blogs?.map((blog: any) => ({
+        blogName: blog?.slug,
+    })) || [];
+
+}
 
 type Props = {
     params: { blogName: string }
@@ -26,6 +27,7 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
 
     if (data && data.success) {
         const blog = data?.blog;
+        recordBlogView(data?.blog?._id)
 
         const schema = {
             "@context": "https://schema.org",
@@ -90,6 +92,6 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                 <div className="gap-10 relative"><span className=" dark:bg-[rgba(21,130,255,0.10)] absolute  right-1 w-10 h-10 background -z-30" /></div>
             </>
         );
-         
+
     }
 }

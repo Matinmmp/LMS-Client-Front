@@ -1,5 +1,5 @@
-import BlogHeader from "@/src/components/blog/Header";
-import Footer from "@/src/components/Shared/Footer";
+// import BlogHeader from "@/src/components/blog/Header";
+// import Footer from "@/src/components/Shared/Footer";
 import "@/src/styles/globals.css";
 
 
@@ -22,11 +22,11 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
                 <div className="background z-[-1] !fixed">
                     <span className=" dark:bg-[#1582ff37] absolute  right-1" />
                 </div>
-                <BlogHeader />
+                {/* <BlogHeader /> */}
                 {children}
                 
                 <div className="mt-24"></div>
-                <Footer />
+                {/* <Footer /> */}
             </div>
 
         </>

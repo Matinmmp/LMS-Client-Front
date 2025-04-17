@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { formatJalaliDate, secondsToMinutes, toPersianNumber } from "@/src/utils/functions";
 import { CategoriesSidebar } from "./home/ServerComponents";
+import { NewSteler } from "./home/Components";
 
 export default async function BlogInfo({ data }: { data: any }) {
 
@@ -21,11 +22,14 @@ export default async function BlogInfo({ data }: { data: any }) {
 
                             </div>
                             <div className="mt-10 " dangerouslySetInnerHTML={{ __html: data?.longDescription }}></div>
-                           
+
                         </div>
                     </div>
                     <div className="w-full lg:w-[25%] ">
                         <CategoriesSidebar />
+                        <div className="mt-6">
+                            <NewSteler />
+                        </div>
                     </div>
                 </div>
             </div>

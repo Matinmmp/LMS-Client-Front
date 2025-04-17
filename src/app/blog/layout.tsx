@@ -1,8 +1,7 @@
-import BlogHeader from "@/src/components/blog/Header";
-import { WhatIsVirtualLearn } from "@/src/components/blog/home/Components";
 import Footer from "@/src/components/Shared/Footer";
 import "@/src/styles/globals.css";
-
+import dynamic from "next/dynamic";
+const BlogHeader = dynamic(() => import('../../components/blog/Header'), { loading: () => <p></p>, })
 
 export default function RootLayout({ children, }: { children: React.ReactNode }) {
     return (
@@ -18,14 +17,14 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
             <meta name="enamad" content="67578191" />
             <meta property="og:site_name" content="Virtual Learn" />
 
-            <div className="relative z-20 bg-[#fffdfd]/ bg-[#F9FAFB] dark:bg-[#111111] bg-[#202425]/ dark:bg-[#000]/ min-h-screen rrrrrrrrrrrrrrrrr">
+            <div className="relative z-20 bg-[#fffdfd]/ bg-[#F9FAFB] dark:bg-[#111111] bg-[#202425]/ dark:bg-[#000]/ min-h-screen">
 
                 <div className="background z-[-1] !fixed">
                     <span className=" dark:bg-[#1582ff37] absolute  right-1" />
                 </div>
                 <BlogHeader />
                 {children}
-                
+
                 <div className="mt-24"></div>
                 <Footer />
             </div>

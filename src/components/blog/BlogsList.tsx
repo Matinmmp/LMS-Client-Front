@@ -11,7 +11,7 @@ type Props = {
 
 const BlogsList = async ({ object }: Props) => {
     const data: any = await searchBlogs(object);
-    console.log(data)
+   
     return (
         <>
             {data?.blogs?.length ?

@@ -26,16 +26,37 @@ export default async function name(): Promise<MetadataRoute.Sitemap> {
         priority: 0.9
     }))
 
-    const list1 = courseEntries?.length ? courseEntries: [];
-    const list2 = teacherEntries?.length ? teacherEntries: [];
-    const list3 = acadmeyEntries?.length ? acadmeyEntries: [];
+    const blogSlugResponse = await axios.get(`${BASE_URL}/getAllBlogSlugs`);
+    const blogEntries: MetadataRoute.Sitemap = blogSlugResponse?.data?.blogs?.map((blog: any) => ({
+        url: `https://vc-virtual-learn.com/blog/blogs/${blog?.slug}`,
+        priority: 0.9
+    }))
+ 
+
+    const list1 = courseEntries?.length ? courseEntries : [];
+    const list2 = teacherEntries?.length ? teacherEntries : [];
+    const list3 = acadmeyEntries?.length ? acadmeyEntries : [];
+    const list4 = blogEntries?.length ? blogEntries : [];
 
     return [
         ...list1,
         ...list2,
         ...list3,
+        ...list4,
         {
             url: `https://vc-virtual-learn.com/`,
+            priority: 1,
+        },
+        {
+            url: `https://vc-virtual-learn.com/blog`,
+            priority: 1,
+        },
+        {
+            url: `https://vc-virtual-learn.com/blog/blogs`,
+            priority: 0.9,
+        },
+        {
+            url: `https://vc-virtual-learn.com/blog/categories`,
             priority: 1,
         },
         {

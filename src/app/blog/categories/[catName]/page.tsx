@@ -1,7 +1,7 @@
 
 import { CourseSlider } from '@/src/components/blog/home/MainSlider';
 import { BlogPost, CategoriesSidebar } from '@/src/components/blog/home/ServerComponents';
-import { getBlogsByCategories, getBlogsByCategory } from '@/src/lib/apis/blogApis';
+import {getBlogsByCategory } from '@/src/lib/apis/blogApis';
 import { getHomeLastCourses } from '@/src/lib/apis/homeApis';
 import Script from 'next/script';
 
@@ -63,7 +63,7 @@ export default async function CategoriesPage(s: any) {
         };
     }
 
-    console.log(data2)
+ 
     if (data2?.value?.success)
         return (
 
