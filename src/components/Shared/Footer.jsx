@@ -132,11 +132,11 @@ const Footer = ({ }) => {
                             <div className="min-w-[12rem]">
                                 <p className={clsx(title({ color: 'blue' }), 'text-xl lg:text-2xl font-bold')}>دسترسی سریع</p>
                                 <ul className="mt-6 className= flex flex-col gap-3">
-                                    {/* <li>
-                                    <Link color="foreground" href={"/"} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
+                                    <li>
+                                    <Link color="foreground" href={"/blog"} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >
                                         بلاگ
                                     </Link>
-                                </li> */}
+                                </li>
 
                                     <li>
                                         <Link color="foreground" href={"/teachers"} className={clsx(linkStyles({ color: "foreground" }), "font-medium")} >

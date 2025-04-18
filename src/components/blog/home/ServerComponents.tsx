@@ -12,7 +12,7 @@ function FeaturedPosts({ blogs }: { blogs: any }) {
             <h2 className=" text-2xl lg:text-3xl font-semibold underline decoration-secondary-500
              decoration-wavy decoration-[2px] underline-offset-[1rem] lg:underline-offset-[1.5rem]">پست‌های ویژه</h2>
 
-            <div className="w-full mt-16 p-6 pe-3 rounded-xl border-1 border-secondary-500 shadow-medium bg-white dark:bg-transparent">
+            <div className="w-full mt-16 p-6 rounded-xl border-1 border-secondary-500 shadow-medium bg-white dark:bg-transparent">
                 <div className="flex flex-col md:flex-row gap-6">
 
                     <div className="w-full md:w-1/2">
@@ -44,9 +44,9 @@ function FeaturedPosts({ blogs }: { blogs: any }) {
                         <div className="pe-3 overflow-auto scrollbar-w-[10px] mt-8 max-h-[480px] scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-border dark:scrollbar-track-gray-800 dark:scrollbar-thumb-darkmode-theme-dark md:mt-0 md:col-6">
 
                             {
-                                blogs?.map((blog: any, index: number) =>
-                                    <Link  key={index}  href={`/blogs/${blog?.slug}`} className="mb-6 flex gap-4 pb-6 border-b border-border">
-                                        <Image alt="Drone Software and Development" src={blog?.thumbnail?.imageUrl} width="120" height="80" className="h-[85px] rounded object-cover" />
+                                blogs?.slice(1)?.map((blog: any, index: number) =>
+                                    <Link  key={index}  href={`/blogs/${blog?.slug}`} className="mb-6 flex flex-col sm:flex-row gap-4 pb-6 border-b border-border">
+                                        <Image alt={blog?.title} src={blog?.thumbnail?.imageUrl} width="192" height="108" className="w-full aspect-video sm:h-[85px] sm:w-auto rounded object-cover" />
                                         <div className='mt-1'>
                                             <h3 className="text-lg mb-2 block hover:text-secondary-500">
                                                 {blog?.title}

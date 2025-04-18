@@ -520,11 +520,10 @@ const DrawerContent = ({ setIsOpen }: DrawerContentProps) => {
 
 
                 <div className="w-full mt-6 px-2 flex flex-col gap-4">
-                    <DrawerDropDown categoryList={categories[0]?.subCategories} setIsOpen={setIsOpen} />
-
                     <NextLink color="foreground" href={"/blog"} className={clsx(linkStyles({ color: "foreground" }), "font-semibold")} >
                         بلاگ
                     </NextLink>
+                    <DrawerDropDown categoryList={categories[0]?.subCategories} setIsOpen={setIsOpen} />
 
                     <DrawerDropDown2 setIsOpen={setIsOpen} baseUrl="teachers" color={'primary'} total={teacherObject?.total} list={teacherObject?.teacherList} title={'مدرس‌ها'} radius="full" />
                     <DrawerDropDown2 setIsOpen={setIsOpen} baseUrl="academies" color={'secondary'} total={academiesObject?.total} list={academiesObject?.academyList} title={'آکادمی ها'} radius="sm" />

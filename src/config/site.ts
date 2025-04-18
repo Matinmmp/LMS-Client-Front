@@ -114,6 +114,6 @@ export const blogCategories = [
         "name": "برنامه نویسی",
         "slug": "programming",
         "imageUrl": "https://images.vc-virtual-learn.com/CategoryImages/1744652793393-programming.png",
-        "totalBlogs": 2
+        "totalBlogs": 3
     }
 ]
