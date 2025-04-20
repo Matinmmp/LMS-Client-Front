@@ -50,12 +50,12 @@ export default async function CourseDetail({ params: { courseName } }: Props) {
             "provider": {
                 "@type": "Organization",
                 "name": "Virtual Learn",
-                "url": "https://www.vc-virtual-learn.com"
+                "url": "https://vc-virtual-learn.com"
             },
             "isPartOf": {
                 "@type": "WebSite",
                 "name": "ویرچوال لرن",
-                "url": "https://www.vc-virtual-learn.com"
+                "url": "https://vc-virtual-learn.com"
             },
             "hasCourseInstance": {
                 "@type": "CourseInstance",
@@ -68,11 +68,11 @@ export default async function CourseDetail({ params: { courseName } }: Props) {
                 "instructor": {
                     "@type": "Person",
                     "name": data?.courseData?.teacher?.engName,
-                    "url": `https://www.vc-virtual-learn.com/teachers/${encodeTitle(data?.courseData?.teacher?.engName)}`
+                    "url": `https://vc-virtual-learn.com/teachers/${encodeTitle(data?.courseData?.teacher?.engName)}`
                 },
                 "location": {
                     "@type": "VirtualLocation",
-                    "url": `https://www.vc-virtual-learn.com/courses/${encodeTitle(data?.courseData?.course?.urlName)}`
+                    "url": `https://vc-virtual-learn.com/courses/${encodeTitle(data?.courseData?.course?.urlName)}`
                 }
             },
             "image": data?.courseData?.course?.thumbnail?.imageUrl,
@@ -83,7 +83,7 @@ export default async function CourseDetail({ params: { courseName } }: Props) {
                 "priceCurrency": "IRR",
                 "availability": "InStock",
                 "category": data?.courseData?.course?.category || "Programming",
-                "url": `https://www.vc-virtual-learn.com/courses/${encodeTitle(data?.courseData?.course?.urlName)}`
+                "url": `https://vc-virtual-learn.com/courses/${encodeTitle(data?.courseData?.course?.urlName)}`
             }
         };
 
@@ -122,7 +122,7 @@ export default async function CourseDetail({ params: { courseName } }: Props) {
 
                 <meta property="og:title" content={data?.courseData?.course?.seoMeta?.title ? data?.courseData?.course?.seoMeta?.title : data?.courseData?.course?.name} />
                 <meta property="og:description" content={data?.courseData?.course?.seoMeta?.description} />
-                <meta property="og:url" content={`https://www.vc-virtual-learn.com/courses/${courseName}`} />
+                <meta property="og:url" content={`https://vc-virtual-learn.com/courses/${courseName}`} />
                 <meta property="og:image" content={data?.courseData?.course?.thumbnail?.imageUrl} />
 
                 <meta name="twitter:title" content={data?.courseData?.course?.seoMeta?.title ? data?.courseData?.course?.seoMeta?.title : data?.courseData?.course?.name} />
@@ -131,7 +131,7 @@ export default async function CourseDetail({ params: { courseName } }: Props) {
                 {/* بعدا عکسو بذار */}
                 <meta name="twitter:image" content={data?.courseData?.course?.thumbnail?.imageUrl} />
 
-                <link rel="canonical" href={`https://www.vc-virtual-learn.com/courses/${courseName}`} />
+
 
                 <div className="w-full max-w-7xl mt-28 px-4 md:px-8 2xl:px-2 flex items-center justify-center ">
                     <CourseInfo data={data?.courseData} isPurchased={data?.isPurchased} userRate={data?.userRate} />

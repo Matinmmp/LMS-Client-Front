@@ -1270,7 +1270,7 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                                 <li><a href="#web-ocean-of-content" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۲. وب (World Wide Web): اقیانوس محتوا روی اینترنت</a></li>
                                                 <li>
                                                     <a href="#history-internet-web" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۳. سفری در زمان: تاریخچه شگفت‌انگیز اینترنت و وب</a>
-                                                    <ul className="ps-4  list-['-_'] ps-2  mt-1 space-y-1 text-xs md:text-sm">
+                                                    <ul className=" list-['-_'] ps-2  mt-1 space-y-1 text-xs md:text-sm">
                                                         <li><a href="#internet-history" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">ریشه‌های اینترنت: از جنگ سرد تا ARPANET</a></li>
                                                         <li><a href="#web-history" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">تولد وب: ایده درخشان تیم برنرز-لی</a></li>
                                                         <li><a href="#web-growth-milestones" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">رشد انفجاری و نقاط عطف کلیدی</a></li>
@@ -1278,7 +1278,7 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                                 </li>
                                                 <li>
                                                     <a href="#web-building-blocks" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">۴. اجزای سازنده وب: بلوک‌های بنیادین دنیای آنلاین</a>
-                                                    <ul className="ps-4  list-['-_'] ps-2  mt-1 space-y-1 text-xs md:text-sm">
+                                                    <ul className=" list-['-_'] ps-2  mt-1 space-y-1 text-xs md:text-sm">
                                                         <li><a href="#html-structure" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">HTML: اسکلت و ساختار محتوا</a></li>
                                                         <li><a href="#css-styling" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">CSS: طراح ظاهر و استایل وب‌سایت‌ها</a></li>
                                                         <li><a href="#javascript-interactivity" className="text-sm hover:text-primary-600 dark:hover:text-primary-400 transition-colors">JavaScript: مغز متفکر و پویای وب</a></li>

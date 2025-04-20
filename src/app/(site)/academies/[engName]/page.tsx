@@ -34,7 +34,7 @@ export default async function Academy({ params: { engName } }: Props) {
             "@context": "https://schema.org",
             "@type": "EducationalOrganization",
             "name": data?.academy?.seoMeta?.title,
-            "url": `https://www.vc-virtual-learn.com/academies/${name}`,
+            "url": `https://vc-virtual-learn.com/academies/${name}`,
             "description": data?.academy?.seoMeta?.description,
             "image": `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}academy19.png`,//بعدا بذار
             "logo": `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}logo-main.png`,//بعدا بذار
@@ -42,12 +42,12 @@ export default async function Academy({ params: { engName } }: Props) {
             "isPartOf": {
                 "@type": "WebSite",
                 "name": "ویرچوال لرن",
-                "url": "https://www.vc-virtual-learn.com"
+                "url": "https://vc-virtual-learn.com"
             },
             "publisher": {
                 "@type": "Organization",
                 "name": "Virtual Learn",
-                "url": "https://www.vc-virtual-learn.com",
+                "url": "https://vc-virtual-learn.com",
                 "logo": {
                     "@type": "ImageObject",
                     "url": `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}logo-main.png`, //پرش کن
@@ -77,7 +77,7 @@ export default async function Academy({ params: { engName } }: Props) {
 
                 <meta property="og:title" content={data?.academy?.seoMeta?.title} />
                 <meta property="og:description" content={data?.academy?.seoMeta?.description} />
-                <meta property="og:url" content={`https://www.vc-virtual-learn.com/academies/${name}`} />
+                <meta property="og:url" content={`https://vc-virtual-learn.com/academies/${name}`} />
                 {/* بعدا عکسو بذار */}
                 <meta property="og:image" content={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}academy19.png`} />
 
@@ -87,7 +87,6 @@ export default async function Academy({ params: { engName } }: Props) {
                 {/* بعدا عکسو بذار */}
                 <meta name="twitter:image" content={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}academy19.png`} />
 
-                <link rel="canonical" href={`https://www.vc-virtual-learn.com/academies/${name}`} />
 
 
                 <div className="w-full max-w-7xl px-4 md:px-8 2xl:px-2 mt-24 flex items-center justify-center ">

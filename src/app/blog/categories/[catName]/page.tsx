@@ -27,7 +27,7 @@ export default async function CategoriesPage(s: any) {
             "@context": "https://schema.org",
             "@type": "CollectionPage",
             "name": `مقالات ${data2.value.name} | بلاگ Virtual Learn`,
-            "url": `https://www.vc-virtual-learn.com/blog/categories/${s?.params?.catName}`,
+            "url": `https://vc-virtual-learn.com/blog/categories/${s?.params?.catName}`,
             "description": `جدیدترین مقالات ${data2.value.name} در بلاگ Virtual Learn. بهترین مقالات آموزشی درباره ${data2.value.name}، معرفی تکنولوژی‌ها و بررسی تخصصی موضوعات مرتبط.`,
             "keywords": `${data2.value.name}, مقالات ${data2.value.name}, بلاگ ${data2.value.name}, آموزش ${data2.value.name}`,
             "inLanguage": "fa",
@@ -38,13 +38,13 @@ export default async function CategoriesPage(s: any) {
                         "@type": "ListItem",
                         "position": 1,
                         "name": "بلاگ",
-                        "item": "https://www.vc-virtual-learn.com/blog"
+                        "item": "https://vc-virtual-learn.com/blog"
                     },
                     {
                         "@type": "ListItem",
                         "position": 2,
                         "name": data2.value.name,
-                        "item": `https://www.vc-virtual-learn.com/blog/categories/${s?.params?.catName}`
+                        "item": `https://vc-virtual-learn.com/blog/categories/${s?.params?.catName}`
                     }
                 ]
             },
@@ -56,7 +56,7 @@ export default async function CategoriesPage(s: any) {
                         "@type": "ListItem",
                         "position": 1, // You should increment this for each item
                         "name": blog.name,
-                        "item": `https://www.vc-virtual-learn.com/blog/${blog.slug}` // Replace with actual slug property
+                        "item": `https://vc-virtual-learn.com/blog/${blog.slug}` // Replace with actual slug property
                     }
                 }) || []
             }
@@ -76,14 +76,14 @@ export default async function CategoriesPage(s: any) {
 
                 <meta property="og:title" content={`مقالات ${data2.value.name} | بلاگ Virtual Learn`} />
                 <meta property="og:description" content={`جدیدترین مقالات ${data2.value.name}، بررسی تخصصی و آموزش‌های مفید در بلاگ Virtual Learn.`} />
-                <meta property="og:url" content={`https://www.vc-virtual-learn.com/blog/categories/${s?.params?.catName}`} />
-                <meta property="og:image" content={`https://www.vc-virtual-learn.com/images/${''}`} />
+                <meta property="og:url" content={`https://vc-virtual-learn.com/blog/categories/${s?.params?.catName}`} />
+                <meta property="og:image" content={`https://vc-virtual-learn.com/images/${''}`} />
 
                 <meta name="twitter:title" content="مقالات {categoryName} | بلاگ Virtual Learn" />
                 <meta name="twitter:description" content="جدیدترین مقالات {categoryName}، بررسی تخصصی و آموزش‌های مفید در بلاگ Virtual Learn." />
-                <meta name="twitter:image" content="https://www.vc-virtual-learn.com/images/blog-category-{categorySlug}.png" />
+                <meta name="twitter:image" content="https://vc-virtual-learn.com/images/blog-category-{categorySlug}.png" />
 
-                <link rel="canonical" href="https://www.vc-virtual-learn.com/blog/categories/{categorySlug}" />
+    
 
                 <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 

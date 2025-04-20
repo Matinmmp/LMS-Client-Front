@@ -15,13 +15,13 @@ export default async function Home() {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
         "name": "لیست آکادمی‌های آموزشی | Virtual Learn",
-        "url": "https://www.vc-virtual-learn.com/academies",
+        "url": "https://vc-virtual-learn.com/academies",
         "description": "لیست آکادمی‌های آموزشی معتبر با دوره‌های ترجمه‌شده به زبان فارسی در ویرچوال لرن. بهترین منابع آموزشی برای ارتقای مهارت‌های برنامه‌نویسی شما.",
         "inLanguage": "fa",
         "isPartOf": {
             "@type": "WebSite",
             "name": "ویرچوال لرن",
-            "url": "https://www.vc-virtual-learn.com"
+            "url": "https://vc-virtual-learn.com"
         },
         "mainEntity": {
             "@type": "ItemList",
@@ -31,7 +31,7 @@ export default async function Home() {
         "publisher": {
             "@type": "Organization",
             "name": "Virtual Learn",
-            "url": "https://www.vc-virtual-learn.com",
+            "url": "https://vc-virtual-learn.com",
             "logo": {
                 "@type": "ImageObject",
                 "url": `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}logo-main.png`,
@@ -47,7 +47,7 @@ export default async function Home() {
                 "@context": "https://schema.org",
                 "@type": "EducationalOrganization",
                 "name": item.engName,
-                "url": `https://www.vc-virtual-learn.com/academies/${encodeTitle(item?.engName)}`,
+                "url": `https://vc-virtual-learn.com/academies/${encodeTitle(item?.engName)}`,
                 "description": item?.description,
                 "logo": {
                     "@type": "ImageObject",
@@ -79,7 +79,7 @@ export default async function Home() {
 
                 <meta property="og:title" content="لیست آکادمی‌های آموزشی | Virtual Learn" />
                 <meta property="og:description" content="لیست آکادمی‌های آموزشی معتبر با دوره‌های ترجمه‌شده به زبان فارسی در ویرچوال لرن. بهترین منابع آموزشی برای ارتقای مهارت‌های برنامه‌نویسی شما." />
-                <meta property="og:url" content="https://www.vc-virtual-learn.com/academies" />
+                <meta property="og:url" content="https://vc-virtual-learn.com/academies" />
                 {/* <meta property="og:image" content="https://www.vc-virtual-learn.com/assets/academies-banner.png" /> */}
 
                 <meta name="twitter:title" content="لیست آکادمی‌های آموزشی | Virtual Learn" />
@@ -88,7 +88,7 @@ export default async function Home() {
                 {/* بعدا عکسو بذار */}
                 {/* <meta name="twitter:image" content="https://www.vc-virtual-learn.com/assets/academies-banner.png" /> */}
 
-                <link rel="canonical" href="https://www.vc-virtual-learn.com/academies" />
+
 
                 <div className="-mt-32 pt-36 lg:pt-48 pb-12 lg:pb-20 w-full flex items-center justify-center 
                     dark:bg-gradient-to-b  dark:from-primary-50 dark:to-transparent backdrop-blur-md">

@@ -84,7 +84,9 @@ export function Description({ desc }: { desc: string }) {
 
                 </div>
 
-                <div className="mt-8 pb-20 leading-7 lg:leading-8 tracking-wide" dangerouslySetInnerHTML={{ __html: desc }}></div>
+                <div className="mt-8 pb-20 leading-7 lg:leading-8 tracking-wide" dangerouslySetInnerHTML={{ __html: desc }}>
+                  
+                </div>
 
 
             </motion.div>
@@ -558,7 +560,7 @@ const LessonAcordian = ({ item, selectedLesson, setSelectedLesson, index, isCour
 
                     <div className="w-full h-full min-h-44">
 
-                         {lesson}  
+                        {lesson}
 
                     </div>
 

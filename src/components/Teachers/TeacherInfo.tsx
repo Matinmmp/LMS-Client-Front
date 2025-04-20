@@ -92,7 +92,7 @@ const TeacherInfo = ({ data }: Props) => {
                 </div>
 
                 <article className="blog_teacher w-full mt-10 lg:mt-14 leading-7 lg:leading-8 tracking-wide " dangerouslySetInnerHTML={{ __html: data.longDescription }}>
-
+       
                 </article>
 
             </div>

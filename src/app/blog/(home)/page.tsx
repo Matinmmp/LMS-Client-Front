@@ -10,7 +10,7 @@ const schema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": "بلاگ Virtual Learn | جدیدترین مقالات آموزش برنامه‌نویسی",
-    "url": "https://www.vc-virtual-learn.com/blog",
+    "url": "https://vc-virtual-learn.com/blog",
     "description": "در بلاگ Virtual Learn مقالات تخصصی درباره برنامه‌نویسی، توسعه وب، هوش مصنوعی، فریمورک‌های مدرن و فناوری‌های جدید را بخوانید. جدیدترین آموزش‌ها و نکات کاربردی را دنبال کنید.",
     "keywords": "بلاگ برنامه‌نویسی, آموزش برنامه‌نویسی, مقالات برنامه‌نویسی, توسعه وب, یادگیری کدنویسی, فریمورک‌های برنامه‌نویسی",
     "inLanguage": "fa",
@@ -22,7 +22,7 @@ const schema = {
     "publisher": {
         "@type": "Organization",
         "name": "Virtual Learn",
-        "url": "https://www.vc-virtual-learn.com/",
+        "url": "https://vc-virtual-learn.com/",
         "logo": {
             "@type": "ImageObject",
             "url": `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}logo-main.png`,
@@ -32,7 +32,7 @@ const schema = {
     },
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://www.vc-virtual-learn.com/blog"
+        "@id": "https://vc-virtual-learn.com/blog"
     }
 }
 
@@ -62,7 +62,7 @@ export default async function Home() {
 
             <meta property="og:title" content="بلاگ Virtual Learn | جدیدترین مقالات آموزش برنامه‌نویسی" />
             <meta property="og:description" content="مطالب تخصصی درباره توسعه وب، زبان‌های برنامه‌نویسی و فریمورک‌های مدرن را در بلاگ Virtual Learn دنبال کنید. جدیدترین مقالات و آموزش‌ها برای برنامه‌نویسان!" />
-            <meta property="og:url" content="https://www.vc-virtual-learn.com/blog" />
+            <meta property="og:url" content="https://vc-virtual-learn.com/blog" />
             <meta property="og:image" content={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}blog-hero.jpg`} />
 
             <meta name="twitter:title" content="بلاگ Virtual Learn | جدیدترین مقالات آموزش برنامه‌نویسی" />
@@ -70,7 +70,7 @@ export default async function Home() {
             <meta name="twitter:image" content={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}blog-hero.jpg`} />
             <meta name="revisit-after" content="5 days" />
 
-            <link rel="canonical" href="https://www.vc-virtual-learn.com/blog" />
+
 
             <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
             <section className=" flex flex-col items-center justify-center" >

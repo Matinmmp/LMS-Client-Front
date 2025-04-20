@@ -4,14 +4,14 @@ const schema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Virtual Learn | آموزش برنامه‌نویسی به زبان فارسی",
-    "url": "https://www.vc-virtual-learn.com/",
+    "url": "https://vc-virtual-learn.com/",
     "description": "آموزش برنامه‌نویسی به زبان فارسی با ترجمه اختصاصی از بهترین آکادمی‌های جهان. با دسترسی به بهترین دوره‌های برنامه‌نویسی جهان به زبان فارسی، مهارت‌های خود را ارتقا دهید.",
     "keywords": "آموزش برنامه‌نویسی, دوره‌های ترجمه‌شده فارسی, آموزش آنلاین, Virtual Learn",
     "inLanguage": "fa",
     "alternateName": "Virtual Learn | آموزش برنامه‌نویسی به زبان فارسی",
     "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://www.vc-virtual-learn.com/courses?searchText={search_term_string}",
+        "target": "https://vc-virtual-learn.com/courses?searchText={search_term_string}",
         "query-input": "required searchText=search_term_string"
     },
     "sameAs": [
@@ -22,7 +22,7 @@ const schema = {
     "publisher": {
         "@type": "Organization",
         "name": "Virtual Learn",
-        "url": "https://www.vc-virtual-learn.com/",
+        "url": "https://vc-virtual-learn.com/",
         "logo": {
             "@type": "ImageObject",
             // ادرس عکسو بعدا بذار
@@ -33,7 +33,7 @@ const schema = {
     },
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://www.vc-virtual-learn.com/"
+        "@id": "https://vc-virtual-learn.com/"
     }
 }
 
@@ -49,7 +49,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
             <meta property="og:title" content="Virtual Learn | آموزش برنامه‌نویسی به زبان فارسی" />
             <meta property="og:description" content="آموزش برنامه‌نویسی به زبان فارسی با ترجمه اختصاصی از بهترین آکادمی‌های جهان. با دسترسی به بهترین دوره‌های برنامه‌نویسی جهان به زبان فارسی، مهارت‌های خود را ارتقا دهید." />
-            <meta property="og:url" content="https://www.vc-virtual-learn.com/" />
+            <meta property="og:url" content="https://vc-virtual-learn.com/" />
             <meta property="og:image" content={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}hero4.svg`}/>
 
             <meta name="twitter:title" content="Virtual Learn | آموزش برنامه‌نویسی به زبان فارسی" />
@@ -57,7 +57,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <meta name="twitter:image" content={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}hero4.svg`}/>
             <meta name="revisit-after" content="5 days" />
 
-            <link rel="canonical" href="https://www.vc-virtual-learn.com/"/>
+           
 
             <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 

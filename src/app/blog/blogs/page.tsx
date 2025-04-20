@@ -13,7 +13,7 @@ export default async function CourseSearch(p: any) {
     let object: Record<string, any> = {
         page: '1'
     };
-    let text = 'همه'
+    let text = ''
     if(params.searchText)
         text = params.searchText
     if (params.searchText) object.searchText = params.searchText;
@@ -23,14 +23,14 @@ export default async function CourseSearch(p: any) {
     const schema = {
         "@context": "https://schema.org",
         "@type": "SearchResultsPage",
-        "name": `نتایج جستجوی ${text} در بلاگ Virtual Learn`,
-        "url": `https://www.vc-virtual-learn.com/blog/blogs?searchText=${text}`,
+        "name":text? `نتایج جستجوی ${text} در بلاگ Virtual Learn`:`بلاگ | Virtual Learn`,
+        "url": `https://vc-virtual-learn.com/blog/blogs?searchText=${text}`,
         "description": `نتایج جستجو برای ${text} در بلاگ Virtual Learn. مقالات فارسی در زمینه‌ی برنامه‌نویسی، توسعه نرم‌افزار، طراحی وب، هوش مصنوعی و دیگر موضوعات مرتبط.`,
         "inLanguage": "fa",
         "isPartOf": {
             "@type": "WebSite",
             "name": "Virtual Learn",
-            "url": "https://www.vc-virtual-learn.com"
+            "url": "https://vc-virtual-learn.com"
         },
         "mainEntity": {
             "@type": "SearchAction",
@@ -56,12 +56,12 @@ export default async function CourseSearch(p: any) {
 
             <meta property="og:title" content={`نتایج جستجوی ${text} | بلاگ Virtual Learn`} />
             <meta property="og:description" content={`جستجو برای ${text} در بلاگ Virtual Learn. مقالاتی با محتوای آموزشی و تخصصی در زمینه‌ی {searchTerm}.`} />
-            <meta property="og:url" content={`https://www.vc-virtual-learn.com/blog/blogs?searchText=${text}`} />
+            <meta property="og:url" content={`https://vc-virtual-learn.com/blog/blogs?searchText=${text}`} />
 
             <meta name="twitter:title" content={`نتایج جستجوی ${text} | بلاگ Virtual Learn`} />
             <meta name="twitter:description" content={`نتایج مرتبط با ${text} در بلاگ Virtual Learn. آموزش‌های ترجمه‌شده فارسی از بهترین منابع دنیا.`} />
  
-            <link rel="canonical" href={`https://www.vc-virtual-learn.com/blog/blogs?searchText=${text}`} />
+
 
             <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 

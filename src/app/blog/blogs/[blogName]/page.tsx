@@ -34,7 +34,7 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
             "@type": "BlogPosting",
             "mainEntityOfPage": {
                 "@type": "WebPage",
-                "@id": `https://www.vc-virtual-learn.com/blog/blogs/${blogName}`
+                "@id": `https://vc-virtual-learn.com/blog/blogs/${blogName}`
             },
             "name": `${blog?.seoMeta?.title ? blog?.seoMeta?.title : blog?.name}`,
             "headline": `${blog?.seoMeta?.title ? blog?.seoMeta?.title : blog?.name}`,
@@ -43,7 +43,7 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
             "author": {
                 "@type": "Organization",
                 "name": "Virtual Learn",
-                "url": "https://www.vc-virtual-learn.com"
+                "url": "https://vc-virtual-learn.com"
             },
             "publisher": {
                 "@type": "Organization",
@@ -72,7 +72,7 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
 
                     <meta property="og:title" content={blog?.seoMeta?.title ? blog?.seoMeta?.title : blog?.name} />
                     <meta property="og:description" content={blog?.seoMeta?.description} />
-                    <meta property="og:url" content={`https://www.vc-virtual-learn.com/courses/${blogName}`} />
+                    <meta property="og:url" content={`https://vc-virtual-learn.com/courses/${blogName}`} />
                     <meta property="og:image" content={blog?.thumbnail?.imageUrl} />
 
 
@@ -80,7 +80,7 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                     <meta name="twitter:description" content={blog?.seoMeta?.description} />
                     <meta name="twitter:image" content={blog?.thumbnail?.imageUrl} />
 
-                    <link rel="canonical" href={`https://www.vc-virtual-learn.com/courses/${blogName}`} />
+                
 
 
 

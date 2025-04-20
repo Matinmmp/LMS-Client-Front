@@ -25,17 +25,17 @@ export default async function CourseSearch(p: any) {
         "@context": "https://schema.org",
         "@type": "SearchResultsPage",
         "name": "جستجوی دوره‌های آموزشی | Virtual Learn",
-        "url": "https://www.vc-virtual-learn.com/courses",
+        "url": "https://vc-virtual-learn.com/courses",
         "description": "در این صفحه می‌توانید دوره‌های برنامه‌نویسی مختلف را جستجو کرده و با مقایسه آن‌ها، بهترین گزینه را انتخاب کنید. Virtual Learn انتخاب شما برای یادگیری برنامه‌نویسی به زبان فارسی است.",
         "inLanguage": "fa",
         "isPartOf": {
             "@type": "WebSite",
             "name": "Virtual Learn",
-            "url": "https://www.vc-virtual-learn.com"
+            "url": "https://vc-virtual-learn.com"
         },
         "mainEntity": {
             "@type": "SearchAction",
-            "target": `https://www.vc-virtual-learn.com/courses?searchText=${params.searchText}`,
+            "target": `https://vc-virtual-learn.com/courses?searchText=${params.searchText}`,
             "query-input": "required name=searchText"
         }
     }
@@ -71,13 +71,13 @@ export default async function CourseSearch(p: any) {
 
             <meta property="og:title" content="دوره‌های آموزشی | Virtual Learn" />
             <meta property="og:description" content="در این صفحه می‌توانید دوره‌های برنامه‌نویسی مختلف را جستجو کرده و با مقایسه آن‌ها، بهترین گزینه را انتخاب کنید. Virtual Learn انتخاب شما برای یادگیری برنامه‌نویسی به زبان فارسی است." />
-            <meta property="og:url" content="https://www.vc-virtual-learn.com/courses" />
+            <meta property="og:url" content="https://vc-virtual-learn.com/courses" />
 
 
             <meta name="twitter:title" content="دوره‌های آموزشی | Virtual Learn" />
             <meta name="twitter:description" content="در این صفحه می‌توانید دوره‌های برنامه‌نویسی مختلف را جستجو کرده و با مقایسه آن‌ها، بهترین گزینه را انتخاب کنید. Virtual Learn انتخاب شما برای یادگیری برنامه‌نویسی به زبان فارسی است." />
 
-            <link rel="canonical" href="https://www.vc-virtual-learn.com/courses" />
+
 
             <section className=" flex flex-col items-center justify-center  " >
 
