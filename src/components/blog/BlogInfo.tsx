@@ -10,7 +10,7 @@ export default async function BlogInfo({ data }: { data: any }) {
         <div className="w-full max-w-[1400px] md:px-8 2xl:px-2 flex items-center justify-center ">
             <div className="w-full flex flex-col gap-2 ">
                 <div className="w-full px-2 md:px-0">
-                    <Image className="w-full rounded-2xl lg:rounded-3xl shadow-medium"
+                    <Image className="aspect-video w-full rounded-2xl lg:rounded-3xl shadow-medium"
                         width={1000} height={700} alt={data?.name} src={data?.thumbnail?.imageUrl} />
                 </div>
                 <div className="w-full px-2 md:px-0 flex flex-col lg:flex-row gap-6 py-10">

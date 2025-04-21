@@ -10,7 +10,6 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
             <meta property="og:type" content="website" />
             <meta property="og:locale" content="fa_IR" />
             <meta httpEquiv="Content-Language" content="fa" />
-            <meta name="twitter:card" content="summary_large_image" />
             <meta name="theme-color" content="#079CED" />
             <meta name="author" content="Virtual Learn" />
             <meta charSet="UTF-8" />

@@ -5,12 +5,14 @@ export default function RolesPage() {
     return (
         <div className=" flex flex-col items-center justify-center ">
             <title>شرایط و قوانین ویرچوال لرن</title>
+            <meta name="description" content="شرایط و قوانینی تهیه‌ی دوره از سایت ویرچوال لرن" />
             <meta name="robots" content="index, follow" />
+            <meta name="keywords" content="قوانین, قوانین ویرچوال لرن, دوره‌های آموزشی" />
 
             <div className="w-full max-w-7xl px-4 md:px-8 2xl:px-2 flex flex-col items-center justify-center ">
                 <div className="w-full mt-24 pb-10 bg-white dark:bg-[#131D35] rounded-2xl shadow-medium">
                     <div className="p-4 xl:p-6 pb-8 border-b-2 border-b-primary-50">
-                        <h2 className="text-lg md:text-xl font-semibold">شرایط و قوانین ویرچوال لرن</h2>
+                        <h1 className="text-lg md:text-xl font-semibold">شرایط و قوانین ویرچوال لرن</h1>
                     </div>
                     <div className="mt-4 p-4 xl:p-6 pb-8">
                         <div>
