@@ -189,7 +189,7 @@ function CategoriesSidebar() {
                         blogCategories?.map((cat, index) =>
                             <Link key={index} href={`/blog/categories/${cat?.slug}`} className="w-full flex items-center justify-between gap-4 ">
                                 <div className="flex items-center gap-2">
-                                    <span className="p-0.5 rounded-sm bg-primary-400 "><Image width={28} height={28} alt={cat?.name} src={cat?.imageUrl} /></span>
+                                    <span className="p-0.5 rounded-sm bg-primary-400/ "><Image width={28} height={28} alt={cat?.name} src={cat?.imageUrl} /></span>
                                     <span>{cat?.name}</span>
                                 </div>
 

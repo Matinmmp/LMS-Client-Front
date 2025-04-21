@@ -3,6 +3,7 @@ import Image from "next/image";
 import { formatJalaliDate, secondsToMinutes, toPersianNumber } from "@/src/utils/functions";
 import { CategoriesSidebar } from "./home/ServerComponents";
 import { NewSteler } from "./home/Components";
+import { FiEye } from "react-icons/fi";
 
 export default async function BlogInfo({ data }: { data: any }) {
 
@@ -16,9 +17,17 @@ export default async function BlogInfo({ data }: { data: any }) {
                 <div className="w-full px-2 md:px-0 flex flex-col lg:flex-row gap-6 py-10">
                     <div className="w-full lg:w-[75%] rounded-xl shadow-large backdrop-blur-3xl bg-white dark:bg-transparent">
                         <div className="p-4 px-3 md:p-6 lg:p-8">
-                            <div className="flex itmes-center gap-6 text-[#3E4247] dark:text-white text-xs">
-                                <span>{`${toPersianNumber(formatJalaliDate(data?.createdAt))}`}</span>
-                                <span>{`زمان مطالعه ${toPersianNumber(secondsToMinutes(data?.readingTime))} دقیقه`}</span>
+                            <div className="flex itmes-center justify-between gap-6 text-[#3E4247] dark:text-white text-xs">
+                                <div className="flex items-center gap-6">
+
+                                    <span>{`${toPersianNumber(formatJalaliDate(data?.createdAt))}`}</span>
+                                    <span>{`زمان مطالعه ${toPersianNumber(secondsToMinutes(data?.readingTime))} دقیقه`}</span>
+
+                                </div>
+                                <div className="flex items-center gap-1 text-sm">
+                                    <span>{toPersianNumber(data?.views)}</span>
+                                    <FiEye />
+                                </div>
 
                             </div>
                             <div className="mt-10 " dangerouslySetInnerHTML={{ __html: data?.longDescription }}></div>
