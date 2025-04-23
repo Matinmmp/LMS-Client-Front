@@ -97,12 +97,12 @@ export const navObject = {
     }
 }
 
-export const blogCategories =  [
+export const blogCategories =   [
     {
     "name": "مبانی و مفاهیم پایه",
     "slug": "basic-computer-fundamentals-and-concepts",
     "imageUrl": "https://images.vc-virtual-learn.com/CategoryImages/1744218884297-basic-computer-fundamentals-and-concepts.png",
-    "totalBlogs": 3
+    "totalBlogs": 4
     },
     {
     "name": "سخت افزار",
