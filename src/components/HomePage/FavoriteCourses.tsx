@@ -13,7 +13,7 @@ type Props = {
 
 const FavoriteCourses = async (props: Props) => {
     const data: any = await getHomeFavoritCourses();
-
+ 
     if (data && data.success && data.courses.length)
 
 

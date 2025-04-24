@@ -5,7 +5,7 @@ export const sendFormEmail = async ({ name, email, subject, message }: { name: s
     try {
         const data = await customFetch(`/sendFormEmail`, {
             method: 'POST',
-            cache: 'no-store',
+         
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name, email, subject, message }),
         }

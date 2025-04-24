@@ -1,3 +1,4 @@
+
 import { Problem } from "@/src/components/Shared/Problem";
 import Hero from "@/src/components/Teachers/Hero";
 import TeachersList from "@/src/components/Teachers/TeachersList";
@@ -10,7 +11,7 @@ import { encodeTitle } from "@/src/utils/functions";
 export default async function Home() {
 
     const data: any = await getTeachers();
-
+ 
     const schema = {
         "@context": "https://schema.org",
         "@type": "CollectionPage",

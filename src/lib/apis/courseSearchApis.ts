@@ -6,7 +6,7 @@ const searchCourse = async (search: any) => {
     try {
         const data = await customFetch(`/searchCourses`, {
             method: 'POST',
-            cache: 'no-store',
+            
             body: JSON.stringify(search),
             headers: { 'Content-Type': 'application/json' },
         }

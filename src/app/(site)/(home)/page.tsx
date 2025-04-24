@@ -1,4 +1,3 @@
-const cash = 'no-store'
 import Hero from "@/src/components/HomePage/Hero";
 import Comments from "@/src/components/HomePage/Comments";
 import FAQ from "@/src/components/HomePage/FAQ";

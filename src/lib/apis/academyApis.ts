@@ -7,8 +7,7 @@ const getAcademies = async () => {
     try {
         const data = await customFetch('/academies', {
             method: 'GET',
-            //  next: { revalidate: 3600 }
-            cache: 'no-store'
+            next: { revalidate: 3600 * 24 }
         }
         );
         return await data;
@@ -21,8 +20,8 @@ const getAcademyByName = async (name: string) => {
     try {
         const data = await customFetch(`/getAcademyByName/${name}`, {
             method: 'GET',
-            //  next: { revalidate: 3600 }
-            cache: 'no-store'
+             next: { revalidate: 3600 }
+          
         }
         );
         return await data;
@@ -33,11 +32,11 @@ const getAcademyByName = async (name: string) => {
 
 const getAcademyCoursesByEngName = async (name: string) => {
     try {
-        const data = await customFetch(`/getAcademyCoursesByEngName/${name}`, {method: 'GET',});
+        const data = await customFetch(`/getAcademyCoursesByEngName/${name}`, { method: 'GET', });
         return await data;
     } catch (error) {
         return error
-    } 
+    }
 }
 
 const getAcademyTeachersByEngName = async (name: string) => {
@@ -45,7 +44,7 @@ const getAcademyTeachersByEngName = async (name: string) => {
         const data = await customFetch(`/getAcademyTeachersByEngName/${name}`, {
             method: 'GET',
             //  next: { revalidate: 3600 }
-            cache: 'no-store'
+             
         }
         );
         return await data;
@@ -59,7 +58,7 @@ const getAllAcademyNames = async () => {
         const data = await customFetch(`/getAllAcademyNames`, {
             method: 'GET',
             //  next: { revalidate: 3600 }
-            cache: 'no-store'
+            
         }
         );
         return await data;

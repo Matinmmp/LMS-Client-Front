@@ -13,7 +13,7 @@ type Props = {
 
 const LastCourses = async (props: Props) => {
     const data: any = await getHomeLastCourses();
-
+ 
     if (data && data.success && data.courses.length)
 
         return (

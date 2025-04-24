@@ -2,7 +2,7 @@ import "@/src/styles/globals.css";
 import { Viewport } from "next";
 import { Inter, Vazir } from "../config/fonts";
 import { Providers } from "./providers";
-// import NextTopLoader from 'nextjs-toploader';
+import NextTopLoader from 'nextjs-toploader';
 import Script from "next/script";
 
 
@@ -40,7 +40,7 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
 
 
             <body className={Vazir.className + ' ' + Inter.className + ' ' + 'min-h-screen bg-background'}>
-                {/* <NextTopLoader /> */}
+                <NextTopLoader />
 
                 <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
 
