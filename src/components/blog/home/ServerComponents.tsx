@@ -92,7 +92,7 @@ function ReceentPosts({ blogs }: { blogs: any }) {
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <LuCalendarDays size={14} />
-                                        <span className="text-xs font-medium">{getTimeAgo(blogs[0]?.publishDate)}</span>
+                                        <span className="text-xs font-medium">{getTimeAgo(blog?.publishDate)}</span>
                                     </div>
 
                                 </div>

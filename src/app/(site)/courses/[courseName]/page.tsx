@@ -5,14 +5,14 @@ import { cookies } from 'next/headers'
 import { notFound } from "next/navigation";
 import Script from "next/script";
 
-// export async function generateStaticParams() {
-//     const coursUrlNames: any = await getAllCourseUrlNames();
+export async function generateStaticParams() {
+    const coursUrlNames: any = await getAllCourseUrlNames();
 
 
-//     return coursUrlNames?.coursUrlNames?.map((course: { urlName: string }) => ({
-//         courseName: encodeURIComponent(encodeTitle(course?.urlName)),
-//     })) || [];
-// }
+    return coursUrlNames?.courseUrlNames?.map((course: { urlName: string }) => ({
+        courseName: encodeURIComponent(encodeTitle(course?.urlName)),
+    })) || [];
+}
 
 type Props = {
     params: { courseName: string }
@@ -128,12 +128,11 @@ export default async function CourseDetail({ params: { courseName } }: Props) {
                 <meta name="twitter:title" content={data?.courseData?.course?.seoMeta?.title ? data?.courseData?.course?.seoMeta?.title : data?.courseData?.course?.name} />
                 <meta name="twitter:description" content={data?.courseData?.course?.seoMeta?.description} />
 
-                {/* بعدا عکسو بذار */}
                 <meta name="twitter:image" content={data?.courseData?.course?.thumbnail?.imageUrl} />
 
 
 
-                <div className="w-full max-w-7xl mt-28 px-4 md:px-8 2xl:px-2 flex items-center justify-center ">
+                <div className="w-full max-w-7xl mt-20 px-4 md:px-8 2xl:px-2 flex items-center justify-center ">
                     <CourseInfo data={data?.courseData} isPurchased={data?.isPurchased} userRate={data?.userRate} />
                 </div>
                 <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />

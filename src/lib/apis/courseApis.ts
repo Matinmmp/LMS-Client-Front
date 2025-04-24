@@ -43,7 +43,7 @@ export const getAllCourseUrlNames = async () => {
     try {
         const data = await customFetch(`/getAllCourseUrlNames`, {
             method: 'GET',
-            //  next: { revalidate: 3600 }
+             next: { revalidate: 3600*24 },
             cache: 'force-cache'
         }
         );

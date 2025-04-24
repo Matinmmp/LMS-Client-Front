@@ -10,12 +10,12 @@ import { IoIosFilm } from "react-icons/io";
 import { FaStar } from "react-icons/fa6"
 import { Avatar } from "@nextui-org/avatar";
 import Link from "next/link";
-import { AddToCartButton, Commments, CourseLessons, Description, RatingCommponent, ShortLink } from "./CourseInfoComponents";
+import {AddToCartButton,Commments, CourseLessons, Description, RatingCommponent, ShortLink} from "./CourseInfoComponents";
 import VideoPlayer from "../Shared/VideoPlayer";
 import { AlertSecondary } from "../Shared/Alert";
-import { RelatedCourse, RelatedBlog } from "./CourseInfoServerComponents";
 import { cookies } from 'next/headers'
 import { IoWarningOutline } from "react-icons/io5";
+import { RelatedCourse } from "./CourseInfoServerComponents";
 
 type Props = {
     data: any,
@@ -128,7 +128,7 @@ export default async function CourseInfo({ data, isPurchased, userRate }: Props)
 
                         <div className="h-full flex flex-col ">
 
-                            <h1  className='mt-4 lg:mt-0 text-secondary-500 font-bold text-xl md:text-2xl 2xl:text-[2rem] md:leading-10'>
+                            <h1 className='mt-4 lg:mt-0 text-secondary-500 font-bold text-xl md:text-2xl 2xl:text-[2rem] md:leading-10'>
                                 {course?.faName}
                             </h1>
 
@@ -147,7 +147,6 @@ export default async function CourseInfo({ data, isPurchased, userRate }: Props)
                     <div className="w-full lg:w-1/2 order-1 lg:order-2">
                         {
                             course?.previewVideoUrl ?
-                                // <VideoPlayer url={course?.previewVideoUrl} thumbnail={course?.thumbnail?.imageUrl} />
                                 <VideoPlayer url={course?.previewVideoUrl} />
 
                                 :
@@ -183,9 +182,9 @@ export default async function CourseInfo({ data, isPurchased, userRate }: Props)
 
                                     <div >
                                         <p className="mt-1 font-light dark:text-[#ddeefd] text-gray-900 leading-7 lg:tracking-wider">اگر ویدیو ها را در سیستم نگاه میکنید حتما از برنامه ی KMPlayer استفاده کنید. اگر هم از موبایل استفاده میکنید از MXPlayer استفاده کنید برای فایل هایی هم که پسوند .rar یا .zip دارند از برنامه ی winrar برای استخراج استفاده کنید</p>
-                                    <p className="mt-1 font-light dark:text-[#ddeefd] text-gray-900 leading-7 lg:tracking-wider">
-                                        برای مدیریت بهتر فایل‌ها برای هر فصل یک پوشه با همان نام بسازید و فایل‌های مربوط به آن فصل را درون آن پوشه بگذارید.
-                                    </p>
+                                        <p className="mt-1 font-light dark:text-[#ddeefd] text-gray-900 leading-7 lg:tracking-wider">
+                                            برای مدیریت بهتر فایل‌ها برای هر فصل یک پوشه با همان نام بسازید و فایل‌های مربوط به آن فصل را درون آن پوشه بگذارید.
+                                        </p>
                                     </div>
 
 
