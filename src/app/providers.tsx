@@ -14,7 +14,11 @@ import { getUserInfo } from "../lib/apis/userApis";
 import { userLoggedIn } from "../redux/auth/authSlice";
 import { getRefreshTokenFromCookies } from "../lib/fetcher";
 import { GoogleOAuthProvider } from '@react-oauth/google';
-
+import { usePathname, useSearchParams } from "next/navigation"
+import { useEffect, Suspense } from "react"
+import { usePostHog } from 'posthog-js/react'
+import posthog from 'posthog-js'
+import { PostHogProvider as PHProvider } from 'posthog-js/react'
 export interface ProvidersProps {
     children: React.ReactNode;
     themeProps?: ThemeProviderProps;
@@ -26,6 +30,42 @@ const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
 
 export function Providers({ children, themeProps }: ProvidersProps) {
     const router = useRouter();
+
+    useEffect(() => {
+        posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY as string, {
+            api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com',
+
+            // ✅ فعال کردن پروفایل کاربران ناشناس (Anonymous Users)
+            person_profiles: 'always',
+
+            // ✅ غیرفعال کردن اتوماتیک pageview، چون می‌خوای خودت دستی بزنی
+            capture_pageview: false,
+
+            // ✅ فعال‌سازی ترک زمانی که کاربر از صفحه خارج میشه (صفحه رو ترک می‌کنه)
+            capture_pageleave: true,
+
+            // ✅ ذخیره user_id در کوکی
+            autocapture: true, // ترک خودکار رویدادهای کلیدی مثل کلیک، سابمیت و ...
+
+            // ✅ کوکی‌ها رو دامنه‌ی ساب‌دامین‌ها به اشتراک بذار (اگر پروژه چنددامنه‌ایه)
+            cross_subdomain_cookie: true,
+
+            // ✅ تعیین مدت نگهداری کوکی‌ها
+            persistence: 'localStorage+cookie', // برای اینکه هم کوکی باشه هم در localStorage باشه (پایداری بهتر)
+
+            enable_recording_console_log:true,
+            // ✅ تگ زدن با نسخه فرانت یا ورژن (برای دیباگ بعداً)
+            loaded: (posthogInstance) => {
+                posthogInstance.register({
+                    frontend_version: '1.0.0',
+                })
+            },
+
+            // ✅ برای تست: Console log رو روشن کن
+            debug: process.env.NODE_ENV === 'development',
+        })
+    }, [])
+
 
     return (
         <QueryClientProvider client={queryClient}>
@@ -45,12 +85,19 @@ export function Providers({ children, themeProps }: ProvidersProps) {
                         pauseOnHover
                         theme="dark"
                     />
-                    {/* <SessionProvider> */}
+
                     <GoogleOAuthProvider clientId={clientId || ''}>
-                        <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
+
+                        <NextThemesProvider {...themeProps}>
+
+                            <PHProvider client={posthog}>
+                                <SuspendedPostHogPageView />
+                                {children}
+                            </PHProvider>
+                        </NextThemesProvider>
 
                     </GoogleOAuthProvider>
-                    {/* </SessionProvider> */}
+
                 </Provider>
             </NextUIProvider>
         </QueryClientProvider>
@@ -62,7 +109,7 @@ function RequestProviders() {
     const { user } = useSelector((state: any) => state.auth)
     const getUserQuery = useQuery({ queryKey: ['getUserQuery'], queryFn: () => getUserInfo(), enabled: !!getRefreshTokenFromCookies() });
 
- 
+
 
     React.useEffect(() => {
         let data: any = {};
@@ -96,3 +143,41 @@ function RequestProviders() {
 
     return (<></>)
 }
+
+
+
+function PostHogPageView() {
+    const pathname = usePathname()
+    const searchParams = useSearchParams()
+    const posthog = usePostHog()
+
+    // Track pageviews
+    useEffect(() => {
+       
+        if (pathname && posthog) {
+            let url = window.origin + pathname
+            if (searchParams.toString()) {
+                url = url + "?" + searchParams.toString();
+            }
+            console.log(url)
+            posthog.capture('$pageview', { '$current_url': url })
+        }
+    }, [pathname, searchParams, posthog])
+
+    return null
+}
+
+// Wrap PostHogPageView in Suspense to avoid the useSearchParams usage above
+// from de-opting the whole app into client-side rendering
+// See: https://nextjs.org/docs/messages/deopted-into-client-rendering
+export function SuspendedPostHogPageView() {
+    return (
+        <Suspense fallback={null}>
+            <PostHogPageView />
+        </Suspense>
+    )
+}
+
+
+
+

@@ -1,7 +1,7 @@
 import "@/src/styles/globals.css";
 import { Viewport } from "next";
 import { Inter, Vazir } from "../config/fonts";
-import { Providers } from "./providers";
+import { Providers, SuspendedPostHogPageView } from "./providers";
 import NextTopLoader from 'nextjs-toploader';
 import Script from "next/script";
 
@@ -44,9 +44,9 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
 
                 <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
 
-                    <main>
-                        {children} 
-                    </main>
+                    
+                    {children}
+
 
                 </Providers>
             </body>
