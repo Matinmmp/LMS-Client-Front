@@ -72,7 +72,7 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
 
                     <meta property="og:title" content={blog?.seoMeta?.title ? blog?.seoMeta?.title : blog?.name} />
                     <meta property="og:description" content={blog?.seoMeta?.description} />
-                    <meta property="og:url" content={`https://vc-virtual-learn.com/courses/${blogName}`} />
+                    <meta property="og:url" content={`https://vc-virtual-learn.com/blog/blogs/${blogName}`} />
                     <meta property="og:image" content={blog?.thumbnail?.imageUrl} />
 
 

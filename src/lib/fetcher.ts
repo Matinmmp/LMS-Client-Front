@@ -37,6 +37,9 @@ export async function customFetch<T>(url: string, options: FetchOptions = {}): P
 
     }
 
+    console.log(url);
+    console.log(data)
+
     return data;
 }
 
