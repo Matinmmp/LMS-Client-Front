@@ -12,6 +12,6 @@ export default function robots():MetadataRoute.Robots{
 
             }
         ],
-        sitemap:`https://www.vc-virtual-learn.com/sitemap.xml`
+        sitemap:`https://vc-virtual-learn.com/sitemap.xml`
     }
 }

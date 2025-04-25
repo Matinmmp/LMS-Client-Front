@@ -56,7 +56,7 @@ export default async function CategoriesPage(s: any) {
                         "@type": "ListItem",
                         "position": 1, // You should increment this for each item
                         "name": blog.name,
-                        "item": `https://vc-virtual-learn.com/blog/${blog.slug}` // Replace with actual slug property
+                        "item": `https://vc-virtual-learn.com/blog/blogs/${blog.slug}` // Replace with actual slug property
                     }
                 }) || []
             }
@@ -77,11 +77,11 @@ export default async function CategoriesPage(s: any) {
                 <meta property="og:title" content={`مقالات ${data2.value.name} | بلاگ Virtual Learn`} />
                 <meta property="og:description" content={`جدیدترین مقالات ${data2.value.name}، بررسی تخصصی و آموزش‌های مفید در بلاگ Virtual Learn.`} />
                 <meta property="og:url" content={`https://vc-virtual-learn.com/blog/categories/${s?.params?.catName}`} />
-                <meta property="og:image" content={`https://vc-virtual-learn.com/images/${''}`} />
+               
 
                 <meta name="twitter:title" content="مقالات {categoryName} | بلاگ Virtual Learn" />
                 <meta name="twitter:description" content="جدیدترین مقالات {categoryName}، بررسی تخصصی و آموزش‌های مفید در بلاگ Virtual Learn." />
-                <meta name="twitter:image" content="https://vc-virtual-learn.com/images/blog-category-{categorySlug}.png" />
+          
 
     
 
