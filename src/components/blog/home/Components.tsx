@@ -36,18 +36,18 @@ function VirtualInfo() {
                     </div>
                     <p className='mt-2 leading-7 text-[#555555] dark:text-gray-200 text-center'>بلاگ Virtual Learn جایی است که جدیدترین مقالات در حوزه برنامه‌نویسی، توسعه وب، هوش مصنوعی و دنیای فناوری را می‌یابید. محتوای تخصصی و کاربردی برای ارتقای دانش شما! 🚀</p>
 
-
+                    
                     <div className="mt-4 flex items-center gap-4 ">
                         <Link href={'/'}><IoLogoLinkedin size={24} className="text-secondary-500" /></Link>
-                        <Link href="https://www.instagram.com/vc_virtual_learn"><FaSquareInstagram size={24} className="text-secondary-500" /></Link>
-                        <Link href="https://t.me/VC_Virtual_Learn" ><FaTelegram size={24} className="text-secondary-500" /></Link>
+                        <Link rel={"noopener noreferrer"} target={ "_blank"} href="https://www.instagram.com/vc_virtual_learn"><FaSquareInstagram size={24} className="text-secondary-500" /></Link>
+                        <Link rel={"noopener noreferrer"} target={ "_blank"} href="https://t.me/VC_Virtual_Learn" ><FaTelegram size={24} className="text-secondary-500" /></Link>
                     </div>
                 </div>
             </div>
         </section>
     );
 }
-
+ 
 function FeaturedSidebar({ oldestBlogs, popularBlogs }: { oldestBlogs: any, popularBlogs: any }) {
     const [state, setState] = useState(1);
 

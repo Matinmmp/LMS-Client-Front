@@ -36,7 +36,7 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                     </div>
 
 
-                                    <article>
+                                    <article className="px-1">
 
                                         <h1 id="main-title" className="text-[#3E4247] dark:text-white text-[20px] md:text-[28px] lg:text-[32px] font-bold leading-[1.4] mt-[40px] mb-[20px] md:mb-[25px] lg:mb-[30px]">
                                             پایتون: از صفر تا متخصص در ایران | راهنمای جامع زبان برنامه‌نویسی آینده‌ساز شما
@@ -643,7 +643,7 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
 
                                     </article>
 
-                                    <article>
+                                    <article className="px-1">
                                         <h1 id="main-title" className="text-[#3E4247] dark:text-white text-[20px] md:text-[28px] lg:text-[32px] font-bold leading-[1.4] mt-[40px] mb-[20px] md:mb-[25px] lg:mb-[30px]">
                                             کامپیوترها چگونه کار می‌کنند؟ سفری عمیق به قلب تپنده تکنولوژی (پردازنده، حافظه، سیستم‌عامل و فراتر از آن)
                                         </h1>
@@ -1250,7 +1250,7 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
                                         </div>
                                     </article>
 
-                                    <article>
+                                    <article className="px-1">
 
                                         <h1 id="main-title" className="text-[#3E4247] dark:text-white text-[20px] md:text-[28px] lg:text-[32px] font-bold leading-[1.4] mt-[40px] mb-[20px] md:mb-[25px] lg:mb-[30px]">
 
@@ -1783,7 +1783,7 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
 
                                     </article>
 
-                                    <article>
+                                    <article className="px-1">
 
                                         <h1 id="main-title" className="text-[#3E4247] dark:text-white text-[20px] md:text-[28px] lg:text-[32px] font-bold leading-[1.4] mt-[40px] mb-[20px] md:mb-[25px] lg:mb-[30px]">
                                             HTML و CSS: دروازه ورود به دنیای طراحی وب | راهنمای جامع برای شروع در ایران
@@ -2591,7 +2591,7 @@ color: navy;
 
                                     </article>
 
-                                    <article>
+                                    <article className="px-1">
 
                                         <h1 id="main-title" className="text-[#3E4247] dark:text-white text-[20px] md:text-[28px] lg:text-[32px] font-bold leading-[1.4] mt-[40px] mb-[20px] md:mb-[25px] lg:mb-[30px]">
                                             هوش مصنوعی (AI): راهنمای جامع برای درک و ورود به آینده فناوری در ایران
@@ -3185,7 +3185,7 @@ color: navy;
 
                                     </article>
 
-                                    <article>
+                                    <article className="px-1">
                                         <h1 id="main-title" className="text-gray-900 dark:text-white text-[22px] md:text-[26px] lg:text-[28px] font-bold leading-tight mt-10 mb-6 md:mb-8 lg:mb-10 text-center">
                                             آموزش Flexbox در CSS: راهنمای جامع و پروژه‌محور (صفر تا صد)
                                         </h1>
@@ -5543,9 +5543,9 @@ align-self: end;
                                             </div>
                                         </div>
 
-                                    </article>
+                                    </article >
 
-                                    <article> {/* کانتینر اصلی مقاله با حداکثر عرض مناسب خوانایی */}
+                                    <article className="px-1"> {/* کانتینر اصلی مقاله با حداکثر عرض مناسب خوانایی */}
 
                                         {/* ===== 1. عنوان اصلی (H1) ===== */}
                                         <h1 id="main-title" className="text-gray-900 dark:text-white text-2xl md:text-3xl lg:text-4xl font-bold leading-snug mt-10 mb-8 md:mb-10 lg:mb-12 ">
@@ -6449,6 +6449,580 @@ align-self: end;
                                         </div>
 
                                     </article>
+
+
+                                    <article className="px-1">
+
+                                        {/* ===== 1. عنوان اصلی (H1) ===== */}
+                                        <h1 id="main-title" className="text-gray-900 dark:text-white text-2xl md:text-3xl lg:text-4xl font-bold leading-snug mt-10 mb-8 md:mb-10 lg:mb-12 ">
+                                            مقایسه CSS Grid و Flexbox : کدام برای چیدمان وب بهتر است؟
+                                        </h1>
+
+                                        {/* ===== 2. مقدمه (Introduction) ===== */}
+                                        <section id="introduction" className="mb-12 md:mb-16">
+                                            <p className="md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8 ">
+
+                                                در دنیای مدرن طراحی وب، <strong className="font-semibold text-primary-600 dark:text-primary-400">چیدمان (Layout)</strong> همه چیز است! اما سوالی که ذهن بسیاری از <strong className="font-semibold">برنامه‌نویسان فرانت‌اند، به‌ویژه در ایران</strong>، را به خود مشغول می‌کند این است: برای ساخت این چیدمان‌ها، <strong className="font-semibold">CSS Grid</strong> بهتر است یا <strong className="font-semibold">CSS Flexbox</strong>؟ <strong className="font-semibold">تفاوت CSS Grid و Flexbox</strong> دقیقاً چیست و <strong className="font-semibold">چه زمانی باید از کدام استفاده کنیم؟</strong>
+                                            </p>
+                                            <div className="mx-auto text-gray-800 dark:text-gray-200 text-base md:text-lg font-normal leading-loose text-justify space-y-5">
+                                                <p>
+                                                    به راهنمای جامع و <strong className="font-semibold">مقایسه‌ای Virtual Learn</strong> خوش آمدید! اگر شما هم در دوراهی انتخاب بین <strong className="font-semibold">Grid یا Flexbox</strong> هستید، جای درستی آمده‌اید. در این مقاله عمیق، ما این دو غول قدرتمند چیدمان در CSS را زیر ذره‌بین قرار می‌دهیم و آن‌ها را بر اساس معیارهای کلیدی با هم مقایسه می‌کنیم:
+                                                </p>
+                                                <ul className="list-disc ps-4 my-4 marker:text-primary-500 space-y-1 text-base">
+                                                    <li>ابعاد چیدمان (یک بعدی در مقابل دو بعدی)</li>
+                                                    <li>رویکرد چیدمان (Content-first vs Layout-first)</li>
+                                                    <li>قابلیت‌های ترازبندی (Alignment)</li>
+                                                    <li>انعطاف‌پذیری و Wrapping</li>
+                                                    <li>موارد استفاده ایده‌آل (Use Cases)</li>
+                                                    <li>منحنی یادگیری و پیچیدگی</li>
+                                                    <li>پشتیبانی مرورگرها</li>
+                                                    <li>نحوه ترکیب هوشمندانه Grid و Flexbox</li>
+                                                </ul>
+                                                <p>
+                                                    هدف ما در این <strong className="font-semibold">مقایسه CSS Grid و Flexbox</strong> صرفاً اعلام یک برنده نیست؛ زیرا هر دو ابزارهای فوق‌العاده‌ای هستند. بلکه هدف، ارائه تحلیلی دقیق و بی‌طرفانه است تا شما بتوانید با درک کامل <strong className="font-semibold">تفاوت‌ها، مزایا و معایب</strong> هر کدام، بهترین تصمیم را برای پروژه‌های وب خود در <strong className="font-semibold">ایران</strong> بگیرید. بیایید این مقایسه را شروع کنیم!
+                                                </p>
+                                            </div>
+                                        </section>
+
+                                        {/* ===== پیش‌نیازها ===== */}
+                                        <div id="prerequisites" className="bg-gray-50 dark:bg-gray-800/60 rounded-lg p-6 my-8 md:my-10 border border-gray-200 dark:border-gray-700 shadow-sm mx-auto">
+                                            <h2 className="text-lg md:text-xl font-semibold text-gray-800 dark:text-white mb-4 flex items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 me-2  text-secondary-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>
+                                                پیش‌نیاز درک این مقایسه:
+                                            </h2>
+                                            <ul className="list-disc ps-4 space-y-3 text-gray-700 dark:text-gray-300 text-base leading-relaxed marker:text-secondary-400 dark:marker:text-secondary-500">
+                                                <li><strong className="font-medium">آشنایی با HTML و CSS پایه:</strong> شما باید با ساختار HTML و مفاهیم اصلی CSS مانند سلکتورها، ویژگی‌ها، مقادیر و مدل باکس (Box Model) آشنا باشید.</li>
+                                                <li>(اختیاری) مطالعه مقالات معرفی جداگانه <a href="https://vc-virtual-learn.com/blog/blogs/css-grid-layout-tutorial-project" className="text-primary-600 hover:underline dark:text-primary-400 font-medium mx-1">CSS Grid</a> و <a href="https://vc-virtual-learn.com/blog/blogs/css-flexbox-tutorial-project-based" className="text-primary-600 hover:underline dark:text-primary-400 font-medium mx-1">Flexbox</a> در وبلاگ ما می‌تواند مفید باشد.</li>
+                                            </ul>
+                                        </div>
+
+
+                                        {/* ===== 4. فهرست مطالب (Table of Contents - ToC) ===== */}
+                                        <nav id="toc" aria-label="فهرست مطالب مقایسه Grid و Flexbox" className="my-10 md:my-12 lg:my-16 px-4 py-6 bg-indigo-50 dark:bg-gray-800/80 backdrop-blur-sm rounded-lg border-t-4 border-indigo-500 shadow-md ">
+                                            <h2 className="text-xl font-bold text-indigo-800 dark:text-indigo-200 mb-5 text-center flex items-center justify-center">
+                                                <svg className="w-6 h-6 me-2  text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h7" /></svg>
+                                                آنچه در این مقایسه می‌خوانید:
+                                            </h2>
+                                            <ol className="list-decimal ps-4 space-y-3 text-base font-medium text-gray-700 dark:text-gray-300 columns-1 sm:columns-2 px-4 marker:text-indigo-600 dark:marker:text-indigo-400">
+                                                <li><a href="#introduction" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">مقدمه: Grid یا Flexbox؟</a></li>
+                                                <li><a href="#prerequisites" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">پیش‌نیاز درک مقایسه</a></li>
+                                                <li><a href="#intro-flexbox" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">Flexbox به زبان ساده</a></li>
+                                                <li><a href="#intro-grid" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">Grid به زبان ساده</a></li>
+                                                <li><a href="#comparison-dimensions" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">مقایسه ابعاد (۱ بعدی vs ۲ بعدی)</a></li>
+                                                <li><a href="#comparison-layout-approach" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">مقایسه رویکرد چیدمان</a></li>
+                                                <li><a href="#comparison-alignment" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">مقایسه قابلیت‌های ترازبندی</a></li>
+                                                <li><a href="#comparison-use-cases" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">مقایسه موارد استفاده و قوت</a></li>
+                                                <li><a href="#comparison-combining" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">جادوی ترکیب Grid و Flexbox</a></li>
+                                                <li><a href="#conclusion" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">جمع‌بندی و راهنمای انتخاب</a></li>
+                                                <li><a href="#faq" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">سوالات متداول (FAQ)</a></li>
+                                                <li><a href="#cta-next-steps" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">مسیر یادگیری و دوره‌ها</a></li>
+                                            </ol>
+                                        </nav>
+
+                                        {/* ===== 5. بدنه اصلی (Main Body) ===== */}
+                                        <main className="mx-auto">
+
+                                            {/* === معرفی کوتاه Flexbox === */}
+                                            <section id="intro-flexbox" className="mt-10 md:mt-12 lg:mt-16 scroll-mt-20">
+                                                <h2 className="flex items-center text-xl md:text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-4 pb-2 border-b border-gray-300 dark:border-gray-700">
+                                                    <span className="inline-block w-3 h-3 bg-secondary-500 rounded-full ml-3"></span>
+                                                    Flexbox به زبان ساده: چیدمان خطی و انعطاف‌پذیر
+                                                </h2>
+                                                <div className="text-gray-800 dark:text-gray-200 text-base md:text-lg leading-loose text-justify space-y-4 mb-6">
+                                                    <p>
+                                                        <strong className="font-semibold">CSS Flexible Box Layout</strong>، که بیشتر با نام <strong className="font-semibold">Flexbox</strong> شناخته می‌شود، یک مدل چیدمان <strong className="font-semibold">یک بعدی</strong> در CSS است. هدف اصلی آن فراهم کردن راهی کارآمدتر برای چیدمان، تراز کردن (Align) و توزیع فضا بین آیتم‌ها در یک کانتینر است، حتی زمانی که اندازه آن‌ها نامشخص یا داینامیک باشد.
+                                                    </p>
+                                                    <p>
+                                                        فلسفه اصلی Flexbox بر اساس دو محور کار می‌کند: <strong className="font-semibold">محور اصلی (Main Axis)</strong> و <strong className="font-semibold">محور متقاطع (Cross Axis)</strong>. شما می‌توانید جهت محور اصلی را به صورت افقی (ردیفی - پیش‌فرض) یا عمودی (ستونی) تنظیم کنید و سپس نحوه قرارگیری آیتم‌ها و توزیع فضای خالی در طول این محور را کنترل کنید. Flexbox در تراز کردن آیتم‌ها در محور متقاطع نیز بسیار قدرتمند است.
+                                                    </p>
+                                                    <p>
+                                                        <strong className="font-semibold">فلکس باکس سی اس اس</strong> به خصوص برای چیدمان کامپوننت‌ها و المان‌های کوچک‌تر در صفحه، مانند منوهای ناوبری، کارت‌ها، دکمه‌ها در یک ردیف، و هر جایی که نیاز به چیدمان خطی و انعطاف‌پذیر دارید، فوق‌العاده است.
+                                                    </p>
+                                                    <div className="flex items-start border-r-4 border-info-400 bg-info-50 dark:bg-gray-800/70 p-4 rounded-l-lg my-6 shadow-md">
+                                                        <svg className="flex-shrink-0 h-6 w-6 text-info-500 mr-0 ml-3 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                                        <div>
+                                                            <strong className="font-semibold text-info-800 dark:text-info-200 block mb-1">یادگیری عمیق‌تر Flexbox:</strong>
+                                                            <p className="text-info-700 dark:text-info-300 text-sm md:text-base leading-relaxed">برای آموزش کامل و پروژه‌محور Flexbox، می‌توانید به مقاله ما مراجعه کنید: <a href="https://vc-virtual-learn.com/blog/blogs/css-flexbox-tutorial-project-based" className="text-primary-600 hover:underline dark:text-primary-400 font-medium mx-1">آموزش Flexbox در CSS: راهنمای جامع و پروژه‌محور (صفر تا صد)</a>.</p>
+                                                            <p className="text-info-700 dark:text-info-300 text-xs md:text-sm leading-relaxed mt-2">همچنین مفاهیم Flexbox به طور کامل در <a href="https://vc-virtual-learn.com/courses/Build-Responsive-Real-World-Websites-with-HTML-and-CSS-Jonas-Schmedtmann" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline dark:text-primary-400 font-medium">دوره آموزش HTML & CSS (Jonas Schmedtmann)</a> پوشش داده شده است.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+
+                                            {/* === معرفی کوتاه Grid === */}
+                                            <section id="intro-grid" className="mt-10 md:mt-12 lg:mt-16 scroll-mt-20">
+                                                <h2 className="flex items-center text-xl md:text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-4 pb-2 border-b border-gray-300 dark:border-gray-700">
+                                                    <span className="inline-block w-3 h-3 bg-success-500 rounded-full ml-3"></span>
+                                                    Grid به زبان ساده: چیدمان جدولی و دو بعدی قدرتمند
+                                                </h2>
+                                                <div className="text-gray-800 dark:text-gray-200 text-base md:text-lg leading-loose text-justify space-y-4 mb-6">
+                                                    <p>
+                                                        <strong className="font-semibold">CSS Grid Layout</strong>، یا به اختصار <strong className="font-semibold">Grid</strong>، یک سیستم چیدمان <strong className="font-semibold">دو بعدی</strong> مبتنی بر گرید (شبکه) است. برخلاف Flexbox که اصولاً روی یک بعد تمرکز دارد، Grid به شما امکان می‌دهد هم ردیف‌ها و هم ستون‌ها را به طور همزمان تعریف و مدیریت کنید. این قابلیت، آن را برای ساخت <strong className="font-semibold">چیدمان‌های کلی صفحه (Page Layouts)</strong> و ساختارهای پیچیده‌ای که نیاز به کنترل دقیق در هر دو جهت افقی و عمودی دارند، بسیار قدرتمند می‌سازد.
+                                                    </p>
+                                                    <p>
+                                                        با <strong className="font-semibold">سی اس اس گرید</strong>، شما می‌توانید یک شبکه نامرئی از خطوط افقی و عمودی ایجاد کنید و سپس تعیین کنید که هر المان دقیقاً کدام سلول‌ها یا نواحی از این شبکه را اشغال کند. ویژگی‌هایی مانند <code className="bg-gray-200 dark:bg-gray-700 px-1 py-0.5 rounded text-sm font-mono">grid-template-columns</code>، <code className="bg-gray-200 dark:bg-gray-700 px-1 py-0.5 rounded text-sm font-mono">grid-template-rows</code>، <code className="bg-gray-200 dark:bg-gray-700 px-1 py-0.5 rounded text-sm font-mono">grid-template-areas</code> و واحد انعطاف‌پذیر <code className="bg-gray-200 dark:bg-gray-700 px-1 py-0.5 rounded text-sm font-mono">fr</code> کنترل بی‌نظیری بر روی ساختار صفحه به شما می‌دهند.
+                                                    </p>
+                                                    <p>
+                                                        <strong className="font-semibold">CSS Grid</strong> برای طراحی ساختارهای جدولی مانند، گالری‌های عکس پیچیده، داشبوردها و به طور کلی، هر چیدمانی که نیاز به تقسیم‌بندی فضا در هر دو بُعد دارد، ایده‌آل است.
+                                                    </p>
+                                                    <div className="flex items-start border-r-4 border-info-400 bg-info-50 dark:bg-gray-800/70 p-4 rounded-l-lg my-6 shadow-md">
+                                                        <svg className="flex-shrink-0 h-6 w-6 text-info-500 mr-0 ml-3 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                                        <div>
+                                                            <strong className="font-semibold text-info-800 dark:text-info-200 block mb-1">یادگیری عمیق‌تر CSS Grid:</strong>
+                                                            <p className="text-info-700 dark:text-info-300 text-sm md:text-base leading-relaxed">برای آموزش کامل و پروژه‌محور CSS Grid، مقاله جامع ما را مطالعه کنید: <a href="https://vc-virtual-learn.com/blog/blogs/css-grid-layout-tutorial-project" className="text-primary-600 hover:underline dark:text-primary-400 font-medium mx-1">آموزش CSS Grid پروژه محور: ساخت چیدمان‌های مدرن از صفر تا صد</a>.</p>
+                                                            <p className="text-info-700 dark:text-info-300 text-xs md:text-sm leading-relaxed mt-2">همچنین می‌توانید تمام جزئیات را در <a href="https://vc-virtual-learn.com/courses/Ultimate-CSS-Grid-Course-From-Beginner-to-Advanced-Peter-Sommerhoff" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline dark:text-primary-400 font-medium">دوره آموزش جامع CSS Grid (Peter Sommerhoff)</a> با زیرنویس فارسی بیاموزید.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+
+
+                                            {/* ========= بخش‌های مقایسه بر اساس معیارها ========= */}
+
+                                            {/* معیار ۱: ابعاد چیدمان */}
+                                            <section id="comparison-dimensions" className="mt-10 md:mt-12 lg:mt-16 pt-8 border-t border-dashed border-gray-300 dark:border-gray-600 scroll-mt-20">
+                                                <h2 className="flex items-center text-gray-900 dark:text-white text-xl md:text-2xl lg:text-3xl font-semibold leading-normal mt-12 md:mt-14 lg:mt-16 mb-6 md:mb-8 lg:mb-10 border-r-4 border-primary-500 dark:border-primary-400 pr-4 py-2 bg-gray-50 dark:bg-gray-800/40 rounded-l-md shadow-sm">
+                                                    <svg className="h-6 w-6 mr-0 ml-3 text-primary-600 dark:text-primary-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v4m0 0h-4m4 0l-5-5" />
+                                                    </svg>
+                                                    مقایسه ابعاد چیدمان: ۱ بُعدی (Flexbox) در مقابل ۲ بُعدی (Grid)
+                                                </h2>
+                                                <div className="text-gray-800 dark:text-gray-200 text-base md:text-lg leading-loose text-justify space-y-4 mb-6">
+                                                    <p>
+                                                        این اساسی‌ترین <strong className="font-semibold">تفاوت CSS Grid و Flexbox</strong> است. <strong className="font-semibold">Flexbox</strong> ذاتا برای چیدمان آیتم‌ها در <strong className="font-semibold">یک خط (یک بُعد)</strong> طراحی شده است، چه آن خط یک ردیف باشد یا یک ستون. شما با <code className="bg-gray-200 dark:bg-gray-700 px-1 py-0.5 rounded text-sm font-mono">flex-direction</code> تعیین می‌کنید که محور اصلی افقی (row) است یا عمودی (column). تمام قابلیت‌های آن مانند justify-content, align-items, flex-grow, flex-shrink در راستای این محور اصلی یا محور متقاطع آن عمل می‌کنند.
+                                                    </p>
+                                                    <p>
+                                                        در مقابل، <strong className="font-semibold">CSS Grid</strong> برای چیدمان در <strong className="font-semibold">دو بُعد</strong> (ردیف‌ها و ستون‌ها به طور همزمان) ساخته شده است. شما یک شبکه یا گرید تعریف می‌کنید و آیتم‌ها را در این شبکه دو بعدی قرار می‌دهید. این به شما امکان می‌دهد ساختارهای پیچیده‌تری بسازید که هم در راستای افقی و هم عمودی تراز شده باشند.
+                                                    </p>
+                                                    {/* Simple visual comparison */}
+                                                    <div className="my-8 grid grid-cols-1 md:grid-cols-2 gap-6 items-start"> {/* Changed to items-start */}
+                                                        <div className="text-center p-4 border border-dashed border-secondary-400 rounded-lg">
+                                                            <h4 className="font-semibold text-secondary-700 dark:text-secondary-300 mb-2">Flexbox (۱ بعدی)</h4>
+                                                            <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">(چیدمان در یک ردیف یا ستون)</p>
+                                                            <Image width="400" height="500" className="w-full h-full shadow-medium rounded-xl"
+                                                                loading="lazy" alt="دیاگرام ساده Flexbox نشان دهنده چیدمان یک بعدی"
+                                                                src={`${process.env.NEXT_PUBLIC_BLOG_IMAGE_BASE_URL}grid-vs-flexbox654.jpg`} />
+
+                                                            <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">کنترل اصلی بر روی یک محور.</p>
+                                                        </div>
+                                                        <div className="text-center p-4 border border-dashed border-success-400 rounded-lg">
+                                                            <h4 className="font-semibold text-success-700 dark:text-success-300 mb-2">Grid (۲ بعدی)</h4>
+                                                            <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">(چیدمان در ردیف و ستون)</p>
+                                                            <Image width="400" height="500" className="w-full h-full shadow-medium rounded-xl"
+                                                                loading="lazy" alt="دیاگرام ساده Grid نشان دهنده چیدمان دو بعدی"
+                                                                src={`${process.env.NEXT_PUBLIC_BLOG_IMAGE_BASE_URL}grid-vs-flexbox154.jpg`} />
+
+                                                            <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">کنترل همزمان روی ردیف‌ها و ستون‌ها.</p>
+                                                        </div>
+                                                    </div>
+                                                    {/* [Image Suggestion Type]: "Author Creation (Diagram)" or "AI Generation" */}
+                                                    {/* [Suggested Alt Text]: "مقایسه بصری Flexbox (چیدمان یک بعدی) و Grid (چیدمان دو بعدی)" */}
+                                                    <p>
+                                                        <strong className="font-semibold">نتیجه‌گیری این بخش:</strong> اگر نیاز به چیدمان در یک خط دارید، Flexbox معمولاً ساده‌تر است. اگر به ساختار جدولی یا کنترل دقیق بر روی هر دو محور نیاز دارید، Grid ابزار قدرتمندتری است.
+                                                    </p>
+                                                </div>
+                                            </section>
+
+                                            {/* معیار ۲: رویکرد چیدمان */}
+                                            <section id="comparison-layout-approach" className="mt-10 md:mt-12 lg:mt-16 pt-8 border-t border-dashed border-gray-300 dark:border-gray-600 scroll-mt-20">
+                                                <h2 className="flex items-center text-gray-900 dark:text-white text-xl md:text-2xl lg:text-3xl font-semibold leading-normal mt-12 md:mt-14 lg:mt-16 mb-6 md:mb-8 lg:mb-10 border-r-4 border-primary-500 dark:border-primary-400 pr-4 py-2 bg-gray-50 dark:bg-gray-800/40 rounded-l-md shadow-sm">
+                                                    <svg className="h-6 w-6 mr-0 ml-3 text-primary-600 dark:text-primary-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3H4.5A2.25 2.25 0 0 0 2.25 5.25v13.5A2.25 2.25 0 0 0 4.5 21h15a2.25 2.25 0 0 0 2.25-2.25V15.75m-4.5-5.25V5.25m0 0a2.25 2.25 0 0 1 2.25-2.25h1.5a2.25 2.25 0 0 1 2.25 2.25v1.5m-5.25-1.5h-1.5a2.25 2.25 0 0 0-2.25 2.25v1.5m4.5-4.5l-1.5 1.5m1.5-1.5l-1.5-1.5m1.5 1.5L19.5 3m-6 6l-1.5 1.5m1.5-1.5l1.5 1.5M10.5 13.5l-1.5 1.5m1.5-1.5l1.5-1.5m1.5 1.5l1.5 1.5" /></svg>
+                                                    مقایسه رویکرد: محتوا-محور (Flexbox) در مقابل ساختار-محور (Grid)
+                                                </h2>
+                                                <div className="text-gray-800 dark:text-gray-200 text-base md:text-lg leading-loose text-justify space-y-4 mb-6">
+                                                    <p>
+                                                        یک <strong className="font-semibold">تفاوت Grid و Flexbox</strong> که شاید کمتر به آن پرداخته شود، رویکرد ذاتی آن‌ها به چیدمان است:
+                                                    </p>
+                                                    <ul className="list-none space-y-4 my-6">
+                                                        <li className="flex items-start bg-secondary-50 dark:bg-gray-800/50 p-4 rounded-lg border-r-2 border-secondary-400">
+                                                            <span className="font-bold text-secondary-600 dark:text-secondary-400 text-lg mr-2 ml-2">●</span>
+                                                            <div>
+                                                                <strong className="font-semibold text-secondary-800 dark:text-secondary-200 block">Flexbox (Content-Out / Content-First):</strong> Flexbox به طور طبیعی سعی می‌کند آیتم‌ها را بر اساس اندازه محتوایشان در یک خط قرار دهد و سپس فضای خالی را بین آن‌ها توزیع کند یا آن‌ها را به خط بعدی بشکند (wrap کند). شما بیشتر کنترل می‌کنید که <em className="italic">چگونه</em> آیتم‌ها در فضایی که دارند رفتار کنند.
+                                                            </div>
+                                                        </li>
+                                                        <li className="flex items-start bg-success-50 dark:bg-gray-800/50 p-4 rounded-lg border-r-2 border-success-400">
+                                                            <span className="font-bold text-success-600 dark:text-success-400 text-lg mr-2 ml-2">●</span>
+                                                            <div>
+                                                                <strong className="font-semibold text-success-800 dark:text-success-200 block">Grid (Layout-In / Layout-First):</strong> Grid به شما اجازه می‌دهد ابتدا یک ساختار (شبکه) سفت و سخت تعریف کنید (تعداد و اندازه ردیف‌ها و ستون‌ها) و سپس آیتم‌ها را <em className="italic">درون</em> آن ساختار قرار دهید. شما کنترل بیشتری بر روی خودِ ساختار چیدمان دارید.
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                    <p>
+                                                        این تفاوت به این معنی نیست که یکی بر دیگری برتری دارد، بلکه نشان می‌دهد که برای چه نوع задачами (وظایفی) مناسب‌تر هستند. اگر می‌خواهید آیتم‌ها به صورت طبیعی جریان پیدا کنند و خودشان را با محتوا تطبیق دهند، Flexbox عالی است. اگر می‌خواهید یک ساختار کلی دقیق و از پیش تعریف شده داشته باشید، Grid قدرت بیشتری دارد.
+                                                    </p>
+                                                </div>
+                                            </section>
+
+                                            {/* معیار ۳: قابلیت‌های ترازبندی */}
+                                            <section id="comparison-alignment" className="mt-10 md:mt-12 lg:mt-16 pt-8 border-t border-dashed border-gray-300 dark:border-gray-600 scroll-mt-20">
+                                                <h2 className="flex items-center text-gray-900 dark:text-white text-xl md:text-2xl lg:text-3xl font-semibold leading-normal mt-12 md:mt-14 lg:mt-16 mb-6 md:mb-8 lg:mb-10 border-r-4 border-primary-500 dark:border-primary-400 pr-4 py-2 bg-gray-50 dark:bg-gray-800/40 rounded-l-md shadow-sm">
+                                                    <svg className="h-6 w-6 mr-0 ml-3 text-primary-600 dark:text-primary-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 01-6.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" /></svg>
+                                                    مقایسه قابلیت‌های ترازبندی (Alignment)
+                                                </h2>
+                                                <div className="text-gray-800 dark:text-gray-200 text-base md:text-lg leading-loose text-justify space-y-4 mb-6">
+                                                    <p>
+                                                        هم <strong className="font-semibold">Grid</strong> و هم <strong className="font-semibold">Flexbox</strong> مجموعه‌ای غنی از ویژگی‌ها برای <strong className="font-semibold">تراز کردن آیتم‌ها در CSS</strong> ارائه می‌دهند. بسیاری از این ویژگی‌ها (مانند <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded text-xs font-mono">align-items</code>, <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded text-xs font-mono">justify-content</code>) در هر دو ماژول وجود دارند، اما نحوه کار و کاربردشان کمی متفاوت است.
+                                                    </p>
+                                                    {/* Alignment Properties Table */}
+                                                    <div className="overflow-x-auto my-8 shadow-lg rounded-lg border border-gray-300 dark:border-gray-700">
+                                                        <table className="w-full text-sm md:text-base">
+                                                            <caption className="caption-top text-lg font-semibold text-gray-800 dark:text-gray-100 p-4 bg-gray-100 dark:bg-gray-800 text-center">مقایسه ویژگی‌های اصلی ترازبندی</caption>
+                                                            <thead className="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 uppercase text-xs tracking-wider">
+                                                                <tr>
+                                                                    <th scope="col" className="px-4 py-3 font-bold text-right">ویژگی</th>
+                                                                    <th scope="col" className="px-4 py-3 font-bold text-center">Flexbox</th>
+                                                                    <th scope="col" className="px-4 py-3 font-bold text-center">Grid</th>
+                                                                    <th scope="col" className="px-4 py-3 font-bold text-right">توضیح</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-600">
+                                                                <tr className="hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors duration-150">
+                                                                    <td className="px-4 py-3 font-medium text-gray-900 dark:text-gray-100"><code className="font-mono text-xs">justify-content</code></td>
+                                                                    <td className="px-4 py-3 text-gray-700 dark:text-gray-300 text-center">✅</td>
+                                                                    <td className="px-4 py-3 text-gray-700 dark:text-gray-300 text-center">✅</td>
+                                                                    <td className="px-4 py-3 text-gray-700 dark:text-gray-300 text-xs">تراز خطوط/ترک‌ها در محور اصلی/افقی کانتینر</td>
+                                                                </tr>
+                                                                <tr className="hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors duration-150">
+                                                                    <td className="px-4 py-3 font-medium text-gray-900 dark:text-gray-100"><code className="font-mono text-xs">align-content</code></td>
+                                                                    <td className="px-4 py-3 text-gray-700 dark:text-gray-300 text-center">✅ (چند خط)</td>
+                                                                    <td className="px-4 py-3 text-gray-700 dark:text-gray-300 text-center">✅</td>
+                                                                    <td className="px-4 py-3 text-gray-700 dark:text-gray-300 text-xs">تراز خطوط/ترک‌ها در محور متقاطع/عمودی کانتینر</td>
+                                                                </tr>
+                                                                <tr className="hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors duration-150">
+                                                                    <td className="px-4 py-3 font-medium text-gray-900 dark:text-gray-100"><code className="font-mono text-xs">justify-items</code></td>
+                                                                    <td className="px-4 py-3 text-gray-700 dark:text-gray-300 text-center">❌</td>
+                                                                    <td className="px-4 py-3 text-gray-700 dark:text-gray-300 text-center">✅</td>
+                                                                    <td className="px-4 py-3 text-gray-700 dark:text-gray-300 text-xs">تراز افقی پیش‌فرض <em className="italic">همه</em> آیتم‌ها داخل فضایشان</td>
+                                                                </tr>
+                                                                <tr className="hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors duration-150">
+                                                                    <td className="px-4 py-3 font-medium text-gray-900 dark:text-gray-100"><code className="font-mono text-xs">align-items</code></td>
+                                                                    <td className="px-4 py-3 text-gray-700 dark:text-gray-300 text-center">✅</td>
+                                                                    <td className="px-4 py-3 text-gray-700 dark:text-gray-300 text-center">✅</td>
+                                                                    <td className="px-4 py-3 text-gray-700 dark:text-gray-300 text-xs">تراز عمودی پیش‌فرض <em className="italic">همه</em> آیتم‌ها داخل فضایشان</td>
+                                                                </tr>
+                                                                <tr className="hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors duration-150">
+                                                                    <td className="px-4 py-3 font-medium text-gray-900 dark:text-gray-100"><code className="font-mono text-xs">justify-self</code></td>
+                                                                    <td className="px-4 py-3 text-gray-700 dark:text-gray-300 text-center">❌</td>
+                                                                    <td className="px-4 py-3 text-gray-700 dark:text-gray-300 text-center">✅</td>
+                                                                    <td className="px-4 py-3 text-gray-700 dark:text-gray-300 text-xs">تراز افقی <em className="italic">یک آیتم خاص</em></td>
+                                                                </tr>
+                                                                <tr className="hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors duration-150">
+                                                                    <td className="px-4 py-3 font-medium text-gray-900 dark:text-gray-100"><code className="font-mono text-xs">align-self</code></td>
+                                                                    <td className="px-4 py-3 text-gray-700 dark:text-gray-300 text-center">✅</td>
+                                                                    <td className="px-4 py-3 text-gray-700 dark:text-gray-300 text-center">✅</td>
+                                                                    <td className="px-4 py-3 text-gray-700 dark:text-gray-300 text-xs">تراز عمودی <em className="italic">یک آیتم خاص</em></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <p>
+                                                        نکته کلیدی این است که Grid به دلیل ماهیت دو بعدی، کنترل‌های بیشتری برای تراز کردن آیتم‌ها به صورت جداگانه در هر دو محور افقی و عمودی با استفاده از <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded text-xs font-mono">justify-items</code> و <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded text-xs font-mono">justify-self</code> ارائه می‌دهد که در Flexbox وجود ندارند (Flexbox بیشتر روی تراز کردن نسبت به خط تمرکز دارد). با این حال، هر دو ابزار در تراز کردن محتوا بسیار قدرتمند هستند.
+                                                    </p>
+                                                </div>
+                                            </section>
+
+                                            {/* معیار ۴: موارد استفاده و نقاط قوت */}
+                                            <section id="comparison-use-cases" className="mt-10 md:mt-12 lg:mt-16 pt-8 border-t border-dashed border-gray-300 dark:border-gray-600 scroll-mt-20">
+                                                <h2 className="flex items-center text-gray-900 dark:text-white text-xl md:text-2xl lg:text-3xl font-semibold leading-normal mt-12 md:mt-14 lg:mt-16 mb-6 md:mb-8 lg:mb-10 border-r-4 border-primary-500 dark:border-primary-400 pr-4 py-2 bg-gray-50 dark:bg-gray-800/40 rounded-l-md shadow-sm">
+                                                    <svg className="h-6 w-6 mr-0 ml-3 text-primary-600 dark:text-primary-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M17.657 18.172a4 4 0 01-5.657 0l-2.828-2.829a4 4 0 010-5.656l2.828-2.828a4 4 0 015.657 0l2.828 2.828a4 4 0 010 5.657l-2.828 2.828zm-5.657-8.486a2 2 0 012.828 0L17.657 12a2 2 0 11-2.828 2.828L12 12.172a2 2 0 010-2.828zM6.343 12.172a4 4 0 010 5.656L3.515 20.657a4 4 0 01-5.657-5.657l2.829-2.828a4 4 0 015.656 0zM3.515 7.343a2 2 0 012.828 0l2.828 2.828a2 2 0 11-2.828 2.828L3.515 10.172a2 2 0 010-2.828z" /></svg>
+                                                    مقایسه موارد استفاده و نقاط قوت کلیدی
+                                                </h2>
+                                                <div className="text-gray-800 dark:text-gray-200 text-base md:text-lg leading-loose text-justify space-y-4 mb-6">
+                                                    <p>
+                                                        حالا که <strong className="font-semibold">تفاوت CSS Grid و Flexbox</strong> را در ابعاد و رویکرد درک کردیم، بیایید ببینیم هر کدام در چه سناریوهایی می‌درخشند و <strong className="font-semibold">کاربرد CSS Grid</strong> و <strong className="font-semibold">کاربرد Flexbox</strong> اصلی چیست؟
+                                                    </p>
+
+                                                    {/* Pros/Cons Lists */}
+                                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 my-8 md:my-10">
+                                                        {/* Flexbox Card */}
+                                                        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 border-t-4 border-secondary-500">
+                                                            <h3 className="text-xl font-bold text-secondary-700 dark:text-secondary-300 mb-4 text-center">CSS Flexbox</h3>
+                                                            <div className="mb-6">
+                                                                <h4 className="text-lg font-semibold text-green-800 dark:text-green-300 mb-3 flex items-center">
+                                                                    <svg className="w-5 h-5 mr-0 ml-2 flex-shrink-0 text-green-500" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
+                                                                    نقاط قوت (مزایا)
+                                                                </h4>
+                                                                <ul className="list-disc ps-4 space-y-2 text-gray-700 dark:text-gray-300 text-sm marker:text-green-500">
+                                                                    <li>عالی برای چیدمان <strong className="font-medium">یک بعدی</strong> (ردیف یا ستون).</li>
+                                                                    <li>کنترل فوق‌العاده بر <strong className="font-medium">تراز کردن (Alignment)</strong> آیتم‌ها.</li>
+                                                                    <li>توانایی عالی در <strong className="font-medium">توزیع فضای خالی</strong> بین آیتم‌ها.</li>
+                                                                    <li><strong className="font-medium">انعطاف‌پذیری</strong> ذاتی در تغییر اندازه آیتم‌ها.</li>
+                                                                    <li>مناسب برای <strong className="font-medium">چیدمان کامپوننت‌ها</strong>.</li>
+                                                                    <li>پشتیبانی مرورگرهای <strong className="font-medium">بسیار قدیمی‌تر</strong>.</li>
+                                                                    <li>یادگیری مفاهیم پایه <strong className="font-medium">آسان‌تر</strong>.</li>
+                                                                </ul>
+                                                            </div>
+                                                            <div>
+                                                                <h4 className="text-lg font-semibold text-red-800 dark:text-red-300 mb-3 flex items-center">
+                                                                    <svg className="w-5 h-5 mr-0 ml-2 flex-shrink-0 text-red-500" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" /></svg>
+                                                                    نقاط ضعف (معایب)
+                                                                </h4>
+                                                                <ul className="list-disc ps-4 space-y-2 text-gray-700 dark:text-gray-300 text-sm marker:text-red-500">
+                                                                    <li>برای چیدمان‌های <strong className="font-medium">دو بعدی</strong> پیچیده مناسب نیست.</li>
+                                                                    <li>کنترل کمتری بر <strong className="font-medium">ساختار کلی صفحه</strong> دارد.</li>
+                                                                    <li><code className="text-xs font-mono">flex-wrap</code> گاهی نتایج غیرمنتظره‌ای دارد.</li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+
+                                                        {/* Grid Card */}
+                                                        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 border-t-4 border-success-500">
+                                                            <h3 className="text-xl font-bold text-success-700 dark:text-success-300 mb-4 text-center">CSS Grid</h3>
+                                                            <div className="mb-6">
+                                                                <h4 className="text-lg font-semibold text-green-800 dark:text-green-300 mb-3 flex items-center">
+                                                                    <svg className="w-5 h-5 mr-0 ml-2 flex-shrink-0 text-green-500" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
+                                                                    نقاط قوت (مزایا)
+                                                                </h4>
+                                                                <ul className="list-disc ps-4 space-y-2 text-gray-700 dark:text-gray-300 text-sm marker:text-green-500">
+                                                                    <li>طراحی شده برای چیدمان <strong className="font-medium">دو بعدی</strong>.</li>
+                                                                    <li>کنترل دقیق بر <strong className="font-medium">ساختار کلی صفحه</strong>.</li>
+                                                                    <li>قدرتمند در ساخت <strong className="font-medium">چیدمان‌های جدولی و گالری‌های پیچیده</strong>.</li>
+                                                                    <li>ویژگی <code className="text-xs font-mono">grid-template-areas</code> برای تعریف بصری چیدمان.</li>
+                                                                    <li>مدیریت <strong className="font-medium">فاصله‌گذاری (Gap)</strong> ساده است.</li>
+                                                                    <li>توابع قدرتمند <code className="text-xs font-mono">repeat()</code>, <code className="text-xs font-mono">minmax()</code>, <code className="text-xs font-mono">auto-fit</code>.</li>
+                                                                    <li>تراز کردن <strong className="font-medium">فردی</strong> آیتم‌ها در هر دو محور.</li>
+                                                                </ul>
+                                                            </div>
+                                                            <div>
+                                                                <h4 className="text-lg font-semibold text-red-800 dark:text-red-300 mb-3 flex items-center">
+                                                                    <svg className="w-5 h-5 mr-0 ml-2 flex-shrink-0 text-red-500" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" /></svg>
+                                                                    نقاط ضعف (معایب)
+                                                                </h4>
+                                                                <ul className="list-disc ps-4 space-y-2 text-gray-700 dark:text-gray-300 text-sm marker:text-red-500">
+                                                                    <li>برای چیدمان‌های ساده <strong className="font-medium">یک بعدی</strong> شاید پیچیده‌تر باشد.</li>
+                                                                    <li>انعطاف‌پذیری ذاتی کمتری نسبت به محتوا دارد (Layout-first).</li>
+                                                                    <li>منحنی یادگیری ممکن است کمی بیشتر باشد.</li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Summary Table: When to Use Which */}
+                                                    <div className="overflow-x-auto my-8 shadow-lg rounded-lg border border-gray-300 dark:border-gray-700">
+                                                        <table className="w-full text-sm md:text-base">
+                                                            <caption className="caption-top text-lg font-semibold text-gray-800 dark:text-gray-100 p-4 bg-gray-100 dark:bg-gray-800 text-center">چه زمانی از Grid و چه زمانی از Flexbox استفاده کنیم؟ (قاعده کلی)</caption>
+                                                            <thead className="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 uppercase text-xs tracking-wider">
+                                                                <tr>
+                                                                    <th scope="col" className="px-4 py-3 font-bold text-right">سناریو</th>
+                                                                    <th scope="col" className="px-4 py-3 font-bold text-center">ابزار پیشنهادی</th>
+                                                                    <th scope="col" className="px-4 py-3 font-bold text-right">دلیل</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-600">
+                                                                <tr className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-150">
+                                                                    <td className="px-4 py-3 font-medium text-gray-900 dark:text-gray-100">چیدمان کلی صفحه</td>
+                                                                    <td className="px-4 py-3 text-center font-semibold text-success-700 dark:text-success-300">Grid</td>
+                                                                    <td className="px-4 py-3 text-xs text-gray-700 dark:text-gray-300">نیاز به کنترل دو بعدی</td>
+                                                                </tr>
+                                                                <tr className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-150">
+                                                                    <td className="px-4 py-3 font-medium text-gray-900 dark:text-gray-100">چیدمان کامپوننت‌ها</td>
+                                                                    <td className="px-4 py-3 text-center font-semibold text-secondary-700 dark:text-secondary-300">Flexbox</td>
+                                                                    <td className="px-4 py-3 text-xs text-gray-700 dark:text-gray-300">نیاز به چیدمان خطی و تراز</td>
+                                                                </tr>
+                                                                <tr className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-150">
+                                                                    <td className="px-4 py-3 font-medium text-gray-900 dark:text-gray-100">گالری تصاویر پیچیده</td>
+                                                                    <td className="px-4 py-3 text-center font-semibold text-success-700 dark:text-success-300">Grid</td>
+                                                                    <td className="px-4 py-3 text-xs text-gray-700 dark:text-gray-300">کنترل دقیق روی شبکه</td>
+                                                                </tr>
+                                                                <tr className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-150">
+                                                                    <td className="px-4 py-3 font-medium text-gray-900 dark:text-gray-100">وسط‌چین کردن المان</td>
+                                                                    <td className="px-4 py-3 text-center font-semibold text-purple-700 dark:text-purple-300">هر دو</td>
+                                                                    <td className="px-4 py-3 text-xs text-gray-700 dark:text-gray-300">هر دو روش‌های ساده‌ای دارند</td>
+                                                                </tr>
+                                                                <tr className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-150">
+                                                                    <td className="px-4 py-3 font-medium text-gray-900 dark:text-gray-100">چیدمان وابسته به محتوا</td>
+                                                                    <td className="px-4 py-3 text-center font-semibold text-secondary-700 dark:text-secondary-300">Flexbox</td>
+                                                                    <td className="px-4 py-3 text-xs text-gray-700 dark:text-gray-300">طبیعت Content-Out</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </section>
+
+                                            {/* معیار ۵: ترکیب Grid و Flexbox */}
+                                            <section id="comparison-combining" className="mt-10 md:mt-12 lg:mt-16 pt-8 border-t border-dashed border-gray-300 dark:border-gray-600 scroll-mt-20">
+                                                <h2 className="flex items-center text-gray-900 dark:text-white text-xl md:text-2xl lg:text-3xl font-semibold leading-normal mt-12 md:mt-14 lg:mt-16 mb-6 md:mb-8 lg:mb-10 border-r-4 border-primary-500 dark:border-primary-400 pr-4 py-2 bg-gray-50 dark:bg-gray-800/40 rounded-l-md shadow-sm">
+                                                    <svg className="h-6 w-6 mr-0 ml-3 text-primary-600 dark:text-primary-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM12 12a3 3 0 013 3H9a3 3 0 013-3zM3.05 11.172a4 4 0 015.656 0l2.829 2.829a4 4 0 11-5.657 5.657l-2.828-2.829a4 4 0 010-5.656z" /></svg>
+                                                    جادوی ترکیب: استفاده همزمان از CSS Grid و Flexbox
+                                                </h2>
+                                                <div className="text-gray-800 dark:text-gray-200 text-base md:text-lg leading-loose text-justify space-y-4 mb-6">
+                                                    <p>
+                                                        یکی از قدرتمندترین رویکردها در طراحی وب مدرن، استفاده ترکیبی از <strong className="font-semibold">CSS Grid و Flexbox</strong> است. این دو دشمن هم نیستند، بلکه مکمل‌های فوق‌العاده‌ای برای یکدیگر محسوب می‌شوند.
+                                                    </p>
+                                                    <p>
+                                                        <strong className="font-semibold">قاعده کلی:</strong> از <strong className="font-semibold">Grid</strong> برای <strong className="font-semibold">چیدمان کلی و ماکرو (Macro Layout)</strong> صفحه استفاده کنید (تقسیم‌بندی کلی به نواحی) و از <strong className="font-semibold">Flexbox</strong> برای <strong className="font-semibold">چیدمان داخلی و میکرو (Micro Layout)</strong> آیتم‌ها <em className="italic">درون</em> هر ناحیه یا سلول Grid استفاده کنید.
+                                                    </p>
+                                                    {/* Example Scenario */}
+                                                    <div className="bg-gray-100 dark:bg-gray-700/50 p-5 rounded-lg shadow my-6 border-l-4 border-purple-500">
+                                                        <h4 className="font-semibold text-lg text-gray-800 dark:text-gray-100 mb-2">مثال: چیدمان یک کارت محصول</h4>
+                                                        <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
+                                                            فرض کنید کارت محصولی دارید که باید در یک گالری (ساخته شده با Grid) نمایش داده شود.
+                                                        </p>
+                                                        <ul className="list-disc ps-4 space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                                                            <li>از <strong className="font-medium text-success-700 dark:text-success-300">Grid</strong> برای قرار دادن کارت‌ها در ستون‌ها و ردیف‌های منظم گالری استفاده کنید.</li>
+                                                            <li>درون هر کارت، از <strong className="font-medium text-secondary-700 dark:text-secondary-300">Flexbox</strong> برای چینش عمودی تصویر، عنوان، قیمت و دکمه استفاده کنید (flex-direction: column) و دکمه را به پایین بچسبانید.</li>
+                                                        </ul>
+                                                    </div>
+                                                    <p>
+                                                        <strong className="font-semibold">چگونه grid و flexbox را با هم ترکیب کنیم؟</strong> بسیار ساده! کافی است روی یک آیتم گرید، ویژگی <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded text-xs font-mono">display: flex;</code> را اعمال کنید. حالا آن آیتم گرید، خود تبدیل به یک Flex Container برای فرزندانش می‌شود.
+                                                    </p>
+                                                </div>
+                                            </section>
+
+                                            {/* ===== Conclusion (Decision Guide) ===== */}
+                                            <section id="conclusion" className="mt-10 md:mt-12 lg:mt-16 pt-8 border-t border-dashed border-gray-300 dark:border-gray-600 scroll-mt-20">
+                                                <h2 className="flex items-center text-gray-900 dark:text-white text-xl md:text-2xl lg:text-3xl font-semibold leading-normal mt-12 md:mt-14 lg:mt-16 mb-6 md:mb-8 lg:mb-10 border-r-4 border-secondary-500 dark:border-secondary-400 pr-4 py-2 bg-gray-50 dark:bg-gray-800/40 rounded-l-md shadow-sm">
+                                                    <svg className="h-6 w-6 mr-0 ml-3 text-secondary-600 dark:text-secondary-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                                                    جمع‌بندی و راهنمای انتخاب: CSS Grid یا Flexbox برای شما؟
+                                                </h2>
+                                                <div className="text-gray-800 dark:text-gray-200 text-base md:text-lg leading-loose text-justify space-y-5 mb-8">
+                                                    <p>
+                                                        پس از این <strong className="font-semibold">مقایسه CSS Grid و Flexbox</strong>، احتمالاً به این نتیجه رسیده‌اید که سوال اصلی <strong className="font-semibold">"Grid یا Flexbox کدام بهتر است؟"</strong> نیست، بلکه سوال درست این است: <strong className="font-semibold">"چه زمانی از Grid و چه زمانی از Flexbox استفاده کنیم؟"</strong>
+                                                    </p>
+                                                    <p>
+                                                        هر دو ابزار مدرن، قدرتمند و ضروری در جعبه ابزار هر توسعه‌دهنده فرانت‌اند هستند. انتخاب بین آن‌ها به <strong className="font-semibold">نیاز مشخص چیدمان</strong> شما بستگی دارد:
+                                                    </p>
+                                                    <div className="space-y-4 my-6">
+                                                        <div className="p-4 bg-green-50 dark:bg-green-900/30 border-r-4 border-green-500 rounded-l-md shadow-sm">
+                                                            <strong className="font-semibold text-green-800 dark:text-green-200">از Grid استفاده کنید اگر:</strong>
+                                                            <ul className="list-disc ps-4 mt-2 space-y-1 text-sm text-gray-700 dark:text-gray-300 marker:text-green-500">
+                                                                <li>نیاز به چیدمان <strong className="font-medium">دو بعدی</strong> دارید.</li>
+                                                                <li><strong className="font-medium">ساختار کلی صفحه</strong> را تعریف می‌کنید.</li>
+                                                                <li>به کنترل دقیق بر روی <strong className="font-medium">محل آیتم‌ها</strong> در شبکه نیاز دارید.</li>
+                                                                <li>چیدمان <strong className="font-medium">جدولی یا گالری پیچیده</strong> می‌سازید.</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div className="p-4 bg-blue-50 dark:bg-blue-900/30 border-r-4 border-blue-500 rounded-l-md shadow-sm">
+                                                            <strong className="font-semibold text-blue-800 dark:text-blue-200">از Flexbox استفاده کنید اگر:</strong>
+                                                            <ul className="list-disc ps-4 mt-2 space-y-1 text-sm text-gray-700 dark:text-gray-300 marker:text-blue-500">
+                                                                <li>نیاز به چیدمان <strong className="font-medium">یک بعدی</strong> دارید.</li>
+                                                                <li>آیتم‌ها را در یک <strong className="font-medium">کامپوننت کوچک</strong> می‌چینید.</li>
+                                                                <li>به <strong className="font-medium">تراز کردن</strong> دقیق آیتم‌ها در یک خط نیاز دارید.</li>
+                                                                <li>می‌خواهید <strong className="font-medium">فضای خالی</strong> را انعطاف‌پذیر توزیع کنید.</li>
+                                                                <li>چیدمان باید به <strong className="font-medium">محتوا</strong> واکنش نشان دهد.</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div className="p-4 bg-purple-50 dark:bg-purple-900/30 border-r-4 border-purple-500 rounded-l-md shadow-sm">
+                                                            <strong className="font-semibold text-purple-800 dark:text-purple-200">از ترکیب هر دو استفاده کنید (اغلب بهترین راه!):</strong>
+                                                            <ul className="list-disc ps-4 mt-2 space-y-1 text-sm text-gray-700 dark:text-gray-300 marker:text-purple-500">
+                                                                <li>Grid برای ساختار کلی (ماکرو).</li>
+                                                                <li>Flexbox برای چیدمان داخلی (میکرو).</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <p>
+                                                        در نهایت، <strong className="font-semibold">یادگیری هر دو CSS Grid و Flexbox</strong> برای هر توسعه‌دهنده فرانت‌اند مدرن ضروری است. با درک نقاط قوت و ضعف هر کدام، می‌توانید هوشمندانه‌ترین ابزار را برای هر بخش از پروژه خود انتخاب کنید و <strong className="font-semibold">چیدمان‌های وب</strong> کارآمدتر، خواناتر و واکنش‌گراتری بسازید.
+                                                    </p>
+                                                </div>
+                                            </section>
+
+                                        </main> {/* End of Main Body */}
+
+                                        {/* ===== FAQ Section ===== */}
+                                        <section id="faq" className="mt-10 md:mt-12 lg:mt-16 pt-8 border-t border-gray-200 dark:border-gray-700 scroll-mt-20 mx-auto px-4 md:px-0">
+                                            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center flex items-center justify-center">
+                                                <svg className="w-7 h-7 mr-2 rtl:ml-2 rtl:mr-0 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.79 4 4s-1.79 4-4 4c-1.742 0-3.223-.835-3.772-2M12 5v.01M12 19v.01M12 12h.01M12 12h.01M12 12h.01M3.05 13H1m19 0h-2.05m-15.64 4.243l-1.414 1.414M21 19l-1.414-1.414M3.05 11H1m19 0h-2.05m-15.64-4.243l-1.414-1.414M21 5l-1.414 1.414" /></svg>
+                                                سوالات متداول: مقایسه Grid و Flexbox
+                                            </h2>
+                                            <div className="mx-auto">
+                                                <dl className="space-y-6">
+                                                    <details className="bg-gray-50 dark:bg-gray-800/60 p-5 rounded-lg shadow-sm group border border-gray-200 dark:border-gray-700" open>
+                                                        <summary className="w-full text-lg font-semibold text-gray-800 dark:text-gray-100 cursor-pointer list-none flex justify-between items-center group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                                                            <span>Grid یا Flexbox کدام بهتر است؟</span>
+                                                            <svg className="w-5 h-5 text-gray-500 dark:text-gray-400 group-open:rotate-180 transition-transform duration-200 ms-auto mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                                        </summary>
+                                                        <dd className="mt-3 text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                                                            هیچ‌کدام به طور مطلق "بهتر" نیستند. بهترین انتخاب بستگی به نیاز چیدمان شما دارد. Grid برای ساختارهای <strong className="font-medium">دو بعدی</strong> و کلی صفحه عالی است، در حالی که Flexbox برای چیدمان <strong className="font-medium">یک بعدی</strong> و کامپوننت‌ها مناسب‌تر است. اغلب بهترین کار، <strong className="font-medium">ترکیب</strong> هر دو است.
+                                                        </dd>
+                                                    </details>
+                                                    <details className="bg-gray-50 dark:bg-gray-800/60 p-5 rounded-lg shadow-sm group border border-gray-200 dark:border-gray-700">
+                                                        <summary className="text-lg font-semibold text-gray-800 dark:text-gray-100 cursor-pointer list-none flex justify-between items-center group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                                                            <span>آیا Grid جایگزین Flexbox شده است؟</span>
+                                                            <svg className="w-5 h-5 text-gray-500 dark:text-gray-400 group-open:rotate-180 transition-transform duration-200 ms-auto mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                                        </summary>
+                                                        <dd className="mt-3 text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                                                            خیر. آن‌ها ابزارهای <strong className="font-semibold">مکمل</strong> هستند و برای حل مشکلات متفاوتی طراحی شده‌اند. Grid جایگزین Flexbox نشده، بلکه قابلیت‌های چیدمان در CSS را تکمیل کرده است. شما به هر دوی آن‌ها در توسعه وب مدرن نیاز دارید.
+                                                        </dd>
+                                                    </details>
+                                                    <details className="bg-gray-50 dark:bg-gray-800/60 p-5 rounded-lg shadow-sm group border border-gray-200 dark:border-gray-700">
+                                                        <summary className="text-lg font-semibold text-gray-800 dark:text-gray-100 cursor-pointer list-none flex justify-between items-center group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                                                            <span>کدام یک برای طراحی واکنش‌گرا (Responsive) بهتر است؟</span>
+                                                            <svg className="w-5 h-5 text-gray-500 dark:text-gray-400 group-open:rotate-180 transition-transform duration-200 ms-auto mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                                        </summary>
+                                                        <dd className="mt-3 text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                                                            هر دو قابلیت‌های خوبی برای واکنش‌گرایی دارند. Flexbox با <code className="text-xs font-mono">flex-wrap</code> انعطاف‌پذیری خوبی دارد. Grid با <code className="text-xs font-mono">grid-template-areas</code> و توابعی مانند <code className="text-xs font-mono">repeat(auto-fit, minmax(...))</code> کنترل بسیار دقیقی بر تغییر ساختار در نقاط شکست می‌دهد. اغلب ترکیب این دو بهترین نتیجه را می‌دهد.
+                                                        </dd>
+                                                    </details>
+                                                    <details className="bg-gray-50 dark:bg-gray-800/60 p-5 rounded-lg shadow-sm group border border-gray-200 dark:border-gray-700">
+                                                        <summary className="text-lg font-semibold text-gray-800 dark:text-gray-100 cursor-pointer list-none flex justify-between items-center group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                                                            <span>یادگیری Grid سخت‌تر است یا Flexbox؟</span>
+                                                            <svg className="w-5 h-5 text-gray-500 dark:text-gray-400 group-open:rotate-180 transition-transform duration-200 ms-auto mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                                        </summary>
+                                                        <dd className="mt-3 text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                                                            معمولاً گفته می‌شود مفاهیم پایه <strong className="font-semibold">Flexbox</strong> کمی <strong className="font-semibold">ساده‌تر</strong> برای شروع هستند. <strong className="font-semibold">Grid</strong> به دلیل ماهیت دو بعدی ممکن است در ابتدا <strong className="font-semibold">پیچیده‌تر</strong> به نظر برسد، اما پس از درک مفاهیم، می‌تواند بسیار قدرتمند باشد.
+                                                        </dd>
+                                                    </details>
+                                                </dl>
+                                            </div>
+                                        </section>
+
+                                        {/* ===== Call to Action (CTA) Section ===== */}
+                                        <div id="cta-next-steps" className="mt-12 md:mt-16 lg:mt-20 py-10 md:py-14 px-6 bg-gradient-to-b from-gray-100 to-white dark:from-gray-900 dark:to-gray-800/70 rounded-t-2xl border-t-4 border-primary-500 text-center shadow-xl">
+                                            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary-800 dark:text-primary-200 mb-5">حالا که تفاوت را می‌دانید، استاد هر دو شوید! 🚀</h2>
+                                            <p className="text-gray-700 dark:text-gray-300 text-lg md:text-xl leading-relaxed mx-auto mb-10">
+                                                درک <strong className="font-semibold">تفاوت CSS Grid و Flexbox</strong> و نحوه استفاده بهینه از هر کدام، یک مهارت حیاتی برای هر توسعه‌دهنده وب مدرن است. حالا که با تحلیل ما بهترین ابزار را برای نیاز خود می‌شناسید، زمان آن رسیده تا دانش خود را عمیق‌تر کنید.
+                                            </p>
+
+                                            {/* Courses Promotion */}
+                                            <div className="space-y-8">
+                                                <h4 className="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center justify-center">
+                                                    <span className="text-3xl mr-2 rtl:ml-2 rtl:mr-0">🎓</span> مسیرهای یادگیری پیشنهادی در Virtual Learn:
+                                                </h4>
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mx-auto">
+                                                    {/* Grid Course Box */}
+                                                    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-success-200 dark:border-success-700 transition hover:shadow-success-200/50 dark:hover:shadow-success-800/40 transform hover:scale-[1.03] duration-300 flex flex-col justify-between">
+                                                        <div>
+                                                            <h5 className="text-lg font-semibold text-success-800 dark:text-success-200 mb-3">تسلط کامل بر CSS Grid</h5>
+                                                            <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed mb-5">
+                                                                <a href="https://vc-virtual-learn.com/courses/Ultimate-CSS-Grid-Course-From-Beginner-to-Advanced-Peter-Sommerhoff" target="_blank" rel="noopener noreferrer" className="text-success-600 dark:text-success-300 font-bold hover:underline">دوره جامع CSS Grid (Peter Sommerhoff)</a> با زیرنویس فارسی، شما را از پایه تا پیشرفته‌ترین تکنیک‌های چیدمان دو بعدی راهنمایی می‌کند.
+                                                            </p>
+                                                        </div>
+                                                        <Button size="md" radius="sm" as={Link} variant="shadow" color="success" href="https://vc-virtual-learn.com/courses/Ultimate-CSS-Grid-Course-From-Beginner-to-Advanced-Peter-Sommerhoff" target="_blank" rel="noopener noreferrer" className="mt-4 text-white">مشاهده دوره CSS Grid</Button>
+                                                    </div>
+                                                    {/* Flexbox/General CSS Course Box */}
+                                                    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-secondary-200 dark:border-secondary-700 transition hover:shadow-secondary-200/50 dark:hover:shadow-secondary-800/40 transform hover:scale-[1.03] duration-300 flex flex-col justify-between">
+                                                        <div>
+                                                            <h5 className="text-lg font-semibold text-secondary-800 dark:text-secondary-200 mb-3">تقویت پایه CSS و Flexbox</h5>
+                                                            <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed mb-5">
+                                                                برای تسلط بر Flexbox و تمام مفاهیم ضروری دیگر CSS برای ساخت وب‌سایت‌های واکنش‌گرا، <a href="https://vc-virtual-learn.com/courses/Build-Responsive-Real-World-Websites-with-HTML-and-CSS-Jonas-Schmedtmann" target="_blank" rel="noopener noreferrer" className="text-secondary-600 dark:text-secondary-300 font-bold hover:underline">دوره آموزش HTML & CSS (Jonas Schmedtmann)</a> با زیرنویس فارسی بهترین انتخاب است.
+                                                            </p>
+                                                        </div>
+                                                        <Button size="md" radius="sm" as={Link} variant="shadow" color="secondary" href="https://vc-virtual-learn.com/courses/Build-Responsive-Real-World-Websites-with-HTML-and-CSS-Jonas-Schmedtmann" target="_blank" rel="noopener noreferrer" className="mt-4">مشاهده دوره HTML/CSS</Button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {/* Discussion & External Links */}
+                                            <div className="mt-10 pt-6 border-t border-primary-200 dark:border-primary-700/50 mx-auto space-y-4">
+                                                <h4 className="text-lg font-semibold text-gray-800 dark:text-white mb-3">💬 شما چه فکر می‌کنید؟</h4>
+                                                <p className="text-gray-600 dark:text-gray-400 text-base leading-relaxed">
+                                                    تجربه شما در استفاده از Grid و Flexbox چه بوده است؟ در چه پروژه‌هایی از کدام یک استفاده کرده‌اید؟ نکات یا ترفندهای جالبی دارید؟ نظرات خود را در بخش کامنت‌ها با ما و جامعه توسعه‌دهندگان ایرانی به اشتراک بگذارید!
+                                                </p>
+                                                <div className="pt-4">
+                                                    <p className="text-sm text-gray-500 dark:text-gray-400">منابع معتبر برای مطالعه بیشتر (انگلیسی):</p>
+                                                    <ul className=" text-sm text-primary-600 dark:text-primary-400 space-y-1 text-center md:text-right">
+                                                        <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout" target="_blank" rel="noopener nofollow noreferrer" className="hover:underline">CSS Grid Layout (MDN)</a></li>
+                                                        <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout" target="_blank" rel="noopener nofollow noreferrer" className="hover:underline">CSS Flexible Box Layout (MDN)</a></li>
+                                                        <li><a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank" rel="noopener nofollow noreferrer" className="hover:underline">A Complete Guide to Flexbox (CSS-Tricks)</a></li>
+                                                        <li><a href="https://css-tricks.com/snippets/css/complete-guide-grid/" target="_blank" rel="noopener nofollow noreferrer" className="hover:underline">A Complete Guide to Grid (CSS-Tricks)</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </article>
+
 
                                 </div>
                             </div>

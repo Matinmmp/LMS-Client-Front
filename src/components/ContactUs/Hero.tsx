@@ -32,7 +32,7 @@ const Hero = (props: Props) => {
                             <RxInstagramLogo className="text-3xl lg:text-4xl text-danger-500" />
                         </Link>
 
-                        <Link href="mailto:vc.virtuallearn@gmail.com?subject=تماس%20از%20سایت&body=سلام،%20لطفاً%20به%20سوالات%20من%20پاسخ%20دهید." className="p-4 flex items-center justify-center border-warning-500 rounded-xl border-2 shadow-medium">
+                        <Link rel={"noopener noreferrer"} target={ "_blank"} href="mailto:vc.virtuallearn@gmail.com?subject=تماس%20از%20سایت&body=سلام،%20لطفاً%20به%20سوالات%20من%20پاسخ%20دهید." className="p-4 flex items-center justify-center border-warning-500 rounded-xl border-2 shadow-medium">
                             <BiLogoGmail className="text-3xl lg:text-4xl text-warning-500" />
                         </Link>
 

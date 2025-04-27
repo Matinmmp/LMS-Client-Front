@@ -35,8 +35,6 @@ export default async function BlogDetail({ params: { blogName } }: Props) {
 
                                     </div>
 
-                                   
-
 
                                 </div>
                             </div>
