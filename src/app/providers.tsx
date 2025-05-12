@@ -31,40 +31,40 @@ const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
 export function Providers({ children, themeProps }: ProvidersProps) {
     const router = useRouter();
 
-    useEffect(() => {
-        posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY as string, {
-            api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com',
+    // useEffect(() => {
+    //     posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY as string, {
+    //         api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com',
 
-            // ✅ فعال کردن پروفایل کاربران ناشناس (Anonymous Users)
-            person_profiles: 'always',
+    //         // ✅ فعال کردن پروفایل کاربران ناشناس (Anonymous Users)
+    //         person_profiles: 'always',
 
-            // ✅ غیرفعال کردن اتوماتیک pageview، چون می‌خوای خودت دستی بزنی
-            capture_pageview: false,
+    //         // ✅ غیرفعال کردن اتوماتیک pageview، چون می‌خوای خودت دستی بزنی
+    //         capture_pageview: false,
 
-            // ✅ فعال‌سازی ترک زمانی که کاربر از صفحه خارج میشه (صفحه رو ترک می‌کنه)
-            capture_pageleave: true,
+    //         // ✅ فعال‌سازی ترک زمانی که کاربر از صفحه خارج میشه (صفحه رو ترک می‌کنه)
+    //         capture_pageleave: true,
 
-            // ✅ ذخیره user_id در کوکی
-            autocapture: true, // ترک خودکار رویدادهای کلیدی مثل کلیک، سابمیت و ...
+    //         // ✅ ذخیره user_id در کوکی
+    //         autocapture: true, // ترک خودکار رویدادهای کلیدی مثل کلیک، سابمیت و ...
 
-            // ✅ کوکی‌ها رو دامنه‌ی ساب‌دامین‌ها به اشتراک بذار (اگر پروژه چنددامنه‌ایه)
-            cross_subdomain_cookie: true,
+    //         // ✅ کوکی‌ها رو دامنه‌ی ساب‌دامین‌ها به اشتراک بذار (اگر پروژه چنددامنه‌ایه)
+    //         cross_subdomain_cookie: true,
 
-            // ✅ تعیین مدت نگهداری کوکی‌ها
-            persistence: 'localStorage+cookie', // برای اینکه هم کوکی باشه هم در localStorage باشه (پایداری بهتر)
+    //         // ✅ تعیین مدت نگهداری کوکی‌ها
+    //         persistence: 'localStorage+cookie', // برای اینکه هم کوکی باشه هم در localStorage باشه (پایداری بهتر)
 
-            enable_recording_console_log:true,
-            // ✅ تگ زدن با نسخه فرانت یا ورژن (برای دیباگ بعداً)
-            loaded: (posthogInstance) => {
-                posthogInstance.register({
-                    frontend_version: '1.0.0',
-                })
-            },
+    //         enable_recording_console_log:true,
+    //         // ✅ تگ زدن با نسخه فرانت یا ورژن (برای دیباگ بعداً)
+    //         loaded: (posthogInstance) => {
+    //             posthogInstance.register({
+    //                 frontend_version: '1.0.0',
+    //             })
+    //         },
 
-            // ✅ برای تست: Console log رو روشن کن
-            debug: process.env.NODE_ENV === 'development',
-        })
-    }, [])
+    //         // ✅ برای تست: Console log رو روشن کن
+    //         debug: process.env.NODE_ENV === 'development',
+    //     })
+    // }, [])
 
 
     return (
@@ -89,11 +89,11 @@ export function Providers({ children, themeProps }: ProvidersProps) {
                     <GoogleOAuthProvider clientId={clientId || ''}>
 
                         <NextThemesProvider {...themeProps}>
-
-                            <PHProvider client={posthog}>
+                        {children}
+                            {/* <PHProvider client={posthog}>
                                 <SuspendedPostHogPageView />
-                                {children}
-                            </PHProvider>
+                               
+                            </PHProvider> */}
                         </NextThemesProvider>
 
                     </GoogleOAuthProvider>
@@ -146,37 +146,37 @@ function RequestProviders() {
 
 
 
-function PostHogPageView() {
-    const pathname = usePathname()
-    const searchParams = useSearchParams()
-    const posthog = usePostHog()
+// function PostHogPageView() {
+//     const pathname = usePathname()
+//     const searchParams = useSearchParams()
+//     const posthog = usePostHog()
 
-    // Track pageviews
-    useEffect(() => {
+//     // Track pageviews
+//     useEffect(() => {
        
-        if (pathname && posthog) {
-            let url = window.origin + pathname
-            if (searchParams.toString()) {
-                url = url + "?" + searchParams.toString();
-            }
-            console.log(url)
-            posthog.capture('$pageview', { '$current_url': url })
-        }
-    }, [pathname, searchParams, posthog])
+//         if (pathname && posthog) {
+//             let url = window.origin + pathname
+//             if (searchParams.toString()) {
+//                 url = url + "?" + searchParams.toString();
+//             }
+//             console.log(url)
+//             posthog.capture('$pageview', { '$current_url': url })
+//         }
+//     }, [pathname, searchParams, posthog])
 
-    return null
-}
+//     return null
+// }
 
 // Wrap PostHogPageView in Suspense to avoid the useSearchParams usage above
 // from de-opting the whole app into client-side rendering
 // See: https://nextjs.org/docs/messages/deopted-into-client-rendering
-export function SuspendedPostHogPageView() {
-    return (
-        <Suspense fallback={null}>
-            <PostHogPageView />
-        </Suspense>
-    )
-}
+// export function SuspendedPostHogPageView() {
+//     return (
+//         <Suspense fallback={null}>
+//             <PostHogPageView />
+//         </Suspense>
+//     )
+// }
 
 
 

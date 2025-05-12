@@ -30,8 +30,8 @@ const schema = {
         "@id": "https://vc-virtual-learn.com/about-us"
     },
     "sameAs": [
-        "https://www.instagram.com/virtual_learn", //اینم تغییر بده
-        "https://t.me/VC_Virtual_Learn"
+        "https://", //اینم تغییر بده
+        ""
     ],
     "potentialAction": {
         "@type": "SearchAction",

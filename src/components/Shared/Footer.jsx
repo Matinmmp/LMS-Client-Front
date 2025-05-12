@@ -38,13 +38,13 @@ const Footer = ({ }) => {
                                     </Link>
                                 </li>
                                 <li className="mt-4 ">
-                                    <Link className={`flex items-center gap-2 font-medium`} href="https://t.me/VC_Virtual_Learn" target="_blank" rel="noopener noreferrer">
+                                    <Link className={`flex items-center gap-2 font-medium`} href="" target="_blank" rel="noopener noreferrer">
                                         <FaTelegramPlane size={20} />
                                         <span >تلگرام</span>
                                     </Link>
                                 </li>
                                 <li className="mt-1">
-                                    <Link className="flex items-center gap-2 font-medium " href="https://www.instagram.com/vc_virtual_learn" target="_blank" rel="noopener noreferrer">
+                                    <Link className="flex items-center gap-2 font-medium " href="" target="_blank" rel="noopener noreferrer">
                                         <RxInstagramLogo size={20} />
                                         <span >ایناستگرام</span>
                                     </Link>
@@ -198,10 +198,7 @@ const Footer = ({ }) => {
 
             <div className="mt-16 flex items-center justify-center">
                 <div className="bg-primary-50 p-4 rounded-xl shadow-medium">
-                    <a referrerPolicy='origin' target='_blank' href='https://trustseal.enamad.ir/?id=576221&Code=pBSlMlXgLYOjvQu242SjugLtK89Q0ssL'>
-                        <img referrerPolicy="origin" src='https://trustseal.enamad.ir/logo.aspx?id=576221&Code=pBSlMlXgLYOjvQu242SjugLtK89Q0ssL'
-                            alt='logo-enamad' style={{ cursor: 'pointer' }} code='pBSlMlXgLYOjvQu242SjugLtK89Q0ssL' />
-                    </a>
+              
 
                 </div>
             </div>

@@ -21,7 +21,8 @@ const getTeacherByName = async (name: string) => {
     try {
         const data = await customFetch(`/getTeacherByEngName/${name}`, {
             method: 'GET',
-            next: { revalidate: 3600 * 24 }
+            //  next: { revalidate: 3600 },
+            cache: 'no-store',
         }
         );
         return await data;

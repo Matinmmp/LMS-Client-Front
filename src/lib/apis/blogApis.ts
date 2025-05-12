@@ -5,7 +5,8 @@ export const getBlogsInSlider = async () => {
     try {
         const data = await customFetch(`/getBlogsInSlider`, {
             method: 'GET',
-             next: { revalidate: 3600 },
+            //  next: { revalidate: 3600 },
+            cache: 'no-store',
             headers: {
                 "Content-Type": "application/json",
             },
@@ -21,7 +22,8 @@ export const getSpecialBlogs = async () => {
     try {
         const data = await customFetch(`/getSpecialBlogs`, {
             method: 'GET',
-             next: { revalidate: 3600 },
+            //  next: { revalidate: 3600 },
+            cache: 'no-store',
             headers: {
                 "Content-Type": "application/json",
             },
@@ -37,7 +39,8 @@ export const getOldestAndPopularBlogs = async () => {
     try {
         const data = await customFetch(`/getOldestAndPopularBlogs`, {
             method: 'GET',
-             next: { revalidate: 3600 },
+            //  next: { revalidate: 3600 },
+            cache: 'no-store',
             headers: {
                 "Content-Type": "application/json",
             },
@@ -53,7 +56,8 @@ export const getLatestBlogs = async () => {
     try {
         const data = await customFetch(`/getLatestBlogs`, {
             method: 'GET',
-             next: { revalidate: 3600 },
+            //  next: { revalidate: 3600 },
+            cache: 'no-store',
             headers: {
                 "Content-Type": "application/json",
             },
@@ -69,7 +73,8 @@ export const getBlogsByCategories = async () => {
     try {
         const data = await customFetch(`/getBlogsByCategories`, {
             method: 'GET',
-             next: { revalidate: 3600 },
+            //  next: { revalidate: 3600 },
+            cache: 'no-store',
             headers: {
                 "Content-Type": "application/json",
             },
@@ -85,7 +90,8 @@ export const getBlogsByCategory = async ({ slug }: { slug: string }) => {
     try {
         const data = await customFetch(`/getBlogsByCategory/${slug}`, {
             method: 'GET',
-             next: { revalidate: 3600 },
+            //  next: { revalidate: 3600 },
+            cache: 'no-store',
             headers: {
                 "Content-Type": "application/json",
             },
@@ -102,8 +108,9 @@ export const getRelatedBlogsByCourseName = async (name: string) => {
     try {
         const data = await customFetch(`/getRelatedBlogsByCourseName/${name}`, {
             method: 'GET',
-             next: { revalidate: 3600 }
- 
+            //  next: { revalidate: 3600 },
+            cache: 'no-store',
+
         }
         );
         return await data;
@@ -117,7 +124,7 @@ export const searchBlogs = async (search: any) => {
     try {
         const data = await customFetch(`/searchBlogs`, {
             method: 'POST',
-            
+
             body: JSON.stringify(search),
             headers: { 'Content-Type': 'application/json' },
         }
@@ -132,7 +139,8 @@ export const getBlogBySlug = async (slug: string) => {
     try {
         const data = await customFetch(`/getBlogBySlug/${slug}`, {
             method: 'GET',
-             next: { revalidate: 3600 },
+            //  next: { revalidate: 3600 },
+            cache: 'no-store',
             headers: {
                 "Content-Type": "application/json",
             },
@@ -148,7 +156,8 @@ export const getAllBlogSlugs = async () => {
     try {
         const data = await customFetch(`/getAllBlogSlugs`, {
             method: 'GET',
-            next: { revalidate: 86400 },
+            //  next: { revalidate: 3600 },
+            cache: 'no-store',
             headers: {
                 "Content-Type": "application/json",
             },
@@ -160,14 +169,14 @@ export const getAllBlogSlugs = async () => {
     }
 }
 
-export const recordBlogView = async ( blogId: string) => {
-    
+export const recordBlogView = async (blogId: string) => {
+
     const data = await customFetch(`/recordBlogView/${blogId}`, {
         method: 'Get',
         headers: { 'Content-Type': 'application/json' },
     }
     );
- 
+
     return await data;
 
 }

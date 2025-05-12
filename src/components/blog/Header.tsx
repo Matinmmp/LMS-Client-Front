@@ -46,13 +46,13 @@ const links = [
     {
         icon: <FaTelegramPlane size={20} color="#079CED" />,
         title: 'کانال تلگرام',
-        link: 'https://t.me/VC_Virtual_Learn',
+        link: '',
         isOut: true,
     },
     {
         icon: <GrInstagram size={18} color="#ed071e" />,
         title: 'پیج اینستاگرام',
-        link: 'https://www.instagram.com/vc_virtual_learn',
+        link: '',
         isOut: true,
     },
     {

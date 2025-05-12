@@ -16,8 +16,8 @@ const schema = {
     "inLanguage": "fa",
     "alternateName": "بلاگ Virtual Learn | جدیدترین مقالات آموزش برنامه‌نویسی",
     "sameAs": [
-        "https://www.instagram.com/virtual_learn",
-        "https://t.me/VC_Virtual_Learn"
+        "https://",
+        ""
     ],
     "publisher": {
         "@type": "Organization",

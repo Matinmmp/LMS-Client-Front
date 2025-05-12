@@ -5,14 +5,14 @@ import { cookies } from 'next/headers'
 import { notFound } from "next/navigation";
 import Script from "next/script";
 
-export async function generateStaticParams() {
-    const coursUrlNames: any = await getAllCourseUrlNames();
+// export async function generateStaticParams() {
+//     const coursUrlNames: any = await getAllCourseUrlNames();
 
 
-    return coursUrlNames?.courseUrlNames?.map((course: { urlName: string }) => ({
-        courseName: encodeURIComponent(encodeTitle(course?.urlName)),
-    })) || [];
-}
+//     return coursUrlNames?.courseUrlNames?.map((course: { urlName: string }) => ({
+//         courseName: encodeURIComponent(encodeTitle(course?.urlName)),
+//     })) || [];
+// }
 
 type Props = {
     params: { courseName: string }

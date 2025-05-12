@@ -17,8 +17,8 @@ const schema = {
         "query-input": "required searchText=search_term_string"
     },
     "sameAs": [
-        "https://www.instagram.com/virtual_learn",
-        "https://t.me/VC_Virtual_Learn"
+        "https://",
+        ""
     ],
     "publisher": {
         "@type": "Organization",

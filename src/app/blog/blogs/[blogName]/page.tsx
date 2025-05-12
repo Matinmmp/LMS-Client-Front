@@ -3,15 +3,15 @@ import { getAllBlogSlugs, getBlogBySlug, recordBlogView } from "@/src/lib/apis/b
 import { notFound } from "next/navigation";
 import Script from "next/script";
 
-export async function generateStaticParams() {
+// export async function generateStaticParams() {
 
-    const list: any = await getAllBlogSlugs()
+//     const list: any = await getAllBlogSlugs()
 
-    return list?.blogs?.map((blog: any) => ({
-        blogName: blog?.slug,
-    })) || [];
+//     return list?.blogs?.map((blog: any) => ({
+//         blogName: blog?.slug,
+//     })) || [];
 
-}
+// }
 
 type Props = {
     params: { blogName: string }

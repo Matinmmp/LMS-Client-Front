@@ -6,7 +6,8 @@ const getHomeLastCourses = async () => {
     try {
         const data = await customFetch('get-home-last-courses', {
             method: 'GET',
-             next: { revalidate: 3600 }
+            //  next: { revalidate: 3600 },
+            cache: 'no-store',
         }
         );
         return await data;
@@ -21,7 +22,8 @@ const getHomeFavoritCourses = async () => {
     try {
         const data = await customFetch('/get-home-favorite-courses', {
             method: 'GET',
-             next: { revalidate: 3600 }
+            //  next: { revalidate: 3600 },
+            cache: 'no-store',
         }
         );
         return await data;
@@ -49,7 +51,8 @@ const getHomeFavoritAcademies = async () => {
     try {
         const data = await customFetch('/get-home-favorite-academy', {
             method: 'GET',
-             next: { revalidate: 3600 }
+            //  next: { revalidate: 3600 },
+            cache: 'no-store',
         }
         );
         return await data;

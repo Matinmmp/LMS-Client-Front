@@ -4,7 +4,8 @@ export const getCourseByName = async (name: string, refresh_token: any, access_t
     try {
         const data = await customFetch(`/get-course/${name}`, {
             method: 'GET',
-             next: { revalidate: 3600 *24},
+            //  next: { revalidate: 3600 },
+            cache: 'no-store',
             headers: {
                 "Content-Type": "application/json",
                 "Cookie": `refresh_token=${refresh_token};access_token=${access_token}`,
@@ -42,8 +43,9 @@ export const getAllCourseUrlNames = async () => {
     try {
         const data = await customFetch(`/getAllCourseUrlNames`, {
             method: 'GET',
-             next: { revalidate: 3600*24 },
-            cache: 'force-cache'
+            //  next: { revalidate: 3600 },
+            cache: 'no-store',
+            // cache: 'force-cache'
         }
         );
         return await data;

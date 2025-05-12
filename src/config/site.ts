@@ -6,17 +6,17 @@ export const navObject = {
             {
                 "engName": "Udemy",
                 "faName": "یودمی",
-                "imageUrl": "https://images.vc-virtual-learn.com/academy/dxQNOYUnYXegzzGoMjKB-Udemy.png"
+                "imageUrl": "https://buckettest.storage.c2.liara.space/academy/dxQNOYUnYXegzzGoMjKB-Udemy.png"
             },
             {
                 "engName": "GameDev.tv Team",
                 "faName": "تیم گیم‌دو",
-                "imageUrl": "https://images.vc-virtual-learn.com/academy/t2OUjXcZyTZFkoPRCxsZ-GameDev.tv Team.png"
+                "imageUrl": "https://buckettest.storage.c2.liara.space/academy/t2OUjXcZyTZFkoPRCxsZ-GameDev.tv Team.png"
             },
             {
                 "engName": "Net Ninja",
                 "faName": "نت نینجا",
-                "imageUrl": "https://images.vc-virtual-learn.com//academy/Pq9aThctYLllSHBVwxCQ-Net Ninja.png"
+                "imageUrl": "https://buckettest.storage.c2.liara.space/academy/Pq9aThctYLllSHBVwxCQ-Net Ninja.png"
             }
         ],
         "total": 3
@@ -26,22 +26,22 @@ export const navObject = {
             {
                 "engName": "Jonas Schmedtmann",
                 "faName": "جوناس اشمدتمن",
-                "imageUrl": "https://images.vc-virtual-learn.com/teacher/8tTThPHOanENKFpJMIQX-Jonas Schmedtmann.png"
+                "imageUrl": "https://buckettest.storage.c2.liara.space/teacher/8tTThPHOanENKFpJMIQX-Jonas Schmedtmann.png"
             },
             {
                 "engName": "Angela Yu",
                 "faName": "آنجلا یو",
-                "imageUrl": "https://images.vc-virtual-learn.com/teacher/pUZMAv8DZZQYZFWEYgcK-Angela Yu.png"
+                "imageUrl": "https://buckettest.storage.c2.liara.space/teacher/pUZMAv8DZZQYZFWEYgcK-Angela Yu.png"
             },
             {
                 "engName": "Rick Davidson",
                 "faName": "ریک دیویدسون",
-                "imageUrl": "https://images.vc-virtual-learn.com/teacher/WEtBgHuNwCYbKqHOtLNN-Rick Davidson.png"
+                "imageUrl": "https://buckettest.storage.c2.liara.space/teacher/WEtBgHuNwCYbKqHOtLNN-Rick Davidson.png"
             },
             {
                 "engName": "Shaun Pelling",
                 "faName": "شان پلینگ",
-                "imageUrl": "https://images.vc-virtual-learn.com/teacher/WOwFVZ5gGAXoLUDmHlZE-Shaun Pelling.png"
+                "imageUrl": "https://buckettest.storage.c2.liara.space/teacher/WOwFVZ5gGAXoLUDmHlZE-Shaun Pelling.png"
             }
         ],
         "total": 4

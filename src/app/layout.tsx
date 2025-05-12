@@ -1,7 +1,7 @@
 import "@/src/styles/globals.css";
 import { Viewport } from "next";
 import { Inter, Vazir } from "../config/fonts";
-import { Providers, SuspendedPostHogPageView } from "./providers";
+import { Providers } from "./providers";
 import NextTopLoader from 'nextjs-toploader';
 import Script from "next/script";
 

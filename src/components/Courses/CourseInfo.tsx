@@ -167,7 +167,7 @@ export default async function CourseInfo({ data, isPurchased, userRate }: Props)
                 <div className="w-full mt-8 flex flex-col lg:flex-row gap-6">
 
                     <div className="w-full lg:w-[70%] ">
-                        <div className="bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl">
+                        <div className="bg-white dark:bg-[#131d35] dark:bg-opacity-85 dark:backdrop-blur-md shadow-medium rounded-2xl bg-[#fff0]">
                             <Description desc={course?.longDescription} />
                         </div>
                         <div className="mt-8">

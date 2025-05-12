@@ -39,8 +39,8 @@ function VirtualInfo() {
                     
                     <div className="mt-4 flex items-center gap-4 ">
                         <Link href={'/'}><IoLogoLinkedin size={24} className="text-secondary-500" /></Link>
-                        <Link rel={"noopener noreferrer"} target={ "_blank"} href="https://www.instagram.com/vc_virtual_learn"><FaSquareInstagram size={24} className="text-secondary-500" /></Link>
-                        <Link rel={"noopener noreferrer"} target={ "_blank"} href="https://t.me/VC_Virtual_Learn" ><FaTelegram size={24} className="text-secondary-500" /></Link>
+                        <Link rel={"noopener noreferrer"} target={ "_blank"} href=""><FaSquareInstagram size={24} className="text-secondary-500" /></Link>
+                        <Link rel={"noopener noreferrer"} target={ "_blank"} href="" ><FaTelegram size={24} className="text-secondary-500" /></Link>
                     </div>
                 </div>
             </div>

@@ -87,7 +87,7 @@ const LootieModal = () => {
                         </ul>
 
                         <p className="mt-2 text-sm font-light">برای اطلاع از مبلغ جایزه که درحال افزایش هست و نتایج قرعه کشی به کانال تلگرام ما مراجعه کنید.</p>
-                        <Link className="block mt-2 text-secondary-400 font-semibold" dir="ltr"  href={'https://t.me/VC_Virtual_Learn'} target="_blank" rel="noopener noreferrer">
+                        <Link className="block mt-2 text-secondary-400 font-semibold" dir="ltr"  href={''} target="_blank" rel="noopener noreferrer">
                         @VC_Virtual_Learn
                         </Link>
                     </div>
